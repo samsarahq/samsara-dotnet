@@ -6,7 +6,7 @@ namespace Samsara.Net;
 public record OrganizationInfoResponse
 {
     [JsonPropertyName("data")]
-    public OrganizationInfo? Data { get; set; }
+    public OrganizationInfoObject? Data { get; set; }
 
     public override string ToString()
     {

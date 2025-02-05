@@ -3,7 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record OrganizationInfo
+public record OrganizationInfoObject
 {
     [JsonPropertyName("carrierSettings")]
     public OrganizationInfoCarrierSettings? CarrierSettings { get; set; }

@@ -6,7 +6,7 @@ namespace Samsara.Net;
 public record EquipmentResponse
 {
     [JsonPropertyName("data")]
-    public required Equipment Data { get; set; }
+    public required EquipmentObject Data { get; set; }
 
     public override string ToString()
     {

@@ -9,7 +9,7 @@ public record EquipmentListResponse
     /// List of equipment objects.
     /// </summary>
     [JsonPropertyName("data")]
-    public IEnumerable<Equipment> Data { get; set; } = new List<Equipment>();
+    public IEnumerable<EquipmentObject> Data { get; set; } = new List<EquipmentObject>();
 
     [JsonPropertyName("pagination")]
     public required PaginationResponse Pagination { get; set; }

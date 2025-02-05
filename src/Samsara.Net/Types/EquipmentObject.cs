@@ -3,7 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record Equipment
+public record EquipmentObject
 {
     /// <summary>
     /// An equipment identification number.
