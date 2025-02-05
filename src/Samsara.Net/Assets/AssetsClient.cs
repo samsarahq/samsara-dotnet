@@ -5,55 +5,48 @@ using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.Safety;
+namespace Samsara.Net.Assets;
 
-public partial class SafetyClient
+public partial class AssetsClient
 {
     private RawClient _client;
 
-    internal SafetyClient(RawClient client)
+    internal AssetsClient(RawClient client)
     {
         _client = client;
     }
 
     /// <summary>
-    /// Fetch safety events for the organization in a given time period.
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
+    ///
+    /// Fetch all of the assets.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Safety.ListEventsAsync(
-    ///     new SafetyListEventsRequest { StartTime = "startTime", EndTime = "endTime" }
-    /// );
+    /// await client.Assets.ListAsync();
     /// </code>
     /// </example>
-    public async Task<SafetyEventsListResponse> ListEventsAsync(
-        SafetyListEventsRequest request,
+    public async Task<InlineResponse2001> ListAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["endTime"] = request.EndTime;
-        _query["tagIds"] = request.TagIds;
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["vehicleIds"] = request.VehicleIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
         var response = await _client
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = "fleet/safety-events",
-                    Query = _query,
+                    Path = "v1/fleet/assets",
                     Options = options,
                 },
                 cancellationToken
@@ -64,7 +57,7 @@ public partial class SafetyClient
         {
             try
             {
-                return JsonUtils.Deserialize<SafetyEventsListResponse>(responseBody)!;
+                return JsonUtils.Deserialize<InlineResponse2001>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -80,40 +73,42 @@ public partial class SafetyClient
     }
 
     /// <summary>
-    /// Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
     ///
-    /// | ActivityType      | Description |
-    /// | ----------- | ----------- |
-    /// | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-    /// | BehaviorLabelActivityType     | a label is added or removed from a safety event |
-    /// | CoachingStateActivityType     | a safety event coaching state is updated        |
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    ///
+    /// Fetch current locations of all assets.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Safety.GetActivityEventFeedAsync(new SafetyGetActivityEventFeedRequest());
+    /// await client.Assets.ListCurrentLocationsAsync(new AssetsListCurrentLocationsRequest());
     /// </code>
     /// </example>
-    public async Task<SafetyEventsGetSafetyActivityEventFeedResponseBody> GetActivityEventFeedAsync(
-        SafetyGetActivityEventFeedRequest request,
+    public async Task<InlineResponse2002> ListCurrentLocationsAsync(
+        AssetsListCurrentLocationsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _query = new Dictionary<string, object>();
-        if (request.After != null)
+        if (request.StartingAfter != null)
         {
-            _query["after"] = request.After;
+            _query["startingAfter"] = request.StartingAfter;
         }
-        if (request.StartTime != null)
+        if (request.EndingBefore != null)
         {
-            _query["startTime"] = request.StartTime;
+            _query["endingBefore"] = request.EndingBefore;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
         }
         var response = await _client
             .MakeRequestAsync(
@@ -121,7 +116,7 @@ public partial class SafetyClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = "fleet/safety-events/audit-logs/feed",
+                    Path = "v1/fleet/assets/locations",
                     Query = _query,
                     Options = options,
                 },
@@ -133,7 +128,147 @@ public partial class SafetyClient
         {
             try
             {
-                return JsonUtils.Deserialize<SafetyEventsGetSafetyActivityEventFeedResponseBody>(
+                return JsonUtils.Deserialize<InlineResponse2002>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new SamsaraClientApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
+    ///
+    /// Fetches all reefers and reefer-specific stats.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Assets.GetReefersAsync(
+    ///     new AssetsGetReefersRequest { StartMs = 1000000, EndMs = 1000000 }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<InlineResponse2003> GetReefersAsync(
+        AssetsGetReefersRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        _query["startMs"] = request.StartMs.ToString();
+        _query["endMs"] = request.EndMs.ToString();
+        if (request.StartingAfter != null)
+        {
+            _query["startingAfter"] = request.StartingAfter;
+        }
+        if (request.EndingBefore != null)
+        {
+            _query["endingBefore"] = request.EndingBefore;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "v1/fleet/assets/reefers",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<InlineResponse2003>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new SamsaraClientApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
+    ///
+    /// List historical locations for a given asset.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example>
+    /// <code>
+    /// await client.Assets.GetLocationAsync(
+    ///     1000000,
+    ///     new AssetsGetLocationRequest { StartMs = 1000000, EndMs = 1000000 }
+    /// );
+    /// </code>
+    /// </example>
+    public async Task<IEnumerable<V1AssetLocationResponseItem>> GetLocationAsync(
+        long assetId,
+        AssetsGetLocationRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        _query["startMs"] = request.StartMs.ToString();
+        _query["endMs"] = request.EndMs.ToString();
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = $"v1/fleet/assets/{assetId}/locations",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<IEnumerable<V1AssetLocationResponseItem>>(
                     responseBody
                 )!;
             }
@@ -143,34 +278,6 @@ public partial class SafetyClient
             }
         }
 
-        try
-        {
-            switch (response.StatusCode)
-            {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-            }
-        }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
         throw new SamsaraClientApiException(
             $"Error with status code {response.StatusCode}",
             response.StatusCode,
@@ -186,25 +293,23 @@ public partial class SafetyClient
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
-    /// Fetch the safety score for the driver.
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    /// Fetch the reefer-specific stats of an asset.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Safety.GetDriverSafetyScoreAsync(
+    /// await client.Assets.GetReeferAsync(
     ///     1000000,
-    ///     new SafetyGetDriverSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new AssetsGetReeferRequest { StartMs = 1000000, EndMs = 1000000 }
     /// );
     /// </code>
     /// </example>
-    public async Task<V1DriverSafetyScoreResponse> GetDriverSafetyScoreAsync(
-        long driverId,
-        SafetyGetDriverSafetyScoreRequest request,
+    public async Task<V1AssetReeferResponse> GetReeferAsync(
+        long assetId,
+        AssetsGetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -218,7 +323,7 @@ public partial class SafetyClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = $"v1/fleet/drivers/{driverId}/safety/score",
+                    Path = $"v1/fleet/assets/{assetId}/reefer",
                     Query = _query,
                     Options = options,
                 },
@@ -230,138 +335,7 @@ public partial class SafetyClient
         {
             try
             {
-                return JsonUtils.Deserialize<V1DriverSafetyScoreResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch harsh event details for a vehicle.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Safety.GetHarshEventAsync(
-    ///     1000000,
-    ///     new SafetyGetHarshEventRequest { Timestamp = 1000000 }
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1VehicleHarshEventResponse> GetHarshEventAsync(
-        long vehicleId,
-        SafetyGetHarshEventRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        _query["timestamp"] = request.Timestamp.ToString();
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/fleet/vehicles/{vehicleId}/safety/harsh_event",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1VehicleHarshEventResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch the safety score for the vehicle.
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Safety.GetVehicleSafetyScoreAsync(
-    ///     1000000,
-    ///     new SafetyGetVehicleSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1VehicleSafetyScoreResponse> GetVehicleSafetyScoreAsync(
-        long vehicleId,
-        SafetyGetVehicleSafetyScoreRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        _query["startMs"] = request.StartMs.ToString();
-        _query["endMs"] = request.EndMs.ToString();
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/fleet/vehicles/{vehicleId}/safety/score",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1VehicleSafetyScoreResponse>(responseBody)!;
+                return JsonUtils.Deserialize<V1AssetReeferResponse>(responseBody)!;
             }
             catch (JsonException e)
             {
