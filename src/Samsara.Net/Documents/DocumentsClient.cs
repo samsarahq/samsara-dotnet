@@ -28,11 +28,11 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.GetDocumentTypesAsync(new DocumentsGetDocumentTypesRequest());
+    /// await client.Documents.ListTypesAsync(new DocumentsListTypesRequest());
     /// </code>
     /// </example>
-    public async Task<DocumentTypesGetDocumentTypesResponseBody> GetDocumentTypesAsync(
-        DocumentsGetDocumentTypesRequest request,
+    public async Task<DocumentTypesGetDocumentTypesResponseBody> ListTypesAsync(
+        DocumentsListTypesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -46,7 +46,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/document-types",
                     Query = _query,
@@ -117,13 +117,13 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.GetDocumentsAsync(
-    ///     new DocumentsGetDocumentsRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// await client.Documents.ListAsync(
+    ///     new DocumentsListRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
     /// </code>
     /// </example>
-    public async Task<DocumentsGetDocumentsResponseBody> GetDocumentsAsync(
-        DocumentsGetDocumentsRequest request,
+    public async Task<DocumentsGetDocumentsResponseBody> ListAsync(
+        DocumentsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -147,7 +147,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/documents",
                     Query = _query,
@@ -216,7 +216,7 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.PostDocumentAsync(
+    /// await client.Documents.CreateAsync(
     ///     new DocumentsPostDocumentRequestBody
     ///     {
     ///         DocumentTypeId = "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
@@ -225,7 +225,7 @@ public partial class DocumentsClient
     /// );
     /// </code>
     /// </example>
-    public async Task<DocumentsPostDocumentResponseBody> PostDocumentAsync(
+    public async Task<DocumentsPostDocumentResponseBody> CreateAsync(
         DocumentsPostDocumentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -235,7 +235,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/documents",
                     Body = request,
@@ -302,12 +302,12 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.GenerateDocumentPdfAsync(
+    /// await client.Documents.CreatePdfAsync(
     ///     new DocumentPdfGenerationRequest { DocumentId = "6c8c0c01-206a-41a4-9d21-15b9978d04cb" }
     /// );
     /// </code>
     /// </example>
-    public async Task<DocumentPdfGenerationResponse> GenerateDocumentPdfAsync(
+    public async Task<DocumentPdfGenerationResponse> CreatePdfAsync(
         DocumentPdfGenerationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -317,7 +317,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/documents/pdfs",
                     Body = request,
@@ -356,10 +356,10 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.GetDocumentPdfAsync("id");
+    /// await client.Documents.GetPdfAsync("id");
     /// </code>
     /// </example>
-    public async Task<DocumentPdfQueryResponse> GetDocumentPdfAsync(
+    public async Task<DocumentPdfQueryResponse> GetPdfAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -369,7 +369,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"fleet/documents/pdfs/{id}",
                     Options = options,
@@ -409,10 +409,10 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.GetDocumentAsync("id");
+    /// await client.Documents.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<DocumentsGetDocumentResponseBody> GetDocumentAsync(
+    public async Task<DocumentsGetDocumentResponseBody> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -422,7 +422,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"fleet/documents/{id}",
                     Options = options,
@@ -490,10 +490,10 @@ public partial class DocumentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Documents.DeleteDocumentAsync("id");
+    /// await client.Documents.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task DeleteDocumentAsync(
+    public async Task DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -503,7 +503,7 @@ public partial class DocumentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"fleet/documents/{id}",
                     Options = options,

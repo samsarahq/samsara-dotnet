@@ -28,11 +28,11 @@ public partial class TrailersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Trailers.ListTrailersAsync(new TrailersListTrailersRequest());
+    /// await client.Trailers.ListAsync(new TrailersListRequest());
     /// </code>
     /// </example>
-    public async Task<TrailersListTrailersResponseBody> ListTrailersAsync(
-        TrailersListTrailersRequest request,
+    public async Task<TrailersListTrailersResponseBody> ListAsync(
+        TrailersListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -58,7 +58,7 @@ public partial class TrailersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/trailers",
                     Query = _query,
@@ -127,12 +127,10 @@ public partial class TrailersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Trailers.CreateTrailerAsync(
-    ///     new TrailersCreateTrailerRequestBody { Name = "Trailer-123" }
-    /// );
+    /// await client.Trailers.CreateAsync(new TrailersCreateTrailerRequestBody { Name = "Trailer-123" });
     /// </code>
     /// </example>
-    public async Task<TrailersCreateTrailerResponseBody> CreateTrailerAsync(
+    public async Task<TrailersCreateTrailerResponseBody> CreateAsync(
         TrailersCreateTrailerRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -142,7 +140,7 @@ public partial class TrailersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/trailers",
                     Body = request,
@@ -212,10 +210,10 @@ public partial class TrailersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Trailers.GetTrailerAsync("id");
+    /// await client.Trailers.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<TrailersGetTrailerResponseBody> GetTrailerAsync(
+    public async Task<TrailersGetTrailerResponseBody> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -225,7 +223,7 @@ public partial class TrailersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"fleet/trailers/{id}",
                     Options = options,
@@ -293,10 +291,10 @@ public partial class TrailersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Trailers.DeleteTrailerAsync("id");
+    /// await client.Trailers.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task DeleteTrailerAsync(
+    public async Task DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -306,7 +304,7 @@ public partial class TrailersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"fleet/trailers/{id}",
                     Options = options,
@@ -368,10 +366,10 @@ public partial class TrailersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Trailers.UpdateTrailerAsync("id", new TrailersUpdateTrailerRequestBody());
+    /// await client.Trailers.UpdateAsync("id", new TrailersUpdateTrailerRequestBody());
     /// </code>
     /// </example>
-    public async Task<TrailersUpdateTrailerResponseBody> UpdateTrailerAsync(
+    public async Task<TrailersUpdateTrailerResponseBody> UpdateAsync(
         string id,
         TrailersUpdateTrailerRequestBody request,
         RequestOptions? options = null,
@@ -382,7 +380,7 @@ public partial class TrailersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"fleet/trailers/{id}",
                     Body = request,

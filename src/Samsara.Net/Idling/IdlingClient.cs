@@ -28,13 +28,13 @@ public partial class IdlingClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Idling.GetVehicleIdlingReportsAsync(
-    ///     new IdlingGetVehicleIdlingReportsRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// await client.Idling.GetVehicleReportsAsync(
+    ///     new IdlingGetVehicleReportsRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
     /// </code>
     /// </example>
-    public async Task<IdlingReportsGetVehicleIdlingReportsResponseBody> GetVehicleIdlingReportsAsync(
-        IdlingGetVehicleIdlingReportsRequest request,
+    public async Task<IdlingReportsGetVehicleIdlingReportsResponseBody> GetVehicleReportsAsync(
+        IdlingGetVehicleReportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -74,7 +74,7 @@ public partial class IdlingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/vehicle/idling",
                     Query = _query,

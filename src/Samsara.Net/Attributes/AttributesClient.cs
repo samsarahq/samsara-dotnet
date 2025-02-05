@@ -25,16 +25,13 @@ public partial class AttributesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Attributes.GetAttributesByEntityTypeAsync(
-    ///     new AttributesGetAttributesByEntityTypeRequest
-    ///     {
-    ///         EntityType = AttributesGetAttributesByEntityTypeRequestEntityType.Driver,
-    ///     }
+    /// await client.Attributes.ListAsync(
+    ///     new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
     /// );
     /// </code>
     /// </example>
-    public async Task<GetAttributesByEntityTypeResponse> GetAttributesByEntityTypeAsync(
-        AttributesGetAttributesByEntityTypeRequest request,
+    public async Task<GetAttributesByEntityTypeResponse> ListAsync(
+        AttributesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -53,7 +50,7 @@ public partial class AttributesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "attributes",
                     Query = _query,
@@ -91,7 +88,7 @@ public partial class AttributesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Attributes.CreateAttributeAsync(
+    /// await client.Attributes.CreateAsync(
     ///     new CreateAttributeRequest
     ///     {
     ///         AttributeType = CreateAttributeRequestAttributeType.String,
@@ -102,7 +99,7 @@ public partial class AttributesClient
     /// );
     /// </code>
     /// </example>
-    public async Task<AttributeExpandedResponse> CreateAttributeAsync(
+    public async Task<AttributeExpandedResponse> CreateAsync(
         CreateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -112,7 +109,7 @@ public partial class AttributesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "attributes",
                     Body = request,
@@ -151,18 +148,15 @@ public partial class AttributesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Attributes.GetAttributeAsync(
+    /// await client.Attributes.GetAsync(
     ///     "id",
-    ///     new AttributesGetAttributeRequest
-    ///     {
-    ///         EntityType = AttributesGetAttributeRequestEntityType.Driver,
-    ///     }
+    ///     new AttributesGetRequest { EntityType = AttributesGetRequestEntityType.Driver }
     /// );
     /// </code>
     /// </example>
-    public async Task<AttributeExpandedResponse> GetAttributeAsync(
+    public async Task<AttributeExpandedResponse> GetAsync(
         string id,
-        AttributesGetAttributeRequest request,
+        AttributesGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -173,7 +167,7 @@ public partial class AttributesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"attributes/{id}",
                     Query = _query,
@@ -211,18 +205,15 @@ public partial class AttributesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Attributes.DeleteAttributeAsync(
+    /// await client.Attributes.DeleteAsync(
     ///     "id",
-    ///     new AttributesDeleteAttributeRequest
-    ///     {
-    ///         EntityType = AttributesDeleteAttributeRequestEntityType.Driver,
-    ///     }
+    ///     new AttributesDeleteRequest { EntityType = AttributesDeleteRequestEntityType.Driver }
     /// );
     /// </code>
     /// </example>
-    public async Task<object> DeleteAttributeAsync(
+    public async Task<object> DeleteAsync(
         string id,
-        AttributesDeleteAttributeRequest request,
+        AttributesDeleteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -233,7 +224,7 @@ public partial class AttributesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"attributes/{id}",
                     Query = _query,
@@ -271,13 +262,13 @@ public partial class AttributesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Attributes.UpdateAttributeAsync(
+    /// await client.Attributes.UpdateAsync(
     ///     "id",
     ///     new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
     /// );
     /// </code>
     /// </example>
-    public async Task<AttributeExpandedResponse> UpdateAttributeAsync(
+    public async Task<AttributeExpandedResponse> UpdateAsync(
         string id,
         UpdateAttributeRequest request,
         RequestOptions? options = null,
@@ -288,7 +279,7 @@ public partial class AttributesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"attributes/{id}",
                     Body = request,

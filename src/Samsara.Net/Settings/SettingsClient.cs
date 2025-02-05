@@ -28,10 +28,10 @@ public partial class SettingsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Settings.GetComplianceSettingsAsync();
+    /// await client.Settings.GetComplianceAsync();
     /// </code>
     /// </example>
-    public async Task<SettingsGetComplianceSettingsResponseBody> GetComplianceSettingsAsync(
+    public async Task<SettingsGetComplianceSettingsResponseBody> GetComplianceAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -40,7 +40,7 @@ public partial class SettingsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/settings/compliance",
                     Options = options,
@@ -110,12 +110,10 @@ public partial class SettingsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Settings.PatchComplianceSettingsAsync(
-    ///     new SettingsPatchComplianceSettingsRequestBody()
-    /// );
+    /// await client.Settings.PatchComplianceAsync(new SettingsPatchComplianceSettingsRequestBody());
     /// </code>
     /// </example>
-    public async Task<SettingsPatchComplianceSettingsResponseBody> PatchComplianceSettingsAsync(
+    public async Task<SettingsPatchComplianceSettingsResponseBody> PatchComplianceAsync(
         SettingsPatchComplianceSettingsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -125,7 +123,7 @@ public partial class SettingsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = "fleet/settings/compliance",
                     Body = request,
@@ -197,10 +195,10 @@ public partial class SettingsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Settings.GetDriverAppSettingsAsync();
+    /// await client.Settings.GetDriverAppAsync();
     /// </code>
     /// </example>
-    public async Task<SettingsGetDriverAppSettingsResponseBody> GetDriverAppSettingsAsync(
+    public async Task<SettingsGetDriverAppSettingsResponseBody> GetDriverAppAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -209,7 +207,7 @@ public partial class SettingsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/settings/driver-app",
                     Options = options,
@@ -279,10 +277,10 @@ public partial class SettingsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Settings.PatchDriverAppSettingsAsync(new SettingsPatchDriverAppSettingsRequestBody());
+    /// await client.Settings.PatchDriverAppAsync(new SettingsPatchDriverAppSettingsRequestBody());
     /// </code>
     /// </example>
-    public async Task<SettingsPatchDriverAppSettingsResponseBody> PatchDriverAppSettingsAsync(
+    public async Task<SettingsPatchDriverAppSettingsResponseBody> PatchDriverAppAsync(
         SettingsPatchDriverAppSettingsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -292,7 +290,7 @@ public partial class SettingsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = "fleet/settings/driver-app",
                     Body = request,
@@ -364,10 +362,10 @@ public partial class SettingsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Settings.GetSafetySettingsAsync();
+    /// await client.Settings.GetSafetyAsync();
     /// </code>
     /// </example>
-    public async Task<SafetySettingsGetSafetySettingsResponseBody> GetSafetySettingsAsync(
+    public async Task<SafetySettingsGetSafetySettingsResponseBody> GetSafetyAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -376,7 +374,7 @@ public partial class SettingsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/settings/safety",
                     Options = options,

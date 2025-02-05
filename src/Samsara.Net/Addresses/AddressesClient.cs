@@ -25,11 +25,11 @@ public partial class AddressesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Addresses.ListAddressesAsync(new AddressesListAddressesRequest());
+    /// await client.Addresses.ListAsync(new AddressesListRequest());
     /// </code>
     /// </example>
-    public async Task<ListAddressesResponse> ListAddressesAsync(
-        AddressesListAddressesRequest request,
+    public async Task<ListAddressesResponse> ListAsync(
+        AddressesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -53,7 +53,7 @@ public partial class AddressesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "addresses",
                     Query = _query,
@@ -91,7 +91,7 @@ public partial class AddressesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Addresses.CreateAddressAsync(
+    /// await client.Addresses.CreateAsync(
     ///     new CreateAddressRequest
     ///     {
     ///         FormattedAddress = "350 Rhode Island St, San Francisco, CA",
@@ -101,7 +101,7 @@ public partial class AddressesClient
     /// );
     /// </code>
     /// </example>
-    public async Task<AddressResponse> CreateAddressAsync(
+    public async Task<AddressResponse> CreateAsync(
         CreateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -111,7 +111,7 @@ public partial class AddressesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "addresses",
                     Body = request,
@@ -150,10 +150,10 @@ public partial class AddressesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Addresses.GetAddressAsync("id");
+    /// await client.Addresses.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<AddressResponse> GetAddressAsync(
+    public async Task<AddressResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -163,7 +163,7 @@ public partial class AddressesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"addresses/{id}",
                     Options = options,
@@ -200,10 +200,10 @@ public partial class AddressesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Addresses.DeleteAddressAsync("id");
+    /// await client.Addresses.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteAddressAsync(
+    public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -213,7 +213,7 @@ public partial class AddressesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"addresses/{id}",
                     Options = options,
@@ -250,10 +250,10 @@ public partial class AddressesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Addresses.UpdateAddressAsync("id", new UpdateAddressRequest());
+    /// await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
     /// </code>
     /// </example>
-    public async Task<AddressResponse> UpdateAddressAsync(
+    public async Task<AddressResponse> UpdateAsync(
         string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
@@ -264,7 +264,7 @@ public partial class AddressesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"addresses/{id}",
                     Body = request,

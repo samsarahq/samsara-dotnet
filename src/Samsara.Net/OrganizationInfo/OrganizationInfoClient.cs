@@ -25,10 +25,10 @@ public partial class OrganizationInfoClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.OrganizationInfo.GetOrganizationInfoAsync();
+    /// await client.OrganizationInfo.ListAsync();
     /// </code>
     /// </example>
-    public async Task<OrganizationInfoResponse> GetOrganizationInfoAsync(
+    public async Task<OrganizationInfoResponse> ListAsync(
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -37,7 +37,7 @@ public partial class OrganizationInfoClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "me",
                     Options = options,

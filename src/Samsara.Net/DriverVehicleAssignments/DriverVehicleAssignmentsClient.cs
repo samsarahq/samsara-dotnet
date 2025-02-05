@@ -28,16 +28,16 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverVehicleAssignments.GetDriverVehicleAssignmentsAsync(
-    ///     new DriverVehicleAssignmentsGetDriverVehicleAssignmentsRequest
+    /// await client.DriverVehicleAssignments.GetAsync(
+    ///     new DriverVehicleAssignmentsGetRequest
     ///     {
-    ///         FilterBy = DriverVehicleAssignmentsGetDriverVehicleAssignmentsRequestFilterBy.Drivers,
+    ///         FilterBy = DriverVehicleAssignmentsGetRequestFilterBy.Drivers,
     ///     }
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverVehicleAssignmentsV2GetDriverVehicleAssignmentsResponseBody> GetDriverVehicleAssignmentsAsync(
-        DriverVehicleAssignmentsGetDriverVehicleAssignmentsRequest request,
+    public async Task<DriverVehicleAssignmentsV2GetDriverVehicleAssignmentsResponseBody> GetAsync(
+        DriverVehicleAssignmentsGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -74,7 +74,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/driver-vehicle-assignments",
                     Query = _query,
@@ -145,7 +145,7 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverVehicleAssignments.CreateDriverVehicleAssignmentAsync(
+    /// await client.DriverVehicleAssignments.CreateAsync(
     ///     new DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody
     ///     {
     ///         DriverId = "494123",
@@ -154,7 +154,7 @@ public partial class DriverVehicleAssignmentsClient
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentResponseBody> CreateDriverVehicleAssignmentAsync(
+    public async Task<DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentResponseBody> CreateAsync(
         DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -164,7 +164,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,
@@ -236,7 +236,7 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverVehicleAssignments.DeleteDriverVehicleAssignmentsAsync(
+    /// await client.DriverVehicleAssignments.DeleteAsync(
     ///     new DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody
     ///     {
     ///         VehicleId = "281474978683353",
@@ -244,7 +244,7 @@ public partial class DriverVehicleAssignmentsClient
     /// );
     /// </code>
     /// </example>
-    public async Task DeleteDriverVehicleAssignmentsAsync(
+    public async Task DeleteAsync(
         DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -254,7 +254,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,
@@ -316,7 +316,7 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverVehicleAssignments.UpdateDriverVehicleAssignmentAsync(
+    /// await client.DriverVehicleAssignments.UpdateAsync(
     ///     new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
     ///     {
     ///         DriverId = "494123",
@@ -326,7 +326,7 @@ public partial class DriverVehicleAssignmentsClient
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody> UpdateDriverVehicleAssignmentAsync(
+    public async Task<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody> UpdateAsync(
         DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -336,7 +336,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,

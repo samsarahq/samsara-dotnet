@@ -19,8 +19,8 @@ Instantiate and use the client with the following:
 using Samsara.Net.Addresses;
 using Samsara.Net;
 
-var client = new SamsaraClient("CLIENT_ID", "CLIENT_SECRET");
-await client.Addresses.CreateAddressAsync(
+var client = new SamsaraClient("TOKEN");
+await client.Addresses.CreateAsync(
     new CreateAddressRequest
     {
         FormattedAddress = "350 Rhode Island St, San Francisco, CA",
@@ -39,7 +39,7 @@ will be thrown.
 using Samsara.Net;
 
 try {
-    var response = await client.Addresses.CreateAddressAsync(...);
+    var response = await client.Addresses.CreateAsync(...);
 } catch (SamsaraClientApiException e) {
     System.Console.WriteLine(e.Body);
     System.Console.WriteLine(e.StatusCode);
@@ -63,7 +63,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `MaxRetries` request option to configure this behavior.
 
 ```csharp
-var response = await client.Addresses.CreateAddressAsync(
+var response = await client.Addresses.CreateAsync(
     ...,
     new RequestOptions {
         MaxRetries: 0 // Override MaxRetries at the request level
@@ -76,7 +76,7 @@ var response = await client.Addresses.CreateAddressAsync(
 The SDK defaults to a 30 second timeout. Use the `Timeout` option to configure this behavior.
 
 ```csharp
-var response = await client.Addresses.CreateAddressAsync(
+var response = await client.Addresses.CreateAsync(
     ...,
     new RequestOptions {
         Timeout: TimeSpan.FromSeconds(3) // Override timeout to 3s

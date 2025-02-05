@@ -25,11 +25,11 @@ public partial class DriversClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Drivers.ListDriversAsync(new DriversListDriversRequest());
+    /// await client.Drivers.ListAsync(new DriversListRequest());
     /// </code>
     /// </example>
-    public async Task<ListDriversResponse> ListDriversAsync(
-        DriversListDriversRequest request,
+    public async Task<ListDriversResponse> ListAsync(
+        DriversListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -62,7 +62,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers",
                     Query = _query,
@@ -100,7 +100,7 @@ public partial class DriversClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Drivers.CreateDriverAsync(
+    /// await client.Drivers.CreateAsync(
     ///     new CreateDriverRequest
     ///     {
     ///         Name = "Susan Jones",
@@ -110,7 +110,7 @@ public partial class DriversClient
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverResponse> CreateDriverAsync(
+    public async Task<DriverResponse> CreateAsync(
         CreateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -120,7 +120,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/drivers",
                     Body = request,
@@ -159,10 +159,10 @@ public partial class DriversClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Drivers.GetDriverAsync("id");
+    /// await client.Drivers.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<DriverResponse> GetDriverAsync(
+    public async Task<DriverResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -172,7 +172,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"fleet/drivers/{id}",
                     Options = options,
@@ -209,10 +209,10 @@ public partial class DriversClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Drivers.UpdateDriverAsync("id", new UpdateDriverRequest());
+    /// await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
     /// </code>
     /// </example>
-    public async Task<DriverResponse> UpdateDriverAsync(
+    public async Task<DriverResponse> UpdateAsync(
         string id,
         UpdateDriverRequest request,
         RequestOptions? options = null,
@@ -223,7 +223,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"fleet/drivers/{id}",
                     Body = request,

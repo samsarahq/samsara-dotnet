@@ -29,13 +29,11 @@ public partial class VehicleLocationsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleLocations.GetVehicleLocationsAsync(
-    ///     new VehicleLocationsGetVehicleLocationsRequest()
-    /// );
+    /// await client.VehicleLocations.ListAsync(new VehicleLocationsListRequest());
     /// </code>
     /// </example>
-    public async Task<VehicleLocationsResponse> GetVehicleLocationsAsync(
-        VehicleLocationsGetVehicleLocationsRequest request,
+    public async Task<VehicleLocationsResponse> ListAsync(
+        VehicleLocationsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -56,7 +54,7 @@ public partial class VehicleLocationsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations",
                     Query = _query,
@@ -104,13 +102,11 @@ public partial class VehicleLocationsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleLocations.GetVehicleLocationsFeedAsync(
-    ///     new VehicleLocationsGetVehicleLocationsFeedRequest()
-    /// );
+    /// await client.VehicleLocations.GetFeedAsync(new VehicleLocationsGetFeedRequest());
     /// </code>
     /// </example>
-    public async Task<VehicleLocationsListResponse> GetVehicleLocationsFeedAsync(
-        VehicleLocationsGetVehicleLocationsFeedRequest request,
+    public async Task<VehicleLocationsListResponse> GetFeedAsync(
+        VehicleLocationsGetFeedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -127,7 +123,7 @@ public partial class VehicleLocationsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/feed",
                     Query = _query,
@@ -169,17 +165,13 @@ public partial class VehicleLocationsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleLocations.GetVehicleLocationsHistoryAsync(
-    ///     new VehicleLocationsGetVehicleLocationsHistoryRequest
-    ///     {
-    ///         StartTime = "startTime",
-    ///         EndTime = "endTime",
-    ///     }
+    /// await client.VehicleLocations.GetHistoryAsync(
+    ///     new VehicleLocationsGetHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
     /// </code>
     /// </example>
-    public async Task<VehicleLocationsListResponse> GetVehicleLocationsHistoryAsync(
-        VehicleLocationsGetVehicleLocationsHistoryRequest request,
+    public async Task<VehicleLocationsListResponse> GetHistoryAsync(
+        VehicleLocationsGetHistoryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -198,7 +190,7 @@ public partial class VehicleLocationsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/history",
                     Query = _query,

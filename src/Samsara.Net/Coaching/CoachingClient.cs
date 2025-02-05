@@ -28,11 +28,11 @@ public partial class CoachingClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Coaching.GetDriverCoachAssignmentAsync(new CoachingGetDriverCoachAssignmentRequest());
+    /// await client.Coaching.GetDriverAssignmentAsync(new CoachingGetDriverAssignmentRequest());
     /// </code>
     /// </example>
-    public async Task<DriverCoachAssignmentsGetDriverCoachAssignmentResponseBody> GetDriverCoachAssignmentAsync(
-        CoachingGetDriverCoachAssignmentRequest request,
+    public async Task<DriverCoachAssignmentsGetDriverCoachAssignmentResponseBody> GetDriverAssignmentAsync(
+        CoachingGetDriverAssignmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -52,7 +52,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "coaching/driver-coach-assignments",
                     Query = _query,
@@ -123,13 +123,13 @@ public partial class CoachingClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Coaching.PutDriverCoachAssignmentAsync(
-    ///     new CoachingPutDriverCoachAssignmentRequest { DriverId = "driverId" }
+    /// await client.Coaching.PutDriverAssignmentAsync(
+    ///     new CoachingPutDriverAssignmentRequest { DriverId = "driverId" }
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverCoachAssignmentsPutDriverCoachAssignmentResponseBody> PutDriverCoachAssignmentAsync(
-        CoachingPutDriverCoachAssignmentRequest request,
+    public async Task<DriverCoachAssignmentsPutDriverCoachAssignmentResponseBody> PutDriverAssignmentAsync(
+        CoachingPutDriverAssignmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -144,7 +144,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = "coaching/driver-coach-assignments",
                     Query = _query,
@@ -215,16 +215,13 @@ public partial class CoachingClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Coaching.GetCoachingSessionsAsync(
-    ///     new CoachingGetCoachingSessionsRequest
-    ///     {
-    ///         StartTime = new DateTime(2024, 01, 15, 09, 30, 00, 000),
-    ///     }
+    /// await client.Coaching.GetSessionsAsync(
+    ///     new CoachingGetSessionsRequest { StartTime = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
     /// );
     /// </code>
     /// </example>
-    public async Task<CoachingSessionsGetCoachingSessionsResponseBody> GetCoachingSessionsAsync(
-        CoachingGetCoachingSessionsRequest request,
+    public async Task<CoachingSessionsGetCoachingSessionsResponseBody> GetSessionsAsync(
+        CoachingGetSessionsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -256,7 +253,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "coaching/sessions/stream",
                     Query = _query,

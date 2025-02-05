@@ -27,11 +27,11 @@ public partial class VehicleStatsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleStats.GetVehicleStatsAsync(new VehicleStatsGetVehicleStatsRequest());
+    /// await client.VehicleStats.ListAsync(new VehicleStatsListRequest());
     /// </code>
     /// </example>
-    public async Task<VehicleStatsResponse> GetVehicleStatsAsync(
-        VehicleStatsGetVehicleStatsRequest request,
+    public async Task<VehicleStatsResponse> ListAsync(
+        VehicleStatsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -53,7 +53,7 @@ public partial class VehicleStatsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/stats",
                     Query = _query,
@@ -99,11 +99,11 @@ public partial class VehicleStatsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleStats.GetVehicleStatsFeedAsync(new VehicleStatsGetVehicleStatsFeedRequest());
+    /// await client.VehicleStats.GetFeedAsync(new VehicleStatsGetFeedRequest());
     /// </code>
     /// </example>
-    public async Task<VehicleStatsListResponse> GetVehicleStatsFeedAsync(
-        VehicleStatsGetVehicleStatsFeedRequest request,
+    public async Task<VehicleStatsListResponse> GetFeedAsync(
+        VehicleStatsGetFeedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -122,7 +122,7 @@ public partial class VehicleStatsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/stats/feed",
                     Query = _query,
@@ -162,13 +162,13 @@ public partial class VehicleStatsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.VehicleStats.GetVehicleStatsHistoryAsync(
-    ///     new VehicleStatsGetVehicleStatsHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// await client.VehicleStats.GetHistoryAsync(
+    ///     new VehicleStatsGetHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
     /// </code>
     /// </example>
-    public async Task<VehicleStatsListResponse> GetVehicleStatsHistoryAsync(
-        VehicleStatsGetVehicleStatsHistoryRequest request,
+    public async Task<VehicleStatsListResponse> GetHistoryAsync(
+        VehicleStatsGetHistoryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -189,7 +189,7 @@ public partial class VehicleStatsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/stats/history",
                     Query = _query,

@@ -25,13 +25,11 @@ public partial class CarrierProposedAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.CarrierProposedAssignments.ListCarrierProposedAssignmentsAsync(
-    ///     new CarrierProposedAssignmentsListCarrierProposedAssignmentsRequest()
-    /// );
+    /// await client.CarrierProposedAssignments.ListAsync(new CarrierProposedAssignmentsListRequest());
     /// </code>
     /// </example>
-    public async Task<ListCarrierProposedAssignmentResponse> ListCarrierProposedAssignmentsAsync(
-        CarrierProposedAssignmentsListCarrierProposedAssignmentsRequest request,
+    public async Task<ListCarrierProposedAssignmentResponse> ListAsync(
+        CarrierProposedAssignmentsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -54,7 +52,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/carrier-proposed-assignments",
                     Query = _query,
@@ -92,12 +90,12 @@ public partial class CarrierProposedAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.CarrierProposedAssignments.CreateCarrierProposedAssignmentAsync(
+    /// await client.CarrierProposedAssignments.CreateAsync(
     ///     new CreateCarrierProposedAssignmentRequest { DriverId = "42", VehicleId = "123" }
     /// );
     /// </code>
     /// </example>
-    public async Task<CarrierProposedAssignmentResponse> CreateCarrierProposedAssignmentAsync(
+    public async Task<CarrierProposedAssignmentResponse> CreateAsync(
         CreateCarrierProposedAssignmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -107,7 +105,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/carrier-proposed-assignments",
                     Body = request,
@@ -146,10 +144,10 @@ public partial class CarrierProposedAssignmentsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.CarrierProposedAssignments.DeleteCarrierProposedAssignmentAsync("id");
+    /// await client.CarrierProposedAssignments.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteCarrierProposedAssignmentAsync(
+    public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -159,7 +157,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"fleet/carrier-proposed-assignments/{id}",
                     Options = options,

@@ -28,11 +28,11 @@ public partial class DriverQrCodesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverQrCodes.GetDriversQrCodesAsync(new DriverQrCodesGetDriversQrCodesRequest());
+    /// await client.DriverQrCodes.GetAsync(new DriverQrCodesGetRequest());
     /// </code>
     /// </example>
-    public async Task<DriverQrCodesGetDriversQrCodesResponseBody> GetDriversQrCodesAsync(
-        DriverQrCodesGetDriversQrCodesRequest request,
+    public async Task<DriverQrCodesGetDriversQrCodesResponseBody> GetAsync(
+        DriverQrCodesGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -43,7 +43,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "drivers/qr-codes",
                     Query = _query,
@@ -114,12 +114,12 @@ public partial class DriverQrCodesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverQrCodes.CreateDriverQrCodeAsync(
+    /// await client.DriverQrCodes.CreateAsync(
     ///     new DriverQrCodesCreateDriverQrCodeRequestBody { DriverId = 494123 }
     /// );
     /// </code>
     /// </example>
-    public async Task<DriverQrCodesCreateDriverQrCodeResponseBody> CreateDriverQrCodeAsync(
+    public async Task<DriverQrCodesCreateDriverQrCodeResponseBody> CreateAsync(
         DriverQrCodesCreateDriverQrCodeRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -129,7 +129,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "drivers/qr-codes",
                     Body = request,
@@ -201,12 +201,12 @@ public partial class DriverQrCodesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.DriverQrCodes.DeleteDriverQrCodeAsync(
+    /// await client.DriverQrCodes.DeleteAsync(
     ///     new DriverQrCodesDeleteDriverQrCodeRequestBody { DriverId = 494123 }
     /// );
     /// </code>
     /// </example>
-    public async Task DeleteDriverQrCodeAsync(
+    public async Task DeleteAsync(
         DriverQrCodesDeleteDriverQrCodeRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -216,7 +216,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = "drivers/qr-codes",
                     Body = request,

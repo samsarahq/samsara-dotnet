@@ -25,11 +25,11 @@ public partial class ContactsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Contacts.ListContactsAsync(new ContactsListContactsRequest());
+    /// await client.Contacts.ListAsync(new ContactsListRequest());
     /// </code>
     /// </example>
-    public async Task<ListContactsResponse> ListContactsAsync(
-        ContactsListContactsRequest request,
+    public async Task<ListContactsResponse> ListAsync(
+        ContactsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public partial class ContactsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "contacts",
                     Query = _query,
@@ -85,10 +85,10 @@ public partial class ContactsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Contacts.CreateContactAsync(new CreateContactRequest());
+    /// await client.Contacts.CreateAsync(new CreateContactRequest());
     /// </code>
     /// </example>
-    public async Task<ContactResponse> CreateContactAsync(
+    public async Task<ContactResponse> CreateAsync(
         CreateContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -98,7 +98,7 @@ public partial class ContactsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "contacts",
                     Body = request,
@@ -137,10 +137,10 @@ public partial class ContactsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Contacts.GetContactAsync("id");
+    /// await client.Contacts.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<ContactResponse> GetContactAsync(
+    public async Task<ContactResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -150,7 +150,7 @@ public partial class ContactsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"contacts/{id}",
                     Options = options,
@@ -187,10 +187,10 @@ public partial class ContactsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Contacts.DeleteContactAsync("id");
+    /// await client.Contacts.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteContactAsync(
+    public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -200,7 +200,7 @@ public partial class ContactsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"contacts/{id}",
                     Options = options,
@@ -237,10 +237,10 @@ public partial class ContactsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Contacts.UpdateContactAsync("id", new UpdateContactRequest());
+    /// await client.Contacts.UpdateAsync("id", new UpdateContactRequest());
     /// </code>
     /// </example>
-    public async Task<ContactResponse> UpdateContactAsync(
+    public async Task<ContactResponse> UpdateAsync(
         string id,
         UpdateContactRequest request,
         RequestOptions? options = null,
@@ -251,7 +251,7 @@ public partial class ContactsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"contacts/{id}",
                     Body = request,

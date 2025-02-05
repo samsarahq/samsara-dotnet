@@ -54,7 +54,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-activity/history",
                     Query = _query,
@@ -123,7 +123,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-files/history",
                     Query = _query,
@@ -163,17 +163,13 @@ public partial class TachographEuOnlyClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.TachographEuOnly.GetVehicleTachographFilesAsync(
-    ///     new TachographEuOnlyGetVehicleTachographFilesRequest
-    ///     {
-    ///         StartTime = "startTime",
-    ///         EndTime = "endTime",
-    ///     }
+    /// await client.TachographEuOnly.GetTachographFilesAsync(
+    ///     new TachographEuOnlyGetTachographFilesRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
     /// </code>
     /// </example>
-    public async Task<TachographVehicleFilesResponse> GetVehicleTachographFilesAsync(
-        TachographEuOnlyGetVehicleTachographFilesRequest request,
+    public async Task<TachographVehicleFilesResponse> GetTachographFilesAsync(
+        TachographEuOnlyGetTachographFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -192,7 +188,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/tachograph-files/history",
                     Query = _query,

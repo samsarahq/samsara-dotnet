@@ -28,11 +28,11 @@ public partial class VehiclesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Vehicles.ListVehiclesAsync(new VehiclesListVehiclesRequest());
+    /// await client.Vehicles.ListAsync(new VehiclesListRequest());
     /// </code>
     /// </example>
-    public async Task<VehiclesListVehiclesResponseBody> ListVehiclesAsync(
-        VehiclesListVehiclesRequest request,
+    public async Task<VehiclesListVehiclesResponseBody> ListAsync(
+        VehiclesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -70,7 +70,7 @@ public partial class VehiclesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles",
                     Query = _query,
@@ -136,10 +136,10 @@ public partial class VehiclesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Vehicles.GetVehicleAsync("id");
+    /// await client.Vehicles.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<VehicleResponse> GetVehicleAsync(
+    public async Task<VehicleResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -149,7 +149,7 @@ public partial class VehiclesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"fleet/vehicles/{id}",
                     Options = options,
@@ -192,10 +192,10 @@ public partial class VehiclesClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Vehicles.UpdateVehicleAsync("id", new UpdateVehicleRequest());
+    /// await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
     /// </code>
     /// </example>
-    public async Task<VehicleResponse> UpdateVehicleAsync(
+    public async Task<VehicleResponse> UpdateAsync(
         string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
@@ -206,7 +206,7 @@ public partial class VehiclesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"fleet/vehicles/{id}",
                     Body = request,

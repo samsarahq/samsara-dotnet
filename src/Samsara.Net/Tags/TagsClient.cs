@@ -25,11 +25,11 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.ListTagsAsync(new TagsListTagsRequest());
+    /// await client.Tags.ListAsync(new TagsListRequest());
     /// </code>
     /// </example>
-    public async Task<ListTagsResponse> ListTagsAsync(
-        TagsListTagsRequest request,
+    public async Task<ListTagsResponse> ListAsync(
+        TagsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "tags",
                     Query = _query,
@@ -85,10 +85,10 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.CreateTagAsync(new CreateTagRequest { Name = "California" });
+    /// await client.Tags.CreateAsync(new CreateTagRequest { Name = "California" });
     /// </code>
     /// </example>
-    public async Task<TagResponse> CreateTagAsync(
+    public async Task<TagResponse> CreateAsync(
         CreateTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -98,7 +98,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "tags",
                     Body = request,
@@ -137,10 +137,10 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.GetTagAsync("id");
+    /// await client.Tags.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<TagResponse> GetTagAsync(
+    public async Task<TagResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -150,7 +150,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"tags/{id}",
                     Options = options,
@@ -187,10 +187,10 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
+    /// await client.Tags.ReplaceAsync("id", new ReplaceTagRequest());
     /// </code>
     /// </example>
-    public async Task<TagResponse> ReplaceTagAsync(
+    public async Task<TagResponse> ReplaceAsync(
         string id,
         ReplaceTagRequest request,
         RequestOptions? options = null,
@@ -201,7 +201,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
                     Path = $"tags/{id}",
                     Body = request,
@@ -240,10 +240,10 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.DeleteTagAsync("id");
+    /// await client.Tags.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteTagAsync(
+    public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -253,7 +253,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"tags/{id}",
                     Options = options,
@@ -294,10 +294,10 @@ public partial class TagsClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Tags.PatchTagAsync("id", new PatchTagRequest());
+    /// await client.Tags.PatchAsync("id", new PatchTagRequest());
     /// </code>
     /// </example>
-    public async Task<TagResponse> PatchTagAsync(
+    public async Task<TagResponse> PatchAsync(
         string id,
         PatchTagRequest request,
         RequestOptions? options = null,
@@ -308,7 +308,7 @@ public partial class TagsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"tags/{id}",
                     Body = request,

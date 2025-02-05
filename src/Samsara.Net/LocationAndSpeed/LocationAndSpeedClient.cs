@@ -28,13 +28,11 @@ public partial class LocationAndSpeedClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.LocationAndSpeed.GetLocationAndSpeedAsync(
-    ///     new LocationAndSpeedGetLocationAndSpeedRequest()
-    /// );
+    /// await client.LocationAndSpeed.StreamAsync(new LocationAndSpeedStreamRequest());
     /// </code>
     /// </example>
-    public async Task<LocationAndSpeedGetLocationAndSpeedResponseBody> GetLocationAndSpeedAsync(
-        LocationAndSpeedGetLocationAndSpeedRequest request,
+    public async Task<LocationAndSpeedGetLocationAndSpeedResponseBody> StreamAsync(
+        LocationAndSpeedStreamRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -79,7 +77,7 @@ public partial class LocationAndSpeedClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "assets/location-and-speed/stream",
                     Query = _query,

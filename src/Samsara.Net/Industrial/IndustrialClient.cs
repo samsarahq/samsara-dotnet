@@ -25,11 +25,11 @@ public partial class IndustrialClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Industrial.GetIndustrialAssetsAsync(new IndustrialGetIndustrialAssetsRequest());
+    /// await client.Industrial.GetAssetsAsync(new IndustrialGetAssetsRequest());
     /// </code>
     /// </example>
-    public async Task<ListIndustrialAssetsResponse> GetIndustrialAssetsAsync(
-        IndustrialGetIndustrialAssetsRequest request,
+    public async Task<ListIndustrialAssetsResponse> GetAssetsAsync(
+        IndustrialGetAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -50,7 +50,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/assets",
                     Query = _query,
@@ -88,10 +88,10 @@ public partial class IndustrialClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "name" });
+    /// await client.Industrial.CreateAssetAsync(new AssetCreate { Name = "name" });
     /// </code>
     /// </example>
-    public async Task<InlineResponse200> CreateIndustrialAssetAsync(
+    public async Task<InlineResponse200> CreateAssetAsync(
         AssetCreate request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -101,7 +101,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "industrial/assets",
                     Body = request,
@@ -140,10 +140,10 @@ public partial class IndustrialClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Industrial.DeleteIndustrialAssetAsync("id");
+    /// await client.Industrial.DeleteAssetAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteIndustrialAssetAsync(
+    public async Task<object> DeleteAssetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -153,7 +153,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"industrial/assets/{id}",
                     Options = options,
@@ -190,10 +190,10 @@ public partial class IndustrialClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
+    /// await client.Industrial.PatchAssetAsync("id", new AssetPatch());
     /// </code>
     /// </example>
-    public async Task<InlineResponse200> PatchIndustrialAssetAsync(
+    public async Task<InlineResponse200> PatchAssetAsync(
         string id,
         AssetPatch request,
         RequestOptions? options = null,
@@ -204,7 +204,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"industrial/assets/{id}",
                     Body = request,
@@ -266,7 +266,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"industrial/assets/{id}/data-outputs",
                     Body = request,
@@ -360,7 +360,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs",
                     Query = _query,
@@ -422,7 +422,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points",
                     Query = _query,
@@ -488,7 +488,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points/feed",
                     Query = _query,
@@ -552,7 +552,7 @@ public partial class IndustrialClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points/history",
                     Query = _query,
@@ -567,521 +567,6 @@ public partial class IndustrialClient
             try
             {
                 return JsonUtils.Deserialize<DataInputListResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch all cameras.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetCamerasAsync();
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<V1VisionCamerasResponseItem>> V1GetCamerasAsync(
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = "v1/industrial/vision/cameras",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<V1VisionCamerasResponseItem>>(
-                    responseBody
-                )!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch configured programs on the camera.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
-    /// </code>
-    /// </example>
-    public async Task<
-        IEnumerable<V1ProgramsForTheCameraResponseItem>
-    > V1GetVisionProgramsByCameraAsync(
-        long cameraId,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/industrial/vision/cameras/{cameraId}/programs",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<V1ProgramsForTheCameraResponseItem>>(
-                    responseBody
-                )!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetVisionLatestRunCameraAsync(
-    ///     1000000,
-    ///     new IndustrialV1GetVisionLatestRunCameraRequest()
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1VisionRunByCameraResponse> V1GetVisionLatestRunCameraAsync(
-        long cameraId,
-        IndustrialV1GetVisionLatestRunCameraRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        if (request.ProgramId != null)
-        {
-            _query["program_id"] = request.ProgramId.Value.ToString();
-        }
-        if (request.StartedAtMs != null)
-        {
-            _query["startedAtMs"] = request.StartedAtMs.Value.ToString();
-        }
-        if (request.Include != null)
-        {
-            _query["include"] = request.Include;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/industrial/vision/run/camera/{cameraId}",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1VisionRunByCameraResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch runs.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetVisionRunsAsync(
-    ///     new IndustrialV1GetVisionRunsRequest { DurationMs = 1000000 }
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1VisionRunsResponse> V1GetVisionRunsAsync(
-        IndustrialV1GetVisionRunsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        _query["durationMs"] = request.DurationMs.ToString();
-        if (request.EndMs != null)
-        {
-            _query["endMs"] = request.EndMs.Value.ToString();
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = "v1/industrial/vision/runs",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1VisionRunsResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch runs by camera.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.GetVisionRunsByCameraAsync(
-    ///     1000000,
-    ///     new IndustrialGetVisionRunsByCameraRequest { DurationMs = 1000000 }
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<IEnumerable<V1VisionRunsByCameraResponseItem>> GetVisionRunsByCameraAsync(
-        long cameraId,
-        IndustrialGetVisionRunsByCameraRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        _query["durationMs"] = request.DurationMs.ToString();
-        if (request.EndMs != null)
-        {
-            _query["endMs"] = request.EndMs.Value.ToString();
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/industrial/vision/runs/{cameraId}",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<IEnumerable<V1VisionRunsByCameraResponseItem>>(
-                    responseBody
-                )!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Fetch runs by camera and program.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
-    ///     1000000,
-    ///     1000000,
-    ///     1000000,
-    ///     new IndustrialV1GetVisionRunsByCameraAndProgramRequest()
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1VisionRunsByCameraAndProgramResponse> V1GetVisionRunsByCameraAndProgramAsync(
-        long cameraId,
-        long programId,
-        long startedAtMs,
-        IndustrialV1GetVisionRunsByCameraAndProgramRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _query = new Dictionary<string, object>();
-        if (request.Include != null)
-        {
-            _query["include"] = request.Include;
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Get,
-                    Path = $"v1/industrial/vision/runs/{cameraId}/{programId}/{startedAtMs}",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1VisionRunsByCameraAndProgramResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Get historical data for machine objects. This method returns a set of historical data for all machines.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetMachinesHistoryAsync(
-    ///     new InlineObject3 { EndMs = 1462881998034, StartMs = 1462878398034 }
-    /// );
-    /// </code>
-    /// </example>
-    public async Task<V1MachineHistoryResponse> V1GetMachinesHistoryAsync(
-        InlineObject3 request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Post,
-                    Path = "v1/machines/history",
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<V1MachineHistoryResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
-    }
-
-    /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
-    ///
-    /// Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Industrial.V1GetMachinesAsync();
-    /// </code>
-    /// </example>
-    public async Task<InlineResponse2008> V1GetMachinesAsync(
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.Environment.Api,
-                    Method = HttpMethod.Post,
-                    Path = "v1/machines/list",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
-            {
-                return JsonUtils.Deserialize<InlineResponse2008>(responseBody)!;
             }
             catch (JsonException e)
             {

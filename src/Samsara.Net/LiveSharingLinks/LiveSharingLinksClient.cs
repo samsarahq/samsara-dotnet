@@ -28,13 +28,11 @@ public partial class LiveSharingLinksClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.LiveSharingLinks.GetLiveSharingLinksAsync(
-    ///     new LiveSharingLinksGetLiveSharingLinksRequest()
-    /// );
+    /// await client.LiveSharingLinks.ListAsync(new LiveSharingLinksListRequest());
     /// </code>
     /// </example>
-    public async Task<LiveSharingLinksGetLiveSharingLinksResponseBody> GetLiveSharingLinksAsync(
-        LiveSharingLinksGetLiveSharingLinksRequest request,
+    public async Task<LiveSharingLinksGetLiveSharingLinksResponseBody> ListAsync(
+        LiveSharingLinksListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -57,7 +55,7 @@ public partial class LiveSharingLinksClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "live-shares",
                     Query = _query,
@@ -128,7 +126,7 @@ public partial class LiveSharingLinksClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.LiveSharingLinks.CreateLiveSharingLinkAsync(
+    /// await client.LiveSharingLinks.CreateAsync(
     ///     new LiveSharingLinksCreateLiveSharingLinkRequestBody
     ///     {
     ///         Name = "Example Live Sharing Link name",
@@ -137,7 +135,7 @@ public partial class LiveSharingLinksClient
     /// );
     /// </code>
     /// </example>
-    public async Task<LiveSharingLinksCreateLiveSharingLinkResponseBody> CreateLiveSharingLinkAsync(
+    public async Task<LiveSharingLinksCreateLiveSharingLinkResponseBody> CreateAsync(
         LiveSharingLinksCreateLiveSharingLinkRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -147,7 +145,7 @@ public partial class LiveSharingLinksClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "live-shares",
                     Body = request,
@@ -219,13 +217,11 @@ public partial class LiveSharingLinksClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.LiveSharingLinks.DeleteLiveSharingLinkAsync(
-    ///     new LiveSharingLinksDeleteLiveSharingLinkRequest { Id = "id" }
-    /// );
+    /// await client.LiveSharingLinks.DeleteAsync(new LiveSharingLinksDeleteRequest { Id = "id" });
     /// </code>
     /// </example>
-    public async Task DeleteLiveSharingLinkAsync(
-        LiveSharingLinksDeleteLiveSharingLinkRequest request,
+    public async Task DeleteAsync(
+        LiveSharingLinksDeleteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -236,7 +232,7 @@ public partial class LiveSharingLinksClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = "live-shares",
                     Query = _query,
@@ -297,7 +293,7 @@ public partial class LiveSharingLinksClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.LiveSharingLinks.UpdateLiveSharingLinkAsync(
+    /// await client.LiveSharingLinks.UpdateAsync(
     ///     new LiveSharingLinksUpdateLiveSharingLinkRequestBody
     ///     {
     ///         Id = "id",
@@ -306,7 +302,7 @@ public partial class LiveSharingLinksClient
     /// );
     /// </code>
     /// </example>
-    public async Task<LiveSharingLinksUpdateLiveSharingLinkResponseBody> UpdateLiveSharingLinkAsync(
+    public async Task<LiveSharingLinksUpdateLiveSharingLinkResponseBody> UpdateAsync(
         LiveSharingLinksUpdateLiveSharingLinkRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -324,7 +320,7 @@ public partial class LiveSharingLinksClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = "live-shares",
                     Body = requestBody,

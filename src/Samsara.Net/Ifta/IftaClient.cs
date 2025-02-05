@@ -30,13 +30,11 @@ public partial class IftaClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Ifta.GetIftaJurisdictionReportsAsync(
-    ///     new IftaGetIftaJurisdictionReportsRequest { Year = 1 }
-    /// );
+    /// await client.Ifta.GetJurisdictionReportsAsync(new IftaGetJurisdictionReportsRequest { Year = 1 });
     /// </code>
     /// </example>
-    public async Task<IftaGetIftaJurisdictionReportsResponseBody> GetIftaJurisdictionReportsAsync(
-        IftaGetIftaJurisdictionReportsRequest request,
+    public async Task<IftaGetIftaJurisdictionReportsResponseBody> GetJurisdictionReportsAsync(
+        IftaGetJurisdictionReportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -75,7 +73,7 @@ public partial class IftaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/ifta/jurisdiction",
                     Query = _query,
@@ -148,11 +146,11 @@ public partial class IftaClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Ifta.GetIftaVehicleReportsAsync(new IftaGetIftaVehicleReportsRequest { Year = 1 });
+    /// await client.Ifta.GetVehicleReportsAsync(new IftaGetVehicleReportsRequest { Year = 1 });
     /// </code>
     /// </example>
-    public async Task<IftaGetIftaVehicleReportsResponseBody> GetIftaVehicleReportsAsync(
-        IftaGetIftaVehicleReportsRequest request,
+    public async Task<IftaGetIftaVehicleReportsResponseBody> GetVehicleReportsAsync(
+        IftaGetVehicleReportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -195,7 +193,7 @@ public partial class IftaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/ifta/vehicle",
                     Query = _query,
@@ -264,7 +262,7 @@ public partial class IftaClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Ifta.CreateIftaDetailJobAsync(
+    /// await client.Ifta.CreateDetailJobAsync(
     ///     new IftaCreateIftaDetailJobRequestBody
     ///     {
     ///         EndHour = "2019-06-13T19:00:00Z",
@@ -273,7 +271,7 @@ public partial class IftaClient
     /// );
     /// </code>
     /// </example>
-    public async Task<IftaCreateIftaDetailJobResponseBody> CreateIftaDetailJobAsync(
+    public async Task<IftaCreateIftaDetailJobResponseBody> CreateDetailJobAsync(
         IftaCreateIftaDetailJobRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -283,7 +281,7 @@ public partial class IftaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "ifta-detail/csv",
                     Body = request,
@@ -353,10 +351,10 @@ public partial class IftaClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Ifta.GetIftaDetailJobAsync("id");
+    /// await client.Ifta.GetDetailJobAsync("id");
     /// </code>
     /// </example>
-    public async Task<IftaGetIftaDetailJobResponseBody> GetIftaDetailJobAsync(
+    public async Task<IftaGetIftaDetailJobResponseBody> GetDetailJobAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -366,7 +364,7 @@ public partial class IftaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"ifta-detail/csv/{id}",
                     Options = options,

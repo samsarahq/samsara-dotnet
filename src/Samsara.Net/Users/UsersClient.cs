@@ -25,11 +25,11 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.ListUserRolesAsync(new UsersListUserRolesRequest());
+    /// await client.Users.LisRolesAsync(new UsersLisRolesRequest());
     /// </code>
     /// </example>
-    public async Task<ListUserRolesResponse> ListUserRolesAsync(
-        UsersListUserRolesRequest request,
+    public async Task<ListUserRolesResponse> LisRolesAsync(
+        UsersLisRolesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "user-roles",
                     Query = _query,
@@ -85,11 +85,11 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.ListUsersAsync(new UsersListUsersRequest());
+    /// await client.Users.ListAsync(new UsersListRequest());
     /// </code>
     /// </example>
-    public async Task<ListUsersResponse> ListUsersAsync(
-        UsersListUsersRequest request,
+    public async Task<ListUsersResponse> ListAsync(
+        UsersListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -107,7 +107,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "users",
                     Query = _query,
@@ -145,7 +145,7 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.CreateUserAsync(
+    /// await client.Users.CreateAsync(
     ///     new CreateUserRequest
     ///     {
     ///         AuthType = CreateUserRequestAuthType.Default,
@@ -159,7 +159,7 @@ public partial class UsersClient
     /// );
     /// </code>
     /// </example>
-    public async Task<UserResponse> CreateUserAsync(
+    public async Task<UserResponse> CreateAsync(
         CreateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -169,7 +169,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "users",
                     Body = request,
@@ -208,10 +208,10 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.GetUserAsync("id");
+    /// await client.Users.GetAsync("id");
     /// </code>
     /// </example>
-    public async Task<UserResponse> GetUserAsync(
+    public async Task<UserResponse> GetAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -221,7 +221,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = $"users/{id}",
                     Options = options,
@@ -258,10 +258,10 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.DeleteUserAsync("id");
+    /// await client.Users.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task<object> DeleteUserAsync(
+    public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -271,7 +271,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"users/{id}",
                     Options = options,
@@ -308,10 +308,10 @@ public partial class UsersClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Users.UpdateUserAsync("id", new UpdateUserRequest());
+    /// await client.Users.UpdateAsync("id", new UpdateUserRequest());
     /// </code>
     /// </example>
-    public async Task<UserResponse> UpdateUserAsync(
+    public async Task<UserResponse> UpdateAsync(
         string id,
         UpdateUserRequest request,
         RequestOptions? options = null,
@@ -322,7 +322,7 @@ public partial class UsersClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"users/{id}",
                     Body = request,

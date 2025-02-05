@@ -7,10 +7,9 @@ namespace Samsara.Net;
 public partial class ClientOptions
 {
     /// <summary>
-    /// The Environment for the API.
+    /// The Base URL for the API.
     /// </summary>
-    public SamsaraClientEnvironment Environment { get; init; } =
-        SamsaraClientEnvironment.Production;
+    public string BaseUrl { get; init; } = SamsaraClientEnvironment.ProductionApi;
 
     /// <summary>
     /// The http client used to make requests.
@@ -39,7 +38,7 @@ public partial class ClientOptions
     {
         return new ClientOptions
         {
-            Environment = Environment,
+            BaseUrl = BaseUrl,
             HttpClient = HttpClient,
             MaxRetries = MaxRetries,
             Timeout = Timeout,

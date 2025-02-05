@@ -28,17 +28,13 @@ public partial class FuelAndEnergyClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
-    ///     new FuelAndEnergyGetFuelEnergyDriverReportsRequest
-    ///     {
-    ///         StartDate = "startDate",
-    ///         EndDate = "endDate",
-    ///     }
+    /// await client.FuelAndEnergy.GetDriverReportsAsync(
+    ///     new FuelAndEnergyGetDriverReportsRequest { StartDate = "startDate", EndDate = "endDate" }
     /// );
     /// </code>
     /// </example>
-    public async Task<FuelEnergyGetFuelEnergyDriverReportsResponseBody> GetFuelEnergyDriverReportsAsync(
-        FuelAndEnergyGetFuelEnergyDriverReportsRequest request,
+    public async Task<FuelEnergyGetFuelEnergyDriverReportsResponseBody> GetDriverReportsAsync(
+        FuelAndEnergyGetDriverReportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -63,7 +59,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/drivers/fuel-energy",
                     Query = _query,
@@ -134,17 +130,13 @@ public partial class FuelAndEnergyClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
-    ///     new FuelAndEnergyGetFuelEnergyVehicleReportsRequest
-    ///     {
-    ///         StartDate = "startDate",
-    ///         EndDate = "endDate",
-    ///     }
+    /// await client.FuelAndEnergy.GetVehicleReportsAsync(
+    ///     new FuelAndEnergyGetVehicleReportsRequest { StartDate = "startDate", EndDate = "endDate" }
     /// );
     /// </code>
     /// </example>
-    public async Task<FuelEnergyGetFuelEnergyVehicleReportsResponseBody> GetFuelEnergyVehicleReportsAsync(
-        FuelAndEnergyGetFuelEnergyVehicleReportsRequest request,
+    public async Task<FuelEnergyGetFuelEnergyVehicleReportsResponseBody> GetVehicleReportsAsync(
+        FuelAndEnergyGetVehicleReportsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -176,7 +168,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/vehicles/fuel-energy",
                     Query = _query,
@@ -273,7 +265,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fuel-purchase",
                     Body = request,

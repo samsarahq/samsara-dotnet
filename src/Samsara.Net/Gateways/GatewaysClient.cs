@@ -28,11 +28,11 @@ public partial class GatewaysClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Gateways.GetGatewaysAsync(new GatewaysGetGatewaysRequest());
+    /// await client.Gateways.ListAsync(new GatewaysListRequest());
     /// </code>
     /// </example>
-    public async Task<GatewaysGetGatewaysResponseBody> GetGatewaysAsync(
-        GatewaysGetGatewaysRequest request,
+    public async Task<GatewaysGetGatewaysResponseBody> ListAsync(
+        GatewaysListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -47,7 +47,7 @@ public partial class GatewaysClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "gateways",
                     Query = _query,
@@ -116,12 +116,10 @@ public partial class GatewaysClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Gateways.PostGatewayAsync(
-    ///     new GatewaysPostGatewayRequestBody { Serial = "GFRV-43N-VGX" }
-    /// );
+    /// await client.Gateways.CreateAsync(new GatewaysPostGatewayRequestBody { Serial = "GFRV-43N-VGX" });
     /// </code>
     /// </example>
-    public async Task<GatewaysPostGatewayResponseBody> PostGatewayAsync(
+    public async Task<GatewaysPostGatewayResponseBody> CreateAsync(
         GatewaysPostGatewayRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -131,7 +129,7 @@ public partial class GatewaysClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "gateways",
                     Body = request,
@@ -201,10 +199,10 @@ public partial class GatewaysClient
     /// </summary>
     /// <example>
     /// <code>
-    /// await client.Gateways.DeleteGatewayAsync("id");
+    /// await client.Gateways.DeleteAsync("id");
     /// </code>
     /// </example>
-    public async Task DeleteGatewayAsync(
+    public async Task DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -214,7 +212,7 @@ public partial class GatewaysClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
                     Path = $"gateways/{id}",
                     Options = options,

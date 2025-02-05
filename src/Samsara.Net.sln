@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net", "Samsara.Net\Samsara.Net.csproj", "{5CABD3D7-5F45-4A3B-BCF8-93996842349B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net", "Samsara.Net\Samsara.Net.csproj", "{A3210AFB-262A-475A-A98C-5C55C38088B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net.Test", "Samsara.Net.Test\Samsara.Net.Test.csproj", "{3DA33900-BC83-40F1-82E0-BE8B39A83C84}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net.Test", "Samsara.Net.Test\Samsara.Net.Test.csproj", "{14C67D56-72F9-466B-BF30-81614A4C4091}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5CABD3D7-5F45-4A3B-BCF8-93996842349B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CABD3D7-5F45-4A3B-BCF8-93996842349B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CABD3D7-5F45-4A3B-BCF8-93996842349B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CABD3D7-5F45-4A3B-BCF8-93996842349B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DA33900-BC83-40F1-82E0-BE8B39A83C84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DA33900-BC83-40F1-82E0-BE8B39A83C84}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DA33900-BC83-40F1-82E0-BE8B39A83C84}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DA33900-BC83-40F1-82E0-BE8B39A83C84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3210AFB-262A-475A-A98C-5C55C38088B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3210AFB-262A-475A-A98C-5C55C38088B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3210AFB-262A-475A-A98C-5C55C38088B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3210AFB-262A-475A-A98C-5C55C38088B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C67D56-72F9-466B-BF30-81614A4C4091}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C67D56-72F9-466B-BF30-81614A4C4091}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C67D56-72F9-466B-BF30-81614A4C4091}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C67D56-72F9-466B-BF30-81614A4C4091}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
