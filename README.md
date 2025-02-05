@@ -46,6 +46,31 @@ try {
 }
 ```
 
+## Auto Pagination 
+
+Paginated requests will return a `Pager`, which can be used to automatically iterate over items.
+
+```csharp
+var pager = await client.Assets.ListCurrentLocationsAsync(
+    new AssetsListCurrentLocationsRequest());
+
+await foreach (var item in pager)
+{
+    Console.WriteLine(item);
+}
+```
+
+Alternatively, you can iterate page-by-page:
+```csharp
+await foreach (var page in pager.AsPagesAsync())
+{
+    foreach (var item in page.Items)
+    {
+        Console.WriteLine(item);
+    }
+}
+```
+
 ## Advanced
 
 ### Retries
