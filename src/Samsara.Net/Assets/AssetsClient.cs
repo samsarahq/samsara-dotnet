@@ -91,56 +91,33 @@ public partial class AssetsClient
     /// await client.Assets.ListCurrentLocationsAsync(new AssetsListCurrentLocationsRequest());
     /// </code>
     /// </example>
-    public async Task<InlineResponse2002> ListCurrentLocationsAsync(
+    public Pager<V1AssetCurrentLocationsResponse> ListCurrentLocationsAsync(
         AssetsListCurrentLocationsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
+        RequestOptions? options = null
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.StartingAfter != null)
+        if (request is not null)
         {
-            _query["startingAfter"] = request.StartingAfter;
+            request = request with { };
         }
-        if (request.EndingBefore != null)
-        {
-            _query["endingBefore"] = request.EndingBefore;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "v1/fleet/assets/locations",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
+        var pager = new CursorPager<
+            AssetsListCurrentLocationsRequest,
+            RequestOptions?,
+            InlineResponse2002,
+            string,
+            V1AssetCurrentLocationsResponse
+        >(
+            request,
+            options,
+            ListCurrentLocationsAsync,
+            (request, cursor) =>
             {
-                return JsonUtils.Deserialize<InlineResponse2002>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
+                request.StartingAfter = cursor;
+            },
+            response => response?.Pagination?.EndCursor,
+            response => response?.Assets?.ToList()
         );
+        return pager;
     }
 
     /// <summary>
@@ -164,58 +141,33 @@ public partial class AssetsClient
     /// );
     /// </code>
     /// </example>
-    public async Task<InlineResponse2003> GetReefersAsync(
+    public Pager<V1AssetsReefer> GetReefersAsync(
         AssetsGetReefersRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
+        RequestOptions? options = null
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startMs"] = request.StartMs.ToString();
-        _query["endMs"] = request.EndMs.ToString();
-        if (request.StartingAfter != null)
+        if (request is not null)
         {
-            _query["startingAfter"] = request.StartingAfter;
+            request = request with { };
         }
-        if (request.EndingBefore != null)
-        {
-            _query["endingBefore"] = request.EndingBefore;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "v1/fleet/assets/reefers",
-                    Query = _query,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            try
+        var pager = new CursorPager<
+            AssetsGetReefersRequest,
+            RequestOptions?,
+            InlineResponse2003,
+            string,
+            V1AssetsReefer
+        >(
+            request,
+            options,
+            GetReefersAsync,
+            (request, cursor) =>
             {
-                return JsonUtils.Deserialize<InlineResponse2003>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
+                request.StartingAfter = cursor;
+            },
+            response => response?.Pagination?.EndCursor,
+            response => response?.Data?.ToList()
         );
+        return pager;
     }
 
     /// <summary>
@@ -336,6 +288,140 @@ public partial class AssetsClient
             try
             {
                 return JsonUtils.Deserialize<V1AssetReeferResponse>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new SamsaraClientApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
+    ///
+    /// Fetch current locations of all assets.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    internal async Task<InlineResponse2002> ListCurrentLocationsAsync(
+        AssetsListCurrentLocationsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.StartingAfter != null)
+        {
+            _query["startingAfter"] = request.StartingAfter;
+        }
+        if (request.EndingBefore != null)
+        {
+            _query["endingBefore"] = request.EndingBefore;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "v1/fleet/assets/locations",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<InlineResponse2002>(responseBody)!;
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientException("Failed to deserialize response", e);
+            }
+        }
+
+        throw new SamsaraClientApiException(
+            $"Error with status code {response.StatusCode}",
+            response.StatusCode,
+            responseBody
+        );
+    }
+
+    /// <summary>
+    /// &lt;n class="warning"&gt;
+    /// &lt;nh&gt;
+    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// This endpoint is still on our legacy API.
+    /// &lt;/nh&gt;
+    /// &lt;/n&gt;
+    ///
+    /// Fetches all reefers and reefer-specific stats.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    internal async Task<InlineResponse2003> GetReefersAsync(
+        AssetsGetReefersRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        _query["startMs"] = request.StartMs.ToString();
+        _query["endMs"] = request.EndMs.ToString();
+        if (request.StartingAfter != null)
+        {
+            _query["startingAfter"] = request.StartingAfter;
+        }
+        if (request.EndingBefore != null)
+        {
+            _query["endingBefore"] = request.EndingBefore;
+        }
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        var response = await _client
+            .MakeRequestAsync(
+                new RawClient.JsonApiRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "v1/fleet/assets/reefers",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        var responseBody = await response.Raw.Content.ReadAsStringAsync();
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            try
+            {
+                return JsonUtils.Deserialize<InlineResponse2003>(responseBody)!;
             }
             catch (JsonException e)
             {
