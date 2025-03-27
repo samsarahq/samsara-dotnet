@@ -50,7 +50,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/clocks",
                     Query = _query,
@@ -142,7 +142,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/daily-logs",
                     Query = _query,
@@ -243,7 +243,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/logs",
                     Query = _query,
@@ -326,7 +326,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/violations",
                     Query = _query,
@@ -420,7 +420,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = $"v1/fleet/drivers/{driverId}/hos/duty_status",
                     Body = request,
@@ -484,7 +484,7 @@ public partial class HoursOfServiceClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "v1/fleet/hos_authentication_logs",
                     Query = _query,

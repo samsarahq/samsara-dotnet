@@ -62,7 +62,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers",
                     Query = _query,
@@ -120,7 +120,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "fleet/drivers",
                     Body = request,
@@ -172,7 +172,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = $"fleet/drivers/{id}",
                     Options = options,
@@ -223,7 +223,7 @@ public partial class DriversClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"fleet/drivers/{id}",
                     Body = request,

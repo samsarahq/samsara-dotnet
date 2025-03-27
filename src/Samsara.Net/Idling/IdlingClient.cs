@@ -74,7 +74,7 @@ public partial class IdlingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/vehicle/idling",
                     Query = _query,

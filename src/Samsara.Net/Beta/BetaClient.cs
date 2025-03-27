@@ -65,7 +65,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "cameras/media/retrieval",
                     Query = _query,
@@ -163,7 +163,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "cameras/media/retrieval",
                     Body = request,
@@ -258,7 +258,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "driver-trailer-assignments",
                     Query = _query,
@@ -348,7 +348,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "driver-trailer-assignments",
                     Body = request,
@@ -442,7 +442,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "driver-trailer-assignments",
                     Body = requestBody,
@@ -534,7 +534,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "fleet/drivers/remote-sign-out",
                     Body = request,
@@ -632,7 +632,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/immobilizer/stream",
                     Query = _query,
@@ -721,7 +721,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "form-submissions",
                     Query = _query,
@@ -817,7 +817,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "form-submissions",
                     Body = request,
@@ -909,7 +909,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "form-submissions",
                     Body = request,
@@ -1000,7 +1000,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "form-submissions/pdf-exports",
                     Query = _query,
@@ -1090,7 +1090,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "form-submissions/pdf-exports",
                     Query = _query,
@@ -1193,7 +1193,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "form-submissions/stream",
                     Query = _query,
@@ -1291,7 +1291,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "hos/daily-logs/log-meta-data",
                     Body = requestBody,
@@ -1382,7 +1382,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "issues",
                     Query = _query,
@@ -1468,7 +1468,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "issues",
                     Body = request,
@@ -1566,7 +1566,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "issues/stream",
                     Query = _query,
@@ -1674,7 +1674,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "speeding-intervals/stream",
                     Query = _query,
@@ -1766,7 +1766,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "training-assignments",
                     Query = _query,
@@ -1867,7 +1867,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "training-assignments/stream",
                     Query = _query,
@@ -1974,7 +1974,7 @@ public partial class BetaClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "trips/stream",
                     Query = _query,

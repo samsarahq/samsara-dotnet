@@ -77,7 +77,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/cameras/media",
                     Query = _query,
@@ -176,7 +176,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/custom-reports/configs",
                     Query = _query,
@@ -273,7 +273,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/custom-reports/runs",
                     Query = _query,
@@ -370,7 +370,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "preview/custom-reports/runs",
                     Body = request,
@@ -470,7 +470,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/custom-reports/runs/data",
                     Query = _query,
@@ -579,7 +579,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/driver-efficiency/drivers",
                     Query = _query,
@@ -691,7 +691,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/driver-efficiency/vehicles",
                     Query = _query,
@@ -787,7 +787,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/form-templates",
                     Query = _query,
@@ -879,7 +879,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Delete,
                     Path = "preview/training-assignments",
                     Query = _query,
@@ -964,7 +964,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "preview/training-assignments",
                     Query = _query,
@@ -1063,7 +1063,7 @@ public partial class PreviewClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "preview/training-courses",
                     Query = _query,

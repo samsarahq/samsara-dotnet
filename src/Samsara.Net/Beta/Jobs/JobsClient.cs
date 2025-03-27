@@ -68,7 +68,7 @@ public partial class JobsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/industrial/jobs",
                     Query = _query,
@@ -159,7 +159,7 @@ public partial class JobsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "beta/industrial/jobs",
                     Body = request,
@@ -242,7 +242,7 @@ public partial class JobsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Delete,
                     Path = "beta/industrial/jobs",
                     Query = _query,
@@ -331,7 +331,7 @@ public partial class JobsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "beta/industrial/jobs",
                     Body = requestBody,

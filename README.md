@@ -8,7 +8,7 @@ The Samsara C# library provides convenient access to the Samsara API from C#.
 ## Installation
 
 ```sh
-nuget install Samsara.Net
+dotnet add package Samsara.Net
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ Instantiate and use the client with the following:
 using Samsara.Net.Addresses;
 using Samsara.Net;
 
-var client = new SamsaraClient("TOKEN");
+var client = new SamsaraClient("CLIENT_ID", "CLIENT_SECRET");
 await client.Addresses.CreateAsync(
     new CreateAddressRequest
     {

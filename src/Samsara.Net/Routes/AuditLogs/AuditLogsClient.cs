@@ -52,7 +52,7 @@ public partial class AuditLogsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/routes/audit-logs/feed",
                     Query = _query,

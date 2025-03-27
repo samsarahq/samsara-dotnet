@@ -59,7 +59,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/drivers/fuel-energy",
                     Query = _query,
@@ -168,7 +168,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/vehicles/fuel-energy",
                     Query = _query,
@@ -265,7 +265,7 @@ public partial class FuelAndEnergyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "fuel-purchase",
                     Body = request,

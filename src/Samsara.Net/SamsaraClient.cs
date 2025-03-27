@@ -1,6 +1,5 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
-using Samsara.Net.Assets;
 using Samsara.Net.Attributes;
 using Samsara.Net.Auth;
 using Samsara.Net.Beta;
@@ -8,7 +7,6 @@ using Samsara.Net.CarrierProposedAssignments;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
-using Samsara.Net.Dispatch;
 using Samsara.Net.Documents;
 using Samsara.Net.DriverQrCodes;
 using Samsara.Net.Drivers;
@@ -23,25 +21,20 @@ using Samsara.Net.Industrial;
 using Samsara.Net.Legacy;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
-using Samsara.Net.Machines;
 using Samsara.Net.Maintenance;
-using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Preview;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
-using Samsara.Net.Sensors;
 using Samsara.Net.Settings;
 using Samsara.Net.TachographEuOnly;
 using Samsara.Net.Tags;
-using Samsara.Net.TrailerAssignments;
 using Samsara.Net.Trailers;
-using Samsara.Net.Trips;
 using Samsara.Net.Users;
+using Samsara.Net.V1;
 using Samsara.Net.VehicleLocations;
 using Samsara.Net.Vehicles;
 using Samsara.Net.VehicleStats;
-using Samsara.Net.Webhooks;
 
 namespace Samsara.Net;
 
@@ -49,16 +42,18 @@ public partial class SamsaraClient
 {
     private readonly RawClient _client;
 
-    public SamsaraClient(string? token = null, ClientOptions? clientOptions = null)
+    public SamsaraClient(
+        string? clientId = null,
+        string? clientSecret = null,
+        ClientOptions? clientOptions = null
+    )
     {
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
-                { "Authorization", $"Bearer {token}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/0.1.1" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -69,6 +64,14 @@ public partial class SamsaraClient
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
+        var tokenProvider = new OAuthTokenProvider(
+            clientId,
+            clientSecret,
+            new AuthClient(new RawClient(clientOptions.Clone()))
+        );
+        clientOptions.Headers["Authorization"] = new Func<string>(
+            () => tokenProvider.GetAccessTokenAsync().Result
+        );
         _client = new RawClient(clientOptions);
         Addresses = new AddressesClient(_client);
         Alerts = new AlertsClient(_client);
@@ -104,15 +107,8 @@ public partial class SamsaraClient
         Preview = new PreviewClient(_client);
         Tags = new TagsClient(_client);
         Users = new UsersClient(_client);
-        Assets = new AssetsClient(_client);
-        Dispatch = new DispatchClient(_client);
-        Messages = new MessagesClient(_client);
-        TrailerAssignments = new TrailerAssignmentsClient(_client);
-        Trips = new TripsClient(_client);
-        Machines = new MachinesClient(_client);
-        Sensors = new SensorsClient(_client);
-        Webhooks = new WebhooksClient(_client);
         Auth = new AuthClient(_client);
+        V1 = new V1Client(_client);
     }
 
     public AddressesClient Addresses { get; init; }
@@ -183,21 +179,7 @@ public partial class SamsaraClient
 
     public UsersClient Users { get; init; }
 
-    public AssetsClient Assets { get; init; }
-
-    public DispatchClient Dispatch { get; init; }
-
-    public MessagesClient Messages { get; init; }
-
-    public TrailerAssignmentsClient TrailerAssignments { get; init; }
-
-    public TripsClient Trips { get; init; }
-
-    public MachinesClient Machines { get; init; }
-
-    public SensorsClient Sensors { get; init; }
-
-    public WebhooksClient Webhooks { get; init; }
-
     public AuthClient Auth { get; init; }
+
+    public V1Client V1 { get; init; }
 }

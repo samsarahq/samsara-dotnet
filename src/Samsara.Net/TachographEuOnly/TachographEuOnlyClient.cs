@@ -54,7 +54,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-activity/history",
                     Query = _query,
@@ -123,7 +123,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-files/history",
                     Query = _query,
@@ -188,7 +188,7 @@ public partial class TachographEuOnlyClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/tachograph-files/history",
                     Query = _query,

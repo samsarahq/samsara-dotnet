@@ -60,7 +60,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/fleet/drivers/efficiency",
                     Query = _query,
@@ -117,7 +117,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"beta/fleet/equipment/{id}",
                     Body = request,
@@ -226,7 +226,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/fleet/hos/drivers/eld-events",
                     Query = _query,
@@ -334,7 +334,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/fleet/trailers/stats",
                     Query = _query,
@@ -448,7 +448,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/fleet/trailers/stats/feed",
                     Query = _query,
@@ -563,7 +563,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "beta/fleet/trailers/stats/history",
                     Query = _query,
@@ -661,7 +661,7 @@ public partial class FleetClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = $"beta/fleet/vehicles/{id}/immobilizer",
                     Body = request,

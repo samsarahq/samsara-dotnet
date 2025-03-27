@@ -52,7 +52,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/carrier-proposed-assignments",
                     Query = _query,
@@ -105,7 +105,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "fleet/carrier-proposed-assignments",
                     Body = request,
@@ -157,7 +157,7 @@ public partial class CarrierProposedAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Delete,
                     Path = $"fleet/carrier-proposed-assignments/{id}",
                     Options = options,

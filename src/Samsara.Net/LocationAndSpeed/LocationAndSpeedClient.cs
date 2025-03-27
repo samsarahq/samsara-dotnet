@@ -77,7 +77,7 @@ public partial class LocationAndSpeedClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "assets/location-and-speed/stream",
                     Query = _query,

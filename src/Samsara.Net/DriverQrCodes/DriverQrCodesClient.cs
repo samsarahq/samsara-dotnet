@@ -43,7 +43,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "drivers/qr-codes",
                     Query = _query,
@@ -129,7 +129,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "drivers/qr-codes",
                     Body = request,
@@ -216,7 +216,7 @@ public partial class DriverQrCodesClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Delete,
                     Path = "drivers/qr-codes",
                     Body = request,

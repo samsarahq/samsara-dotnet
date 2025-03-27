@@ -74,7 +74,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "fleet/driver-vehicle-assignments",
                     Query = _query,
@@ -164,7 +164,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Post,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,
@@ -254,7 +254,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Delete,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,
@@ -336,7 +336,7 @@ public partial class DriverVehicleAssignmentsClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethodExtensions.Patch,
                     Path = "fleet/driver-vehicle-assignments",
                     Body = request,

@@ -42,7 +42,7 @@ public partial class AuthClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Login,
                     Method = HttpMethod.Post,
                     Path = "oauth/token",
                     Body = request,

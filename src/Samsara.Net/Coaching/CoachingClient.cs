@@ -52,7 +52,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "coaching/driver-coach-assignments",
                     Query = _query,
@@ -144,7 +144,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Put,
                     Path = "coaching/driver-coach-assignments",
                     Query = _query,
@@ -253,7 +253,7 @@ public partial class CoachingClient
             .MakeRequestAsync(
                 new RawClient.JsonApiRequest
                 {
-                    BaseUrl = _client.Options.BaseUrl,
+                    BaseUrl = _client.Options.Environment.Api,
                     Method = HttpMethod.Get,
                     Path = "coaching/sessions/stream",
                     Query = _query,
