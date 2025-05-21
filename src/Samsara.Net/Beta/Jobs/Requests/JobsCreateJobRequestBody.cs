@@ -9,6 +9,7 @@ public record JobsCreateJobRequestBody
     [JsonPropertyName("job")]
     public required PostJobObjectRequestBody Job { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

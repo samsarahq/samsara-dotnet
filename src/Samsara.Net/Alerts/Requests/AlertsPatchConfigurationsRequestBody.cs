@@ -48,6 +48,7 @@ public record AlertsPatchConfigurationsRequestBody
     [JsonPropertyName("triggers")]
     public IEnumerable<WorkflowTriggerObjectRequestBody>? Triggers { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -23,6 +23,7 @@ public record TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
     [JsonPropertyName("trailerId")]
     public required string TrailerId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
+using global::System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -23,11 +23,9 @@ public partial class HoursOfServiceClient
     ///
     /// To use this endpoint, select **Read ELD Compliance Settings (US)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.GetClocksAsync(new HoursOfServiceGetClocksRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<HosClocksResponse> GetClocksAsync(
         HoursOfServiceGetClocksRequest request,
         RequestOptions? options = null,
@@ -47,10 +45,10 @@ public partial class HoursOfServiceClient
             _query["limit"] = request.Limit.Value.ToString();
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/clocks",
                     Query = _query,
@@ -59,9 +57,9 @@ public partial class HoursOfServiceClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<HosClocksResponse>(responseBody)!;
@@ -72,11 +70,14 @@ public partial class HoursOfServiceClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -97,11 +98,9 @@ public partial class HoursOfServiceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.GetDailyLogsAsync(new HoursOfServiceGetDailyLogsRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<HosDailyLogsGetHosDailyLogsResponseBody> GetDailyLogsAsync(
         HoursOfServiceGetDailyLogsRequest request,
         RequestOptions? options = null,
@@ -139,10 +138,10 @@ public partial class HoursOfServiceClient
             _query["expand"] = request.Expand.ToString();
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/daily-logs",
                     Query = _query,
@@ -151,9 +150,9 @@ public partial class HoursOfServiceClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<HosDailyLogsGetHosDailyLogsResponseBody>(
@@ -166,39 +165,46 @@ public partial class HoursOfServiceClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -212,11 +218,9 @@ public partial class HoursOfServiceClient
     ///
     /// To use this endpoint, select **Read ELD Compliance Settings (US)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.GetLogsAsync(new HoursOfServiceGetLogsRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<HosLogsResponse> GetLogsAsync(
         HoursOfServiceGetLogsRequest request,
         RequestOptions? options = null,
@@ -240,10 +244,10 @@ public partial class HoursOfServiceClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/logs",
                     Query = _query,
@@ -252,9 +256,9 @@ public partial class HoursOfServiceClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<HosLogsResponse>(responseBody)!;
@@ -265,11 +269,14 @@ public partial class HoursOfServiceClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -288,11 +295,9 @@ public partial class HoursOfServiceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.GetViolationsAsync(new HoursOfServiceGetViolationsRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<HosViolationsGetHosViolationsResponseBody> GetViolationsAsync(
         HoursOfServiceGetViolationsRequest request,
         RequestOptions? options = null,
@@ -323,10 +328,10 @@ public partial class HoursOfServiceClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/hos/violations",
                     Query = _query,
@@ -335,9 +340,9 @@ public partial class HoursOfServiceClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<HosViolationsGetHosViolationsResponseBody>(
@@ -350,39 +355,46 @@ public partial class HoursOfServiceClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -401,15 +413,13 @@ public partial class HoursOfServiceClient
     ///
     /// To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.SetCurrentDutyStatusAsync(
     ///     1000000,
     ///     new InlineObject1 { DutyStatus = "ON_DUTY" }
     /// );
-    /// </code>
-    /// </example>
-    public async Task SetCurrentDutyStatusAsync(
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task SetCurrentDutyStatusAsync(
         long driverId,
         InlineObject1 request,
         RequestOptions? options = null,
@@ -417,12 +427,15 @@ public partial class HoursOfServiceClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
-                    Path = $"v1/fleet/drivers/{driverId}/hos/duty_status",
+                    Path = string.Format(
+                        "v1/fleet/drivers/{0}/hos/duty_status",
+                        ValueConvert.ToPathParameterString(driverId)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -434,12 +447,14 @@ public partial class HoursOfServiceClient
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -458,8 +473,7 @@ public partial class HoursOfServiceClient
     ///
     /// To use this endpoint, select **Read ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.HoursOfService.V1GetFleetHosAuthenticationLogsAsync(
     ///     new HoursOfServiceV1GetFleetHosAuthenticationLogsRequest
     ///     {
@@ -468,8 +482,7 @@ public partial class HoursOfServiceClient
     ///         EndMs = 1000000,
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<V1HosAuthenticationLogsResponse> V1GetFleetHosAuthenticationLogsAsync(
         HoursOfServiceV1GetFleetHosAuthenticationLogsRequest request,
         RequestOptions? options = null,
@@ -481,10 +494,10 @@ public partial class HoursOfServiceClient
         _query["startMs"] = request.StartMs.ToString();
         _query["endMs"] = request.EndMs.ToString();
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "v1/fleet/hos_authentication_logs",
                     Query = _query,
@@ -493,9 +506,9 @@ public partial class HoursOfServiceClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<V1HosAuthenticationLogsResponse>(responseBody)!;
@@ -506,10 +519,13 @@ public partial class HoursOfServiceClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

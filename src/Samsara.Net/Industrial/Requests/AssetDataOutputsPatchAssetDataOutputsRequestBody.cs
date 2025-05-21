@@ -11,6 +11,7 @@ public record AssetDataOutputsPatchAssetDataOutputsRequestBody
     [JsonPropertyName("values")]
     public object Values { get; set; } = new Dictionary<string, object?>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

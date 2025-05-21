@@ -60,6 +60,7 @@ public record TrailersUpdateTrailerRequestBody
     [JsonPropertyName("trailerSerialNumber")]
     public string? TrailerSerialNumber { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

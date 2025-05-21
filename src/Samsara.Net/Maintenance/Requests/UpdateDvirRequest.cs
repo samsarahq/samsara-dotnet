@@ -29,6 +29,7 @@ public record UpdateDvirRequest
     [JsonPropertyName("signedAtTime")]
     public string? SignedAtTime { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

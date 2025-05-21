@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Driver Efficiency score data. This object is returned by default or when the “score” format is specified in “dataFormats”.
+/// </summary>
 public record DriverEfficiencyDataObjectResponseBody
 {
     /// <summary>
@@ -59,6 +63,17 @@ public record DriverEfficiencyDataObjectResponseBody
     [JsonPropertyName("wearFreeBrakeScore")]
     public string? WearFreeBrakeScore { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

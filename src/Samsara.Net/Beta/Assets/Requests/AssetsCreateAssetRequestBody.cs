@@ -71,6 +71,7 @@ public record AssetsCreateAssetRequestBody
     [JsonPropertyName("year")]
     public long? Year { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

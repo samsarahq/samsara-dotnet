@@ -1,5 +1,6 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
+using Samsara.Net.Assets;
 using Samsara.Net.Attributes;
 using Samsara.Net.Auth;
 using Samsara.Net.Beta;
@@ -7,6 +8,7 @@ using Samsara.Net.CarrierProposedAssignments;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
+using Samsara.Net.Dispatch;
 using Samsara.Net.Documents;
 using Samsara.Net.DriverQrCodes;
 using Samsara.Net.Drivers;
@@ -21,20 +23,25 @@ using Samsara.Net.Industrial;
 using Samsara.Net.Legacy;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
+using Samsara.Net.Machines;
 using Samsara.Net.Maintenance;
+using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Preview;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
+using Samsara.Net.Sensors;
 using Samsara.Net.Settings;
 using Samsara.Net.TachographEuOnly;
 using Samsara.Net.Tags;
+using Samsara.Net.TrailerAssignments;
 using Samsara.Net.Trailers;
+using Samsara.Net.Trips;
 using Samsara.Net.Users;
-using Samsara.Net.V1;
 using Samsara.Net.VehicleLocations;
 using Samsara.Net.Vehicles;
 using Samsara.Net.VehicleStats;
+using Samsara.Net.Webhooks;
 
 namespace Samsara.Net;
 
@@ -42,18 +49,16 @@ public partial class SamsaraClient
 {
     private readonly RawClient _client;
 
-    public SamsaraClient(
-        string? clientId = null,
-        string? clientSecret = null,
-        ClientOptions? clientOptions = null
-    )
+    public SamsaraClient(string? token = null, ClientOptions? clientOptions = null)
     {
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
+                { "Authorization", $"Bearer {token}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
+                { "User-Agent", "Samsara.Net/0.1.0" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -64,14 +69,6 @@ public partial class SamsaraClient
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        var tokenProvider = new OAuthTokenProvider(
-            clientId,
-            clientSecret,
-            new AuthClient(new RawClient(clientOptions.Clone()))
-        );
-        clientOptions.Headers["Authorization"] = new Func<string>(
-            () => tokenProvider.GetAccessTokenAsync().Result
-        );
         _client = new RawClient(clientOptions);
         Addresses = new AddressesClient(_client);
         Alerts = new AlertsClient(_client);
@@ -107,79 +104,100 @@ public partial class SamsaraClient
         Preview = new PreviewClient(_client);
         Tags = new TagsClient(_client);
         Users = new UsersClient(_client);
+        Assets = new AssetsClient(_client);
+        Dispatch = new DispatchClient(_client);
+        Messages = new MessagesClient(_client);
+        TrailerAssignments = new TrailerAssignmentsClient(_client);
+        Trips = new TripsClient(_client);
+        Machines = new MachinesClient(_client);
+        Sensors = new SensorsClient(_client);
+        Webhooks = new WebhooksClient(_client);
         Auth = new AuthClient(_client);
-        V1 = new V1Client(_client);
     }
 
-    public AddressesClient Addresses { get; init; }
+    public AddressesClient Addresses { get; }
 
-    public AlertsClient Alerts { get; init; }
+    public AlertsClient Alerts { get; }
 
-    public LocationAndSpeedClient LocationAndSpeed { get; init; }
+    public LocationAndSpeedClient LocationAndSpeed { get; }
 
-    public AttributesClient Attributes { get; init; }
+    public AttributesClient Attributes { get; }
 
-    public BetaClient Beta { get; init; }
+    public BetaClient Beta { get; }
 
-    public CoachingClient Coaching { get; init; }
+    public CoachingClient Coaching { get; }
 
-    public ContactsClient Contacts { get; init; }
+    public ContactsClient Contacts { get; }
 
-    public MaintenanceClient Maintenance { get; init; }
+    public MaintenanceClient Maintenance { get; }
 
-    public DriverQrCodesClient DriverQrCodes { get; init; }
+    public DriverQrCodesClient DriverQrCodes { get; }
 
-    public CarrierProposedAssignmentsClient CarrierProposedAssignments { get; init; }
+    public CarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
 
-    public DocumentsClient Documents { get; init; }
+    public DocumentsClient Documents { get; }
 
-    public DriverVehicleAssignmentsClient DriverVehicleAssignments { get; init; }
+    public DriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
 
-    public DriversClient Drivers { get; init; }
+    public DriversClient Drivers { get; }
 
-    public TachographEuOnlyClient TachographEuOnly { get; init; }
+    public TachographEuOnlyClient TachographEuOnly { get; }
 
-    public LegacyClient Legacy { get; init; }
+    public LegacyClient Legacy { get; }
 
-    public EquipmentClient Equipment { get; init; }
+    public EquipmentClient Equipment { get; }
 
-    public HoursOfServiceClient HoursOfService { get; init; }
+    public HoursOfServiceClient HoursOfService { get; }
 
-    public FuelAndEnergyClient FuelAndEnergy { get; init; }
+    public FuelAndEnergyClient FuelAndEnergy { get; }
 
-    public IftaClient Ifta { get; init; }
+    public IftaClient Ifta { get; }
 
-    public IdlingClient Idling { get; init; }
+    public IdlingClient Idling { get; }
 
-    public RoutesClient Routes { get; init; }
+    public RoutesClient Routes { get; }
 
-    public SafetyClient Safety { get; init; }
+    public SafetyClient Safety { get; }
 
-    public SettingsClient Settings { get; init; }
+    public SettingsClient Settings { get; }
 
-    public TrailersClient Trailers { get; init; }
+    public TrailersClient Trailers { get; }
 
-    public VehiclesClient Vehicles { get; init; }
+    public VehiclesClient Vehicles { get; }
 
-    public VehicleLocationsClient VehicleLocations { get; init; }
+    public VehicleLocationsClient VehicleLocations { get; }
 
-    public VehicleStatsClient VehicleStats { get; init; }
+    public VehicleStatsClient VehicleStats { get; }
 
-    public GatewaysClient Gateways { get; init; }
+    public GatewaysClient Gateways { get; }
 
-    public IndustrialClient Industrial { get; init; }
+    public IndustrialClient Industrial { get; }
 
-    public LiveSharingLinksClient LiveSharingLinks { get; init; }
+    public LiveSharingLinksClient LiveSharingLinks { get; }
 
-    public OrganizationInfoClient OrganizationInfo { get; init; }
+    public OrganizationInfoClient OrganizationInfo { get; }
 
-    public PreviewClient Preview { get; init; }
+    public PreviewClient Preview { get; }
 
-    public TagsClient Tags { get; init; }
+    public TagsClient Tags { get; }
 
-    public UsersClient Users { get; init; }
+    public UsersClient Users { get; }
 
-    public AuthClient Auth { get; init; }
+    public AssetsClient Assets { get; }
 
-    public V1Client V1 { get; init; }
+    public DispatchClient Dispatch { get; }
+
+    public MessagesClient Messages { get; }
+
+    public TrailerAssignmentsClient TrailerAssignments { get; }
+
+    public TripsClient Trips { get; }
+
+    public MachinesClient Machines { get; }
+
+    public SensorsClient Sensors { get; }
+
+    public WebhooksClient Webhooks { get; }
+
+    public AuthClient Auth { get; }
 }

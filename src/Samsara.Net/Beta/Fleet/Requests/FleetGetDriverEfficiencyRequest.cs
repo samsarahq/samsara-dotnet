@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Beta.Fleet;
@@ -7,26 +8,31 @@ public record FleetGetDriverEfficiencyRequest
     /// <summary>
     /// If value is `deactivated`, only drivers that are deactivated will appear in the response. This parameter will default to `active` if not provided (fetching only active drivers).
     /// </summary>
+    [JsonIgnore]
     public FleetGetDriverEfficiencyRequestDriverActivationStatus? DriverActivationStatus { get; set; }
 
     /// <summary>
     /// A filter on the data based on this comma-separated list of driver IDs. Cannot be used with tag filtering or driver status. Example: `driverIds=1234,5678`
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> DriverIds { get; set; } = new List<string>();
 
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     /// </summary>
+    [JsonIgnore]
     public string? After { get; set; }
 
     /// <summary>
     /// Filters summary to drivers based on this comma-separated list of tag IDs. Data from all the drivers' respective vehicles will be included in the summary, regardless of which tag the vehicle is associated with. Should not be provided in addition to `driverIds`. Example: driverTagIds=1234,5678
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> DriverTagIds { get; set; } = new List<string>();
 
     /// <summary>
     /// Filters like `driverTagIds` but includes descendants of all the given parent tags. Should not be provided in addition to `driverIds`. Example: `driverParentTagIds=1234,5678`
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> DriverParentTagIds { get; set; } = new List<string>();
 
     /// <summary>
@@ -34,6 +40,7 @@ public record FleetGetDriverEfficiencyRequest
     ///
     /// Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours.
     /// </summary>
+    [JsonIgnore]
     public DateTime? StartTime { get; set; }
 
     /// <summary>
@@ -41,8 +48,10 @@ public record FleetGetDriverEfficiencyRequest
     ///
     /// Note that the most recent 72 hours of data may still be processing and is subject to change and latency, so it is not recommended to request data for the most recent 72 hours
     /// </summary>
+    [JsonIgnore]
     public DateTime? EndTime { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

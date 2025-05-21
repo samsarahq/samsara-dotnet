@@ -35,6 +35,7 @@ public record IftaCreateIftaDetailJobRequestBody
     [JsonPropertyName("vehicleTagIds")]
     public string? VehicleTagIds { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

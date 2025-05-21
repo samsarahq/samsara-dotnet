@@ -13,6 +13,7 @@ public record EngineImmobilizerUpdateEngineImmobilizerStateRequestBody
     public IEnumerable<UpdateEngineImmobilizerRelayStateRequestBodyRequestBody> RelayStates { get; set; } =
         new List<UpdateEngineImmobilizerRelayStateRequestBodyRequestBody>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// A summary of this vehicle's fuel and energy data.
+/// </summary>
 public record FuelEnergyVehicleReportObjectResponseBody
 {
     /// <summary>
@@ -53,6 +57,17 @@ public record FuelEnergyVehicleReportObjectResponseBody
     [JsonPropertyName("vehicle")]
     public required FuelEnergyVehicleObjectResponseBody Vehicle { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

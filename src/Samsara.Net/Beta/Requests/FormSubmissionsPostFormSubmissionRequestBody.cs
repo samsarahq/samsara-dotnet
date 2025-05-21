@@ -40,7 +40,7 @@ public record FormSubmissionsPostFormSubmissionRequestBody
     /// Status of the form submission.  Valid values: `toDo`
     /// </summary>
     [JsonPropertyName("status")]
-    public required string Status { get; set; }
+    public string Status { get; set; } = "toDo";
 
     /// <summary>
     /// Title of the form submission.
@@ -48,6 +48,7 @@ public record FormSubmissionsPostFormSubmissionRequestBody
     [JsonPropertyName("title")]
     public string? Title { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

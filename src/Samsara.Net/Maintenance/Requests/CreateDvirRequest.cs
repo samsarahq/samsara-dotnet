@@ -57,7 +57,7 @@ public record CreateDvirRequest
     /// Only type 'mechanic' is currently accepted.
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } = "mechanic";
 
     /// <summary>
     /// Id of vehicle being inspected. Either vehicleId or trailerId must be provided.
@@ -65,6 +65,7 @@ public record CreateDvirRequest
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

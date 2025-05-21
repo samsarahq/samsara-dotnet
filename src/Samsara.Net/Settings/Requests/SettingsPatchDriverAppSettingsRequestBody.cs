@@ -36,6 +36,7 @@ public record SettingsPatchDriverAppSettingsRequestBody
     [JsonPropertyName("trailerSelectionConfig")]
     public DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody? TrailerSelectionConfig { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

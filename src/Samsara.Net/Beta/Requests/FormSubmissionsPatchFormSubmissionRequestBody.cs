@@ -45,6 +45,7 @@ public record FormSubmissionsPatchFormSubmissionRequestBody
     [JsonPropertyName("title")]
     public string? Title { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

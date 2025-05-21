@@ -63,6 +63,7 @@ public record CreateAddressRequest
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

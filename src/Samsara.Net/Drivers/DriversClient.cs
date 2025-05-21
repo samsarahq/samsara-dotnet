@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -23,11 +22,9 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Drivers.ListAsync(new DriversListRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ListDriversResponse> ListAsync(
         DriversListRequest request,
         RequestOptions? options = null,
@@ -59,10 +56,10 @@ public partial class DriversClient
             _query["createdAfterTime"] = request.CreatedAfterTime;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers",
                     Query = _query,
@@ -71,9 +68,9 @@ public partial class DriversClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ListDriversResponse>(responseBody)!;
@@ -84,11 +81,14 @@ public partial class DriversClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -98,8 +98,7 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Drivers.CreateAsync(
     ///     new CreateDriverRequest
     ///     {
@@ -108,8 +107,7 @@ public partial class DriversClient
     ///         Username = "SusanJones",
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<DriverResponse> CreateAsync(
         CreateDriverRequest request,
         RequestOptions? options = null,
@@ -117,10 +115,10 @@ public partial class DriversClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/drivers",
                     Body = request,
@@ -130,9 +128,9 @@ public partial class DriversClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
@@ -143,11 +141,14 @@ public partial class DriversClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -157,11 +158,9 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Drivers.GetAsync("id");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<DriverResponse> GetAsync(
         string id,
         RequestOptions? options = null,
@@ -169,20 +168,23 @@ public partial class DriversClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = $"fleet/drivers/{id}",
+                    Path = string.Format(
+                        "fleet/drivers/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
@@ -193,11 +195,14 @@ public partial class DriversClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -207,11 +212,9 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<DriverResponse> UpdateAsync(
         string id,
         UpdateDriverRequest request,
@@ -220,12 +223,15 @@ public partial class DriversClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = $"fleet/drivers/{id}",
+                    Path = string.Format(
+                        "fleet/drivers/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -233,9 +239,9 @@ public partial class DriversClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
@@ -246,10 +252,13 @@ public partial class DriversClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

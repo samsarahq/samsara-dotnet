@@ -39,6 +39,7 @@ public record LiveSharingLinksCreateLiveSharingLinkRequestBody
     [JsonPropertyName("type")]
     public required LiveSharingLinksCreateLiveSharingLinkRequestBodyType Type { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

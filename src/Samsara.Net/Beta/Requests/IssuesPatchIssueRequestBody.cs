@@ -33,6 +33,7 @@ public record IssuesPatchIssueRequestBody
     [JsonPropertyName("status")]
     public IssuesPatchIssueRequestBodyStatus? Status { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

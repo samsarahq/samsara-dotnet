@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.VehicleStats;
@@ -7,26 +8,31 @@ public record VehicleStatsListRequest
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.
     /// </summary>
+    [JsonIgnore]
     public string? After { get; set; }
 
     /// <summary>
     /// A filter on the data that returns the last known data points with timestamps less than or equal to this value. Defaults to now if not provided. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Example: `2020-01-27T07:06:25Z`).
     /// </summary>
+    [JsonIgnore]
     public string? Time { get; set; }
 
     /// <summary>
     /// A filter on the data based on this comma-separated list of parent tag IDs, for use by orgs with tag hierarchies. Specifying a parent tag will implicitly include all descendent tags of the parent tag. Example: `parentTagIds=345,678`
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> ParentTagIds { get; set; } = new List<string>();
 
     /// <summary>
     /// A filter on the data based on this comma-separated list of tag IDs. Example: `tagIds=1234,5678`
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> TagIds { get; set; } = new List<string>();
 
     /// <summary>
     /// A filter on the data based on this comma-separated list of vehicle IDs. Example: `vehicleIds=1234,5678`
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<string> VehicleIds { get; set; } = new List<string>();
 
     /// <summary>
@@ -84,9 +90,11 @@ public record VehicleStatsListRequest
     /// - `spreaderPlowStatus`: Snow plow status (`Up` or `Down`), as read from the material spreader. Note: this is separate from plow status defined via auxInput.
     /// - `seatbeltDriver`: Seatbelt Driver Status as read from the vehicle. `Buckled` or `Unbuckled`. (Beta only)
     /// </summary>
+    [JsonIgnore]
     public IEnumerable<VehicleStatsListRequestTypesItem> Types { get; set; } =
         new List<VehicleStatsListRequestTypesItem>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

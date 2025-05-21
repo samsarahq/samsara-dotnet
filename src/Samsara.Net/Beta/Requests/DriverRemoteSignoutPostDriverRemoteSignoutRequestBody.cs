@@ -11,6 +11,7 @@ public record DriverRemoteSignoutPostDriverRemoteSignoutRequestBody
     [JsonPropertyName("driverId")]
     public required string DriverId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

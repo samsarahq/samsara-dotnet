@@ -35,6 +35,7 @@ public record InlineObject1
     [JsonPropertyName("vehicle_id")]
     public long? VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

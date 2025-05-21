@@ -46,6 +46,7 @@ public record RoutesCreateRouteRequestBody
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -11,6 +11,7 @@ public record DriverQrCodesDeleteDriverQrCodeRequestBody
     [JsonPropertyName("driverId")]
     public required long DriverId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

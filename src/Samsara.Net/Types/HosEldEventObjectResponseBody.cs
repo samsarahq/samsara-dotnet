@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// An event that refers to a discrete instance in time with various data elements. Depending on the type of event, not every field will be populated. For more information, see the ELD Mandate [section 3.1.2](https://www.ecfr.gov/cgi-bin/retrieveECFR?gp=1&ty=HTML&h=L&mc=true&=PART&n=pt49.5.395#ap49.5.395_138.a).
+/// </summary>
 public record HosEldEventObjectResponseBody
 {
     /// <summary>
@@ -74,6 +78,17 @@ public record HosEldEventObjectResponseBody
     [JsonPropertyName("vehicle")]
     public GoaVehicleTinyResponseResponseBody? Vehicle { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

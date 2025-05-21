@@ -1,6 +1,6 @@
 # Samsara C# Library
 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Ffern-demo%2Fsamsara-csharp-sdk)
+[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fsamsarahq%2Fsamsara-dotnet)
 [![nuget shield](https://img.shields.io/nuget/v/Samsara.Net)](https://nuget.org/packages/Samsara.Net)
 
 The Samsara C# library provides convenient access to the Samsara API from C#.
@@ -19,7 +19,7 @@ Instantiate and use the client with the following:
 using Samsara.Net.Addresses;
 using Samsara.Net;
 
-var client = new SamsaraClient("CLIENT_ID", "CLIENT_SECRET");
+var client = new SamsaraClient("TOKEN");
 await client.Addresses.CreateAsync(
     new CreateAddressRequest
     {
@@ -68,6 +68,23 @@ await foreach (var page in pager.AsPagesAsync())
     {
         Console.WriteLine(item);
     }
+}
+```
+
+## Pagination
+
+List endpoints are paginated. The SDK provides an async enumerable so that you can simply loop over the items:
+
+```csharp
+using Samsara.Net.Assets;
+using Samsara.Net;
+
+var client = new SamsaraClient("TOKEN");
+var pager = await client.Assets.ListCurrentLocationsAsync(new AssetsListCurrentLocationsRequest());
+
+await foreach (var item in pager)
+{
+    // do something with item
 }
 ```
 

@@ -44,6 +44,7 @@ public record AlertsPostConfigurationsRequestBody
     public IEnumerable<WorkflowTriggerObjectRequestBody> Triggers { get; set; } =
         new List<WorkflowTriggerObjectRequestBody>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

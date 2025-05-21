@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -27,11 +26,9 @@ public partial class VehicleLocationsClient
     ///
     /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.VehicleLocations.ListAsync(new VehicleLocationsListRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<VehicleLocationsResponse> ListAsync(
         VehicleLocationsListRequest request,
         RequestOptions? options = null,
@@ -51,10 +48,10 @@ public partial class VehicleLocationsClient
             _query["time"] = request.Time;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations",
                     Query = _query,
@@ -63,9 +60,9 @@ public partial class VehicleLocationsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<VehicleLocationsResponse>(responseBody)!;
@@ -76,11 +73,14 @@ public partial class VehicleLocationsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -100,11 +100,9 @@ public partial class VehicleLocationsClient
     ///
     /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.VehicleLocations.GetFeedAsync(new VehicleLocationsGetFeedRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<VehicleLocationsListResponse> GetFeedAsync(
         VehicleLocationsGetFeedRequest request,
         RequestOptions? options = null,
@@ -120,10 +118,10 @@ public partial class VehicleLocationsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/feed",
                     Query = _query,
@@ -132,9 +130,9 @@ public partial class VehicleLocationsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<VehicleLocationsListResponse>(responseBody)!;
@@ -145,11 +143,14 @@ public partial class VehicleLocationsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -163,13 +164,11 @@ public partial class VehicleLocationsClient
     ///
     /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.VehicleLocations.GetHistoryAsync(
     ///     new VehicleLocationsGetHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<VehicleLocationsListResponse> GetHistoryAsync(
         VehicleLocationsGetHistoryRequest request,
         RequestOptions? options = null,
@@ -187,10 +186,10 @@ public partial class VehicleLocationsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/history",
                     Query = _query,
@@ -199,9 +198,9 @@ public partial class VehicleLocationsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<VehicleLocationsListResponse>(responseBody)!;
@@ -212,10 +211,13 @@ public partial class VehicleLocationsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

@@ -65,6 +65,7 @@ public record SettingsPatchComplianceSettingsRequestBody
     [JsonPropertyName("persistentDutyStatusEnabled")]
     public bool? PersistentDutyStatusEnabled { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

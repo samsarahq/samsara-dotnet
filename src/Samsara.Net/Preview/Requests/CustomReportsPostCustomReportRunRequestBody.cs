@@ -35,6 +35,7 @@ public record CustomReportsPostCustomReportRunRequestBody
     [JsonPropertyName("tagIds")]
     public IEnumerable<long>? TagIds { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

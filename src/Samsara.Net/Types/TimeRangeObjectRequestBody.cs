@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// A daily time range. If start time of day is greater than end time of day, then the time range applies overnight from the specified day of week into the following day.
+/// </summary>
 public record TimeRangeObjectRequestBody
 {
     /// <summary>
@@ -30,6 +34,17 @@ public record TimeRangeObjectRequestBody
     [JsonPropertyName("timezone")]
     public required string Timezone { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

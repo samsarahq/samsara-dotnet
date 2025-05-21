@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -23,8 +22,7 @@ public partial class TachographEuOnlyClient
     ///
     /// To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.TachographEuOnly.GetDriverTachographActivityAsync(
     ///     new TachographEuOnlyGetDriverTachographActivityRequest
     ///     {
@@ -32,8 +30,7 @@ public partial class TachographEuOnlyClient
     ///         EndTime = "endTime",
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<DriverTachographActivityResponse> GetDriverTachographActivityAsync(
         TachographEuOnlyGetDriverTachographActivityRequest request,
         RequestOptions? options = null,
@@ -51,10 +48,10 @@ public partial class TachographEuOnlyClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-activity/history",
                     Query = _query,
@@ -63,9 +60,9 @@ public partial class TachographEuOnlyClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<DriverTachographActivityResponse>(responseBody)!;
@@ -76,11 +73,14 @@ public partial class TachographEuOnlyClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -92,8 +92,7 @@ public partial class TachographEuOnlyClient
     ///
     /// To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.TachographEuOnly.GetDriverTachographFilesAsync(
     ///     new TachographEuOnlyGetDriverTachographFilesRequest
     ///     {
@@ -101,8 +100,7 @@ public partial class TachographEuOnlyClient
     ///         EndTime = "endTime",
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<TachographDriverFilesResponse> GetDriverTachographFilesAsync(
         TachographEuOnlyGetDriverTachographFilesRequest request,
         RequestOptions? options = null,
@@ -120,10 +118,10 @@ public partial class TachographEuOnlyClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/drivers/tachograph-files/history",
                     Query = _query,
@@ -132,9 +130,9 @@ public partial class TachographEuOnlyClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TachographDriverFilesResponse>(responseBody)!;
@@ -145,11 +143,14 @@ public partial class TachographEuOnlyClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -161,13 +162,11 @@ public partial class TachographEuOnlyClient
     ///
     /// To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.TachographEuOnly.GetTachographFilesAsync(
     ///     new TachographEuOnlyGetTachographFilesRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<TachographVehicleFilesResponse> GetTachographFilesAsync(
         TachographEuOnlyGetTachographFilesRequest request,
         RequestOptions? options = null,
@@ -185,10 +184,10 @@ public partial class TachographEuOnlyClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/tachograph-files/history",
                     Query = _query,
@@ -197,9 +196,9 @@ public partial class TachographEuOnlyClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<TachographVehicleFilesResponse>(responseBody)!;
@@ -210,10 +209,13 @@ public partial class TachographEuOnlyClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }
