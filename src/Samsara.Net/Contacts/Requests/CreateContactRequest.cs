@@ -29,6 +29,7 @@ public record CreateContactRequest
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -19,8 +18,7 @@ public partial class AuthClient
     /// <summary>
     /// Obtain an OAuth2 access token using client credentials
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Auth.GetTokenAsync(
     ///     new AuthGetTokenRequest
     ///     {
@@ -30,8 +28,7 @@ public partial class AuthClient
     ///         GrantType = "authorization_code",
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<GetTokenResponse> GetTokenAsync(
         AuthGetTokenRequest request,
         RequestOptions? options = null,
@@ -39,10 +36,10 @@ public partial class AuthClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Login,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "oauth/token",
                     Body = request,
@@ -52,9 +49,9 @@ public partial class AuthClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<GetTokenResponse>(responseBody)!;
@@ -65,10 +62,13 @@ public partial class AuthClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

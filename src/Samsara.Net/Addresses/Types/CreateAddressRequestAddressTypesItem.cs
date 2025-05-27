@@ -24,4 +24,7 @@ public enum CreateAddressRequestAddressTypesItem
 
     [EnumMember(Value = "alertsOnly")]
     AlertsOnly,
+
+    [EnumMember(Value = "agricultureSource")]
+    AgricultureSource,
 }

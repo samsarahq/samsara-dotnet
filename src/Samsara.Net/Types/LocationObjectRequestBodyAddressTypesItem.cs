@@ -7,6 +7,9 @@ namespace Samsara.Net;
 [JsonConverter(typeof(EnumSerializer<LocationObjectRequestBodyAddressTypesItem>))]
 public enum LocationObjectRequestBodyAddressTypesItem
 {
+    [EnumMember(Value = "agricultureSource")]
+    AgricultureSource,
+
     [EnumMember(Value = "alertsOnly")]
     AlertsOnly,
 

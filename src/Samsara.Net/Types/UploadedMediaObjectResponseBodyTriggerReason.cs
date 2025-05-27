@@ -16,6 +16,9 @@ public enum UploadedMediaObjectResponseBodyTriggerReason
     [EnumMember(Value = "periodicStill")]
     PeriodicStill,
 
+    [EnumMember(Value = "safetyEvent")]
+    SafetyEvent,
+
     [EnumMember(Value = "tripEndStill")]
     TripEndStill,
 

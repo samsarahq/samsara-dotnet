@@ -54,6 +54,7 @@ public record DocumentsPostDocumentRequestBody
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
