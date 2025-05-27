@@ -48,6 +48,7 @@ public record CreateAttributeRequest
     [JsonPropertyName("stringValues")]
     public IEnumerable<string>? StringValues { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

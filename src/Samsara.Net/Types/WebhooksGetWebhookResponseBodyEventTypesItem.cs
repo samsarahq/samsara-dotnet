@@ -73,6 +73,12 @@ public enum WebhooksGetWebhookResponseBodyEventTypesItem
     [EnumMember(Value = "SevereSpeedingStarted")]
     SevereSpeedingStarted,
 
+    [EnumMember(Value = "SuddenFuelLevelDrop")]
+    SuddenFuelLevelDrop,
+
+    [EnumMember(Value = "SuddenFuelLevelRise")]
+    SuddenFuelLevelRise,
+
     [EnumMember(Value = "VehicleCreated")]
     VehicleCreated,
 

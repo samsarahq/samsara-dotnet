@@ -82,6 +82,9 @@ public enum SafetyEventBehaviorLabelsResponseBodyType
     [EnumMember(Value = "ObstructedCamera")]
     ObstructedCamera,
 
+    [EnumMember(Value = "Passenger")]
+    Passenger,
+
     [EnumMember(Value = "PolicyViolationMask")]
     PolicyViolationMask,
 
@@ -99,6 +102,9 @@ public enum SafetyEventBehaviorLabelsResponseBodyType
 
     [EnumMember(Value = "Speeding")]
     Speeding,
+
+    [EnumMember(Value = "VulnerableRoadUserCollisionWarning")]
+    VulnerableRoadUserCollisionWarning,
 
     [EnumMember(Value = "YawControl")]
     YawControl,

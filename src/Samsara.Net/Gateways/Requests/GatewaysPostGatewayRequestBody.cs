@@ -11,6 +11,7 @@ public record GatewaysPostGatewayRequestBody
     [JsonPropertyName("serial")]
     public required string Serial { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

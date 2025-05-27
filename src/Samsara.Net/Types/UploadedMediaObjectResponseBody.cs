@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
@@ -18,16 +19,16 @@ public record UploadedMediaObjectResponseBody
     public required string EndTime { get; set; }
 
     /// <summary>
-    /// Input type for this media. Examples: dashcamForwardFacing  Valid values: `dashcamForwardFacing`, `dashcamInwardFacing`, `dashcamRearFacing`
+    /// Input type for this media.  Valid values: `dashcamForwardFacing`, `dashcamInwardFacing`, `analog1`
     /// </summary>
     [JsonPropertyName("input")]
     public required UploadedMediaObjectResponseBodyInput Input { get; set; }
 
     /// <summary>
-    /// Type of media. Examples: image  Valid values: `image`
+    /// Type of media.  Valid values: `image`, `video`
     /// </summary>
     [JsonPropertyName("mediaType")]
-    public required string MediaType { get; set; }
+    public required UploadedMediaObjectResponseBodyMediaType MediaType { get; set; }
 
     /// <summary>
     /// A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
@@ -36,7 +37,7 @@ public record UploadedMediaObjectResponseBody
     public required string StartTime { get; set; }
 
     /// <summary>
-    /// Trigger reason for this media capture. Examples: api  Valid values: `api`, `panicButton`, `periodicStill`, `tripEndStill`, `tripStartStill`, `videoRetrieval`
+    /// Trigger reason for this media capture.  Valid values: `api`, `panicButton`, `periodicStill`, `safetyEvent`, `tripEndStill`, `tripStartStill`, `videoRetrieval`
     /// </summary>
     [JsonPropertyName("triggerReason")]
     public required UploadedMediaObjectResponseBodyTriggerReason TriggerReason { get; set; }
@@ -50,6 +51,17 @@ public record UploadedMediaObjectResponseBody
     [JsonPropertyName("vehicleId")]
     public required string VehicleId { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

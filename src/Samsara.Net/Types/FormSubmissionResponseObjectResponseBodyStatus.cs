@@ -7,12 +7,24 @@ namespace Samsara.Net;
 [JsonConverter(typeof(EnumSerializer<FormSubmissionResponseObjectResponseBodyStatus>))]
 public enum FormSubmissionResponseObjectResponseBodyStatus
 {
-    [EnumMember(Value = "toDo")]
-    ToDo,
+    [EnumMember(Value = "notStarted")]
+    NotStarted,
 
-    [EnumMember(Value = "submitted")]
-    Submitted,
+    [EnumMember(Value = "completed")]
+    Completed,
 
-    [EnumMember(Value = "dismissed")]
-    Dismissed,
+    [EnumMember(Value = "archived")]
+    Archived,
+
+    [EnumMember(Value = "inProgress")]
+    InProgress,
+
+    [EnumMember(Value = "needsReview")]
+    NeedsReview,
+
+    [EnumMember(Value = "changesRequested")]
+    ChangesRequested,
+
+    [EnumMember(Value = "approved")]
+    Approved,
 }

@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Representation of a vehicle trailer or other equipment to be tracked.
+/// </summary>
 public record AssetResponseBody
 {
     /// <summary>
@@ -30,13 +34,13 @@ public record AssetResponseBody
     public string? LicensePlate { get; set; }
 
     /// <summary>
-    /// The manufacturer of the asset. (If a VIN is entered and the system detects it is registered to a different manufacturer than provided an error will be returned).
+    /// The OEM/manufacturer of the asset. Updates to this field are restricted.
     /// </summary>
     [JsonPropertyName("make")]
     public string? Make { get; set; }
 
     /// <summary>
-    /// The manufacturer model of the asset. (If a VIN is entered and the system detects it is registered to a different model than provided an error will be returned).
+    /// The model of the asset. Updates to this field are restricted.
     /// </summary>
     [JsonPropertyName("model")]
     public string? Model { get; set; }
@@ -60,7 +64,7 @@ public record AssetResponseBody
     public AssetResponseBodyRegulationMode? RegulationMode { get; set; }
 
     /// <summary>
-    /// The serial number of the asset.
+    /// The serial number of the asset. This can be an internal serial number or used to hold legacy VIN/PIN numbers such as ones of shorter lengths.
     /// </summary>
     [JsonPropertyName("serialNumber")]
     public string? SerialNumber { get; set; }
@@ -84,17 +88,28 @@ public record AssetResponseBody
     public required string UpdatedAtTime { get; set; }
 
     /// <summary>
-    /// The vehicle identification number of the asset.
+    /// The unique 17-digit VIN (Vehicle Identification Number) or PIN (Product Identification Number) of the asset.
     /// </summary>
     [JsonPropertyName("vin")]
     public string? Vin { get; set; }
 
     /// <summary>
-    /// The year of manufacture of the asset.  (If a VIN is entered and the system detects it is registered to a different year than provided an error will be returned).
+    /// The model year of the asset. Updates to this field are restricted.
     /// </summary>
     [JsonPropertyName("year")]
     public long? Year { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

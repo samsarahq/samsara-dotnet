@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Forms input field object.
+/// </summary>
 public record FormsFieldInputObjectResponseBody
 {
     [JsonPropertyName("assetValue")]
@@ -66,8 +70,20 @@ public record FormsFieldInputObjectResponseBody
     /// Type of the field.  Valid values: `number, text, multiple_choice, check_boxes, datetime, signature, media, asset, table`
     /// </summary>
     [JsonPropertyName("type")]
-    public required string Type { get; set; }
+    public string Type { get; set; } =
+        "number, text, multiple_choice, check_boxes, datetime, signature, media, asset, table";
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
