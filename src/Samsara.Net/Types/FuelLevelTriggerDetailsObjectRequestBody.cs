@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Details specific to Fuel Level Percentage
+/// </summary>
 public record FuelLevelTriggerDetailsObjectRequestBody
 {
     /// <summary>
@@ -21,8 +25,19 @@ public record FuelLevelTriggerDetailsObjectRequestBody
     /// How to evaluate the threshold.  Valid values: `LESS`
     /// </summary>
     [JsonPropertyName("operation")]
-    public required string Operation { get; set; }
+    public string Operation { get; set; } = "LESS";
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

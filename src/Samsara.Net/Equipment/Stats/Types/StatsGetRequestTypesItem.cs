@@ -33,4 +33,7 @@ public enum StatsGetRequestTypesItem
 
     [EnumMember(Value = "gps")]
     Gps,
+
+    [EnumMember(Value = "engineTotalIdleTimeMinutes")]
+    EngineTotalIdleTimeMinutes,
 }

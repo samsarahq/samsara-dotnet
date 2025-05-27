@@ -21,11 +21,12 @@ public record AuthGetTokenRequest
     /// The API identifier
     /// </summary>
     [JsonPropertyName("audience")]
-    public required string Audience { get; set; }
+    public string Audience { get; set; } = "https://api.samsara.com";
 
     [JsonPropertyName("grant_type")]
-    public required string GrantType { get; set; }
+    public string GrantType { get; set; } = "authorization_code";
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -35,6 +35,7 @@ public record DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBod
     [JsonPropertyName("vehicleId")]
     public required string VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

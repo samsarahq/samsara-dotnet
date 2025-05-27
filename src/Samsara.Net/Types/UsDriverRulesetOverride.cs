@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// US Driver Ruleset override for a given driver. If the driver is operating under a ruleset different from the organization default, the override is used. Updating this value only updates the override setting for this driver. Explicitly setting this field to `null` will delete driver's ruleset override. If the driver does not have an override ruleset set, the response will not include any usDriverRulesetOverride information.
+/// </summary>
 public record UsDriverRulesetOverride
 {
     /// <summary>
@@ -29,6 +33,17 @@ public record UsDriverRulesetOverride
     [JsonPropertyName("usStateToOverride")]
     public required UsDriverRulesetOverrideUsStateToOverride UsStateToOverride { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

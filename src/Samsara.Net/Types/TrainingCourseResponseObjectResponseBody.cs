@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Training Course response object.
+/// </summary>
 public record TrainingCourseResponseObjectResponseBody
 {
     [JsonPropertyName("category")]
@@ -26,8 +30,11 @@ public record TrainingCourseResponseObjectResponseBody
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
-    [JsonPropertyName("label")]
-    public TrainingCourseLabelObjectResponseBody? Label { get; set; }
+    /// <summary>
+    /// List of course labels.
+    /// </summary>
+    [JsonPropertyName("labels")]
+    public IEnumerable<TrainingCourseLabelObjectResponseBody>? Labels { get; set; }
 
     /// <summary>
     /// ID of the course's specific version.
@@ -48,6 +55,17 @@ public record TrainingCourseResponseObjectResponseBody
     [JsonPropertyName("title")]
     public required string Title { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

@@ -13,6 +13,6 @@ public enum UploadedMediaObjectResponseBodyInput
     [EnumMember(Value = "dashcamInwardFacing")]
     DashcamInwardFacing,
 
-    [EnumMember(Value = "dashcamRearFacing")]
-    DashcamRearFacing,
+    [EnumMember(Value = "analog1")]
+    Analog1,
 }

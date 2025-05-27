@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
+using global::System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 using Samsara.Net.Routes.AuditLogs;
@@ -30,13 +30,11 @@ public partial class RoutesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Routes.ListAsync(
     ///     new RoutesListRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<RoutesFetchRoutesResponseBody> ListAsync(
         RoutesListRequest request,
         RequestOptions? options = null,
@@ -55,10 +53,10 @@ public partial class RoutesClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/routes",
                     Query = _query,
@@ -67,9 +65,9 @@ public partial class RoutesClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<RoutesFetchRoutesResponseBody>(responseBody)!;
@@ -80,39 +78,46 @@ public partial class RoutesClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -125,8 +130,7 @@ public partial class RoutesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Routes.CreateAsync(
     ///     new RoutesCreateRouteRequestBody
     ///     {
@@ -137,8 +141,7 @@ public partial class RoutesClient
     ///         },
     ///     }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<RoutesCreateRouteResponseBody> CreateAsync(
         RoutesCreateRouteRequestBody request,
         RequestOptions? options = null,
@@ -146,10 +149,10 @@ public partial class RoutesClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/routes",
                     Body = request,
@@ -159,9 +162,9 @@ public partial class RoutesClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<RoutesCreateRouteResponseBody>(responseBody)!;
@@ -172,39 +175,46 @@ public partial class RoutesClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -217,11 +227,9 @@ public partial class RoutesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Routes.GetAsync("id");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<RoutesFetchRouteResponseBody> GetAsync(
         string id,
         RequestOptions? options = null,
@@ -229,20 +237,23 @@ public partial class RoutesClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = $"fleet/routes/{id}",
+                    Path = string.Format(
+                        "fleet/routes/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<RoutesFetchRouteResponseBody>(responseBody)!;
@@ -253,39 +264,46 @@ public partial class RoutesClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -298,24 +316,25 @@ public partial class RoutesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Routes.DeleteAsync("id");
-    /// </code>
-    /// </example>
-    public async Task DeleteAsync(
+    /// </code></example>
+    public async global::System.Threading.Tasks.Task DeleteAsync(
         string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = $"fleet/routes/{id}",
+                    Path = string.Format(
+                        "fleet/routes/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
@@ -325,40 +344,46 @@ public partial class RoutesClient
         {
             return;
         }
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 
     /// <summary>
@@ -375,11 +400,9 @@ public partial class RoutesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Routes.UpdateAsync("id", new RoutesPatchRouteRequestBody());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<RoutesPatchRouteResponseBody> UpdateAsync(
         string id,
         RoutesPatchRouteRequestBody request,
@@ -388,12 +411,15 @@ public partial class RoutesClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = $"fleet/routes/{id}",
+                    Path = string.Format(
+                        "fleet/routes/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -401,9 +427,9 @@ public partial class RoutesClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<RoutesPatchRouteResponseBody>(responseBody)!;
@@ -414,38 +440,45 @@ public partial class RoutesClient
             }
         }
 
-        try
         {
-            switch (response.StatusCode)
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
             {
-                case 401:
-                    throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                case 404:
-                    throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                case 405:
-                    throw new MethodNotAllowedError(JsonUtils.Deserialize<object>(responseBody));
-                case 429:
-                    throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                case 500:
-                    throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                case 501:
-                    throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                case 502:
-                    throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                case 503:
-                    throw new ServiceUnavailableError(JsonUtils.Deserialize<object>(responseBody));
-                case 504:
-                    throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
             }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
         }
-        catch (JsonException)
-        {
-            // unable to map error response, throwing generic error
-        }
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
     }
 }
