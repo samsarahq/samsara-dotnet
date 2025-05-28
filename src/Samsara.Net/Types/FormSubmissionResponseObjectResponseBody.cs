@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Form Submission response object.
+/// </summary>
 public record FormSubmissionResponseObjectResponseBody
 {
     [JsonPropertyName("asset")]
@@ -52,10 +56,10 @@ public record FormSubmissionResponseObjectResponseBody
     public required string Id { get; set; }
 
     /// <summary>
-    /// Indicates whether the worker is required to complete this form or not. Sometimes returned if the submission was assigned to a worker or route stop.
+    /// Indicates whether the worker is required to complete this form or not. Always returned.
     /// </summary>
     [JsonPropertyName("isRequired")]
-    public bool? IsRequired { get; set; }
+    public required bool IsRequired { get; set; }
 
     [JsonPropertyName("location")]
     public FormsLocationObjectResponseBody? Location { get; set; }
@@ -76,7 +80,7 @@ public record FormSubmissionResponseObjectResponseBody
     public FormsScoreObjectResponseBody? Score { get; set; }
 
     /// <summary>
-    /// State for the Form Submission. Always returned.  Valid values: `toDo`, `submitted`, `dismissed`
+    /// State for the Form Submission. Always returned.  Valid values: `notStarted`, `completed`, `archived`, `inProgress`, `needsReview`, `changesRequested`, `approved`
     /// </summary>
     [JsonPropertyName("status")]
     public required FormSubmissionResponseObjectResponseBodyStatus Status { get; set; }
@@ -102,6 +106,17 @@ public record FormSubmissionResponseObjectResponseBody
     [JsonPropertyName("updatedAtTime")]
     public required DateTime UpdatedAtTime { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

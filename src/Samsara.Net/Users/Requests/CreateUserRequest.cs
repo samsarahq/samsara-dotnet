@@ -37,6 +37,7 @@ public record CreateUserRequest
     public IEnumerable<CreateUserRequestRoles> Roles { get; set; } =
         new List<CreateUserRequestRoles>();
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

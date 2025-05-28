@@ -7,7 +7,7 @@ namespace Samsara.Net.Addresses;
 public record CreateAddressRequest
 {
     /// <summary>
-    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`.
+    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`.
     /// </summary>
     [JsonPropertyName("addressTypes")]
     public IEnumerable<CreateAddressRequestAddressTypesItem>? AddressTypes { get; set; }
@@ -63,6 +63,7 @@ public record CreateAddressRequest
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

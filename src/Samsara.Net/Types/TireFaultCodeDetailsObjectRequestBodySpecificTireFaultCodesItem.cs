@@ -30,6 +30,18 @@ public enum TireFaultCodeDetailsObjectRequestBodySpecificTireFaultCodesItem
     [EnumMember(Value = "TIRE_ALERT_OVER_TEMPERATURE")]
     TireAlertOverTemperature,
 
+    [EnumMember(Value = "TIRE_ALERT_SENSOR_DEFECT")]
+    TireAlertSensorDefect,
+
+    [EnumMember(Value = "TIRE_ALERT_SENSOR_LOOSE_OR_FLIPPED")]
+    TireAlertSensorLooseOrFlipped,
+
+    [EnumMember(Value = "TIRE_ALERT_SENSOR_LOW_BATTERY")]
+    TireAlertSensorLowBattery,
+
+    [EnumMember(Value = "TIRE_ALERT_SENSOR_MISSING")]
+    TireAlertSensorMissing,
+
     [EnumMember(Value = "TIRE_ALERT_UNDER_PRESSURE")]
     TireAlertUnderPressure,
 }

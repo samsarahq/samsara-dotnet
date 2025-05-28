@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// The trigger of an alert.
+/// </summary>
 public record WorkflowTriggerObjectResponseBody
 {
     [JsonPropertyName("triggerParams")]
@@ -14,6 +18,10 @@ public record WorkflowTriggerObjectResponseBody
     /// Ambient Temperature = 1003
     /// DVIR Submitted for Asset = 5005
     /// Driver Recorded = 5027
+    /// Sudden Fuel Level Rise = 5034
+    /// Sudden Fuel Level Drop = 5035
+    /// Training Assignment Due Soon = 8003
+    /// Training Assignment Past Due = 8004
     /// Vehicle Speed = 1000
     /// Fuel Level (Percentage) = 1005
     /// Vehicle DEF Level (Percentage) = 1006
@@ -49,14 +57,21 @@ public record WorkflowTriggerObjectResponseBody
     /// Geofence Exit = 5017
     /// Route Stop ETA Alert = 5018
     /// Scheduled Date And Time = 8001
-    ///
-    /// The following trigger types are in Preview:
-    /// Training Assignment Due Soon = 8003
-    /// Training Assignment Past Due = 8004
     /// </summary>
     [JsonPropertyName("triggerTypeId")]
     public required int TriggerTypeId { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);
