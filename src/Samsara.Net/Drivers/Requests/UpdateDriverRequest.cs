@@ -177,6 +177,7 @@ public record UpdateDriverRequest
     [JsonPropertyName("waitingTimeDutyStatusEnabled")]
     public bool? WaitingTimeDutyStatusEnabled { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

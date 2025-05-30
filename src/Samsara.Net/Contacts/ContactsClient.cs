@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -23,11 +22,9 @@ public partial class ContactsClient
     ///
     /// To use this endpoint, select **Read Alert Contacts** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Contacts.ListAsync(new ContactsListRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ListContactsResponse> ListAsync(
         ContactsListRequest request,
         RequestOptions? options = null,
@@ -44,10 +41,10 @@ public partial class ContactsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "contacts",
                     Query = _query,
@@ -56,9 +53,9 @@ public partial class ContactsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ListContactsResponse>(responseBody)!;
@@ -69,11 +66,14 @@ public partial class ContactsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -83,11 +83,9 @@ public partial class ContactsClient
     ///
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Contacts.CreateAsync(new CreateContactRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ContactResponse> CreateAsync(
         CreateContactRequest request,
         RequestOptions? options = null,
@@ -95,10 +93,10 @@ public partial class ContactsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "contacts",
                     Body = request,
@@ -108,9 +106,9 @@ public partial class ContactsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ContactResponse>(responseBody)!;
@@ -121,11 +119,14 @@ public partial class ContactsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -135,11 +136,9 @@ public partial class ContactsClient
     ///
     /// To use this endpoint, select **Read Alert Contacts** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Contacts.GetAsync("id");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ContactResponse> GetAsync(
         string id,
         RequestOptions? options = null,
@@ -147,20 +146,20 @@ public partial class ContactsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = $"contacts/{id}",
+                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ContactResponse>(responseBody)!;
@@ -171,11 +170,14 @@ public partial class ContactsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -185,11 +187,9 @@ public partial class ContactsClient
     ///
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Contacts.DeleteAsync("id");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
@@ -197,20 +197,20 @@ public partial class ContactsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = $"contacts/{id}",
+                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<object>(responseBody)!;
@@ -221,11 +221,14 @@ public partial class ContactsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -235,11 +238,9 @@ public partial class ContactsClient
     ///
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Contacts.UpdateAsync("id", new UpdateContactRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ContactResponse> UpdateAsync(
         string id,
         UpdateContactRequest request,
@@ -248,12 +249,12 @@ public partial class ContactsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = $"contacts/{id}",
+                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -261,9 +262,9 @@ public partial class ContactsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ContactResponse>(responseBody)!;
@@ -274,10 +275,13 @@ public partial class ContactsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

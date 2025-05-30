@@ -16,6 +16,6 @@ public enum MediaObjectResponseBodyStatus
     [EnumMember(Value = "pending")]
     Pending,
 
-    [EnumMember(Value = "requested")]
-    Requested,
+    [EnumMember(Value = "failed")]
+    Failed,
 }

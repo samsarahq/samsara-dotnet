@@ -1,40 +1,50 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
+using Samsara.Net.Assets;
 using Samsara.Net.Attributes;
 using Samsara.Net.Auth;
 using Samsara.Net.Beta;
+using Samsara.Net.Cameras;
 using Samsara.Net.CarrierProposedAssignments;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
+using Samsara.Net.Defects;
+using Samsara.Net.DefectTypes;
+using Samsara.Net.Devices;
 using Samsara.Net.Documents;
-using Samsara.Net.DriverQrCodes;
+using Samsara.Net.DocumentTypes;
 using Samsara.Net.Drivers;
+using Samsara.Net.DriverTrailerAssignments;
 using Samsara.Net.DriverVehicleAssignments;
+using Samsara.Net.Dvirs;
 using Samsara.Net.Equipment;
-using Samsara.Net.FuelAndEnergy;
+using Samsara.Net.FormSubmissions;
+using Samsara.Net.FuelPurchases;
 using Samsara.Net.Gateways;
+using Samsara.Net.Hos;
 using Samsara.Net.HoursOfService;
-using Samsara.Net.Idling;
 using Samsara.Net.Ifta;
-using Samsara.Net.Industrial;
+using Samsara.Net.Inputs;
+using Samsara.Net.Issues;
 using Samsara.Net.Legacy;
-using Samsara.Net.LiveSharingLinks;
-using Samsara.Net.LocationAndSpeed;
+using Samsara.Net.LiveShares;
 using Samsara.Net.Maintenance;
-using Samsara.Net.OrganizationInfo;
-using Samsara.Net.Preview;
+using Samsara.Net.Me;
+using Samsara.Net.Reports;
 using Samsara.Net.Routes;
-using Samsara.Net.Safety;
+using Samsara.Net.SafetyEvents;
 using Samsara.Net.Settings;
-using Samsara.Net.TachographEuOnly;
+using Samsara.Net.SpeedingIntervals;
 using Samsara.Net.Tags;
 using Samsara.Net.Trailers;
+using Samsara.Net.TrainingAssignments;
+using Samsara.Net.TrainingCourses;
+using Samsara.Net.Trips;
+using Samsara.Net.UserRoles;
 using Samsara.Net.Users;
-using Samsara.Net.V1;
-using Samsara.Net.VehicleLocations;
 using Samsara.Net.Vehicles;
-using Samsara.Net.VehicleStats;
+using Samsara.Net.Webhooks;
 
 namespace Samsara.Net;
 
@@ -42,15 +52,16 @@ public partial class SamsaraClient
 {
     private readonly RawClient _client;
 
-    public SamsaraClient(
-        string? clientId = null,
-        string? clientSecret = null,
-        ClientOptions? clientOptions = null
-    )
+    public SamsaraClient(string? token = null, ClientOptions? clientOptions = null)
     {
+        token ??= GetFromEnvironmentOrThrow(
+            "SAMSARA_API_KEY",
+            "Please pass in token or set the environment variable SAMSARA_API_KEY."
+        );
         var defaultHeaders = new Headers(
             new Dictionary<string, string>()
             {
+                { "Authorization", $"Bearer {token}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
@@ -64,122 +75,149 @@ public partial class SamsaraClient
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        var tokenProvider = new OAuthTokenProvider(
-            clientId,
-            clientSecret,
-            new AuthClient(new RawClient(clientOptions.Clone()))
-        );
-        clientOptions.Headers["Authorization"] = new Func<string>(
-            () => tokenProvider.GetAccessTokenAsync().Result
-        );
         _client = new RawClient(clientOptions);
         Addresses = new AddressesClient(_client);
-        Alerts = new AlertsClient(_client);
-        LocationAndSpeed = new LocationAndSpeedClient(_client);
+        Assets = new AssetsClient(_client);
+        Inputs = new InputsClient(_client);
         Attributes = new AttributesClient(_client);
-        Beta = new BetaClient(_client);
-        Coaching = new CoachingClient(_client);
         Contacts = new ContactsClient(_client);
-        Maintenance = new MaintenanceClient(_client);
-        DriverQrCodes = new DriverQrCodesClient(_client);
+        DefectTypes = new DefectTypesClient(_client);
+        Defects = new DefectsClient(_client);
+        Devices = new DevicesClient(_client);
+        DriverTrailerAssignments = new DriverTrailerAssignmentsClient(_client);
+        Dvirs = new DvirsClient(_client);
         CarrierProposedAssignments = new CarrierProposedAssignmentsClient(_client);
+        DocumentTypes = new DocumentTypesClient(_client);
         Documents = new DocumentsClient(_client);
         DriverVehicleAssignments = new DriverVehicleAssignmentsClient(_client);
         Drivers = new DriversClient(_client);
-        TachographEuOnly = new TachographEuOnlyClient(_client);
-        Legacy = new LegacyClient(_client);
         Equipment = new EquipmentClient(_client);
+        Hos = new HosClient(_client);
         HoursOfService = new HoursOfServiceClient(_client);
-        FuelAndEnergy = new FuelAndEnergyClient(_client);
-        Ifta = new IftaClient(_client);
-        Idling = new IdlingClient(_client);
         Routes = new RoutesClient(_client);
-        Safety = new SafetyClient(_client);
-        Settings = new SettingsClient(_client);
+        SafetyEvents = new SafetyEventsClient(_client);
         Trailers = new TrailersClient(_client);
         Vehicles = new VehiclesClient(_client);
-        VehicleLocations = new VehicleLocationsClient(_client);
-        VehicleStats = new VehicleStatsClient(_client);
+        Legacy = new LegacyClient(_client);
+        FormSubmissions = new FormSubmissionsClient(_client);
+        FuelPurchases = new FuelPurchasesClient(_client);
         Gateways = new GatewaysClient(_client);
-        Industrial = new IndustrialClient(_client);
-        LiveSharingLinks = new LiveSharingLinksClient(_client);
-        OrganizationInfo = new OrganizationInfoClient(_client);
-        Preview = new PreviewClient(_client);
+        Beta = new BetaClient(_client);
+        Issues = new IssuesClient(_client);
+        LiveShares = new LiveSharesClient(_client);
+        Me = new MeClient(_client);
+        SpeedingIntervals = new SpeedingIntervalsClient(_client);
         Tags = new TagsClient(_client);
+        TrainingAssignments = new TrainingAssignmentsClient(_client);
+        TrainingCourses = new TrainingCoursesClient(_client);
+        Trips = new TripsClient(_client);
+        UserRoles = new UserRolesClient(_client);
         Users = new UsersClient(_client);
+        Webhooks = new WebhooksClient(_client);
         Auth = new AuthClient(_client);
-        V1 = new V1Client(_client);
+        Alerts = new AlertsClient(_client);
+        Cameras = new CamerasClient(_client);
+        Coaching = new CoachingClient(_client);
+        Ifta = new IftaClient(_client);
+        Maintenance = new MaintenanceClient(_client);
+        Reports = new ReportsClient(_client);
+        Settings = new SettingsClient(_client);
     }
 
-    public AddressesClient Addresses { get; init; }
+    public AddressesClient Addresses { get; }
 
-    public AlertsClient Alerts { get; init; }
+    public AssetsClient Assets { get; }
 
-    public LocationAndSpeedClient LocationAndSpeed { get; init; }
+    public InputsClient Inputs { get; }
 
-    public AttributesClient Attributes { get; init; }
+    public AttributesClient Attributes { get; }
 
-    public BetaClient Beta { get; init; }
+    public ContactsClient Contacts { get; }
 
-    public CoachingClient Coaching { get; init; }
+    public DefectTypesClient DefectTypes { get; }
 
-    public ContactsClient Contacts { get; init; }
+    public DefectsClient Defects { get; }
 
-    public MaintenanceClient Maintenance { get; init; }
+    public DevicesClient Devices { get; }
 
-    public DriverQrCodesClient DriverQrCodes { get; init; }
+    public DriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
 
-    public CarrierProposedAssignmentsClient CarrierProposedAssignments { get; init; }
+    public DvirsClient Dvirs { get; }
 
-    public DocumentsClient Documents { get; init; }
+    public CarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
 
-    public DriverVehicleAssignmentsClient DriverVehicleAssignments { get; init; }
+    public DocumentTypesClient DocumentTypes { get; }
 
-    public DriversClient Drivers { get; init; }
+    public DocumentsClient Documents { get; }
 
-    public TachographEuOnlyClient TachographEuOnly { get; init; }
+    public DriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
 
-    public LegacyClient Legacy { get; init; }
+    public DriversClient Drivers { get; }
 
-    public EquipmentClient Equipment { get; init; }
+    public EquipmentClient Equipment { get; }
 
-    public HoursOfServiceClient HoursOfService { get; init; }
+    public HosClient Hos { get; }
 
-    public FuelAndEnergyClient FuelAndEnergy { get; init; }
+    public HoursOfServiceClient HoursOfService { get; }
 
-    public IftaClient Ifta { get; init; }
+    public RoutesClient Routes { get; }
 
-    public IdlingClient Idling { get; init; }
+    public SafetyEventsClient SafetyEvents { get; }
 
-    public RoutesClient Routes { get; init; }
+    public TrailersClient Trailers { get; }
 
-    public SafetyClient Safety { get; init; }
+    public VehiclesClient Vehicles { get; }
 
-    public SettingsClient Settings { get; init; }
+    public LegacyClient Legacy { get; }
 
-    public TrailersClient Trailers { get; init; }
+    public FormSubmissionsClient FormSubmissions { get; }
 
-    public VehiclesClient Vehicles { get; init; }
+    public FuelPurchasesClient FuelPurchases { get; }
 
-    public VehicleLocationsClient VehicleLocations { get; init; }
+    public GatewaysClient Gateways { get; }
 
-    public VehicleStatsClient VehicleStats { get; init; }
+    public BetaClient Beta { get; }
 
-    public GatewaysClient Gateways { get; init; }
+    public IssuesClient Issues { get; }
 
-    public IndustrialClient Industrial { get; init; }
+    public LiveSharesClient LiveShares { get; }
 
-    public LiveSharingLinksClient LiveSharingLinks { get; init; }
+    public MeClient Me { get; }
 
-    public OrganizationInfoClient OrganizationInfo { get; init; }
+    public SpeedingIntervalsClient SpeedingIntervals { get; }
 
-    public PreviewClient Preview { get; init; }
+    public TagsClient Tags { get; }
 
-    public TagsClient Tags { get; init; }
+    public TrainingAssignmentsClient TrainingAssignments { get; }
 
-    public UsersClient Users { get; init; }
+    public TrainingCoursesClient TrainingCourses { get; }
 
-    public AuthClient Auth { get; init; }
+    public TripsClient Trips { get; }
 
-    public V1Client V1 { get; init; }
+    public UserRolesClient UserRoles { get; }
+
+    public UsersClient Users { get; }
+
+    public WebhooksClient Webhooks { get; }
+
+    public AuthClient Auth { get; }
+
+    public AlertsClient Alerts { get; }
+
+    public CamerasClient Cameras { get; }
+
+    public CoachingClient Coaching { get; }
+
+    public IftaClient Ifta { get; }
+
+    public MaintenanceClient Maintenance { get; }
+
+    public ReportsClient Reports { get; }
+
+    public SettingsClient Settings { get; }
+
+    private static string GetFromEnvironmentOrThrow(string env, string message)
+    {
+        return Environment.GetEnvironmentVariable(env) ?? throw new Exception(message);
+    }
 }

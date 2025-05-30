@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -23,11 +22,9 @@ public partial class CarrierProposedAssignmentsClient
     ///
     /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CarrierProposedAssignments.ListAsync(new CarrierProposedAssignmentsListRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<ListCarrierProposedAssignmentResponse> ListAsync(
         CarrierProposedAssignmentsListRequest request,
         RequestOptions? options = null,
@@ -49,10 +46,10 @@ public partial class CarrierProposedAssignmentsClient
             _query["activeTime"] = request.ActiveTime;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/carrier-proposed-assignments",
                     Query = _query,
@@ -61,9 +58,9 @@ public partial class CarrierProposedAssignmentsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<ListCarrierProposedAssignmentResponse>(responseBody)!;
@@ -74,11 +71,14 @@ public partial class CarrierProposedAssignmentsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -88,13 +88,11 @@ public partial class CarrierProposedAssignmentsClient
     ///
     /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CarrierProposedAssignments.CreateAsync(
     ///     new CreateCarrierProposedAssignmentRequest { DriverId = "42", VehicleId = "123" }
     /// );
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<CarrierProposedAssignmentResponse> CreateAsync(
         CreateCarrierProposedAssignmentRequest request,
         RequestOptions? options = null,
@@ -102,10 +100,10 @@ public partial class CarrierProposedAssignmentsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "fleet/carrier-proposed-assignments",
                     Body = request,
@@ -115,9 +113,9 @@ public partial class CarrierProposedAssignmentsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<CarrierProposedAssignmentResponse>(responseBody)!;
@@ -128,11 +126,14 @@ public partial class CarrierProposedAssignmentsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -142,11 +143,9 @@ public partial class CarrierProposedAssignmentsClient
     ///
     /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.CarrierProposedAssignments.DeleteAsync("id");
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<object> DeleteAsync(
         string id,
         RequestOptions? options = null,
@@ -154,20 +153,23 @@ public partial class CarrierProposedAssignmentsClient
     )
     {
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = $"fleet/carrier-proposed-assignments/{id}",
+                    Path = string.Format(
+                        "fleet/carrier-proposed-assignments/{0}",
+                        ValueConvert.ToPathParameterString(id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<object>(responseBody)!;
@@ -178,10 +180,13 @@ public partial class CarrierProposedAssignmentsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }

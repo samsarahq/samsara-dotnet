@@ -52,6 +52,12 @@ public enum BehaviorResponseBodyCoachableBehaviorType
     [EnumMember(Value = "harshTurn")]
     HarshTurn,
 
+    [EnumMember(Value = "hosViolation")]
+    HosViolation,
+
+    [EnumMember(Value = "idling")]
+    Idling,
+
     [EnumMember(Value = "laneDeparture")]
     LaneDeparture,
 

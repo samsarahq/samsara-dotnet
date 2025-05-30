@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// A unit of equipment and its most recent stat.
+/// </summary>
 public record EquipmentStatsResponseData
 {
     [JsonPropertyName("engineRpm")]
@@ -13,6 +17,9 @@ public record EquipmentStatsResponseData
 
     [JsonPropertyName("engineState")]
     public EquipmentEngineState? EngineState { get; set; }
+
+    [JsonPropertyName("engineTotalIdleTimeMinutes")]
+    public EquipmentEngineTotalIdleTimeMinutes? EngineTotalIdleTimeMinutes { get; set; }
 
     [JsonPropertyName("fuelPercent")]
     public EquipmentFuelPercent? FuelPercent { get; set; }
@@ -41,6 +48,17 @@ public record EquipmentStatsResponseData
     [JsonPropertyName("obdEngineState")]
     public EquipmentObdEngineState? ObdEngineState { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

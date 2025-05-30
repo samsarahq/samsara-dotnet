@@ -30,6 +30,12 @@ public record RoutesPatchRouteRequestBody
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
 
+    /// <summary>
+    /// This optional boolean parameter controls whether route schedule arrival and departure times are recalculated. When set to true, the system will automatically recompute the scheduledArrivalTime and scheduledDepartureTime for each stop along the route during route creation. This process overrides any manually provided values, with the exception of the first stop, which retains its user-defined schedule.
+    /// </summary>
+    [JsonPropertyName("recomputeScheduledTimes")]
+    public bool? RecomputeScheduledTimes { get; set; }
+
     [JsonPropertyName("settings")]
     public RouteSettingsRequestBody? Settings { get; set; }
 
@@ -45,6 +51,7 @@ public record RoutesPatchRouteRequestBody
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
 
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

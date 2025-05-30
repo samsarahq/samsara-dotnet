@@ -1,8 +1,12 @@
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// The price of the fuel transaction in the currency of the country where the transaction occurred.
+/// </summary>
 public record PostFuelPurchaseRequestBodyPriceRequestBody
 {
     /// <summary>
@@ -17,6 +21,17 @@ public record PostFuelPurchaseRequestBodyPriceRequestBody
     [JsonPropertyName("currency")]
     public required PostFuelPurchaseRequestBodyPriceRequestBodyCurrency Currency { get; set; }
 
+    /// <summary>
+    /// Additional properties received from the response, if any.
+    /// </summary>
+    /// <remarks>
+    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
+    /// </remarks>
+    [JsonExtensionData]
+    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
+        new Dictionary<string, JsonElement>();
+
+    /// <inheritdoc />
     public override string ToString()
     {
         return JsonUtils.Serialize(this);

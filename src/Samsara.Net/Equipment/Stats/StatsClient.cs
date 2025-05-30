@@ -1,7 +1,6 @@
 using System.Net.Http;
 using System.Text.Json;
 using System.Threading;
-using System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -25,11 +24,9 @@ public partial class StatsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
+    /// <example><code>
     /// await client.Equipment.Stats.GetAsync(new StatsGetRequest());
-    /// </code>
-    /// </example>
+    /// </code></example>
     public async Task<EquipmentStatsResponse> GetAsync(
         StatsGetRequest request,
         RequestOptions? options = null,
@@ -46,10 +43,10 @@ public partial class StatsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/equipment/stats",
                     Query = _query,
@@ -58,9 +55,9 @@ public partial class StatsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<EquipmentStatsResponse>(responseBody)!;
@@ -71,11 +68,14 @@ public partial class StatsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -93,13 +93,11 @@ public partial class StatsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Equipment.Stats.GetFeedAsync(new StatsGetFeedRequest());
-    /// </code>
-    /// </example>
-    public async Task<EquipmentStatsListResponse> GetFeedAsync(
-        StatsGetFeedRequest request,
+    /// <example><code>
+    /// await client.Equipment.Stats.FeedAsync(new StatsFeedRequest());
+    /// </code></example>
+    public async Task<EquipmentStatsListResponse> FeedAsync(
+        StatsFeedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -114,10 +112,10 @@ public partial class StatsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/equipment/stats/feed",
                     Query = _query,
@@ -126,9 +124,9 @@ public partial class StatsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<EquipmentStatsListResponse>(responseBody)!;
@@ -139,11 +137,14 @@ public partial class StatsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -155,15 +156,13 @@ public partial class StatsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    /// <example>
-    /// <code>
-    /// await client.Equipment.Stats.GetHistoryAsync(
-    ///     new StatsGetHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// <example><code>
+    /// await client.Equipment.Stats.HistoryAsync(
+    ///     new StatsHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
     /// );
-    /// </code>
-    /// </example>
-    public async Task<EquipmentStatsListResponse> GetHistoryAsync(
-        StatsGetHistoryRequest request,
+    /// </code></example>
+    public async Task<EquipmentStatsListResponse> HistoryAsync(
+        StatsHistoryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -180,10 +179,10 @@ public partial class StatsClient
             _query["after"] = request.After;
         }
         var response = await _client
-            .MakeRequestAsync(
-                new RawClient.JsonApiRequest
+            .SendRequestAsync(
+                new JsonRequest
                 {
-                    BaseUrl = _client.Options.Environment.Api,
+                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/equipment/stats/history",
                     Query = _query,
@@ -192,9 +191,9 @@ public partial class StatsClient
                 cancellationToken
             )
             .ConfigureAwait(false);
-        var responseBody = await response.Raw.Content.ReadAsStringAsync();
         if (response.StatusCode is >= 200 and < 400)
         {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
                 return JsonUtils.Deserialize<EquipmentStatsListResponse>(responseBody)!;
@@ -205,10 +204,13 @@ public partial class StatsClient
             }
         }
 
-        throw new SamsaraClientApiException(
-            $"Error with status code {response.StatusCode}",
-            response.StatusCode,
-            responseBody
-        );
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 }
