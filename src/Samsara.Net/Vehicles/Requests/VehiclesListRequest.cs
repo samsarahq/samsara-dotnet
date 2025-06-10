@@ -36,6 +36,12 @@ public record VehiclesListRequest
     public string? AttributeValueIds { get; set; }
 
     /// <summary>
+    /// A filter on the data to return entities having given attributes using name-value pair, separated by semicolon. Only entities associated with ALL of the referenced values will be returned (i.e. the intersection of the sets of entities with each value). Example: `attributes=ExampleAttributeName:some_value&attributes=SomeOtherAttr:123`
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> Attributes { get; set; } = new List<string>();
+
+    /// <summary>
     /// A filter on data to have an updated at time after or equal to this specified time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
     [JsonIgnore]

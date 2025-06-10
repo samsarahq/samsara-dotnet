@@ -28,10 +28,10 @@ public partial class VehicleClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Reports.Ifta.Vehicle.GetAsync(new VehicleGetRequest { Year = 1 });
+    /// await client.Reports.Ifta.Vehicle.ListAsync(new VehicleListRequest { Year = 1 });
     /// </code></example>
-    public async Task<IftaGetIftaVehicleReportsResponseBody> GetAsync(
-        VehicleGetRequest request,
+    public async Task<IftaGetIftaVehicleReportsResponseBody> ListAsync(
+        VehicleListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )

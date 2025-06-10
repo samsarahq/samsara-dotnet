@@ -31,10 +31,7 @@ public partial class AuditLogsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example><code>
-    /// await client.SafetyEvents.AuditLogs.FeedAsync(new AuditLogsFeedRequest());
-    /// </code></example>
-    public async Task<SafetyEventsGetSafetyActivityEventFeedResponseBody> FeedAsync(
+    private async Task<SafetyEventsGetSafetyActivityEventFeedResponseBody> FeedInternalAsync(
         AuditLogsFeedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -117,5 +114,57 @@ public partial class AuditLogsClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
+    ///
+    /// | ActivityType      | Description |
+    /// | ----------- | ----------- |
+    /// | CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+    /// | BehaviorLabelActivityType     | a label is added or removed from a safety event |
+    /// | CoachingStateActivityType     | a safety event coaching state is updated        |
+    ///
+    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.SafetyEvents.AuditLogs.FeedAsync(new AuditLogsFeedRequest());
+    /// </code></example>
+    public async Task<Pager<SafetyEventActivityFeedItemResponseBody>> FeedAsync(
+        AuditLogsFeedRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (request is not null)
+        {
+            request = request with { };
+        }
+        var pager = await CursorPager<
+            AuditLogsFeedRequest,
+            RequestOptions?,
+            SafetyEventsGetSafetyActivityEventFeedResponseBody,
+            string,
+            SafetyEventActivityFeedItemResponseBody
+        >
+            .CreateInstanceAsync(
+                request,
+                options,
+                FeedInternalAsync,
+                (request, cursor) =>
+                {
+                    request.After = cursor;
+                },
+                response => response?.Pagination?.EndCursor,
+                response => response?.Data?.ToList(),
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        return pager;
     }
 }
