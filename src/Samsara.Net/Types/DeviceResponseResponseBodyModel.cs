@@ -55,6 +55,9 @@ public enum DeviceResponseResponseBodyModel
     [EnumMember(Value = "AG53EU")]
     Ag53Eu,
 
+    [EnumMember(Value = "AT11")]
+    At11,
+
     [EnumMember(Value = "CM31")]
     Cm31,
 

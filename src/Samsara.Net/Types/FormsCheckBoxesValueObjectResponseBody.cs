@@ -16,6 +16,12 @@ public record FormsCheckBoxesValueObjectResponseBody
     public IEnumerable<string> Value { get; set; } = new List<string>();
 
     /// <summary>
+    /// List of selected option IDs.
+    /// </summary>
+    [JsonPropertyName("valueIds")]
+    public IEnumerable<string> ValueIds { get; set; } = new List<string>();
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>
