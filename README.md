@@ -46,7 +46,7 @@ try {
 }
 ```
 
-## Auto Pagination 
+## Auto Pagination
 
 Paginated requests will return a `Pager`, which can be used to automatically iterate over items.
 
@@ -61,6 +61,7 @@ await foreach (var item in pager)
 ```
 
 Alternatively, you can iterate page-by-page:
+
 ```csharp
 await foreach (var page in pager.AsPagesAsync())
 {
@@ -87,6 +88,34 @@ await foreach (var item in pager)
     // do something with item
 }
 ```
+
+## Webhook Signature Verification
+
+The SDK provides utility methods that allow you to verify webhook signatures and ensure
+that all webhook events originate from Samsara. The `WebhooksHelper.verifySignature` method
+can be used to verify the signature like so:
+
+```csharp
+using Microsoft.AspNetCore.Http;
+using Samsara;
+
+public static async Task CheckWebhooksEvent(
+    HttpRequest request,
+    string signatureKey,
+    string notificationUrl
+)
+{
+    var signature = request.Headers["x-samsara-hmacsha256-signature"].ToString();
+    using var reader = new StreamReader(request.Body, System.Text.Encoding.UTF8);
+    var requestBody = await reader.ReadToEndAsync();
+    if (!WebhooksHelper.VerifySignature(requestBody, signature, signatureKey, notificationUrl))
+    {
+        throw new Exception("A webhook event was received that was not from Samsara.");
+    }
+}
+```
+
+In .NET 6 and above, there are also overloads using spans for allocation free webhook verification.
 
 ## Advanced
 

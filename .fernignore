@@ -2,3 +2,8 @@
 
 src/Samsara.Net/Core/Extensions.cs
 src/Samsara.Net/Core/JsonAccessAttribute.cs
+README.md
+
+# Webhook signature verification
+src/Samsara.Net/Webhooks/Utils/WebhooksHelper.cs
+src/Samsara.Net.Test/Utils/WebhooksHelperTests.cs
