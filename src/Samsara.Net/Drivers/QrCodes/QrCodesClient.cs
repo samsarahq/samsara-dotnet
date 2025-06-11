@@ -61,7 +61,7 @@ public partial class QrCodesClient
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraException("Failed to deserialize response", e);
             }
         }
 
@@ -99,7 +99,7 @@ public partial class QrCodesClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new SamsaraClientApiException(
+            throw new SamsaraApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -153,7 +153,7 @@ public partial class QrCodesClient
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraException("Failed to deserialize response", e);
             }
         }
 
@@ -191,7 +191,7 @@ public partial class QrCodesClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new SamsaraClientApiException(
+            throw new SamsaraApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody
@@ -272,7 +272,7 @@ public partial class QrCodesClient
             {
                 // unable to map error response, throwing generic error
             }
-            throw new SamsaraClientApiException(
+            throw new SamsaraApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody

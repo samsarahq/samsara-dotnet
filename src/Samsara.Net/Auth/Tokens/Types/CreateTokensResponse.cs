@@ -2,9 +2,9 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.Auth;
+namespace Samsara.Net.Auth.Tokens;
 
-public record GetTokenResponse
+public record CreateTokensResponse
 {
     [JsonPropertyName("access_token")]
     public required string AccessToken { get; set; }
@@ -14,6 +14,12 @@ public record GetTokenResponse
 
     [JsonPropertyName("expires_in")]
     public required int ExpiresIn { get; set; }
+
+    [JsonPropertyName("refresh_token")]
+    public required string RefreshToken { get; set; }
+
+    [JsonPropertyName("scope")]
+    public required string Scope { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

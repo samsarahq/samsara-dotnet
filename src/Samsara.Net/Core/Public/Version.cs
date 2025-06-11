@@ -2,5 +2,5 @@ namespace Samsara.Net;
 
 internal class Version
 {
-    public const string Current = "0.0.128";
+    public const string Current = "0.0.146";
 }

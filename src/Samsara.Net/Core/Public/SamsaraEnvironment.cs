@@ -1,6 +1,6 @@
 namespace Samsara.Net;
 
-public class SamsaraClientEnvironment
+public class SamsaraEnvironment
 {
     public const string ProductionApi = "https://api.samsara.com";
 

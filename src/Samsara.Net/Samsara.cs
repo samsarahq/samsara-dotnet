@@ -51,11 +51,11 @@ using Samsara.Net.Webhooks;
 
 namespace Samsara.Net;
 
-public partial class SamsaraClient
+public partial class Samsara
 {
     private readonly RawClient _client;
 
-    public SamsaraClient(string? token = null, ClientOptions? clientOptions = null)
+    public Samsara(string? token = null, ClientOptions? clientOptions = null)
     {
         token ??= GetFromEnvironmentOrThrow(
             "SAMSARA_API_KEY",
@@ -119,8 +119,8 @@ public partial class SamsaraClient
         Users = new UsersClient(_client);
         V1Messages = new V1MessagesClient(_client);
         Webhooks = new WebhooksClient(_client);
-        Auth = new AuthClient(_client);
         Alerts = new AlertsClient(_client);
+        Auth = new AuthClient(_client);
         Cameras = new CamerasClient(_client);
         Coaching = new CoachingClient(_client);
         Ifta = new IftaClient(_client);
@@ -210,9 +210,9 @@ public partial class SamsaraClient
 
     public WebhooksClient Webhooks { get; }
 
-    public AuthClient Auth { get; }
-
     public AlertsClient Alerts { get; }
+
+    public AuthClient Auth { get; }
 
     public CamerasClient Cameras { get; }
 

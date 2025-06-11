@@ -7531,69 +7531,6 @@ await client.Webhooks.PatchAsync("id", new WebhooksPatchWebhookRequestBody());
 </dl>
 </details>
 
-## Auth
-<details><summary><code>client.Auth.<a href="/src/Samsara.Net/Auth/AuthClient.cs">GetTokenAsync</a>(AuthGetTokenRequest { ... }) -> GetTokenResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Obtain an OAuth2 access token using client credentials
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Auth.GetTokenAsync(
-    new AuthGetTokenRequest
-    {
-        ClientId = "client_id",
-        ClientSecret = "client_secret",
-        Audience = "https://api.samsara.com",
-        GrantType = "authorization_code",
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `AuthGetTokenRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Alerts Configurations
 <details><summary><code>client.Alerts.Configurations.<a href="/src/Samsara.Net/Alerts/Configurations/ConfigurationsClient.cs">ListAsync</a>(ConfigurationsListRequest { ... }) -> Pager<GetResponseWorkflowConfigurationObjectResponseBody></code></summary>
 <dl>
@@ -8014,6 +7951,115 @@ await client.Assets.LocationAndSpeed.StreamAsync(new LocationAndSpeedStreamReque
 <dd>
 
 **request:** `LocationAndSpeedStreamRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Auth Tokens
+<details><summary><code>client.Auth.Tokens.<a href="/src/Samsara.Net/Auth/Tokens/TokensClient.cs">CreateAsync</a>(TokensCreateRequest { ... }) -> CreateTokensResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Exchange an authorization code for access and refresh tokens.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Auth.Tokens.CreateAsync(new TokensCreateRequest { GrantType = "authorization_code" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TokensCreateRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Auth.Tokens.<a href="/src/Samsara.Net/Auth/Tokens/TokensClient.cs">RevokeAsync</a>(TokensRevokeRequest { ... }) -> CreateTokensResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Invalidates access tokens and refresh tokens for that organization
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Auth.Tokens.RevokeAsync(new TokensRevokeRequest { Token = "token" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TokensRevokeRequest` 
     
 </dd>
 </dl>

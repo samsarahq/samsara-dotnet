@@ -21,7 +21,7 @@ public partial class ClientOptions
 #else
         set;
 #endif
-    } = SamsaraClientEnvironment.ProductionApi;
+    } = SamsaraEnvironment.ProductionApi;
 
     /// <summary>
     /// The http client used to make requests.
