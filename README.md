@@ -5,6 +5,10 @@
 
 The Samsara C# library provides convenient access to the Samsara API from C#.
 
+## Documentation
+
+API reference documentation is available [here](https://developers.samsara.com/reference/overview).
+
 ## Installation
 
 ```sh
@@ -16,33 +20,15 @@ dotnet add package Samsara.Net
 Instantiate and use the client with the following:
 
 ```csharp
-using Samsara.Net.Addresses;
+using Samsara.Net.Vehicles;
 using Samsara.Net;
 
-var client = new SamsaraClient();
-await client.Addresses.CreateAsync(
-    new CreateAddressRequest
-    {
-        FormattedAddress = "350 Rhode Island St, San Francisco, CA",
-        Geofence = new CreateAddressRequestGeofence(),
-        Name = "Samsara HQ",
-    }
-);
-```
+var client = new Samsara();
+var pager = await client.Vehicles.ListAsync(new VehiclesListRequest());
 
-## Exception Handling
-
-When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
-will be thrown.
-
-```csharp
-using Samsara.Net;
-
-try {
-    var response = await client.Addresses.CreateAsync(...);
-} catch (SamsaraClientApiException e) {
-    System.Console.WriteLine(e.Body);
-    System.Console.WriteLine(e.StatusCode);
+await foreach (var item in pager)
+{
+    // do something with item
 }
 ```
 
@@ -71,6 +57,22 @@ await foreach (var page in pager.AsPagesAsync())
 }
 ```
 
+## Exception Handling
+
+When the API returns a non-success status code (4xx or 5xx response), a subclass of the following error
+will be thrown.
+
+```csharp
+using Samsara.Net;
+
+try {
+    var response = await client.Vehicles.ListAsync(...);
+} catch (SamsaraApiException e) {
+    System.Console.WriteLine(e.Body);
+    System.Console.WriteLine(e.StatusCode);
+}
+```
+
 ## Pagination
 
 List endpoints are paginated. The SDK provides an async enumerable so that you can simply loop over the items:
@@ -79,7 +81,7 @@ List endpoints are paginated. The SDK provides an async enumerable so that you c
 using Samsara.Net.Addresses;
 using Samsara.Net;
 
-var client = new SamsaraClient();
+var client = new Samsara();
 var pager = await client.Addresses.ListAsync(new AddressesListRequest());
 
 await foreach (var item in pager)
@@ -105,7 +107,7 @@ A request is deemed retryable when any of the following HTTP status codes is ret
 Use the `MaxRetries` request option to configure this behavior.
 
 ```csharp
-var response = await client.Addresses.CreateAsync(
+var response = await client.Vehicles.ListAsync(
     ...,
     new RequestOptions {
         MaxRetries: 0 // Override MaxRetries at the request level
@@ -118,7 +120,7 @@ var response = await client.Addresses.CreateAsync(
 The SDK defaults to a 30 second timeout. Use the `Timeout` option to configure this behavior.
 
 ```csharp
-var response = await client.Addresses.CreateAsync(
+var response = await client.Vehicles.ListAsync(
     ...,
     new RequestOptions {
         Timeout: TimeSpan.FromSeconds(3) // Override timeout to 3s

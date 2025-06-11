@@ -64,13 +64,13 @@ public partial class SafetyEventsClient
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraException("Failed to deserialize response", e);
             }
         }
 
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
+            throw new SamsaraApiException(
                 $"Error with status code {response.StatusCode}",
                 response.StatusCode,
                 responseBody

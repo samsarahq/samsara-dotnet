@@ -16,7 +16,7 @@ public record WorkOrderItemObjectResponseBody
     public required string Id { get; set; }
 
     /// <summary>
-    /// The type of item.  Valid values: `DVIR`, `FAULT`, `FORM`, `ISSUE`, `ITEM_TYPE_UNSPECIFIED`, `SCHEDULED_MAINTENANCE`
+    /// The type of item.  Valid values: `DVIR`, `FAULT`, `FORM`, `ISSUE`, `ITEM_TYPE_UNSPECIFIED`, `MAINTENANCE_PREDICTION_EVENT`, `SCHEDULED_MAINTENANCE`
     /// </summary>
     [JsonPropertyName("type")]
     public required WorkOrderItemObjectResponseBodyType Type { get; set; }
