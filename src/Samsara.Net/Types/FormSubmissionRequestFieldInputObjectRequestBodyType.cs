@@ -30,7 +30,4 @@ public enum FormSubmissionRequestFieldInputObjectRequestBodyType
 
     [EnumMember(Value = "table")]
     Table,
-
-    [EnumMember(Value = "geofence")]
-    Geofence,
 }

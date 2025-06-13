@@ -48,7 +48,7 @@ public record SpeedingIntervalsStreamRequest
     public string? After { get; set; }
 
     /// <summary>
-    /// Optional string of comma-separated severity levels to filter speeding intervals by. Valid values:  “light”, ”moderate”, ”heavy”, “severe”. This filter does not exclude trips that have no speeding intervals.
+    /// Optional string of comma-separated severity levels to filter speeding intervals by. Valid values:  “light”, ”moderate”, ”heavy”, “severe”.
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> SeverityLevels { get; set; } = new List<string>();

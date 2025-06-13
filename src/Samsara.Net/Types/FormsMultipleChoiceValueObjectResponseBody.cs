@@ -10,16 +10,10 @@ namespace Samsara.Net;
 public record FormsMultipleChoiceValueObjectResponseBody
 {
     /// <summary>
-    /// Selected option.
+    /// Selected choice.
     /// </summary>
     [JsonPropertyName("value")]
     public required string Value { get; set; }
-
-    /// <summary>
-    /// ID of the selected option.
-    /// </summary>
-    [JsonPropertyName("valueId")]
-    public required string ValueId { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

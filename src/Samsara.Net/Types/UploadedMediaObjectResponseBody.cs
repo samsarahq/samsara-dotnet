@@ -37,7 +37,7 @@ public record UploadedMediaObjectResponseBody
     public required string StartTime { get; set; }
 
     /// <summary>
-    /// Trigger reason for this media capture.  Valid values: `api`, `panicButton`, `periodicStill`, `rfidEvent`, `safetyEvent`, `tripEndStill`, `tripStartStill`, `videoRetrieval`
+    /// Trigger reason for this media capture.  Valid values: `api`, `panicButton`, `periodicStill`, `safetyEvent`, `tripEndStill`, `tripStartStill`, `videoRetrieval`
     /// </summary>
     [JsonPropertyName("triggerReason")]
     public required UploadedMediaObjectResponseBodyTriggerReason TriggerReason { get; set; }

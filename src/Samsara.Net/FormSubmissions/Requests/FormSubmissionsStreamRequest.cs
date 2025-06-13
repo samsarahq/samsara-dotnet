@@ -42,7 +42,7 @@ public record FormSubmissionsStreamRequest
     public IEnumerable<string> DriverIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// A comma-separated list of strings indicating whether to return additional information. Valid values: `externalIds`
+    /// A comma-separated list of strings indicating whether to return additional information. Valid values: `externalIds`, `fieldLabels`
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> Include { get; set; } = new List<string>();

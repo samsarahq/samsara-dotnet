@@ -18,9 +18,6 @@ public record FormsFieldInputObjectResponseBody
     [JsonPropertyName("dateTimeValue")]
     public FormsDateTimeValueObjectResponseBody? DateTimeValue { get; set; }
 
-    [JsonPropertyName("geofenceValue")]
-    public FormsGeofenceValueObjectResponseBody? GeofenceValue { get; set; }
-
     /// <summary>
     /// ID of the forms input field object.
     /// </summary>
@@ -70,10 +67,11 @@ public record FormsFieldInputObjectResponseBody
     public FormsTextValueObjectResponseBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `asset`, `table`, `person`, `geofence`
+    /// Type of the field.  Valid values: `number, text, multiple_choice, check_boxes, datetime, signature, media, asset, table`
     /// </summary>
     [JsonPropertyName("type")]
-    public required FormsFieldInputObjectResponseBodyType Type { get; set; }
+    public string Type { get; set; } =
+        "number, text, multiple_choice, check_boxes, datetime, signature, media, asset, table";
 
     /// <summary>
     /// Additional properties received from the response, if any.

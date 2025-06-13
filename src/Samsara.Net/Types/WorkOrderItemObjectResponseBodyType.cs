@@ -22,9 +22,6 @@ public enum WorkOrderItemObjectResponseBodyType
     [EnumMember(Value = "ITEM_TYPE_UNSPECIFIED")]
     ItemTypeUnspecified,
 
-    [EnumMember(Value = "MAINTENANCE_PREDICTION_EVENT")]
-    MaintenancePredictionEvent,
-
     [EnumMember(Value = "SCHEDULED_MAINTENANCE")]
     ScheduledMaintenance,
 }

@@ -22,7 +22,12 @@ public partial class AttributesClient
     ///
     /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<GetAttributesByEntityTypeResponse> ListInternalAsync(
+    /// <example><code>
+    /// await client.Attributes.ListAsync(
+    ///     new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
+    /// );
+    /// </code></example>
+    public async Task<GetAttributesByEntityTypeResponse> ListAsync(
         AttributesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -72,51 +77,6 @@ public partial class AttributesClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Fetch all attributes in an organization associated with either drivers or assets.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.ListAsync(
-    ///     new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
-    /// );
-    /// </code></example>
-    public async Task<Pager<Attribute>> ListAsync(
-        AttributesListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            AttributesListRequest,
-            RequestOptions?,
-            GetAttributesByEntityTypeResponse,
-            string,
-            Attribute
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
     }
 
     /// <summary>

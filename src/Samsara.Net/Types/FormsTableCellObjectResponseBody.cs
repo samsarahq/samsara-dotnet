@@ -40,10 +40,11 @@ public record FormsTableCellObjectResponseBody
     public FormsTextValueObjectResponseBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the cell field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `person`
+    /// Type of the cell field.  Valid values: `number, text, multiple_choice, check_boxes, datetime, signature, media, person`
     /// </summary>
     [JsonPropertyName("type")]
-    public required FormsTableCellObjectResponseBodyType Type { get; set; }
+    public string Type { get; set; } =
+        "number, text, multiple_choice, check_boxes, datetime, signature, media, person";
 
     /// <summary>
     /// Additional properties received from the response, if any.

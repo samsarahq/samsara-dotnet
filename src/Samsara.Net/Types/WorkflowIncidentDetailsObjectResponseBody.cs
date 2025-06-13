@@ -120,9 +120,6 @@ public record WorkflowIncidentDetailsObjectResponseBody
     [JsonPropertyName("personDetected")]
     public PersonDetectedResponseBody? PersonDetected { get; set; }
 
-    [JsonPropertyName("reading")]
-    public ReadingTriggerDetailsResponseBody? Reading { get; set; }
-
     [JsonPropertyName("reeferTemperature")]
     public ReeferTemperatureResponseBody? ReeferTemperature { get; set; }
 

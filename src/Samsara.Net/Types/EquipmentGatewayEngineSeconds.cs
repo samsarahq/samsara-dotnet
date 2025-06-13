@@ -13,7 +13,7 @@ public record EquipmentGatewayEngineSeconds
     public required string Time { get; set; }
 
     /// <summary>
-    /// The number of seconds an engine has been running as detected via engine state. Used in combination with an offset provided manually through the Samsara cloud dashboard. Useful for when assets do not report engine hours over the J1939 network. The Engine Speed SPN must be available from the ECU for this parameter to properly calculate seconds. This is supported with the following hardware configurations: AG24/AG26 + AOPEN/A9PIN/ACT9/ACT14.
+    /// An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG26 device is receiving power and an offset provided manually through the Samsara cloud dashboard.
     /// </summary>
     [JsonPropertyName("value")]
     public required int Value { get; set; }

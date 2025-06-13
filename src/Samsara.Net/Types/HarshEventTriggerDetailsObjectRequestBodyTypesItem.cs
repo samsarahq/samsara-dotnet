@@ -106,9 +106,6 @@ public enum HarshEventTriggerDetailsObjectRequestBodyTypesItem
     [EnumMember(Value = "haTileRollingStopSign")]
     HaTileRollingStopSign,
 
-    [EnumMember(Value = "haUnsafeParking")]
-    HaUnsafeParking,
-
     [EnumMember(Value = "haVulnerableRoadUserCollisionWarning")]
     HaVulnerableRoadUserCollisionWarning,
 

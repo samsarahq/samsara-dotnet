@@ -22,7 +22,7 @@ public record FormSubmissionsPostFormSubmissionRequestBody
     public IEnumerable<FormSubmissionRequestFieldInputObjectRequestBody>? Fields { get; set; }
 
     [JsonPropertyName("formTemplate")]
-    public required FormTemplateRequestObjectRequestBody FormTemplate { get; set; }
+    public required FormTemplateReferenceObjectRequestBody FormTemplate { get; set; }
 
     /// <summary>
     /// Indicates whether the worker is required to complete this form or not at a specific route stop. Defaults to `true` if the form is assigned to a user or driver. When true, the worker cannot depart the route stop until this form submission is `submitted`.

@@ -13,7 +13,7 @@ public record EquipmentObdEngineSeconds
     public required string Time { get; set; }
 
     /// <summary>
-    /// The number of seconds the engine has been running as reported directly from on-board diagnostics. This is supported with the following hardware configurations: AG24/AG26 + AOPEN/A9PIN/ACT9/ACT14
+    /// The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.
     /// </summary>
     [JsonPropertyName("value")]
     public required int Value { get; set; }

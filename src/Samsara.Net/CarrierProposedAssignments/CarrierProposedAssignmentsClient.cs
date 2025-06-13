@@ -22,7 +22,10 @@ public partial class CarrierProposedAssignmentsClient
     ///
     /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<ListCarrierProposedAssignmentResponse> ListInternalAsync(
+    /// <example><code>
+    /// await client.CarrierProposedAssignments.ListAsync(new CarrierProposedAssignmentsListRequest());
+    /// </code></example>
+    public async Task<ListCarrierProposedAssignmentResponse> ListAsync(
         CarrierProposedAssignmentsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -76,49 +79,6 @@ public partial class CarrierProposedAssignmentsClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Show the assignments created by the POST fleet/carrier-proposed-assignments. This endpoint will only show the assignments that are active for drivers and currently visible to them in the driver app. Once a proposed assignment has been accepted, the endpoint will not return any data.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.CarrierProposedAssignments.ListAsync(new CarrierProposedAssignmentsListRequest());
-    /// </code></example>
-    public async Task<Pager<CarrierProposedAssignment>> ListAsync(
-        CarrierProposedAssignmentsListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            CarrierProposedAssignmentsListRequest,
-            RequestOptions?,
-            ListCarrierProposedAssignmentResponse,
-            string,
-            CarrierProposedAssignment
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
     }
 
     /// <summary>
