@@ -26,7 +26,7 @@ public record MediaListRequest
         new List<MediaListRequestMediaTypesItem>();
 
     /// <summary>
-    /// An optional list of desired trigger reasons for which to return captured media. If empty, media for all available trigger reasons will be returned. Possible options include: api, panicButton, periodicStill, rfidEvent, safetyEvent, tripEndStill, tripStartStill, videoRetrieval. videoRetrieval represents media captured for a dashboard video retrieval request.
+    /// An optional list of desired trigger reasons for which to return captured media. If empty, media for all available trigger reasons will be returned. Possible options include: api, panicButton, periodicStill, safetyEvent, tripEndStill, tripStartStill, videoRetrieval. videoRetrieval represents media captured for a dashboard video retrieval request.
     /// </summary>
     [JsonIgnore]
     public IEnumerable<MediaListRequestTriggerReasonsItem> TriggerReasons { get; set; } =

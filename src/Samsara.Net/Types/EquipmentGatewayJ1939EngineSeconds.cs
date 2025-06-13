@@ -13,7 +13,7 @@ public record EquipmentGatewayJ1939EngineSeconds
     public required string Time { get; set; }
 
     /// <summary>
-    /// The number of seconds an engine has been running as detected via aux input 1 active state. Used in combination with an offset provided manually through the Samsara cloud dashboard. This is supported with the following hardware configurations: AG24/AG26/AG46P + APWR cable (Auxiliary engine configuration required) AG52/AG53 + BPWR/BEQP cable (Auxiliary engine configuration required).
+    /// An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the AG26 device is receiving power and an offset provided manually through the Samsara cloud dashboard.
     /// </summary>
     [JsonPropertyName("value")]
     public required int Value { get; set; }

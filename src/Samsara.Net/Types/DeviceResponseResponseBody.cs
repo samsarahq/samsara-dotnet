@@ -25,7 +25,7 @@ public record DeviceResponseResponseBody
     public LastKnownLocationResponseResponseBody? LastKnownLocation { get; set; }
 
     /// <summary>
-    /// The product model name of the device.  Valid values: `AG24`, `AG24EU`, `AG26`, `AG26EU`, `AG45`, `AG45EU`, `AG46`, `AG46EU`, `AG46P`, `AG46PEU`, `AG51`, `AG51EU`, `AG52`, `AG52EU`, `AG53`, `AG53EU`, `AT11`, `CM31`, `CM32`, `CM33`, `CM34`, `VG34`, `VG34EU`, `VG34FN`, `VG34M`, `VG54EU`, `VG54NA`, `VG55EU`, `VG55NA`
+    /// The product model name of the device.  Valid values: `AG24`, `AG24EU`, `AG26`, `AG26EU`, `AG45`, `AG45EU`, `AG46`, `AG46EU`, `AG46P`, `AG46PEU`, `AG51`, `AG51EU`, `AG52`, `AG52EU`, `AG53`, `AG53EU`, `CM31`, `CM32`, `CM33`, `CM34`, `VG34`, `VG34EU`, `VG34FN`, `VG34M`, `VG54EU`, `VG54NA`, `VG55EU`, `VG55NA`
     /// </summary>
     [JsonPropertyName("model")]
     public required DeviceResponseResponseBodyModel Model { get; set; }

@@ -16,9 +16,6 @@ public enum MediaListRequestTriggerReasonsItem
     [EnumMember(Value = "periodicStill")]
     PeriodicStill,
 
-    [EnumMember(Value = "rfidEvent")]
-    RfidEvent,
-
     [EnumMember(Value = "safetyEvent")]
     SafetyEvent,
 

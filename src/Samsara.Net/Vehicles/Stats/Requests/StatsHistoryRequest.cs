@@ -44,7 +44,7 @@ public record StatsHistoryRequest
     /// <summary>
     /// The stat types you want this endpoint to return information on. See also the &lt;a href="/docs/telematics#query-parameters" target="_blank"&gt;Telematics&lt;/a&gt; guide for more details.
     ///
-    /// You may list ***up to 4*** types using comma-separated format. For example: `types=gps,engineStates,obdOdometerMeters`.
+    /// You may list ***up to 3*** types using comma-separated format. For example: `types=gps,engineStates,obdOdometerMeters`.
     ///
     /// *Note:* `auxInput3`-`auxInput10` count as a single type against the limit of 3. For example, you could list `types=engineStates,obdOdometerMeters,auxInput3,auxInput4` because `auxInput3` and `auxInput4` count as a single stat type. `auxInput1` and `auxInput2` still count as their own individual types.
     ///

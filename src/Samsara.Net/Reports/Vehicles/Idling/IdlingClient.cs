@@ -18,8 +18,6 @@ public partial class IdlingClient
     /// <summary>
     /// Get all vehicle idling reports for the requested time duration.
     ///
-    /// **Note:** We are gradually releasing the new Advanced Idling Report, which provides additional data fields for each idling event such as air temperature, geofence, PTO state and minimum idle time. We have released the associated API in Beta to gather valuable feedback. You can access the Beta API [here](https://developers.samsara.com/reference/getidlingevents).
-    ///
     ///  &lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
     ///
     /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
@@ -27,8 +25,13 @@ public partial class IdlingClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    private async Task<IdlingReportsGetVehicleIdlingReportsResponseBody> ListInternalAsync(
-        IdlingListRequest request,
+    /// <example><code>
+    /// await client.Reports.Vehicles.Idling.GetAsync(
+    ///     new IdlingGetRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// );
+    /// </code></example>
+    public async Task<IdlingReportsGetVehicleIdlingReportsResponseBody> GetAsync(
+        IdlingGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -132,55 +135,5 @@ public partial class IdlingClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Get all vehicle idling reports for the requested time duration.
-    ///
-    /// **Note:** We are gradually releasing the new Advanced Idling Report, which provides additional data fields for each idling event such as air temperature, geofence, PTO state and minimum idle time. We have released the associated API in Beta to gather valuable feedback. You can access the Beta API [here](https://developers.samsara.com/reference/getidlingevents).
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.Reports.Vehicles.Idling.ListAsync(
-    ///     new IdlingListRequest { StartTime = "startTime", EndTime = "endTime" }
-    /// );
-    /// </code></example>
-    public async Task<Pager<IdlingReportEventResponseBody>> ListAsync(
-        IdlingListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            IdlingListRequest,
-            RequestOptions?,
-            IdlingReportsGetVehicleIdlingReportsResponseBody,
-            string,
-            IdlingReportEventResponseBody
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
     }
 }

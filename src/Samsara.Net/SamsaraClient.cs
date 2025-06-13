@@ -3,6 +3,7 @@ using Samsara.Net.Alerts;
 using Samsara.Net.Assets;
 using Samsara.Net.Attributes;
 using Samsara.Net.Auth;
+using Samsara.Net.Beta;
 using Samsara.Net.Cameras;
 using Samsara.Net.CarrierProposedAssignments;
 using Samsara.Net.Coaching;
@@ -18,12 +19,11 @@ using Samsara.Net.DriverTrailerAssignments;
 using Samsara.Net.DriverVehicleAssignments;
 using Samsara.Net.Dvirs;
 using Samsara.Net.Equipment;
-using Samsara.Net.Forms;
 using Samsara.Net.FormSubmissions;
 using Samsara.Net.FuelPurchases;
 using Samsara.Net.Gateways;
 using Samsara.Net.Hos;
-using Samsara.Net.Idling;
+using Samsara.Net.HoursOfService;
 using Samsara.Net.Ifta;
 using Samsara.Net.Inputs;
 using Samsara.Net.Issues;
@@ -31,13 +31,11 @@ using Samsara.Net.Legacy;
 using Samsara.Net.LiveShares;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Me;
-using Samsara.Net.Readings;
 using Samsara.Net.Reports;
 using Samsara.Net.Routes;
 using Samsara.Net.SafetyEvents;
 using Samsara.Net.Settings;
 using Samsara.Net.SpeedingIntervals;
-using Samsara.Net.Tachograph;
 using Samsara.Net.Tags;
 using Samsara.Net.Trailers;
 using Samsara.Net.TrainingAssignments;
@@ -45,7 +43,6 @@ using Samsara.Net.TrainingCourses;
 using Samsara.Net.Trips;
 using Samsara.Net.UserRoles;
 using Samsara.Net.Users;
-using Samsara.Net.V1Messages;
 using Samsara.Net.Vehicles;
 using Samsara.Net.Webhooks;
 
@@ -68,6 +65,7 @@ public partial class SamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
+                { "User-Agent", "Samsara.Net/0.0.19" },
             }
         );
         clientOptions ??= new ClientOptions();
@@ -96,20 +94,19 @@ public partial class SamsaraClient
         Drivers = new DriversClient(_client);
         Equipment = new EquipmentClient(_client);
         Hos = new HosClient(_client);
+        HoursOfService = new HoursOfServiceClient(_client);
         Routes = new RoutesClient(_client);
         SafetyEvents = new SafetyEventsClient(_client);
         Trailers = new TrailersClient(_client);
         Vehicles = new VehiclesClient(_client);
         Legacy = new LegacyClient(_client);
         FormSubmissions = new FormSubmissionsClient(_client);
-        Forms = new FormsClient(_client);
         FuelPurchases = new FuelPurchasesClient(_client);
         Gateways = new GatewaysClient(_client);
-        Idling = new IdlingClient(_client);
+        Beta = new BetaClient(_client);
         Issues = new IssuesClient(_client);
         LiveShares = new LiveSharesClient(_client);
         Me = new MeClient(_client);
-        Readings = new ReadingsClient(_client);
         SpeedingIntervals = new SpeedingIntervalsClient(_client);
         Tags = new TagsClient(_client);
         TrainingAssignments = new TrainingAssignmentsClient(_client);
@@ -117,17 +114,15 @@ public partial class SamsaraClient
         Trips = new TripsClient(_client);
         UserRoles = new UserRolesClient(_client);
         Users = new UsersClient(_client);
-        V1Messages = new V1MessagesClient(_client);
         Webhooks = new WebhooksClient(_client);
-        Alerts = new AlertsClient(_client);
         Auth = new AuthClient(_client);
+        Alerts = new AlertsClient(_client);
         Cameras = new CamerasClient(_client);
         Coaching = new CoachingClient(_client);
         Ifta = new IftaClient(_client);
         Maintenance = new MaintenanceClient(_client);
         Reports = new ReportsClient(_client);
         Settings = new SettingsClient(_client);
-        Tachograph = new TachographClient(_client);
     }
 
     public AddressesClient Addresses { get; }
@@ -164,6 +159,8 @@ public partial class SamsaraClient
 
     public HosClient Hos { get; }
 
+    public HoursOfServiceClient HoursOfService { get; }
+
     public RoutesClient Routes { get; }
 
     public SafetyEventsClient SafetyEvents { get; }
@@ -176,21 +173,17 @@ public partial class SamsaraClient
 
     public FormSubmissionsClient FormSubmissions { get; }
 
-    public FormsClient Forms { get; }
-
     public FuelPurchasesClient FuelPurchases { get; }
 
     public GatewaysClient Gateways { get; }
 
-    public IdlingClient Idling { get; }
+    public BetaClient Beta { get; }
 
     public IssuesClient Issues { get; }
 
     public LiveSharesClient LiveShares { get; }
 
     public MeClient Me { get; }
-
-    public ReadingsClient Readings { get; }
 
     public SpeedingIntervalsClient SpeedingIntervals { get; }
 
@@ -206,13 +199,11 @@ public partial class SamsaraClient
 
     public UsersClient Users { get; }
 
-    public V1MessagesClient V1Messages { get; }
-
     public WebhooksClient Webhooks { get; }
 
-    public AlertsClient Alerts { get; }
-
     public AuthClient Auth { get; }
+
+    public AlertsClient Alerts { get; }
 
     public CamerasClient Cameras { get; }
 
@@ -225,8 +216,6 @@ public partial class SamsaraClient
     public ReportsClient Reports { get; }
 
     public SettingsClient Settings { get; }
-
-    public TachographClient Tachograph { get; }
 
     private static string GetFromEnvironmentOrThrow(string env, string message)
     {

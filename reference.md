@@ -306,7 +306,7 @@ await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
 </details>
 
 ## Assets
-<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">ListAsync</a>(AssetsListRequest { ... }) -> Pager<AssetResponseBody></code></summary>
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">ListAsync</a>(AssetsListRequest { ... }) -> AssetsListAssetsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -551,7 +551,7 @@ await client.Assets.UpdateAsync(new AssetsUpdateAssetRequestBody { Id = "id" });
 </details>
 
 ## Inputs
-<details><summary><code>client.Inputs.<a href="/src/Samsara.Net/Inputs/InputsClient.cs">StreamAsync</a>(InputsStreamRequest { ... }) -> Pager<AssetsInputsResponseResponseBody></code></summary>
+<details><summary><code>client.Inputs.<a href="/src/Samsara.Net/Inputs/InputsClient.cs">StreamAsync</a>(InputsStreamRequest { ... }) -> AssetsInputsGetAssetsInputsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -615,7 +615,7 @@ await client.Inputs.StreamAsync(
 </details>
 
 ## Attributes
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">ListAsync</a>(AttributesListRequest { ... }) -> Pager<Attribute></code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">ListAsync</a>(AttributesListRequest { ... }) -> GetAttributesByEntityTypeResponse</code></summary>
 <dl>
 <dd>
 
@@ -949,7 +949,7 @@ await client.Attributes.UpdateAsync(
 </details>
 
 ## Contacts
-<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">ListAsync</a>(ContactsListRequest { ... }) -> Pager<Contact></code></summary>
+<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">ListAsync</a>(ContactsListRequest { ... }) -> ListContactsResponse</code></summary>
 <dl>
 <dd>
 
@@ -1248,7 +1248,7 @@ await client.Contacts.UpdateAsync("id", new UpdateContactRequest());
 </details>
 
 ## DefectTypes
-<details><summary><code>client.DefectTypes.<a href="/src/Samsara.Net/DefectTypes/DefectTypesClient.cs">ListAsync</a>(DefectTypesListRequest { ... }) -> Pager<DefectTypesResponseDataResponseBody></code></summary>
+<details><summary><code>client.DefectTypes.<a href="/src/Samsara.Net/DefectTypes/DefectTypesClient.cs">ListAsync</a>(DefectTypesListRequest { ... }) -> DvirDefectTypeGetDefectTypesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -1310,7 +1310,7 @@ await client.DefectTypes.ListAsync(new DefectTypesListRequest());
 </details>
 
 ## Defects
-<details><summary><code>client.Defects.<a href="/src/Samsara.Net/Defects/DefectsClient.cs">StreamAsync</a>(DefectsStreamRequest { ... }) -> Pager<DefectsResponseDataResponseBody></code></summary>
+<details><summary><code>client.Defects.<a href="/src/Samsara.Net/Defects/DefectsClient.cs">StreamAsync</a>(DefectsStreamRequest { ... }) -> DvirDefectStreamDefectsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -1360,75 +1360,6 @@ await client.Defects.StreamAsync(new DefectsStreamRequest { StartTime = "startTi
 <dd>
 
 **request:** `DefectsStreamRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Defects.<a href="/src/Samsara.Net/Defects/DefectsClient.cs">GetAsync</a>(id, DefectsGetRequest { ... }) -> DvirDefectGetDefectResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a single DVIR defect by ID.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Defects.GetAsync("id", new DefectsGetRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The unique ID of the DVIR defect.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `DefectsGetRequest` 
     
 </dd>
 </dl>
@@ -1569,7 +1500,7 @@ await client.Defects.UpdateAsync("id", new DefectPatch());
 </details>
 
 ## Devices
-<details><summary><code>client.Devices.<a href="/src/Samsara.Net/Devices/DevicesClient.cs">ListAsync</a>(DevicesListRequest { ... }) -> Pager<DeviceResponseResponseBody></code></summary>
+<details><summary><code>client.Devices.<a href="/src/Samsara.Net/Devices/DevicesClient.cs">ListAsync</a>(DevicesListRequest { ... }) -> DevicesGetDevicesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -1633,7 +1564,7 @@ await client.Devices.ListAsync(new DevicesListRequest());
 </details>
 
 ## DriverTrailerAssignments
-<details><summary><code>client.DriverTrailerAssignments.<a href="/src/Samsara.Net/DriverTrailerAssignments/DriverTrailerAssignmentsClient.cs">ListAsync</a>(DriverTrailerAssignmentsListRequest { ... }) -> Pager<GetDriverTrailerAssignmentsResponseBodyResponseBody></code></summary>
+<details><summary><code>client.DriverTrailerAssignments.<a href="/src/Samsara.Net/DriverTrailerAssignments/DriverTrailerAssignmentsClient.cs">ListAsync</a>(DriverTrailerAssignmentsListRequest { ... }) -> TrailerAssignmentsGetDriverTrailerAssignmentsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -1829,7 +1760,7 @@ await client.DriverTrailerAssignments.UpdateAsync(
 </details>
 
 ## Dvirs
-<details><summary><code>client.Dvirs.<a href="/src/Samsara.Net/Dvirs/DvirsClient.cs">StreamAsync</a>(DvirsStreamRequest { ... }) -> Pager<DvirStreamResponseDataResponseBody></code></summary>
+<details><summary><code>client.Dvirs.<a href="/src/Samsara.Net/Dvirs/DvirsClient.cs">StreamAsync</a>(DvirsStreamRequest { ... }) -> DvirGetDvirsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -1879,75 +1810,6 @@ await client.Dvirs.StreamAsync(new DvirsStreamRequest { StartTime = "startTime" 
 <dd>
 
 **request:** `DvirsStreamRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Dvirs.<a href="/src/Samsara.Net/Dvirs/DvirsClient.cs">GetAsync</a>(id, DvirsGetRequest { ... }) -> DvirGetDvirResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a single DVIR by ID.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Dvirs.GetAsync("id", new DvirsGetRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Id of the DVIR.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**request:** `DvirsGetRequest` 
     
 </dd>
 </dl>
@@ -2153,7 +2015,7 @@ await client.Dvirs.UpdateAsync("id", new UpdateDvirRequest { AuthorId = "11", Is
 </details>
 
 ## Carrier Proposed Assignments
-<details><summary><code>client.CarrierProposedAssignments.<a href="/src/Samsara.Net/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">ListAsync</a>(CarrierProposedAssignmentsListRequest { ... }) -> Pager<CarrierProposedAssignment></code></summary>
+<details><summary><code>client.CarrierProposedAssignments.<a href="/src/Samsara.Net/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">ListAsync</a>(CarrierProposedAssignmentsListRequest { ... }) -> ListCarrierProposedAssignmentResponse</code></summary>
 <dl>
 <dd>
 
@@ -2330,7 +2192,7 @@ await client.CarrierProposedAssignments.DeleteAsync("id");
 </details>
 
 ## DocumentTypes
-<details><summary><code>client.DocumentTypes.<a href="/src/Samsara.Net/DocumentTypes/DocumentTypesClient.cs">ListAsync</a>(DocumentTypesListRequest { ... }) -> Pager<GetDocumentTypeResponseObjectResponseBody></code></summary>
+<details><summary><code>client.DocumentTypes.<a href="/src/Samsara.Net/DocumentTypes/DocumentTypesClient.cs">ListAsync</a>(DocumentTypesListRequest { ... }) -> DocumentTypesGetDocumentTypesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -2392,7 +2254,7 @@ await client.DocumentTypes.ListAsync(new DocumentTypesListRequest());
 </details>
 
 ## Documents
-<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">ListAsync</a>(DocumentsListRequest { ... }) -> Pager<DocumentResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">ListAsync</a>(DocumentsListRequest { ... }) -> DocumentsGetDocumentsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -2913,7 +2775,7 @@ await client.DriverVehicleAssignments.UpdateAsync(
 </details>
 
 ## Drivers
-<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">ListAsync</a>(DriversListRequest { ... }) -> Pager<Driver></code></summary>
+<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">ListAsync</a>(DriversListRequest { ... }) -> ListDriversResponse</code></summary>
 <dl>
 <dd>
 
@@ -3228,7 +3090,7 @@ await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
 </details>
 
 ## Equipment
-<details><summary><code>client.Equipment.<a href="/src/Samsara.Net/Equipment/EquipmentClient.cs">ListAsync</a>(EquipmentListRequest { ... }) -> Pager<EquipmentObject></code></summary>
+<details><summary><code>client.Equipment.<a href="/src/Samsara.Net/Equipment/EquipmentClient.cs">ListAsync</a>(EquipmentListRequest { ... }) -> EquipmentListResponse</code></summary>
 <dl>
 <dd>
 
@@ -3240,7 +3102,11 @@ await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
 <dl>
 <dd>
 
-Returns a list of all equipment in an organization.
+Returns a list of all equipment in an organization. Equipment objects represent powered assets connected to a [Samsara AG26](https://www.samsara.com/products/models/ag26) via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever an AG26 is activated in your organization. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
 </dd>
 </dl>
 </dd>
@@ -3399,75 +3265,6 @@ await client.Hos.ClocksAsync(new HosClocksRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Hos.<a href="/src/Samsara.Net/Hos/HosClient.cs">DailyLogsAsync</a>(HosDailyLogsRequest { ... }) -> Pager<HosDailyLogsObjectResponseBody></code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get summarized daily Hours of Service charts for the specified drivers.
-
-The time range for a log is defined by the `driver`'s `eldDayStartHour`. This value is configurable per driver.
-
-The `startDate` and `endDate` parameters indicate the date range you'd like to retrieve daily logs for. A daily log will be returned if its `startTime` is on any of the days within in this date range (inclusive of `startDate` and `endDate`).
-
-**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.
-
-If you are using the legacy version of this endpoint and looking for its documentation, you can find it [here](https://www.samsara.com/api-legacy#operation/getFleetDriversHosDailyLogs).
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read ELD Compliance Settings (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Hos.DailyLogsAsync(new HosDailyLogsRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `HosDailyLogsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.Hos.<a href="/src/Samsara.Net/Hos/HosClient.cs">LogsAsync</a>(HosLogsRequest { ... }) -> HosLogsResponse</code></summary>
 <dl>
 <dd>
@@ -3530,7 +3327,7 @@ await client.Hos.LogsAsync(new HosLogsRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Hos.<a href="/src/Samsara.Net/Hos/HosClient.cs">ViolationsAsync</a>(HosViolationsRequest { ... }) -> Pager<HosViolationsObjectResponseBody></code></summary>
+<details><summary><code>client.Hos.<a href="/src/Samsara.Net/Hos/HosClient.cs">ViolationsAsync</a>(HosViolationsRequest { ... }) -> HosViolationsGetHosViolationsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -3597,8 +3394,78 @@ await client.Hos.ViolationsAsync(new HosViolationsRequest());
 </dl>
 </details>
 
+## Hours of Service
+<details><summary><code>client.HoursOfService.<a href="/src/Samsara.Net/HoursOfService/HoursOfServiceClient.cs">GetDailyLogsAsync</a>(HoursOfServiceGetDailyLogsRequest { ... }) -> HosDailyLogsGetHosDailyLogsResponseBody</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get summarized daily Hours of Service charts for the specified drivers.
+
+The time range for a log is defined by the `driver`'s `eldDayStartHour`. This value is configurable per driver.
+
+The `startDate` and `endDate` parameters indicate the date range you'd like to retrieve daily logs for. A daily log will be returned if its `startTime` is on any of the days within in this date range (inclusive of `startDate` and `endDate`).
+
+**Note:** If data is still being uploaded from the Samsara Driver App, it may not be completely reflected in the response from this endpoint. The best practice is to wait a couple of days before querying this endpoint to make sure that all data from the Samsara Driver App has been uploaded.
+
+If you are using the legacy version of this endpoint and looking for its documentation, you can find it [here](https://www.samsara.com/api-legacy#operation/getFleetDriversHosDailyLogs).
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read ELD Compliance Settings (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.HoursOfService.GetDailyLogsAsync(new HoursOfServiceGetDailyLogsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `HoursOfServiceGetDailyLogsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Routes
-<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">ListAsync</a>(RoutesListRequest { ... }) -> Pager<BaseRouteResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">ListAsync</a>(RoutesListRequest { ... }) -> RoutesFetchRoutesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -3927,7 +3794,7 @@ await client.Routes.UpdateAsync("id", new RoutesPatchRouteRequestBody());
 </details>
 
 ## SafetyEvents
-<details><summary><code>client.SafetyEvents.<a href="/src/Samsara.Net/SafetyEvents/SafetyEventsClient.cs">ListAsync</a>(SafetyEventsListRequest { ... }) -> Pager<SafetyEvent></code></summary>
+<details><summary><code>client.SafetyEvents.<a href="/src/Samsara.Net/SafetyEvents/SafetyEventsClient.cs">ListAsync</a>(SafetyEventsListRequest { ... }) -> SafetyEventsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -3988,7 +3855,7 @@ await client.SafetyEvents.ListAsync(
 </details>
 
 ## Trailers
-<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">ListAsync</a>(TrailersListRequest { ... }) -> Pager<TrailerResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">ListAsync</a>(TrailersListRequest { ... }) -> TrailersListTrailersResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -4304,7 +4171,7 @@ await client.Trailers.UpdateAsync("id", new TrailersUpdateTrailerRequestBody());
 </details>
 
 ## Vehicles
-<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">ListAsync</a>(VehiclesListRequest { ... }) -> Pager<VehicleResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">ListAsync</a>(VehiclesListRequest { ... }) -> VehiclesListVehiclesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -4572,11 +4439,13 @@ await client.Legacy.GetVehiclesDriverAssignmentsAsync(
 <dl>
 <dd>
 
-Returns all form submissions data for the specified list of IDs.
+Returns all form submissions data for the specified IDs. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -4633,11 +4502,13 @@ await client.FormSubmissions.ListAsync(new FormSubmissionsListRequest());
 <dl>
 <dd>
 
-Creates a form submission and assigns it to an individual worker. This endpoint can be used to create an empty or partially complete form submission and assign it to a worker.
+Creates a form submission. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -4658,7 +4529,7 @@ To use this endpoint, select **Write Form Submissions** under the Forms category
 await client.FormSubmissions.CreateAsync(
     new FormSubmissionsPostFormSubmissionRequestBody
     {
-        FormTemplate = new FormTemplateRequestObjectRequestBody
+        FormTemplate = new FormTemplateReferenceObjectRequestBody
         {
             Id = "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
             RevisionId = "1214a1fa-f0c6-408b-bf85-51dc3bc71ac7",
@@ -4704,11 +4575,13 @@ await client.FormSubmissions.CreateAsync(
 <dl>
 <dd>
 
-Updates an instance of a form submission.
+Updates an instance of a form submission. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -4759,7 +4632,7 @@ await client.FormSubmissions.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FormSubmissions.<a href="/src/Samsara.Net/FormSubmissions/FormSubmissionsClient.cs">StreamAsync</a>(FormSubmissionsStreamRequest { ... }) -> Pager<FormSubmissionResponseObjectResponseBody></code></summary>
+<details><summary><code>client.FormSubmissions.<a href="/src/Samsara.Net/FormSubmissions/FormSubmissionsClient.cs">StreamAsync</a>(FormSubmissionsStreamRequest { ... }) -> FormSubmissionsGetFormSubmissionsStreamResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -4771,11 +4644,13 @@ await client.FormSubmissions.UpdateAsync(
 <dl>
 <dd>
 
-Returns all form submissions data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
+Returns all form submissions data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -4811,68 +4686,6 @@ await client.FormSubmissions.StreamAsync(
 <dd>
 
 **request:** `FormSubmissionsStreamRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Forms
-<details><summary><code>client.Forms.<a href="/src/Samsara.Net/Forms/FormsClient.cs">GetFormTemplatesAsync</a>(GetFormTemplatesRequest { ... }) -> FormTemplatesGetFormTemplatesResponseBody</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a list of the organization's form templates for the specified list of IDs. If no IDs are provided, all form templates for the organization will be returned.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Forms.GetFormTemplatesAsync(new GetFormTemplatesRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetFormTemplatesRequest` 
     
 </dd>
 </dl>
@@ -4960,7 +4773,7 @@ await client.FuelPurchases.CreateAsync(
 </details>
 
 ## Gateways
-<details><summary><code>client.Gateways.<a href="/src/Samsara.Net/Gateways/GatewaysClient.cs">ListAsync</a>(GatewaysListRequest { ... }) -> Pager<GatewayResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Gateways.<a href="/src/Samsara.Net/Gateways/GatewaysClient.cs">ListAsync</a>(GatewaysListRequest { ... }) -> GatewaysGetGatewaysResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5143,8 +4956,8 @@ await client.Gateways.DeleteAsync("id");
 </dl>
 </details>
 
-## Idling
-<details><summary><code>client.Idling.<a href="/src/Samsara.Net/Idling/IdlingClient.cs">ListAsync</a>(IdlingListRequest { ... }) -> Pager<IdlingEventObjectResponseBody></code></summary>
+## Beta
+<details><summary><code>client.Beta.<a href="/src/Samsara.Net/Beta/BetaClient.cs">UpdateShippingDocsAsync</a>(HosDailyLogsUpdateShippingDocsRequestBody { ... }) -> HosDailyLogsUpdateShippingDocsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5156,13 +4969,11 @@ await client.Gateways.DeleteAsync("id");
 <dl>
 <dd>
 
-Get idling events for the requested time duration.
-
-**Note:** The data from this endpoint comes from the new Advanced Idling Report, which provides additional data fields for each idling event such as air temperature, geofence, PTO state and minimum idle time. This endpoint will initially include data from August 1, 2024. Approx. two weeks later, this will be further back dated to January 1, 2024. If you require additional historical data, you can access it via the [vehicle idling reports API](https://developers.samsara.com/reference/getvehicleidlingreports).
+Update the shippingDocs field of an existing assignment.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Idling** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5180,8 +4991,13 @@ To use this endpoint, select **Read Idling** under the Fuel & Energy category wh
 <dd>
 
 ```csharp
-await client.Idling.ListAsync(
-    new IdlingListRequest { StartTime = "startTime", EndTime = "endTime" }
+await client.Beta.UpdateShippingDocsAsync(
+    new HosDailyLogsUpdateShippingDocsRequestBody
+    {
+        HosDate = "hosDate",
+        DriverId = "driverID",
+        ShippingDocs = "ShippingID1, ShippingID2",
+    }
 );
 ```
 </dd>
@@ -5197,7 +5013,7 @@ await client.Idling.ListAsync(
 <dl>
 <dd>
 
-**request:** `IdlingListRequest` 
+**request:** `HosDailyLogsUpdateShippingDocsRequestBody` 
     
 </dd>
 </dl>
@@ -5222,11 +5038,13 @@ await client.Idling.ListAsync(
 <dl>
 <dd>
 
-Returns all issues data for the specified IDs.
+Returns all issues data for the specified IDs. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Issues** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Issues** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5283,11 +5101,13 @@ await client.Issues.ListAsync(new IssuesListRequest());
 <dl>
 <dd>
 
-Updates an instance of an issue.
+Updates an instance of an issue. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Issues** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Issues** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5334,7 +5154,7 @@ await client.Issues.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Issues.<a href="/src/Samsara.Net/Issues/IssuesClient.cs">StreamAsync</a>(IssuesStreamRequest { ... }) -> Pager<IssueResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Issues.<a href="/src/Samsara.Net/Issues/IssuesClient.cs">StreamAsync</a>(IssuesStreamRequest { ... }) -> IssuesGetIssuesStreamResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5346,11 +5166,13 @@ await client.Issues.UpdateAsync(
 <dl>
 <dd>
 
-Returns all issues data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call.
+Returns all issues data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Issues** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Issues** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5396,7 +5218,7 @@ await client.Issues.StreamAsync(new IssuesStreamRequest { StartTime = "startTime
 </details>
 
 ## LiveShares
-<details><summary><code>client.LiveShares.<a href="/src/Samsara.Net/LiveShares/LiveSharesClient.cs">ListAsync</a>(LiveSharesListRequest { ... }) -> Pager<LiveSharingLinkFullResponseObjectResponseBody></code></summary>
+<details><summary><code>client.LiveShares.<a href="/src/Samsara.Net/LiveShares/LiveSharesClient.cs">ListAsync</a>(LiveSharesListRequest { ... }) -> LiveSharingLinksGetLiveSharingLinksResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5696,196 +5518,8 @@ await client.Me.GetAsync();
 </dl>
 </details>
 
-## Readings
-<details><summary><code>client.Readings.<a href="/src/Samsara.Net/Readings/ReadingsClient.cs">DefinitionsAsync</a>(ReadingsDefinitionsRequest { ... }) -> Pager<ReadingDefinitionResponseBody></code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-An introspection endpoint for discovering the set of readings including their name, description, data type, unit, and other metadata.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Readings** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Readings.DefinitionsAsync(new ReadingsDefinitionsRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ReadingsDefinitionsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Readings.<a href="/src/Samsara.Net/Readings/ReadingsClient.cs">HistoryAsync</a>(ReadingsHistoryRequest { ... }) -> Pager<ReadingHistoryResponseBody></code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the values of a reading for a set of entities within the specified time range. Returns a paginated response with data for the specified resource IDs where startTime <= happenedAtTime < endTime. End time of null implies endTime is infinite and all known readings are returned.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Readings** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Readings.HistoryAsync(
-    new ReadingsHistoryRequest { ReadingId = "readingId", EntityType = "entityType" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ReadingsHistoryRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Readings.<a href="/src/Samsara.Net/Readings/ReadingsClient.cs">LatestAsync</a>(ReadingsLatestRequest { ... }) -> Pager<ReadingSnapshotResponseBody></code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-An endpoint to get the last value of a reading for a set of entities at the specified time.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Readings** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Readings.LatestAsync(
-    new ReadingsLatestRequest { ReadingIds = "readingIds", EntityType = "entityType" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ReadingsLatestRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## SpeedingIntervals
-<details><summary><code>client.SpeedingIntervals.<a href="/src/Samsara.Net/SpeedingIntervals/SpeedingIntervalsClient.cs">StreamAsync</a>(SpeedingIntervalsStreamRequest { ... }) -> Pager<TripSpeedingIntervalsResponseBody></code></summary>
+<details><summary><code>client.SpeedingIntervals.<a href="/src/Samsara.Net/SpeedingIntervals/SpeedingIntervalsClient.cs">StreamAsync</a>(SpeedingIntervalsStreamRequest { ... }) -> SpeedingIntervalsGetSpeedingIntervalsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -5897,7 +5531,7 @@ await client.Readings.LatestAsync(
 <dl>
 <dd>
 
-This endpoint will return all speeding intervals associated with all trips that have been collected for your organization based on the time parameters passed in. Only completed trips are included. Trips with no speeding intervals detected will be returned with an empty list of intervals. Results are paginated.
+This endpoint will return all speeding intervals associated with trips that have been collected for your organization based on the time parameters passed in. Only completed trips are included. Results are paginated.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5949,7 +5583,7 @@ await client.SpeedingIntervals.StreamAsync(
 </details>
 
 ## Tags
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">ListAsync</a>(TagsListRequest { ... }) -> Pager<Tag></code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">ListAsync</a>(TagsListRequest { ... }) -> ListTagsResponse</code></summary>
 <dl>
 <dd>
 
@@ -6577,7 +6211,7 @@ await client.TrainingAssignments.StreamAsync(
 </details>
 
 ## TrainingCourses
-<details><summary><code>client.TrainingCourses.<a href="/src/Samsara.Net/TrainingCourses/TrainingCoursesClient.cs">ListAsync</a>(TrainingCoursesListRequest { ... }) -> Pager<TrainingCourseResponseObjectResponseBody></code></summary>
+<details><summary><code>client.TrainingCourses.<a href="/src/Samsara.Net/TrainingCourses/TrainingCoursesClient.cs">ListAsync</a>(TrainingCoursesListRequest { ... }) -> TrainingCoursesGetTrainingCoursesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -6640,7 +6274,7 @@ await client.TrainingCourses.ListAsync(new TrainingCoursesListRequest());
 </details>
 
 ## Trips
-<details><summary><code>client.Trips.<a href="/src/Samsara.Net/Trips/TripsClient.cs">StreamAsync</a>(TripsStreamRequest { ... }) -> Pager<TripResponseBody></code></summary>
+<details><summary><code>client.Trips.<a href="/src/Samsara.Net/Trips/TripsClient.cs">StreamAsync</a>(TripsStreamRequest { ... }) -> TripsGetTripsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -6702,7 +6336,7 @@ await client.Trips.StreamAsync(new TripsStreamRequest { StartTime = "startTime" 
 </details>
 
 ## UserRoles
-<details><summary><code>client.UserRoles.<a href="/src/Samsara.Net/UserRoles/UserRolesClient.cs">ListAsync</a>(UserRolesListRequest { ... }) -> Pager<UserRole></code></summary>
+<details><summary><code>client.UserRoles.<a href="/src/Samsara.Net/UserRoles/UserRolesClient.cs">ListAsync</a>(UserRolesListRequest { ... }) -> ListUserRolesResponse</code></summary>
 <dl>
 <dd>
 
@@ -6761,7 +6395,7 @@ await client.UserRoles.ListAsync(new UserRolesListRequest());
 </details>
 
 ## Users
-<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">ListAsync</a>(UsersListRequest { ... }) -> Pager<User></code></summary>
+<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">ListAsync</a>(UsersListRequest { ... }) -> ListUsersResponse</code></summary>
 <dl>
 <dd>
 
@@ -7070,147 +6704,8 @@ await client.Users.UpdateAsync("id", new UpdateUserRequest());
 </dl>
 </details>
 
-## V1Messages
-<details><summary><code>client.V1Messages.<a href="/src/Samsara.Net/V1Messages/V1MessagesClient.cs">ListAsync</a>(V1MessagesListRequest { ... }) -> InlineResponse2005</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Get all messages. 
-
- <b>Rate limit:</b> 75 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Messages** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.V1Messages.ListAsync(new V1MessagesListRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `V1MessagesListRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.V1Messages.<a href="/src/Samsara.Net/V1Messages/V1MessagesClient.cs">CreateAsync</a>(InlineObject2 { ... }) -> InlineResponse2006</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-<n class="warning">
-<nh>
-<i class="fa fa-exclamation-circle"></i>
-This endpoint is still on our legacy API.
-</nh>
-</n>
-
-Send a message to a list of driver ids. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Write Messages** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.V1Messages.CreateAsync(
-    new InlineObject2
-    {
-        DriverIds = new List<long>() { 111, 222, 333 },
-        Text = "This is a message.",
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `InlineObject2` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Webhooks
-<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">ListAsync</a>(WebhooksListRequest { ... }) -> Pager<WebhookResponseResponseBody></code></summary>
+<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">ListAsync</a>(WebhooksListRequest { ... }) -> WebhooksListWebhooksResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -7531,8 +7026,71 @@ await client.Webhooks.PatchAsync("id", new WebhooksPatchWebhookRequestBody());
 </dl>
 </details>
 
+## Auth
+<details><summary><code>client.Auth.<a href="/src/Samsara.Net/Auth/AuthClient.cs">GetTokenAsync</a>(AuthGetTokenRequest { ... }) -> GetTokenResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Obtain an OAuth2 access token using client credentials
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Auth.GetTokenAsync(
+    new AuthGetTokenRequest
+    {
+        ClientId = "client_id",
+        ClientSecret = "client_secret",
+        Audience = "https://api.samsara.com",
+        GrantType = "authorization_code",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `AuthGetTokenRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Alerts Configurations
-<details><summary><code>client.Alerts.Configurations.<a href="/src/Samsara.Net/Alerts/Configurations/ConfigurationsClient.cs">ListAsync</a>(ConfigurationsListRequest { ... }) -> Pager<GetResponseWorkflowConfigurationObjectResponseBody></code></summary>
+<details><summary><code>client.Alerts.Configurations.<a href="/src/Samsara.Net/Alerts/Configurations/ConfigurationsClient.cs">ListAsync</a>(ConfigurationsListRequest { ... }) -> AlertsGetConfigurationsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -7575,7 +7133,6 @@ Tire Faults
 Gateway Disconnected
 Panic Button
 Tampering Detected
-Asset Reading
 If vehicle is severely speeding (as defined by your organization)
 DVIR Submitted for Asset
 Driver Document Submitted
@@ -7839,7 +7396,7 @@ await client.Alerts.Configurations.UpdateAsync(
 </details>
 
 ## Alerts Incidents
-<details><summary><code>client.Alerts.Incidents.<a href="/src/Samsara.Net/Alerts/Incidents/IncidentsClient.cs">StreamAsync</a>(IncidentsStreamRequest { ... }) -> Pager<GetWorkflowIncidentResponseObjectResponseBody></code></summary>
+<details><summary><code>client.Alerts.Incidents.<a href="/src/Samsara.Net/Alerts/Incidents/IncidentsClient.cs">StreamAsync</a>(IncidentsStreamRequest { ... }) -> AlertsGetIncidentsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -7901,7 +7458,7 @@ await client.Alerts.Incidents.StreamAsync(new IncidentsStreamRequest { StartTime
 </details>
 
 ## Assets LocationAndSpeed
-<details><summary><code>client.Assets.LocationAndSpeed.<a href="/src/Samsara.Net/Assets/LocationAndSpeed/LocationAndSpeedClient.cs">StreamAsync</a>(LocationAndSpeedStreamRequest { ... }) -> Pager<LocationAndSpeedResponseResponseBody></code></summary>
+<details><summary><code>client.Assets.LocationAndSpeed.<a href="/src/Samsara.Net/Assets/LocationAndSpeed/LocationAndSpeedClient.cs">StreamAsync</a>(LocationAndSpeedStreamRequest { ... }) -> LocationAndSpeedGetLocationAndSpeedResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -7951,115 +7508,6 @@ await client.Assets.LocationAndSpeed.StreamAsync(new LocationAndSpeedStreamReque
 <dd>
 
 **request:** `LocationAndSpeedStreamRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Auth Tokens
-<details><summary><code>client.Auth.Tokens.<a href="/src/Samsara.Net/Auth/Tokens/TokensClient.cs">CreateAsync</a>(TokensCreateRequest { ... }) -> CreateTokensResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Exchange an authorization code for access and refresh tokens.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Auth.Tokens.CreateAsync(new TokensCreateRequest { GrantType = "authorization_code" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TokensCreateRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Auth.Tokens.<a href="/src/Samsara.Net/Auth/Tokens/TokensClient.cs">RevokeAsync</a>(TokensRevokeRequest { ... }) -> CreateTokensResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Invalidates access tokens and refresh tokens for that organization
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Auth.Tokens.RevokeAsync(new TokensRevokeRequest { Token = "token" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `TokensRevokeRequest` 
     
 </dd>
 </dl>
@@ -8246,6 +7694,8 @@ await client.Cameras.Media.Retrieval.CreateAsync(
         {
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
+            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
+            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },
         MediaType = MediaRetrievalPostMediaRetrievalRequestBodyMediaType.Image,
         StartTime = "2019-06-13T19:08:25Z",
@@ -8279,7 +7729,7 @@ await client.Cameras.Media.Retrieval.CreateAsync(
 </details>
 
 ## Coaching DriverCoachAssignments
-<details><summary><code>client.Coaching.DriverCoachAssignments.<a href="/src/Samsara.Net/Coaching/DriverCoachAssignments/DriverCoachAssignmentsClient.cs">ListAsync</a>(DriverCoachAssignmentsListRequest { ... }) -> Pager<CoachAssignmentWithDriverExternalIdsResponseResponseBody></code></summary>
+<details><summary><code>client.Coaching.DriverCoachAssignments.<a href="/src/Samsara.Net/Coaching/DriverCoachAssignments/DriverCoachAssignmentsClient.cs">ListAsync</a>(DriverCoachAssignmentsListRequest { ... }) -> DriverCoachAssignmentsGetDriverCoachAssignmentResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8404,7 +7854,7 @@ await client.Coaching.DriverCoachAssignments.UpdateAsync(
 </details>
 
 ## Coaching Sessions
-<details><summary><code>client.Coaching.Sessions.<a href="/src/Samsara.Net/Coaching/Sessions/SessionsClient.cs">StreamAsync</a>(SessionsStreamRequest { ... }) -> Pager<CoachingSessionsResponseResponseBody></code></summary>
+<details><summary><code>client.Coaching.Sessions.<a href="/src/Samsara.Net/Coaching/Sessions/SessionsClient.cs">StreamAsync</a>(SessionsStreamRequest { ... }) -> CoachingSessionsGetCoachingSessionsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -8774,6 +8224,130 @@ await client.Drivers.QrCodes.DeleteAsync(
 </dl>
 </details>
 
+## Drivers TachographActivity
+<details><summary><code>client.Drivers.TachographActivity.<a href="/src/Samsara.Net/Drivers/TachographActivity/TachographActivityClient.cs">HistoryAsync</a>(TachographActivityHistoryRequest { ... }) -> DriverTachographActivityResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all known tachograph activity for all specified drivers in the time range. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Drivers.TachographActivity.HistoryAsync(
+    new TachographActivityHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TachographActivityHistoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Drivers TachographFiles
+<details><summary><code>client.Drivers.TachographFiles.<a href="/src/Samsara.Net/Drivers/TachographFiles/TachographFilesClient.cs">HistoryAsync</a>(TachographFilesHistoryRequest { ... }) -> TachographDriverFilesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all known tachograph files for all specified drivers in the time range. 
+
+ <b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Drivers.TachographFiles.HistoryAsync(
+    new TachographFilesHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TachographFilesHistoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Drivers VehicleAssignments
 <details><summary><code>client.Drivers.VehicleAssignments.<a href="/src/Samsara.Net/Drivers/VehicleAssignments/VehicleAssignmentsClient.cs">ListAsync</a>(VehicleAssignmentsListRequest { ... }) -> DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody</code></summary>
 <dl>
@@ -8837,7 +8411,7 @@ await client.Drivers.VehicleAssignments.ListAsync(new VehicleAssignmentsListRequ
 </details>
 
 ## Equipment Locations
-<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">ListAsync</a>(LocationsListRequest { ... }) -> Pager<EquipmentLocationsResponseData></code></summary>
+<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">ListAsync</a>(LocationsListRequest { ... }) -> EquipmentLocationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -8895,7 +8469,7 @@ await client.Equipment.Locations.ListAsync(new LocationsListRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">FeedAsync</a>(LocationsFeedRequest { ... }) -> Pager<EquipmentLocationsListResponseData></code></summary>
+<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">FeedAsync</a>(LocationsFeedRequest { ... }) -> EquipmentLocationsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -8907,7 +8481,7 @@ await client.Equipment.Locations.ListAsync(new LocationsListRequest());
 <dl>
 <dd>
 
-Follow a continuous feed of all equipment locations.
+Follow a continuous feed of all equipment locations from Samsara AG26s.
 
 Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a `pagination` object that contains an `endCursor`.
 
@@ -8959,7 +8533,7 @@ await client.Equipment.Locations.FeedAsync(new LocationsFeedRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">HistoryAsync</a>(LocationsHistoryRequest { ... }) -> Pager<EquipmentLocationsListResponseData></code></summary>
+<details><summary><code>client.Equipment.Locations.<a href="/src/Samsara.Net/Equipment/Locations/LocationsClient.cs">HistoryAsync</a>(LocationsHistoryRequest { ... }) -> EquipmentLocationsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -9020,7 +8594,7 @@ await client.Equipment.Locations.HistoryAsync(
 </details>
 
 ## Equipment Stats
-<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">ListAsync</a>(StatsListRequest { ... }) -> Pager<EquipmentStatsResponseData></code></summary>
+<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">GetAsync</a>(StatsGetRequest { ... }) -> EquipmentStatsResponse</code></summary>
 <dl>
 <dd>
 
@@ -9053,7 +8627,7 @@ To use this endpoint, select **Read Equipment Statistics** under the Equipment c
 <dd>
 
 ```csharp
-await client.Equipment.Stats.ListAsync(new StatsListRequest());
+await client.Equipment.Stats.GetAsync(new StatsGetRequest());
 ```
 </dd>
 </dl>
@@ -9068,7 +8642,7 @@ await client.Equipment.Stats.ListAsync(new StatsListRequest());
 <dl>
 <dd>
 
-**request:** `StatsListRequest` 
+**request:** `StatsGetRequest` 
     
 </dd>
 </dl>
@@ -9080,7 +8654,7 @@ await client.Equipment.Stats.ListAsync(new StatsListRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">FeedAsync</a>(StatsFeedRequest { ... }) -> Pager<EquipmentStatsListResponseData></code></summary>
+<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">FeedAsync</a>(StatsFeedRequest { ... }) -> EquipmentStatsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -9092,7 +8666,7 @@ await client.Equipment.Stats.ListAsync(new StatsListRequest());
 <dl>
 <dd>
 
-Follow a continuous feed of all equipment stats.
+Follow a continuous feed of all equipment stats from Samsara AG26s.
 
 Your first call to this endpoint will provide you with the most recent stats for each unit of equipment and a `pagination` object that contains an `endCursor`.
 
@@ -9146,7 +8720,7 @@ await client.Equipment.Stats.FeedAsync(new StatsFeedRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">HistoryAsync</a>(StatsHistoryRequest { ... }) -> Pager<EquipmentStatsListResponseData></code></summary>
+<details><summary><code>client.Equipment.Stats.<a href="/src/Samsara.Net/Equipment/Stats/StatsClient.cs">HistoryAsync</a>(StatsHistoryRequest { ... }) -> EquipmentStatsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -9209,7 +8783,7 @@ await client.Equipment.Stats.HistoryAsync(
 </details>
 
 ## FormSubmissions PdfExports
-<details><summary><code>client.FormSubmissions.PdfExports.<a href="/src/Samsara.Net/FormSubmissions/PdfExports/PdfExportsClient.cs">GetAsync</a>(PdfExportsGetRequest { ... }) -> FormSubmissionsGetFormSubmissionsPdfExportsResponseBody</code></summary>
+<details><summary><code>client.FormSubmissions.PdfExports.<a href="/src/Samsara.Net/FormSubmissions/PdfExports/PdfExportsClient.cs">ListAsync</a>(PdfExportsListRequest { ... }) -> FormSubmissionsGetFormSubmissionsPdfExportsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9221,11 +8795,13 @@ await client.Equipment.Stats.HistoryAsync(
 <dl>
 <dd>
 
-Returns a PDF export that has already been generated for a form submission.
+Returns a PDF export for a form submission. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -9243,7 +8819,7 @@ To use this endpoint, select **Read Form Submissions** under the Forms category 
 <dd>
 
 ```csharp
-await client.FormSubmissions.PdfExports.GetAsync(new PdfExportsGetRequest { PdfId = "pdfId" });
+await client.FormSubmissions.PdfExports.ListAsync(new PdfExportsListRequest { PdfId = "pdfId" });
 ```
 </dd>
 </dl>
@@ -9258,7 +8834,7 @@ await client.FormSubmissions.PdfExports.GetAsync(new PdfExportsGetRequest { PdfI
 <dl>
 <dd>
 
-**request:** `PdfExportsGetRequest` 
+**request:** `PdfExportsListRequest` 
     
 </dd>
 </dl>
@@ -9282,11 +8858,13 @@ await client.FormSubmissions.PdfExports.GetAsync(new PdfExportsGetRequest { PdfI
 <dl>
 <dd>
 
-Creates a PDF export for an existing form submission.
+Creates a PDF export for a form submission. 
+
+**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Forms APIs enabled for your organization.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Form Submissions** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Form Submissions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -9461,7 +9039,7 @@ await client.Ifta.Csv.GetAsync("id");
 </details>
 
 ## Maintenance ServiceTasks
-<details><summary><code>client.Maintenance.ServiceTasks.<a href="/src/Samsara.Net/Maintenance/ServiceTasks/ServiceTasksClient.cs">ListAsync</a>(ServiceTasksListRequest { ... }) -> Pager<ServiceTaskDefinitionObjectResponseBody></code></summary>
+<details><summary><code>client.Maintenance.ServiceTasks.<a href="/src/Samsara.Net/Maintenance/ServiceTasks/ServiceTasksClient.cs">ListAsync</a>(ServiceTasksListRequest { ... }) -> WorkOrdersGetServiceTasksResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9598,7 +9176,7 @@ await client.Maintenance.ServiceTasks.UpdateAsync();
 </details>
 
 ## Maintenance WorkOrders
-<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">ListAsync</a>(WorkOrdersListRequest { ... }) -> Pager<WorkOrderObjectResponseBody></code></summary>
+<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">ListAsync</a>(WorkOrdersListRequest { ... }) -> WorkOrdersGetWorkOrdersResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9846,7 +9424,7 @@ await client.Maintenance.WorkOrders.UpdateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">StreamAsync</a>(WorkOrdersStreamRequest { ... }) -> Pager<WorkOrderObjectResponseBody></code></summary>
+<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">StreamAsync</a>(WorkOrdersStreamRequest { ... }) -> WorkOrdersStreamWorkOrdersResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9910,7 +9488,7 @@ await client.Maintenance.WorkOrders.StreamAsync(
 </details>
 
 ## Reports Drivers FuelEnergy
-<details><summary><code>client.Reports.Drivers.FuelEnergy.<a href="/src/Samsara.Net/Reports/Drivers/FuelEnergy/FuelEnergyClient.cs">ListAsync</a>(FuelEnergyListRequest { ... }) -> FuelEnergyGetFuelEnergyDriverReportsResponseBody</code></summary>
+<details><summary><code>client.Reports.Drivers.FuelEnergy.<a href="/src/Samsara.Net/Reports/Drivers/FuelEnergy/FuelEnergyClient.cs">GetAsync</a>(FuelEnergyGetRequest { ... }) -> FuelEnergyGetFuelEnergyDriverReportsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9944,8 +9522,8 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```csharp
-await client.Reports.Drivers.FuelEnergy.ListAsync(
-    new FuelEnergyListRequest { StartDate = "startDate", EndDate = "endDate" }
+await client.Reports.Drivers.FuelEnergy.GetAsync(
+    new FuelEnergyGetRequest { StartDate = "startDate", EndDate = "endDate" }
 );
 ```
 </dd>
@@ -9961,7 +9539,7 @@ await client.Reports.Drivers.FuelEnergy.ListAsync(
 <dl>
 <dd>
 
-**request:** `FuelEnergyListRequest` 
+**request:** `FuelEnergyGetRequest` 
     
 </dd>
 </dl>
@@ -10038,7 +9616,7 @@ await client.Reports.Ifta.Jurisdiction.GetAsync(new JurisdictionGetRequest { Yea
 </details>
 
 ## Reports Ifta Vehicle
-<details><summary><code>client.Reports.Ifta.Vehicle.<a href="/src/Samsara.Net/Reports/Ifta/Vehicle/VehicleClient.cs">ListAsync</a>(VehicleListRequest { ... }) -> IftaGetIftaVehicleReportsResponseBody</code></summary>
+<details><summary><code>client.Reports.Ifta.Vehicle.<a href="/src/Samsara.Net/Reports/Ifta/Vehicle/VehicleClient.cs">GetAsync</a>(VehicleGetRequest { ... }) -> IftaGetIftaVehicleReportsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -10074,7 +9652,7 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 <dd>
 
 ```csharp
-await client.Reports.Ifta.Vehicle.ListAsync(new VehicleListRequest { Year = 1 });
+await client.Reports.Ifta.Vehicle.GetAsync(new VehicleGetRequest { Year = 1 });
 ```
 </dd>
 </dl>
@@ -10089,7 +9667,7 @@ await client.Reports.Ifta.Vehicle.ListAsync(new VehicleListRequest { Year = 1 })
 <dl>
 <dd>
 
-**request:** `VehicleListRequest` 
+**request:** `VehicleGetRequest` 
     
 </dd>
 </dl>
@@ -10102,7 +9680,7 @@ await client.Reports.Ifta.Vehicle.ListAsync(new VehicleListRequest { Year = 1 })
 </details>
 
 ## Reports Vehicles Idling
-<details><summary><code>client.Reports.Vehicles.Idling.<a href="/src/Samsara.Net/Reports/Vehicles/Idling/IdlingClient.cs">ListAsync</a>(IdlingListRequest { ... }) -> Pager<IdlingReportEventResponseBody></code></summary>
+<details><summary><code>client.Reports.Vehicles.Idling.<a href="/src/Samsara.Net/Reports/Vehicles/Idling/IdlingClient.cs">GetAsync</a>(IdlingGetRequest { ... }) -> IdlingReportsGetVehicleIdlingReportsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -10115,8 +9693,6 @@ await client.Reports.Ifta.Vehicle.ListAsync(new VehicleListRequest { Year = 1 })
 <dd>
 
 Get all vehicle idling reports for the requested time duration.
-
-**Note:** We are gradually releasing the new Advanced Idling Report, which provides additional data fields for each idling event such as air temperature, geofence, PTO state and minimum idle time. We have released the associated API in Beta to gather valuable feedback. You can access the Beta API [here](https://developers.samsara.com/reference/getidlingevents).
 
  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -10138,8 +9714,8 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```csharp
-await client.Reports.Vehicles.Idling.ListAsync(
-    new IdlingListRequest { StartTime = "startTime", EndTime = "endTime" }
+await client.Reports.Vehicles.Idling.GetAsync(
+    new IdlingGetRequest { StartTime = "startTime", EndTime = "endTime" }
 );
 ```
 </dd>
@@ -10155,7 +9731,7 @@ await client.Reports.Vehicles.Idling.ListAsync(
 <dl>
 <dd>
 
-**request:** `IdlingListRequest` 
+**request:** `IdlingGetRequest` 
     
 </dd>
 </dl>
@@ -10168,7 +9744,7 @@ await client.Reports.Vehicles.Idling.ListAsync(
 </details>
 
 ## Reports Vehicles FuelEnergy
-<details><summary><code>client.Reports.Vehicles.FuelEnergy.<a href="/src/Samsara.Net/Reports/Vehicles/FuelEnergy/FuelEnergyClient.cs">ListAsync</a>(FuelEnergyListRequest { ... }) -> FuelEnergyGetFuelEnergyVehicleReportsResponseBody</code></summary>
+<details><summary><code>client.Reports.Vehicles.FuelEnergy.<a href="/src/Samsara.Net/Reports/Vehicles/FuelEnergy/FuelEnergyClient.cs">GetAsync</a>(FuelEnergyGetRequest { ... }) -> FuelEnergyGetFuelEnergyVehicleReportsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -10202,8 +9778,8 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```csharp
-await client.Reports.Vehicles.FuelEnergy.ListAsync(
-    new FuelEnergyListRequest { StartDate = "startDate", EndDate = "endDate" }
+await client.Reports.Vehicles.FuelEnergy.GetAsync(
+    new FuelEnergyGetRequest { StartDate = "startDate", EndDate = "endDate" }
 );
 ```
 </dd>
@@ -10219,7 +9795,7 @@ await client.Reports.Vehicles.FuelEnergy.ListAsync(
 <dl>
 <dd>
 
-**request:** `FuelEnergyListRequest` 
+**request:** `FuelEnergyGetRequest` 
     
 </dd>
 </dl>
@@ -10296,7 +9872,7 @@ await client.Routes.AuditLogs.FeedAsync(new AuditLogsFeedRequest());
 </details>
 
 ## SafetyEvents AuditLogs
-<details><summary><code>client.SafetyEvents.AuditLogs.<a href="/src/Samsara.Net/SafetyEvents/AuditLogs/AuditLogsClient.cs">FeedAsync</a>(AuditLogsFeedRequest { ... }) -> Pager<SafetyEventActivityFeedItemResponseBody></code></summary>
+<details><summary><code>client.SafetyEvents.AuditLogs.<a href="/src/Samsara.Net/SafetyEvents/AuditLogs/AuditLogsClient.cs">FeedAsync</a>(AuditLogsFeedRequest { ... }) -> SafetyEventsGetSafetyActivityEventFeedResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -10626,194 +10202,8 @@ await client.Settings.Safety.GetAsync();
 </dl>
 </details>
 
-## Tachograph Driver
-<details><summary><code>client.Tachograph.Driver.<a href="/src/Samsara.Net/Tachograph/Driver/DriverClient.cs">ActivityAsync</a>(DriverActivityRequest { ... }) -> DriverTachographActivityResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns all known tachograph activity for all specified drivers in the time range. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Tachograph.Driver.ActivityAsync(
-    new DriverActivityRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DriverActivityRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.Tachograph.Driver.<a href="/src/Samsara.Net/Tachograph/Driver/DriverClient.cs">FilesAsync</a>(DriverFilesRequest { ... }) -> TachographDriverFilesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns all known tachograph files for all specified drivers in the time range. 
-
- <b>Rate limit:</b> 50 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Tachograph.Driver.FilesAsync(
-    new DriverFilesRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DriverFilesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Tachograph Vehicles
-<details><summary><code>client.Tachograph.Vehicles.<a href="/src/Samsara.Net/Tachograph/Vehicles/VehiclesClient.cs">FilesAsync</a>(VehiclesFilesRequest { ... }) -> TachographVehicleFilesResponse</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns all known tachograph files for all specified vehicles in the time range. 
-
- <b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Tachograph.Vehicles.FilesAsync(
-    new VehiclesFilesRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `VehiclesFilesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 ## Vehicles Immobilizer
-<details><summary><code>client.Vehicles.Immobilizer.<a href="/src/Samsara.Net/Vehicles/Immobilizer/ImmobilizerClient.cs">StreamAsync</a>(ImmobilizerStreamRequest { ... }) -> Pager<EngineImmobilizerStateResponseBody></code></summary>
+<details><summary><code>client.Vehicles.Immobilizer.<a href="/src/Samsara.Net/Vehicles/Immobilizer/ImmobilizerClient.cs">StreamAsync</a>(ImmobilizerStreamRequest { ... }) -> EngineImmobilizerGetEngineImmobilizerStatesResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -10877,7 +10267,7 @@ await client.Vehicles.Immobilizer.StreamAsync(
 </details>
 
 ## Vehicles Locations
-<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">ListAsync</a>(LocationsListRequest { ... }) -> Pager<VehicleLocationsResponseData></code></summary>
+<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">ListAsync</a>(LocationsListRequest { ... }) -> VehicleLocationsResponse</code></summary>
 <dl>
 <dd>
 
@@ -10939,7 +10329,7 @@ await client.Vehicles.Locations.ListAsync(new LocationsListRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">FeedAsync</a>(LocationsFeedRequest { ... }) -> Pager<VehicleLocationsListResponseData></code></summary>
+<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">FeedAsync</a>(LocationsFeedRequest { ... }) -> VehicleLocationsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -11007,7 +10397,7 @@ await client.Vehicles.Locations.FeedAsync(new LocationsFeedRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">HistoryAsync</a>(LocationsHistoryRequest { ... }) -> Pager<VehicleLocationsListResponseData></code></summary>
+<details><summary><code>client.Vehicles.Locations.<a href="/src/Samsara.Net/Vehicles/Locations/LocationsClient.cs">HistoryAsync</a>(LocationsHistoryRequest { ... }) -> VehicleLocationsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -11072,7 +10462,7 @@ await client.Vehicles.Locations.HistoryAsync(
 </details>
 
 ## Vehicles Stats
-<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">ListAsync</a>(StatsListRequest { ... }) -> Pager<VehicleStatsResponseData></code></summary>
+<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">ListAsync</a>(StatsListRequest { ... }) -> VehicleStatsResponse</code></summary>
 <dl>
 <dd>
 
@@ -11132,7 +10522,7 @@ await client.Vehicles.Stats.ListAsync(new StatsListRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">FeedAsync</a>(StatsFeedRequest { ... }) -> Pager<VehicleStatsListResponseData></code></summary>
+<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">FeedAsync</a>(StatsFeedRequest { ... }) -> VehicleStatsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -11198,7 +10588,7 @@ await client.Vehicles.Stats.FeedAsync(new StatsFeedRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">HistoryAsync</a>(StatsHistoryRequest { ... }) -> Pager<VehicleStatsListResponseData></code></summary>
+<details><summary><code>client.Vehicles.Stats.<a href="/src/Samsara.Net/Vehicles/Stats/StatsClient.cs">HistoryAsync</a>(StatsHistoryRequest { ... }) -> VehicleStatsListResponse</code></summary>
 <dl>
 <dd>
 
@@ -11249,6 +10639,69 @@ await client.Vehicles.Stats.HistoryAsync(
 <dd>
 
 **request:** `StatsHistoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Vehicles TachographFiles
+<details><summary><code>client.Vehicles.TachographFiles.<a href="/src/Samsara.Net/Vehicles/TachographFiles/TachographFilesClient.cs">HistoryAsync</a>(TachographFilesHistoryRequest { ... }) -> TachographVehicleFilesResponse</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns all known tachograph files for all specified vehicles in the time range. 
+
+ <b>Rate limit:</b> 150 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>). 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Vehicles.TachographFiles.HistoryAsync(
+    new TachographFilesHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `TachographFilesHistoryRequest` 
     
 </dd>
 </dl>

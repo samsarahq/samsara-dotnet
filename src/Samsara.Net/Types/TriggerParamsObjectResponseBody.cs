@@ -72,9 +72,6 @@ public record TriggerParamsObjectResponseBody
     [JsonPropertyName("panicButton")]
     public PanicButtonDetailsObjectResponseBody? PanicButton { get; set; }
 
-    [JsonPropertyName("reading")]
-    public ReadingTriggerDetailsObjectResponseBody? Reading { get; set; }
-
     [JsonPropertyName("routeStopEstimatedArrival")]
     public RouteStopEstimatedArrivalDetailsObjectResponseBody? RouteStopEstimatedArrival { get; set; }
 

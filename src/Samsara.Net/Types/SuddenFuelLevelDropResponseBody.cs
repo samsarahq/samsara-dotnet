@@ -9,35 +9,8 @@ namespace Samsara.Net;
 /// </summary>
 public record SuddenFuelLevelDropResponseBody
 {
-    /// <summary>
-    /// The end time of the fuel level change in RFC 3339 format.
-    /// </summary>
-    [JsonPropertyName("changeEndTime")]
-    public DateTime? ChangeEndTime { get; set; }
-
-    /// <summary>
-    /// The start time of the fuel level change in RFC 3339 format.
-    /// </summary>
-    [JsonPropertyName("changeStartTime")]
-    public DateTime? ChangeStartTime { get; set; }
-
     [JsonPropertyName("driver")]
     public AlertObjectDriverResponseBody? Driver { get; set; }
-
-    /// <summary>
-    /// The fuel level after the sudden fuel level drop in millipercents.
-    /// </summary>
-    [JsonPropertyName("fuelLevelAfterMillipercent")]
-    public int? FuelLevelAfterMillipercent { get; set; }
-
-    /// <summary>
-    /// The fuel level before the sudden fuel level drop in millipercents.
-    /// </summary>
-    [JsonPropertyName("fuelLevelBeforeMillipercent")]
-    public int? FuelLevelBeforeMillipercent { get; set; }
-
-    [JsonPropertyName("location")]
-    public EventLocationResponseBody? Location { get; set; }
 
     [JsonPropertyName("vehicle")]
     public AlertObjectVehicleResponseBody? Vehicle { get; set; }

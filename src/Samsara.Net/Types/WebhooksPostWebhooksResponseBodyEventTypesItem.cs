@@ -43,9 +43,6 @@ public enum WebhooksPostWebhooksResponseBodyEventTypesItem
     [EnumMember(Value = "FormSubmitted")]
     FormSubmitted,
 
-    [EnumMember(Value = "FormUpdated")]
-    FormUpdated,
-
     [EnumMember(Value = "GatewayUnplugged")]
     GatewayUnplugged,
 

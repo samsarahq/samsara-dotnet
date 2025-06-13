@@ -18,9 +18,6 @@ public record FormSubmissionRequestFieldInputObjectRequestBody
     [JsonPropertyName("dateTimeValue")]
     public FormSubmissionRequestDateTimeValueObjectRequestBody? DateTimeValue { get; set; }
 
-    [JsonPropertyName("geofenceValue")]
-    public FormSubmissionRequestGeofenceValueObjectRequestBody? GeofenceValue { get; set; }
-
     /// <summary>
     /// ID of the forms input field object.
     /// </summary>
@@ -43,7 +40,7 @@ public record FormSubmissionRequestFieldInputObjectRequestBody
     public FormSubmissionRequestTextValueObjectRequestBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`, `geofence`
+    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormSubmissionRequestFieldInputObjectRequestBodyType Type { get; set; }

@@ -4,6 +4,8 @@ using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 using Samsara.Net.Drivers.QrCodes;
+using Samsara.Net.Drivers.TachographActivity;
+using Samsara.Net.Drivers.TachographFiles;
 using Samsara.Net.Drivers.VehicleAssignments;
 
 namespace Samsara.Net.Drivers;
@@ -16,10 +18,16 @@ public partial class DriversClient
     {
         _client = client;
         QrCodes = new QrCodesClient(_client);
+        TachographActivity = new TachographActivityClient(_client);
+        TachographFiles = new TachographFilesClient(_client);
         VehicleAssignments = new VehicleAssignmentsClient(_client);
     }
 
     public QrCodesClient QrCodes { get; }
+
+    public TachographActivityClient TachographActivity { get; }
+
+    public TachographFilesClient TachographFiles { get; }
 
     public VehicleAssignmentsClient VehicleAssignments { get; }
 
@@ -30,7 +38,10 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<ListDriversResponse> ListInternalAsync(
+    /// <example><code>
+    /// await client.Drivers.ListAsync(new DriversListRequest());
+    /// </code></example>
+    public async Task<ListDriversResponse> ListAsync(
         DriversListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -94,49 +105,6 @@ public partial class DriversClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Get all drivers in organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Drivers.ListAsync(new DriversListRequest());
-    /// </code></example>
-    public async Task<Pager<Driver>> ListAsync(
-        DriversListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            DriversListRequest,
-            RequestOptions?,
-            ListDriversResponse,
-            string,
-            Driver
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
     }
 
     /// <summary>

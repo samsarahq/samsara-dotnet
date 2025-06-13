@@ -22,7 +22,10 @@ public partial class LocationsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<EquipmentLocationsResponse> ListInternalAsync(
+    /// <example><code>
+    /// await client.Equipment.Locations.ListAsync(new LocationsListRequest());
+    /// </code></example>
+    public async Task<EquipmentLocationsResponse> ListAsync(
         LocationsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -73,7 +76,7 @@ public partial class LocationsClient
     }
 
     /// <summary>
-    /// Follow a continuous feed of all equipment locations.
+    /// Follow a continuous feed of all equipment locations from Samsara AG26s.
     ///
     /// Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a `pagination` object that contains an `endCursor`.
     ///
@@ -85,7 +88,10 @@ public partial class LocationsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<EquipmentLocationsListResponse> FeedInternalAsync(
+    /// <example><code>
+    /// await client.Equipment.Locations.FeedAsync(new LocationsFeedRequest());
+    /// </code></example>
+    public async Task<EquipmentLocationsListResponse> FeedAsync(
         LocationsFeedRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -142,7 +148,12 @@ public partial class LocationsClient
     ///
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<EquipmentLocationsListResponse> HistoryInternalAsync(
+    /// <example><code>
+    /// await client.Equipment.Locations.HistoryAsync(
+    ///     new LocationsHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// );
+    /// </code></example>
+    public async Task<EquipmentLocationsListResponse> HistoryAsync(
         LocationsHistoryRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -192,142 +203,5 @@ public partial class LocationsClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Returns last known locations for all equipment. This can be optionally filtered by tags or specific equipment IDs.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Equipment.Locations.ListAsync(new LocationsListRequest());
-    /// </code></example>
-    public async Task<Pager<EquipmentLocationsResponseData>> ListAsync(
-        LocationsListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            LocationsListRequest,
-            RequestOptions?,
-            EquipmentLocationsResponse,
-            string,
-            EquipmentLocationsResponseData
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Follow a continuous feed of all equipment locations.
-    ///
-    /// Your first call to this endpoint will provide you with the most recent location for each unit of equipment and a `pagination` object that contains an `endCursor`.
-    ///
-    /// You can provide the `endCursor` to subsequent calls via the `after` parameter. The response will contain any equipment location updates since that `endCursor`.
-    ///
-    /// If `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Equipment.Locations.FeedAsync(new LocationsFeedRequest());
-    /// </code></example>
-    public async Task<Pager<EquipmentLocationsListResponseData>> FeedAsync(
-        LocationsFeedRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            LocationsFeedRequest,
-            RequestOptions?,
-            EquipmentLocationsListResponse,
-            string,
-            EquipmentLocationsListResponseData
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                FeedInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Returns historical equipment locations during the given time range. This can be optionally filtered by tags or specific equipment IDs.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Equipment.Locations.HistoryAsync(
-    ///     new LocationsHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
-    /// );
-    /// </code></example>
-    public async Task<Pager<EquipmentLocationsListResponseData>> HistoryAsync(
-        LocationsHistoryRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            LocationsHistoryRequest,
-            RequestOptions?,
-            EquipmentLocationsListResponse,
-            string,
-            EquipmentLocationsListResponseData
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                HistoryInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
     }
 }

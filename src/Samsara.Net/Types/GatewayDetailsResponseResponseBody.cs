@@ -19,18 +19,6 @@ public record GatewayDetailsResponseResponseBody
     public GatewayDetailsResponseResponseBodyGatewayBatteryState? GatewayBatteryState { get; set; }
 
     /// <summary>
-    /// The battery temperature of the gateway, in degrees Celsius.
-    /// </summary>
-    [JsonPropertyName("gatewayBatteryTemp")]
-    public double? GatewayBatteryTemp { get; set; }
-
-    /// <summary>
-    /// The battery voltage of the gateway, in volts.
-    /// </summary>
-    [JsonPropertyName("gatewayBatteryVolts")]
-    public double? GatewayBatteryVolts { get; set; }
-
-    /// <summary>
     /// The timestamp of the gateway's last check-in, in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("lastCheckInTime")]
