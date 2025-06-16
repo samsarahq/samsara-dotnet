@@ -4,8 +4,8 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
-[JsonConverter(typeof(EnumSerializer<DeleteAttributeRequestEntityType>))]
-public enum DeleteAttributeRequestEntityType
+[JsonConverter(typeof(EnumSerializer<AttributesDeleteRequestEntityType>))]
+public enum AttributesDeleteRequestEntityType
 {
     [EnumMember(Value = "driver")]
     Driver,

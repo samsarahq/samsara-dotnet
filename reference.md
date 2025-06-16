@@ -615,7 +615,7 @@ await client.Inputs.StreamAsync(
 </details>
 
 ## Attributes
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">GetAttributesByEntityTypeAsync</a>(GetAttributesByEntityTypeRequest { ... }) -> GetAttributesByEntityTypeResponse</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">ListAsync</a>(AttributesListRequest { ... }) -> GetAttributesByEntityTypeResponse</code></summary>
 <dl>
 <dd>
 
@@ -646,11 +646,8 @@ To use this endpoint, select **Read Attributes** under the Setup & Administratio
 <dd>
 
 ```csharp
-await client.Attributes.GetAttributesByEntityTypeAsync(
-    new GetAttributesByEntityTypeRequest
-    {
-        EntityType = GetAttributesByEntityTypeRequestEntityType.Driver,
-    }
+await client.Attributes.ListAsync(
+    new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -666,7 +663,7 @@ await client.Attributes.GetAttributesByEntityTypeAsync(
 <dl>
 <dd>
 
-**request:** `GetAttributesByEntityTypeRequest` 
+**request:** `AttributesListRequest` 
     
 </dd>
 </dl>
@@ -678,7 +675,7 @@ await client.Attributes.GetAttributesByEntityTypeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">CreateAttributeAsync</a>(CreateAttributeRequest { ... }) -> AttributeExpandedResponse</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">CreateAsync</a>(CreateAttributeRequest { ... }) -> AttributeExpandedResponse</code></summary>
 <dl>
 <dd>
 
@@ -709,7 +706,7 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 <dd>
 
 ```csharp
-await client.Attributes.CreateAttributeAsync(
+await client.Attributes.CreateAsync(
     new CreateAttributeRequest
     {
         AttributeType = CreateAttributeRequestAttributeType.String,
@@ -744,7 +741,7 @@ await client.Attributes.CreateAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">GetAttributeAsync</a>(id, GetAttributeRequest { ... }) -> AttributeExpandedResponse</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">GetAsync</a>(id, AttributesGetRequest { ... }) -> AttributeExpandedResponse</code></summary>
 <dl>
 <dd>
 
@@ -775,9 +772,9 @@ To use this endpoint, select **Read Attributes** under the Setup & Administratio
 <dd>
 
 ```csharp
-await client.Attributes.GetAttributeAsync(
+await client.Attributes.GetAsync(
     "id",
-    new GetAttributeRequest { EntityType = GetAttributeRequestEntityType.Driver }
+    new AttributesGetRequest { EntityType = AttributesGetRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -801,7 +798,7 @@ await client.Attributes.GetAttributeAsync(
 <dl>
 <dd>
 
-**request:** `GetAttributeRequest` 
+**request:** `AttributesGetRequest` 
     
 </dd>
 </dl>
@@ -813,7 +810,7 @@ await client.Attributes.GetAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAttributeAsync</a>(id, DeleteAttributeRequest { ... }) -> object</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAsync</a>(id, AttributesDeleteRequest { ... }) -> object</code></summary>
 <dl>
 <dd>
 
@@ -844,9 +841,9 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 <dd>
 
 ```csharp
-await client.Attributes.DeleteAttributeAsync(
+await client.Attributes.DeleteAsync(
     "id",
-    new DeleteAttributeRequest { EntityType = DeleteAttributeRequestEntityType.Driver }
+    new AttributesDeleteRequest { EntityType = AttributesDeleteRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -870,7 +867,7 @@ await client.Attributes.DeleteAttributeAsync(
 <dl>
 <dd>
 
-**request:** `DeleteAttributeRequest` 
+**request:** `AttributesDeleteRequest` 
     
 </dd>
 </dl>
@@ -882,7 +879,7 @@ await client.Attributes.DeleteAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">UpdateAttributeAsync</a>(id, UpdateAttributeRequest { ... }) -> AttributeExpandedResponse</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">UpdateAsync</a>(id, UpdateAttributeRequest { ... }) -> AttributeExpandedResponse</code></summary>
 <dl>
 <dd>
 
@@ -913,7 +910,7 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 <dd>
 
 ```csharp
-await client.Attributes.UpdateAttributeAsync(
+await client.Attributes.UpdateAsync(
     "id",
     new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
 );

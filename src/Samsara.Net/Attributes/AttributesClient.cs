@@ -23,15 +23,12 @@ public partial class AttributesClient
     /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Attributes.GetAttributesByEntityTypeAsync(
-    ///     new GetAttributesByEntityTypeRequest
-    ///     {
-    ///         EntityType = GetAttributesByEntityTypeRequestEntityType.Driver,
-    ///     }
+    /// await client.Attributes.ListAsync(
+    ///     new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
     /// );
     /// </code></example>
-    public async Task<GetAttributesByEntityTypeResponse> GetAttributesByEntityTypeAsync(
-        GetAttributesByEntityTypeRequest request,
+    public async Task<GetAttributesByEntityTypeResponse> ListAsync(
+        AttributesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -90,7 +87,7 @@ public partial class AttributesClient
     /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Attributes.CreateAttributeAsync(
+    /// await client.Attributes.CreateAsync(
     ///     new CreateAttributeRequest
     ///     {
     ///         AttributeType = CreateAttributeRequestAttributeType.String,
@@ -100,7 +97,7 @@ public partial class AttributesClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<AttributeExpandedResponse> CreateAttributeAsync(
+    public async Task<AttributeExpandedResponse> CreateAsync(
         CreateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -151,14 +148,14 @@ public partial class AttributesClient
     /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Attributes.GetAttributeAsync(
+    /// await client.Attributes.GetAsync(
     ///     "id",
-    ///     new GetAttributeRequest { EntityType = GetAttributeRequestEntityType.Driver }
+    ///     new AttributesGetRequest { EntityType = AttributesGetRequestEntityType.Driver }
     /// );
     /// </code></example>
-    public async Task<AttributeExpandedResponse> GetAttributeAsync(
+    public async Task<AttributeExpandedResponse> GetAsync(
         string id,
-        GetAttributeRequest request,
+        AttributesGetRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -209,14 +206,14 @@ public partial class AttributesClient
     /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Attributes.DeleteAttributeAsync(
+    /// await client.Attributes.DeleteAsync(
     ///     "id",
-    ///     new DeleteAttributeRequest { EntityType = DeleteAttributeRequestEntityType.Driver }
+    ///     new AttributesDeleteRequest { EntityType = AttributesDeleteRequestEntityType.Driver }
     /// );
     /// </code></example>
-    public async Task<object> DeleteAttributeAsync(
+    public async Task<object> DeleteAsync(
         string id,
-        DeleteAttributeRequest request,
+        AttributesDeleteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -267,12 +264,12 @@ public partial class AttributesClient
     /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Attributes.UpdateAttributeAsync(
+    /// await client.Attributes.UpdateAsync(
     ///     "id",
     ///     new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
     /// );
     /// </code></example>
-    public async Task<AttributeExpandedResponse> UpdateAttributeAsync(
+    public async Task<AttributeExpandedResponse> UpdateAsync(
         string id,
         UpdateAttributeRequest request,
         RequestOptions? options = null,

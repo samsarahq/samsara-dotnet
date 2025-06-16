@@ -3,13 +3,13 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
-public record GetAttributesByEntityTypeRequest
+public record AttributesListRequest
 {
     /// <summary>
     /// Denotes the type of entity, driver or asset.
     /// </summary>
     [JsonIgnore]
-    public required GetAttributesByEntityTypeRequestEntityType EntityType { get; set; }
+    public required AttributesListRequestEntityType EntityType { get; set; }
 
     /// <summary>
     /// The limit for how many objects will be in the response. Default and max for this value is 512 objects.

@@ -3,13 +3,13 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
-public record GetAttributeRequest
+public record AttributesGetRequest
 {
     /// <summary>
     /// Denotes the type of entity, driver or asset.
     /// </summary>
     [JsonIgnore]
-    public required GetAttributeRequestEntityType EntityType { get; set; }
+    public required AttributesGetRequestEntityType EntityType { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

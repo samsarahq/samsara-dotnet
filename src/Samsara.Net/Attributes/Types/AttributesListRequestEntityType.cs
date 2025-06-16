@@ -4,8 +4,8 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
-[JsonConverter(typeof(EnumSerializer<GetAttributesByEntityTypeRequestEntityType>))]
-public enum GetAttributesByEntityTypeRequestEntityType
+[JsonConverter(typeof(EnumSerializer<AttributesListRequestEntityType>))]
+public enum AttributesListRequestEntityType
 {
     [EnumMember(Value = "driver")]
     Driver,
