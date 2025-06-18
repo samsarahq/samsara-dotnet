@@ -30,7 +30,7 @@ public partial class LegacyClient
     ///     new LegacyGetVehiclesDriverAssignmentsRequest()
     /// );
     /// </code></example>
-    public async Task<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody> GetVehiclesDriverAssignmentsAsync(
+    public async Task<GetVehiclesDriverAssignmentsResponseBody> GetVehiclesDriverAssignmentsAsync(
         LegacyGetVehiclesDriverAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -79,7 +79,7 @@ public partial class LegacyClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>(
+                return JsonUtils.Deserialize<GetVehiclesDriverAssignmentsResponseBody>(
                     responseBody
                 )!;
             }

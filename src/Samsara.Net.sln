@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net", "Samsara.Net\Samsara.Net.csproj", "{0C834E09-9911-4127-9287-F146EBDCF110}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net", "Samsara.Net\Samsara.Net.csproj", "{D0A3B366-4BE0-4586-8F9E-9BF6B203F615}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net.Test", "Samsara.Net.Test\Samsara.Net.Test.csproj", "{23FAD499-2D10-4138-861E-C6AB836728B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Samsara.Net.Test", "Samsara.Net.Test\Samsara.Net.Test.csproj", "{56624802-E951-4461-887D-7DD43684320B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +16,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0C834E09-9911-4127-9287-F146EBDCF110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0C834E09-9911-4127-9287-F146EBDCF110}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0C834E09-9911-4127-9287-F146EBDCF110}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0C834E09-9911-4127-9287-F146EBDCF110}.Release|Any CPU.Build.0 = Release|Any CPU
-		{23FAD499-2D10-4138-861E-C6AB836728B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23FAD499-2D10-4138-861E-C6AB836728B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23FAD499-2D10-4138-861E-C6AB836728B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23FAD499-2D10-4138-861E-C6AB836728B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A3B366-4BE0-4586-8F9E-9BF6B203F615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A3B366-4BE0-4586-8F9E-9BF6B203F615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A3B366-4BE0-4586-8F9E-9BF6B203F615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A3B366-4BE0-4586-8F9E-9BF6B203F615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56624802-E951-4461-887D-7DD43684320B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56624802-E951-4461-887D-7DD43684320B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56624802-E951-4461-887D-7DD43684320B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56624802-E951-4461-887D-7DD43684320B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

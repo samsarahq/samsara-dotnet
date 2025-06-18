@@ -150,7 +150,7 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example><code>
     /// await client.DriverVehicleAssignments.CreateAsync(
-    ///     new DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody
+    ///     new CreateDriverVehicleAssignmentRequestBody
     ///     {
     ///         DriverId = "494123",
     ///         VehicleId = "281474978683353",
@@ -158,7 +158,7 @@ public partial class DriverVehicleAssignmentsClient
     /// );
     /// </code></example>
     public async Task<DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentResponseBody> CreateAsync(
-        DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody request,
+        CreateDriverVehicleAssignmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -246,14 +246,11 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example><code>
     /// await client.DriverVehicleAssignments.DeleteAsync(
-    ///     new DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody
-    ///     {
-    ///         VehicleId = "281474978683353",
-    ///     }
+    ///     new DeleteDriverVehicleAssignmentsRequestBody { VehicleId = "281474978683353" }
     /// );
     /// </code></example>
     public async global::System.Threading.Tasks.Task DeleteAsync(
-        DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody request,
+        DeleteDriverVehicleAssignmentsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -330,7 +327,7 @@ public partial class DriverVehicleAssignmentsClient
     /// </summary>
     /// <example><code>
     /// await client.DriverVehicleAssignments.UpdateAsync(
-    ///     new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
+    ///     new UpdateDriverVehicleAssignmentRequestBody
     ///     {
     ///         DriverId = "494123",
     ///         StartTime = "2019-06-13T19:08:25Z",
@@ -339,7 +336,7 @@ public partial class DriverVehicleAssignmentsClient
     /// );
     /// </code></example>
     public async Task<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody> UpdateAsync(
-        DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody request,
+        UpdateDriverVehicleAssignmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
