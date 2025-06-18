@@ -7,7 +7,7 @@ namespace Samsara.Net;
 /// <summary>
 /// Requested endpoint is not yet implemented
 /// </summary>
-public record DriverVehicleAssignmentsV2GetDriverVehicleAssignmentsNotImplementedErrorResponseBody
+public record NotImplementedErrorResponseBody
 {
     /// <summary>
     /// Message of error
