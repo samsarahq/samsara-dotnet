@@ -9,6 +9,9 @@ namespace Samsara.Net;
 /// </summary>
 public record FormSubmissionResponseObjectResponseBody
 {
+    [JsonPropertyName("approvalDetails")]
+    public FormsProductSubmissionApprovalDetailsObjectResponseBody? ApprovalDetails { get; set; }
+
     [JsonPropertyName("asset")]
     public FormsAssetObjectResponseBody? Asset { get; set; }
 
@@ -48,6 +51,9 @@ public record FormSubmissionResponseObjectResponseBody
 
     [JsonPropertyName("formTemplate")]
     public required FormTemplateReferenceObjectResponseBody FormTemplate { get; set; }
+
+    [JsonPropertyName("geofence")]
+    public FormsGeofenceObjectResponseBody? Geofence { get; set; }
 
     /// <summary>
     /// ID of the form submission.

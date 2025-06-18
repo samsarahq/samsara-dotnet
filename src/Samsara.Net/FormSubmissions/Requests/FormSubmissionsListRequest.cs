@@ -12,7 +12,7 @@ public record FormSubmissionsListRequest
     public IEnumerable<string> Ids { get; set; } = new List<string>();
 
     /// <summary>
-    /// A comma-separated list of strings indicating whether to return additional information. Valid values: `externalIds`, `fieldLabels`
+    /// A comma-separated list of strings indicating whether to return additional information. Valid values: `externalIds`
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> Include { get; set; } = new List<string>();

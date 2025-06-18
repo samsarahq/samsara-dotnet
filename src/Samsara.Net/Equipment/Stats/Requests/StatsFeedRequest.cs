@@ -30,11 +30,11 @@ public record StatsFeedRequest
     public IEnumerable<string> EquipmentIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// The types of equipment stats you want to query. Currently, you may submit up to 3 types.
+    /// The types of equipment stats you want to query. Currently, you may submit up to 4 types.
     ///
     /// - `engineRpm`: The revolutions per minute of the engine.
     /// - `fuelPercents`: The percent of fuel in the unit of equipment.
-    /// - `obdEngineSeconds`: The number of seconds the engine has been running since it was new. This value is provided directly from on-board diagnostics.
+    /// - `obdEngineSeconds`: The number of seconds the engine has been running as reported directly from on-board diagnostics. This is supported with the following hardware configurations: AG24/AG26 + AOPEN/A9PIN/ACT9/ACT14.
     /// - `gatewayEngineSeconds`: An approximation of the number of seconds the engine has been running since it was new, based on the amount of time the asset gateway has been receiving power with an offset provided manually through the Samsara cloud dashboard. This is supported with the following hardware configurations:
     ///   - AG24/AG26/AG46P + APWR cable ([Auxiliary engine configuration](https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs#UUID-d514abff-d10a-efaf-35d9-e10fa6c4888d) required)
     ///   - AG52 + BPWR/BEQP cable ([Auxiliary engine configuration](https://kb.samsara.com/hc/en-us/articles/360043040512-Auxiliary-Inputs#UUID-d514abff-d10a-efaf-35d9-e10fa6c4888d) required).

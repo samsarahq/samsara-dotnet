@@ -22,11 +22,10 @@ public record FormsTableColumnObjectResponseBody
     public required string Label { get; set; }
 
     /// <summary>
-    /// Type of the column field.  Valid values: `text, number, datetime, check_boxes, multiple_choice, signature, media, person`
+    /// Type of the column field.  Valid values: `text`, `number`, `datetime`, `check_boxes`, `multiple_choice`, `signature`, `media`, `person`
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } =
-        "text, number, datetime, check_boxes, multiple_choice, signature, media, person";
+    public required FormsTableColumnObjectResponseBodyType Type { get; set; }
 
     /// <summary>
     /// Additional properties received from the response, if any.

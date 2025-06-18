@@ -24,16 +24,9 @@ public partial class EquipmentClient
     public StatsClient Stats { get; }
 
     /// <summary>
-    /// Returns a list of all equipment in an organization. Equipment objects represent powered assets connected to a [Samsara AG26](https://www.samsara.com/products/models/ag26) via an APWR, CAT, or J1939 cable. They are automatically created with a unique Samsara Equipment ID whenever an AG26 is activated in your organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// Returns a list of all equipment in an organization.
     /// </summary>
-    /// <example><code>
-    /// await client.Equipment.ListAsync(new EquipmentListRequest());
-    /// </code></example>
-    public async Task<EquipmentListResponse> ListAsync(
+    private async Task<EquipmentListResponse> ListInternalAsync(
         EquipmentListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -84,6 +77,45 @@ public partial class EquipmentClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Returns a list of all equipment in an organization.
+    /// </summary>
+    /// <example><code>
+    /// await client.Equipment.ListAsync(new EquipmentListRequest());
+    /// </code></example>
+    public async Task<Pager<EquipmentObject>> ListAsync(
+        EquipmentListRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (request is not null)
+        {
+            request = request with { };
+        }
+        var pager = await CursorPager<
+            EquipmentListRequest,
+            RequestOptions?,
+            EquipmentListResponse,
+            string,
+            EquipmentObject
+        >
+            .CreateInstanceAsync(
+                request,
+                options,
+                ListInternalAsync,
+                (request, cursor) =>
+                {
+                    request.After = cursor;
+                },
+                response => response?.Pagination?.EndCursor,
+                response => response?.Data?.ToList(),
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        return pager;
     }
 
     /// <summary>

@@ -26,12 +26,12 @@ public partial class FuelEnergyClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Reports.Drivers.FuelEnergy.GetAsync(
-    ///     new FuelEnergyGetRequest { StartDate = "startDate", EndDate = "endDate" }
+    /// await client.Reports.Drivers.FuelEnergy.ListAsync(
+    ///     new FuelEnergyListRequest { StartDate = "startDate", EndDate = "endDate" }
     /// );
     /// </code></example>
-    public async Task<FuelEnergyGetFuelEnergyDriverReportsResponseBody> GetAsync(
-        FuelEnergyGetRequest request,
+    public async Task<FuelEnergyGetFuelEnergyDriverReportsResponseBody> ListAsync(
+        FuelEnergyListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
