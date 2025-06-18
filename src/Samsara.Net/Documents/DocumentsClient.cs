@@ -30,12 +30,7 @@ public partial class DocumentsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    /// <example><code>
-    /// await client.Documents.ListAsync(
-    ///     new DocumentsListRequest { StartTime = "startTime", EndTime = "endTime" }
-    /// );
-    /// </code></example>
-    public async Task<DocumentsGetDocumentsResponseBody> ListAsync(
+    private async Task<DocumentsGetDocumentsResponseBody> ListInternalAsync(
         DocumentsListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -122,6 +117,54 @@ public partial class DocumentsClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Get all documents for the given time range. The legacy version of this endpoint can be found at [samsara.com/api-legacy](https://www.samsara.com/api-legacy#operation/getDriverDocumentsByOrgId).
+    ///
+    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///
+    /// To use this endpoint, select **Read Documents** under the Driver Workflow category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.Documents.ListAsync(
+    ///     new DocumentsListRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// );
+    /// </code></example>
+    public async Task<Pager<DocumentResponseObjectResponseBody>> ListAsync(
+        DocumentsListRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (request is not null)
+        {
+            request = request with { };
+        }
+        var pager = await CursorPager<
+            DocumentsListRequest,
+            RequestOptions?,
+            DocumentsGetDocumentsResponseBody,
+            string,
+            DocumentResponseObjectResponseBody
+        >
+            .CreateInstanceAsync(
+                request,
+                options,
+                ListInternalAsync,
+                (request, cursor) =>
+                {
+                    request.After = cursor;
+                },
+                response => response?.Pagination?.EndCursor,
+                response => response?.Data?.ToList(),
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        return pager;
     }
 
     /// <summary>

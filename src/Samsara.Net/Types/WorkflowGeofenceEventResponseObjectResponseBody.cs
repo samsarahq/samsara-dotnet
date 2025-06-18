@@ -9,6 +9,9 @@ public record WorkflowGeofenceEventResponseObjectResponseBody
     [JsonPropertyName("address")]
     public WorkflowAddressEventWithGeofenceObjectResponseBody? Address { get; set; }
 
+    [JsonPropertyName("fuelVolume")]
+    public FuelVolumeResponseBody? FuelVolume { get; set; }
+
     [JsonPropertyName("vehicle")]
     public VehicleWithGatewayTinyResponseResponseBody? Vehicle { get; set; }
 

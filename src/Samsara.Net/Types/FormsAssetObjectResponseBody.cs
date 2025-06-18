@@ -16,7 +16,13 @@ public record FormsAssetObjectResponseBody
     public required FormsAssetObjectResponseBodyEntryType EntryType { get; set; }
 
     /// <summary>
-    /// ID of a tracked asset. Included if 'entryType' is 'tracked'.
+    /// A map of external ids
+    /// </summary>
+    [JsonPropertyName("externalIds")]
+    public Dictionary<string, string>? ExternalIds { get; set; }
+
+    /// <summary>
+    /// ID of a tracked asset. Included if 'entryType' is `tracked`.
     /// </summary>
     [JsonPropertyName("id")]
     public string? Id { get; set; }

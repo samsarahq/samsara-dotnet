@@ -16,6 +16,7 @@ public record WorkflowTriggerObjectRequestBody
     /// The id of the trigger type. Reference the following list for the ids:
     ///
     /// Ambient Temperature = 1003
+    /// Asset Reading = 1062
     /// DVIR Submitted for Asset = 5005
     /// Driver Recorded = 5027
     /// Sudden Fuel Level Rise = 5034
