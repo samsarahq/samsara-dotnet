@@ -2,6 +2,8 @@
 
 src/Samsara.Net/Core/Extensions.cs
 src/Samsara.Net/Core/JsonAccessAttribute.cs
+
+.github/workflows/publish.yml
 README.md
 
 # Webhook signature verification

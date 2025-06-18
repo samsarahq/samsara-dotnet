@@ -1,0 +1,28 @@
+name: Release Samsara.NET SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "The version of the Samsara.Net SDK that you would like to release"
+        required: true
+        type: string
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.x
+
+      - name: Publish to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          dotnet pack src -c Release
+          dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key="$NUGET_API_KEY" --source="https://api.nuget.org/v3/index.json"
