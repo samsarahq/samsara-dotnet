@@ -26,7 +26,7 @@ public partial class WorkOrdersClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    private async Task<WorkOrdersGetWorkOrdersResponseBody> ListInternalAsync(
+    private async Task<GetWorkOrdersResponseBody> ListInternalAsync(
         WorkOrdersListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -56,7 +56,7 @@ public partial class WorkOrdersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<WorkOrdersGetWorkOrdersResponseBody>(responseBody)!;
+                return JsonUtils.Deserialize<GetWorkOrdersResponseBody>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -116,7 +116,7 @@ public partial class WorkOrdersClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    private async Task<WorkOrdersStreamWorkOrdersResponseBody> StreamInternalAsync(
+    private async Task<StreamWorkOrdersResponseBody> StreamInternalAsync(
         WorkOrdersStreamRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -155,7 +155,7 @@ public partial class WorkOrdersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<WorkOrdersStreamWorkOrdersResponseBody>(responseBody)!;
+                return JsonUtils.Deserialize<StreamWorkOrdersResponseBody>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -231,7 +231,7 @@ public partial class WorkOrdersClient
         var pager = await CursorPager<
             WorkOrdersListRequest,
             RequestOptions?,
-            WorkOrdersGetWorkOrdersResponseBody,
+            GetWorkOrdersResponseBody,
             string,
             WorkOrderObjectResponseBody
         >
@@ -263,11 +263,11 @@ public partial class WorkOrdersClient
     /// </summary>
     /// <example><code>
     /// await client.Maintenance.WorkOrders.CreateAsync(
-    ///     new WorkOrdersPostWorkOrdersRequestBody { AssetId = "12443" }
+    ///     new PostWorkOrdersRequestBody { AssetId = "12443" }
     /// );
     /// </code></example>
-    public async Task<WorkOrdersPostWorkOrdersResponseBody> CreateAsync(
-        WorkOrdersPostWorkOrdersRequestBody request,
+    public async Task<PostWorkOrdersResponseBody> CreateAsync(
+        PostWorkOrdersRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -291,7 +291,7 @@ public partial class WorkOrdersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<WorkOrdersPostWorkOrdersResponseBody>(responseBody)!;
+                return JsonUtils.Deserialize<PostWorkOrdersResponseBody>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -432,12 +432,10 @@ public partial class WorkOrdersClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Maintenance.WorkOrders.UpdateAsync(
-    ///     new WorkOrdersPatchWorkOrdersRequestBody { Id = "5" }
-    /// );
+    /// await client.Maintenance.WorkOrders.UpdateAsync(new PatchWorkOrdersRequestBody { Id = "5" });
     /// </code></example>
-    public async Task<WorkOrdersPatchWorkOrdersResponseBody> UpdateAsync(
-        WorkOrdersPatchWorkOrdersRequestBody request,
+    public async Task<PatchWorkOrdersResponseBody> UpdateAsync(
+        PatchWorkOrdersRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -461,7 +459,7 @@ public partial class WorkOrdersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<WorkOrdersPatchWorkOrdersResponseBody>(responseBody)!;
+                return JsonUtils.Deserialize<PatchWorkOrdersResponseBody>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -539,7 +537,7 @@ public partial class WorkOrdersClient
         var pager = await CursorPager<
             WorkOrdersStreamRequest,
             RequestOptions?,
-            WorkOrdersStreamWorkOrdersResponseBody,
+            StreamWorkOrdersResponseBody,
             string,
             WorkOrderObjectResponseBody
         >

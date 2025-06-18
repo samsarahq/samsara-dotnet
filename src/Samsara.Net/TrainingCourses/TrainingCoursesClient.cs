@@ -26,7 +26,7 @@ public partial class TrainingCoursesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    private async Task<TrainingCoursesGetTrainingCoursesResponseBody> ListInternalAsync(
+    private async Task<GetTrainingCoursesResponseBody> ListInternalAsync(
         TrainingCoursesListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -58,9 +58,7 @@ public partial class TrainingCoursesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<TrainingCoursesGetTrainingCoursesResponseBody>(
-                    responseBody
-                )!;
+                return JsonUtils.Deserialize<GetTrainingCoursesResponseBody>(responseBody)!;
             }
             catch (JsonException e)
             {
@@ -137,7 +135,7 @@ public partial class TrainingCoursesClient
         var pager = await CursorPager<
             TrainingCoursesListRequest,
             RequestOptions?,
-            TrainingCoursesGetTrainingCoursesResponseBody,
+            GetTrainingCoursesResponseBody,
             string,
             TrainingCourseResponseObjectResponseBody
         >

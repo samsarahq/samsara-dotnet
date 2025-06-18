@@ -2711,7 +2711,7 @@ await client.DriverVehicleAssignments.GetAsync(
 </dl>
 </details>
 
-<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">CreateAsync</a>(DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody { ... }) -> DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentResponseBody</code></summary>
+<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">CreateAsync</a>(CreateDriverVehicleAssignmentRequestBody { ... }) -> DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -2746,7 +2746,7 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 
 ```csharp
 await client.DriverVehicleAssignments.CreateAsync(
-    new DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody
+    new CreateDriverVehicleAssignmentRequestBody
     {
         DriverId = "494123",
         VehicleId = "281474978683353",
@@ -2766,7 +2766,7 @@ await client.DriverVehicleAssignments.CreateAsync(
 <dl>
 <dd>
 
-**request:** `DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody` 
+**request:** `CreateDriverVehicleAssignmentRequestBody` 
     
 </dd>
 </dl>
@@ -2778,7 +2778,7 @@ await client.DriverVehicleAssignments.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">DeleteAsync</a>(DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody { ... })</code></summary>
+<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">DeleteAsync</a>(DeleteDriverVehicleAssignmentsRequestBody { ... })</code></summary>
 <dl>
 <dd>
 
@@ -2813,10 +2813,7 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 
 ```csharp
 await client.DriverVehicleAssignments.DeleteAsync(
-    new DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody
-    {
-        VehicleId = "281474978683353",
-    }
+    new DeleteDriverVehicleAssignmentsRequestBody { VehicleId = "281474978683353" }
 );
 ```
 </dd>
@@ -2832,7 +2829,7 @@ await client.DriverVehicleAssignments.DeleteAsync(
 <dl>
 <dd>
 
-**request:** `DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody` 
+**request:** `DeleteDriverVehicleAssignmentsRequestBody` 
     
 </dd>
 </dl>
@@ -2844,7 +2841,7 @@ await client.DriverVehicleAssignments.DeleteAsync(
 </dl>
 </details>
 
-<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">UpdateAsync</a>(DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody { ... }) -> DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody</code></summary>
+<details><summary><code>client.DriverVehicleAssignments.<a href="/src/Samsara.Net/DriverVehicleAssignments/DriverVehicleAssignmentsClient.cs">UpdateAsync</a>(UpdateDriverVehicleAssignmentRequestBody { ... }) -> DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -2879,7 +2876,7 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 
 ```csharp
 await client.DriverVehicleAssignments.UpdateAsync(
-    new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
+    new UpdateDriverVehicleAssignmentRequestBody
     {
         DriverId = "494123",
         StartTime = "2019-06-13T19:08:25Z",
@@ -2900,7 +2897,7 @@ await client.DriverVehicleAssignments.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody` 
+**request:** `UpdateDriverVehicleAssignmentRequestBody` 
     
 </dd>
 </dl>
@@ -4496,7 +4493,7 @@ await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
 </details>
 
 ## Legacy
-<details><summary><code>client.Legacy.<a href="/src/Samsara.Net/Legacy/LegacyClient.cs">GetVehiclesDriverAssignmentsAsync</a>(LegacyGetVehiclesDriverAssignmentsRequest { ... }) -> VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody</code></summary>
+<details><summary><code>client.Legacy.<a href="/src/Samsara.Net/Legacy/LegacyClient.cs">GetVehiclesDriverAssignmentsAsync</a>(LegacyGetVehiclesDriverAssignmentsRequest { ... }) -> GetVehiclesDriverAssignmentsResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9659,7 +9656,7 @@ await client.Maintenance.WorkOrders.ListAsync(new WorkOrdersListRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">CreateAsync</a>(WorkOrdersPostWorkOrdersRequestBody { ... }) -> WorkOrdersPostWorkOrdersResponseBody</code></summary>
+<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">CreateAsync</a>(PostWorkOrdersRequestBody { ... }) -> PostWorkOrdersResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9694,7 +9691,7 @@ To use this endpoint, select **Write Work Orders** under the Closed Beta categor
 
 ```csharp
 await client.Maintenance.WorkOrders.CreateAsync(
-    new WorkOrdersPostWorkOrdersRequestBody { AssetId = "12443" }
+    new PostWorkOrdersRequestBody { AssetId = "12443" }
 );
 ```
 </dd>
@@ -9710,7 +9707,7 @@ await client.Maintenance.WorkOrders.CreateAsync(
 <dl>
 <dd>
 
-**request:** `WorkOrdersPostWorkOrdersRequestBody` 
+**request:** `PostWorkOrdersRequestBody` 
     
 </dd>
 </dl>
@@ -9783,7 +9780,7 @@ await client.Maintenance.WorkOrders.DeleteAsync(new WorkOrdersDeleteRequest { Id
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">UpdateAsync</a>(WorkOrdersPatchWorkOrdersRequestBody { ... }) -> WorkOrdersPatchWorkOrdersResponseBody</code></summary>
+<details><summary><code>client.Maintenance.WorkOrders.<a href="/src/Samsara.Net/Maintenance/WorkOrders/WorkOrdersClient.cs">UpdateAsync</a>(PatchWorkOrdersRequestBody { ... }) -> PatchWorkOrdersResponseBody</code></summary>
 <dl>
 <dd>
 
@@ -9817,9 +9814,7 @@ To use this endpoint, select **Write Work Orders** under the Closed Beta categor
 <dd>
 
 ```csharp
-await client.Maintenance.WorkOrders.UpdateAsync(
-    new WorkOrdersPatchWorkOrdersRequestBody { Id = "5" }
-);
+await client.Maintenance.WorkOrders.UpdateAsync(new PatchWorkOrdersRequestBody { Id = "5" });
 ```
 </dd>
 </dl>
@@ -9834,7 +9829,7 @@ await client.Maintenance.WorkOrders.UpdateAsync(
 <dl>
 <dd>
 
-**request:** `WorkOrdersPatchWorkOrdersRequestBody` 
+**request:** `PatchWorkOrdersRequestBody` 
     
 </dd>
 </dl>
