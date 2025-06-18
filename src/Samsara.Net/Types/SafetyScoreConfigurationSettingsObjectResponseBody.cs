@@ -184,6 +184,12 @@ public record SafetyScoreConfigurationSettingsObjectResponseBody
     public long? SpeedingWeight { get; set; }
 
     /// <summary>
+    /// Score weight for vulnerable road user behavior.
+    /// </summary>
+    [JsonPropertyName("vulnerableRoadUserWeight")]
+    public long? VulnerableRoadUserWeight { get; set; }
+
+    /// <summary>
     /// Additional properties received from the response, if any.
     /// </summary>
     /// <remarks>
