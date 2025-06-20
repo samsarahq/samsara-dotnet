@@ -100,7 +100,7 @@ public record TriggerParamsObjectResponseBody
     public TireFaultCodeDetailsObjectResponseBody? TireFaultCode { get; set; }
 
     [JsonPropertyName("trainingAssignmentNearDueDate")]
-    public TrainingAssignmentNearDueDateTriggerDetailsObjectResponseBody? TrainingAssignmentNearDueDate { get; set; }
+    public object? TrainingAssignmentNearDueDate { get; set; }
 
     [JsonPropertyName("unassignedDriving")]
     public UnassignedDrivingTriggerDetailsObjectResponseBody? UnassignedDriving { get; set; }
