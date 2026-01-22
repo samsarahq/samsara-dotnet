@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+[Serializable]
 public partial class RequestOptions : IRequestOptions
 {
     /// <summary>

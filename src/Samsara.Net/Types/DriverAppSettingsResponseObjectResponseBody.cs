@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The configuration settings for the Samsara Driver App. Can be set or updated through the Samsara Settings page or the API at any time.
 /// </summary>
-public record DriverAppSettingsResponseObjectResponseBody
+[Serializable]
+public record DriverAppSettingsResponseObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Login user name for the fleet driver app
     /// </summary>
@@ -39,15 +44,11 @@ public record DriverAppSettingsResponseObjectResponseBody
     [JsonPropertyName("trailerSelectionConfig")]
     public DriverAppSettingsTrailerSelectionConfigTinyObjectResponseBody? TrailerSelectionConfig { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

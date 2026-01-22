@@ -1,15 +1,65 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<MediaObjectResponseBodyMediaType>))]
-public enum MediaObjectResponseBodyMediaType
+[JsonConverter(typeof(StringEnumSerializer<MediaObjectResponseBodyMediaType>))]
+[Serializable]
+public readonly record struct MediaObjectResponseBodyMediaType : IStringEnum
 {
-    [EnumMember(Value = "image")]
-    Image,
+    public static readonly MediaObjectResponseBodyMediaType Image = new(Values.Image);
 
-    [EnumMember(Value = "video")]
-    Video,
+    public static readonly MediaObjectResponseBodyMediaType Video = new(Values.Video);
+
+    public MediaObjectResponseBodyMediaType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static MediaObjectResponseBodyMediaType FromCustom(string value)
+    {
+        return new MediaObjectResponseBodyMediaType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(MediaObjectResponseBodyMediaType value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(MediaObjectResponseBodyMediaType value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(MediaObjectResponseBodyMediaType value) => value.Value;
+
+    public static explicit operator MediaObjectResponseBodyMediaType(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Image = "image";
+
+        public const string Video = "video";
+    }
 }

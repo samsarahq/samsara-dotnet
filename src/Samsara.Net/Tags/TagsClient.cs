@@ -1,12 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Tags;
 
-public partial class TagsClient
+public partial class TagsClient : ITagsClient
 {
     private RawClient _client;
 
@@ -15,15 +13,8 @@ public partial class TagsClient
         _client = client;
     }
 
-    /// <summary>
-    /// Return all of the tags for an organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    private async Task<ListTagsResponse> ListInternalAsync(
-        TagsListRequest request,
+    private async Task<WithRawResponse<ListTagsResponse>> ListTagsAsyncCore(
+        ListTagsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -55,14 +46,28 @@ public partial class TagsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ListTagsResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<ListTagsResponse>(responseBody)!;
+                return new WithRawResponse<ListTagsResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -73,60 +78,7 @@ public partial class TagsClient
         }
     }
 
-    /// <summary>
-    /// Return all of the tags for an organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Tags.ListAsync(new TagsListRequest());
-    /// </code></example>
-    public async Task<Pager<Tag>> ListAsync(
-        TagsListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            TagsListRequest,
-            RequestOptions?,
-            ListTagsResponse,
-            string,
-            Tag
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Create a new tag for the organization. This may include up to 20,000 tagged entities.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Tags.CreateAsync(new CreateTagRequest { Name = "California" });
-    /// </code></example>
-    public async Task<TagResponse> CreateAsync(
+    private async Task<WithRawResponse<TagResponse>> CreateTagAsyncCore(
         CreateTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -151,14 +103,28 @@ public partial class TagsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                return new WithRawResponse<TagResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -169,18 +135,8 @@ public partial class TagsClient
         }
     }
 
-    /// <summary>
-    /// Fetch a tag by id.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Tags.GetAsync("id");
-    /// </code></example>
-    public async Task<TagResponse> GetAsync(
-        string id,
+    private async Task<WithRawResponse<TagResponse>> GetTagAsyncCore(
+        GetTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -191,7 +147,10 @@ public partial class TagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
@@ -202,14 +161,28 @@ public partial class TagsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                return new WithRawResponse<TagResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -220,18 +193,7 @@ public partial class TagsClient
         }
     }
 
-    /// <summary>
-    /// Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Tags.ReplaceAsync("id", new ReplaceTagRequest());
-    /// </code></example>
-    public async Task<TagResponse> ReplaceAsync(
-        string id,
+    private async Task<WithRawResponse<TagResponse>> ReplaceTagAsyncCore(
         ReplaceTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -243,7 +205,10 @@ public partial class TagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -256,14 +221,146 @@ public partial class TagsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                return new WithRawResponse<TagResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 
+    private async Task<WithRawResponse<string>> DeleteTagAsyncCore(
+        DeleteTagRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
+                return new WithRawResponse<string>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<TagResponse>> PatchTagAsyncCore(
+        PatchTagRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<TagResponse>(responseBody)!;
+                return new WithRawResponse<TagResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -275,6 +372,90 @@ public partial class TagsClient
     }
 
     /// <summary>
+    /// Return all of the tags for an organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Tags.ListTagsAsync(new ListTagsRequest());
+    /// </code></example>
+    public WithRawResponseTask<ListTagsResponse> ListTagsAsync(
+        ListTagsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListTagsResponse>(
+            ListTagsAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Create a new tag for the organization. This may include up to 20,000 tagged entities.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Tags.CreateTagAsync(new CreateTagRequest { Name = "California" });
+    /// </code></example>
+    public WithRawResponseTask<TagResponse> CreateTagAsync(
+        CreateTagRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TagResponse>(
+            CreateTagAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Fetch a tag by id.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Tags.GetTagAsync(new GetTagRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<TagResponse> GetTagAsync(
+        GetTagRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TagResponse>(
+            GetTagAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Update a tag with a new name and new members. This API call would replace all old members of a tag with new members specified in the request body.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<TagResponse> ReplaceTagAsync(
+        ReplaceTagRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TagResponse>(
+            ReplaceTagAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
     /// Permanently deletes a tag.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
@@ -282,47 +463,17 @@ public partial class TagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Tags.DeleteAsync("id");
+    /// await client.Tags.DeleteTagAsync(new DeleteTagRequest { Id = "id" });
     /// </code></example>
-    public async Task<object> DeleteAsync(
-        string id,
+    public WithRawResponseTask<string> DeleteTagAsync(
+        DeleteTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<object>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<string>(
+            DeleteTagAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -337,49 +488,16 @@ public partial class TagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Tags.PatchAsync("id", new PatchTagRequest());
+    /// await client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
     /// </code></example>
-    public async Task<TagResponse> PatchAsync(
-        string id,
+    public WithRawResponseTask<TagResponse> PatchTagAsync(
         PatchTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<TagResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<TagResponse>(
+            PatchTagAsyncCore(request, options, cancellationToken)
+        );
     }
 }

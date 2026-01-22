@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Object representing the granular details of the condition. These details will vary depending on the condition.
 /// </summary>
-public record WorkflowIncidentDetailsObjectResponseBody
+[Serializable]
+public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("ambientTemperature")]
     public AmbientTemperatureResponseBody? AmbientTemperature { get; set; }
 
@@ -35,6 +40,9 @@ public record WorkflowIncidentDetailsObjectResponseBody
 
     [JsonPropertyName("deviceMovementStopped")]
     public DeviceMovementStoppedDataResponseBody? DeviceMovementStopped { get; set; }
+
+    [JsonPropertyName("doorOpen")]
+    public DoorOpenResponseBody? DoorOpen { get; set; }
 
     [JsonPropertyName("driverAppSignIn")]
     public DriverAppSignInResponseBody? DriverAppSignIn { get; set; }
@@ -68,6 +76,9 @@ public record WorkflowIncidentDetailsObjectResponseBody
 
     [JsonPropertyName("formSubmitted")]
     public FormSubmittedResponseBody? FormSubmitted { get; set; }
+
+    [JsonPropertyName("formUpdated")]
+    public FormUpdatedResponseBody? FormUpdated { get; set; }
 
     [JsonPropertyName("fuelLevelPercentage")]
     public FuelLevelPercentageResponseBody? FuelLevelPercentage { get; set; }
@@ -180,15 +191,14 @@ public record WorkflowIncidentDetailsObjectResponseBody
     [JsonPropertyName("vehicleFaults")]
     public VehicleFaultsResponseBody? VehicleFaults { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("workerSafetySos")]
+    public WorkerSafetySosDataResponseBody? WorkerSafetySos { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

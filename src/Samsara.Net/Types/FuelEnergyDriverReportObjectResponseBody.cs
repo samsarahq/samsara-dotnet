@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A summary of this driver's fuel and energy data.
 /// </summary>
-public record FuelEnergyDriverReportObjectResponseBody
+[Serializable]
+public record FuelEnergyDriverReportObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Meters traveled over the given time range.
     /// </summary>
@@ -57,15 +62,11 @@ public record FuelEnergyDriverReportObjectResponseBody
     [JsonPropertyName("fuelConsumedMl")]
     public double? FuelConsumedMl { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

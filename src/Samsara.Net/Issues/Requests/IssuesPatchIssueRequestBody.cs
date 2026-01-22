@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Issues;
 
+[Serializable]
 public record IssuesPatchIssueRequestBody
 {
     [JsonPropertyName("assignedTo")]

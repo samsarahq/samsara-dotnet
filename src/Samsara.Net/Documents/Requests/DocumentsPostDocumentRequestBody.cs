@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Documents;
 
+[Serializable]
 public record DocumentsPostDocumentRequestBody
 {
     /// <summary>

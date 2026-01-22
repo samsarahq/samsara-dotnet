@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Drivers;
 
+[Serializable]
 public record DriverRemoteSignoutPostDriverRemoteSignoutRequestBody
 {
     /// <summary>

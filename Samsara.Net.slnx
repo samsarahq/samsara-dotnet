@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="src/Samsara.Net.Test/Samsara.Net.Test.csproj" />
+  <Project Path="src/Samsara.Net/Samsara.Net.csproj" />
+</Solution>

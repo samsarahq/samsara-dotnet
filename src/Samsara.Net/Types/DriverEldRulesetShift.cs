@@ -1,18 +1,73 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<DriverEldRulesetShift>))]
-public enum DriverEldRulesetShift
+[JsonConverter(typeof(StringEnumSerializer<DriverEldRulesetShift>))]
+[Serializable]
+public readonly record struct DriverEldRulesetShift : IStringEnum
 {
-    [EnumMember(Value = "US Interstate Property")]
-    UsInterstateProperty,
+    public static readonly DriverEldRulesetShift UsInterstateProperty = new(
+        Values.UsInterstateProperty
+    );
 
-    [EnumMember(Value = "US Interstate Passenger")]
-    UsInterstatePassenger,
+    public static readonly DriverEldRulesetShift UsInterstatePassenger = new(
+        Values.UsInterstatePassenger
+    );
 
-    [EnumMember(Value = "Texas Intrastate")]
-    TexasIntrastate,
+    public static readonly DriverEldRulesetShift TexasIntrastate = new(Values.TexasIntrastate);
+
+    public DriverEldRulesetShift(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static DriverEldRulesetShift FromCustom(string value)
+    {
+        return new DriverEldRulesetShift(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(DriverEldRulesetShift value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(DriverEldRulesetShift value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(DriverEldRulesetShift value) => value.Value;
+
+    public static explicit operator DriverEldRulesetShift(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string UsInterstateProperty = "US Interstate Property";
+
+        public const string UsInterstatePassenger = "US Interstate Passenger";
+
+        public const string TexasIntrastate = "Texas Intrastate";
+    }
 }

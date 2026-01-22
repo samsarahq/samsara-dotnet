@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A driver object
 /// </summary>
-public record Driver
+[Serializable]
+public record Driver : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// A minified attribute
     /// </summary>
@@ -34,7 +39,7 @@ public record Driver
     public bool? EldBigDayExemptionEnabled { get; set; }
 
     [JsonPropertyName("eldDayStartHour")]
-    public int? EldDayStartHour { get; set; }
+    public long? EldDayStartHour { get; set; }
 
     [JsonPropertyName("eldExempt")]
     public bool? EldExempt { get; set; }
@@ -52,10 +57,13 @@ public record Driver
     public bool? EldYmEnabled { get; set; }
 
     [JsonPropertyName("externalIds")]
-    public object? ExternalIds { get; set; }
+    public Dictionary<string, object?>? ExternalIds { get; set; }
 
     [JsonPropertyName("hasDrivingFeaturesHidden")]
     public bool? HasDrivingFeaturesHidden { get; set; }
+
+    [JsonPropertyName("hasVehicleUnpinningEnabled")]
+    public bool? HasVehicleUnpinningEnabled { get; set; }
 
     [JsonPropertyName("id")]
     public string? Id { get; set; }
@@ -84,6 +92,9 @@ public record Driver
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }
 
+    [JsonPropertyName("profileImageUrl")]
+    public string? ProfileImageUrl { get; set; }
+
     [JsonPropertyName("staticAssignedVehicle")]
     public DriverStaticAssignedVehicle? StaticAssignedVehicle { get; set; }
 
@@ -111,15 +122,11 @@ public record Driver
     [JsonPropertyName("waitingTimeDutyStatusEnabled")]
     public bool? WaitingTimeDutyStatusEnabled { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,0 +1,91 @@
+using NUnit.Framework;
+using Samsara.Net;
+using Samsara.Net.Core;
+using Samsara.Net.Tags;
+using Samsara.Net.Test.Unit.MockServer;
+
+namespace Samsara.Net.Test.Unit.MockServer.Tags;
+
+[TestFixture]
+public class PatchTagTest : BaseMockServerTest
+{
+    [NUnit.Framework.Test]
+    public async Task MockServerTest()
+    {
+        const string requestJson = """
+            {}
+            """;
+
+        const string mockResponse = """
+            {
+              "data": {
+                "addresses": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "assets": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "drivers": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "machines": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "parentTag": {
+                  "id": "23502866574",
+                  "name": "US West Vehicles"
+                },
+                "sensors": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "vehicles": [
+                  {
+                    "id": "23502866574",
+                    "name": "Driver Don"
+                  }
+                ],
+                "id": "342417",
+                "name": "California",
+                "parentTagId": "4815"
+              }
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/tags/id")
+                    .WithHeader("Content-Type", "application/json")
+                    .UsingPatch()
+                    .WithBodyAsJson(requestJson)
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
+        Assert.That(
+            response,
+            Is.EqualTo(JsonUtils.Deserialize<TagResponse>(mockResponse)).UsingDefaults()
+        );
+    }
+}

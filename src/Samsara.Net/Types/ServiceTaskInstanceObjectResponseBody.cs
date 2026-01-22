@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Work Order Service Task object.
 /// </summary>
-public record ServiceTaskInstanceObjectResponseBody
+[Serializable]
+public record ServiceTaskInstanceObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// ID of the service task instance.
     /// </summary>
@@ -23,6 +28,12 @@ public record ServiceTaskInstanceObjectResponseBody
     /// </summary>
     [JsonPropertyName("laborTimeMinutes")]
     public int? LaborTimeMinutes { get; set; }
+
+    /// <summary>
+    /// Parts for the service task.
+    /// </summary>
+    [JsonPropertyName("parts")]
+    public IEnumerable<PartInstanceObjectResponseBody>? Parts { get; set; }
 
     [JsonPropertyName("partsCost")]
     public WorkOrderMoneyObjectResponseBody? PartsCost { get; set; }
@@ -39,15 +50,11 @@ public record ServiceTaskInstanceObjectResponseBody
     [JsonPropertyName("status")]
     public required ServiceTaskInstanceObjectResponseBodyStatus Status { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

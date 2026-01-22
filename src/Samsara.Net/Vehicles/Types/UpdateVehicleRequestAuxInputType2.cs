@@ -1,72 +1,161 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Vehicles;
 
-[JsonConverter(typeof(EnumSerializer<UpdateVehicleRequestAuxInputType2>))]
-public enum UpdateVehicleRequestAuxInputType2
+[JsonConverter(typeof(StringEnumSerializer<UpdateVehicleRequestAuxInputType2>))]
+[Serializable]
+public readonly record struct UpdateVehicleRequestAuxInputType2 : IStringEnum
 {
-    [EnumMember(Value = "none")]
-    None,
+    public static readonly UpdateVehicleRequestAuxInputType2 None = new(Values.None);
 
-    [EnumMember(Value = "emergencyLights")]
-    EmergencyLights,
+    public static readonly UpdateVehicleRequestAuxInputType2 EmergencyLights = new(
+        Values.EmergencyLights
+    );
 
-    [EnumMember(Value = "emergencyAlarm")]
-    EmergencyAlarm,
+    public static readonly UpdateVehicleRequestAuxInputType2 EmergencyAlarm = new(
+        Values.EmergencyAlarm
+    );
 
-    [EnumMember(Value = "stopPaddle")]
-    StopPaddle,
+    public static readonly UpdateVehicleRequestAuxInputType2 StopPaddle = new(Values.StopPaddle);
 
-    [EnumMember(Value = "powerTakeOff")]
-    PowerTakeOff,
+    public static readonly UpdateVehicleRequestAuxInputType2 PowerTakeOff = new(
+        Values.PowerTakeOff
+    );
 
-    [EnumMember(Value = "plow")]
-    Plow,
+    public static readonly UpdateVehicleRequestAuxInputType2 Plow = new(Values.Plow);
 
-    [EnumMember(Value = "sweeper")]
-    Sweeper,
+    public static readonly UpdateVehicleRequestAuxInputType2 Sweeper = new(Values.Sweeper);
 
-    [EnumMember(Value = "salter")]
-    Salter,
+    public static readonly UpdateVehicleRequestAuxInputType2 Salter = new(Values.Salter);
 
-    [EnumMember(Value = "reefer")]
-    Reefer,
+    public static readonly UpdateVehicleRequestAuxInputType2 Reefer = new(Values.Reefer);
 
-    [EnumMember(Value = "door")]
-    Door,
+    public static readonly UpdateVehicleRequestAuxInputType2 Door = new(Values.Door);
 
-    [EnumMember(Value = "boom")]
-    Boom,
+    public static readonly UpdateVehicleRequestAuxInputType2 Boom = new(Values.Boom);
 
-    [EnumMember(Value = "auxiliaryEngine")]
-    AuxiliaryEngine,
+    public static readonly UpdateVehicleRequestAuxInputType2 AuxiliaryEngine = new(
+        Values.AuxiliaryEngine
+    );
 
-    [EnumMember(Value = "generator")]
-    Generator,
+    public static readonly UpdateVehicleRequestAuxInputType2 Generator = new(Values.Generator);
 
-    [EnumMember(Value = "eightWayLights")]
-    EightWayLights,
+    public static readonly UpdateVehicleRequestAuxInputType2 EightWayLights = new(
+        Values.EightWayLights
+    );
 
-    [EnumMember(Value = "panicButton")]
-    PanicButton,
+    public static readonly UpdateVehicleRequestAuxInputType2 PanicButton = new(Values.PanicButton);
 
-    [EnumMember(Value = "privacyButton")]
-    PrivacyButton,
+    public static readonly UpdateVehicleRequestAuxInputType2 PrivacyButton = new(
+        Values.PrivacyButton
+    );
 
-    [EnumMember(Value = "frontAxleDrive")]
-    FrontAxleDrive,
+    public static readonly UpdateVehicleRequestAuxInputType2 FrontAxleDrive = new(
+        Values.FrontAxleDrive
+    );
 
-    [EnumMember(Value = "weightSensor")]
-    WeightSensor,
+    public static readonly UpdateVehicleRequestAuxInputType2 WeightSensor = new(
+        Values.WeightSensor
+    );
 
-    [EnumMember(Value = "other")]
-    Other,
+    public static readonly UpdateVehicleRequestAuxInputType2 Other = new(Values.Other);
 
-    [EnumMember(Value = "secondaryFuelSource")]
-    SecondaryFuelSource,
+    public static readonly UpdateVehicleRequestAuxInputType2 SecondaryFuelSource = new(
+        Values.SecondaryFuelSource
+    );
 
-    [EnumMember(Value = "ecuPowerTakeOff")]
-    EcuPowerTakeOff,
+    public static readonly UpdateVehicleRequestAuxInputType2 EcuPowerTakeOff = new(
+        Values.EcuPowerTakeOff
+    );
+
+    public UpdateVehicleRequestAuxInputType2(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static UpdateVehicleRequestAuxInputType2 FromCustom(string value)
+    {
+        return new UpdateVehicleRequestAuxInputType2(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(UpdateVehicleRequestAuxInputType2 value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(UpdateVehicleRequestAuxInputType2 value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(UpdateVehicleRequestAuxInputType2 value) => value.Value;
+
+    public static explicit operator UpdateVehicleRequestAuxInputType2(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string None = "none";
+
+        public const string EmergencyLights = "emergencyLights";
+
+        public const string EmergencyAlarm = "emergencyAlarm";
+
+        public const string StopPaddle = "stopPaddle";
+
+        public const string PowerTakeOff = "powerTakeOff";
+
+        public const string Plow = "plow";
+
+        public const string Sweeper = "sweeper";
+
+        public const string Salter = "salter";
+
+        public const string Reefer = "reefer";
+
+        public const string Door = "door";
+
+        public const string Boom = "boom";
+
+        public const string AuxiliaryEngine = "auxiliaryEngine";
+
+        public const string Generator = "generator";
+
+        public const string EightWayLights = "eightWayLights";
+
+        public const string PanicButton = "panicButton";
+
+        public const string PrivacyButton = "privacyButton";
+
+        public const string FrontAxleDrive = "frontAxleDrive";
+
+        public const string WeightSensor = "weightSensor";
+
+        public const string Other = "other";
+
+        public const string SecondaryFuelSource = "secondaryFuelSource";
+
+        public const string EcuPowerTakeOff = "ecuPowerTakeOff";
+    }
 }

@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Information about a polygon geofence. This field is only needed if the geofence is a polygon.
 /// </summary>
-public record PolygonRequestBody
+[Serializable]
+public record PolygonRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The name of the polygon.
     /// </summary>
@@ -21,15 +26,11 @@ public record PolygonRequestBody
     [JsonPropertyName("vertices")]
     public IEnumerable<VertexRequestBody>? Vertices { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

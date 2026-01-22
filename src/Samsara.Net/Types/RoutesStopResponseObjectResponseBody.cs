@@ -4,8 +4,13 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record RoutesStopResponseObjectResponseBody
+[Serializable]
+public record RoutesStopResponseObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Actual arrival time, if it exists, for the route stop in RFC 3339 format.
     /// </summary>
@@ -17,6 +22,12 @@ public record RoutesStopResponseObjectResponseBody
     /// </summary>
     [JsonPropertyName("actualDepartureTime")]
     public DateTime? ActualDepartureTime { get; set; }
+
+    /// <summary>
+    /// Actual GPS-measured distance traveled from the previous stop's departure to this stop's arrival, in meters. Null for the first stop, skipped stops, or if GPS data is unavailable.
+    /// </summary>
+    [JsonPropertyName("actualDistanceMeters")]
+    public long? ActualDistanceMeters { get; set; }
 
     [JsonPropertyName("address")]
     public GoaAddressTinyResponseResponseBody? Address { get; set; }
@@ -46,10 +57,22 @@ public record RoutesStopResponseObjectResponseBody
     public Dictionary<string, string>? ExternalIds { get; set; }
 
     /// <summary>
+    /// List of forms associated with the stop.
+    /// </summary>
+    [JsonPropertyName("forms")]
+    public IEnumerable<GoaFormTinyResponseResponseBody>? Forms { get; set; }
+
+    /// <summary>
     /// Id of the stop
     /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
+
+    /// <summary>
+    /// List of issues associated with the stop.
+    /// </summary>
+    [JsonPropertyName("issues")]
+    public IEnumerable<GoaIssueTinyResponseResponseBody>? Issues { get; set; }
 
     /// <summary>
     /// The shareable url of the stop's current status.
@@ -88,6 +111,12 @@ public record RoutesStopResponseObjectResponseBody
     public long? OntimeWindowBeforeArrivalMs { get; set; }
 
     /// <summary>
+    /// Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.
+    /// </summary>
+    [JsonPropertyName("plannedDistanceMeters")]
+    public long? PlannedDistanceMeters { get; set; }
+
+    /// <summary>
     /// Scheduled arrival time, if it exists, for the stop in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("scheduledArrivalTime")]
@@ -98,6 +127,12 @@ public record RoutesStopResponseObjectResponseBody
     /// </summary>
     [JsonPropertyName("scheduledDepartureTime")]
     public DateTime? ScheduledDepartureTime { get; set; }
+
+    /// <summary>
+    /// Manual sequence position of this stop. Only used when route.settings.sequencingMethod=manual.
+    /// </summary>
+    [JsonPropertyName("sequenceNumber")]
+    public long? SequenceNumber { get; set; }
 
     [JsonPropertyName("singleUseLocation")]
     public RoutesSingleUseAddressObjectResponseBody? SingleUseLocation { get; set; }
@@ -114,15 +149,11 @@ public record RoutesStopResponseObjectResponseBody
     [JsonPropertyName("state")]
     public required RoutesStopResponseObjectResponseBodyState State { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

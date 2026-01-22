@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Enabling voice coaching will play messages for harsh events, speeding, and unbuckled seat belts.
 /// </summary>
-public record VoiceCoachingSettingsObjectResponseBody
+[Serializable]
+public record VoiceCoachingSettingsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Selected driving events will be enabled for voice coaching. Harsh driving events include harsh acceleration and harsh brake.
     /// </summary>
@@ -33,15 +38,11 @@ public record VoiceCoachingSettingsObjectResponseBody
     [JsonPropertyName("speedingThresholdMph")]
     public double? SpeedingThresholdMph { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

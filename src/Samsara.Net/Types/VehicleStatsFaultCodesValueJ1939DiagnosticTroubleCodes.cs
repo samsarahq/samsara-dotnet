@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Diagnostic trouble code for J1939 vehicles.
 /// </summary>
-public record VehicleStatsFaultCodesValueJ1939DiagnosticTroubleCodes
+[Serializable]
+public record VehicleStatsFaultCodesValueJ1939DiagnosticTroubleCodes : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// A short description of the FMI identifier, if available.
     /// </summary>
@@ -60,15 +65,11 @@ public record VehicleStatsFaultCodesValueJ1939DiagnosticTroubleCodes
     [JsonPropertyName("vendorSpecificFields")]
     public VehicleStatsFaultCodesValueJ1939VendorSpecificFields? VendorSpecificFields { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -3,8 +3,15 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Contacts;
 
+[Serializable]
 public record UpdateContactRequest
 {
+    /// <summary>
+    /// Unique identifier for the contact.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
     /// <summary>
     /// Email address of the contact.
     /// </summary>

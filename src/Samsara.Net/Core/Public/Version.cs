@@ -1,6 +1,7 @@
 namespace Samsara.Net;
 
+[Serializable]
 internal class Version
 {
-    public const string Current = "0.1.2";
+    public const string Current = "5.2.1";
 }

@@ -1,27 +1,17 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
-using Samsara.Net.Drivers.QrCodes;
-using Samsara.Net.Drivers.VehicleAssignments;
 
 namespace Samsara.Net.Drivers;
 
-public partial class DriversClient
+public partial class DriversClient : IDriversClient
 {
     private RawClient _client;
 
     internal DriversClient(RawClient client)
     {
         _client = client;
-        QrCodes = new QrCodesClient(_client);
-        VehicleAssignments = new VehicleAssignmentsClient(_client);
     }
-
-    public QrCodesClient QrCodes { get; }
-
-    public VehicleAssignmentsClient VehicleAssignments { get; }
 
     /// <summary>
     /// Get all drivers in organization.
@@ -30,8 +20,19 @@ public partial class DriversClient
     ///
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
-    private async Task<ListDriversResponse> ListInternalAsync(
-        DriversListRequest request,
+    private WithRawResponseTask<ListDriversResponse> ListInternalAsync(
+        ListDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListDriversResponse>(
+            ListInternalAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    private async Task<WithRawResponse<ListDriversResponse>> ListInternalAsyncCore(
+        ListDriversRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -79,14 +80,28 @@ public partial class DriversClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ListDriversResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<ListDriversResponse>(responseBody)!;
+                return new WithRawResponse<ListDriversResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -97,67 +112,7 @@ public partial class DriversClient
         }
     }
 
-    /// <summary>
-    /// Get all drivers in organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Drivers.ListAsync(new DriversListRequest());
-    /// </code></example>
-    public async Task<Pager<Driver>> ListAsync(
-        DriversListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            DriversListRequest,
-            RequestOptions?,
-            ListDriversResponse,
-            string,
-            Driver
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Add a driver to the organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Drivers.CreateAsync(
-    ///     new CreateDriverRequest
-    ///     {
-    ///         Name = "Susan Jones",
-    ///         Password = "aSecurePassword1234",
-    ///         Username = "SusanJones",
-    ///     }
-    /// );
-    /// </code></example>
-    public async Task<DriverResponse> CreateAsync(
+    private async Task<WithRawResponse<DriverResponse>> CreateAsyncCore(
         CreateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -182,14 +137,28 @@ public partial class DriversClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<DriverResponse>(responseBody)!;
+                return new WithRawResponse<DriverResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -200,26 +169,9 @@ public partial class DriversClient
         }
     }
 
-    /// <summary>
-    /// Sign out a driver from the Samsara Driver App
-    ///
-    /// To access this endpoint, your organization must have the Samsara Platform Premier license.
-    ///
-    /// Note: Sign out requests made while a logged-in driver does not have internet connection will not log the driver out. A success response will still be provided and the driver will be logged out once they have internet connection.
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    /// To use this endpoint, select **Write Driver Remote Signout** under the Closed Beta category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.Drivers.SignOutAsync(
-    ///     new DriverRemoteSignoutPostDriverRemoteSignoutRequestBody { DriverId = "12434" }
-    /// );
-    /// </code></example>
-    public async Task<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody> SignOutAsync(
+    private async Task<
+        WithRawResponse<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>
+    > PostDriverRemoteSignoutAsyncCore(
         DriverRemoteSignoutPostDriverRemoteSignoutRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -244,16 +196,31 @@ public partial class DriversClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>(
-                    responseBody
-                )!;
+                var responseData =
+                    JsonUtils.Deserialize<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -296,18 +263,8 @@ public partial class DriversClient
         }
     }
 
-    /// <summary>
-    /// Get information about a driver.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Drivers.GetAsync("id");
-    /// </code></example>
-    public async Task<DriverResponse> GetAsync(
-        string id,
+    private async Task<WithRawResponse<DriverResponse>> GetAsyncCore(
+        GetDriversRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -320,7 +277,7 @@ public partial class DriversClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/drivers/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Options = options,
                 },
@@ -332,14 +289,249 @@ public partial class DriversClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<DriverResponse>(responseBody)!;
+                return new WithRawResponse<DriverResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 
+    private async Task<WithRawResponse<DriverResponse>> UpdateAsyncCore(
+        UpdateDriverRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "fleet/drivers/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<DriverResponse>(responseBody)!;
+                return new WithRawResponse<DriverResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Get all drivers in organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Drivers.ListAsync(new ListDriversRequest());
+    /// </code></example>
+    public async Task<Pager<Driver>> ListAsync(
+        ListDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        if (request is not null)
+        {
+            request = request with { };
+        }
+        var pager = await CursorPager<
+            ListDriversRequest,
+            RequestOptions?,
+            ListDriversResponse,
+            string,
+            Driver
+        >
+            .CreateInstanceAsync(
+                request,
+                options,
+                async (request, options, cancellationToken) =>
+                    await ListInternalAsync(request, options, cancellationToken),
+                (request, cursor) =>
+                {
+                    request.After = cursor;
+                },
+                response => response.Pagination?.EndCursor,
+                response => response.Data?.ToList(),
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        return pager;
+    }
+
+    /// <summary>
+    /// Add a driver to the organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Drivers.CreateAsync(
+    ///     new CreateDriverRequest
+    ///     {
+    ///         Name = "Susan Jones",
+    ///         Password = "aSecurePassword1234",
+    ///         Username = "SusanJones",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<DriverResponse> CreateAsync(
+        CreateDriverRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<DriverResponse>(
+            CreateAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Sign out a driver from the Samsara Driver App
+    ///
+    /// To access this endpoint, your organization must have the Samsara Platform Premier license.
+    ///
+    /// Note: Sign out requests made while a logged-in driver does not have internet connection will not log the driver out. A success response will still be provided and the driver will be logged out once they have internet connection.
+    ///
+    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///
+    /// To use this endpoint, select **Write Driver Remote Signout** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.Drivers.PostDriverRemoteSignoutAsync(
+    ///     new DriverRemoteSignoutPostDriverRemoteSignoutRequestBody { DriverId = "12434" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody> PostDriverRemoteSignoutAsync(
+        DriverRemoteSignoutPostDriverRemoteSignoutRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>(
+            PostDriverRemoteSignoutAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Get information about a driver.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Drivers.GetAsync(new GetDriversRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<DriverResponse> GetAsync(
+        GetDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<DriverResponse>(
+            GetAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <example><code>
+    /// await client.Drivers.DeleteAsync(new DeleteDriversRequest { Id = "id" });
+    /// </code></example>
+    public async Task DeleteAsync(
+        DeleteDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "fleet/drivers/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -358,52 +550,16 @@ public partial class DriversClient
     /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
+    /// await client.Drivers.UpdateAsync(new UpdateDriverRequest { Id = "id" });
     /// </code></example>
-    public async Task<DriverResponse> UpdateAsync(
-        string id,
+    public WithRawResponseTask<DriverResponse> UpdateAsync(
         UpdateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "fleet/drivers/{0}",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<DriverResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<DriverResponse>(
+            UpdateAsyncCore(request, options, cancellationToken)
+        );
     }
 }

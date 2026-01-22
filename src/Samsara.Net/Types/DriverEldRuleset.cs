@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// An ELD ruleset for a driver.
 /// </summary>
-public record DriverEldRuleset
+[Serializable]
+public record DriverEldRuleset : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("break")]
     public DriverEldRulesetRestBreak? Break { get; set; }
 
@@ -24,15 +29,11 @@ public record DriverEldRuleset
     [JsonPropertyName("shift")]
     public DriverEldRulesetShift? Shift { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

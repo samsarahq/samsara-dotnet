@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Forms score object.
 /// </summary>
-public record FormsScoreObjectResponseBody
+[Serializable]
+public record FormsScoreObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Total possible points of the form submission.
     /// </summary>
@@ -27,15 +32,11 @@ public record FormsScoreObjectResponseBody
     [JsonPropertyName("scorePoints")]
     public required double ScorePoints { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()
