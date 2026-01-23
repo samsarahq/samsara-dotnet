@@ -4,19 +4,20 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
+[Serializable]
 public record UpdateAttributeRequest
 {
     /// <summary>
-    /// Denotes the data type of the attribute's values. Valid values: `string`, `number`.
+    /// Samsara-provided UUID of the attribute.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
+    /// Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     /// </summary>
     [JsonPropertyName("attributeType")]
     public UpdateAttributeRequestAttributeType? AttributeType { get; set; }
-
-    /// <summary>
-    /// Defines whether or not this attribute can be used on the same entity many times (with different values). Denotes the type of entity, driver or asset. Valid values: `driver`, `asset`.
-    /// </summary>
-    [JsonPropertyName("attributeValueQuantity")]
-    public UpdateAttributeRequestAttributeValueQuantity? AttributeValueQuantity { get; set; }
 
     /// <summary>
     /// Entities that will be applied to this attribute

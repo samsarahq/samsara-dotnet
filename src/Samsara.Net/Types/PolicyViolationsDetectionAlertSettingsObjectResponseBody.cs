@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Enables detection of policy violations, surfaces events in Safety Inbox, and enables configurable alerts. While the feature is in beta, in-cab alerts are recommended for testing use only.
 /// </summary>
-public record PolicyViolationsDetectionAlertSettingsObjectResponseBody
+[Serializable]
+public record PolicyViolationsDetectionAlertSettingsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// List of selectable beta policy violation events to be tested.
     /// </summary>
@@ -39,15 +44,11 @@ public record PolicyViolationsDetectionAlertSettingsObjectResponseBody
     [JsonPropertyName("speedingThresholdMph")]
     public double? SpeedingThresholdMph { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

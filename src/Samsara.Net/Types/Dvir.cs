@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Information about a DVIR.
 /// </summary>
-public record Dvir
+[Serializable]
+public record Dvir : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("authorSignature")]
     public DvirAuthorSignature? AuthorSignature { get; set; }
 
@@ -34,7 +39,7 @@ public record Dvir
     public string? MechanicNotes { get; set; }
 
     [JsonPropertyName("odometerMeters")]
-    public int? OdometerMeters { get; set; }
+    public long? OdometerMeters { get; set; }
 
     /// <summary>
     /// The condition of vehicle on which DVIR was done. Valid values: `safe`, `unsafe`, `resolved`.
@@ -78,15 +83,11 @@ public record Dvir
     [JsonPropertyName("vehicleDefects")]
     public IEnumerable<DvirTrailerDefectsItems>? VehicleDefects { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

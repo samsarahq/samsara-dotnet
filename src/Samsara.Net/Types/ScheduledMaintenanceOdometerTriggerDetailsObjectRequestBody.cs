@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Details specific to Scheduled Maintenance by Odometer
 /// </summary>
-public record ScheduledMaintenanceOdometerTriggerDetailsObjectRequestBody
+[Serializable]
+public record ScheduledMaintenanceOdometerTriggerDetailsObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Alert when vehicle odometer has this many meters left until maintenance is due.
     /// </summary>
@@ -21,15 +26,11 @@ public record ScheduledMaintenanceOdometerTriggerDetailsObjectRequestBody
     [JsonPropertyName("scheduleId")]
     public required string ScheduleId { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

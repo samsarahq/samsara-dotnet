@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Contains information about where an issue came from.
 /// </summary>
-public record IssueSourceObjectResponseBody
+[Serializable]
+public record IssueSourceObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// ID of the issue's source object. The format depends on the 'type'. Included if 'type' is not 'ad-hoc'.
     /// </summary>
@@ -21,15 +26,11 @@ public record IssueSourceObjectResponseBody
     [JsonPropertyName("type")]
     public required IssueSourceObjectResponseBodyType Type { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

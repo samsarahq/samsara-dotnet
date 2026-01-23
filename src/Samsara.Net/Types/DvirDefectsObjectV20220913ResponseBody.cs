@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A description of a DVIR defect
 /// </summary>
-public record DvirDefectsObjectV20220913ResponseBody
+[Serializable]
+public record DvirDefectsObjectV20220913ResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Comment on the defect.
     /// </summary>
@@ -66,15 +71,11 @@ public record DvirDefectsObjectV20220913ResponseBody
     [JsonPropertyName("vehicle")]
     public VehicleWithGatewayTinyResponseResponseBody? Vehicle { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

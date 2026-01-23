@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// An optional dictionary, only necessary to override the defaults for route start and end conditions.
 /// </summary>
-public record RouteSettingsResponseBody
+[Serializable]
+public record RouteSettingsResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Defaults to 'arriveLastStop' which ends the route upon arriving at the final stop. The condition 'departLastStop'
     /// ends the route upon departing the last stop. If 'arriveLastStop' is set, then the departure time of the final stop should not be set.  Valid values: `arriveLastStop`, `departLastStop`
@@ -25,14 +30,16 @@ public record RouteSettingsResponseBody
     public RouteSettingsResponseBodyRouteStartingCondition? RouteStartingCondition { get; set; }
 
     /// <summary>
-    /// Additional properties received from the response, if any.
+    /// Determines how stops are sequenced on the route. 'scheduledArrivalTime' sequences stops by their scheduled arrival times (default). 'manual' allows custom sequencing via stop.sequenceNumber. 'unknown' indicates the method is not specified.  Valid values: `unknown`, `scheduledArrivalTime`, `manual`
     /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("sequencingMethod")]
+    public RouteSettingsResponseBodySequencingMethod? SequencingMethod { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

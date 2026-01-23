@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Assets;
 
+[Serializable]
 public record AssetsCreateAssetRequestBody
 {
     /// <summary>
@@ -40,6 +41,12 @@ public record AssetsCreateAssetRequestBody
     /// </summary>
     [JsonPropertyName("notes")]
     public string? Notes { get; set; }
+
+    /// <summary>
+    /// Indicates whether the asset is expected to have data ingested using the Readings API.
+    /// </summary>
+    [JsonPropertyName("readingsIngestionEnabled")]
+    public bool? ReadingsIngestionEnabled { get; set; }
 
     /// <summary>
     /// Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`

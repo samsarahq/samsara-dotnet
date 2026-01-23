@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Issue response object.
 /// </summary>
-public record IssueResponseObjectResponseBody
+[Serializable]
+public record IssueResponseObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("asset")]
     public FormsAssetObjectResponseBody? Asset { get; set; }
 
@@ -87,15 +92,11 @@ public record IssueResponseObjectResponseBody
     [JsonPropertyName("updatedAtTime")]
     public required DateTime UpdatedAtTime { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

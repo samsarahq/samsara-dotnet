@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The trigger of an alert.
 /// </summary>
-public record WorkflowTriggerObjectResponseBody
+[Serializable]
+public record WorkflowTriggerObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("triggerParams")]
     public TriggerParamsObjectResponseBody? TriggerParams { get; set; }
 
@@ -58,19 +63,19 @@ public record WorkflowTriggerObjectResponseBody
     /// Geofence Exit = 5017
     /// Route Stop ETA Alert = 5018
     /// Scheduled Date And Time = 8001
+    ///
+    /// The following trigger types are in Preview:
+    /// A safety event occurred = 5033
+    /// A safety event occurred = 5039
     /// </summary>
     [JsonPropertyName("triggerTypeId")]
     public required int TriggerTypeId { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

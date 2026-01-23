@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Tags;
 
+[Serializable]
 public record CreateTagRequest
 {
     /// <summary>

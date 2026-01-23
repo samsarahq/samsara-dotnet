@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The value of the document field. The shape of value depends on the type.
 /// </summary>
-public record FieldObjectValueResponseBody
+[Serializable]
+public record FieldObjectValueResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The value of a barcode scanning field. Only present for barcode scanning fields.
     /// </summary>
@@ -51,15 +56,11 @@ public record FieldObjectValueResponseBody
     [JsonPropertyName("stringValue")]
     public string? StringValue { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

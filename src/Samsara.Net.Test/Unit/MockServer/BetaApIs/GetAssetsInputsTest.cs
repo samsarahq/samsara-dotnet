@@ -1,0 +1,175 @@
+using NUnit.Framework;
+using Samsara.Net;
+using Samsara.Net.BetaApIs;
+using Samsara.Net.Core;
+using Samsara.Net.Test.Unit.MockServer;
+
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+
+[TestFixture]
+public class GetAssetsInputsTest : BaseMockServerTest
+{
+    [NUnit.Framework.Test]
+    public async Task MockServerTest()
+    {
+        const string mockResponse = """
+            {
+              "data": [
+                {
+                  "asset": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "dateValues",
+                          "dateValues"
+                        ],
+                        "id": "id",
+                        "name": "name",
+                        "numberValues": [
+                          1.1,
+                          1.1
+                        ],
+                        "stringValues": [
+                          "stringValues",
+                          "stringValues"
+                        ]
+                      },
+                      {
+                        "dateValues": [
+                          "dateValues",
+                          "dateValues"
+                        ],
+                        "id": "id",
+                        "name": "name",
+                        "numberValues": [
+                          1.1,
+                          1.1
+                        ],
+                        "stringValues": [
+                          "stringValues",
+                          "stringValues"
+                        ]
+                      }
+                    ],
+                    "externalIds": {
+                      "externalIds": "externalIds"
+                    },
+                    "id": "id",
+                    "tags": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "parentTagId": "parentTagId"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "parentTagId": "parentTagId"
+                      }
+                    ]
+                  },
+                  "auxInput": {
+                    "name": "name"
+                  },
+                  "happenedAtTime": "happenedAtTime",
+                  "units": "boolean",
+                  "value": "value"
+                },
+                {
+                  "asset": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "dateValues",
+                          "dateValues"
+                        ],
+                        "id": "id",
+                        "name": "name",
+                        "numberValues": [
+                          1.1,
+                          1.1
+                        ],
+                        "stringValues": [
+                          "stringValues",
+                          "stringValues"
+                        ]
+                      },
+                      {
+                        "dateValues": [
+                          "dateValues",
+                          "dateValues"
+                        ],
+                        "id": "id",
+                        "name": "name",
+                        "numberValues": [
+                          1.1,
+                          1.1
+                        ],
+                        "stringValues": [
+                          "stringValues",
+                          "stringValues"
+                        ]
+                      }
+                    ],
+                    "externalIds": {
+                      "externalIds": "externalIds"
+                    },
+                    "id": "id",
+                    "tags": [
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "parentTagId": "parentTagId"
+                      },
+                      {
+                        "id": "id",
+                        "name": "name",
+                        "parentTagId": "parentTagId"
+                      }
+                    ]
+                  },
+                  "auxInput": {
+                    "name": "name"
+                  },
+                  "happenedAtTime": "happenedAtTime",
+                  "units": "boolean",
+                  "value": "value"
+                }
+              ],
+              "pagination": {
+                "endCursor": "endCursor",
+                "hasNextPage": true
+              }
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/assets/inputs/stream")
+                    .WithParam("type", "auxInput1")
+                    .WithParam("startTime", "startTime")
+                    .UsingGet()
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.BetaApIs.GetAssetsInputsAsync(
+            new GetAssetsInputsRequest
+            {
+                Type = GetAssetsInputsRequestType.AuxInput1,
+                StartTime = "startTime",
+            }
+        );
+        Assert.That(
+            response,
+            Is.EqualTo(JsonUtils.Deserialize<AssetsInputsGetAssetsInputsResponseBody>(mockResponse))
+                .UsingDefaults()
+        );
+    }
+}

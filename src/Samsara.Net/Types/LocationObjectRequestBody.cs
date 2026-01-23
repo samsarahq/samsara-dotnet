@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A location. Polygon and Circle is deprecated, but may be set for old Alerts. At least one location must be selected.
 /// </summary>
-public record LocationObjectRequestBody
+[Serializable]
+public record LocationObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// All locations with selected address IDs will trigger.
     /// </summary>
@@ -33,15 +38,11 @@ public record LocationObjectRequestBody
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

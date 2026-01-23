@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The geofence that defines this address and its bounds. This can either be a circle or a polygon, but not both.
 /// </summary>
-public record AddressGeofence
+[Serializable]
+public record AddressGeofence : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("circle")]
     public AddressGeofenceCircle? Circle { get; set; }
 
@@ -18,15 +23,11 @@ public record AddressGeofence
     [JsonPropertyName("settings")]
     public AddressGeofenceSettings? Settings { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

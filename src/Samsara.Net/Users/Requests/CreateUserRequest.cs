@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Users;
 
+[Serializable]
 public record CreateUserRequest
 {
     /// <summary>

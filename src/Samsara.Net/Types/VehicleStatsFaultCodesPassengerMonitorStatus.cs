@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Readings from engine sensors
 /// </summary>
-public record VehicleStatsFaultCodesPassengerMonitorStatus
+[Serializable]
+public record VehicleStatsFaultCodesPassengerMonitorStatus : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("catalyst")]
     public VehicleStatsFaultCodesPassengerMonitorStatusValue? Catalyst { get; set; }
 
@@ -40,7 +45,7 @@ public record VehicleStatsFaultCodesPassengerMonitorStatus
     /// Count of the number of sensors reporting N: Not Complete
     /// </summary>
     [JsonPropertyName("notReadyCount")]
-    public int? NotReadyCount { get; set; }
+    public long? NotReadyCount { get; set; }
 
     [JsonPropertyName("o2Sensor")]
     public VehicleStatsFaultCodesPassengerMonitorStatusValue? O2Sensor { get; set; }
@@ -48,15 +53,11 @@ public record VehicleStatsFaultCodesPassengerMonitorStatus
     [JsonPropertyName("secondaryAir")]
     public VehicleStatsFaultCodesPassengerMonitorStatusValue? SecondaryAir { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

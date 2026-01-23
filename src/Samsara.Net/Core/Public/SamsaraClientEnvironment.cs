@@ -1,5 +1,6 @@
 namespace Samsara.Net;
 
+[Serializable]
 public class SamsaraClientEnvironment
 {
     public const string ProductionApi = "https://api.samsara.com";

@@ -1,12 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.SpeedingIntervals;
 
-public partial class SpeedingIntervalsClient
+public partial class SpeedingIntervalsClient : ISpeedingIntervalsClient
 {
     private RawClient _client;
 
@@ -15,18 +13,10 @@ public partial class SpeedingIntervalsClient
         _client = client;
     }
 
-    /// <summary>
-    /// This endpoint will return all speeding intervals associated with all trips that have been collected for your organization based on the time parameters passed in. Only completed trips are included. Trips with no speeding intervals detected will be returned with an empty list of intervals. Results are paginated.
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    /// To use this endpoint, select **Read Speeding Intervals** under the Speeding Intervals category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    /// </summary>
-    private async Task<SpeedingIntervalsGetSpeedingIntervalsResponseBody> StreamInternalAsync(
-        SpeedingIntervalsStreamRequest request,
+    private async Task<
+        WithRawResponse<SpeedingIntervalsGetSpeedingIntervalsResponseBody>
+    > GetSpeedingIntervalsAsyncCore(
+        GetSpeedingIntervalsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -73,16 +63,31 @@ public partial class SpeedingIntervalsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<SpeedingIntervalsGetSpeedingIntervalsResponseBody>(
-                    responseBody
-                )!;
+                var responseData =
+                    JsonUtils.Deserialize<SpeedingIntervalsGetSpeedingIntervalsResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<SpeedingIntervalsGetSpeedingIntervalsResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -136,40 +141,18 @@ public partial class SpeedingIntervalsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.SpeedingIntervals.StreamAsync(
-    ///     new SpeedingIntervalsStreamRequest { StartTime = "startTime" }
+    /// await client.SpeedingIntervals.GetSpeedingIntervalsAsync(
+    ///     new GetSpeedingIntervalsRequest { StartTime = "startTime" }
     /// );
     /// </code></example>
-    public async Task<Pager<TripSpeedingIntervalsResponseBody>> StreamAsync(
-        SpeedingIntervalsStreamRequest request,
+    public WithRawResponseTask<SpeedingIntervalsGetSpeedingIntervalsResponseBody> GetSpeedingIntervalsAsync(
+        GetSpeedingIntervalsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            SpeedingIntervalsStreamRequest,
-            RequestOptions?,
-            SpeedingIntervalsGetSpeedingIntervalsResponseBody,
-            string,
-            TripSpeedingIntervalsResponseBody
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                StreamInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
+        return new WithRawResponseTask<SpeedingIntervalsGetSpeedingIntervalsResponseBody>(
+            GetSpeedingIntervalsAsyncCore(request, options, cancellationToken)
+        );
     }
 }

@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Location object of the closest location point to the interval.
 /// </summary>
-public record SpeedingIntervalLocationResponseResponseBody
+[Serializable]
+public record SpeedingIntervalLocationResponseResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Radial accuracy of gps location in meters. This will only return if strong GPS is not available.
     /// </summary>
@@ -36,15 +41,11 @@ public record SpeedingIntervalLocationResponseResponseBody
     [JsonPropertyName("longitude")]
     public required double Longitude { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

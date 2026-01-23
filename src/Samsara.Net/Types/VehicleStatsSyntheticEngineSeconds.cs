@@ -5,10 +5,15 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Data for the synthetic engine seconds for the vehicle
+/// The cumulative number of seconds the engine has run estimated based on when the engine is running. Please note that this method &lt;a href="https://kb.samsara.com/hc/en-us/articles/360043552511-Synthetic-Engine-Hours" target="_blank"&gt;requires the addition of a baseline&lt;/a&gt; to trigger accumulation.
 /// </summary>
-public record VehicleStatsSyntheticEngineSeconds
+[Serializable]
+public record VehicleStatsSyntheticEngineSeconds : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("decorations")]
     public VehicleStatsDecorations? Decorations { get; set; }
 
@@ -18,15 +23,11 @@ public record VehicleStatsSyntheticEngineSeconds
     [JsonPropertyName("value")]
     public required long Value { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

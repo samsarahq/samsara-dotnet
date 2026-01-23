@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The most recent equipment stats and pagination information
 /// </summary>
-public record EquipmentStatsResponse
+[Serializable]
+public record EquipmentStatsResponse : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// List of the most recent stats for the specified units of equipment and stat types.
     /// </summary>
@@ -19,15 +24,11 @@ public record EquipmentStatsResponse
     [JsonPropertyName("pagination")]
     public required PaginationResponse Pagination { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Routes;
 
+[Serializable]
 public record RoutesCreateRouteRequestBody
 {
     /// <summary>
@@ -45,6 +46,12 @@ public record RoutesCreateRouteRequestBody
     [JsonPropertyName("stops")]
     public IEnumerable<CreateRoutesStopRequestObjectRequestBody> Stops { get; set; } =
         new List<CreateRoutesStopRequestObjectRequestBody>();
+
+    /// <summary>
+    /// An array of IDs of tags to associate with this route.
+    /// </summary>
+    [JsonPropertyName("tagIds")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
     /// ID of the vehicle. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.

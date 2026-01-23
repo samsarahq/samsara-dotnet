@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.CarrierProposedAssignments;
 
+[Serializable]
 public record CreateCarrierProposedAssignmentRequest
 {
     /// <summary>

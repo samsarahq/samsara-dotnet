@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A work order object.
 /// </summary>
-public record WorkOrderObjectResponseBody
+[Serializable]
+public record WorkOrderObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The time the work order was archived in RFC 3339 format.
     /// </summary>
@@ -34,10 +39,10 @@ public record WorkOrderObjectResponseBody
     public IEnumerable<WorkOrderAttachmentObjectResponseBody>? Attachments { get; set; }
 
     /// <summary>
-    /// The category of the work order  Valid values: `Annual`, `Corrective`, `Damage Repair`, `Preventive`, `Recall`, `Unspecified`
+    /// The category of the work order
     /// </summary>
     [JsonPropertyName("category")]
-    public WorkOrderObjectResponseBodyCategory? Category { get; set; }
+    public string? Category { get; set; }
 
     /// <summary>
     /// Notes on the work order.
@@ -91,6 +96,12 @@ public record WorkOrderObjectResponseBody
     public required string Id { get; set; }
 
     /// <summary>
+    /// The invoice number for the work order.
+    /// </summary>
+    [JsonPropertyName("invoiceNumber")]
+    public string? InvoiceNumber { get; set; }
+
+    /// <summary>
     /// Items related to the work order.
     /// </summary>
     [JsonPropertyName("items")]
@@ -101,6 +112,12 @@ public record WorkOrderObjectResponseBody
     /// </summary>
     [JsonPropertyName("odometerMeters")]
     public long? OdometerMeters { get; set; }
+
+    /// <summary>
+    /// The purchase order number for the work order.
+    /// </summary>
+    [JsonPropertyName("poNumber")]
+    public string? PoNumber { get; set; }
 
     /// <summary>
     /// The priority of the work order  Valid values: `High`, `Low`, `Medium`, `Urgent`
@@ -130,14 +147,16 @@ public record WorkOrderObjectResponseBody
     public required DateTime UpdatedAtTime { get; set; }
 
     /// <summary>
-    /// Additional properties received from the response, if any.
+    /// The vendor UUID for the work order.
     /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("vendorUuid")]
+    public string? VendorUuid { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

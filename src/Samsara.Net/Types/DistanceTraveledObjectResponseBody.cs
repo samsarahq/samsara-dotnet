@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The distance traveled information of the log.
 /// </summary>
-public record DistanceTraveledObjectResponseBody
+[Serializable]
+public record DistanceTraveledObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Distance driven in meters, rounded to two decimal places.
     /// </summary>
@@ -27,15 +32,11 @@ public record DistanceTraveledObjectResponseBody
     [JsonPropertyName("yardMoveDistanceMeters")]
     public long? YardMoveDistanceMeters { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

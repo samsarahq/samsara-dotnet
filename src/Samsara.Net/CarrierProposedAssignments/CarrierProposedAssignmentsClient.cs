@@ -1,12 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.CarrierProposedAssignments;
 
-public partial class CarrierProposedAssignmentsClient
+public partial class CarrierProposedAssignmentsClient : ICarrierProposedAssignmentsClient
 {
     private RawClient _client;
 
@@ -15,15 +13,10 @@ public partial class CarrierProposedAssignmentsClient
         _client = client;
     }
 
-    /// <summary>
-    /// Show the assignments created by the POST fleet/carrier-proposed-assignments. This endpoint will only show the assignments that are active for drivers and currently visible to them in the driver app. Once a proposed assignment has been accepted, the endpoint will not return any data.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    private async Task<ListCarrierProposedAssignmentResponse> ListInternalAsync(
-        CarrierProposedAssignmentsListRequest request,
+    private async Task<
+        WithRawResponse<ListCarrierProposedAssignmentResponse>
+    > ListCarrierProposedAssignmentsAsyncCore(
+        ListCarrierProposedAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -60,14 +53,30 @@ public partial class CarrierProposedAssignmentsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ListCarrierProposedAssignmentResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<ListCarrierProposedAssignmentResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<ListCarrierProposedAssignmentResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -78,62 +87,9 @@ public partial class CarrierProposedAssignmentsClient
         }
     }
 
-    /// <summary>
-    /// Show the assignments created by the POST fleet/carrier-proposed-assignments. This endpoint will only show the assignments that are active for drivers and currently visible to them in the driver app. Once a proposed assignment has been accepted, the endpoint will not return any data.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.CarrierProposedAssignments.ListAsync(new CarrierProposedAssignmentsListRequest());
-    /// </code></example>
-    public async Task<Pager<CarrierProposedAssignment>> ListAsync(
-        CarrierProposedAssignmentsListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            CarrierProposedAssignmentsListRequest,
-            RequestOptions?,
-            ListCarrierProposedAssignmentResponse,
-            string,
-            CarrierProposedAssignment
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Creates a new assignment that a driver can later use. Each driver can only have one future assignment.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.CarrierProposedAssignments.CreateAsync(
-    ///     new CreateCarrierProposedAssignmentRequest { DriverId = "42", VehicleId = "123" }
-    /// );
-    /// </code></example>
-    public async Task<CarrierProposedAssignmentResponse> CreateAsync(
+    private async Task<
+        WithRawResponse<CarrierProposedAssignmentResponse>
+    > CreateCarrierProposedAssignmentAsyncCore(
         CreateCarrierProposedAssignmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -158,14 +114,30 @@ public partial class CarrierProposedAssignmentsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<CarrierProposedAssignmentResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<CarrierProposedAssignmentResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<CarrierProposedAssignmentResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -176,18 +148,8 @@ public partial class CarrierProposedAssignmentsClient
         }
     }
 
-    /// <summary>
-    /// Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.CarrierProposedAssignments.DeleteAsync("id");
-    /// </code></example>
-    public async Task<object> DeleteAsync(
-        string id,
+    private async Task<WithRawResponse<string>> DeleteCarrierProposedAssignmentAsyncCore(
+        DeleteCarrierProposedAssignmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -200,7 +162,7 @@ public partial class CarrierProposedAssignmentsClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/carrier-proposed-assignments/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Options = options,
                 },
@@ -212,14 +174,28 @@ public partial class CarrierProposedAssignmentsClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<object>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
+                return new WithRawResponse<string>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -228,5 +204,74 @@ public partial class CarrierProposedAssignmentsClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Show the assignments created by the POST fleet/carrier-proposed-assignments. This endpoint will only show the assignments that are active for drivers and currently visible to them in the driver app. Once a proposed assignment has been accepted, the endpoint will not return any data.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.CarrierProposedAssignments.ListCarrierProposedAssignmentsAsync(
+    ///     new ListCarrierProposedAssignmentsRequest()
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<ListCarrierProposedAssignmentResponse> ListCarrierProposedAssignmentsAsync(
+        ListCarrierProposedAssignmentsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListCarrierProposedAssignmentResponse>(
+            ListCarrierProposedAssignmentsAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Creates a new assignment that a driver can later use. Each driver can only have one future assignment.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.CarrierProposedAssignments.CreateCarrierProposedAssignmentAsync(
+    ///     new CreateCarrierProposedAssignmentRequest { DriverId = "42", VehicleId = "123" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<CarrierProposedAssignmentResponse> CreateCarrierProposedAssignmentAsync(
+        CreateCarrierProposedAssignmentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<CarrierProposedAssignmentResponse>(
+            CreateCarrierProposedAssignmentAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.CarrierProposedAssignments.DeleteCarrierProposedAssignmentAsync(
+    ///     new DeleteCarrierProposedAssignmentRequest { Id = "id" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<string> DeleteCarrierProposedAssignmentAsync(
+        DeleteCarrierProposedAssignmentRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<string>(
+            DeleteCarrierProposedAssignmentAsyncCore(request, options, cancellationToken)
+        );
     }
 }

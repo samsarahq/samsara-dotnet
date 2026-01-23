@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A minified vehicle object. This object is only returned if the route is assigned to the vehicle.
 /// </summary>
-public record VehicleWithGatewayTinyResponseResponseBody
+[Serializable]
+public record VehicleWithGatewayTinyResponseResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The type of the asset.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
     /// </summary>
@@ -48,15 +53,11 @@ public record VehicleWithGatewayTinyResponseResponseBody
     [JsonPropertyName("vin")]
     public string? Vin { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

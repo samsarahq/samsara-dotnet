@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Definition of a reading.
 /// </summary>
-public record ReadingDefinitionResponseBody
+[Serializable]
+public record ReadingDefinitionResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The category enumeration that this reading belongs to.
     /// </summary>
@@ -34,6 +39,12 @@ public record ReadingDefinitionResponseBody
     public IEnumerable<EnumValueResponseBody>? EnumValues { get; set; }
 
     /// <summary>
+    /// Indicates whether this reading can be ingested using the API.
+    /// </summary>
+    [JsonPropertyName("ingestionEnabled")]
+    public required bool IngestionEnabled { get; set; }
+
+    /// <summary>
     /// The label for this reading that is suitable to show to a user. Translated to English.
     /// </summary>
     [JsonPropertyName("label")]
@@ -45,18 +56,17 @@ public record ReadingDefinitionResponseBody
     [JsonPropertyName("readingId")]
     public required string ReadingId { get; set; }
 
-    [JsonPropertyName("type")]
-    public required ReadingTypeResponseBody Type { get; set; }
-
     /// <summary>
-    /// Additional properties received from the response, if any.
+    /// The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.
     /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonPropertyName("type")]
+    public Dictionary<string, object?> Type { get; set; } = new Dictionary<string, object?>();
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Trailers;
 
+[Serializable]
 public record TrailersCreateTrailerRequestBody
 {
     /// <summary>

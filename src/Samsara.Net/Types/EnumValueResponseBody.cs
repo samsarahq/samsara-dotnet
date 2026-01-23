@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Enumeration value
 /// </summary>
-public record EnumValueResponseBody
+[Serializable]
+public record EnumValueResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The label for this enum value that is suitable to show to a user. Translated to english.
     /// </summary>
@@ -21,15 +26,11 @@ public record EnumValueResponseBody
     [JsonPropertyName("symbol")]
     public required string Symbol { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

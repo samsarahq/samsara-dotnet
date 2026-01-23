@@ -1,33 +1,93 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<FieldObjectPostRequestBodyType>))]
-public enum FieldObjectPostRequestBodyType
+[JsonConverter(typeof(StringEnumSerializer<FieldObjectPostRequestBodyType>))]
+[Serializable]
+public readonly record struct FieldObjectPostRequestBodyType : IStringEnum
 {
-    [EnumMember(Value = "photo")]
-    Photo,
+    public static readonly FieldObjectPostRequestBodyType Photo = new(Values.Photo);
 
-    [EnumMember(Value = "string")]
-    String,
+    public static readonly FieldObjectPostRequestBodyType String = new(Values.String);
 
-    [EnumMember(Value = "number")]
-    Number,
+    public static readonly FieldObjectPostRequestBodyType Number = new(Values.Number);
 
-    [EnumMember(Value = "multipleChoice")]
-    MultipleChoice,
+    public static readonly FieldObjectPostRequestBodyType MultipleChoice = new(
+        Values.MultipleChoice
+    );
 
-    [EnumMember(Value = "signature")]
-    Signature,
+    public static readonly FieldObjectPostRequestBodyType Signature = new(Values.Signature);
 
-    [EnumMember(Value = "dateTime")]
-    DateTime,
+    public static readonly FieldObjectPostRequestBodyType DateTime = new(Values.DateTime);
 
-    [EnumMember(Value = "scannedDocument")]
-    ScannedDocument,
+    public static readonly FieldObjectPostRequestBodyType ScannedDocument = new(
+        Values.ScannedDocument
+    );
 
-    [EnumMember(Value = "barcode")]
-    Barcode,
+    public static readonly FieldObjectPostRequestBodyType Barcode = new(Values.Barcode);
+
+    public FieldObjectPostRequestBodyType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static FieldObjectPostRequestBodyType FromCustom(string value)
+    {
+        return new FieldObjectPostRequestBodyType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(FieldObjectPostRequestBodyType value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(FieldObjectPostRequestBodyType value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(FieldObjectPostRequestBodyType value) => value.Value;
+
+    public static explicit operator FieldObjectPostRequestBodyType(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Photo = "photo";
+
+        public const string String = "string";
+
+        public const string Number = "number";
+
+        public const string MultipleChoice = "multipleChoice";
+
+        public const string Signature = "signature";
+
+        public const string DateTime = "dateTime";
+
+        public const string ScannedDocument = "scannedDocument";
+
+        public const string Barcode = "barcode";
+    }
 }
