@@ -4,10 +4,17 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Drivers;
 
+[Serializable]
 public record UpdateDriverRequest
 {
+    /// <summary>
+    /// ID of the driver. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
     [JsonPropertyName("attributes")]
-    public IEnumerable<CreateDriverRequestAttributes>? Attributes { get; set; }
+    public IEnumerable<UpdateDriverRequestAttributes>? Attributes { get; set; }
 
     [JsonPropertyName("carrierSettings")]
     public DriverCarrierSettings? CarrierSettings { get; set; }
@@ -46,7 +53,7 @@ public record UpdateDriverRequest
     /// `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
     /// </summary>
     [JsonPropertyName("eldDayStartHour")]
-    public int? EldDayStartHour { get; set; }
+    public long? EldDayStartHour { get; set; }
 
     /// <summary>
     /// Flag indicating this driver is exempt from the Electronic Logging Mandate.
@@ -80,6 +87,9 @@ public record UpdateDriverRequest
 
     [JsonPropertyName("hasDrivingFeaturesHidden")]
     public bool? HasDrivingFeaturesHidden { get; set; }
+
+    [JsonPropertyName("hasVehicleUnpinningEnabled")]
+    public bool? HasVehicleUnpinningEnabled { get; set; }
 
     [JsonPropertyName("hosSetting")]
     public UpdateDriverRequestHosSetting? HosSetting { get; set; }
@@ -131,6 +141,12 @@ public record UpdateDriverRequest
     /// </summary>
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }
+
+    [JsonPropertyName("profileImageBase64")]
+    public string? ProfileImageBase64 { get; set; }
+
+    [JsonPropertyName("profileImageUrl")]
+    public string? ProfileImageUrl { get; set; }
 
     /// <summary>
     /// ID of vehicle that the driver is permanently assigned to. (uncommon).

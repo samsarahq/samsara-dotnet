@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Contacts;
 
+[Serializable]
 public record CreateContactRequest
 {
     /// <summary>

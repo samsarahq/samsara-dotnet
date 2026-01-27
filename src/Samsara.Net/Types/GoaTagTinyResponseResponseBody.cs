@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A minified tag object
 /// </summary>
-public record GoaTagTinyResponseResponseBody
+[Serializable]
+public record GoaTagTinyResponseResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// ID of the tag
     /// </summary>
@@ -27,15 +32,11 @@ public record GoaTagTinyResponseResponseBody
     [JsonPropertyName("parentTagId")]
     public string? ParentTagId { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

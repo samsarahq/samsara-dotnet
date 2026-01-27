@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Enables AI detection of near forward collisions, surfaces events in Safety Inbox, and enables configurable alerts. While the feature is in beta, it is only enabled during daytime driving hours. In-cab alerts are recommended for testing use only.
 /// </summary>
-public record ForwardCollisionDetectionAlertSettingsObjectResponseBody
+[Serializable]
+public record ForwardCollisionDetectionAlertSettingsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Indicates whether in-cab audio alerts for forward collision are turned on.
     /// </summary>
@@ -27,15 +32,11 @@ public record ForwardCollisionDetectionAlertSettingsObjectResponseBody
     [JsonPropertyName("sensitivity")]
     public ForwardCollisionDetectionAlertSettingsObjectResponseBodySensitivity? Sensitivity { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

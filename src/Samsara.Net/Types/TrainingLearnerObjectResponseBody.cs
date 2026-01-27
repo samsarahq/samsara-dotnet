@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Learner that is associated with the training assignment. Only driver learners are supported currently.
 /// </summary>
-public record TrainingLearnerObjectResponseBody
+[Serializable]
+public record TrainingLearnerObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// ID of the polymorphic user.
     /// </summary>
@@ -19,17 +24,13 @@ public record TrainingLearnerObjectResponseBody
     /// The type of the polymorphic user.  Valid values: `driver`
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "driver";
+    public required TrainingLearnerObjectResponseBodyType Type { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

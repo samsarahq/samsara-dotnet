@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Dictionary containing summarized driver report data.
 /// </summary>
-public record FuelEnergyDriverReportDataObjectResponseBody
+[Serializable]
+public record FuelEnergyDriverReportDataObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// List of summarized driver reports.
     /// </summary>
@@ -16,15 +21,11 @@ public record FuelEnergyDriverReportDataObjectResponseBody
     public IEnumerable<FuelEnergyDriverReportObjectResponseBody> DriverReports { get; set; } =
         new List<FuelEnergyDriverReportObjectResponseBody>();
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

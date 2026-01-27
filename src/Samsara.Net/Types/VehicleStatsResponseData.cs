@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A vehicle and its most recent stat.
 /// </summary>
-public record VehicleStatsResponseData
+[Serializable]
+public record VehicleStatsResponseData : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("ambientAirTemperatureMilliC")]
     public VehicleStatsAmbientAirTempMilliC? AmbientAirTemperatureMilliC { get; set; }
 
@@ -59,6 +64,9 @@ public record VehicleStatsResponseData
 
     [JsonPropertyName("defLevelMilliPercent")]
     public VehicleStatsDefLevelMilliPercent? DefLevelMilliPercent { get; set; }
+
+    [JsonPropertyName("ecuDoorStatus")]
+    public VehicleStatsResponseEcuDoorStatus? EcuDoorStatus { get; set; }
 
     [JsonPropertyName("ecuSpeedMph")]
     public VehicleStatsEcuSpeedMph? EcuSpeedMph { get; set; }
@@ -118,10 +126,13 @@ public record VehicleStatsResponseData
     public VehicleStatsResponseEvStateOfChargeMilliPercent? EvStateOfChargeMilliPercent { get; set; }
 
     [JsonPropertyName("externalIds")]
-    public object? ExternalIds { get; set; }
+    public Dictionary<string, object?>? ExternalIds { get; set; }
 
     [JsonPropertyName("faultCodes")]
     public VehicleStatsFaultCodes? FaultCodes { get; set; }
+
+    [JsonPropertyName("fuelConsumedMilliliters")]
+    public VehicleStatsFuelConsumedMilliliters? FuelConsumedMilliliters { get; set; }
 
     [JsonPropertyName("fuelPercent")]
     public VehicleStatsFuelPercent? FuelPercent { get; set; }
@@ -137,6 +148,9 @@ public record VehicleStatsResponseData
 
     [JsonPropertyName("id")]
     public required string Id { get; set; }
+
+    [JsonPropertyName("idlingDurationMilliseconds")]
+    public VehicleStatsIdlingDurationMilliseconds? IdlingDurationMilliseconds { get; set; }
 
     [JsonPropertyName("intakeManifoldTemperatureMilliC")]
     public VehicleStatsIntakeManifoldTempMilliC? IntakeManifoldTemperatureMilliC { get; set; }
@@ -195,15 +209,11 @@ public record VehicleStatsResponseData
     [JsonPropertyName("syntheticEngineSeconds")]
     public VehicleStatsSyntheticEngineSeconds? SyntheticEngineSeconds { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

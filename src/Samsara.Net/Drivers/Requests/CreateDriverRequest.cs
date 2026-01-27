@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Drivers;
 
+[Serializable]
 public record CreateDriverRequest
 {
     [JsonPropertyName("attributes")]
@@ -34,7 +35,7 @@ public record CreateDriverRequest
     /// `0` indicating midnight-to-midnight ELD driving hours, `12` to indicate noon-to-noon driving hours.
     /// </summary>
     [JsonPropertyName("eldDayStartHour")]
-    public int? EldDayStartHour { get; set; }
+    public long? EldDayStartHour { get; set; }
 
     /// <summary>
     /// Flag indicating this driver is exempt from the Electronic Logging Mandate.
@@ -68,6 +69,9 @@ public record CreateDriverRequest
 
     [JsonPropertyName("hasDrivingFeaturesHidden")]
     public bool? HasDrivingFeaturesHidden { get; set; }
+
+    [JsonPropertyName("hasVehicleUnpinningEnabled")]
+    public bool? HasVehicleUnpinningEnabled { get; set; }
 
     [JsonPropertyName("hosSetting")]
     public DriverHosSetting? HosSetting { get; set; }
@@ -119,6 +123,12 @@ public record CreateDriverRequest
     /// </summary>
     [JsonPropertyName("phone")]
     public string? Phone { get; set; }
+
+    [JsonPropertyName("profileImageBase64")]
+    public string? ProfileImageBase64 { get; set; }
+
+    [JsonPropertyName("profileImageUrl")]
+    public string? ProfileImageUrl { get; set; }
 
     /// <summary>
     /// ID of vehicle that the driver is permanently assigned to. (uncommon).

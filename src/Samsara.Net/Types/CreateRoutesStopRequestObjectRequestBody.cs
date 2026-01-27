@@ -4,8 +4,13 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record CreateRoutesStopRequestObjectRequestBody
+[Serializable]
+public record CreateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.
     /// </summary>
@@ -54,18 +59,20 @@ public record CreateRoutesStopRequestObjectRequestBody
     [JsonPropertyName("scheduledDepartureTime")]
     public DateTime? ScheduledDepartureTime { get; set; }
 
+    /// <summary>
+    /// Manual sequence position for this stop. Only meaningful when route.settings.sequencingMethod=manual. Must be unique and positive when specified.
+    /// </summary>
+    [JsonPropertyName("sequenceNumber")]
+    public long? SequenceNumber { get; set; }
+
     [JsonPropertyName("singleUseLocation")]
     public RoutesSingleUseAddressObjectRequestBody? SingleUseLocation { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

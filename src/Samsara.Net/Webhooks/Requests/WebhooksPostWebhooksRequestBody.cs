@@ -4,6 +4,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Webhooks;
 
+[Serializable]
 public record WebhooksPostWebhooksRequestBody
 {
     /// <summary>

@@ -1,31 +1,17 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
-using Samsara.Net.Vehicles.Immobilizer;
-using Samsara.Net.Vehicles.Locations;
-using Samsara.Net.Vehicles.Stats;
 
 namespace Samsara.Net.Vehicles;
 
-public partial class VehiclesClient
+public partial class VehiclesClient : IVehiclesClient
 {
     private RawClient _client;
 
     internal VehiclesClient(RawClient client)
     {
         _client = client;
-        Immobilizer = new ImmobilizerClient(_client);
-        Locations = new LocationsClient(_client);
-        Stats = new StatsClient(_client);
     }
-
-    public ImmobilizerClient Immobilizer { get; }
-
-    public LocationsClient Locations { get; }
-
-    public StatsClient Stats { get; }
 
     /// <summary>
     /// Returns a list of all vehicles.
@@ -37,8 +23,19 @@ public partial class VehiclesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
-    private async Task<VehiclesListVehiclesResponseBody> ListInternalAsync(
-        VehiclesListRequest request,
+    private WithRawResponseTask<VehiclesListVehiclesResponseBody> ListInternalAsync(
+        ListVehiclesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<VehiclesListVehiclesResponseBody>(
+            ListInternalAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    private async Task<WithRawResponse<VehiclesListVehiclesResponseBody>> ListInternalAsyncCore(
+        ListVehiclesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -91,14 +88,30 @@ public partial class VehiclesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<VehiclesListVehiclesResponseBody>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<VehiclesListVehiclesResponseBody>(
+                    responseBody
+                )!;
+                return new WithRawResponse<VehiclesListVehiclesResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -141,6 +154,124 @@ public partial class VehiclesClient
         }
     }
 
+    private async Task<WithRawResponse<VehicleResponse>> GetAsyncCore(
+        GetVehiclesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "fleet/vehicles/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VehicleResponse>(responseBody)!;
+                return new WithRawResponse<VehicleResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<VehicleResponse>> UpdateAsyncCore(
+        UpdateVehicleRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "fleet/vehicles/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<VehicleResponse>(responseBody)!;
+                return new WithRawResponse<VehicleResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     /// <summary>
     /// Returns a list of all vehicles.
     ///
@@ -152,10 +283,10 @@ public partial class VehiclesClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.ListAsync(new VehiclesListRequest());
+    /// await client.Vehicles.ListAsync(new ListVehiclesRequest());
     /// </code></example>
     public async Task<Pager<VehicleResponseObjectResponseBody>> ListAsync(
-        VehiclesListRequest request,
+        ListVehiclesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -165,7 +296,7 @@ public partial class VehiclesClient
             request = request with { };
         }
         var pager = await CursorPager<
-            VehiclesListRequest,
+            ListVehiclesRequest,
             RequestOptions?,
             VehiclesListVehiclesResponseBody,
             string,
@@ -174,13 +305,14 @@ public partial class VehiclesClient
             .CreateInstanceAsync(
                 request,
                 options,
-                ListInternalAsync,
+                async (request, options, cancellationToken) =>
+                    await ListInternalAsync(request, options, cancellationToken),
                 (request, cursor) =>
                 {
                     request.After = cursor;
                 },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
+                response => response.Pagination.EndCursor,
+                response => response.Data?.ToList(),
                 cancellationToken
             )
             .ConfigureAwait(false);
@@ -195,50 +327,17 @@ public partial class VehiclesClient
     /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.GetAsync("id");
+    /// await client.Vehicles.GetAsync(new GetVehiclesRequest { Id = "id" });
     /// </code></example>
-    public async Task<VehicleResponse> GetAsync(
-        string id,
+    public WithRawResponseTask<VehicleResponse> GetAsync(
+        GetVehiclesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<VehicleResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<VehicleResponse>(
+            GetAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -255,52 +354,16 @@ public partial class VehiclesClient
     /// To use this endpoint, select **Write Vehicles** under the Vehicles category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
+    /// await client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
     /// </code></example>
-    public async Task<VehicleResponse> UpdateAsync(
-        string id,
+    public WithRawResponseTask<VehicleResponse> UpdateAsync(
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(id)
-                    ),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<VehicleResponse>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<VehicleResponse>(
+            UpdateAsyncCore(request, options, cancellationToken)
+        );
     }
 }

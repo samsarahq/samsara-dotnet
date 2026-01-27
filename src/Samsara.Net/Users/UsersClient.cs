@@ -1,12 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Users;
 
-public partial class UsersClient
+public partial class UsersClient : IUsersClient
 {
     private RawClient _client;
 
@@ -15,15 +13,73 @@ public partial class UsersClient
         _client = client;
     }
 
-    /// <summary>
-    /// Returns a list of all users in an organization. Users that have expired access will not be returned.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    private async Task<ListUsersResponse> ListInternalAsync(
-        UsersListRequest request,
+    private async Task<WithRawResponse<ListUserRolesResponse>> ListUserRolesAsyncCore(
+        ListUserRolesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _query = new Dictionary<string, object>();
+        if (request.Limit != null)
+        {
+            _query["limit"] = request.Limit.Value.ToString();
+        }
+        if (request.After != null)
+        {
+            _query["after"] = request.After;
+        }
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "user-roles",
+                    Query = _query,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<ListUserRolesResponse>(responseBody)!;
+                return new WithRawResponse<ListUserRolesResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<ListUsersResponse>> ListUsersAsyncCore(
+        ListUsersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -55,14 +111,28 @@ public partial class UsersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<ListUsersResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<ListUsersResponse>(responseBody)!;
+                return new WithRawResponse<ListUsersResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -73,71 +143,7 @@ public partial class UsersClient
         }
     }
 
-    /// <summary>
-    /// Returns a list of all users in an organization. Users that have expired access will not be returned.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Users.ListAsync(new UsersListRequest());
-    /// </code></example>
-    public async Task<Pager<User>> ListAsync(
-        UsersListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            UsersListRequest,
-            RequestOptions?,
-            ListUsersResponse,
-            string,
-            User
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Add a user to the organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Users.CreateAsync(
-    ///     new CreateUserRequest
-    ///     {
-    ///         AuthType = CreateUserRequestAuthType.Default,
-    ///         Email = "user@company.com",
-    ///         Name = "Bob Smith",
-    ///         Roles = new List&lt;CreateUserRequestRoles&gt;()
-    ///         {
-    ///             new CreateUserRequestRoles { RoleId = "8a9371af-82d1-4158-bf91-4ecc8d3a114c" },
-    ///         },
-    ///     }
-    /// );
-    /// </code></example>
-    public async Task<UserResponse> CreateAsync(
+    private async Task<WithRawResponse<UserResponse>> CreateUserAsyncCore(
         CreateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -162,14 +168,28 @@ public partial class UsersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                return new WithRawResponse<UserResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -180,18 +200,8 @@ public partial class UsersClient
         }
     }
 
-    /// <summary>
-    /// Get a specific user's information. Users that have expired access will not be returned.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Users.GetAsync("id");
-    /// </code></example>
-    public async Task<UserResponse> GetAsync(
-        string id,
+    private async Task<WithRawResponse<UserResponse>> GetUserAsyncCore(
+        GetUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -202,7 +212,10 @@ public partial class UsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "users/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
@@ -213,14 +226,28 @@ public partial class UsersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                return new WithRawResponse<UserResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -231,18 +258,8 @@ public partial class UsersClient
         }
     }
 
-    /// <summary>
-    /// Delete the given user.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Users.DeleteAsync("id");
-    /// </code></example>
-    public async Task<object> DeleteAsync(
-        string id,
+    private async Task<WithRawResponse<string>> DeleteUserAsyncCore(
+        DeleteUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -253,7 +270,10 @@ public partial class UsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "users/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
@@ -264,14 +284,28 @@ public partial class UsersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<object>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
+                return new WithRawResponse<string>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -282,18 +316,7 @@ public partial class UsersClient
         }
     }
 
-    /// <summary>
-    /// Update a specific user's information.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Users.UpdateAsync("id", new UpdateUserRequest());
-    /// </code></example>
-    public async Task<UserResponse> UpdateAsync(
-        string id,
+    private async Task<WithRawResponse<UserResponse>> UpdateUserAsyncCore(
         UpdateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -305,7 +328,10 @@ public partial class UsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "users/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -318,14 +344,28 @@ public partial class UsersClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<UserResponse>(responseBody)!;
+                return new WithRawResponse<UserResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -334,5 +374,142 @@ public partial class UsersClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Returns a list of all user roles in an organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.ListUserRolesAsync(new ListUserRolesRequest());
+    /// </code></example>
+    public WithRawResponseTask<ListUserRolesResponse> ListUserRolesAsync(
+        ListUserRolesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListUserRolesResponse>(
+            ListUserRolesAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns a list of all users in an organization. Users that have expired access will not be returned.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.ListUsersAsync(new ListUsersRequest());
+    /// </code></example>
+    public WithRawResponseTask<ListUsersResponse> ListUsersAsync(
+        ListUsersRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<ListUsersResponse>(
+            ListUsersAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Add a user to the organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.CreateUserAsync(
+    ///     new CreateUserRequest
+    ///     {
+    ///         AuthType = CreateUserRequestAuthType.Default,
+    ///         Email = "user@company.com",
+    ///         Name = "Bob Smith",
+    ///         Roles = new List&lt;CreateUserRequestRoles&gt;()
+    ///         {
+    ///             new CreateUserRequestRoles { RoleId = "8a9371af-82d1-4158-bf91-4ecc8d3a114c" },
+    ///         },
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<UserResponse> CreateUserAsync(
+        CreateUserRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<UserResponse>(
+            CreateUserAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Get a specific user's information. Users that have expired access will not be returned.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.GetUserAsync(new GetUserRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<UserResponse> GetUserAsync(
+        GetUserRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<UserResponse>(
+            GetUserAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Delete the given user.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.DeleteUserAsync(new DeleteUserRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<string> DeleteUserAsync(
+        DeleteUserRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<string>(
+            DeleteUserAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Update a specific user's information.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Users.UpdateUserAsync(new UpdateUserRequest { Id = "id" });
+    /// </code></example>
+    public WithRawResponseTask<UserResponse> UpdateUserAsync(
+        UpdateUserRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<UserResponse>(
+            UpdateUserAsyncCore(request, options, cancellationToken)
+        );
     }
 }

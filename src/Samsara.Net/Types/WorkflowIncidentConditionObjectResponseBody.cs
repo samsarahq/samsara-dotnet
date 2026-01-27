@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Object representing the granular details of the condition. These details will vary depending on the condition.
 /// </summary>
-public record WorkflowIncidentConditionObjectResponseBody
+[Serializable]
+public record WorkflowIncidentConditionObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Descriptive name of the condition.
     /// </summary>
@@ -24,15 +29,11 @@ public record WorkflowIncidentConditionObjectResponseBody
     [JsonPropertyName("triggerId")]
     public required long TriggerId { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

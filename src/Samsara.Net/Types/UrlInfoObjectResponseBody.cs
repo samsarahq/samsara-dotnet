@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// URL info for this piece of media. This field is only populated when the 'status' response field is 'available'
 /// </summary>
-public record UrlInfoObjectResponseBody
+[Serializable]
+public record UrlInfoObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Signed URL for this piece of media. The URL expires in 8 hours (after which you must make another GET request). Examples: https://sample.s3.url.com/image.jpeg
     /// </summary>
@@ -21,15 +26,11 @@ public record UrlInfoObjectResponseBody
     [JsonPropertyName("urlExpiryTime")]
     public required string UrlExpiryTime { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

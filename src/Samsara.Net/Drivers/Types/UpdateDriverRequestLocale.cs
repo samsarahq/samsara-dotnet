@@ -1,54 +1,117 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Drivers;
 
-[JsonConverter(typeof(EnumSerializer<UpdateDriverRequestLocale>))]
-public enum UpdateDriverRequestLocale
+[JsonConverter(typeof(StringEnumSerializer<UpdateDriverRequestLocale>))]
+[Serializable]
+public readonly record struct UpdateDriverRequestLocale : IStringEnum
 {
-    [EnumMember(Value = "us")]
-    Us,
+    public static readonly UpdateDriverRequestLocale Us = new(Values.Us);
 
-    [EnumMember(Value = "at")]
-    At,
+    public static readonly UpdateDriverRequestLocale At = new(Values.At);
 
-    [EnumMember(Value = "be")]
-    Be,
+    public static readonly UpdateDriverRequestLocale Be = new(Values.Be);
 
-    [EnumMember(Value = "ca")]
-    Ca,
+    public static readonly UpdateDriverRequestLocale Ca = new(Values.Ca);
 
-    [EnumMember(Value = "gb")]
-    Gb,
+    public static readonly UpdateDriverRequestLocale Gb = new(Values.Gb);
 
-    [EnumMember(Value = "fr")]
-    Fr,
+    public static readonly UpdateDriverRequestLocale Fr = new(Values.Fr);
 
-    [EnumMember(Value = "de")]
-    De,
+    public static readonly UpdateDriverRequestLocale De = new(Values.De);
 
-    [EnumMember(Value = "ie")]
-    Ie,
+    public static readonly UpdateDriverRequestLocale Ie = new(Values.Ie);
 
-    [EnumMember(Value = "it")]
-    It,
+    public static readonly UpdateDriverRequestLocale It = new(Values.It);
 
-    [EnumMember(Value = "lu")]
-    Lu,
+    public static readonly UpdateDriverRequestLocale Lu = new(Values.Lu);
 
-    [EnumMember(Value = "mx")]
-    Mx,
+    public static readonly UpdateDriverRequestLocale Mx = new(Values.Mx);
 
-    [EnumMember(Value = "nl")]
-    Nl,
+    public static readonly UpdateDriverRequestLocale Nl = new(Values.Nl);
 
-    [EnumMember(Value = "es")]
-    Es,
+    public static readonly UpdateDriverRequestLocale Es = new(Values.Es);
 
-    [EnumMember(Value = "ch")]
-    Ch,
+    public static readonly UpdateDriverRequestLocale Ch = new(Values.Ch);
 
-    [EnumMember(Value = "pr")]
-    Pr,
+    public static readonly UpdateDriverRequestLocale Pr = new(Values.Pr);
+
+    public UpdateDriverRequestLocale(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static UpdateDriverRequestLocale FromCustom(string value)
+    {
+        return new UpdateDriverRequestLocale(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(UpdateDriverRequestLocale value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(UpdateDriverRequestLocale value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(UpdateDriverRequestLocale value) => value.Value;
+
+    public static explicit operator UpdateDriverRequestLocale(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Us = "us";
+
+        public const string At = "at";
+
+        public const string Be = "be";
+
+        public const string Ca = "ca";
+
+        public const string Gb = "gb";
+
+        public const string Fr = "fr";
+
+        public const string De = "de";
+
+        public const string Ie = "ie";
+
+        public const string It = "it";
+
+        public const string Lu = "lu";
+
+        public const string Mx = "mx";
+
+        public const string Nl = "nl";
+
+        public const string Es = "es";
+
+        public const string Ch = "ch";
+
+        public const string Pr = "pr";
+    }
 }

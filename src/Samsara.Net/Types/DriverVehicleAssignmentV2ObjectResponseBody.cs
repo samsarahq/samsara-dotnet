@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Object with driver assignment info and associated driver and vehicle info.
 /// </summary>
-public record DriverVehicleAssignmentV2ObjectResponseBody
+[Serializable]
+public record DriverVehicleAssignmentV2ObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// An assigned at time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
@@ -48,15 +53,11 @@ public record DriverVehicleAssignmentV2ObjectResponseBody
     [JsonPropertyName("vehicle")]
     public required GoaVehicleTinyResponseResponseBody Vehicle { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

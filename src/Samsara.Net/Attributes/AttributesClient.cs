@@ -1,12 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
-public partial class AttributesClient
+public partial class AttributesClient : IAttributesClient
 {
     private RawClient _client;
 
@@ -15,15 +13,10 @@ public partial class AttributesClient
         _client = client;
     }
 
-    /// <summary>
-    /// Fetch all attributes in an organization associated with either drivers or assets.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    private async Task<GetAttributesByEntityTypeResponse> ListInternalAsync(
-        AttributesListRequest request,
+    private async Task<
+        WithRawResponse<GetAttributesByEntityTypeResponse>
+    > GetAttributesByEntityTypeAsyncCore(
+        GetAttributesByEntityTypeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -56,14 +49,30 @@ public partial class AttributesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<GetAttributesByEntityTypeResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<GetAttributesByEntityTypeResponse>(
+                    responseBody
+                )!;
+                return new WithRawResponse<GetAttributesByEntityTypeResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -74,70 +83,7 @@ public partial class AttributesClient
         }
     }
 
-    /// <summary>
-    /// Fetch all attributes in an organization associated with either drivers or assets.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.ListAsync(
-    ///     new AttributesListRequest { EntityType = AttributesListRequestEntityType.Driver }
-    /// );
-    /// </code></example>
-    public async Task<Pager<Attribute>> ListAsync(
-        AttributesListRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            AttributesListRequest,
-            RequestOptions?,
-            GetAttributesByEntityTypeResponse,
-            string,
-            Attribute
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
-    }
-
-    /// <summary>
-    /// Creates a new attribute in the organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.CreateAsync(
-    ///     new CreateAttributeRequest
-    ///     {
-    ///         AttributeType = CreateAttributeRequestAttributeType.String,
-    ///         AttributeValueQuantity = CreateAttributeRequestAttributeValueQuantity.Single,
-    ///         EntityType = CreateAttributeRequestEntityType.Driver,
-    ///         Name = "License Certifications",
-    ///     }
-    /// );
-    /// </code></example>
-    public async Task<AttributeExpandedResponse> CreateAsync(
+    private async Task<WithRawResponse<AttributeExpandedResponse>> CreateAttributeAsyncCore(
         CreateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -162,14 +108,28 @@ public partial class AttributesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                return new WithRawResponse<AttributeExpandedResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -180,22 +140,8 @@ public partial class AttributesClient
         }
     }
 
-    /// <summary>
-    /// Fetch an attribute by id, including all of its applications.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.GetAsync(
-    ///     "id",
-    ///     new AttributesGetRequest { EntityType = AttributesGetRequestEntityType.Driver }
-    /// );
-    /// </code></example>
-    public async Task<AttributeExpandedResponse> GetAsync(
-        string id,
-        AttributesGetRequest request,
+    private async Task<WithRawResponse<AttributeExpandedResponse>> GetAttributeAsyncCore(
+        GetAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -208,7 +154,10 @@ public partial class AttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "attributes/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Query = _query,
                     Options = options,
                 },
@@ -220,14 +169,28 @@ public partial class AttributesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                return new WithRawResponse<AttributeExpandedResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -238,22 +201,8 @@ public partial class AttributesClient
         }
     }
 
-    /// <summary>
-    /// Delete an attribute by id, including all of its applications.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.DeleteAsync(
-    ///     "id",
-    ///     new AttributesDeleteRequest { EntityType = AttributesDeleteRequestEntityType.Driver }
-    /// );
-    /// </code></example>
-    public async Task<object> DeleteAsync(
-        string id,
-        AttributesDeleteRequest request,
+    private async Task<WithRawResponse<string>> DeleteAttributeAsyncCore(
+        DeleteAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -266,7 +215,10 @@ public partial class AttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "attributes/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Query = _query,
                     Options = options,
                 },
@@ -278,14 +230,28 @@ public partial class AttributesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<object>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
+                return new WithRawResponse<string>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -296,21 +262,7 @@ public partial class AttributesClient
         }
     }
 
-    /// <summary>
-    /// Updates an attribute in the organization.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Attributes.UpdateAsync(
-    ///     "id",
-    ///     new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
-    /// );
-    /// </code></example>
-    public async Task<AttributeExpandedResponse> UpdateAsync(
-        string id,
+    private async Task<WithRawResponse<AttributeExpandedResponse>> UpdateAttributeAsyncCore(
         UpdateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -322,7 +274,10 @@ public partial class AttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "attributes/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     ContentType = "application/json",
                     Options = options,
@@ -335,14 +290,28 @@ public partial class AttributesClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<AttributeExpandedResponse>(responseBody)!;
+                return new WithRawResponse<AttributeExpandedResponse>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
-
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             throw new SamsaraClientApiException(
@@ -351,5 +320,128 @@ public partial class AttributesClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// Fetch all attributes in an organization associated with either drivers or assets.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Attributes.GetAttributesByEntityTypeAsync(
+    ///     new GetAttributesByEntityTypeRequest
+    ///     {
+    ///         EntityType = GetAttributesByEntityTypeRequestEntityType.Driver,
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<GetAttributesByEntityTypeResponse> GetAttributesByEntityTypeAsync(
+        GetAttributesByEntityTypeRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<GetAttributesByEntityTypeResponse>(
+            GetAttributesByEntityTypeAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Creates a new attribute in the organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Attributes.CreateAttributeAsync(
+    ///     new CreateAttributeRequest
+    ///     {
+    ///         AttributeType = CreateAttributeRequestAttributeType.SingleSelect,
+    ///         EntityType = CreateAttributeRequestEntityType.Driver,
+    ///         Name = "License Certifications",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AttributeExpandedResponse> CreateAttributeAsync(
+        CreateAttributeRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AttributeExpandedResponse>(
+            CreateAttributeAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Fetch an attribute by id, including all of its applications.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Attributes.GetAttributeAsync(
+    ///     new GetAttributeRequest { Id = "id", EntityType = GetAttributeRequestEntityType.Driver }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AttributeExpandedResponse> GetAttributeAsync(
+        GetAttributeRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AttributeExpandedResponse>(
+            GetAttributeAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Delete an attribute by id, including all of its applications.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Attributes.DeleteAttributeAsync(
+    ///     new DeleteAttributeRequest { Id = "id", EntityType = DeleteAttributeRequestEntityType.Driver }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<string> DeleteAttributeAsync(
+        DeleteAttributeRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<string>(
+            DeleteAttributeAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Updates an attribute in the organization.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///
+    /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// </summary>
+    /// <example><code>
+    /// await client.Attributes.UpdateAttributeAsync(
+    ///     new UpdateAttributeRequest { Id = "id", EntityType = UpdateAttributeRequestEntityType.Driver }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<AttributeExpandedResponse> UpdateAttributeAsync(
+        UpdateAttributeRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<AttributeExpandedResponse>(
+            UpdateAttributeAsyncCore(request, options, cancellationToken)
+        );
     }
 }

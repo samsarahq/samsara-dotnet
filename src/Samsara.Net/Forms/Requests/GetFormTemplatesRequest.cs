@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Forms;
 
+[Serializable]
 public record GetFormTemplatesRequest
 {
     /// <summary>

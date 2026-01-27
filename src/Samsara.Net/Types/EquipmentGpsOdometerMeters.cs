@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// GPS odometer reading.
 /// </summary>
-public record EquipmentGpsOdometerMeters
+[Serializable]
+public record EquipmentGpsOdometerMeters : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("time")]
     public required string Time { get; set; }
 
@@ -16,17 +21,13 @@ public record EquipmentGpsOdometerMeters
     /// An approximation of odometer reading based on GPS calculations since the AG26 was activated, and a manual odometer offset provided in the Samsara cloud dashboard.
     /// </summary>
     [JsonPropertyName("value")]
-    public required int Value { get; set; }
+    public required long Value { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

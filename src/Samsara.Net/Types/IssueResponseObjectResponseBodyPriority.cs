@@ -1,18 +1,71 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<IssueResponseObjectResponseBodyPriority>))]
-public enum IssueResponseObjectResponseBodyPriority
+[JsonConverter(typeof(StringEnumSerializer<IssueResponseObjectResponseBodyPriority>))]
+[Serializable]
+public readonly record struct IssueResponseObjectResponseBodyPriority : IStringEnum
 {
-    [EnumMember(Value = "low")]
-    Low,
+    public static readonly IssueResponseObjectResponseBodyPriority Low = new(Values.Low);
 
-    [EnumMember(Value = "medium")]
-    Medium,
+    public static readonly IssueResponseObjectResponseBodyPriority Medium = new(Values.Medium);
 
-    [EnumMember(Value = "high")]
-    High,
+    public static readonly IssueResponseObjectResponseBodyPriority High = new(Values.High);
+
+    public IssueResponseObjectResponseBodyPriority(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static IssueResponseObjectResponseBodyPriority FromCustom(string value)
+    {
+        return new IssueResponseObjectResponseBodyPriority(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(IssueResponseObjectResponseBodyPriority value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(IssueResponseObjectResponseBodyPriority value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(IssueResponseObjectResponseBodyPriority value) =>
+        value.Value;
+
+    public static explicit operator IssueResponseObjectResponseBodyPriority(string value) =>
+        new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Low = "low";
+
+        public const string Medium = "medium";
+
+        public const string High = "high";
+    }
 }

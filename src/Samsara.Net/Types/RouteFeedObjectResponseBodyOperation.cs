@@ -1,39 +1,119 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<RouteFeedObjectResponseBodyOperation>))]
-public enum RouteFeedObjectResponseBodyOperation
+[JsonConverter(typeof(StringEnumSerializer<RouteFeedObjectResponseBodyOperation>))]
+[Serializable]
+public readonly record struct RouteFeedObjectResponseBodyOperation : IStringEnum
 {
-    [EnumMember(Value = "stop scheduled")]
-    StopScheduled,
+    public static readonly RouteFeedObjectResponseBodyOperation StopScheduled = new(
+        Values.StopScheduled
+    );
 
-    [EnumMember(Value = "stop en route")]
-    StopEnRoute,
+    public static readonly RouteFeedObjectResponseBodyOperation StopEnRoute = new(
+        Values.StopEnRoute
+    );
 
-    [EnumMember(Value = "stop skipped")]
-    StopSkipped,
+    public static readonly RouteFeedObjectResponseBodyOperation StopSkipped = new(
+        Values.StopSkipped
+    );
 
-    [EnumMember(Value = "stop arrived")]
-    StopArrived,
+    public static readonly RouteFeedObjectResponseBodyOperation StopArrived = new(
+        Values.StopArrived
+    );
 
-    [EnumMember(Value = "stop departed")]
-    StopDeparted,
+    public static readonly RouteFeedObjectResponseBodyOperation StopDeparted = new(
+        Values.StopDeparted
+    );
 
-    [EnumMember(Value = "stop ETA updated")]
-    StopEtaUpdated,
+    public static readonly RouteFeedObjectResponseBodyOperation StopEtaUpdated = new(
+        Values.StopEtaUpdated
+    );
 
-    [EnumMember(Value = "stop arrival time updated")]
-    StopArrivalTimeUpdated,
+    public static readonly RouteFeedObjectResponseBodyOperation StopArrivalTimeUpdated = new(
+        Values.StopArrivalTimeUpdated
+    );
 
-    [EnumMember(Value = "stop completion time updated")]
-    StopCompletionTimeUpdated,
+    public static readonly RouteFeedObjectResponseBodyOperation StopCompletionTimeUpdated = new(
+        Values.StopCompletionTimeUpdated
+    );
 
-    [EnumMember(Value = "stop order changed")]
-    StopOrderChanged,
+    public static readonly RouteFeedObjectResponseBodyOperation StopOrderChanged = new(
+        Values.StopOrderChanged
+    );
 
-    [EnumMember(Value = "stop arrival prevented")]
-    StopArrivalPrevented,
+    public static readonly RouteFeedObjectResponseBodyOperation StopArrivalPrevented = new(
+        Values.StopArrivalPrevented
+    );
+
+    public RouteFeedObjectResponseBodyOperation(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static RouteFeedObjectResponseBodyOperation FromCustom(string value)
+    {
+        return new RouteFeedObjectResponseBodyOperation(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(RouteFeedObjectResponseBodyOperation value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(RouteFeedObjectResponseBodyOperation value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(RouteFeedObjectResponseBodyOperation value) =>
+        value.Value;
+
+    public static explicit operator RouteFeedObjectResponseBodyOperation(string value) =>
+        new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string StopScheduled = "stop scheduled";
+
+        public const string StopEnRoute = "stop en route";
+
+        public const string StopSkipped = "stop skipped";
+
+        public const string StopArrived = "stop arrived";
+
+        public const string StopDeparted = "stop departed";
+
+        public const string StopEtaUpdated = "stop ETA updated";
+
+        public const string StopArrivalTimeUpdated = "stop arrival time updated";
+
+        public const string StopCompletionTimeUpdated = "stop completion time updated";
+
+        public const string StopOrderChanged = "stop order changed";
+
+        public const string StopArrivalPrevented = "stop arrival prevented";
+    }
 }

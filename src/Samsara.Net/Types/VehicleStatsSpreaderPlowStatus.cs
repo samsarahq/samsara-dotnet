@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Snow plow status (`Up` or `Down`), as read from the material spreader. Note: this is separate from plow status defined via auxInput.
 /// </summary>
-public record VehicleStatsSpreaderPlowStatus
+[Serializable]
+public record VehicleStatsSpreaderPlowStatus : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("time")]
     public required string Time { get; set; }
 
@@ -18,15 +23,11 @@ public record VehicleStatsSpreaderPlowStatus
     [JsonPropertyName("value")]
     public required VehicleStatsSpreaderPlowStatusValue Value { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

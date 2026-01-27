@@ -7,8 +7,19 @@ namespace Samsara.Net;
 /// <summary>
 /// A minified attribute.
 /// </summary>
-public record AttributeTiny
+[Serializable]
+public record AttributeTiny : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Date values that are associated with this attribute (RFC 3339 date format: YYYY-MM-DD).
+    /// </summary>
+    [JsonPropertyName("dateValues")]
+    public IEnumerable<string>? DateValues { get; set; }
+
     /// <summary>
     /// The samsara id of the attribute object.
     /// </summary>
@@ -33,15 +44,11 @@ public record AttributeTiny
     [JsonPropertyName("stringValues")]
     public IEnumerable<string>? StringValues { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

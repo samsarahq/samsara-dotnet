@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Trailer selection setting configuration for the Driver App.
 /// </summary>
-public record DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody
+[Serializable]
+public record DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Allow drivers to create new trailers in the Samsara Driver app.
     /// </summary>
@@ -19,7 +24,7 @@ public record DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody
     /// Trailer selection limit.
     /// </summary>
     [JsonPropertyName("maxNumOfTrailersSelected")]
-    public int? MaxNumOfTrailersSelected { get; set; }
+    public long? MaxNumOfTrailersSelected { get; set; }
 
     /// <summary>
     /// Allow drivers to search for trailers outside of their selection tag when connected to the internet
@@ -27,15 +32,11 @@ public record DriverAppSettingsTrailerSelectionConfigTinyObjectRequestBody
     [JsonPropertyName("orgTrailerSearch")]
     public bool? OrgTrailerSearch { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

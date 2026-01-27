@@ -4,10 +4,11 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Addresses;
 
+[Serializable]
 public record CreateAddressRequest
 {
     /// <summary>
-    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`.
+    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
     /// </summary>
     [JsonPropertyName("addressTypes")]
     public IEnumerable<CreateAddressRequestAddressTypesItem>? AddressTypes { get; set; }

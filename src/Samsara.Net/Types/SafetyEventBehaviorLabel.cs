@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The label and source of the label associated with the safety event.
 /// </summary>
-public record SafetyEventBehaviorLabel
+[Serializable]
+public record SafetyEventBehaviorLabel : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("label")]
     public required SafetyEventBehaviorLabelType Label { get; set; }
 
@@ -18,15 +23,11 @@ public record SafetyEventBehaviorLabel
     [JsonPropertyName("source")]
     public required SafetyEventBehaviorLabelSource Source { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

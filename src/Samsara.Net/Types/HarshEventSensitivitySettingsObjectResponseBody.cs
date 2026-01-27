@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The configurable sensitivity for Harsh Event Detection on CM11/CM12/CM22 devices. Sensitivity can be measured as a numeric g-force value or the following values: `Normal`, `Less Sensitive`, `More Sensitive`.
 /// </summary>
-public record HarshEventSensitivitySettingsObjectResponseBody
+[Serializable]
+public record HarshEventSensitivitySettingsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("harshAccelSensitivityGForce")]
     public HarshAccelSensitivityGForceSettingsObjectResponseBody? HarshAccelSensitivityGForce { get; set; }
 
@@ -18,15 +23,11 @@ public record HarshEventSensitivitySettingsObjectResponseBody
     [JsonPropertyName("harshTurnSensitivityGForce")]
     public HarshTurnSensitivityGForceSettingsObjectResponseBody? HarshTurnSensitivityGForce { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

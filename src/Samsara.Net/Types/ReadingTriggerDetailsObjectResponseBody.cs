@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Details specific to reading based Trigger, readings can be discovered through the Readings API.
 /// </summary>
-public record ReadingTriggerDetailsObjectResponseBody
+[Serializable]
+public record ReadingTriggerDetailsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("continuousThreshold")]
     public ReadingTriggerContinuousValueObjectResponseBody? ContinuousThreshold { get; set; }
 
@@ -33,15 +38,11 @@ public record ReadingTriggerDetailsObjectResponseBody
     [JsonPropertyName("minDurationMilliseconds")]
     public required long MinDurationMilliseconds { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Details specific to Fuel Level Percentage
 /// </summary>
-public record FuelLevelTriggerDetailsObjectResponseBody
+[Serializable]
+public record FuelLevelTriggerDetailsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The fuel level percentage threshold value.
     /// </summary>
@@ -25,17 +30,13 @@ public record FuelLevelTriggerDetailsObjectResponseBody
     /// How to evaluate the threshold.  Valid values: `LESS`
     /// </summary>
     [JsonPropertyName("operation")]
-    public string Operation { get; set; } = "LESS";
+    public required FuelLevelTriggerDetailsObjectResponseBodyOperation Operation { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

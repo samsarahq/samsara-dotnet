@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A camera stream associated with the alert.
 /// </summary>
-public record AlertObjectOnvifCameraStreamResponseBody
+[Serializable]
+public record AlertObjectOnvifCameraStreamResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("cameraDevice")]
     public AlertObjectWorkforceCameraDeviceResponseBody? CameraDevice { get; set; }
 
@@ -30,15 +35,11 @@ public record AlertObjectOnvifCameraStreamResponseBody
     [JsonPropertyName("tags")]
     public IEnumerable<GoaTagTinyResponseResponseBody>? Tags { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

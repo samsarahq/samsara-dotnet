@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.DriverTrailerAssignments;
 
+[Serializable]
 public record TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
 {
     /// <summary>

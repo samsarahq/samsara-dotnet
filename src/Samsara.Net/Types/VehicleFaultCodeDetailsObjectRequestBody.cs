@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Details specific to Vehicle Fault Code. At least one fault code or fault code group must be selected.
 /// </summary>
-public record VehicleFaultCodeDetailsObjectRequestBody
+[Serializable]
+public record VehicleFaultCodeDetailsObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// If true then alert on codes for less serious errors that do not warrant stopping. Defaults to false.
     /// </summary>
@@ -46,20 +51,22 @@ public record VehicleFaultCodeDetailsObjectRequestBody
     public bool? HasAnyTrailerAbsLampCodes { get; set; }
 
     /// <summary>
+    /// The number of milliseconds the trigger needs to stay active before alerting.
+    /// </summary>
+    [JsonPropertyName("minDurationMilliseconds")]
+    public long? MinDurationMilliseconds { get; set; }
+
+    /// <summary>
     /// The list of specific fault codes to be alerted on.
     /// </summary>
     [JsonPropertyName("specificFaultCodes")]
     public IEnumerable<SpecificVehicleFaultCodeObjectRequestBody>? SpecificFaultCodes { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

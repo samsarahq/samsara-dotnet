@@ -4,19 +4,18 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record Attribute
+[Serializable]
+public record Attribute : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
-    /// Denotes the data type of the attribute's values. Valid values: `string`, `number`.
+    /// Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     /// </summary>
     [JsonPropertyName("attributeType")]
     public AttributeAttributeType? AttributeType { get; set; }
-
-    /// <summary>
-    /// Defines whether or not this attribute can be used on the same entity many times (with different values). Valid values: `single`, `multi`.
-    /// </summary>
-    [JsonPropertyName("attributeValueQuantity")]
-    public AttributeAttributeValueQuantity? AttributeValueQuantity { get; set; }
 
     /// <summary>
     /// Denotes the type of entity, driver or asset. Valid values: `driver`, `asset`.
@@ -37,32 +36,34 @@ public record Attribute
     public string? Name { get; set; }
 
     /// <summary>
-    /// Number values that can be associated with this attribute
+    /// Number values that can be associated with this attribute. Note: this field is `null` for `text` and `freeform-multi-select` attribute types.`
     /// </summary>
     [JsonPropertyName("numberValues")]
     public IEnumerable<double>? NumberValues { get; set; }
 
     /// <summary>
-    /// String values that can be associated with this attribute
+    /// String values that can be associated with this attribute. Note: this field is `null` for `text` and `freeform-multi-select` attribute types.`
     /// </summary>
     [JsonPropertyName("stringValues")]
     public IEnumerable<string>? StringValues { get; set; }
 
     /// <summary>
-    /// Representation of values that includes ids.
+    /// Unit of the attribute (only for Number attributes).
+    /// </summary>
+    [JsonPropertyName("unit")]
+    public AttributeUnit? Unit { get; set; }
+
+    /// <summary>
+    /// Representation of values that includes ids. Note: this field is `null` for `text` and `freeform-multi-select` attribute types.`
     /// </summary>
     [JsonPropertyName("values")]
     public IEnumerable<AttributeValueTiny>? Values { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()
