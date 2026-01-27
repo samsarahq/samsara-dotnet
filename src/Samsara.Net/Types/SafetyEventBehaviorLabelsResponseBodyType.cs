@@ -1,111 +1,275 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<SafetyEventBehaviorLabelsResponseBodyType>))]
-public enum SafetyEventBehaviorLabelsResponseBodyType
+[JsonConverter(typeof(StringEnumSerializer<SafetyEventBehaviorLabelsResponseBodyType>))]
+[Serializable]
+public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStringEnum
 {
-    [EnumMember(Value = "Acceleration")]
-    Acceleration,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Acceleration = new(
+        Values.Acceleration
+    );
 
-    [EnumMember(Value = "Braking")]
-    Braking,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Braking = new(Values.Braking);
 
-    [EnumMember(Value = "Crash")]
-    Crash,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Crash = new(Values.Crash);
 
-    [EnumMember(Value = "DefensiveDriving")]
-    DefensiveDriving,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType DefensiveDriving = new(
+        Values.DefensiveDriving
+    );
 
-    [EnumMember(Value = "DidNotYield")]
-    DidNotYield,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType DidNotYield = new(
+        Values.DidNotYield
+    );
 
-    [EnumMember(Value = "Drinking")]
-    Drinking,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Drinking = new(
+        Values.Drinking
+    );
 
-    [EnumMember(Value = "Drowsy")]
-    Drowsy,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Drowsy = new(Values.Drowsy);
 
-    [EnumMember(Value = "Eating")]
-    Eating,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Eating = new(Values.Eating);
 
-    [EnumMember(Value = "EatingDrinking")]
-    EatingDrinking,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType EatingDrinking = new(
+        Values.EatingDrinking
+    );
 
-    [EnumMember(Value = "EdgeDistractedDriving")]
-    EdgeDistractedDriving,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType EdgeDistractedDriving = new(
+        Values.EdgeDistractedDriving
+    );
 
-    [EnumMember(Value = "EdgeRailroadCrossingViolation")]
-    EdgeRailroadCrossingViolation,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType EdgeRailroadCrossingViolation =
+        new(Values.EdgeRailroadCrossingViolation);
 
-    [EnumMember(Value = "FollowingDistance")]
-    FollowingDistance,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType FollowingDistance = new(
+        Values.FollowingDistance
+    );
 
-    [EnumMember(Value = "FollowingDistanceModerate")]
-    FollowingDistanceModerate,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType FollowingDistanceModerate =
+        new(Values.FollowingDistanceModerate);
 
-    [EnumMember(Value = "FollowingDistanceSevere")]
-    FollowingDistanceSevere,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType FollowingDistanceSevere = new(
+        Values.FollowingDistanceSevere
+    );
 
-    [EnumMember(Value = "ForwardCollisionWarning")]
-    ForwardCollisionWarning,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType ForwardCollisionWarning = new(
+        Values.ForwardCollisionWarning
+    );
 
-    [EnumMember(Value = "GenericDistraction")]
-    GenericDistraction,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType GenericDistraction = new(
+        Values.GenericDistraction
+    );
 
-    [EnumMember(Value = "GenericTailgating")]
-    GenericTailgating,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType GenericTailgating = new(
+        Values.GenericTailgating
+    );
 
-    [EnumMember(Value = "HarshTurn")]
-    HarshTurn,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType HarshTurn = new(
+        Values.HarshTurn
+    );
 
-    [EnumMember(Value = "Invalid")]
-    Invalid,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType HighSpeedSuddenDisconnect =
+        new(Values.HighSpeedSuddenDisconnect);
 
-    [EnumMember(Value = "LaneDeparture")]
-    LaneDeparture,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Invalid = new(Values.Invalid);
 
-    [EnumMember(Value = "LateResponse")]
-    LateResponse,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType LaneDeparture = new(
+        Values.LaneDeparture
+    );
 
-    [EnumMember(Value = "MobileUsage")]
-    MobileUsage,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType LateResponse = new(
+        Values.LateResponse
+    );
 
-    [EnumMember(Value = "NearCollison")]
-    NearCollison,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType MobileUsage = new(
+        Values.MobileUsage
+    );
 
-    [EnumMember(Value = "NoSeatbelt")]
-    NoSeatbelt,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType NearCollison = new(
+        Values.NearCollison
+    );
 
-    [EnumMember(Value = "ObstructedCamera")]
-    ObstructedCamera,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType NoSeatbelt = new(
+        Values.NoSeatbelt
+    );
 
-    [EnumMember(Value = "Passenger")]
-    Passenger,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType ObstructedCamera = new(
+        Values.ObstructedCamera
+    );
 
-    [EnumMember(Value = "PolicyViolationMask")]
-    PolicyViolationMask,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Passenger = new(
+        Values.Passenger
+    );
 
-    [EnumMember(Value = "RanRedLight")]
-    RanRedLight,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType PolicyViolationMask = new(
+        Values.PolicyViolationMask
+    );
 
-    [EnumMember(Value = "RollingStop")]
-    RollingStop,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType ProtectiveEquipment = new(
+        Values.ProtectiveEquipment
+    );
 
-    [EnumMember(Value = "RolloverProtection")]
-    RolloverProtection,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType RanRedLight = new(
+        Values.RanRedLight
+    );
 
-    [EnumMember(Value = "Smoking")]
-    Smoking,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType RearCollisionWarning = new(
+        Values.RearCollisionWarning
+    );
 
-    [EnumMember(Value = "Speeding")]
-    Speeding,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType RollingStop = new(
+        Values.RollingStop
+    );
 
-    [EnumMember(Value = "VulnerableRoadUserCollisionWarning")]
-    VulnerableRoadUserCollisionWarning,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType RolloverProtection = new(
+        Values.RolloverProtection
+    );
 
-    [EnumMember(Value = "YawControl")]
-    YawControl,
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Smoking = new(Values.Smoking);
+
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType Speeding = new(
+        Values.Speeding
+    );
+
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType VehicleInBlindSpotWarning =
+        new(Values.VehicleInBlindSpotWarning);
+
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType VulnerableRoadUserCollisionWarning =
+        new(Values.VulnerableRoadUserCollisionWarning);
+
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType YawControl = new(
+        Values.YawControl
+    );
+
+    public SafetyEventBehaviorLabelsResponseBodyType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static SafetyEventBehaviorLabelsResponseBodyType FromCustom(string value)
+    {
+        return new SafetyEventBehaviorLabelsResponseBodyType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(
+        SafetyEventBehaviorLabelsResponseBodyType value1,
+        string value2
+    ) => value1.Value.Equals(value2);
+
+    public static bool operator !=(
+        SafetyEventBehaviorLabelsResponseBodyType value1,
+        string value2
+    ) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(SafetyEventBehaviorLabelsResponseBodyType value) =>
+        value.Value;
+
+    public static explicit operator SafetyEventBehaviorLabelsResponseBodyType(string value) =>
+        new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Acceleration = "Acceleration";
+
+        public const string Braking = "Braking";
+
+        public const string Crash = "Crash";
+
+        public const string DefensiveDriving = "DefensiveDriving";
+
+        public const string DidNotYield = "DidNotYield";
+
+        public const string Drinking = "Drinking";
+
+        public const string Drowsy = "Drowsy";
+
+        public const string Eating = "Eating";
+
+        public const string EatingDrinking = "EatingDrinking";
+
+        public const string EdgeDistractedDriving = "EdgeDistractedDriving";
+
+        public const string EdgeRailroadCrossingViolation = "EdgeRailroadCrossingViolation";
+
+        public const string FollowingDistance = "FollowingDistance";
+
+        public const string FollowingDistanceModerate = "FollowingDistanceModerate";
+
+        public const string FollowingDistanceSevere = "FollowingDistanceSevere";
+
+        public const string ForwardCollisionWarning = "ForwardCollisionWarning";
+
+        public const string GenericDistraction = "GenericDistraction";
+
+        public const string GenericTailgating = "GenericTailgating";
+
+        public const string HarshTurn = "HarshTurn";
+
+        public const string HighSpeedSuddenDisconnect = "HighSpeedSuddenDisconnect";
+
+        public const string Invalid = "Invalid";
+
+        public const string LaneDeparture = "LaneDeparture";
+
+        public const string LateResponse = "LateResponse";
+
+        public const string MobileUsage = "MobileUsage";
+
+        public const string NearCollison = "NearCollison";
+
+        public const string NoSeatbelt = "NoSeatbelt";
+
+        public const string ObstructedCamera = "ObstructedCamera";
+
+        public const string Passenger = "Passenger";
+
+        public const string PolicyViolationMask = "PolicyViolationMask";
+
+        public const string ProtectiveEquipment = "ProtectiveEquipment";
+
+        public const string RanRedLight = "RanRedLight";
+
+        public const string RearCollisionWarning = "RearCollisionWarning";
+
+        public const string RollingStop = "RollingStop";
+
+        public const string RolloverProtection = "RolloverProtection";
+
+        public const string Smoking = "Smoking";
+
+        public const string Speeding = "Speeding";
+
+        public const string VehicleInBlindSpotWarning = "VehicleInBlindSpotWarning";
+
+        public const string VulnerableRoadUserCollisionWarning =
+            "VulnerableRoadUserCollisionWarning";
+
+        public const string YawControl = "YawControl";
+    }
 }

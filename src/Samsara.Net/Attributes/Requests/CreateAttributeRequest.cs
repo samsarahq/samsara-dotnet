@@ -4,19 +4,14 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Attributes;
 
+[Serializable]
 public record CreateAttributeRequest
 {
     /// <summary>
-    /// Denotes the data type of the attribute's values. Valid values: `string`, `number`.
+    /// Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     /// </summary>
     [JsonPropertyName("attributeType")]
     public required CreateAttributeRequestAttributeType AttributeType { get; set; }
-
-    /// <summary>
-    /// Defines whether or not this attribute can be used on the same entity many times (with different values). Valid values: `single`, `multi`.
-    /// </summary>
-    [JsonPropertyName("attributeValueQuantity")]
-    public required CreateAttributeRequestAttributeValueQuantity AttributeValueQuantity { get; set; }
 
     /// <summary>
     /// Entities that will be applied to this attribute
@@ -47,6 +42,12 @@ public record CreateAttributeRequest
     /// </summary>
     [JsonPropertyName("stringValues")]
     public IEnumerable<string>? StringValues { get; set; }
+
+    /// <summary>
+    /// Unit of the attribute (only for Number attributes).
+    /// </summary>
+    [JsonPropertyName("unit")]
+    public CreateAttributeRequestUnit? Unit { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

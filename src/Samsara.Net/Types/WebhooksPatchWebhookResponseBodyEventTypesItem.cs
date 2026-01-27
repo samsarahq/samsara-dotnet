@@ -1,90 +1,245 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<WebhooksPatchWebhookResponseBodyEventTypesItem>))]
-public enum WebhooksPatchWebhookResponseBodyEventTypesItem
+[JsonConverter(typeof(StringEnumSerializer<WebhooksPatchWebhookResponseBodyEventTypesItem>))]
+[Serializable]
+public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : IStringEnum
 {
-    [EnumMember(Value = "AddressCreated")]
-    AddressCreated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem AddressCreated = new(
+        Values.AddressCreated
+    );
 
-    [EnumMember(Value = "AddressDeleted")]
-    AddressDeleted,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem AddressDeleted = new(
+        Values.AddressDeleted
+    );
 
-    [EnumMember(Value = "AddressUpdated")]
-    AddressUpdated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem AddressUpdated = new(
+        Values.AddressUpdated
+    );
 
-    [EnumMember(Value = "AlertIncident")]
-    AlertIncident,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem AlertIncident = new(
+        Values.AlertIncident
+    );
 
-    [EnumMember(Value = "AlertObjectEvent")]
-    AlertObjectEvent,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem AlertObjectEvent = new(
+        Values.AlertObjectEvent
+    );
 
-    [EnumMember(Value = "DocumentSubmitted")]
-    DocumentSubmitted,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem DocumentSubmitted = new(
+        Values.DocumentSubmitted
+    );
 
-    [EnumMember(Value = "DriverCreated")]
-    DriverCreated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem DriverCreated = new(
+        Values.DriverCreated
+    );
 
-    [EnumMember(Value = "DriverUpdated")]
-    DriverUpdated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem DriverUpdated = new(
+        Values.DriverUpdated
+    );
 
-    [EnumMember(Value = "DvirSubmitted")]
-    DvirSubmitted,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem DvirSubmitted = new(
+        Values.DvirSubmitted
+    );
 
-    [EnumMember(Value = "EngineFaultOff")]
-    EngineFaultOff,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem EngineFaultOff = new(
+        Values.EngineFaultOff
+    );
 
-    [EnumMember(Value = "EngineFaultOn")]
-    EngineFaultOn,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem EngineFaultOn = new(
+        Values.EngineFaultOn
+    );
 
-    [EnumMember(Value = "FormSubmitted")]
-    FormSubmitted,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem FormSubmitted = new(
+        Values.FormSubmitted
+    );
 
-    [EnumMember(Value = "FormUpdated")]
-    FormUpdated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem FormUpdated = new(
+        Values.FormUpdated
+    );
 
-    [EnumMember(Value = "GatewayUnplugged")]
-    GatewayUnplugged,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem GatewayUnplugged = new(
+        Values.GatewayUnplugged
+    );
 
-    [EnumMember(Value = "GeofenceEntry")]
-    GeofenceEntry,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem GeofenceEntry = new(
+        Values.GeofenceEntry
+    );
 
-    [EnumMember(Value = "GeofenceExit")]
-    GeofenceExit,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem GeofenceExit = new(
+        Values.GeofenceExit
+    );
 
-    [EnumMember(Value = "IssueCreated")]
-    IssueCreated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem IssueCreated = new(
+        Values.IssueCreated
+    );
 
-    [EnumMember(Value = "PredictiveMaintenanceAlert")]
-    PredictiveMaintenanceAlert,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem PredictiveMaintenanceAlert =
+        new(Values.PredictiveMaintenanceAlert);
 
-    [EnumMember(Value = "RouteStopArrival")]
-    RouteStopArrival,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem RouteStopArrival = new(
+        Values.RouteStopArrival
+    );
 
-    [EnumMember(Value = "RouteStopDeparture")]
-    RouteStopDeparture,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem RouteStopDeparture = new(
+        Values.RouteStopDeparture
+    );
 
-    [EnumMember(Value = "RouteStopResequence")]
-    RouteStopResequence,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem RouteStopEarlyLateArrival =
+        new(Values.RouteStopEarlyLateArrival);
 
-    [EnumMember(Value = "SevereSpeedingEnded")]
-    SevereSpeedingEnded,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem RouteStopEtaUpdated = new(
+        Values.RouteStopEtaUpdated
+    );
 
-    [EnumMember(Value = "SevereSpeedingStarted")]
-    SevereSpeedingStarted,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem RouteStopResequence = new(
+        Values.RouteStopResequence
+    );
 
-    [EnumMember(Value = "SuddenFuelLevelDrop")]
-    SuddenFuelLevelDrop,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SevereSpeedingEnded = new(
+        Values.SevereSpeedingEnded
+    );
 
-    [EnumMember(Value = "SuddenFuelLevelRise")]
-    SuddenFuelLevelRise,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SevereSpeedingStarted =
+        new(Values.SevereSpeedingStarted);
 
-    [EnumMember(Value = "VehicleCreated")]
-    VehicleCreated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SpeedingEventEnded = new(
+        Values.SpeedingEventEnded
+    );
 
-    [EnumMember(Value = "VehicleUpdated")]
-    VehicleUpdated,
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SpeedingEventStarted =
+        new(Values.SpeedingEventStarted);
+
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SuddenFuelLevelDrop = new(
+        Values.SuddenFuelLevelDrop
+    );
+
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SuddenFuelLevelRise = new(
+        Values.SuddenFuelLevelRise
+    );
+
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem VehicleCreated = new(
+        Values.VehicleCreated
+    );
+
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem VehicleUpdated = new(
+        Values.VehicleUpdated
+    );
+
+    public WebhooksPatchWebhookResponseBodyEventTypesItem(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static WebhooksPatchWebhookResponseBodyEventTypesItem FromCustom(string value)
+    {
+        return new WebhooksPatchWebhookResponseBodyEventTypesItem(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(
+        WebhooksPatchWebhookResponseBodyEventTypesItem value1,
+        string value2
+    ) => value1.Value.Equals(value2);
+
+    public static bool operator !=(
+        WebhooksPatchWebhookResponseBodyEventTypesItem value1,
+        string value2
+    ) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(WebhooksPatchWebhookResponseBodyEventTypesItem value) =>
+        value.Value;
+
+    public static explicit operator WebhooksPatchWebhookResponseBodyEventTypesItem(string value) =>
+        new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string AddressCreated = "AddressCreated";
+
+        public const string AddressDeleted = "AddressDeleted";
+
+        public const string AddressUpdated = "AddressUpdated";
+
+        public const string AlertIncident = "AlertIncident";
+
+        public const string AlertObjectEvent = "AlertObjectEvent";
+
+        public const string DocumentSubmitted = "DocumentSubmitted";
+
+        public const string DriverCreated = "DriverCreated";
+
+        public const string DriverUpdated = "DriverUpdated";
+
+        public const string DvirSubmitted = "DvirSubmitted";
+
+        public const string EngineFaultOff = "EngineFaultOff";
+
+        public const string EngineFaultOn = "EngineFaultOn";
+
+        public const string FormSubmitted = "FormSubmitted";
+
+        public const string FormUpdated = "FormUpdated";
+
+        public const string GatewayUnplugged = "GatewayUnplugged";
+
+        public const string GeofenceEntry = "GeofenceEntry";
+
+        public const string GeofenceExit = "GeofenceExit";
+
+        public const string IssueCreated = "IssueCreated";
+
+        public const string PredictiveMaintenanceAlert = "PredictiveMaintenanceAlert";
+
+        public const string RouteStopArrival = "RouteStopArrival";
+
+        public const string RouteStopDeparture = "RouteStopDeparture";
+
+        public const string RouteStopEarlyLateArrival = "RouteStopEarlyLateArrival";
+
+        public const string RouteStopEtaUpdated = "RouteStopEtaUpdated";
+
+        public const string RouteStopResequence = "RouteStopResequence";
+
+        public const string SevereSpeedingEnded = "SevereSpeedingEnded";
+
+        public const string SevereSpeedingStarted = "SevereSpeedingStarted";
+
+        public const string SpeedingEventEnded = "SpeedingEventEnded";
+
+        public const string SpeedingEventStarted = "SpeedingEventStarted";
+
+        public const string SuddenFuelLevelDrop = "SuddenFuelLevelDrop";
+
+        public const string SuddenFuelLevelRise = "SuddenFuelLevelRise";
+
+        public const string VehicleCreated = "VehicleCreated";
+
+        public const string VehicleUpdated = "VehicleUpdated";
+    }
 }

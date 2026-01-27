@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The trigger type specific details. Only the field that corresponds to the trigger type is filled in.
 /// </summary>
-public record TriggerParamsObjectRequestBody
+[Serializable]
+public record TriggerParamsObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("ambientTemperature")]
     public AmbientTemperatureDetailsObjectRequestBody? AmbientTemperature { get; set; }
 
@@ -78,6 +83,9 @@ public record TriggerParamsObjectRequestBody
     [JsonPropertyName("routeStopEstimatedArrival")]
     public RouteStopEstimatedArrivalDetailsObjectRequestBody? RouteStopEstimatedArrival { get; set; }
 
+    [JsonPropertyName("safetyBehavior")]
+    public SafetyBehaviorTriggerDetailsObjectRequestBody? SafetyBehavior { get; set; }
+
     [JsonPropertyName("scheduledMaintenance")]
     public ScheduledMaintenanceTriggerDetailsObjectRequestBody? ScheduledMaintenance { get; set; }
 
@@ -100,7 +108,7 @@ public record TriggerParamsObjectRequestBody
     public TireFaultCodeDetailsObjectRequestBody? TireFaultCode { get; set; }
 
     [JsonPropertyName("trainingAssignmentNearDueDate")]
-    public object? TrainingAssignmentNearDueDate { get; set; }
+    public TrainingAssignmentNearDueDateTriggerDetailsObjectRequestBody? TrainingAssignmentNearDueDate { get; set; }
 
     [JsonPropertyName("unassignedDriving")]
     public UnassignedDrivingTriggerDetailsObjectRequestBody? UnassignedDriving { get; set; }
@@ -111,15 +119,11 @@ public record TriggerParamsObjectRequestBody
     [JsonPropertyName("vehicleFaultCode")]
     public VehicleFaultCodeDetailsObjectRequestBody? VehicleFaultCode { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

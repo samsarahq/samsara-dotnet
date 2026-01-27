@@ -7,10 +7,15 @@ namespace Samsara.Net;
 /// <summary>
 /// An Address object.
 /// </summary>
-public record Address
+[Serializable]
+public record Address : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
-    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`.
+    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
     /// </summary>
     [JsonPropertyName("addressTypes")]
     public IEnumerable<AddressAddressTypesItem>? AddressTypes { get; set; }
@@ -31,7 +36,7 @@ public record Address
     /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     /// </summary>
     [JsonPropertyName("externalIds")]
-    public object? ExternalIds { get; set; }
+    public AddressExternalIds? ExternalIds { get; set; }
 
     /// <summary>
     /// The full street address for this address/geofence, as it might be recognized by Google Maps.
@@ -78,15 +83,11 @@ public record Address
     [JsonPropertyName("tags")]
     public IEnumerable<TagTinyResponse>? Tags { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

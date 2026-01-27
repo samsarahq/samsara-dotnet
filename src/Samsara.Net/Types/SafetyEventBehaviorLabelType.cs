@@ -1,90 +1,185 @@
-using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(EnumSerializer<SafetyEventBehaviorLabelType>))]
-public enum SafetyEventBehaviorLabelType
+[JsonConverter(typeof(StringEnumSerializer<SafetyEventBehaviorLabelType>))]
+[Serializable]
+public readonly record struct SafetyEventBehaviorLabelType : IStringEnum
 {
-    [EnumMember(Value = "genericTailgating")]
-    GenericTailgating,
+    public static readonly SafetyEventBehaviorLabelType GenericTailgating = new(
+        Values.GenericTailgating
+    );
 
-    [EnumMember(Value = "genericDistraction")]
-    GenericDistraction,
+    public static readonly SafetyEventBehaviorLabelType GenericDistraction = new(
+        Values.GenericDistraction
+    );
 
-    [EnumMember(Value = "defensiveDriving")]
-    DefensiveDriving,
+    public static readonly SafetyEventBehaviorLabelType DefensiveDriving = new(
+        Values.DefensiveDriving
+    );
 
-    [EnumMember(Value = "rollingStop")]
-    RollingStop,
+    public static readonly SafetyEventBehaviorLabelType RollingStop = new(Values.RollingStop);
 
-    [EnumMember(Value = "nearCollison")]
-    NearCollison,
+    public static readonly SafetyEventBehaviorLabelType NearCollison = new(Values.NearCollison);
 
-    [EnumMember(Value = "speeding")]
-    Speeding,
+    public static readonly SafetyEventBehaviorLabelType Speeding = new(Values.Speeding);
 
-    [EnumMember(Value = "obstructedCamera")]
-    ObstructedCamera,
+    public static readonly SafetyEventBehaviorLabelType ObstructedCamera = new(
+        Values.ObstructedCamera
+    );
 
-    [EnumMember(Value = "didNotYield")]
-    DidNotYield,
+    public static readonly SafetyEventBehaviorLabelType DidNotYield = new(Values.DidNotYield);
 
-    [EnumMember(Value = "noSeatbelt")]
-    NoSeatbelt,
+    public static readonly SafetyEventBehaviorLabelType NoSeatbelt = new(Values.NoSeatbelt);
 
-    [EnumMember(Value = "mobileUsage")]
-    MobileUsage,
+    public static readonly SafetyEventBehaviorLabelType MobileUsage = new(Values.MobileUsage);
 
-    [EnumMember(Value = "drowsy")]
-    Drowsy,
+    public static readonly SafetyEventBehaviorLabelType Drowsy = new(Values.Drowsy);
 
-    [EnumMember(Value = "laneDeparture")]
-    LaneDeparture,
+    public static readonly SafetyEventBehaviorLabelType LaneDeparture = new(Values.LaneDeparture);
 
-    [EnumMember(Value = "followingDistanceSevere")]
-    FollowingDistanceSevere,
+    public static readonly SafetyEventBehaviorLabelType FollowingDistanceSevere = new(
+        Values.FollowingDistanceSevere
+    );
 
-    [EnumMember(Value = "followingDistanceModerate")]
-    FollowingDistanceModerate,
+    public static readonly SafetyEventBehaviorLabelType FollowingDistanceModerate = new(
+        Values.FollowingDistanceModerate
+    );
 
-    [EnumMember(Value = "lateResponse")]
-    LateResponse,
+    public static readonly SafetyEventBehaviorLabelType LateResponse = new(Values.LateResponse);
 
-    [EnumMember(Value = "acceleration")]
-    Acceleration,
+    public static readonly SafetyEventBehaviorLabelType Acceleration = new(Values.Acceleration);
 
-    [EnumMember(Value = "braking")]
-    Braking,
+    public static readonly SafetyEventBehaviorLabelType Braking = new(Values.Braking);
 
-    [EnumMember(Value = "harshTurn")]
-    HarshTurn,
+    public static readonly SafetyEventBehaviorLabelType HarshTurn = new(Values.HarshTurn);
 
-    [EnumMember(Value = "crash")]
-    Crash,
+    public static readonly SafetyEventBehaviorLabelType Crash = new(Values.Crash);
 
-    [EnumMember(Value = "rolloverProtection")]
-    RolloverProtection,
+    public static readonly SafetyEventBehaviorLabelType RolloverProtection = new(
+        Values.RolloverProtection
+    );
 
-    [EnumMember(Value = "yawControl")]
-    YawControl,
+    public static readonly SafetyEventBehaviorLabelType YawControl = new(Values.YawControl);
 
-    [EnumMember(Value = "ranRedLight")]
-    RanRedLight,
+    public static readonly SafetyEventBehaviorLabelType RanRedLight = new(Values.RanRedLight);
 
-    [EnumMember(Value = "forwardCollisionWarning")]
-    ForwardCollisionWarning,
+    public static readonly SafetyEventBehaviorLabelType ForwardCollisionWarning = new(
+        Values.ForwardCollisionWarning
+    );
 
-    [EnumMember(Value = "eatingDrinking")]
-    EatingDrinking,
+    public static readonly SafetyEventBehaviorLabelType EatingDrinking = new(Values.EatingDrinking);
 
-    [EnumMember(Value = "smoking")]
-    Smoking,
+    public static readonly SafetyEventBehaviorLabelType Smoking = new(Values.Smoking);
 
-    [EnumMember(Value = "followingDistance")]
-    FollowingDistance,
+    public static readonly SafetyEventBehaviorLabelType FollowingDistance = new(
+        Values.FollowingDistance
+    );
 
-    [EnumMember(Value = "edgeDistractedDriving")]
-    EdgeDistractedDriving,
+    public static readonly SafetyEventBehaviorLabelType EdgeDistractedDriving = new(
+        Values.EdgeDistractedDriving
+    );
+
+    public SafetyEventBehaviorLabelType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static SafetyEventBehaviorLabelType FromCustom(string value)
+    {
+        return new SafetyEventBehaviorLabelType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(SafetyEventBehaviorLabelType value1, string value2) =>
+        value1.Value.Equals(value2);
+
+    public static bool operator !=(SafetyEventBehaviorLabelType value1, string value2) =>
+        !value1.Value.Equals(value2);
+
+    public static explicit operator string(SafetyEventBehaviorLabelType value) => value.Value;
+
+    public static explicit operator SafetyEventBehaviorLabelType(string value) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string GenericTailgating = "genericTailgating";
+
+        public const string GenericDistraction = "genericDistraction";
+
+        public const string DefensiveDriving = "defensiveDriving";
+
+        public const string RollingStop = "rollingStop";
+
+        public const string NearCollison = "nearCollison";
+
+        public const string Speeding = "speeding";
+
+        public const string ObstructedCamera = "obstructedCamera";
+
+        public const string DidNotYield = "didNotYield";
+
+        public const string NoSeatbelt = "noSeatbelt";
+
+        public const string MobileUsage = "mobileUsage";
+
+        public const string Drowsy = "drowsy";
+
+        public const string LaneDeparture = "laneDeparture";
+
+        public const string FollowingDistanceSevere = "followingDistanceSevere";
+
+        public const string FollowingDistanceModerate = "followingDistanceModerate";
+
+        public const string LateResponse = "lateResponse";
+
+        public const string Acceleration = "acceleration";
+
+        public const string Braking = "braking";
+
+        public const string HarshTurn = "harshTurn";
+
+        public const string Crash = "crash";
+
+        public const string RolloverProtection = "rolloverProtection";
+
+        public const string YawControl = "yawControl";
+
+        public const string RanRedLight = "ranRedLight";
+
+        public const string ForwardCollisionWarning = "forwardCollisionWarning";
+
+        public const string EatingDrinking = "eatingDrinking";
+
+        public const string Smoking = "smoking";
+
+        public const string FollowingDistance = "followingDistance";
+
+        public const string EdgeDistractedDriving = "edgeDistractedDriving";
+    }
 }

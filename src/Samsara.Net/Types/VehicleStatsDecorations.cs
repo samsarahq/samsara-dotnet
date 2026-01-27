@@ -18,8 +18,13 @@ namespace Samsara.Net;
 /// }
 /// ```
 /// </summary>
-public record VehicleStatsDecorations
+[Serializable]
+public record VehicleStatsDecorations : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("ambientAirTemperatureMilliC")]
     public VehicleStatsDecorationsAmbientAirTemperatureMilliC? AmbientAirTemperatureMilliC { get; set; }
 
@@ -70,6 +75,9 @@ public record VehicleStatsDecorations
 
     [JsonPropertyName("defLevelMilliPercent")]
     public VehicleStatsDecorationsDefLevelMilliPercent? DefLevelMilliPercent { get; set; }
+
+    [JsonPropertyName("ecuDoorStatus")]
+    public VehicleStatsEcuDoorStatus? EcuDoorStatus { get; set; }
 
     [JsonPropertyName("ecuSpeedMph")]
     public VehicleStatsDecorationsEcuSpeedMph? EcuSpeedMph { get; set; }
@@ -131,6 +139,9 @@ public record VehicleStatsDecorations
     [JsonPropertyName("faultCodes")]
     public VehicleStatsFaultCodesValue? FaultCodes { get; set; }
 
+    [JsonPropertyName("fuelConsumedMilliliters")]
+    public VehicleStatsDecorationsFuelConsumedMilliliters? FuelConsumedMilliliters { get; set; }
+
     [JsonPropertyName("fuelPercents")]
     public VehicleStatsDecorationsFuelPercents? FuelPercents { get; set; }
 
@@ -142,6 +153,9 @@ public record VehicleStatsDecorations
 
     [JsonPropertyName("gpsOdometerMeters")]
     public VehicleStatsDecorationsGpsOdometerMeters? GpsOdometerMeters { get; set; }
+
+    [JsonPropertyName("idlingDurationMilliseconds")]
+    public VehicleStatsDecorationsIdlingDurationMilliseconds? IdlingDurationMilliseconds { get; set; }
 
     [JsonPropertyName("intakeManifoldTemperatureMilliC")]
     public VehicleStatsDecorationsIntakeManifoldTemperatureMilliC? IntakeManifoldTemperatureMilliC { get; set; }
@@ -194,15 +208,11 @@ public record VehicleStatsDecorations
     [JsonPropertyName("tirePressure")]
     public VehicleStatsTirePressures? TirePressure { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

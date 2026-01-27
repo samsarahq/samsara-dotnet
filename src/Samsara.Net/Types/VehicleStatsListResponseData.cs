@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A vehicle and its list of stat events.
 /// </summary>
-public record VehicleStatsListResponseData
+[Serializable]
+public record VehicleStatsListResponseData : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// A list of ambient air temperature readings in millidegree Celsius for the given vehicle.
     /// </summary>
@@ -110,6 +115,12 @@ public record VehicleStatsListResponseData
     /// </summary>
     [JsonPropertyName("defLevelMilliPercent")]
     public IEnumerable<VehicleStatsDefLevelMilliPercentWithDecoration>? DefLevelMilliPercent { get; set; }
+
+    /// <summary>
+    /// Door status as read from the vehicle (either from ECU or AUX as a fallback).
+    /// </summary>
+    [JsonPropertyName("ecuDoorStatus")]
+    public IEnumerable<VehicleStatsEcuDoorStatus>? EcuDoorStatus { get; set; }
 
     /// <summary>
     /// A list of the speeds of the vehicle in miles per hour, as reported by the ECU.
@@ -226,13 +237,19 @@ public record VehicleStatsListResponseData
     public IEnumerable<VehicleStatsEvStateOfChargeMilliPercent>? EvStateOfChargeMilliPercent { get; set; }
 
     [JsonPropertyName("externalIds")]
-    public object? ExternalIds { get; set; }
+    public Dictionary<string, object?>? ExternalIds { get; set; }
 
     /// <summary>
     /// A list of engine fault codes.
     /// </summary>
     [JsonPropertyName("faultCodes")]
     public IEnumerable<VehicleStatsFaultCodesWithDecoration>? FaultCodes { get; set; }
+
+    /// <summary>
+    /// A list of cumulative fuel consumption readings in milliliters for the given vehicle. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel & Energy Report, please use &lt;a href="https://developers.samsara.com/reference/getfuelenergyvehiclereports" target="_blank"&gt;the Fuel and Energy API&lt;/a&gt;.
+    /// </summary>
+    [JsonPropertyName("fuelConsumedMilliliters")]
+    public IEnumerable<VehicleStatsFuelConsumedMillilitersWithDecoration>? FuelConsumedMilliliters { get; set; }
 
     /// <summary>
     /// A list of fuel percentage readings for the given vehicle.
@@ -260,6 +277,12 @@ public record VehicleStatsListResponseData
 
     [JsonPropertyName("id")]
     public string? Id { get; set; }
+
+    /// <summary>
+    /// A list of cumulative idling duration readings in milliseconds for the given vehicle. Cumulative values always increase. For filtering of idling duration please use &lt;a href="https://developers.samsara.com/reference/getvehicleidlingreports" target="_blank"&gt;the Idling Events API&lt;/a&gt;.
+    /// </summary>
+    [JsonPropertyName("idlingDurationMilliseconds")]
+    public IEnumerable<VehicleStatsIdlingDurationMillisecondsWithDecoration>? IdlingDurationMilliseconds { get; set; }
 
     /// <summary>
     /// A list of intake manifold temperature readings in millidegree Celsius for the given vehicle.
@@ -372,15 +395,11 @@ public record VehicleStatsListResponseData
     [JsonPropertyName("syntheticEngineSeconds")]
     public IEnumerable<VehicleStatsListSyntheticEngineSeconds>? SyntheticEngineSeconds { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -1,13 +1,10 @@
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
-using global::System.Threading.Tasks;
 using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Webhooks;
 
-public partial class WebhooksClient
+public partial class WebhooksClient : IWebhooksClient
 {
     private RawClient _client;
 
@@ -16,18 +13,8 @@ public partial class WebhooksClient
         _client = client;
     }
 
-    /// <summary>
-    /// List all webhooks belonging to a specific org.
-    ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
-    ///
-    /// To use this endpoint, select **Read Webhooks** under the Setup & Administration category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    /// </summary>
-    private async Task<WebhooksListWebhooksResponseBody> ListInternalAsync(
-        WebhooksListRequest request,
+    private async Task<WithRawResponse<WebhooksListWebhooksResponseBody>> ListWebhooksAsyncCore(
+        ListWebhooksRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -63,14 +50,307 @@ public partial class WebhooksClient
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
             {
-                return JsonUtils.Deserialize<WebhooksListWebhooksResponseBody>(responseBody)!;
+                var responseData = JsonUtils.Deserialize<WebhooksListWebhooksResponseBody>(
+                    responseBody
+                )!;
+                return new WithRawResponse<WebhooksListWebhooksResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
             }
             catch (JsonException e)
             {
-                throw new SamsaraClientException("Failed to deserialize response", e);
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
             }
         }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
 
+    private async Task<WithRawResponse<WebhooksPostWebhooksResponseBody>> PostWebhooksAsyncCore(
+        WebhooksPostWebhooksRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "webhooks",
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<WebhooksPostWebhooksResponseBody>(
+                    responseBody
+                )!;
+                return new WithRawResponse<WebhooksPostWebhooksResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<WebhooksGetWebhookResponseBody>> GetWebhookAsyncCore(
+        GetWebhookRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<WebhooksGetWebhookResponseBody>(
+                    responseBody
+                )!;
+                return new WithRawResponse<WebhooksGetWebhookResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<WithRawResponse<WebhooksPatchWebhookResponseBody>> PatchWebhookAsyncCore(
+        WebhooksPatchWebhookRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Body = request,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData = JsonUtils.Deserialize<WebhooksPatchWebhookResponseBody>(
+                    responseBody
+                )!;
+                return new WithRawResponse<WebhooksPatchWebhookResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
             try
@@ -124,39 +404,17 @@ public partial class WebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.ListAsync(new WebhooksListRequest());
+    /// await client.Webhooks.ListWebhooksAsync(new ListWebhooksRequest());
     /// </code></example>
-    public async Task<Pager<WebhookResponseResponseBody>> ListAsync(
-        WebhooksListRequest request,
+    public WithRawResponseTask<WebhooksListWebhooksResponseBody> ListWebhooksAsync(
+        ListWebhooksRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        if (request is not null)
-        {
-            request = request with { };
-        }
-        var pager = await CursorPager<
-            WebhooksListRequest,
-            RequestOptions?,
-            WebhooksListWebhooksResponseBody,
-            string,
-            WebhookResponseResponseBody
-        >
-            .CreateInstanceAsync(
-                request,
-                options,
-                ListInternalAsync,
-                (request, cursor) =>
-                {
-                    request.After = cursor;
-                },
-                response => response?.Pagination?.EndCursor,
-                response => response?.Data?.ToList(),
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        return pager;
+        return new WithRawResponseTask<WebhooksListWebhooksResponseBody>(
+            ListWebhooksAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -170,7 +428,7 @@ public partial class WebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.CreateAsync(
+    /// await client.Webhooks.PostWebhooksAsync(
     ///     new WebhooksPostWebhooksRequestBody
     ///     {
     ///         Name = "Webhook-123",
@@ -178,79 +436,15 @@ public partial class WebhooksClient
     ///     }
     /// );
     /// </code></example>
-    public async Task<WebhooksPostWebhooksResponseBody> CreateAsync(
+    public WithRawResponseTask<WebhooksPostWebhooksResponseBody> PostWebhooksAsync(
         WebhooksPostWebhooksRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "webhooks",
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<WebhooksPostWebhooksResponseBody>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<WebhooksPostWebhooksResponseBody>(
+            PostWebhooksAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -264,79 +458,17 @@ public partial class WebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.GetAsync("id");
+    /// await client.Webhooks.GetWebhookAsync(new GetWebhookRequest { Id = "id" });
     /// </code></example>
-    public async Task<WebhooksGetWebhookResponseBody> GetAsync(
-        string id,
+    public WithRawResponseTask<WebhooksGetWebhookResponseBody> GetWebhookAsync(
+        GetWebhookRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<WebhooksGetWebhookResponseBody>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<WebhooksGetWebhookResponseBody>(
+            GetWebhookAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -350,10 +482,10 @@ public partial class WebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.DeleteAsync("id");
+    /// await client.Webhooks.DeleteWebhookAsync(new DeleteWebhookRequest { Id = "id" });
     /// </code></example>
-    public async global::System.Threading.Tasks.Task DeleteAsync(
-        string id,
+    public async Task DeleteWebhookAsync(
+        DeleteWebhookRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -364,7 +496,10 @@ public partial class WebhooksClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Options = options,
                 },
                 cancellationToken
@@ -429,81 +564,16 @@ public partial class WebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.PatchAsync("id", new WebhooksPatchWebhookRequestBody());
+    /// await client.Webhooks.PatchWebhookAsync(new WebhooksPatchWebhookRequestBody { Id = "id" });
     /// </code></example>
-    public async Task<WebhooksPatchWebhookResponseBody> PatchAsync(
-        string id,
+    public WithRawResponseTask<WebhooksPatchWebhookResponseBody> PatchWebhookAsync(
         WebhooksPatchWebhookRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
-                    Body = request,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                return JsonUtils.Deserialize<WebhooksPatchWebhookResponseBody>(responseBody)!;
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientException("Failed to deserialize response", e);
-            }
-        }
-
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
+        return new WithRawResponseTask<WebhooksPatchWebhookResponseBody>(
+            PatchWebhookAsyncCore(request, options, cancellationToken)
+        );
     }
 }

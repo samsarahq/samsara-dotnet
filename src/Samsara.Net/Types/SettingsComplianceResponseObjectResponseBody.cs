@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Information set here will be displayed in roadside inspections and in the transferred US DOT datafile.
 /// </summary>
-public record SettingsComplianceResponseObjectResponseBody
+[Serializable]
+public record SettingsComplianceResponseObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// [deprecated] Allow Unregulated Vehicles. This setting is deprecated as all organizations can now mark vehicles as unregulated.
     /// </summary>
@@ -69,15 +74,11 @@ public record SettingsComplianceResponseObjectResponseBody
     [JsonPropertyName("persistentDutyStatusEnabled")]
     public bool? PersistentDutyStatusEnabled { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

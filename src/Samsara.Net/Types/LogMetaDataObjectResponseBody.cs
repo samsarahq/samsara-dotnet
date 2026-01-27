@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// The metadata of the log.
 /// </summary>
-public record LogMetaDataObjectResponseBody
+[Serializable]
+public record LogMetaDataObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Whether the driver has claimed the [Adverse Driving Exemption](https://kb.samsara.com/hc/en-us/articles/360047336792-Adverse-Driving-Exemption) for this HOS day chart.
     /// </summary>
@@ -87,15 +92,11 @@ public record LogMetaDataObjectResponseBody
     [JsonPropertyName("vehicles")]
     public IEnumerable<VehicleResponseResponseBody>? Vehicles { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

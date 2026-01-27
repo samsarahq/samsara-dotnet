@@ -1,10 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
 using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+[Serializable]
 public partial class ClientOptions
 {
     /// <summary>

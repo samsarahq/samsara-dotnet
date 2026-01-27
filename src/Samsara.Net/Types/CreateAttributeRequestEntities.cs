@@ -4,8 +4,19 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-public record CreateAttributeRequestEntities
+[Serializable]
+public record CreateAttributeRequestEntities : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Date values that can be associated with this attribute in RFC 3339 full-date format (YYYY-MM-DD)
+    /// </summary>
+    [JsonPropertyName("dateValues")]
+    public IEnumerable<DateOnly>? DateValues { get; set; }
+
     /// <summary>
     /// Entity id, based on the entity type.
     /// </summary>
@@ -30,15 +41,11 @@ public record CreateAttributeRequestEntities
     [JsonPropertyName("stringValues")]
     public IEnumerable<string>? StringValues { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

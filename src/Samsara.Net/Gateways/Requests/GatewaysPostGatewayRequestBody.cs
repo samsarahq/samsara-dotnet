@@ -3,6 +3,7 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net.Gateways;
 
+[Serializable]
 public record GatewaysPostGatewayRequestBody
 {
     /// <summary>

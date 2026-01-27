@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Form Template section object.
 /// </summary>
-public record FormTemplateSectionObjectResponseBody
+[Serializable]
+public record FormTemplateSectionObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The index of the first field from the fields array that is in this section. Index 0 represents the first field definition of the fields array.
     /// </summary>
@@ -33,15 +38,11 @@ public record FormTemplateSectionObjectResponseBody
     [JsonPropertyName("label")]
     public required string Label { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

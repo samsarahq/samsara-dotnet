@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Forms condition object.
 /// </summary>
-public record FormsConditionObjectResponseBody
+[Serializable]
+public record FormsConditionObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// List of option IDs that will satisfy the condition if selected. For check boxes fields, the condition will be met if any of these option IDs are selected. Only returned for multiple choice or check boxes fields when the condition type is `multipleChoiceValueCondition` or `checkBoxesValueCondition`.
     /// </summary>
@@ -21,15 +26,11 @@ public record FormsConditionObjectResponseBody
     [JsonPropertyName("type")]
     public required FormsConditionObjectResponseBodyType Type { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

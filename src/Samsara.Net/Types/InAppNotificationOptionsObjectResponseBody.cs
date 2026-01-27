@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Options for in-app notifications
 /// </summary>
-public record InAppNotificationOptionsObjectResponseBody
+[Serializable]
+public record InAppNotificationOptionsObjectResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Whether the alert will dictate the title of the alert. Both canDictateAlertTitle and canPlayAlertSound should be enabled or disabled together.
     /// </summary>
@@ -33,15 +38,11 @@ public record InAppNotificationOptionsObjectResponseBody
     [JsonPropertyName("isEnabled")]
     public required bool IsEnabled { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

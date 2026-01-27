@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// What the triggers are scoped to. These are the objects this alert applies to.
 /// </summary>
-public record ScopeObjectRequestBody
+[Serializable]
+public record ScopeObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// Whether it applies to all applicable objects.
     /// </summary>
@@ -39,15 +44,11 @@ public record ScopeObjectRequestBody
     [JsonPropertyName("widgets")]
     public IEnumerable<TinyWidgetObjectRequestBody>? Widgets { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

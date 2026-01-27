@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Representation of a vehicle trailer or other equipment to be tracked.
 /// </summary>
-public record AssetResponseBody
+[Serializable]
+public record AssetResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The time the asset was created in RFC 3339 format.
     /// </summary>
@@ -58,6 +63,12 @@ public record AssetResponseBody
     public string? Notes { get; set; }
 
     /// <summary>
+    /// Indicates whether the asset is expected to have data ingested using the Readings API.
+    /// </summary>
+    [JsonPropertyName("readingsIngestionEnabled")]
+    public bool? ReadingsIngestionEnabled { get; set; }
+
+    /// <summary>
     /// Whether or not the asset is regulated, unregulated (non-CMV), or a mixed use unregulated asset. Primarily used with vehicles.  Valid values: `mixed`, `regulated`, `unregulated`
     /// </summary>
     [JsonPropertyName("regulationMode")]
@@ -99,15 +110,11 @@ public record AssetResponseBody
     [JsonPropertyName("year")]
     public long? Year { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

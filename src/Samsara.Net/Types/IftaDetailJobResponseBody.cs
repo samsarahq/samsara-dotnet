@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// A job representing the async generation of IFTA mileage segments. The job should be polled until the state is terminal.
 /// </summary>
-public record IftaDetailJobResponseBody
+[Serializable]
+public record IftaDetailJobResponseBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("args")]
     public required IftaDetailJobArgsResponseBody Args { get; set; }
 
@@ -60,15 +65,11 @@ public record IftaDetailJobResponseBody
     [JsonPropertyName("startedAtTime")]
     public string? StartedAtTime { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

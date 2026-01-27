@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Details specific to DVIR Submitted by Device
 /// </summary>
-public record DvirSubmittedDeviceTriggerDetailsObjectRequestBody
+[Serializable]
+public record DvirSubmittedDeviceTriggerDetailsObjectRequestBody : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// The trigger will only fire if the selected DVIR types are submitted within the duration.
     /// </summary>
@@ -21,15 +26,11 @@ public record DvirSubmittedDeviceTriggerDetailsObjectRequestBody
     [JsonPropertyName("dvirSubmissionTypes")]
     public IEnumerable<DvirSubmittedDeviceTriggerDetailsObjectRequestBodyDvirSubmissionTypesItem>? DvirSubmissionTypes { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// HOS clock values for a specific driver, including remaining times and violations.
 /// </summary>
-public record HosClocksForDriver
+[Serializable]
+public record HosClocksForDriver : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     [JsonPropertyName("clocks")]
     public HosClocks? Clocks { get; set; }
 
@@ -24,15 +29,11 @@ public record HosClocksForDriver
     [JsonPropertyName("violations")]
     public HosViolations? Violations { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()

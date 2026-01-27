@@ -7,8 +7,13 @@ namespace Samsara.Net;
 /// <summary>
 /// Name of most recent type of granular material spread, read from the material spreader.
 /// </summary>
-public record VehicleStatsResponseSpreaderGranularName
+[Serializable]
+public record VehicleStatsResponseSpreaderGranularName : IJsonOnDeserialized
 {
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
     /// <summary>
     /// UTC timestamp in RFC 3339 format. Example: `2020-01-27T07:06:25Z`.
     /// </summary>
@@ -21,15 +26,11 @@ public record VehicleStatsResponseSpreaderGranularName
     [JsonPropertyName("value")]
     public required string Value { get; set; }
 
-    /// <summary>
-    /// Additional properties received from the response, if any.
-    /// </summary>
-    /// <remarks>
-    /// [EXPERIMENTAL] This API is experimental and may change in future releases.
-    /// </remarks>
-    [JsonExtensionData]
-    public IDictionary<string, JsonElement> AdditionalProperties { get; internal set; } =
-        new Dictionary<string, JsonElement>();
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
 
     /// <inheritdoc />
     public override string ToString()
