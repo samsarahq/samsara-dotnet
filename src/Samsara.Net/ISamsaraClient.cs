@@ -42,6 +42,8 @@ using Samsara.Net.TachographEuOnly;
 using Samsara.Net.Tags;
 using Samsara.Net.TrailerAssignments;
 using Samsara.Net.Trailers;
+using Samsara.Net.TrainingAssignments;
+using Samsara.Net.TrainingCourses;
 using Samsara.Net.Trips;
 using Samsara.Net.Users;
 using Samsara.Net.VehicleLocations;
@@ -98,6 +100,8 @@ public partial interface ISamsaraClient
     public SafetyClient Safety { get; }
     public SpeedingIntervalsClient SpeedingIntervals { get; }
     public TagsClient Tags { get; }
+    public TrainingAssignmentsClient TrainingAssignments { get; }
+    public TrainingCoursesClient TrainingCourses { get; }
     public TripsClient Trips { get; }
     public UsersClient Users { get; }
     public LegacyClient Legacy { get; }

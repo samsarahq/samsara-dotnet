@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.TrainingAssignments;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.TrainingAssignments;
 
 [TestFixture]
 public class GetTrainingAssignmentsStreamTest : BaseMockServerTest
@@ -62,7 +62,7 @@ public class GetTrainingAssignmentsStreamTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetTrainingAssignmentsStreamAsync(
+        var response = await Client.TrainingAssignments.GetTrainingAssignmentsStreamAsync(
             new GetTrainingAssignmentsStreamRequest { StartTime = "startTime" }
         );
         Assert.That(

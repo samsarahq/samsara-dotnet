@@ -91,6 +91,10 @@ public readonly record struct HarshEventTriggerDetailsObjectRequestBodyTypesItem
     public static readonly HarshEventTriggerDetailsObjectRequestBodyTypesItem HaRedLightViolation =
         new(Values.HaRedLightViolation);
 
+    public static readonly HarshEventTriggerDetailsObjectRequestBodyTypesItem HaReversing = new(
+        Values.HaReversing
+    );
+
     public static readonly HarshEventTriggerDetailsObjectRequestBodyTypesItem HaRolledStopSign =
         new(Values.HaRolledStopSign);
 
@@ -254,6 +258,8 @@ public readonly record struct HarshEventTriggerDetailsObjectRequestBodyTypesItem
         public const string HaRearCollisionWarning = "haRearCollisionWarning";
 
         public const string HaRedLightViolation = "haRedLightViolation";
+
+        public const string HaReversing = "haReversing";
 
         public const string HaRolledStopSign = "haRolledStopSign";
 

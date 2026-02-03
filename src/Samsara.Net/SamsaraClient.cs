@@ -43,6 +43,8 @@ using Samsara.Net.TachographEuOnly;
 using Samsara.Net.Tags;
 using Samsara.Net.TrailerAssignments;
 using Samsara.Net.Trailers;
+using Samsara.Net.TrainingAssignments;
+using Samsara.Net.TrainingCourses;
 using Samsara.Net.Trips;
 using Samsara.Net.Users;
 using Samsara.Net.VehicleLocations;
@@ -125,6 +127,8 @@ public partial class SamsaraClient : ISamsaraClient
         Safety = new SafetyClient(_client);
         SpeedingIntervals = new SpeedingIntervalsClient(_client);
         Tags = new TagsClient(_client);
+        TrainingAssignments = new TrainingAssignmentsClient(_client);
+        TrainingCourses = new TrainingCoursesClient(_client);
         Trips = new TripsClient(_client);
         Users = new UsersClient(_client);
         Legacy = new LegacyClient(_client);
@@ -222,6 +226,10 @@ public partial class SamsaraClient : ISamsaraClient
     public SpeedingIntervalsClient SpeedingIntervals { get; }
 
     public TagsClient Tags { get; }
+
+    public TrainingAssignmentsClient TrainingAssignments { get; }
+
+    public TrainingCoursesClient TrainingCourses { get; }
 
     public TripsClient Trips { get; }
 

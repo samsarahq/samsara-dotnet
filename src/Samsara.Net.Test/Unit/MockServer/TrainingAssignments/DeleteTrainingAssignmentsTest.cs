@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.TrainingAssignments;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.TrainingAssignments;
 
 [TestFixture]
 public class DeleteTrainingAssignmentsTest : BaseMockServerTest
@@ -20,7 +20,7 @@ public class DeleteTrainingAssignmentsTest : BaseMockServerTest
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
         Assert.DoesNotThrowAsync(async () =>
-            await Client.BetaApIs.DeleteTrainingAssignmentsAsync(
+            await Client.TrainingAssignments.DeleteTrainingAssignmentsAsync(
                 new DeleteTrainingAssignmentsRequest()
             )
         );

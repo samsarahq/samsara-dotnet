@@ -3,5 +3,5 @@ namespace Samsara.Net;
 [Serializable]
 internal class Version
 {
-    public const string Current = "5.3.1";
+    public const string Current = "5.4.0";
 }

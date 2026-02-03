@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.TrainingCourses;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.TrainingCourses;
 
 [TestFixture]
 public class GetTrainingCoursesTest : BaseMockServerTest
@@ -52,7 +52,7 @@ public class GetTrainingCoursesTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetTrainingCoursesAsync(
+        var response = await Client.TrainingCourses.GetTrainingCoursesAsync(
             new GetTrainingCoursesRequest()
         );
         Assert.That(
