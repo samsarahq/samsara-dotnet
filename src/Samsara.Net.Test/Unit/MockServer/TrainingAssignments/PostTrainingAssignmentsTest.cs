@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.TrainingAssignments;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.TrainingAssignments;
 
 [TestFixture]
 public class PostTrainingAssignmentsTest : BaseMockServerTest
@@ -65,7 +65,7 @@ public class PostTrainingAssignmentsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.PostTrainingAssignmentsAsync(
+        var response = await Client.TrainingAssignments.PostTrainingAssignmentsAsync(
             new PostTrainingAssignmentsRequest { CourseId = "courseId", DueAtTime = "dueAtTime" }
         );
         Assert.That(

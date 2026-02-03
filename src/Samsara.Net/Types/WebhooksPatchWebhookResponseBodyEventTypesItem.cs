@@ -75,6 +75,10 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
         Values.IssueCreated
     );
 
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem MissingDvirPastDue = new(
+        Values.MissingDvirPastDue
+    );
+
     public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem PredictiveMaintenanceAlert =
         new(Values.PredictiveMaintenanceAlert);
 
@@ -213,6 +217,8 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
         public const string GeofenceExit = "GeofenceExit";
 
         public const string IssueCreated = "IssueCreated";
+
+        public const string MissingDvirPastDue = "MissingDvirPastDue";
 
         public const string PredictiveMaintenanceAlert = "PredictiveMaintenanceAlert";
 

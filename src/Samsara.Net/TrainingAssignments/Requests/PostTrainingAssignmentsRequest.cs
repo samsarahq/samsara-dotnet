@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.BetaApIs;
+namespace Samsara.Net.TrainingAssignments;
 
 [Serializable]
 public record PostTrainingAssignmentsRequest
