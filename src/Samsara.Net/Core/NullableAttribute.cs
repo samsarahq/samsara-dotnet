@@ -15,4 +15,4 @@ namespace Samsara.Net.Core;
 /// - With [Nullable]: Optional<T?>.Of(null) → write null to JSON
 /// </remarks>
 [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class NullableAttribute : Attribute { }
+public class NullableAttribute : System.Attribute { }
