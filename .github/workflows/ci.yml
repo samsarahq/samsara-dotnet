@@ -14,8 +14,6 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v5
 
-      - uses: actions/checkout@master
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
@@ -63,7 +61,7 @@ jobs:
 
 
   publish:
-    needs: [compile]
+    needs: [compile, unit-tests]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 
@@ -92,6 +90,6 @@ jobs:
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          dotnet pack src/Samsara.Net/Samsara.Net.csproj -c Release --no-build --no-restore
-          dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
+          dotnet pack src/Samsara.Net/Samsara.Net.csproj -c Release --no-build --no-restore -o out
+          for pkg in out/*.nupkg; do dotnet nuget push "$pkg" --api-key "$NUGET_API_KEY" --source "https://api.nuget.org/v3/index.json" --skip-duplicate; done
 
