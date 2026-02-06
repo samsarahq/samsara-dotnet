@@ -6,8 +6,7 @@
     "namespace": "Samsara.Net",
     "client-class-name": "SamsaraClient",
     "explicit-namespaces": true,
-    "version-namespace-export": true,
-    "enable-wire-tests": true
+    "version-namespace-export": true
   },
-  "sdkVersion": "5.4.2"
+  "sdkVersion": "5.5.0"
 }

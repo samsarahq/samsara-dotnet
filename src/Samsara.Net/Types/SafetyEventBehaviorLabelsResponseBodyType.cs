@@ -98,6 +98,10 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         Values.ObstructedCamera
     );
 
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType OperationalEvent = new(
+        Values.OperationalEvent
+    );
+
     public static readonly SafetyEventBehaviorLabelsResponseBodyType Passenger = new(
         Values.Passenger
     );
@@ -246,6 +250,8 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         public const string NoSeatbelt = "NoSeatbelt";
 
         public const string ObstructedCamera = "ObstructedCamera";
+
+        public const string OperationalEvent = "OperationalEvent";
 
         public const string Passenger = "Passenger";
 

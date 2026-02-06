@@ -20,7 +20,7 @@ public record MediaRetrievalPostMediaRetrievalRequestBody
         new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>();
 
     /// <summary>
-    /// The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes.  Valid values: `image`, `videoHighRes`, `videoLowRes`
+    /// The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: `image`, `videoHighRes`, `videoLowRes`, `hyperlapse`
     /// </summary>
     [JsonPropertyName("mediaType")]
     public required MediaRetrievalPostMediaRetrievalRequestBodyMediaType MediaType { get; set; }
