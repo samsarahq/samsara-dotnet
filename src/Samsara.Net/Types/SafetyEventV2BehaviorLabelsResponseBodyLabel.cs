@@ -151,6 +151,10 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
         Values.ObstructedCamera
     );
 
+    public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel OperationalEvent = new(
+        Values.OperationalEvent
+    );
+
     public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel OtherViolation = new(
         Values.OtherViolation
     );
@@ -351,6 +355,8 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
         public const string NoSeatbelt = "NoSeatbelt";
 
         public const string ObstructedCamera = "ObstructedCamera";
+
+        public const string OperationalEvent = "OperationalEvent";
 
         public const string OtherViolation = "OtherViolation";
 

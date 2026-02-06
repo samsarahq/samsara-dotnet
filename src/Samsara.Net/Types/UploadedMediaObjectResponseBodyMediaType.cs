@@ -9,7 +9,17 @@ public readonly record struct UploadedMediaObjectResponseBodyMediaType : IString
 {
     public static readonly UploadedMediaObjectResponseBodyMediaType Image = new(Values.Image);
 
-    public static readonly UploadedMediaObjectResponseBodyMediaType Video = new(Values.Video);
+    public static readonly UploadedMediaObjectResponseBodyMediaType VideoHighRes = new(
+        Values.VideoHighRes
+    );
+
+    public static readonly UploadedMediaObjectResponseBodyMediaType VideoLowRes = new(
+        Values.VideoLowRes
+    );
+
+    public static readonly UploadedMediaObjectResponseBodyMediaType Hyperlapse = new(
+        Values.Hyperlapse
+    );
 
     public UploadedMediaObjectResponseBodyMediaType(string value)
     {
@@ -66,6 +76,10 @@ public readonly record struct UploadedMediaObjectResponseBodyMediaType : IString
     {
         public const string Image = "image";
 
-        public const string Video = "video";
+        public const string VideoHighRes = "videoHighRes";
+
+        public const string VideoLowRes = "videoLowRes";
+
+        public const string Hyperlapse = "hyperlapse";
     }
 }

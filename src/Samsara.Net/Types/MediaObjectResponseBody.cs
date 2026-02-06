@@ -36,7 +36,7 @@ public record MediaObjectResponseBody : IJsonOnDeserialized
     public required MediaObjectResponseBodyInput Input { get; set; }
 
     /// <summary>
-    /// Type of media.  Valid values: `image`, `video`
+    /// Type of media.  Valid values: `image`, `videoHighRes`, `videoLowRes`, `hyperlapse`
     /// </summary>
     [JsonPropertyName("mediaType")]
     public required MediaObjectResponseBodyMediaType MediaType { get; set; }
