@@ -9,7 +9,11 @@ public readonly record struct MediaObjectResponseBodyMediaType : IStringEnum
 {
     public static readonly MediaObjectResponseBodyMediaType Image = new(Values.Image);
 
-    public static readonly MediaObjectResponseBodyMediaType Video = new(Values.Video);
+    public static readonly MediaObjectResponseBodyMediaType VideoHighRes = new(Values.VideoHighRes);
+
+    public static readonly MediaObjectResponseBodyMediaType VideoLowRes = new(Values.VideoLowRes);
+
+    public static readonly MediaObjectResponseBodyMediaType Hyperlapse = new(Values.Hyperlapse);
 
     public MediaObjectResponseBodyMediaType(string value)
     {
@@ -60,6 +64,10 @@ public readonly record struct MediaObjectResponseBodyMediaType : IStringEnum
     {
         public const string Image = "image";
 
-        public const string Video = "video";
+        public const string VideoHighRes = "videoHighRes";
+
+        public const string VideoLowRes = "videoLowRes";
+
+        public const string Hyperlapse = "hyperlapse";
     }
 }

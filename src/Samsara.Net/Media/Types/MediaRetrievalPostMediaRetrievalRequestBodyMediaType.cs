@@ -19,6 +19,10 @@ public readonly record struct MediaRetrievalPostMediaRetrievalRequestBodyMediaTy
         Values.VideoLowRes
     );
 
+    public static readonly MediaRetrievalPostMediaRetrievalRequestBodyMediaType Hyperlapse = new(
+        Values.Hyperlapse
+    );
+
     public MediaRetrievalPostMediaRetrievalRequestBodyMediaType(string value)
     {
         Value = value;
@@ -79,5 +83,7 @@ public readonly record struct MediaRetrievalPostMediaRetrievalRequestBodyMediaTy
         public const string VideoHighRes = "videoHighRes";
 
         public const string VideoLowRes = "videoLowRes";
+
+        public const string Hyperlapse = "hyperlapse";
     }
 }
