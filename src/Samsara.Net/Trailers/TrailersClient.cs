@@ -216,7 +216,7 @@ public partial class TrailersClient : ITrailersClient
     }
 
     private async Task<WithRawResponse<TrailersGetTrailerResponseBody>> GetTrailerAsyncCore(
-        GetTrailerRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -235,7 +235,7 @@ public partial class TrailersClient : ITrailersClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/trailers/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -315,6 +315,7 @@ public partial class TrailersClient : ITrailersClient
     }
 
     private async Task<WithRawResponse<TrailersUpdateTrailerResponseBody>> UpdateTrailerAsyncCore(
+        string id,
         TrailersUpdateTrailerRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -334,7 +335,7 @@ public partial class TrailersClient : ITrailersClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/trailers/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -476,16 +477,16 @@ public partial class TrailersClient : ITrailersClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Trailers.GetTrailerAsync(new GetTrailerRequest { Id = "id" });
+    /// await client.Trailers.GetTrailerAsync("id");
     /// </code></example>
     public WithRawResponseTask<TrailersGetTrailerResponseBody> GetTrailerAsync(
-        GetTrailerRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TrailersGetTrailerResponseBody>(
-            GetTrailerAsyncCore(request, options, cancellationToken)
+            GetTrailerAsyncCore(id, options, cancellationToken)
         );
     }
 
@@ -500,10 +501,10 @@ public partial class TrailersClient : ITrailersClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Trailers.DeleteTrailerAsync(new DeleteTrailerRequest { Id = "id" });
+    /// await client.Trailers.DeleteTrailerAsync("id");
     /// </code></example>
     public async Task DeleteTrailerAsync(
-        DeleteTrailerRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -522,7 +523,7 @@ public partial class TrailersClient : ITrailersClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/trailers/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -589,16 +590,17 @@ public partial class TrailersClient : ITrailersClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Trailers.UpdateTrailerAsync(new TrailersUpdateTrailerRequestBody { Id = "id" });
+    /// await client.Trailers.UpdateTrailerAsync("id", new TrailersUpdateTrailerRequestBody());
     /// </code></example>
     public WithRawResponseTask<TrailersUpdateTrailerResponseBody> UpdateTrailerAsync(
+        string id,
         TrailersUpdateTrailerRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TrailersUpdateTrailerResponseBody>(
-            UpdateTrailerAsyncCore(request, options, cancellationToken)
+            UpdateTrailerAsyncCore(id, request, options, cancellationToken)
         );
     }
 }

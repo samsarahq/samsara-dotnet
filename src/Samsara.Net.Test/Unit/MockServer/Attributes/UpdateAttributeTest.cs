@@ -61,11 +61,8 @@ public class UpdateAttributeTest : BaseMockServerTest
             );
 
         var response = await Client.Attributes.UpdateAttributeAsync(
-            new UpdateAttributeRequest
-            {
-                Id = "id",
-                EntityType = UpdateAttributeRequestEntityType.Driver,
-            }
+            "id",
+            new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

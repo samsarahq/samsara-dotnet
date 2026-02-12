@@ -7,12 +7,6 @@ namespace Samsara.Net.TrailerAssignments;
 public record V1GetFleetTrailerAssignmentsRequest
 {
     /// <summary>
-    /// ID of trailer. Must contain only digits 0-9.
-    /// </summary>
-    [JsonIgnore]
-    public required long TrailerId { get; set; }
-
-    /// <summary>
     /// Timestamp in Unix epoch milliseconds representing the start of the period to fetch. Omitting both startMs and endMs only returns current assignments.
     /// </summary>
     [JsonIgnore]

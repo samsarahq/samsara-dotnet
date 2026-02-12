@@ -27,7 +27,8 @@ public class V1DeleteDispatchRouteByIdTest : BaseMockServerTest
 
         Assert.DoesNotThrowAsync(async () =>
             await Client.Routes.V1DeleteDispatchRouteByIdAsync(
-                new InlineObject { RouteIdOrExternalId = "route_id_or_external_id" }
+                "route_id_or_external_id",
+                new InlineObject()
             )
         );
     }

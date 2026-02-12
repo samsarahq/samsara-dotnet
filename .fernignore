@@ -12,3 +12,4 @@ README.md
 # Webhook signature verification
 src/Samsara.Net/Webhooks/Utils/WebhooksHelper.cs
 src/Samsara.Net.Test/Utils/WebhooksHelperTests.cs
+changelog.md

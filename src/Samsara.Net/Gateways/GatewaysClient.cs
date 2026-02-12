@@ -274,10 +274,10 @@ public partial class GatewaysClient : IGatewaysClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Gateways.DeleteGatewayAsync(new DeleteGatewayRequest { Id = "id" });
+    /// await client.Gateways.DeleteGatewayAsync("id");
     /// </code></example>
     public async Task DeleteGatewayAsync(
-        DeleteGatewayRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -294,10 +294,7 @@ public partial class GatewaysClient : IGatewaysClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "gateways/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("gateways/{0}", ValueConvert.ToPathParameterString(id)),
                     Headers = _headers,
                     Options = options,
                 },

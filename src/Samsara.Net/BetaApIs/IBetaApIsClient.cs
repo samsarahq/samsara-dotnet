@@ -47,7 +47,7 @@ public partial interface IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     WithRawResponseTask<AempEquipmentGetAempEquipmentListResponseBody> GetAempEquipmentListAsync(
-        GetAempEquipmentListRequest request,
+        string pageNumber,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -82,6 +82,7 @@ public partial interface IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     WithRawResponseTask<EquipmentPatchEquipmentResponseBody> PatchEquipmentAsync(
+        string id,
         EquipmentPatchEquipmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -168,6 +169,7 @@ public partial interface IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     Task UpdateEngineImmobilizerStateAsync(
+        long id,
         EngineImmobilizerUpdateEngineImmobilizerStateRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -292,6 +294,7 @@ public partial interface IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     WithRawResponseTask<FunctionsStartFunctionRunResponseBody> StartFunctionRunAsync(
+        string name,
         FunctionsStartFunctionRunRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

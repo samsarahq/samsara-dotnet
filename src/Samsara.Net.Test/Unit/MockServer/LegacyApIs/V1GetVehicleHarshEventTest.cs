@@ -43,7 +43,8 @@ public class V1GetVehicleHarshEventTest : BaseMockServerTest
             );
 
         var response = await Client.LegacyApIs.V1GetVehicleHarshEventAsync(
-            new V1GetVehicleHarshEventRequest { VehicleId = 1000000, Timestamp = 1000000 }
+            1000000,
+            new V1GetVehicleHarshEventRequest { Timestamp = 1000000 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

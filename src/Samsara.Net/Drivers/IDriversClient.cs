@@ -59,13 +59,13 @@ public partial interface IDriversClient
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<DriverResponse> GetAsync(
-        GetDriversRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     Task DeleteAsync(
-        DeleteDriversRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -78,6 +78,7 @@ public partial interface IDriversClient
     /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<DriverResponse> UpdateAsync(
+        string id,
         UpdateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

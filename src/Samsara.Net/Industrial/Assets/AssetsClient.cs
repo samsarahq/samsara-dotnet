@@ -14,7 +14,7 @@ public partial class AssetsClient : IAssetsClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        DeleteAssetsRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -33,7 +33,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "industrial/assets/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -86,16 +86,14 @@ public partial class AssetsClient : IAssetsClient
     /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Industrial.Assets.DeleteAsync(new DeleteAssetsRequest { Id = "id" });
+    /// await client.Industrial.Assets.DeleteAsync("id");
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        DeleteAssetsRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(
-            DeleteAsyncCore(request, options, cancellationToken)
-        );
+        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
     }
 }

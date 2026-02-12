@@ -7,12 +7,6 @@ namespace Samsara.Net.Industrial;
 public record GetVisionRunsByCameraRequest
 {
     /// <summary>
-    /// The camera_id should be valid for the given accessToken.
-    /// </summary>
-    [JsonIgnore]
-    public required long CameraId { get; set; }
-
-    /// <summary>
     /// DurationMs is a required param. This works with the EndMs parameter. Indicates the duration in which the visionRuns will be fetched
     /// </summary>
     [JsonIgnore]

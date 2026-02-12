@@ -40,6 +40,7 @@ public partial interface IIndustrialClient
     /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<InlineResponse200> PatchIndustrialAssetAsync(
+        string id,
         AssetPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -56,6 +57,7 @@ public partial interface IIndustrialClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     WithRawResponseTask<AssetDataOutputsPatchAssetDataOutputsResponseBody> PatchAssetDataOutputsAsync(
+        string id,
         AssetDataOutputsPatchAssetDataOutputsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -155,7 +157,7 @@ public partial interface IIndustrialClient
     WithRawResponseTask<
         IEnumerable<V1ProgramsForTheCameraResponseItem>
     > V1GetVisionProgramsByCameraAsync(
-        V1GetVisionProgramsByCameraRequest request,
+        long cameraId,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -168,6 +170,7 @@ public partial interface IIndustrialClient
     /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1VisionRunByCameraResponse> V1GetVisionLatestRunCameraAsync(
+        long cameraId,
         V1GetVisionLatestRunCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -208,6 +211,7 @@ public partial interface IIndustrialClient
     /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<IEnumerable<V1VisionRunsByCameraResponseItem>> GetVisionRunsByCameraAsync(
+        long cameraId,
         GetVisionRunsByCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -228,6 +232,9 @@ public partial interface IIndustrialClient
     /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1VisionRunsByCameraAndProgramResponse> V1GetVisionRunsByCameraAndProgramAsync(
+        long cameraId,
+        long programId,
+        long startedAtMs,
         V1GetVisionRunsByCameraAndProgramRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

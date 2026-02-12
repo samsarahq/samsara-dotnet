@@ -13,10 +13,10 @@ public partial class AttributesClient : IAttributesClient
     }
 
     /// <example><code>
-    /// await client.Fleet.Attributes.UpdateAsync(new UpdateAttributesRequest { Id = "id" });
+    /// await client.Fleet.Attributes.UpdateAsync("id");
     /// </code></example>
     public async Task UpdateAsync(
-        UpdateAttributesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -35,7 +35,7 @@ public partial class AttributesClient : IAttributesClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/attributes/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Routes;
 using Samsara.Net.Test.Unit.MockServer;
 
 namespace Samsara.Net.Test.Unit.MockServer.Routes;
@@ -16,8 +15,6 @@ public class DeleteRouteTest : BaseMockServerTest
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Routes.DeleteRouteAsync(new DeleteRouteRequest { Id = "id" })
-        );
+        Assert.DoesNotThrowAsync(async () => await Client.Routes.DeleteRouteAsync("id"));
     }
 }

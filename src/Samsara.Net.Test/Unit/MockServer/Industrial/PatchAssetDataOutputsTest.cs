@@ -48,9 +48,9 @@ public class PatchAssetDataOutputsTest : BaseMockServerTest
             );
 
         var response = await Client.Industrial.PatchAssetDataOutputsAsync(
+            "id",
             new AssetDataOutputsPatchAssetDataOutputsRequestBody
             {
-                Id = "id",
                 Values = new Dictionary<string, object?>() { { "key", "value" } },
             }
         );

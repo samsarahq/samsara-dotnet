@@ -124,7 +124,7 @@ public class FetchRouteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Routes.FetchRouteAsync(new FetchRouteRequest { Id = "id" });
+        var response = await Client.Routes.FetchRouteAsync("id", new FetchRouteRequest());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

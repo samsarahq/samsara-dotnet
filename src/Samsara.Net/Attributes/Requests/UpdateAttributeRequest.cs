@@ -8,12 +8,6 @@ namespace Samsara.Net.Attributes;
 public record UpdateAttributeRequest
 {
     /// <summary>
-    /// Samsara-provided UUID of the attribute.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// Denotes the data type of the attribute's values. Valid values: `single-select`, `multi-select`, `text`, `freeform-multi-select`, `number`, `date`.
     /// </summary>
     [JsonPropertyName("attributeType")]

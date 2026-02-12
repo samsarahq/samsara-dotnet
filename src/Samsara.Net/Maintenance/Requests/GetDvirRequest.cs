@@ -7,12 +7,6 @@ namespace Samsara.Net.Maintenance;
 public record GetDvirRequest
 {
     /// <summary>
-    /// Id of the DVIR.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// Optional boolean indicating whether to return external IDs on supported entities
     /// </summary>
     [JsonIgnore]

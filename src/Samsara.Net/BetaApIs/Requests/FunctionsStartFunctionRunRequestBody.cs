@@ -7,12 +7,6 @@ namespace Samsara.Net.BetaApIs;
 public record FunctionsStartFunctionRunRequestBody
 {
     /// <summary>
-    /// The name of the Function to run.
-    /// </summary>
-    [JsonIgnore]
-    public required string Name { get; set; }
-
-    /// <summary>
     /// Parameter overrides for the Function execution. Can be an empty object but must be provided.
     /// </summary>
     [JsonPropertyName("paramsOverride")]

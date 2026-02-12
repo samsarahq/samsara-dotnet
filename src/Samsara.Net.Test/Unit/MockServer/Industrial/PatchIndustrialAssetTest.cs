@@ -76,9 +76,7 @@ public class PatchIndustrialAssetTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Industrial.PatchIndustrialAssetAsync(
-            new AssetPatch { Id = "id" }
-        );
+        var response = await Client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

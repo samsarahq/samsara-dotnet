@@ -231,7 +231,7 @@ public class PostFormSubmissionTest : BaseMockServerTest
                     Id = "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                     RevisionId = "1214a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                 },
-                Status = FormSubmissionsPostFormSubmissionRequestBodyStatus.NotStarted,
+                Status = "notStarted",
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

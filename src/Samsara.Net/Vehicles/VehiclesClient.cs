@@ -143,7 +143,7 @@ public partial class VehiclesClient : IVehiclesClient
     }
 
     private async Task<WithRawResponse<VehicleResponse>> GetAsyncCore(
-        GetVehiclesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -162,7 +162,7 @@ public partial class VehiclesClient : IVehiclesClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -208,6 +208,7 @@ public partial class VehiclesClient : IVehiclesClient
     }
 
     private async Task<WithRawResponse<VehicleResponse>> UpdateAsyncCore(
+        string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -227,7 +228,7 @@ public partial class VehiclesClient : IVehiclesClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -329,16 +330,16 @@ public partial class VehiclesClient : IVehiclesClient
     /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.GetAsync(new GetVehiclesRequest { Id = "id" });
+    /// await client.Vehicles.GetAsync("id");
     /// </code></example>
     public WithRawResponseTask<VehicleResponse> GetAsync(
-        GetVehiclesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<VehicleResponse>(
-            GetAsyncCore(request, options, cancellationToken)
+            GetAsyncCore(id, options, cancellationToken)
         );
     }
 
@@ -356,16 +357,17 @@ public partial class VehiclesClient : IVehiclesClient
     /// To use this endpoint, select **Write Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
+    /// await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
     /// </code></example>
     public WithRawResponseTask<VehicleResponse> UpdateAsync(
+        string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<VehicleResponse>(
-            UpdateAsyncCore(request, options, cancellationToken)
+            UpdateAsyncCore(id, request, options, cancellationToken)
         );
     }
 }

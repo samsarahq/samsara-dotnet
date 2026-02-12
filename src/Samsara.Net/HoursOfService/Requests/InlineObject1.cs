@@ -7,12 +7,6 @@ namespace Samsara.Net.HoursOfService;
 public record InlineObject1
 {
     /// <summary>
-    /// ID of the driver for whom the duty status is being set.
-    /// </summary>
-    [JsonIgnore]
-    public required long DriverId { get; set; }
-
-    /// <summary>
     /// Duty status to set the driver to. The only supported values are 'ON_DUTY' and 'OFF_DUTY'.
     /// </summary>
     [JsonPropertyName("duty_status")]

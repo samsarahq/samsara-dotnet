@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Ifta;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -53,9 +52,7 @@ public class GetIftaDetailJobTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Ifta.GetIftaDetailJobAsync(
-            new GetIftaDetailJobRequest { Id = "id" }
-        );
+        var response = await Client.Ifta.GetIftaDetailJobAsync("id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

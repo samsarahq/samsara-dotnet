@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Equipment;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -48,9 +47,7 @@ public class GetEquipmentTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Equipment.GetEquipmentAsync(
-            new GetEquipmentRequest { Id = "id" }
-        );
+        var response = await Client.Equipment.GetEquipmentAsync("id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

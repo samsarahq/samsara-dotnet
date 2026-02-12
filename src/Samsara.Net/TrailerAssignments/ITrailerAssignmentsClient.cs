@@ -43,6 +43,7 @@ public partial interface ITrailerAssignmentsClient
     /// To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1TrailerAssignmentsResponse> V1GetFleetTrailerAssignmentsAsync(
+        long trailerId,
         V1GetFleetTrailerAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
