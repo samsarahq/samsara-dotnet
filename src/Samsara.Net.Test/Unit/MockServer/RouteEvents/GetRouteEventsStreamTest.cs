@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.RouteEvents;
 
@@ -66,10 +65,6 @@ public class GetRouteEventsStreamTest : BaseMockServerTest
         var response = await Client.RouteEvents.GetRouteEventsStreamAsync(
             new GetRouteEventsStreamRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<RoutesGetRouteEventsStreamResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

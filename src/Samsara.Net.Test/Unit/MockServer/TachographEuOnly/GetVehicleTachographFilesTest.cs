@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.TachographEuOnly;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.TachographEuOnly;
 
@@ -60,10 +59,6 @@ public class GetVehicleTachographFilesTest : BaseMockServerTest
         var response = await Client.TachographEuOnly.GetVehicleTachographFilesAsync(
             new GetVehicleTachographFilesRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<TachographVehicleFilesResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

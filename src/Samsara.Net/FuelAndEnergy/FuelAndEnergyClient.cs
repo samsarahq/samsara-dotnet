@@ -21,23 +21,22 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["endTime"] = request.EndTime;
-        _query["driverIds"] = request.DriverIds;
-        _query["dataFormats"] = request.DataFormats;
-        if (request.TagIds != null)
-        {
-            _query["tagIds"] = request.TagIds;
-        }
-        if (request.ParentTagIds != null)
-        {
-            _query["parentTagIds"] = request.ParentTagIds;
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("driverIds", request.DriverIds)
+            .Add("dataFormats", request.DataFormats)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -45,7 +44,8 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "driver-efficiency/drivers",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -131,26 +131,22 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["endTime"] = request.EndTime;
-        _query["dataFormats"] = request.DataFormats;
-        if (request.VehicleIds != null)
-        {
-            _query["vehicleIds"] = request.VehicleIds;
-        }
-        if (request.TagIds != null)
-        {
-            _query["tagIds"] = request.TagIds;
-        }
-        if (request.ParentTagIds != null)
-        {
-            _query["parentTagIds"] = request.ParentTagIds;
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("vehicleIds", request.VehicleIds)
+            .Add("dataFormats", request.DataFormats)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -158,7 +154,8 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "driver-efficiency/vehicles",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -244,22 +241,21 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startDate"] = request.StartDate;
-        _query["endDate"] = request.EndDate;
-        _query["driverIds"] = request.DriverIds;
-        if (request.TagIds != null)
-        {
-            _query["tagIds"] = request.TagIds;
-        }
-        if (request.ParentTagIds != null)
-        {
-            _query["parentTagIds"] = request.ParentTagIds;
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
+            .Add("startDate", request.StartDate)
+            .Add("endDate", request.EndDate)
+            .Add("driverIds", request.DriverIds)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -267,7 +263,8 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/drivers/fuel-energy",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -353,29 +350,22 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startDate"] = request.StartDate;
-        _query["endDate"] = request.EndDate;
-        if (request.VehicleIds != null)
-        {
-            _query["vehicleIds"] = request.VehicleIds;
-        }
-        if (request.EnergyType != null)
-        {
-            _query["energyType"] = request.EnergyType.Value.Stringify();
-        }
-        if (request.TagIds != null)
-        {
-            _query["tagIds"] = request.TagIds;
-        }
-        if (request.ParentTagIds != null)
-        {
-            _query["parentTagIds"] = request.ParentTagIds;
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startDate", request.StartDate)
+            .Add("endDate", request.EndDate)
+            .Add("vehicleIds", request.VehicleIds)
+            .Add("energyType", request.EnergyType)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -383,7 +373,8 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/reports/vehicles/fuel-energy",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -469,6 +460,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -477,6 +474,7 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
                     Method = HttpMethod.Post,
                     Path = "fuel-purchase",
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -559,12 +557,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
     ///
     /// **Note:** The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing [/fleet/drivers/efficiency](https://developers.samsara.com/reference/getdriverefficiency) endpoint has now been moved to Legacy.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.FuelAndEnergy.GetDriverEfficiencyByDriversAsync(
@@ -587,12 +585,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
     ///
     /// **Note:** The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing [/fleet/drivers/efficiency](https://developers.samsara.com/reference/getdriverefficiency) endpoint has now been moved to Legacy.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.FuelAndEnergy.GetDriverEfficiencyByVehiclesAsync(
@@ -613,12 +611,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
     /// <summary>
     /// Get fuel and energy efficiency driver reports for the requested time range.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
@@ -639,12 +637,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
     /// <summary>
     /// Get fuel and energy efficiency vehicle reports for the requested time range.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 25 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
@@ -665,12 +663,12 @@ public partial class FuelAndEnergyClient : IFuelAndEnergyClient
     /// <summary>
     /// Create a fuel purchase transaction.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.FuelAndEnergy.PostFuelPurchaseAsync(

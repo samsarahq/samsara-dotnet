@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Samsara.Net.Addresses;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Addresses;
 
@@ -27,6 +27,6 @@ public class DeleteTest : BaseMockServerTest
             );
 
         var response = await Client.Addresses.DeleteAsync(new DeleteAddressesRequest { Id = "id" });
-        Assert.That(response, Is.EqualTo(JsonUtils.Deserialize<string>(mockResponse)));
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

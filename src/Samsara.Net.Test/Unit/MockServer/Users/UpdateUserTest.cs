@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Users;
 
 namespace Samsara.Net.Test.Unit.MockServer.Users;
@@ -25,7 +24,7 @@ public class UpdateUserTest : BaseMockServerTest
                 "name": "Bob Smith",
                 "roles": [
                   {
-                    "expireAt": "2025-08-13T19:08:25.000Z"
+                    "expireAt": "2025-08-13T19:08:25Z"
                   }
                 ]
               }
@@ -49,9 +48,6 @@ public class UpdateUserTest : BaseMockServerTest
             );
 
         var response = await Client.Users.UpdateUserAsync(new UpdateUserRequest { Id = "id" });
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<UserResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

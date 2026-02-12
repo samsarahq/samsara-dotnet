@@ -12,7 +12,7 @@ public record V1VisionRunByCameraResponseInspectionResults : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("captureAtMs")]
-    public float? CaptureAtMs { get; set; }
+    public double? CaptureAtMs { get; set; }
 
     [JsonPropertyName("result")]
     public string? Result { get; set; }

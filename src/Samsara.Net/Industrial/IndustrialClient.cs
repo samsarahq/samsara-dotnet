@@ -11,7 +11,10 @@ public partial class IndustrialClient : IIndustrialClient
     internal IndustrialClient(RawClient client)
     {
         _client = client;
+        Assets = new Samsara.Net.Industrial.Assets.AssetsClient(_client);
     }
+
+    public Samsara.Net.Industrial.Assets.IAssetsClient Assets { get; }
 
     private async Task<WithRawResponse<ListIndustrialAssetsResponse>> GetIndustrialAssetsAsyncCore(
         GetIndustrialAssetsRequest request,
@@ -19,18 +22,20 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["assetIds"] = request.AssetIds;
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("limit", request.Limit)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("assetIds", request.AssetIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -38,7 +43,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/assets",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -89,6 +95,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -97,6 +109,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Post,
                     Path = "industrial/assets",
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -140,70 +153,18 @@ public partial class IndustrialClient : IIndustrialClient
         }
     }
 
-    private async Task<WithRawResponse<string>> DeleteIndustrialAssetAsyncCore(
-        DeleteIndustrialAssetRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "industrial/assets/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
-                return new WithRawResponse<string>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
     private async Task<WithRawResponse<InlineResponse200>> PatchIndustrialAssetAsyncCore(
         AssetPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -215,6 +176,7 @@ public partial class IndustrialClient : IIndustrialClient
                         ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -266,6 +228,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -277,6 +245,7 @@ public partial class IndustrialClient : IIndustrialClient
                         ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -361,18 +330,20 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["assetIds"] = request.AssetIds;
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("limit", request.Limit)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("assetIds", request.AssetIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -380,7 +351,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -431,15 +403,20 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["dataInputIds"] = request.DataInputIds;
-        _query["assetIds"] = request.AssetIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("dataInputIds", request.DataInputIds)
+            .Add("assetIds", request.AssetIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -447,7 +424,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -496,15 +474,20 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["dataInputIds"] = request.DataInputIds;
-        _query["assetIds"] = request.AssetIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("dataInputIds", request.DataInputIds)
+            .Add("assetIds", request.AssetIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -512,7 +495,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points/feed",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -561,17 +545,22 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["endTime"] = request.EndTime;
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["dataInputIds"] = request.DataInputIds;
-        _query["assetIds"] = request.AssetIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("dataInputIds", request.DataInputIds)
+            .Add("assetIds", request.AssetIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -579,7 +568,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "industrial/data-inputs/data-points/history",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -629,6 +619,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -636,6 +632,7 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "v1/industrial/vision/cameras",
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -688,6 +685,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -698,6 +701,7 @@ public partial class IndustrialClient : IIndustrialClient
                         "v1/industrial/vision/cameras/{0}/programs",
                         ValueConvert.ToPathParameterString(request.CameraId)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -750,23 +754,19 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.ProgramId != null)
-        {
-            _query["program_id"] = request.ProgramId.Value.ToString();
-        }
-        if (request.StartedAtMs != null)
-        {
-            _query["startedAtMs"] = request.StartedAtMs.Value.ToString();
-        }
-        if (request.Include != null)
-        {
-            _query["include"] = request.Include;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("program_id", request.ProgramId)
+            .Add("startedAtMs", request.StartedAtMs)
+            .Add("include", request.Include)
+            .Add("limit", request.Limit)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -777,7 +777,8 @@ public partial class IndustrialClient : IIndustrialClient
                         "v1/industrial/vision/run/camera/{0}",
                         ValueConvert.ToPathParameterString(request.CameraId)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -828,12 +829,17 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["durationMs"] = request.DurationMs.ToString();
-        if (request.EndMs != null)
-        {
-            _query["endMs"] = request.EndMs.Value.ToString();
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("durationMs", request.DurationMs)
+            .Add("endMs", request.EndMs)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -841,7 +847,8 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "v1/industrial/vision/runs",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -892,12 +899,17 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["durationMs"] = request.DurationMs.ToString();
-        if (request.EndMs != null)
-        {
-            _query["endMs"] = request.EndMs.Value.ToString();
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("durationMs", request.DurationMs)
+            .Add("endMs", request.EndMs)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -908,7 +920,8 @@ public partial class IndustrialClient : IIndustrialClient
                         "v1/industrial/vision/runs/{0}",
                         ValueConvert.ToPathParameterString(request.CameraId)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -961,11 +974,16 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        if (request.Include != null)
-        {
-            _query["include"] = request.Include;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("include", request.Include)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -978,7 +996,8 @@ public partial class IndustrialClient : IIndustrialClient
                         ValueConvert.ToPathParameterString(request.ProgramId),
                         ValueConvert.ToPathParameterString(request.StartedAtMs)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -1029,6 +1048,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -1037,6 +1062,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Post,
                     Path = "v1/machines/history",
                     Body = request,
+                    Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
                 },
@@ -1085,6 +1111,12 @@ public partial class IndustrialClient : IIndustrialClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -1092,6 +1124,7 @@ public partial class IndustrialClient : IIndustrialClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
                     Path = "v1/machines/list",
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -1137,9 +1170,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// List all assets in the organization.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetIndustrialAssetsAsync(new GetIndustrialAssetsRequest());
@@ -1158,9 +1191,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Create an asset with optional configuration parameters.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "name" });
@@ -1177,32 +1210,11 @@ public partial class IndustrialClient : IIndustrialClient
     }
 
     /// <summary>
-    /// Delete asset.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
-    ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
-    /// </summary>
-    /// <example><code>
-    /// await client.Industrial.DeleteIndustrialAssetAsync(new DeleteIndustrialAssetRequest { Id = "id" });
-    /// </code></example>
-    public WithRawResponseTask<string> DeleteIndustrialAssetAsync(
-        DeleteIndustrialAssetRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<string>(
-            DeleteIndustrialAssetAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Update an existing asset. Only the provided fields will be updated.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.PatchIndustrialAssetAsync(new AssetPatch { Id = "id" });
@@ -1221,12 +1233,12 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Writes values to multiple data outputs on an asset simultaneously. Only the provided data outputs will be updated.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 100 requests/min (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.Industrial.PatchAssetDataOutputsAsync(
@@ -1251,9 +1263,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Returns all data inputs, optionally filtered by tags or asset ids.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputsAsync(new GetDataInputsRequest());
@@ -1272,9 +1284,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Returns last known data points for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataSnapshotAsync(new GetDataInputDataSnapshotRequest());
@@ -1299,9 +1311,9 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     /// If `hasNextPage` is `false`, no updates are readily available yet. We suggest waiting a minimum of 5 seconds before requesting updates.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataFeedAsync(new GetDataInputDataFeedRequest());
@@ -1320,9 +1332,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Returns all known data points during the given time range for all data inputs. This can be filtered by optional tags, specific data input IDs or asset IDs.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataHistoryAsync(
@@ -1343,16 +1355,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch all cameras.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetCamerasAsync();
@@ -1370,16 +1382,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch configured programs on the camera.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionProgramsByCameraAsync(
@@ -1402,9 +1414,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Fetch the latest run for a camera or program by default. If startedAtMs is supplied, fetch the specific run that corresponds to that start time.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionLatestRunCameraAsync(
@@ -1425,16 +1437,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch runs.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsAsync(new V1GetVisionRunsRequest { DurationMs = 1000000 });
@@ -1453,16 +1465,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch runs by camera.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetVisionRunsByCameraAsync(
@@ -1485,16 +1497,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch runs by camera and program.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
@@ -1520,16 +1532,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Get historical data for machine objects. This method returns a set of historical data for all machines.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesHistoryAsync(
@@ -1550,16 +1562,16 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesAsync();

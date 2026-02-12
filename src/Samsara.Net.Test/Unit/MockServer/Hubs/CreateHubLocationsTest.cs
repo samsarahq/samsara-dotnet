@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Hubs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Hubs;
 
@@ -144,12 +144,6 @@ public class CreateHubLocationsTest : BaseMockServerTest
                 },
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<HubLocationsCreateHubLocationsResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

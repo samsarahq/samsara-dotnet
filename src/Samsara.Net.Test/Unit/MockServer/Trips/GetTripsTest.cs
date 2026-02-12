@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Trips;
 
 namespace Samsara.Net.Test.Unit.MockServer.Trips;
@@ -155,10 +154,6 @@ public class GetTripsTest : BaseMockServerTest
         var response = await Client.Trips.GetTripsAsync(
             new GetTripsRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<TripsGetTripsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

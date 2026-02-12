@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -62,14 +61,6 @@ public class GetDriverSafetyScoresTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetDriverSafetyScoresAsync(
             new GetDriverSafetyScoresRequest { EndTime = "endTime", StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SafetyScoresGetDriverSafetyScoresResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

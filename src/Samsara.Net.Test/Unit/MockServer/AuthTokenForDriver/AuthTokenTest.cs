@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.AuthTokenForDriver;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.AuthTokenForDriver;
 
@@ -46,10 +45,6 @@ public class AuthTokenTest : BaseMockServerTest
         var response = await Client.AuthTokenForDriver.AuthTokenAsync(
             new AuthTokenAuthTokenRequestBody { Code = "dp[gZc1wAigz4uGa0Hh" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<AuthTokenAuthTokenResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

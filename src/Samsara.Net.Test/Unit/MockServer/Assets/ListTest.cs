@@ -14,7 +14,7 @@ public class ListTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "createdAtTime": "2020-01-27T07:06:25.000Z",
+                  "createdAtTime": "2020-01-27T07:06:25Z",
                   "externalIds": {
                     "key": "value"
                   },
@@ -35,7 +35,7 @@ public class ListTest : BaseMockServerTest
                     }
                   ],
                   "type": "uncategorized",
-                  "updatedAtTime": "2020-01-27T07:06:25.000Z",
+                  "updatedAtTime": "2020-01-27T07:06:25Z",
                   "vin": "1FUJBBCKXCLBZ1234",
                   "year": 2015
                 }

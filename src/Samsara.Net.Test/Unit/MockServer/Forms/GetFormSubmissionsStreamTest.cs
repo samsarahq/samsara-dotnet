@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Forms;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Forms;
 
@@ -215,14 +214,6 @@ public class GetFormSubmissionsStreamTest : BaseMockServerTest
         var response = await Client.Forms.GetFormSubmissionsStreamAsync(
             new GetFormSubmissionsStreamRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<FormSubmissionsGetFormSubmissionsStreamResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

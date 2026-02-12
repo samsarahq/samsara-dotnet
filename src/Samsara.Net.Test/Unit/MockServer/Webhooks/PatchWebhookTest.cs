@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Webhooks;
 
 namespace Samsara.Net.Test.Unit.MockServer.Webhooks;
@@ -56,10 +55,6 @@ public class PatchWebhookTest : BaseMockServerTest
         var response = await Client.Webhooks.PatchWebhookAsync(
             new WebhooksPatchWebhookRequestBody { Id = "id" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WebhooksPatchWebhookResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

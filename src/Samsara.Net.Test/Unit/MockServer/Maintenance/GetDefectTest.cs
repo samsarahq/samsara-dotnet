@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
 
@@ -15,10 +14,10 @@ public class GetDefectTest : BaseMockServerTest
         const string mockResponse = """
             {
               "comment": "Engine failure.",
-              "createdAtTime": "2020-01-27T07:06:25.000Z",
+              "createdAtTime": "2020-01-27T07:06:25Z",
               "defectPhotos": [
                 {
-                  "createdAtTime": "2020-01-27T07:06:25.000Z",
+                  "createdAtTime": "2020-01-27T07:06:25Z",
                   "url": "https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path"
                 }
               ],
@@ -27,7 +26,7 @@ public class GetDefectTest : BaseMockServerTest
               "id": "9700544",
               "isResolved": true,
               "mechanicNotes": "Broken passenger side window.",
-              "resolvedAtTime": "2020-01-27T07:06:25.000Z",
+              "resolvedAtTime": "2020-01-27T07:06:25Z",
               "resolvedBy": {
                 "id": "8172",
                 "name": "Jane Mechanic",
@@ -39,7 +38,7 @@ public class GetDefectTest : BaseMockServerTest
                 },
                 "id": "494123"
               },
-              "updatedAtTime": "2020-01-27T07:06:25.000Z",
+              "updatedAtTime": "2020-01-27T07:06:25Z",
               "vehicle": {
                 "externalIds": {
                   "key": "value"
@@ -59,10 +58,6 @@ public class GetDefectTest : BaseMockServerTest
             );
 
         var response = await Client.Maintenance.GetDefectAsync(new GetDefectRequest { Id = "id" });
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DvirDefectGetDefectResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Users;
 
 namespace Samsara.Net.Test.Unit.MockServer.Users;
@@ -22,7 +21,7 @@ public class ListUsersTest : BaseMockServerTest
                   "name": "Bob Smith",
                   "roles": [
                     {
-                      "expireAt": "2025-08-13T19:08:25.000Z"
+                      "expireAt": "2025-08-13T19:08:25Z"
                     }
                   ]
                 }
@@ -44,9 +43,6 @@ public class ListUsersTest : BaseMockServerTest
             );
 
         var response = await Client.Users.ListUsersAsync(new ListUsersRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ListUsersResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

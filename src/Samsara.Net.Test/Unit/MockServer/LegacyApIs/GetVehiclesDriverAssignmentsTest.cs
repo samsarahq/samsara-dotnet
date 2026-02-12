@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LegacyApIs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LegacyApIs;
 
@@ -22,9 +21,9 @@ public class GetVehiclesDriverAssignmentsTest : BaseMockServerTest
                         "id": "45646",
                         "name": "Driver Bob"
                       },
-                      "endTime": "2019-06-13T19:08:25.000Z",
+                      "endTime": "2019-06-13T19:08:25Z",
                       "isPassenger": false,
-                      "startTime": "2019-06-13T19:08:25.000Z"
+                      "startTime": "2019-06-13T19:08:25Z"
                     }
                   ],
                   "externalIds": {
@@ -58,14 +57,6 @@ public class GetVehiclesDriverAssignmentsTest : BaseMockServerTest
         var response = await Client.LegacyApIs.GetVehiclesDriverAssignmentsAsync(
             new GetVehiclesDriverAssignmentsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.DriverVehicleAssignments;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.DriverVehicleAssignments;
 
@@ -15,7 +14,7 @@ public class UpdateDriverVehicleAssignmentTest : BaseMockServerTest
         const string requestJson = """
             {
               "driverId": "494123",
-              "startTime": "2019-06-13T19:08:25.000Z",
+              "startTime": "2019-06-13T19:08:25Z",
               "vehicleId": "281474978683353"
             }
             """;
@@ -52,14 +51,6 @@ public class UpdateDriverVehicleAssignmentTest : BaseMockServerTest
                 VehicleId = "281474978683353",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

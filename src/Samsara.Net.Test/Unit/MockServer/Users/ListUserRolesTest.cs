@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Users;
 
 namespace Samsara.Net.Test.Unit.MockServer.Users;
@@ -37,9 +36,6 @@ public class ListUserRolesTest : BaseMockServerTest
             );
 
         var response = await Client.Users.ListUserRolesAsync(new ListUserRolesRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ListUserRolesResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

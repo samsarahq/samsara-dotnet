@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.FuelAndEnergy;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.FuelAndEnergy;
 
@@ -61,14 +60,6 @@ public class GetFuelEnergyDriverReportsTest : BaseMockServerTest
         var response = await Client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
             new GetFuelEnergyDriverReportsRequest { StartDate = "startDate", EndDate = "endDate" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<FuelEnergyGetFuelEnergyDriverReportsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

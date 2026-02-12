@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -20,7 +19,7 @@ public class GetReadingsHistoryTest : BaseMockServerTest
                   "externalIds": {
                     "key": "value"
                   },
-                  "happenedAtTime": "2020-01-27T07:06:25.000Z",
+                  "happenedAtTime": "2020-01-27T07:06:25Z",
                   "value": {
                     "key": "value"
                   }
@@ -52,10 +51,6 @@ public class GetReadingsHistoryTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetReadingsHistoryAsync(
             new GetReadingsHistoryRequest { ReadingId = "readingId", EntityType = "entityType" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ReadingsGetReadingsHistoryResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

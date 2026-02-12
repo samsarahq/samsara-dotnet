@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Issues;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Issues;
 
@@ -125,10 +124,6 @@ public class GetIssuesTest : BaseMockServerTest
             );
 
         var response = await Client.Issues.GetIssuesAsync(new GetIssuesRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<IssuesGetIssuesResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

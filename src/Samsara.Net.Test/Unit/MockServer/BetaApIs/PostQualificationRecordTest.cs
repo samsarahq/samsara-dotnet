@@ -2,8 +2,8 @@ using System.Globalization;
 using NUnit.Framework;
 using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -220,14 +220,6 @@ public class PostQualificationRecordTest : BaseMockServerTest
                 },
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<QualificationsPostQualificationRecordResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

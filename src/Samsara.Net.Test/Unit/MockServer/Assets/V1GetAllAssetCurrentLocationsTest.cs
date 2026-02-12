@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Assets;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Assets;
 
@@ -60,9 +59,6 @@ public class V1GetAllAssetCurrentLocationsTest : BaseMockServerTest
         var response = await Client.Assets.V1GetAllAssetCurrentLocationsAsync(
             new V1GetAllAssetCurrentLocationsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<InlineResponse2002>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

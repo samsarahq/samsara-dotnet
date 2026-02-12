@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.TrainingAssignments;
 
 namespace Samsara.Net.Test.Unit.MockServer.TrainingAssignments;
@@ -68,14 +67,6 @@ public class PostTrainingAssignmentsTest : BaseMockServerTest
         var response = await Client.TrainingAssignments.PostTrainingAssignmentsAsync(
             new PostTrainingAssignmentsRequest { CourseId = "courseId", DueAtTime = "dueAtTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<TrainingAssignmentsPostTrainingAssignmentsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

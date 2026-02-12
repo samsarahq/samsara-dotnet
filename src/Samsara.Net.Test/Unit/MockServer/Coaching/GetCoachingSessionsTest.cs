@@ -1,9 +1,8 @@
 using System.Globalization;
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Coaching;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Coaching;
 
@@ -77,14 +76,6 @@ public class GetCoachingSessionsTest : BaseMockServerTest
                 ),
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<CoachingSessionsGetCoachingSessionsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

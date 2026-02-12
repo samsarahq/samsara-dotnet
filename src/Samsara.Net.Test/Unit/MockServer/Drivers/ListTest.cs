@@ -27,7 +27,7 @@ public class ListTest : BaseMockServerTest
                     "homeTerminalName": "Acme Inc.",
                     "mainOfficeAddress": "1234 Pear St., Scranton, PA 62814"
                   },
-                  "createdAtTime": "2019-05-18T20:27:35.000Z",
+                  "createdAtTime": "2019-05-18T20:27:35Z",
                   "currentIdCardCode": "941767043",
                   "driverActivationStatus": "active",
                   "eldAdverseWeatherExemptionEnabled": true,
@@ -70,7 +70,7 @@ public class ListTest : BaseMockServerTest
                     }
                   ],
                   "timezone": "America/Los_Angeles",
-                  "updatedAtTime": "2019-06-13T19:08:25.000Z",
+                  "updatedAtTime": "2019-06-13T19:08:25Z",
                   "usDriverRulesetOverride": {
                     "cycle": "USA Property (8/70)",
                     "restart": "34-hour Restart",

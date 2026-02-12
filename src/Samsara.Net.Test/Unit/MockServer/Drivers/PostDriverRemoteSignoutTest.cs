@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Drivers;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Drivers;
 
@@ -43,14 +42,6 @@ public class PostDriverRemoteSignoutTest : BaseMockServerTest
         var response = await Client.Drivers.PostDriverRemoteSignoutAsync(
             new DriverRemoteSignoutPostDriverRemoteSignoutRequestBody { DriverId = "12434" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DriverRemoteSignoutPostDriverRemoteSignoutResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

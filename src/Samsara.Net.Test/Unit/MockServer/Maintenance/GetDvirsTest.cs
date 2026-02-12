@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
 
@@ -20,15 +19,15 @@ public class GetDvirsTest : BaseMockServerTest
                     "signatoryUser": {
                       "id": "938172"
                     },
-                    "signedAtTime": "2020-01-27T07:06:25.000Z",
+                    "signedAtTime": "2020-01-27T07:06:25Z",
                     "type": "driver"
                   },
                   "defectIds": [
                     "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
                     "25d6151e-29b5-453e-875a-7c5425332e09"
                   ],
-                  "dvirSubmissionBeginTime": "2020-01-27T07:06:25.000Z",
-                  "dvirSubmissionTime": "2020-01-27T07:06:25.000Z",
+                  "dvirSubmissionBeginTime": "2020-01-27T07:06:25Z",
+                  "dvirSubmissionTime": "2020-01-27T07:06:25Z",
                   "formattedAddress": "350 Rhode Island St Ste. 400S, San Francisco, CA 94103",
                   "id": "12345",
                   "mechanicNotes": "Replaced headlight on passenger side.",
@@ -38,27 +37,27 @@ public class GetDvirsTest : BaseMockServerTest
                     "signatoryUser": {
                       "id": "938172"
                     },
-                    "signedAtTime": "2020-01-27T07:06:25.000Z",
+                    "signedAtTime": "2020-01-27T07:06:25Z",
                     "type": "driver"
                   },
                   "thirdSignature": {
                     "signatoryUser": {
                       "id": "938172"
                     },
-                    "signedAtTime": "2020-01-27T07:06:25.000Z",
+                    "signedAtTime": "2020-01-27T07:06:25Z",
                     "type": "driver"
                   },
                   "trailer": {
                     "id": "494123"
                   },
                   "type": "preTrip",
-                  "updatedAtTime": "2020-01-27T07:06:25.000Z",
+                  "updatedAtTime": "2020-01-27T07:06:25Z",
                   "vehicle": {
                     "id": "494123"
                   },
                   "walkaroundPhotos": [
                     {
-                      "createdAtTime": "2020-01-27T07:06:25.000Z",
+                      "createdAtTime": "2020-01-27T07:06:25Z",
                       "name": "Name 1",
                       "url": "https://s3.samsara.com/samsara-driver-media-upload/walkaround-photo-path"
                     }
@@ -90,10 +89,6 @@ public class GetDvirsTest : BaseMockServerTest
         var response = await Client.Maintenance.GetDvirsAsync(
             new GetDvirsRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DvirGetDvirsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

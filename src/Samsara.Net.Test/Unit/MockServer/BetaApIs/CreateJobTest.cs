@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -15,10 +15,10 @@ public class CreateJobTest : BaseMockServerTest
         const string requestJson = """
             {
               "job": {
-                "endDate": "2019-06-13T19:08:25.000Z",
+                "endDate": "2019-06-13T19:08:25Z",
                 "id": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596",
                 "name": "My Job Name",
-                "startDate": "2019-06-13T19:08:25.000Z"
+                "startDate": "2019-06-13T19:08:25Z"
               }
             }
             """;
@@ -32,9 +32,9 @@ public class CreateJobTest : BaseMockServerTest
                   "longitude": 34.5633749,
                   "name": "Worksite #1"
                 },
-                "createdAt": "2019-06-13T19:08:25.000Z",
+                "createdAt": "2019-06-13T19:08:25Z",
                 "customerName": "Samsara",
-                "endDate": "2019-06-13T19:08:25.000Z",
+                "endDate": "2019-06-13T19:08:25Z",
                 "fleetDevices": [
                   {
                     "id": 123456,
@@ -48,12 +48,12 @@ public class CreateJobTest : BaseMockServerTest
                     "name": "My asset"
                   }
                 ],
-                "modifiedAt": "2019-06-13T19:08:25.000Z",
+                "modifiedAt": "2019-06-13T19:08:25Z",
                 "name": "My Job Name",
                 "notes": "These are my notes",
                 "ontimeWindowAfterArrivalMs": 300000,
                 "ontimeWindowBeforeArrivalMs": 300000,
-                "startDate": "2019-06-13T19:08:25.000Z",
+                "startDate": "2019-06-13T19:08:25Z",
                 "status": "active",
                 "uuid": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596"
               },
@@ -90,10 +90,6 @@ public class CreateJobTest : BaseMockServerTest
                 },
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<JobsCreateJobResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

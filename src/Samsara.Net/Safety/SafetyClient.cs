@@ -21,24 +21,20 @@ public partial class SafetyClient : ISafetyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["safetyEventIds"] = request.SafetyEventIds;
-        if (request.IncludeAsset != null)
-        {
-            _query["includeAsset"] = JsonUtils.Serialize(request.IncludeAsset.Value);
-        }
-        if (request.IncludeDriver != null)
-        {
-            _query["includeDriver"] = JsonUtils.Serialize(request.IncludeDriver.Value);
-        }
-        if (request.IncludeVgOnlyEvents != null)
-        {
-            _query["includeVgOnlyEvents"] = JsonUtils.Serialize(request.IncludeVgOnlyEvents.Value);
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("safetyEventIds", request.SafetyEventIds)
+            .Add("includeAsset", request.IncludeAsset)
+            .Add("includeDriver", request.IncludeDriver)
+            .Add("includeVgOnlyEvents", request.IncludeVgOnlyEvents)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -46,7 +42,8 @@ public partial class SafetyClient : ISafetyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "safety-events",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -132,38 +129,28 @@ public partial class SafetyClient : ISafetyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["assetIds"] = request.AssetIds;
-        _query["driverIds"] = request.DriverIds;
-        _query["tagIds"] = request.TagIds;
-        _query["assignedCoaches"] = request.AssignedCoaches;
-        _query["behaviorLabels"] = request.BehaviorLabels;
-        _query["eventStates"] = request.EventStates;
-        if (request.EndTime != null)
-        {
-            _query["endTime"] = request.EndTime;
-        }
-        if (request.QueryByTimeField != null)
-        {
-            _query["queryByTimeField"] = request.QueryByTimeField.Value.Stringify();
-        }
-        if (request.IncludeAsset != null)
-        {
-            _query["includeAsset"] = JsonUtils.Serialize(request.IncludeAsset.Value);
-        }
-        if (request.IncludeDriver != null)
-        {
-            _query["includeDriver"] = JsonUtils.Serialize(request.IncludeDriver.Value);
-        }
-        if (request.IncludeVgOnlyEvents != null)
-        {
-            _query["includeVgOnlyEvents"] = JsonUtils.Serialize(request.IncludeVgOnlyEvents.Value);
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 13)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("queryByTimeField", request.QueryByTimeField)
+            .Add("assetIds", request.AssetIds)
+            .Add("driverIds", request.DriverIds)
+            .Add("tagIds", request.TagIds)
+            .Add("assignedCoaches", request.AssignedCoaches)
+            .Add("behaviorLabels", request.BehaviorLabels)
+            .Add("eventStates", request.EventStates)
+            .Add("includeAsset", request.IncludeAsset)
+            .Add("includeDriver", request.IncludeDriver)
+            .Add("includeVgOnlyEvents", request.IncludeVgOnlyEvents)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -171,7 +158,8 @@ public partial class SafetyClient : ISafetyClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "safety-events/stream",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -257,9 +245,17 @@ public partial class SafetyClient : ISafetyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startMs"] = request.StartMs.ToString();
-        _query["endMs"] = request.EndMs.ToString();
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("startMs", request.StartMs)
+            .Add("endMs", request.EndMs)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -270,7 +266,8 @@ public partial class SafetyClient : ISafetyClient
                         "v1/fleet/drivers/{0}/safety/score",
                         ValueConvert.ToPathParameterString(request.DriverId)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -323,9 +320,17 @@ public partial class SafetyClient : ISafetyClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startMs"] = request.StartMs.ToString();
-        _query["endMs"] = request.EndMs.ToString();
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("startMs", request.StartMs)
+            .Add("endMs", request.EndMs)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -336,7 +341,8 @@ public partial class SafetyClient : ISafetyClient
                         "v1/fleet/vehicles/{0}/safety/score",
                         ValueConvert.ToPathParameterString(request.VehicleId)
                     ),
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -384,12 +390,12 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.Safety.GetSafetyEventsV2Async(new GetSafetyEventsV2Request());
@@ -408,12 +414,12 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events & Scores under the Safety & Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.Safety.GetSafetyEventsV2StreamAsync(
@@ -434,18 +440,18 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch the safety score for the driver.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetDriverSafetyScoreAsync(
@@ -471,18 +477,18 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// &lt;n class="warning"&gt;
     /// &lt;nh&gt;
-    /// &lt;i class="fa fa-exclamation-circle"&gt;&lt;/i&gt;
+    /// <i class="fa fa-exclamation-circle"></i>
     /// This endpoint is still on our legacy API.
     /// &lt;/nh&gt;
     /// &lt;/n&gt;
     ///
     /// Fetch the safety score for the vehicle.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetVehicleSafetyScoreAsync(

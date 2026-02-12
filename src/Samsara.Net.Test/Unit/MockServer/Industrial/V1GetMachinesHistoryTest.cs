@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Industrial;
 
@@ -57,10 +56,6 @@ public class V1GetMachinesHistoryTest : BaseMockServerTest
         var response = await Client.Industrial.V1GetMachinesHistoryAsync(
             new InlineObject3 { EndMs = 1462881998034, StartMs = 1462878398034 }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<V1MachineHistoryResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

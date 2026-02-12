@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.DriverTrailerAssignments;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.DriverTrailerAssignments;
 
@@ -14,20 +13,20 @@ public class UpdateDriverTrailerAssignmentTest : BaseMockServerTest
     {
         const string requestJson = """
             {
-              "endTime": "2019-06-13T19:08:25.000Z"
+              "endTime": "2019-06-13T19:08:25Z"
             }
             """;
 
         const string mockResponse = """
             {
               "data": {
-                "createdAtTime": "2019-06-13T19:08:25.000Z",
+                "createdAtTime": "2019-06-13T19:08:25Z",
                 "driverId": "0987",
-                "endTime": "2019-06-13T19:08:25.000Z",
+                "endTime": "2019-06-13T19:08:25Z",
                 "id": "08b3aeada5f4ab3010c0b4efa28d2d1890dbf8d48d2d6",
-                "startTime": "2019-06-13T19:08:25.000Z",
+                "startTime": "2019-06-13T19:08:25Z",
                 "trailerId": "494123",
-                "updatedAtTime": "2019-06-13T19:08:25.000Z"
+                "updatedAtTime": "2019-06-13T19:08:25Z"
               }
             }
             """;
@@ -56,14 +55,6 @@ public class UpdateDriverTrailerAssignmentTest : BaseMockServerTest
                 EndTime = "2019-06-13T19:08:25Z",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<TrailerAssignmentsUpdateDriverTrailerAssignmentResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

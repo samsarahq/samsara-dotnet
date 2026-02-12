@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -52,10 +51,6 @@ public class GetReportConfigsTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.GetReportConfigsAsync(new GetReportConfigsRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ReportsGetReportConfigsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

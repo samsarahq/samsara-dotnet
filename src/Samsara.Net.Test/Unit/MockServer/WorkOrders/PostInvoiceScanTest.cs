@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.WorkOrders;
 
 namespace Samsara.Net.Test.Unit.MockServer.WorkOrders;
@@ -55,10 +55,6 @@ public class PostInvoiceScanTest : BaseMockServerTest
                 },
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WorkOrdersPostInvoiceScanResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

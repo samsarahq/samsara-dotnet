@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Routes;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Routes;
 
@@ -62,7 +61,7 @@ public class GetRoutesFeedTest : BaseMockServerTest
                     "orgLocalTimezone": "America/Los_Angeles",
                     "recurringRouteLiveSharingLinks": [
                       {
-                        "expiresAtTime": "2020-01-27T07:06:25.000Z",
+                        "expiresAtTime": "2020-01-27T07:06:25Z",
                         "liveSharingUrl": "https://cloud.samsara.com/o/123456/fleet/viewer/address/gEAitEnnOwcv92cuPzcU",
                         "name": "Name"
                       }
@@ -100,7 +99,7 @@ public class GetRoutesFeedTest : BaseMockServerTest
                         "liveSharingUrl": "https://cloud.samsara.com/fleet/viewer/job/fleet_viewer_token",
                         "locationLiveSharingLinks": [
                           {
-                            "expiresAtTime": "2020-01-27T07:06:25.000Z",
+                            "expiresAtTime": "2020-01-27T07:06:25Z",
                             "liveSharingUrl": "https://cloud.samsara.com/o/123456/fleet/viewer/address/gEAitEnnOwcv92cuPzcU",
                             "name": "Name"
                           }
@@ -155,10 +154,6 @@ public class GetRoutesFeedTest : BaseMockServerTest
             );
 
         var response = await Client.Routes.GetRoutesFeedAsync(new GetRoutesFeedRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<RoutesGetRoutesFeedResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

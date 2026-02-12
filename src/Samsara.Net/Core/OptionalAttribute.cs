@@ -13,5 +13,5 @@ namespace Samsara.Net.Core;
 /// - [Optional, Nullable] Optional<string?> → can be undefined, null, or a value
 /// - [Optional] Optional<string> → can be undefined or a value (null is invalid)
 /// </remarks>
-[AttributeUsage(AttributeTargets.Property, AllowMultiple = false)]
-public class OptionalAttribute : System.Attribute { }
+[global::System.AttributeUsage(global::System.AttributeTargets.Property, AllowMultiple = false)]
+public class OptionalAttribute : global::System.Attribute { }

@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Alerts;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Alerts;
 
@@ -21,13 +20,13 @@ public class GetConfigurationsTest : BaseMockServerTest
                       "actionTypeId": 1
                     }
                   ],
-                  "createdAtTime": "2019-06-13T19:08:25.000Z",
+                  "createdAtTime": "2019-06-13T19:08:25Z",
                   "externalIds": {
                     "key": "value"
                   },
                   "id": "e1c5dffc-c7b7-47b0-a778-6a65de638abf",
                   "isEnabled": true,
-                  "lastModifiedAtTime": "2019-06-13T19:08:25.000Z",
+                  "lastModifiedAtTime": "2019-06-13T19:08:25Z",
                   "name": "My Harsh Event Alert",
                   "operationalSettings": {
                     "timeRangeType": "activeBetween",
@@ -99,10 +98,6 @@ public class GetConfigurationsTest : BaseMockServerTest
             );
 
         var response = await Client.Alerts.GetConfigurationsAsync(new GetConfigurationsRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<AlertsGetConfigurationsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

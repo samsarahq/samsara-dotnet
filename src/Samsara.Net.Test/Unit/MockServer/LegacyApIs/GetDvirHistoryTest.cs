@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LegacyApIs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LegacyApIs;
 
@@ -17,9 +16,9 @@ public class GetDvirHistoryTest : BaseMockServerTest
               "data": [
                 {
                   "authorSignature": {
-                    "signedAtTime": "2020-01-27T07:06:25.000Z"
+                    "signedAtTime": "2020-01-27T07:06:25Z"
                   },
-                  "endTime": "2020-01-27T07:06:25.000Z",
+                  "endTime": "2020-01-27T07:06:25Z",
                   "id": "7107471",
                   "licensePlate": "XHK1234",
                   "location": "350 Rhode Island St Ste. 400S, San Francisco, CA 94103",
@@ -27,11 +26,11 @@ public class GetDvirHistoryTest : BaseMockServerTest
                   "odometerMeters": 14010293,
                   "safetyStatus": "safe",
                   "secondSignature": {
-                    "signedAtTime": "2020-01-27T07:06:25.000Z"
+                    "signedAtTime": "2020-01-27T07:06:25Z"
                   },
-                  "startTime": "2020-01-27T07:06:25.000Z",
+                  "startTime": "2020-01-27T07:06:25Z",
                   "thirdSignature": {
-                    "signedAtTime": "2020-01-27T07:06:25.000Z"
+                    "signedAtTime": "2020-01-27T07:06:25Z"
                   },
                   "trailer": {
                     "id": "123456789",
@@ -40,13 +39,13 @@ public class GetDvirHistoryTest : BaseMockServerTest
                   "trailerDefects": [
                     {
                       "comment": "Air Compressor not working",
-                      "createdAtTime": "2020-01-27T07:06:25.000Z",
+                      "createdAtTime": "2020-01-27T07:06:25Z",
                       "defectType": "Air Compressor",
                       "id": "18",
                       "isResolved": true,
                       "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
-                      "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25.000Z",
-                      "resolvedAtTime": "2020-01-27T07:06:25.000Z"
+                      "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
+                      "resolvedAtTime": "2020-01-27T07:06:25Z"
                     }
                   ],
                   "trailerName": "Midwest Trailer #5",
@@ -62,13 +61,13 @@ public class GetDvirHistoryTest : BaseMockServerTest
                   "vehicleDefects": [
                     {
                       "comment": "Air Compressor not working",
-                      "createdAtTime": "2020-01-27T07:06:25.000Z",
+                      "createdAtTime": "2020-01-27T07:06:25Z",
                       "defectType": "Air Compressor",
                       "id": "18",
                       "isResolved": true,
                       "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
-                      "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25.000Z",
-                      "resolvedAtTime": "2020-01-27T07:06:25.000Z"
+                      "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
+                      "resolvedAtTime": "2020-01-27T07:06:25Z"
                     }
                   ]
                 }
@@ -99,9 +98,6 @@ public class GetDvirHistoryTest : BaseMockServerTest
         var response = await Client.LegacyApIs.GetDvirHistoryAsync(
             new GetDvirHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DvirsListResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

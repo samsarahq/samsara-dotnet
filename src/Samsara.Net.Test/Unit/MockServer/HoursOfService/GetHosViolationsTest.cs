@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.HoursOfService;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.HoursOfService;
 
@@ -19,8 +18,8 @@ public class GetHosViolationsTest : BaseMockServerTest
                   "violations": [
                     {
                       "day": {
-                        "endTime": "2019-06-14T12:00:00.000Z",
-                        "startTime": "2019-06-13T12:00:00.000Z"
+                        "endTime": "2019-06-14T12:00:00Z",
+                        "startTime": "2019-06-13T12:00:00Z"
                       },
                       "description": "Daily Off-Duty Time (Canada South-10 hours)",
                       "driver": {
@@ -29,7 +28,7 @@ public class GetHosViolationsTest : BaseMockServerTest
                       },
                       "durationMs": 31970000,
                       "type": "NONE",
-                      "violationStartTime": "2019-06-13T19:08:25.000Z"
+                      "violationStartTime": "2019-06-13T19:08:25Z"
                     }
                   ]
                 }
@@ -58,12 +57,6 @@ public class GetHosViolationsTest : BaseMockServerTest
         var response = await Client.HoursOfService.GetHosViolationsAsync(
             new GetHosViolationsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<HosViolationsGetHosViolationsResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

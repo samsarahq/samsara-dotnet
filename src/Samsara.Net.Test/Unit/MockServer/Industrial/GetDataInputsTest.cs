@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Industrial;
 
@@ -45,9 +44,6 @@ public class GetDataInputsTest : BaseMockServerTest
             );
 
         var response = await Client.Industrial.GetDataInputsAsync(new GetDataInputsRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DataInputsTinyResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

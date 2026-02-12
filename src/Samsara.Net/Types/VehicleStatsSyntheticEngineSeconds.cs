@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// The cumulative number of seconds the engine has run estimated based on when the engine is running. Please note that this method &lt;a href="https://kb.samsara.com/hc/en-us/articles/360043552511-Synthetic-Engine-Hours" target="_blank"&gt;requires the addition of a baseline&lt;/a&gt; to trigger accumulation.
+/// The cumulative number of seconds the engine has run estimated based on when the engine is running. Please note that this method <a href="https://kb.samsara.com/hc/en-us/articles/360043552511-Synthetic-Engine-Hours" target="_blank">requires the addition of a baseline</a> to trigger accumulation.
 /// </summary>
 [Serializable]
 public record VehicleStatsSyntheticEngineSeconds : IJsonOnDeserialized

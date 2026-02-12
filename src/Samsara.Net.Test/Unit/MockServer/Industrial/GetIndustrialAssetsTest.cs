@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Industrial;
 
@@ -77,10 +76,6 @@ public class GetIndustrialAssetsTest : BaseMockServerTest
         var response = await Client.Industrial.GetIndustrialAssetsAsync(
             new GetIndustrialAssetsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ListIndustrialAssetsResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

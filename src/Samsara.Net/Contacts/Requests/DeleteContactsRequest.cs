@@ -4,7 +4,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net.Contacts;
 
 [Serializable]
-public record DeleteContactRequest
+public record DeleteContactsRequest
 {
     /// <summary>
     /// Unique identifier for the contact.

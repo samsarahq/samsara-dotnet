@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -16,7 +15,7 @@ public class GetEngineImmobilizerStatesTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "happenedAtTime": "2019-06-13T19:08:25.000Z",
+                  "happenedAtTime": "2019-06-13T19:08:25Z",
                   "isConnectedToVehicle": false,
                   "relayStates": [
                     {
@@ -57,14 +56,6 @@ public class GetEngineImmobilizerStatesTest : BaseMockServerTest
                 StartTime = "startTime",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<EngineImmobilizerGetEngineImmobilizerStatesResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Issues;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Issues;
 
@@ -84,10 +83,6 @@ public class PatchIssueTest : BaseMockServerTest
         var response = await Client.Issues.PatchIssueAsync(
             new IssuesPatchIssueRequestBody { Id = "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<IssuesPatchIssueResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

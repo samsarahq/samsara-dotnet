@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
 
@@ -27,10 +26,10 @@ public class UpdateDvirTest : BaseMockServerTest
                     "id": "88668",
                     "name": "Susan Bob"
                   },
-                  "signedAtTime": "2020-01-27T07:06:25.000Z",
+                  "signedAtTime": "2020-01-27T07:06:25Z",
                   "type": "driver"
                 },
-                "endTime": "2020-01-27T07:06:25.000Z",
+                "endTime": "2020-01-27T07:06:25Z",
                 "id": "7107471",
                 "licensePlate": "XHK1234",
                 "location": "350 Rhode Island St Ste. 400S, San Francisco, CA 94103",
@@ -42,16 +41,16 @@ public class UpdateDvirTest : BaseMockServerTest
                     "id": "88668",
                     "name": "Susan Bob"
                   },
-                  "signedAtTime": "2020-01-27T07:06:25.000Z",
+                  "signedAtTime": "2020-01-27T07:06:25Z",
                   "type": "driver"
                 },
-                "startTime": "2020-01-27T07:06:25.000Z",
+                "startTime": "2020-01-27T07:06:25Z",
                 "thirdSignature": {
                   "signatoryUser": {
                     "id": "88668",
                     "name": "Susan Bob"
                   },
-                  "signedAtTime": "2020-01-27T07:06:25.000Z",
+                  "signedAtTime": "2020-01-27T07:06:25Z",
                   "type": "driver"
                 },
                 "trailer": {
@@ -61,13 +60,13 @@ public class UpdateDvirTest : BaseMockServerTest
                 "trailerDefects": [
                   {
                     "comment": "Air Compressor not working",
-                    "createdAtTime": "2020-01-27T07:06:25.000Z",
+                    "createdAtTime": "2020-01-27T07:06:25Z",
                     "defectType": "Air Compressor",
                     "id": "18",
                     "isResolved": true,
                     "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
-                    "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25.000Z",
-                    "resolvedAtTime": "2020-01-27T07:06:25.000Z"
+                    "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
+                    "resolvedAtTime": "2020-01-27T07:06:25Z"
                   }
                 ],
                 "trailerName": "Midwest Trailer #5",
@@ -83,13 +82,13 @@ public class UpdateDvirTest : BaseMockServerTest
                 "vehicleDefects": [
                   {
                     "comment": "Air Compressor not working",
-                    "createdAtTime": "2020-01-27T07:06:25.000Z",
+                    "createdAtTime": "2020-01-27T07:06:25Z",
                     "defectType": "Air Compressor",
                     "id": "18",
                     "isResolved": true,
                     "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
-                    "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25.000Z",
-                    "resolvedAtTime": "2020-01-27T07:06:25.000Z"
+                    "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
+                    "resolvedAtTime": "2020-01-27T07:06:25Z"
                   }
                 ]
               }
@@ -120,9 +119,6 @@ public class UpdateDvirTest : BaseMockServerTest
                 IsResolved = true,
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DvirResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

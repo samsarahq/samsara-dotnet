@@ -21,7 +21,7 @@ public record VehicleStatsEngineImmobilizer : IJsonOnDeserialized
     public required bool Connected { get; set; }
 
     /// <summary>
-    /// The state of the engine immobilizer. Valid values: `ignition_disabled`, `ignition_enabled`. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use &lt;a href="https://developers.samsara.com/reference/getengineimmobilizerstates" target="_blank"&gt;Get engine immobilizer states&lt;/a&gt; to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).
+    /// The state of the engine immobilizer. Valid values: `ignition_disabled`, `ignition_enabled`. This stat type will only return states of our first Engine Immobilizer Hardware (ACC-EI). Please use <a href="https://developers.samsara.com/reference/getengineimmobilizerstates" target="_blank">Get engine immobilizer states</a> to get states for both Engine Immobilizer Hardware versions (incl. HW-EI21).
     /// </summary>
     [JsonPropertyName("state")]
     public required VehicleStatsEngineImmobilizerState State { get; set; }

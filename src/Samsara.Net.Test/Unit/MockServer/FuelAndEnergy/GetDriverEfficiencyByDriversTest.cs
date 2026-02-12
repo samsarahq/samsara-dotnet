@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.FuelAndEnergy;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.FuelAndEnergy;
 
@@ -88,14 +87,6 @@ public class GetDriverEfficiencyByDriversTest : BaseMockServerTest
         var response = await Client.FuelAndEnergy.GetDriverEfficiencyByDriversAsync(
             new GetDriverEfficiencyByDriversRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

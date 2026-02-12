@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Assets;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Assets;
 
@@ -19,7 +18,7 @@ public class CreateAssetTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "createdAtTime": "2020-01-27T07:06:25.000Z",
+                "createdAtTime": "2020-01-27T07:06:25Z",
                 "externalIds": {
                   "key": "value"
                 },
@@ -40,7 +39,7 @@ public class CreateAssetTest : BaseMockServerTest
                   }
                 ],
                 "type": "uncategorized",
-                "updatedAtTime": "2020-01-27T07:06:25.000Z",
+                "updatedAtTime": "2020-01-27T07:06:25Z",
                 "vin": "1FUJBBCKXCLBZ1234",
                 "year": 2015
               }
@@ -64,10 +63,6 @@ public class CreateAssetTest : BaseMockServerTest
             );
 
         var response = await Client.Assets.CreateAssetAsync(new AssetsCreateAssetRequestBody());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<AssetsCreateAssetResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

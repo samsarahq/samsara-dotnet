@@ -21,7 +21,7 @@ public record VehicleStatsIdlingDurationMillisecondsWithDecoration : IJsonOnDese
     public required string Time { get; set; }
 
     /// <summary>
-    /// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use &lt;a href="https://developers.samsara.com/reference/getvehicleidlingreports" target="_blank"&gt;the Idling Events API&lt;/a&gt;.
+    /// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use <a href="https://developers.samsara.com/reference/getvehicleidlingreports" target="_blank">the Idling Events API</a>.
     /// </summary>
     [JsonPropertyName("value")]
     public required long Value { get; set; }

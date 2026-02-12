@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Documents;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Documents;
 
@@ -92,12 +91,6 @@ public class GetDocumentTypesTest : BaseMockServerTest
             );
 
         var response = await Client.Documents.GetDocumentTypesAsync(new GetDocumentTypesRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DocumentTypesGetDocumentTypesResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

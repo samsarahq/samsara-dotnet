@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Plans;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Plans;
 
@@ -49,10 +48,6 @@ public class ListHubPlansTest : BaseMockServerTest
         var response = await Client.Plans.ListHubPlansAsync(
             new ListHubPlansRequest { HubId = "hubId" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<HubPlansListHubPlansResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

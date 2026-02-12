@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
 
@@ -16,7 +15,7 @@ public class GetDefectTypesTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "createdAtTime": "2020-01-27T07:06:25.000Z",
+                  "createdAtTime": "2020-01-27T07:06:25Z",
                   "id": "25d6151e-29b5-453e-875a-7c5425332e09",
                   "label": "Air Compressor",
                   "sectionType": "exteriorFront"
@@ -39,12 +38,6 @@ public class GetDefectTypesTest : BaseMockServerTest
             );
 
         var response = await Client.Maintenance.GetDefectTypesAsync(new GetDefectTypesRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DvirDefectTypeGetDefectTypesResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

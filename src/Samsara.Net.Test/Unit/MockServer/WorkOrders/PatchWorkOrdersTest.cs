@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.WorkOrders;
 
 namespace Samsara.Net.Test.Unit.MockServer.WorkOrders;
@@ -115,10 +114,6 @@ public class PatchWorkOrdersTest : BaseMockServerTest
         var response = await Client.WorkOrders.PatchWorkOrdersAsync(
             new WorkOrdersPatchWorkOrdersRequestBody { Id = "5" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WorkOrdersPatchWorkOrdersResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

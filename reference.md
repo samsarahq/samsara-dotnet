@@ -329,7 +329,6 @@ Driver HOS Violation
 Vehicle Engine Idle
 Asset Engine On
 Asset Engine Off
-Harsh Event
 Scheduled Maintenance
 Scheduled Maintenance by Odometer
 Scheduled Maintenance by Engine Hours
@@ -4392,7 +4391,7 @@ await client.Attributes.GetAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAttributeAsync</a>(DeleteAttributeRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAsync</a>(DeleteAttributesRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4423,8 +4422,8 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 <dd>
 
 ```csharp
-await client.Attributes.DeleteAttributeAsync(
-    new DeleteAttributeRequest { Id = "id", EntityType = DeleteAttributeRequestEntityType.Driver }
+await client.Attributes.DeleteAsync(
+    new DeleteAttributesRequest { Id = "id", EntityType = DeleteAttributesRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -4440,7 +4439,7 @@ await client.Attributes.DeleteAttributeAsync(
 <dl>
 <dd>
 
-**request:** `DeleteAttributeRequest` 
+**request:** `DeleteAttributesRequest` 
     
 </dd>
 </dl>
@@ -5082,7 +5081,7 @@ await client.Contacts.GetContactAsync(new GetContactRequest { Id = "id" });
 </dl>
 </details>
 
-<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">DeleteContactAsync</a>(DeleteContactRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">DeleteAsync</a>(DeleteContactsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5113,7 +5112,7 @@ To use this endpoint, select **Write Alert Contacts** under the Setup & Administ
 <dd>
 
 ```csharp
-await client.Contacts.DeleteContactAsync(new DeleteContactRequest { Id = "id" });
+await client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5128,7 +5127,7 @@ await client.Contacts.DeleteContactAsync(new DeleteContactRequest { Id = "id" })
 <dl>
 <dd>
 
-**request:** `DeleteContactRequest` 
+**request:** `DeleteContactsRequest` 
     
 </dd>
 </dl>
@@ -6569,66 +6568,6 @@ await client.CarrierProposedAssignments.CreateCarrierProposedAssignmentAsync(
 <dd>
 
 **request:** `CreateCarrierProposedAssignmentRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.CarrierProposedAssignments.<a href="/src/Samsara.Net/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">DeleteCarrierProposedAssignmentAsync</a>(DeleteCarrierProposedAssignmentRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.CarrierProposedAssignments.DeleteCarrierProposedAssignmentAsync(
-    new DeleteCarrierProposedAssignmentRequest { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeleteCarrierProposedAssignmentRequest` 
     
 </dd>
 </dl>
@@ -12627,64 +12566,6 @@ await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "nam
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">DeleteIndustrialAssetAsync</a>(DeleteIndustrialAssetRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete asset. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.Industrial.DeleteIndustrialAssetAsync(new DeleteIndustrialAssetRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeleteIndustrialAssetRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">PatchIndustrialAssetAsync</a>(AssetPatch { ... }) -> WithRawResponseTask&lt;InlineResponse200&gt;</code></summary>
 <dl>
 <dd>
@@ -15314,7 +15195,7 @@ await client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
 </dl>
 </details>
 
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">DeleteTagAsync</a>(DeleteTagRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">DeleteAsync</a>(DeleteTagsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15345,7 +15226,7 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```csharp
-await client.Tags.DeleteTagAsync(new DeleteTagRequest { Id = "id" });
+await client.Tags.DeleteAsync(new DeleteTagsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -15360,7 +15241,7 @@ await client.Tags.DeleteTagAsync(new DeleteTagRequest { Id = "id" });
 <dl>
 <dd>
 
-**request:** `DeleteTagRequest` 
+**request:** `DeleteTagsRequest` 
     
 </dd>
 </dl>
@@ -16128,7 +16009,7 @@ await client.Users.GetUserAsync(new GetUserRequest { Id = "id" });
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">DeleteUserAsync</a>(DeleteUserRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">DeleteAsync</a>(DeleteUsersRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -16159,7 +16040,7 @@ To use this endpoint, select **Write Users** under the Setup & Administration ca
 <dd>
 
 ```csharp
-await client.Users.DeleteUserAsync(new DeleteUserRequest { Id = "id" });
+await client.Users.DeleteAsync(new DeleteUsersRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -16174,7 +16055,7 @@ await client.Users.DeleteUserAsync(new DeleteUserRequest { Id = "id" });
 <dl>
 <dd>
 
-**request:** `DeleteUserRequest` 
+**request:** `DeleteUsersRequest` 
     
 </dd>
 </dl>
@@ -17283,6 +17164,67 @@ await client.Webhooks.PatchWebhookAsync(new WebhooksPatchWebhookRequestBody { Id
 </dl>
 </details>
 
+## Fleet CarrierProposedAssignments
+<details><summary><code>client.Fleet.CarrierProposedAssignments.<a href="/src/Samsara.Net/Fleet/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">DeleteAsync</a>(DeleteCarrierProposedAssignmentsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Permanently delete an assignment. You can only delete assignments that are not yet active. To override a currently active assignment, create a new empty one, instead. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Fleet.CarrierProposedAssignments.DeleteAsync(
+    new DeleteCarrierProposedAssignmentsRequest { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteCarrierProposedAssignmentsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Fleet Attributes
 <details><summary><code>client.Fleet.Attributes.<a href="/src/Samsara.Net/Fleet/Attributes/AttributesClient.cs">UpdateAsync</a>(UpdateAttributesRequest { ... })</code></summary>
 <dl>
@@ -17313,6 +17255,65 @@ await client.Fleet.Attributes.UpdateAsync(new UpdateAttributesRequest { Id = "id
 <dd>
 
 **request:** `UpdateAttributesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## Industrial Assets
+<details><summary><code>client.Industrial.Assets.<a href="/src/Samsara.Net/Industrial/Assets/AssetsClient.cs">DeleteAsync</a>(DeleteAssetsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete asset. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Industrial.Assets.DeleteAsync(new DeleteAssetsRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteAssetsRequest` 
     
 </dd>
 </dl>

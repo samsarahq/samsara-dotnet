@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.WorkOrders;
 
 namespace Samsara.Net.Test.Unit.MockServer.WorkOrders;
@@ -115,10 +114,6 @@ public class PostWorkOrdersTest : BaseMockServerTest
         var response = await Client.WorkOrders.PostWorkOrdersAsync(
             new WorkOrdersPostWorkOrdersRequestBody { AssetId = "12443" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WorkOrdersPostWorkOrdersResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

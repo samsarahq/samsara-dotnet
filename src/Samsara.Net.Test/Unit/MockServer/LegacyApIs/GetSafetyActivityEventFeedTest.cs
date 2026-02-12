@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LegacyApIs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LegacyApIs;
 
@@ -21,7 +20,7 @@ public class GetSafetyActivityEventFeedTest : BaseMockServerTest
                     "id": "212014918174029-1550954461759",
                     "time": "2019-06-13T19:08:25.455Z"
                   },
-                  "time": "2019-10-12T07:20:50.520Z",
+                  "time": "2019-10-12T07:20:50.52Z",
                   "type": "BehaviorLabelActivityType"
                 }
               ],
@@ -49,14 +48,6 @@ public class GetSafetyActivityEventFeedTest : BaseMockServerTest
         var response = await Client.LegacyApIs.GetSafetyActivityEventFeedAsync(
             new GetSafetyActivityEventFeedRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SafetyEventsGetSafetyActivityEventFeedResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

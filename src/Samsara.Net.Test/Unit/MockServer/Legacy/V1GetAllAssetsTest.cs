@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Legacy;
 
@@ -40,9 +39,6 @@ public class V1GetAllAssetsTest : BaseMockServerTest
             );
 
         var response = await Client.Legacy.V1GetAllAssetsAsync();
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<InlineResponse2001>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

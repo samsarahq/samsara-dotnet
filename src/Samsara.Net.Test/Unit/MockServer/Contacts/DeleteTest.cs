@@ -1,12 +1,12 @@
 using NUnit.Framework;
 using Samsara.Net.Contacts;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Contacts;
 
 [TestFixture]
-public class DeleteContactTest : BaseMockServerTest
+public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -24,9 +24,7 @@ public class DeleteContactTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Contacts.DeleteContactAsync(
-            new DeleteContactRequest { Id = "id" }
-        );
-        Assert.That(response, Is.EqualTo(JsonUtils.Deserialize<string>(mockResponse)));
+        var response = await Client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" });
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

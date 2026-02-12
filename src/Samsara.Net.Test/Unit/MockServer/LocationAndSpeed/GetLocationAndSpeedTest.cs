@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LocationAndSpeed;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LocationAndSpeed;
 
@@ -19,7 +18,7 @@ public class GetLocationAndSpeedTest : BaseMockServerTest
                   "asset": {
                     "id": "12345"
                   },
-                  "happenedAtTime": "2020-01-27T07:06:25.000Z",
+                  "happenedAtTime": "2020-01-27T07:06:25Z",
                   "location": {
                     "accuracyMeters": 5.801,
                     "headingDegrees": 120,
@@ -56,14 +55,6 @@ public class GetLocationAndSpeedTest : BaseMockServerTest
         var response = await Client.LocationAndSpeed.GetLocationAndSpeedAsync(
             new GetLocationAndSpeedRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<LocationAndSpeedGetLocationAndSpeedResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

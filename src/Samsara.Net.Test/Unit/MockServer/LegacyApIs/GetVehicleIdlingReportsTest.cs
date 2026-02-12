@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LegacyApIs;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LegacyApIs;
 
@@ -22,10 +21,10 @@ public class GetVehicleIdlingReportsTest : BaseMockServerTest
                     "longitude": 34.654567
                   },
                   "durationMs": 860000,
-                  "endTime": "2019-06-13T19:08:25.000Z",
+                  "endTime": "2019-06-13T19:08:25Z",
                   "fuelConsumptionMl": 2500,
                   "isPtoActive": false,
-                  "startTime": "2019-06-13T19:08:25.000Z",
+                  "startTime": "2019-06-13T19:08:25Z",
                   "vehicle": {
                     "id": "494123",
                     "name": "Fleet Truck #1"
@@ -36,8 +35,8 @@ public class GetVehicleIdlingReportsTest : BaseMockServerTest
                 "endCursor": "MjkY",
                 "hasNextPage": true
               },
-              "requestEndTime": "2019-06-13T19:08:25.000Z",
-              "requestStartTime": "2019-06-13T19:08:25.000Z"
+              "requestEndTime": "2019-06-13T19:08:25Z",
+              "requestStartTime": "2019-06-13T19:08:25Z"
             }
             """;
 
@@ -60,14 +59,6 @@ public class GetVehicleIdlingReportsTest : BaseMockServerTest
         var response = await Client.LegacyApIs.GetVehicleIdlingReportsAsync(
             new GetVehicleIdlingReportsRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<IdlingReportsGetVehicleIdlingReportsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

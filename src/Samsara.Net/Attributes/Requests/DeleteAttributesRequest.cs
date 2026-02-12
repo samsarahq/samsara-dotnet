@@ -4,7 +4,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net.Attributes;
 
 [Serializable]
-public record DeleteAttributeRequest
+public record DeleteAttributesRequest
 {
     /// <summary>
     /// Samsara-provided UUID of the attribute.
@@ -16,7 +16,7 @@ public record DeleteAttributeRequest
     /// Denotes the type of entity, driver or asset.
     /// </summary>
     [JsonIgnore]
-    public required DeleteAttributeRequestEntityType EntityType { get; set; }
+    public required DeleteAttributesRequestEntityType EntityType { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

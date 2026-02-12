@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Tags;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Tags;
 
@@ -83,9 +82,6 @@ public class ReplaceTagTest : BaseMockServerTest
             );
 
         var response = await Client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<TagResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

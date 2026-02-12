@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Webhooks;
 
 namespace Samsara.Net.Test.Unit.MockServer.Webhooks;
@@ -64,10 +63,6 @@ public class PostWebhooksTest : BaseMockServerTest
                 Url = "https://www.Webhook-123.com/webhook/listener",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WebhooksPostWebhooksResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Settings;
 
@@ -43,12 +42,6 @@ public class GetComplianceSettingsTest : BaseMockServerTest
             );
 
         var response = await Client.Settings.GetComplianceSettingsAsync();
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SettingsGetComplianceSettingsResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

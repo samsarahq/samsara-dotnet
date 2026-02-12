@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Industrial;
 
@@ -17,20 +16,20 @@ public class GetDataInputDataSnapshotTest : BaseMockServerTest
               "data": [
                 {
                   "fftSpectraPoint": {
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "j1939D1StatusPoint": {
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "locationPoint": {
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "numberPoint": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 1992.0506
                   },
                   "stringPoint": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "On"
                   },
                   "assetId": "74771078-5edb-4733-88f2-7242f520d1f1",
@@ -64,10 +63,6 @@ public class GetDataInputDataSnapshotTest : BaseMockServerTest
         var response = await Client.Industrial.GetDataInputDataSnapshotAsync(
             new GetDataInputDataSnapshotRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DataInputSnapshotResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }
