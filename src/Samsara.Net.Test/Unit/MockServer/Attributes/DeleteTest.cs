@@ -1,12 +1,12 @@
 using NUnit.Framework;
 using Samsara.Net.Attributes;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Attributes;
 
 [TestFixture]
-public class DeleteAttributeTest : BaseMockServerTest
+public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -30,13 +30,13 @@ public class DeleteAttributeTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Attributes.DeleteAttributeAsync(
-            new DeleteAttributeRequest
+        var response = await Client.Attributes.DeleteAsync(
+            new DeleteAttributesRequest
             {
                 Id = "id",
-                EntityType = DeleteAttributeRequestEntityType.Driver,
+                EntityType = DeleteAttributesRequestEntityType.Driver,
             }
         );
-        Assert.That(response, Is.EqualTo(JsonUtils.Deserialize<string>(mockResponse)));
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

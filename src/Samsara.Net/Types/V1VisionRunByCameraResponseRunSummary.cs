@@ -12,7 +12,7 @@ public record V1VisionRunByCameraResponseRunSummary : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("itemsPerMinute")]
-    public float? ItemsPerMinute { get; set; }
+    public double? ItemsPerMinute { get; set; }
 
     [JsonPropertyName("noReadCount")]
     public long? NoReadCount { get; set; }

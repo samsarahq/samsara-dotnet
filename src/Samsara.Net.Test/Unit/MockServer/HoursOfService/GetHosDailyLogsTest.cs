@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.HoursOfService;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.HoursOfService;
 
@@ -36,14 +35,14 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "waitingTimeDurationMs": 1560000,
                     "yardMoveDurationMs": 1432000
                   },
-                  "endTime": "2019-06-20T19:08:25.000Z",
+                  "endTime": "2019-06-20T19:08:25Z",
                   "logMetaData": {
                     "adverseDrivingClaimed": false,
                     "bigDayClaimed": true,
                     "carrierFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                     "carrierName": "Carrier Name",
                     "carrierUsDotNumber": 1234,
-                    "certifiedAtTime": "2020-01-01T06:00:00.000Z",
+                    "certifiedAtTime": "2020-01-01T06:00:00Z",
                     "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                     "homeTerminalName": "Home Terminal Name",
                     "isCertified": false,
@@ -64,7 +63,7 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "waitingTimeDurationMs": 1560000,
                     "yardMoveDurationMs": 1432000
                   },
-                  "startTime": "2019-06-13T19:08:25.000Z"
+                  "startTime": "2019-06-13T19:08:25Z"
                 }
               ],
               "pagination": {
@@ -91,10 +90,6 @@ public class GetHosDailyLogsTest : BaseMockServerTest
         var response = await Client.HoursOfService.GetHosDailyLogsAsync(
             new GetHosDailyLogsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<HosDailyLogsGetHosDailyLogsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

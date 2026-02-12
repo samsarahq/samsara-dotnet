@@ -18,7 +18,7 @@ public record V1VisionRunsResponseReportMetadata : IJsonOnDeserialized
     /// Returns average scanned items per minute. Should be used instead of scanRate.
     /// </summary>
     [JsonPropertyName("itemsPerMinute")]
-    public float? ItemsPerMinute { get; set; }
+    public double? ItemsPerMinute { get; set; }
 
     /// <summary>
     /// Returns no read count for the run. Should be used instead of noReadScansCount

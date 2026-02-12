@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.WorkOrders;
 
 namespace Samsara.Net.Test.Unit.MockServer.WorkOrders;
@@ -114,10 +113,6 @@ public class StreamWorkOrdersTest : BaseMockServerTest
         var response = await Client.WorkOrders.StreamWorkOrdersAsync(
             new StreamWorkOrdersRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<WorkOrdersStreamWorkOrdersResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

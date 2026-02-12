@@ -21,30 +21,23 @@ public partial class SpeedingIntervalsClient : ISpeedingIntervalsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["assetIds"] = request.AssetIds;
-        _query["startTime"] = request.StartTime;
-        _query["severityLevels"] = request.SeverityLevels;
-        if (request.EndTime != null)
-        {
-            _query["endTime"] = request.EndTime;
-        }
-        if (request.QueryBy != null)
-        {
-            _query["queryBy"] = request.QueryBy.Value.Stringify();
-        }
-        if (request.IncludeAsset != null)
-        {
-            _query["includeAsset"] = JsonUtils.Serialize(request.IncludeAsset.Value);
-        }
-        if (request.IncludeDriverId != null)
-        {
-            _query["includeDriverId"] = JsonUtils.Serialize(request.IncludeDriverId.Value);
-        }
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
+            .Add("assetIds", request.AssetIds)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("queryBy", request.QueryBy)
+            .Add("includeAsset", request.IncludeAsset)
+            .Add("includeDriverId", request.IncludeDriverId)
+            .Add("after", request.After)
+            .Add("severityLevels", request.SeverityLevels)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -52,7 +45,8 @@ public partial class SpeedingIntervalsClient : ISpeedingIntervalsClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "speeding-intervals/stream",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -133,12 +127,12 @@ public partial class SpeedingIntervalsClient : ISpeedingIntervalsClient
     /// <summary>
     /// This endpoint will return all speeding intervals associated with all trips that have been collected for your organization based on the time parameters passed in. Only completed trips are included. Trips with no speeding intervals detected will be returned with an empty list of intervals. Results are paginated.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 5 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Speeding Intervals** under the Speeding Intervals category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Speeding Intervals** under the Speeding Intervals category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.SpeedingIntervals.GetSpeedingIntervalsAsync(

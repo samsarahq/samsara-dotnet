@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Routes;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Routes;
 
@@ -106,12 +105,6 @@ public class ListHubPlanRoutesTest : BaseMockServerTest
         var response = await Client.Routes.ListHubPlanRoutesAsync(
             new ListHubPlanRoutesRequest { PlanId = "planId" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<HubPlanRoutesListHubPlanRoutesResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

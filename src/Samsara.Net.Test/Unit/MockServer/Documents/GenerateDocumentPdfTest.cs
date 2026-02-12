@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Documents;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Documents;
 
@@ -46,10 +45,6 @@ public class GenerateDocumentPdfTest : BaseMockServerTest
         var response = await Client.Documents.GenerateDocumentPdfAsync(
             new DocumentPdfGenerationRequest { DocumentId = "6c8c0c01-206a-41a4-9d21-15b9978d04cb" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DocumentPdfGenerationResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

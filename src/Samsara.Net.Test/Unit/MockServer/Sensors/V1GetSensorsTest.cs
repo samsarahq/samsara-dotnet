@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Sensors;
 
@@ -35,9 +34,6 @@ public class V1GetSensorsTest : BaseMockServerTest
             );
 
         var response = await Client.Sensors.V1GetSensorsAsync();
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<InlineResponse2009>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

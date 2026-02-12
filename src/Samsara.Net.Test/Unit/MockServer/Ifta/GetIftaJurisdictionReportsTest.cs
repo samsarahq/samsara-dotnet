@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Ifta;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Ifta;
 
@@ -54,12 +53,6 @@ public class GetIftaJurisdictionReportsTest : BaseMockServerTest
         var response = await Client.Ifta.GetIftaJurisdictionReportsAsync(
             new GetIftaJurisdictionReportsRequest { Year = 1000000 }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<IftaGetIftaJurisdictionReportsResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

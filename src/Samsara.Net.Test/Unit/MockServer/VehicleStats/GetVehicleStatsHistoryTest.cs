@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.VehicleStats;
 
 namespace Samsara.Net.Test.Unit.MockServer.VehicleStats;
@@ -33596,10 +33595,6 @@ public class GetVehicleStatsHistoryTest : BaseMockServerTest
         var response = await Client.VehicleStats.GetVehicleStatsHistoryAsync(
             new GetVehicleStatsHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<VehicleStatsListResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Trips;
 
 namespace Samsara.Net.Test.Unit.MockServer.Trips;
@@ -80,9 +79,6 @@ public class V1GetFleetTripsTest : BaseMockServerTest
                 EndMs = 1000000,
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<V1TripResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

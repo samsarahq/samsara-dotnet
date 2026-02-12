@@ -1,12 +1,12 @@
 using NUnit.Framework;
-using Samsara.Net.CarrierProposedAssignments;
-using Samsara.Net.Core;
+using Samsara.Net.Industrial.Assets;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.CarrierProposedAssignments;
+namespace Samsara.Net.Test.Unit.MockServer.Industrial.Assets;
 
 [TestFixture]
-public class DeleteCarrierProposedAssignmentTest : BaseMockServerTest
+public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -19,7 +19,7 @@ public class DeleteCarrierProposedAssignmentTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/fleet/carrier-proposed-assignments/id")
+                    .WithPath("/industrial/assets/id")
                     .UsingDelete()
             )
             .RespondWith(
@@ -29,9 +29,9 @@ public class DeleteCarrierProposedAssignmentTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.CarrierProposedAssignments.DeleteCarrierProposedAssignmentAsync(
-            new DeleteCarrierProposedAssignmentRequest { Id = "id" }
+        var response = await Client.Industrial.Assets.DeleteAsync(
+            new DeleteAssetsRequest { Id = "id" }
         );
-        Assert.That(response, Is.EqualTo(JsonUtils.Deserialize<string>(mockResponse)));
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

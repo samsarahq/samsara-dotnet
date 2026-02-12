@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Media;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Media;
 
@@ -17,15 +16,15 @@ public class GetMediaRetrievalTest : BaseMockServerTest
               "data": {
                 "media": [
                   {
-                    "availableAtTime": "2019-11-11T18:00:12.000Z",
-                    "endTime": "2019-06-13T19:08:25.000Z",
+                    "availableAtTime": "2019-11-11T14:00:12-04:00",
+                    "endTime": "2019-06-13T19:08:25Z",
                     "input": "dashcamDriverFacing",
                     "mediaType": "image",
-                    "startTime": "2019-06-13T19:08:25.000Z",
+                    "startTime": "2019-06-13T19:08:25Z",
                     "status": "available",
                     "urlInfo": {
                       "url": "https://sample.s3.url.com/image.jpeg",
-                      "urlExpiryTime": "2019-11-11T18:00:12.000Z"
+                      "urlExpiryTime": "2019-11-11T14:00:12-04:00"
                     },
                     "vehicleId": "1234"
                   }
@@ -52,12 +51,6 @@ public class GetMediaRetrievalTest : BaseMockServerTest
         var response = await Client.Media.GetMediaRetrievalAsync(
             new GetMediaRetrievalRequest { RetrievalId = "retrievalId" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<MediaRetrievalGetMediaRetrievalResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

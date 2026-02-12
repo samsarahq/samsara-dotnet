@@ -1,9 +1,7 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
-using Samsara.Net.Assets;
 using Samsara.Net.AuthTokenForDriver;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.CarrierProposedAssignments;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
@@ -65,28 +63,35 @@ public partial class SamsaraClient : ISamsaraClient
             "SAMSARA_API_KEY",
             "Please pass in token or set the environment variable SAMSARA_API_KEY."
         );
-        var defaultHeaders = new Headers(
+        clientOptions ??= new ClientOptions();
+        var platformHeaders = new Headers(
             new Dictionary<string, string>()
             {
-                { "Authorization", $"Bearer {token ?? ""}" },
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/5.5.1" },
+                { "User-Agent", "Samsara.Net/5.5.2" },
             }
         );
-        clientOptions ??= new ClientOptions();
-        foreach (var header in defaultHeaders)
+        foreach (var header in platformHeaders)
         {
             if (!clientOptions.Headers.ContainsKey(header.Key))
             {
                 clientOptions.Headers[header.Key] = header.Value;
             }
         }
-        _client = new RawClient(clientOptions);
+        var clientOptionsWithAuth = clientOptions.Clone();
+        var authHeaders = new Headers(
+            new Dictionary<string, string>() { { "Authorization", $"Bearer {token ?? ""}" } }
+        );
+        foreach (var header in authHeaders)
+        {
+            clientOptionsWithAuth.Headers[header.Key] = header.Value;
+        }
+        _client = new RawClient(clientOptionsWithAuth);
         Addresses = new AddressesClient(_client);
         Alerts = new AlertsClient(_client);
-        Assets = new AssetsClient(_client);
+        Assets = new Samsara.Net.Assets.AssetsClient(_client);
         BetaApIs = new BetaApIsClient(_client);
         LocationAndSpeed = new LocationAndSpeedClient(_client);
         Attributes = new Samsara.Net.Attributes.AttributesClient(_client);
@@ -97,7 +102,8 @@ public partial class SamsaraClient : ISamsaraClient
         FuelAndEnergy = new FuelAndEnergyClient(_client);
         DriverTrailerAssignments = new DriverTrailerAssignmentsClient(_client);
         DriverQrCodes = new DriverQrCodesClient(_client);
-        CarrierProposedAssignments = new CarrierProposedAssignmentsClient(_client);
+        CarrierProposedAssignments =
+            new Samsara.Net.CarrierProposedAssignments.CarrierProposedAssignmentsClient(_client);
         LegacyApIs = new LegacyApIsClient(_client);
         Documents = new DocumentsClient(_client);
         DriverVehicleAssignments = new DriverVehicleAssignmentsClient(_client);
@@ -140,113 +146,113 @@ public partial class SamsaraClient : ISamsaraClient
         Fleet = new FleetClient(_client);
     }
 
-    public AddressesClient Addresses { get; }
+    public IAddressesClient Addresses { get; }
 
-    public AlertsClient Alerts { get; }
+    public IAlertsClient Alerts { get; }
 
-    public AssetsClient Assets { get; }
+    public Samsara.Net.Assets.IAssetsClient Assets { get; }
 
-    public BetaApIsClient BetaApIs { get; }
+    public IBetaApIsClient BetaApIs { get; }
 
-    public LocationAndSpeedClient LocationAndSpeed { get; }
+    public ILocationAndSpeedClient LocationAndSpeed { get; }
 
-    public Samsara.Net.Attributes.AttributesClient Attributes { get; }
+    public Samsara.Net.Attributes.IAttributesClient Attributes { get; }
 
-    public MediaClient Media { get; }
+    public IMediaClient Media { get; }
 
-    public CoachingClient Coaching { get; }
+    public ICoachingClient Coaching { get; }
 
-    public ContactsClient Contacts { get; }
+    public IContactsClient Contacts { get; }
 
-    public MaintenanceClient Maintenance { get; }
+    public IMaintenanceClient Maintenance { get; }
 
-    public FuelAndEnergyClient FuelAndEnergy { get; }
+    public IFuelAndEnergyClient FuelAndEnergy { get; }
 
-    public DriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
+    public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
 
-    public DriverQrCodesClient DriverQrCodes { get; }
+    public IDriverQrCodesClient DriverQrCodes { get; }
 
-    public CarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
+    public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
 
-    public LegacyApIsClient LegacyApIs { get; }
+    public ILegacyApIsClient LegacyApIs { get; }
 
-    public DocumentsClient Documents { get; }
+    public IDocumentsClient Documents { get; }
 
-    public DriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
+    public IDriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
 
-    public DriversClient Drivers { get; }
+    public IDriversClient Drivers { get; }
 
-    public AuthTokenForDriverClient AuthTokenForDriver { get; }
+    public IAuthTokenForDriverClient AuthTokenForDriver { get; }
 
-    public TachographEuOnlyClient TachographEuOnly { get; }
+    public ITachographEuOnlyClient TachographEuOnly { get; }
 
-    public EquipmentClient Equipment { get; }
+    public IEquipmentClient Equipment { get; }
 
-    public HoursOfServiceClient HoursOfService { get; }
+    public IHoursOfServiceClient HoursOfService { get; }
 
-    public IftaClient Ifta { get; }
+    public IIftaClient Ifta { get; }
 
-    public RoutesClient Routes { get; }
+    public IRoutesClient Routes { get; }
 
-    public SettingsClient Settings { get; }
+    public ISettingsClient Settings { get; }
 
-    public TrailersClient Trailers { get; }
+    public ITrailersClient Trailers { get; }
 
-    public VehiclesClient Vehicles { get; }
+    public IVehiclesClient Vehicles { get; }
 
-    public VehicleLocationsClient VehicleLocations { get; }
+    public IVehicleLocationsClient VehicleLocations { get; }
 
-    public VehicleStatsClient VehicleStats { get; }
+    public IVehicleStatsClient VehicleStats { get; }
 
-    public FormsClient Forms { get; }
+    public IFormsClient Forms { get; }
 
-    public GatewaysClient Gateways { get; }
+    public IGatewaysClient Gateways { get; }
 
-    public HubsClient Hubs { get; }
+    public IHubsClient Hubs { get; }
 
-    public PlansClient Plans { get; }
+    public IPlansClient Plans { get; }
 
-    public IdlingClient Idling { get; }
+    public IIdlingClient Idling { get; }
 
-    public IndustrialClient Industrial { get; }
+    public IIndustrialClient Industrial { get; }
 
-    public IssuesClient Issues { get; }
+    public IIssuesClient Issues { get; }
 
-    public LiveSharingLinksClient LiveSharingLinks { get; }
+    public ILiveSharingLinksClient LiveSharingLinks { get; }
 
-    public WorkOrdersClient WorkOrders { get; }
+    public IWorkOrdersClient WorkOrders { get; }
 
-    public OrganizationInfoClient OrganizationInfo { get; }
+    public IOrganizationInfoClient OrganizationInfo { get; }
 
-    public PreviewApIsClient PreviewApIs { get; }
+    public IPreviewApIsClient PreviewApIs { get; }
 
-    public RouteEventsClient RouteEvents { get; }
+    public IRouteEventsClient RouteEvents { get; }
 
-    public SafetyClient Safety { get; }
+    public ISafetyClient Safety { get; }
 
-    public SpeedingIntervalsClient SpeedingIntervals { get; }
+    public ISpeedingIntervalsClient SpeedingIntervals { get; }
 
-    public TagsClient Tags { get; }
+    public ITagsClient Tags { get; }
 
-    public TrainingAssignmentsClient TrainingAssignments { get; }
+    public ITrainingAssignmentsClient TrainingAssignments { get; }
 
-    public TrainingCoursesClient TrainingCourses { get; }
+    public ITrainingCoursesClient TrainingCourses { get; }
 
-    public TripsClient Trips { get; }
+    public ITripsClient Trips { get; }
 
-    public UsersClient Users { get; }
+    public IUsersClient Users { get; }
 
-    public LegacyClient Legacy { get; }
+    public ILegacyClient Legacy { get; }
 
-    public MessagesClient Messages { get; }
+    public IMessagesClient Messages { get; }
 
-    public TrailerAssignmentsClient TrailerAssignments { get; }
+    public ITrailerAssignmentsClient TrailerAssignments { get; }
 
-    public SensorsClient Sensors { get; }
+    public ISensorsClient Sensors { get; }
 
-    public WebhooksClient Webhooks { get; }
+    public IWebhooksClient Webhooks { get; }
 
-    public FleetClient Fleet { get; }
+    public IFleetClient Fleet { get; }
 
     private static string GetFromEnvironmentOrThrow(string env, string message)
     {

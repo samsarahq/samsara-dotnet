@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.SpeedingIntervals;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.SpeedingIntervals;
 
@@ -165,14 +164,6 @@ public class GetSpeedingIntervalsTest : BaseMockServerTest
         var response = await Client.SpeedingIntervals.GetSpeedingIntervalsAsync(
             new GetSpeedingIntervalsRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SpeedingIntervalsGetSpeedingIntervalsResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

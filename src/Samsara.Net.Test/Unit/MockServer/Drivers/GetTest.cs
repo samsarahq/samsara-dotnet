@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Drivers;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Drivers;
 
@@ -28,7 +27,7 @@ public class GetTest : BaseMockServerTest
                   "homeTerminalName": "Acme Inc.",
                   "mainOfficeAddress": "1234 Pear St., Scranton, PA 62814"
                 },
-                "createdAtTime": "2019-05-18T20:27:35.000Z",
+                "createdAtTime": "2019-05-18T20:27:35Z",
                 "currentIdCardCode": "941767043",
                 "driverActivationStatus": "active",
                 "eldAdverseWeatherExemptionEnabled": true,
@@ -78,7 +77,7 @@ public class GetTest : BaseMockServerTest
                   }
                 ],
                 "timezone": "America/Los_Angeles",
-                "updatedAtTime": "2019-06-13T19:08:25.000Z",
+                "updatedAtTime": "2019-06-13T19:08:25Z",
                 "usDriverRulesetOverride": {
                   "cycle": "USA Property (8/70)",
                   "restart": "34-hour Restart",
@@ -108,9 +107,6 @@ public class GetTest : BaseMockServerTest
             );
 
         var response = await Client.Drivers.GetAsync(new GetDriversRequest { Id = "id" });
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DriverResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

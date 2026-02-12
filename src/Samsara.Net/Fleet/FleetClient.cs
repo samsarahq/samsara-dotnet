@@ -9,8 +9,14 @@ public partial class FleetClient : IFleetClient
     internal FleetClient(RawClient client)
     {
         _client = client;
+        CarrierProposedAssignments =
+            new Samsara.Net.Fleet.CarrierProposedAssignments.CarrierProposedAssignmentsClient(
+                _client
+            );
         Attributes = new Samsara.Net.Fleet.Attributes.AttributesClient(_client);
     }
 
-    public Samsara.Net.Fleet.Attributes.AttributesClient Attributes { get; }
+    public Samsara.Net.Fleet.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
+
+    public Samsara.Net.Fleet.Attributes.IAttributesClient Attributes { get; }
 }

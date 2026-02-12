@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Media;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Media;
 
@@ -14,14 +13,14 @@ public class PostMediaRetrievalTest : BaseMockServerTest
     {
         const string requestJson = """
             {
-              "endTime": "2019-06-13T19:08:55.000Z",
+              "endTime": "2019-06-13T19:08:55Z",
               "inputs": [
                 "dashcamRoadFacing",
                 "dashcamRoadFacing",
                 "dashcamRoadFacing"
               ],
               "mediaType": "image",
-              "startTime": "2019-06-13T19:08:25.000Z",
+              "startTime": "2019-06-13T19:08:25Z",
               "vehicleId": "1234"
             }
             """;
@@ -66,14 +65,6 @@ public class PostMediaRetrievalTest : BaseMockServerTest
                 VehicleId = "1234",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<MediaRetrievalPostMediaRetrievalResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

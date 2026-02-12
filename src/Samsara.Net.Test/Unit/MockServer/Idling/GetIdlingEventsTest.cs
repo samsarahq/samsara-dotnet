@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Idling;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Idling;
 
@@ -45,7 +44,7 @@ public class GetIdlingEventsTest : BaseMockServerTest
                     "id": 1234567890
                   },
                   "ptoState": "active, inactive",
-                  "startTime": "2019-06-13T17:08:25.000Z"
+                  "startTime": "2019-06-13T17:08:25Z"
                 }
               ],
               "pagination": {
@@ -74,12 +73,6 @@ public class GetIdlingEventsTest : BaseMockServerTest
         var response = await Client.Idling.GetIdlingEventsAsync(
             new GetIdlingEventsRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<AdvancedIdlingGetIdlingEventsResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

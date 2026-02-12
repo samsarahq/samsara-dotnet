@@ -21,48 +21,25 @@ public partial class LocationAndSpeedClient : ILocationAndSpeedClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["ids"] = request.Ids;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
-        if (request.Limit != null)
-        {
-            _query["limit"] = request.Limit.Value.ToString();
-        }
-        if (request.StartTime != null)
-        {
-            _query["startTime"] = request.StartTime;
-        }
-        if (request.EndTime != null)
-        {
-            _query["endTime"] = request.EndTime;
-        }
-        if (request.IncludeSpeed != null)
-        {
-            _query["includeSpeed"] = JsonUtils.Serialize(request.IncludeSpeed.Value);
-        }
-        if (request.IncludeReverseGeo != null)
-        {
-            _query["includeReverseGeo"] = JsonUtils.Serialize(request.IncludeReverseGeo.Value);
-        }
-        if (request.IncludeGeofenceLookup != null)
-        {
-            _query["includeGeofenceLookup"] = JsonUtils.Serialize(
-                request.IncludeGeofenceLookup.Value
-            );
-        }
-        if (request.IncludeHighFrequencyLocations != null)
-        {
-            _query["includeHighFrequencyLocations"] = JsonUtils.Serialize(
-                request.IncludeHighFrequencyLocations.Value
-            );
-        }
-        if (request.IncludeExternalIds != null)
-        {
-            _query["includeExternalIds"] = JsonUtils.Serialize(request.IncludeExternalIds.Value);
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 10)
+            .Add("after", request.After)
+            .Add("limit", request.Limit)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("ids", request.Ids)
+            .Add("includeSpeed", request.IncludeSpeed)
+            .Add("includeReverseGeo", request.IncludeReverseGeo)
+            .Add("includeGeofenceLookup", request.IncludeGeofenceLookup)
+            .Add("includeHighFrequencyLocations", request.IncludeHighFrequencyLocations)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -70,7 +47,8 @@ public partial class LocationAndSpeedClient : ILocationAndSpeedClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "assets/location-and-speed/stream",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -151,12 +129,12 @@ public partial class LocationAndSpeedClient : ILocationAndSpeedClient
     /// <summary>
     /// This endpoint will return asset locations and speed data that has been collected for your organization based on the time parameters passed in. Results are paginated. If you include an endTime, the endpoint will return data up until that point. If you don’t include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. The endpoint will only return data up until the endTime that has been processed by the server at the time of the original request. You will need to request the same [startTime, endTime) range again to receive data for assets processed after the original request time. This endpoint sorts the time-series data by device.
     ///
-    ///  &lt;b&gt;Rate limit:&lt;/b&gt; 10 requests/sec (learn more about rate limits &lt;a href="https://developers.samsara.com/docs/rate-limits" target="_blank"&gt;here&lt;/a&gt;).
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.LocationAndSpeed.GetLocationAndSpeedAsync(new GetLocationAndSpeedRequest());

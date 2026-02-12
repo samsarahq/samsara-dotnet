@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Alerts;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Alerts;
 
@@ -2849,10 +2848,6 @@ public class GetIncidentsTest : BaseMockServerTest
         var response = await Client.Alerts.GetIncidentsAsync(
             new GetIncidentsRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<AlertsGetIncidentsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.TrainingCourses;
 
 namespace Samsara.Net.Test.Unit.MockServer.TrainingCourses;
@@ -55,14 +54,6 @@ public class GetTrainingCoursesTest : BaseMockServerTest
         var response = await Client.TrainingCourses.GetTrainingCoursesAsync(
             new GetTrainingCoursesRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<TrainingCoursesGetTrainingCoursesResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

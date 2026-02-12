@@ -19,18 +19,20 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["vehicleIds"] = request.VehicleIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
-        if (request.Time != null)
-        {
-            _query["time"] = request.Time;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+            .Add("after", request.After)
+            .Add("time", request.Time)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("vehicleIds", request.VehicleIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -38,7 +40,8 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -89,14 +92,19 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["vehicleIds"] = request.VehicleIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("after", request.After)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("vehicleIds", request.VehicleIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -104,7 +112,8 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/feed",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -157,16 +166,21 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _query = new Dictionary<string, object>();
-        _query["startTime"] = request.StartTime;
-        _query["endTime"] = request.EndTime;
-        _query["parentTagIds"] = request.ParentTagIds;
-        _query["tagIds"] = request.TagIds;
-        _query["vehicleIds"] = request.VehicleIds;
-        if (request.After != null)
-        {
-            _query["after"] = request.After;
-        }
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
+            .Add("after", request.After)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("tagIds", request.TagIds)
+            .Add("vehicleIds", request.VehicleIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -174,7 +188,8 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
                     Path = "fleet/vehicles/locations/history",
-                    Query = _query,
+                    QueryString = _queryString,
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken
@@ -224,11 +239,11 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
     ///
     /// Returns the last known location of all vehicles at the given `time`. If no `time` is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.
     ///
-    /// Related guide: &lt;a href="/docs/vehicle-locations-1" target="_blank"&gt;Vehicle Locations&lt;/a&gt;.
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.VehicleLocations.GetVehicleLocationsAsync(new GetVehicleLocationsRequest());
@@ -255,11 +270,11 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
     ///
     /// If `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.
     ///
-    /// Related guide: &lt;a href="/docs/vehicle-locations-1" target="_blank"&gt;Vehicle Locations&lt;/a&gt;.
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.VehicleLocations.GetVehicleLocationsFeedAsync(new GetVehicleLocationsFeedRequest());
@@ -280,11 +295,11 @@ public partial class VehicleLocationsClient : IVehicleLocationsClient
     ///
     /// Returns all known vehicle locations during the given time range. This can be optionally filtered by tags or specific vehicle IDs.
     ///
-    /// Related guide: &lt;a href="/docs/vehicle-locations-1" target="_blank"&gt;Vehicle Locations&lt;/a&gt;.
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our &lt;a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank"&gt;API feedback form&lt;/a&gt;. If you encountered an issue or noticed inaccuracies in the API documentation, please &lt;a href="https://www.samsara.com/help" target="_blank"&gt;submit a case&lt;/a&gt; to our support team.
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. &lt;a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank"&gt;Learn More.&lt;/a&gt;
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.VehicleLocations.GetVehicleLocationsHistoryAsync(

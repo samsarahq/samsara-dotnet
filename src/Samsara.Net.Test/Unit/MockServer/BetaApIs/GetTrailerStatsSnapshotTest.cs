@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -18,7 +17,7 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                 {
                   "carrierReeferState": {
                     "substateValue": "`Pretrip`, `Defrost`",
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "`Off`, `On`"
                   },
                   "gps": {
@@ -26,10 +25,10 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     "latitude": 0.3975329790494395,
                     "longitude": 0.800368379601224,
                     "speedMilesPerHour": 3123450857459408400,
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "gpsOdometerMeters": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "id": "1234",
@@ -43,85 +42,85 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                         "severity": 9025038144795927000
                       }
                     ],
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "reeferAmbientAirTemperatureMilliC": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferDoorStateZone1": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "open"
                   },
                   "reeferDoorStateZone2": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "open"
                   },
                   "reeferDoorStateZone3": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "open"
                   },
                   "reeferFuelPercent": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferObdEngineSeconds": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferReturnAirTemperatureMilliCZone1": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferReturnAirTemperatureMilliCZone2": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferReturnAirTemperatureMilliCZone3": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferRunMode": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "`Start/Stop`,`Continuous`"
                   },
                   "reeferSetPointTemperatureMilliCZone1": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferSetPointTemperatureMilliCZone2": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferSetPointTemperatureMilliCZone3": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferStateZone1": {
                     "substateValue": "`Pretrip`, `Defrost`",
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "`Off`, `On`"
                   },
                   "reeferStateZone2": {
                     "substateValue": "`Pretrip`, `Defrost`",
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "`Off`, `On`"
                   },
                   "reeferStateZone3": {
                     "substateValue": "`Pretrip`, `Defrost`",
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": "`Off`, `On`"
                   },
                   "reeferSupplyAirTemperatureMilliCZone1": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferSupplyAirTemperatureMilliCZone2": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   },
                   "reeferSupplyAirTemperatureMilliCZone3": {
-                    "time": "2020-01-27T07:06:25.000Z",
+                    "time": "2020-01-27T07:06:25Z",
                     "value": 50
                   }
                 }
@@ -151,14 +150,6 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetTrailerStatsSnapshotAsync(
             new GetTrailerStatsSnapshotRequest { Types = "types" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<TrailerStatsGetTrailerStatsSnapshotResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Industrial;
 
@@ -18,28 +17,28 @@ public class GetDataInputDataFeedTest : BaseMockServerTest
                 {
                   "fftSpectraPoints": [
                     {
-                      "time": "2020-01-27T07:06:25.000Z"
+                      "time": "2020-01-27T07:06:25Z"
                     }
                   ],
                   "j1939D1StatusPoints": [
                     {
-                      "time": "2020-01-27T07:06:25.000Z"
+                      "time": "2020-01-27T07:06:25Z"
                     }
                   ],
                   "locationPoints": [
                     {
-                      "time": "2020-01-27T07:06:25.000Z"
+                      "time": "2020-01-27T07:06:25Z"
                     }
                   ],
                   "numberPoints": [
                     {
-                      "time": "2020-01-27T07:06:25.000Z",
+                      "time": "2020-01-27T07:06:25Z",
                       "value": 1992.0506
                     }
                   ],
                   "stringPoints": [
                     {
-                      "time": "2020-01-27T07:06:25.000Z",
+                      "time": "2020-01-27T07:06:25Z",
                       "value": "On"
                     }
                   ],
@@ -74,9 +73,6 @@ public class GetDataInputDataFeedTest : BaseMockServerTest
         var response = await Client.Industrial.GetDataInputDataFeedAsync(
             new GetDataInputDataFeedRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DataInputListResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

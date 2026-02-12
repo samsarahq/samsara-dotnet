@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.VehicleLocations;
 
 namespace Samsara.Net.Test.Unit.MockServer.VehicleLocations;
@@ -23,7 +22,7 @@ public class GetVehicleLocationsFeedTest : BaseMockServerTest
                       "latitude": 122.142,
                       "longitude": -93.343,
                       "speed": 48.3,
-                      "time": "2020-01-27T07:06:25.000Z"
+                      "time": "2020-01-27T07:06:25Z"
                     }
                   ],
                   "name": "Truck A7"
@@ -53,10 +52,6 @@ public class GetVehicleLocationsFeedTest : BaseMockServerTest
         var response = await Client.VehicleLocations.GetVehicleLocationsFeedAsync(
             new GetVehicleLocationsFeedRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<VehicleLocationsListResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

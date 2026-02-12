@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Gateways;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Gateways;
 
@@ -35,7 +34,7 @@ public class PostGatewayTest : BaseMockServerTest
                 },
                 "connectionStatus": {
                   "healthStatus": "Status Not Set",
-                  "lastConnected": "2019-06-13T19:08:25.000Z"
+                  "lastConnected": "2019-06-13T19:08:25Z"
                 },
                 "dataUsageLast30Days": {
                   "cellularDataUsageBytes": 9113941723943371000,
@@ -66,10 +65,6 @@ public class PostGatewayTest : BaseMockServerTest
         var response = await Client.Gateways.PostGatewayAsync(
             new GatewaysPostGatewayRequestBody { Serial = "GFRV-43N-VGX" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<GatewaysPostGatewayResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

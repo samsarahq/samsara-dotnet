@@ -21,6 +21,12 @@ public partial class AttributesClient : IAttributesClient
         CancellationToken cancellationToken = default
     )
     {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
         var response = await _client
             .SendRequestAsync(
                 new JsonRequest
@@ -31,6 +37,7 @@ public partial class AttributesClient : IAttributesClient
                         "fleet/attributes/{0}",
                         ValueConvert.ToPathParameterString(request.Id)
                     ),
+                    Headers = _headers,
                     Options = options,
                 },
                 cancellationToken

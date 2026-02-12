@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Maintenance;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
 
@@ -20,13 +19,13 @@ public class UpdateDvirDefectTest : BaseMockServerTest
             {
               "data": {
                 "comment": "Air Compressor not working",
-                "createdAtTime": "2020-01-27T07:06:25.000Z",
+                "createdAtTime": "2020-01-27T07:06:25Z",
                 "defectType": "Air Compressor",
                 "id": "18",
                 "isResolved": true,
                 "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
-                "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25.000Z",
-                "resolvedAtTime": "2020-01-27T07:06:25.000Z",
+                "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
+                "resolvedAtTime": "2020-01-27T07:06:25Z",
                 "resolvedBy": {
                   "id": "11",
                   "name": "Christopher 'The Handyman' Zhen",
@@ -67,9 +66,6 @@ public class UpdateDvirDefectTest : BaseMockServerTest
         var response = await Client.Maintenance.UpdateDvirDefectAsync(
             new DefectPatch { Id = "id" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DefectResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

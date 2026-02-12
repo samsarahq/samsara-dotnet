@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Safety;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Safety;
 
@@ -439,12 +438,6 @@ public class GetSafetyEventsV2Test : BaseMockServerTest
             );
 
         var response = await Client.Safety.GetSafetyEventsV2Async(new GetSafetyEventsV2Request());
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SafetyEventsV2GetSafetyEventsV2ResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

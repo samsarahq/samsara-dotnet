@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -28,9 +27,9 @@ public class GetHosEldEventsTest : BaseMockServerTest
                       "remark": {
                         "comment": "Pre-Trip Inspection",
                         "locationDescription": "Near San Francisco",
-                        "time": "2019-06-13T19:08:25.000Z"
+                        "time": "2019-06-13T19:08:25Z"
                       },
-                      "time": "2019-06-13T19:08:25.000Z",
+                      "time": "2019-06-13T19:08:25Z",
                       "totalEngineHours": 2894.1,
                       "totalVehicleMeters": 1004566
                     }
@@ -68,10 +67,6 @@ public class GetHosEldEventsTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetHosEldEventsAsync(
             new GetHosEldEventsRequest { StartTime = "startTime", EndTime = "endTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<HosEldEventsGetHosEldEventsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

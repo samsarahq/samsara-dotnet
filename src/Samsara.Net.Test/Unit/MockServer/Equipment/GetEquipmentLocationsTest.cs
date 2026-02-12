@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Equipment;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Equipment;
 
@@ -22,7 +21,7 @@ public class GetEquipmentLocationsTest : BaseMockServerTest
                     "latitude": 122.142,
                     "longitude": -93.343,
                     "speed": 48.3,
-                    "time": "2020-01-27T07:06:25.000Z"
+                    "time": "2020-01-27T07:06:25Z"
                   },
                   "name": "Crane A7"
                 }
@@ -51,10 +50,6 @@ public class GetEquipmentLocationsTest : BaseMockServerTest
         var response = await Client.Equipment.GetEquipmentLocationsAsync(
             new GetEquipmentLocationsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<EquipmentLocationsResponse>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

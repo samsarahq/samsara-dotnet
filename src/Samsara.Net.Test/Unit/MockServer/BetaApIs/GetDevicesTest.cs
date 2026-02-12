@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -57,10 +56,6 @@ public class GetDevicesTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.GetDevicesAsync(new GetDevicesRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DevicesGetDevicesResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

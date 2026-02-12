@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -23,12 +22,12 @@ public class GetAempEquipmentListTest : BaseMockServerTest
                       "OEMName": "Bobcat",
                       "PIN": "8V8WD530FLN016251",
                       "SerialNumber": "8V8WD530FLN016251",
-                      "UnitInstallDateTime": "2019-06-13T19:08:25.000Z"
+                      "UnitInstallDateTime": "2019-06-13T19:08:25Z"
                     },
                     "Location": {
                       "Latitude": 12.34,
                       "Longitude": 12.34,
-                      "datetime": "2019-06-13T19:08:25.000Z"
+                      "datetime": "2019-06-13T19:08:25Z"
                     }
                   }
                 ],
@@ -38,7 +37,7 @@ public class GetAempEquipmentListTest : BaseMockServerTest
                     "rel": "self"
                   }
                 ],
-                "snapshotTime": "2019-06-13T19:08:25.000Z",
+                "snapshotTime": "2019-06-13T19:08:25Z",
                 "version": "1"
               }
             }
@@ -61,14 +60,6 @@ public class GetAempEquipmentListTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetAempEquipmentListAsync(
             new GetAempEquipmentListRequest { PageNumber = "pageNumber" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<AempEquipmentGetAempEquipmentListResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

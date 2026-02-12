@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.Contacts;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Contacts;
 
@@ -45,9 +44,6 @@ public class CreateContactTest : BaseMockServerTest
             );
 
         var response = await Client.Contacts.CreateContactAsync(new CreateContactRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<ContactResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

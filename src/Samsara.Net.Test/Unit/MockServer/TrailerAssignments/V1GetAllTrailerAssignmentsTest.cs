@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.TrailerAssignments;
 
 namespace Samsara.Net.Test.Unit.MockServer.TrailerAssignments;
@@ -53,9 +52,6 @@ public class V1GetAllTrailerAssignmentsTest : BaseMockServerTest
         var response = await Client.TrailerAssignments.V1GetAllTrailerAssignmentsAsync(
             new V1GetAllTrailerAssignmentsRequest()
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<InlineResponse2007>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.DriverQrCodes;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.DriverQrCodes;
 
@@ -46,12 +45,6 @@ public class CreateDriverQrCodeTest : BaseMockServerTest
         var response = await Client.DriverQrCodes.CreateDriverQrCodeAsync(
             new DriverQrCodesCreateDriverQrCodeRequestBody { DriverId = 494123 }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<DriverQrCodesCreateDriverQrCodeResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

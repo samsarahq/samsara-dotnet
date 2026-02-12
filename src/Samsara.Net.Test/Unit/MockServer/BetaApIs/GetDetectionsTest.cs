@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -27,7 +26,7 @@ public class GetDetectionsTest : BaseMockServerTest
                       }
                     ]
                   },
-                  "createdAtTime": "2025-09-20T11:15:30.000Z",
+                  "createdAtTime": "2025-09-20T11:15:30Z",
                   "driver": {
                     "id": "driver-8b12fa3d-3c6e-4e2a-9a76-24c1f7b23d9a",
                     "name": "Alex Johnson",
@@ -48,7 +47,7 @@ public class GetDetectionsTest : BaseMockServerTest
                     }
                   ],
                   "triggerDetectionLabel": "acceleration",
-                  "updatedAtTime": "2025-09-20T11:20:45.000Z"
+                  "updatedAtTime": "2025-09-20T11:20:45Z"
                 }
               ],
               "pagination": {
@@ -76,10 +75,6 @@ public class GetDetectionsTest : BaseMockServerTest
         var response = await Client.BetaApIs.GetDetectionsAsync(
             new GetDetectionsRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<DetectionLogGetDetectionsResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

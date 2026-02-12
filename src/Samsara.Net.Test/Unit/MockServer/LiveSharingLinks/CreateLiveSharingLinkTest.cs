@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.LiveSharingLinks;
 
@@ -45,7 +44,7 @@ public class CreateLiveSharingLinkTest : BaseMockServerTest
                   "recurringRouteId": "1234"
                 },
                 "description": "Sample description",
-                "expiresAtTime": "2020-01-27T07:06:25.000Z",
+                "expiresAtTime": "2020-01-27T07:06:25Z",
                 "id": "leesdwqjx42dkvp86so",
                 "liveSharingUrl": "https://cloud.samsara.com/o/123456/fleet/viewer/address/7hf4lnu455wep22rtun",
                 "name": "Example Live Sharing Link name",
@@ -77,14 +76,6 @@ public class CreateLiveSharingLinkTest : BaseMockServerTest
                 Type = LiveSharingLinksCreateLiveSharingLinkRequestBodyType.AssetsLocation,
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<LiveSharingLinksCreateLiveSharingLinkResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

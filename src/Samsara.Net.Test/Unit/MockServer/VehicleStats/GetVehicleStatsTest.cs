@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.VehicleStats;
 
 namespace Samsara.Net.Test.Unit.MockServer.VehicleStats;
@@ -1164,9 +1163,6 @@ public class GetVehicleStatsTest : BaseMockServerTest
             );
 
         var response = await Client.VehicleStats.GetVehicleStatsAsync(new GetVehicleStatsRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<VehicleStatsResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

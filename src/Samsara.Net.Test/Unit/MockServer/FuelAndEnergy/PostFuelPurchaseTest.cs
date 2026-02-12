@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.FuelAndEnergy;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.FuelAndEnergy;
 
@@ -21,7 +21,7 @@ public class PostFuelPurchaseTest : BaseMockServerTest
                 "currency": "usd"
               },
               "transactionReference": "5454534",
-              "transactionTime": "2022-07-13T21:20:50.520Z"
+              "transactionTime": "2022-07-13T14:20:50.52-07:00"
             }
             """;
 
@@ -63,12 +63,6 @@ public class PostFuelPurchaseTest : BaseMockServerTest
                 TransactionTime = "2022-07-13T14:20:50.52-07:00",
             }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<FuelPurchasePostFuelPurchaseResponseBody>(mockResponse)
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

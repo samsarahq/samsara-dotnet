@@ -1,7 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 using Samsara.Net.Vehicles;
 
 namespace Samsara.Net.Test.Unit.MockServer.Vehicles;
@@ -104,9 +103,6 @@ public class UpdateTest : BaseMockServerTest
             );
 
         var response = await Client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<VehicleResponse>(mockResponse)).UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

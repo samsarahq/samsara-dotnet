@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel & Energy Report, please use &lt;a href="https://developers.samsara.com/reference/getfuelenergyvehiclereports" target="_blank"&gt;the Fuel and Energy API&lt;/a&gt;.
+/// The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel & Energy Report, please use <a href="https://developers.samsara.com/reference/getfuelenergyvehiclereports" target="_blank">the Fuel and Energy API</a>.
 /// </summary>
 [Serializable]
 public record VehicleStatsFuelConsumedMilliliters : IJsonOnDeserialized
@@ -18,7 +18,7 @@ public record VehicleStatsFuelConsumedMilliliters : IJsonOnDeserialized
     public required string Time { get; set; }
 
     /// <summary>
-    /// The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel & Energy Report, please use &lt;a href="https://developers.samsara.com/reference/getfuelenergyvehiclereports" target="_blank"&gt;the Fuel and Energy API&lt;/a&gt;.
+    /// The cumulative fuel consumption in milliliters for vehicles. Cumulative values always increase. This includes all fuel consumption reported by vehicles without filtering of invalid data points. For filtered fuel consumption that matches the Fuel & Energy Report, please use <a href="https://developers.samsara.com/reference/getfuelenergyvehiclereports" target="_blank">the Fuel and Energy API</a>.
     /// </summary>
     [JsonPropertyName("value")]
     public required long Value { get; set; }

@@ -1,8 +1,8 @@
 using NUnit.Framework;
 using Samsara.Net;
 using Samsara.Net.BetaApIs;
-using Samsara.Net.Core;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
@@ -27,9 +27,9 @@ public class PatchJobTest : BaseMockServerTest
                   "longitude": 34.5633749,
                   "name": "Worksite #1"
                 },
-                "createdAt": "2019-06-13T19:08:25.000Z",
+                "createdAt": "2019-06-13T19:08:25Z",
                 "customerName": "Samsara",
-                "endDate": "2019-06-13T19:08:25.000Z",
+                "endDate": "2019-06-13T19:08:25Z",
                 "fleetDevices": [
                   {
                     "id": 123456,
@@ -43,12 +43,12 @@ public class PatchJobTest : BaseMockServerTest
                     "name": "My asset"
                   }
                 ],
-                "modifiedAt": "2019-06-13T19:08:25.000Z",
+                "modifiedAt": "2019-06-13T19:08:25Z",
                 "name": "My Job Name",
                 "notes": "These are my notes",
                 "ontimeWindowAfterArrivalMs": 300000,
                 "ontimeWindowBeforeArrivalMs": 300000,
-                "startDate": "2019-06-13T19:08:25.000Z",
+                "startDate": "2019-06-13T19:08:25Z",
                 "status": "active",
                 "uuid": "8d218e6c-7a16-4f9f-90f7-cc1d93b9e596"
               },
@@ -77,10 +77,6 @@ public class PatchJobTest : BaseMockServerTest
         var response = await Client.BetaApIs.PatchJobAsync(
             new JobsPatchJobRequestBody { Id = "id", Job = new PatchJobObjectRequestBody() }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<JobsPatchJobResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

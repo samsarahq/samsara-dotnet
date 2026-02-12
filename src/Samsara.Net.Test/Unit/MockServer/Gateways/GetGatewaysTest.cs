@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Gateways;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Gateways;
 
@@ -26,7 +25,7 @@ public class GetGatewaysTest : BaseMockServerTest
                     "id": "8393848111"
                   },
                   "connectionStatus": {
-                    "lastConnected": "2019-06-13T19:08:25.000Z"
+                    "lastConnected": "2019-06-13T19:08:25Z"
                   },
                   "dataUsageLast30Days": {
                     "cellularDataUsageBytes": 9113941723943371000,
@@ -53,10 +52,6 @@ public class GetGatewaysTest : BaseMockServerTest
             );
 
         var response = await Client.Gateways.GetGatewaysAsync(new GetGatewaysRequest());
-        Assert.That(
-            response,
-            Is.EqualTo(JsonUtils.Deserialize<GatewaysGetGatewaysResponseBody>(mockResponse))
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

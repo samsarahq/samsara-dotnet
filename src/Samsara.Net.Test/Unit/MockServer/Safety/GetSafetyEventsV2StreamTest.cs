@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Samsara.Net;
-using Samsara.Net.Core;
 using Samsara.Net.Safety;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Safety;
 
@@ -35,11 +34,11 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                   "contextLabels": [
                     {
                       "authorId": "1234",
-                      "createdAtTime": "2023-01-27T07:06:25.000Z",
+                      "createdAtTime": "2023-01-27T07:06:25Z",
                       "name": "Moderate Traffic"
                     }
                   ],
-                  "createdAtTime": "2023-01-27T07:06:25.000Z",
+                  "createdAtTime": "2023-01-27T07:06:25Z",
                   "detectedStreams": [
                     {
                       "auxcamSerial": "ABC123",
@@ -61,7 +60,7 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                       }
                     ]
                   },
-                  "endMs": "2023-01-27T07:06:25.000Z",
+                  "endMs": "2023-01-27T07:06:25Z",
                   "eventState": "unknown",
                   "id": "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590,6caeb9c0-7e3d-49ae-a015-45c2f68fed4c",
                   "inboxEventUrl": "https://cloud.samsara.com/",
@@ -84,10 +83,10 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                     "maxSpeedKilometersPerHour": 3727253109057410600,
                     "postedSpeedLimitKilometersPerHour": 7584398116194781000
                   },
-                  "startMs": "2023-01-27T07:01:25.000Z",
-                  "tripEndTime": "2023-01-27T07:06:25.000Z",
-                  "tripStartTime": "2023-01-27T07:06:25.000Z",
-                  "updatedAtTime": "2023-01-27T10:04:20.000Z",
+                  "startMs": "2023-01-27T07:01:25Z",
+                  "tripEndTime": "2023-01-27T07:06:25Z",
+                  "tripStartTime": "2023-01-27T07:06:25Z",
+                  "updatedAtTime": "2023-01-27T10:04:20Z",
                   "updatedByUserId": "0987"
                 }
               ],
@@ -116,14 +115,6 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
         var response = await Client.Safety.GetSafetyEventsV2StreamAsync(
             new GetSafetyEventsV2StreamRequest { StartTime = "startTime" }
         );
-        Assert.That(
-            response,
-            Is.EqualTo(
-                    JsonUtils.Deserialize<SafetyEventsV2GetSafetyEventsV2StreamResponseBody>(
-                        mockResponse
-                    )
-                )
-                .UsingDefaults()
-        );
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }
