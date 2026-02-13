@@ -7,7 +7,7 @@ namespace Samsara.Net.DriverTrailerAssignments;
 public record TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
 {
     /// <summary>
-    /// ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+    /// ID of the driver. This can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the driver.
     /// </summary>
     [JsonPropertyName("driverId")]
     public required string DriverId { get; set; }
@@ -19,7 +19,7 @@ public record TrailerAssignmentsCreateDriverTrailerAssignmentRequestBody
     public string? StartTime { get; set; }
 
     /// <summary>
-    /// ID of the trailer. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the trailer.
+    /// ID of the trailer. This can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the trailer.
     /// </summary>
     [JsonPropertyName("trailerId")]
     public required string TrailerId { get; set; }

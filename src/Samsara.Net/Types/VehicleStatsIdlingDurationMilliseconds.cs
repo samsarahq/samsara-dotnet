@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use <a href="https://developers.samsara.com/reference/getvehicleidlingreports" target="_blank">the Idling Events API</a>.
+/// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use <a href="/api-reference/fuel-and-efficiency/idling/get-idling-events" target="_blank">the Idling Events API</a>.
 /// </summary>
 [Serializable]
 public record VehicleStatsIdlingDurationMilliseconds : IJsonOnDeserialized
@@ -18,7 +18,7 @@ public record VehicleStatsIdlingDurationMilliseconds : IJsonOnDeserialized
     public required string Time { get; set; }
 
     /// <summary>
-    /// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use <a href="https://developers.samsara.com/reference/getvehicleidlingreports" target="_blank">the Idling Events API</a>.
+    /// The cumulative idling duration in milliseconds. Cumulative values always increase. For filtering of idling duration please use <a href="/api-reference/fuel-and-efficiency/idling/get-idling-events" target="_blank">the Idling Events API</a>.
     /// </summary>
     [JsonPropertyName("value")]
     public required long Value { get; set; }
