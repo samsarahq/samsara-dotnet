@@ -29,7 +29,8 @@ public class SetCurrentDutyStatusTest : BaseMockServerTest
 
         Assert.DoesNotThrowAsync(async () =>
             await Client.HoursOfService.SetCurrentDutyStatusAsync(
-                new InlineObject1 { DriverId = 1000000, DutyStatus = "ON_DUTY" }
+                1000000,
+                new InlineObject1 { DutyStatus = "ON_DUTY" }
             )
         );
     }

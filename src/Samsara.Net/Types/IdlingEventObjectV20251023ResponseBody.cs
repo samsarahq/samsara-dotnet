@@ -75,7 +75,7 @@ public record IdlingEventObjectV20251023ResponseBody : IJsonOnDeserialized
     /// The PTO (Power Take-Off) state during the idling event.  Valid values: `active, inactive`
     /// </summary>
     [JsonPropertyName("ptoState")]
-    public required IdlingEventObjectV20251023ResponseBodyPtoState PtoState { get; set; }
+    public string PtoState { get; set; } = "active, inactive";
 
     /// <summary>
     /// The start time of the idling event in RFC 3339 format.

@@ -24,7 +24,7 @@ public record TrainingLearnerObjectResponseBody : IJsonOnDeserialized
     /// The type of the polymorphic user.  Valid values: `driver`
     /// </summary>
     [JsonPropertyName("type")]
-    public required TrainingLearnerObjectResponseBodyType Type { get; set; }
+    public string Type { get; set; } = "driver";
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -7,12 +7,6 @@ namespace Samsara.Net.Industrial;
 public record AssetDataOutputsPatchAssetDataOutputsRequestBody
 {
     /// <summary>
-    /// Asset ID
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// A map of data output IDs to values. All data outputs must belong to the same asset. Only the specified IDs will be written to.
     /// </summary>
     [JsonPropertyName("values")]

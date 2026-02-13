@@ -8,12 +8,6 @@ namespace Samsara.Net.Maintenance;
 public record DefectPatch
 {
     /// <summary>
-    /// ID of the defect.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// Resolves the defect. Must be `true`.
     /// </summary>
     [JsonPropertyName("isResolved")]

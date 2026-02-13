@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Tags;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -24,7 +23,7 @@ public class DeleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Tags.DeleteAsync(new DeleteTagsRequest { Id = "id" });
+        var response = await Client.Tags.DeleteAsync("id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

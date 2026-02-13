@@ -1,5 +1,5 @@
 {
-  "cliVersion": "3.67.0",
+  "cliVersion": "3.75.0",
   "generatorName": "fernapi/fern-csharp-sdk",
   "generatorVersion": "2.20.3",
   "generatorConfig": {
@@ -9,5 +9,5 @@
     "version-namespace-export": true,
     "enable-wire-tests": true
   },
-  "sdkVersion": "5.5.2"
+  "sdkVersion": "5.5.3"
 }

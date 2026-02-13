@@ -115,7 +115,7 @@ public class UpdateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Drivers.UpdateAsync(new UpdateDriverRequest { Id = "id" });
+        var response = await Client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -77,7 +77,8 @@ public class UpdateTrailerTest : BaseMockServerTest
             );
 
         var response = await Client.Trailers.UpdateTrailerAsync(
-            new TrailersUpdateTrailerRequestBody { Id = "id" }
+            "id",
+            new TrailersUpdateTrailerRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

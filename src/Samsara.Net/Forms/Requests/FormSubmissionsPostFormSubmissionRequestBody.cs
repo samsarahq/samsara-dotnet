@@ -41,7 +41,7 @@ public record FormSubmissionsPostFormSubmissionRequestBody
     /// Status of the form submission.  Valid values: `notStarted`
     /// </summary>
     [JsonPropertyName("status")]
-    public required FormSubmissionsPostFormSubmissionRequestBodyStatus Status { get; set; }
+    public string Status { get; set; } = "notStarted";
 
     /// <summary>
     /// Title of the form submission.

@@ -30,7 +30,7 @@ public record FuelLevelTriggerDetailsObjectResponseBody : IJsonOnDeserialized
     /// How to evaluate the threshold.  Valid values: `LESS`
     /// </summary>
     [JsonPropertyName("operation")]
-    public required FuelLevelTriggerDetailsObjectResponseBodyOperation Operation { get; set; }
+    public string Operation { get; set; } = "LESS";
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

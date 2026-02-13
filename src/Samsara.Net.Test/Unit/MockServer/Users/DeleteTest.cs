@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
-using Samsara.Net.Users;
 
 namespace Samsara.Net.Test.Unit.MockServer.Users;
 
@@ -24,7 +23,7 @@ public class DeleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Users.DeleteAsync(new DeleteUsersRequest { Id = "id" });
+        var response = await Client.Users.DeleteAsync("id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -214,7 +214,7 @@ public partial class UsersClient : IUsersClient
     }
 
     private async Task<WithRawResponse<UserResponse>> GetUserAsyncCore(
-        GetUserRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -231,10 +231,7 @@ public partial class UsersClient : IUsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "users/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
                     Headers = _headers,
                     Options = options,
                 },
@@ -279,7 +276,7 @@ public partial class UsersClient : IUsersClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        DeleteUsersRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -296,10 +293,7 @@ public partial class UsersClient : IUsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "users/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
                     Headers = _headers,
                     Options = options,
                 },
@@ -344,6 +338,7 @@ public partial class UsersClient : IUsersClient
     }
 
     private async Task<WithRawResponse<UserResponse>> UpdateUserAsyncCore(
+        string id,
         UpdateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -361,10 +356,7 @@ public partial class UsersClient : IUsersClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "users/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("users/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -492,16 +484,16 @@ public partial class UsersClient : IUsersClient
     /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Users.GetUserAsync(new GetUserRequest { Id = "id" });
+    /// await client.Users.GetUserAsync("id");
     /// </code></example>
     public WithRawResponseTask<UserResponse> GetUserAsync(
-        GetUserRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<UserResponse>(
-            GetUserAsyncCore(request, options, cancellationToken)
+            GetUserAsyncCore(id, options, cancellationToken)
         );
     }
 
@@ -513,17 +505,15 @@ public partial class UsersClient : IUsersClient
     /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Users.DeleteAsync(new DeleteUsersRequest { Id = "id" });
+    /// await client.Users.DeleteAsync("id");
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        DeleteUsersRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(
-            DeleteAsyncCore(request, options, cancellationToken)
-        );
+        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
     }
 
     /// <summary>
@@ -534,16 +524,17 @@ public partial class UsersClient : IUsersClient
     /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Users.UpdateUserAsync(new UpdateUserRequest { Id = "id" });
+    /// await client.Users.UpdateUserAsync("id", new UpdateUserRequest());
     /// </code></example>
     public WithRawResponseTask<UserResponse> UpdateUserAsync(
+        string id,
         UpdateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<UserResponse>(
-            UpdateUserAsyncCore(request, options, cancellationToken)
+            UpdateUserAsyncCore(id, request, options, cancellationToken)
         );
     }
 }

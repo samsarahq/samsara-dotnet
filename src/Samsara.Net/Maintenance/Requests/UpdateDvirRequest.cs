@@ -7,12 +7,6 @@ namespace Samsara.Net.Maintenance;
 public record UpdateDvirRequest
 {
     /// <summary>
-    /// ID of the DVIR.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// The user who is resolving the dvir.
     /// </summary>
     [JsonPropertyName("authorId")]

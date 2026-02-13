@@ -521,7 +521,7 @@ public partial class EquipmentClient : IEquipmentClient
     }
 
     private async Task<WithRawResponse<EquipmentResponse>> GetEquipmentAsyncCore(
-        GetEquipmentRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -540,7 +540,7 @@ public partial class EquipmentClient : IEquipmentClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/equipment/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -758,16 +758,16 @@ public partial class EquipmentClient : IEquipmentClient
     /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Equipment.GetEquipmentAsync(new GetEquipmentRequest { Id = "id" });
+    /// await client.Equipment.GetEquipmentAsync("id");
     /// </code></example>
     public WithRawResponseTask<EquipmentResponse> GetEquipmentAsync(
-        GetEquipmentRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<EquipmentResponse>(
-            GetEquipmentAsyncCore(request, options, cancellationToken)
+            GetEquipmentAsyncCore(id, options, cancellationToken)
         );
     }
 }

@@ -21,7 +21,7 @@ public record FormsApprovalConfigObjectResponseBody : IJsonOnDeserialized
     /// Type of approval.  Valid values: `singleApproval`
     /// </summary>
     [JsonPropertyName("type")]
-    public required FormsApprovalConfigObjectResponseBodyType Type { get; set; }
+    public string Type { get; set; } = "singleApproval";
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

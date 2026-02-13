@@ -151,6 +151,7 @@ public partial class AttributesClient : IAttributesClient
     }
 
     private async Task<WithRawResponse<AttributeExpandedResponse>> GetAttributeAsyncCore(
+        string id,
         GetAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -172,10 +173,7 @@ public partial class AttributesClient : IAttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "attributes/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
                     QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
@@ -221,6 +219,7 @@ public partial class AttributesClient : IAttributesClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
+        string id,
         DeleteAttributesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -242,10 +241,7 @@ public partial class AttributesClient : IAttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format(
-                        "attributes/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
                     QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
@@ -291,6 +287,7 @@ public partial class AttributesClient : IAttributesClient
     }
 
     private async Task<WithRawResponse<AttributeExpandedResponse>> UpdateAttributeAsyncCore(
+        string id,
         UpdateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -308,10 +305,7 @@ public partial class AttributesClient : IAttributesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "attributes/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("attributes/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -420,17 +414,19 @@ public partial class AttributesClient : IAttributesClient
     /// </summary>
     /// <example><code>
     /// await client.Attributes.GetAttributeAsync(
-    ///     new GetAttributeRequest { Id = "id", EntityType = GetAttributeRequestEntityType.Driver }
+    ///     "id",
+    ///     new GetAttributeRequest { EntityType = GetAttributeRequestEntityType.Driver }
     /// );
     /// </code></example>
     public WithRawResponseTask<AttributeExpandedResponse> GetAttributeAsync(
+        string id,
         GetAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AttributeExpandedResponse>(
-            GetAttributeAsyncCore(request, options, cancellationToken)
+            GetAttributeAsyncCore(id, request, options, cancellationToken)
         );
     }
 
@@ -443,17 +439,19 @@ public partial class AttributesClient : IAttributesClient
     /// </summary>
     /// <example><code>
     /// await client.Attributes.DeleteAsync(
-    ///     new DeleteAttributesRequest { Id = "id", EntityType = DeleteAttributesRequestEntityType.Driver }
+    ///     "id",
+    ///     new DeleteAttributesRequest { EntityType = DeleteAttributesRequestEntityType.Driver }
     /// );
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
+        string id,
         DeleteAttributesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<string>(
-            DeleteAsyncCore(request, options, cancellationToken)
+            DeleteAsyncCore(id, request, options, cancellationToken)
         );
     }
 
@@ -466,17 +464,19 @@ public partial class AttributesClient : IAttributesClient
     /// </summary>
     /// <example><code>
     /// await client.Attributes.UpdateAttributeAsync(
-    ///     new UpdateAttributeRequest { Id = "id", EntityType = UpdateAttributeRequestEntityType.Driver }
+    ///     "id",
+    ///     new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
     /// );
     /// </code></example>
     public WithRawResponseTask<AttributeExpandedResponse> UpdateAttributeAsync(
+        string id,
         UpdateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AttributeExpandedResponse>(
-            UpdateAttributeAsyncCore(request, options, cancellationToken)
+            UpdateAttributeAsyncCore(id, request, options, cancellationToken)
         );
     }
 }

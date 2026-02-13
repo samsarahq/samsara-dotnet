@@ -51,12 +51,8 @@ public class V1GetDriverSafetyScoreTest : BaseMockServerTest
             );
 
         var response = await Client.Safety.V1GetDriverSafetyScoreAsync(
-            new V1GetDriverSafetyScoreRequest
-            {
-                DriverId = 1000000,
-                StartMs = 1000000,
-                EndMs = 1000000,
-            }
+            1000000,
+            new V1GetDriverSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

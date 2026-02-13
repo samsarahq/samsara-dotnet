@@ -12,7 +12,7 @@ public partial interface IAssetsClient
     /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        DeleteAssetsRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

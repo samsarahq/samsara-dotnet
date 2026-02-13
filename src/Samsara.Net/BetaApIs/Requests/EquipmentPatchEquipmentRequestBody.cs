@@ -8,12 +8,6 @@ namespace Samsara.Net.BetaApIs;
 public record EquipmentPatchEquipmentRequestBody
 {
     /// <summary>
-    /// The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// List of attributes associated with the entity
     /// </summary>
     [JsonPropertyName("attributes")]

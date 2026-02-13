@@ -39,7 +39,7 @@ public partial interface IAddressesClient
     /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<AddressResponse> GetAsync(
-        GetAddressesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -52,7 +52,7 @@ public partial interface IAddressesClient
     /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        DeleteAddressesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -65,6 +65,7 @@ public partial interface IAddressesClient
     /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<AddressResponse> UpdateAsync(
+        string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

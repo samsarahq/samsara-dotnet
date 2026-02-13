@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Gateways;
 using Samsara.Net.Test.Unit.MockServer;
 
 namespace Samsara.Net.Test.Unit.MockServer.Gateways;
@@ -14,8 +13,6 @@ public class DeleteGatewayTest : BaseMockServerTest
             .Given(WireMock.RequestBuilders.Request.Create().WithPath("/gateways/id").UsingDelete())
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Gateways.DeleteGatewayAsync(new DeleteGatewayRequest { Id = "id" })
-        );
+        Assert.DoesNotThrowAsync(async () => await Client.Gateways.DeleteGatewayAsync("id"));
     }
 }

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
 using Samsara.Net.Test.Unit.MockServer;
 
 namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
@@ -19,8 +18,6 @@ public class LockVehicleTest : BaseMockServerTest
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.PreviewApIs.LockVehicleAsync(new LockVehicleRequest { Id = "id" })
-        );
+        Assert.DoesNotThrowAsync(async () => await Client.PreviewApIs.LockVehicleAsync("id"));
     }
 }

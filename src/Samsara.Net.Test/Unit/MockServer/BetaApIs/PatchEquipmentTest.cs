@@ -75,7 +75,8 @@ public class PatchEquipmentTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.PatchEquipmentAsync(
-            new EquipmentPatchEquipmentRequestBody { Id = "id" }
+            "id",
+            new EquipmentPatchEquipmentRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

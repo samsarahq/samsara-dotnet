@@ -29,7 +29,7 @@ public partial interface IVehiclesClient
     /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<VehicleResponse> GetAsync(
-        GetVehiclesRequest request,
+        string id,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -48,6 +48,7 @@ public partial interface IVehiclesClient
     /// To use this endpoint, select **Write Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<VehicleResponse> UpdateAsync(
+        string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

@@ -8,12 +8,6 @@ namespace Samsara.Net.Users;
 public record UpdateUserRequest
 {
     /// <summary>
-    /// Unique identifier for the user.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// The authentication type the user uses to authenticate. To use SAML this organization must have a configured SAML integration. Valid values: `default`, `saml`.
     /// </summary>
     [JsonPropertyName("authType")]
