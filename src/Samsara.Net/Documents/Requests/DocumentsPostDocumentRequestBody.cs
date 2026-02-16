@@ -14,7 +14,7 @@ public record DocumentsPostDocumentRequestBody
     public required string DocumentTypeId { get; set; }
 
     /// <summary>
-    /// ID of the driver. Can be either unique Samsara ID or an [external ID](/docs/external-ids) for the driver.
+    /// ID of the driver. Can be either unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
     /// </summary>
     [JsonPropertyName("driverId")]
     public required string DriverId { get; set; }
@@ -38,7 +38,7 @@ public record DocumentsPostDocumentRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// ID of the route stop. Can be either unique Samsara ID or an [external ID](/docs/external-ids) for the route stop.
+    /// ID of the route stop. Can be either unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the route stop.
     /// </summary>
     [JsonPropertyName("routeStopId")]
     public string? RouteStopId { get; set; }
@@ -50,7 +50,7 @@ public record DocumentsPostDocumentRequestBody
     public DocumentsPostDocumentRequestBodyState? State { get; set; }
 
     /// <summary>
-    /// ID of the vehicle. Can be either unique Samsara ID or an [external ID](/docs/external-ids) for the vehicle.
+    /// ID of the vehicle. Can be either unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
     /// </summary>
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }

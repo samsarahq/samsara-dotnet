@@ -7,6 +7,12 @@ namespace Samsara.Net.Contacts;
 public record UpdateContactRequest
 {
     /// <summary>
+    /// Unique identifier for the contact.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
     /// Email address of the contact.
     /// </summary>
     [JsonPropertyName("email")]

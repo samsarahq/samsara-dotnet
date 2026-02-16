@@ -8,6 +8,12 @@ namespace Samsara.Net.Addresses;
 public record UpdateAddressRequest
 {
     /// <summary>
+    /// ID of the Address. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
     /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
     /// </summary>
     [JsonPropertyName("addressTypes")]
@@ -20,7 +26,7 @@ public record UpdateAddressRequest
     public IEnumerable<string>? ContactIds { get; set; }
 
     /// <summary>
-    /// The [external IDs](/docs/external-ids) for the given object.
+    /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     /// </summary>
     [JsonPropertyName("externalIds")]
     public Dictionary<string, string>? ExternalIds { get; set; }

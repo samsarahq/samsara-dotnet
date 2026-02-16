@@ -99,9 +99,9 @@ public class UpdateHubLocationTest : BaseMockServerTest
             );
 
         var response = await Client.Hubs.UpdateHubLocationAsync(
-            "id",
             new HubLocationsUpdateHubLocationRequestBody
             {
+                Id = "id",
                 Data = new UpdateHubLocationRequestBodyRequestBody
                 {
                     Address = "123 Industrial Blvd, Los Angeles, CA 90210, US",

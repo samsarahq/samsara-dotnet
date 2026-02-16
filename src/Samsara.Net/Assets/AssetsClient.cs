@@ -16,9 +16,9 @@ public partial class AssetsClient : IAssetsClient
     /// <summary>
     /// List all assets. Up to 300 assets will be returned per page.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -488,7 +488,6 @@ public partial class AssetsClient : IAssetsClient
     private async Task<
         WithRawResponse<IEnumerable<V1AssetLocationResponseItem>>
     > V1GetAssetLocationAsyncCore(
-        long assetId,
         V1GetAssetLocationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -513,7 +512,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/assets/{0}/locations",
-                        ValueConvert.ToPathParameterString(assetId)
+                        ValueConvert.ToPathParameterString(request.AssetId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -562,7 +561,6 @@ public partial class AssetsClient : IAssetsClient
     }
 
     private async Task<WithRawResponse<V1AssetReeferResponse>> V1GetAssetReeferAsyncCore(
-        long assetId,
         V1GetAssetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -587,7 +585,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/assets/{0}/reefer",
-                        ValueConvert.ToPathParameterString(assetId)
+                        ValueConvert.ToPathParameterString(request.AssetId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -636,9 +634,9 @@ public partial class AssetsClient : IAssetsClient
     /// <summary>
     /// List all assets. Up to 300 assets will be returned per page.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -683,9 +681,9 @@ public partial class AssetsClient : IAssetsClient
     /// <summary>
     /// Create a new asset.
     ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -707,9 +705,9 @@ public partial class AssetsClient : IAssetsClient
     /// <summary>
     /// Delete an existing asset.
     ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -796,9 +794,9 @@ public partial class AssetsClient : IAssetsClient
     /// <summary>
     /// Update an existing asset.
     ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -829,7 +827,7 @@ public partial class AssetsClient : IAssetsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAllAssetCurrentLocationsAsync(new V1GetAllAssetCurrentLocationsRequest());
@@ -857,7 +855,7 @@ public partial class AssetsClient : IAssetsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAssetsReefersAsync(
@@ -887,23 +885,26 @@ public partial class AssetsClient : IAssetsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAssetLocationAsync(
-    ///     1000000,
-    ///     new V1GetAssetLocationRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetAssetLocationRequest
+    ///     {
+    ///         AssetId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<IEnumerable<V1AssetLocationResponseItem>> V1GetAssetLocationAsync(
-        long assetId,
         V1GetAssetLocationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IEnumerable<V1AssetLocationResponseItem>>(
-            V1GetAssetLocationAsyncCore(assetId, request, options, cancellationToken)
+            V1GetAssetLocationAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -919,31 +920,34 @@ public partial class AssetsClient : IAssetsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAssetReeferAsync(
-    ///     1000000,
-    ///     new V1GetAssetReeferRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetAssetReeferRequest
+    ///     {
+    ///         AssetId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1AssetReeferResponse> V1GetAssetReeferAsync(
-        long assetId,
         V1GetAssetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1AssetReeferResponse>(
-            V1GetAssetReeferAsyncCore(assetId, request, options, cancellationToken)
+            V1GetAssetReeferAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <example><code>
-    /// await client.Assets.GetAsync("id");
+    /// await client.Assets.GetAsync(new GetAssetsRequest { Id = "id" });
     /// </code></example>
     public async Task GetAsync(
-        string id,
+        GetAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -960,7 +964,10 @@ public partial class AssetsClient : IAssetsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("assets/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "assets/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -982,10 +989,10 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <example><code>
-    /// await client.Assets.UpdateAsync("id");
+    /// await client.Assets.UpdateAsync(new UpdateAssetsRequest { Id = "id" });
     /// </code></example>
     public async Task UpdateAsync(
-        string id,
+        UpdateAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -1002,7 +1009,10 @@ public partial class AssetsClient : IAssetsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("assets/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "assets/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },

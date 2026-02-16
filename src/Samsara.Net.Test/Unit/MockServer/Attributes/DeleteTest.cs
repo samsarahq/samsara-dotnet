@@ -1,7 +1,6 @@
 using NUnit.Framework;
 using Samsara.Net.Attributes;
 using Samsara.Net.Test.Unit.MockServer;
-using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Attributes;
 
@@ -9,12 +8,8 @@ namespace Samsara.Net.Test.Unit.MockServer.Attributes;
 public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
-    public async Task MockServerTest()
+    public void MockServerTest()
     {
-        const string mockResponse = """
-            ""
-            """;
-
         Server
             .Given(
                 WireMock
@@ -23,17 +18,16 @@ public class DeleteTest : BaseMockServerTest
                     .WithParam("entityType", "driver")
                     .UsingDelete()
             )
-            .RespondWith(
-                WireMock
-                    .ResponseBuilders.Response.Create()
-                    .WithStatusCode(200)
-                    .WithBody(mockResponse)
-            );
+            .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        var response = await Client.Attributes.DeleteAsync(
-            "id",
-            new DeleteAttributesRequest { EntityType = DeleteAttributesRequestEntityType.Driver }
+        Assert.DoesNotThrowAsync(async () =>
+            await Client.Attributes.DeleteAsync(
+                new DeleteAttributesRequest
+                {
+                    Id = "id",
+                    EntityType = DeleteAttributesRequestEntityType.Driver,
+                }
+            )
         );
-        JsonAssert.AreEqual(response, mockResponse);
     }
 }

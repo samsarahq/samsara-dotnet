@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Documents;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -84,7 +85,9 @@ public class GetDocumentTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Documents.GetDocumentAsync("id");
+        var response = await Client.Documents.GetDocumentAsync(
+            new GetDocumentRequest { Id = "id" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

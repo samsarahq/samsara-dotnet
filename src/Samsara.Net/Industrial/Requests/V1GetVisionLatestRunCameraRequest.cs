@@ -7,6 +7,12 @@ namespace Samsara.Net.Industrial;
 public record V1GetVisionLatestRunCameraRequest
 {
     /// <summary>
+    /// The camera_id should be valid for the given accessToken.
+    /// </summary>
+    [JsonIgnore]
+    public required long CameraId { get; set; }
+
+    /// <summary>
     /// The configured program's ID on the camera.
     /// </summary>
     [JsonIgnore]

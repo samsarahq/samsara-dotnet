@@ -24,7 +24,7 @@ public record ReadingDatapointRequestBody : IJsonOnDeserialized
     /// The type of the entity (e.g., asset).  Valid values: `asset`
     /// </summary>
     [JsonPropertyName("entityType")]
-    public string EntityType { get; set; } = "asset";
+    public required ReadingDatapointRequestBodyEntityType EntityType { get; set; }
 
     /// <summary>
     /// The timestamp of when the reading happened in RFC 3339 format. happenedAtTime must not be older than the last known reading for the same series.

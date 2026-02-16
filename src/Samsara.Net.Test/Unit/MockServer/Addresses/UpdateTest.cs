@@ -88,7 +88,7 @@ public class UpdateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
+        var response = await Client.Addresses.UpdateAsync(new UpdateAddressRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }
