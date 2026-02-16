@@ -31,8 +31,11 @@ public class DeleteTest : BaseMockServerTest
             );
 
         var response = await Client.Attributes.DeleteAsync(
-            "id",
-            new DeleteAttributesRequest { EntityType = DeleteAttributesRequestEntityType.Driver }
+            new DeleteAttributesRequest
+            {
+                Id = "id",
+                EntityType = DeleteAttributesRequestEntityType.Driver,
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

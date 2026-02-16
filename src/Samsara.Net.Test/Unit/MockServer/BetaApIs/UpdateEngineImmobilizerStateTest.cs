@@ -35,9 +35,9 @@ public class UpdateEngineImmobilizerStateTest : BaseMockServerTest
 
         Assert.DoesNotThrowAsync(async () =>
             await Client.BetaApIs.UpdateEngineImmobilizerStateAsync(
-                1000000,
                 new EngineImmobilizerUpdateEngineImmobilizerStateRequestBody
                 {
+                    Id = 1000000,
                     RelayStates =
                         new List<UpdateEngineImmobilizerRelayStateRequestBodyRequestBody>()
                         {

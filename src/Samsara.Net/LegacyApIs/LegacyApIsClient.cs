@@ -667,7 +667,6 @@ public partial class LegacyApIsClient : ILegacyApIsClient
     private async Task<
         WithRawResponse<V1VehicleHarshEventResponse>
     > V1GetVehicleHarshEventAsyncCore(
-        long vehicleId,
         V1GetVehicleHarshEventRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -691,7 +690,7 @@ public partial class LegacyApIsClient : ILegacyApIsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/vehicles/{0}/safety/harsh_event",
-                        ValueConvert.ToPathParameterString(vehicleId)
+                        ValueConvert.ToPathParameterString(request.VehicleId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -940,19 +939,17 @@ public partial class LegacyApIsClient : ILegacyApIsClient
     /// </summary>
     /// <example><code>
     /// await client.LegacyApIs.V1GetVehicleHarshEventAsync(
-    ///     1000000,
-    ///     new V1GetVehicleHarshEventRequest { Timestamp = 1000000 }
+    ///     new V1GetVehicleHarshEventRequest { VehicleId = 1000000, Timestamp = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1VehicleHarshEventResponse> V1GetVehicleHarshEventAsync(
-        long vehicleId,
         V1GetVehicleHarshEventRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1VehicleHarshEventResponse>(
-            V1GetVehicleHarshEventAsyncCore(vehicleId, request, options, cancellationToken)
+            V1GetVehicleHarshEventAsyncCore(request, options, cancellationToken)
         );
     }
 }

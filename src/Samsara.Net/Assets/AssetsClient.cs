@@ -488,7 +488,6 @@ public partial class AssetsClient : IAssetsClient
     private async Task<
         WithRawResponse<IEnumerable<V1AssetLocationResponseItem>>
     > V1GetAssetLocationAsyncCore(
-        long assetId,
         V1GetAssetLocationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -513,7 +512,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/assets/{0}/locations",
-                        ValueConvert.ToPathParameterString(assetId)
+                        ValueConvert.ToPathParameterString(request.AssetId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -562,7 +561,6 @@ public partial class AssetsClient : IAssetsClient
     }
 
     private async Task<WithRawResponse<V1AssetReeferResponse>> V1GetAssetReeferAsyncCore(
-        long assetId,
         V1GetAssetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -587,7 +585,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/assets/{0}/reefer",
-                        ValueConvert.ToPathParameterString(assetId)
+                        ValueConvert.ToPathParameterString(request.AssetId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -891,19 +889,22 @@ public partial class AssetsClient : IAssetsClient
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAssetLocationAsync(
-    ///     1000000,
-    ///     new V1GetAssetLocationRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetAssetLocationRequest
+    ///     {
+    ///         AssetId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<IEnumerable<V1AssetLocationResponseItem>> V1GetAssetLocationAsync(
-        long assetId,
         V1GetAssetLocationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IEnumerable<V1AssetLocationResponseItem>>(
-            V1GetAssetLocationAsyncCore(assetId, request, options, cancellationToken)
+            V1GetAssetLocationAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -923,27 +924,30 @@ public partial class AssetsClient : IAssetsClient
     /// </summary>
     /// <example><code>
     /// await client.Assets.V1GetAssetReeferAsync(
-    ///     1000000,
-    ///     new V1GetAssetReeferRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetAssetReeferRequest
+    ///     {
+    ///         AssetId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1AssetReeferResponse> V1GetAssetReeferAsync(
-        long assetId,
         V1GetAssetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1AssetReeferResponse>(
-            V1GetAssetReeferAsyncCore(assetId, request, options, cancellationToken)
+            V1GetAssetReeferAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <example><code>
-    /// await client.Assets.GetAsync("id");
+    /// await client.Assets.GetAsync(new GetAssetsRequest { Id = "id" });
     /// </code></example>
     public async Task GetAsync(
-        string id,
+        GetAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -960,7 +964,10 @@ public partial class AssetsClient : IAssetsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("assets/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "assets/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -982,10 +989,10 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <example><code>
-    /// await client.Assets.UpdateAsync("id");
+    /// await client.Assets.UpdateAsync(new UpdateAssetsRequest { Id = "id" });
     /// </code></example>
     public async Task UpdateAsync(
-        string id,
+        UpdateAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -1002,7 +1009,10 @@ public partial class AssetsClient : IAssetsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("assets/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "assets/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },

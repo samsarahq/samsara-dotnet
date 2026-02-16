@@ -53,7 +53,6 @@ public partial interface ISafetyClient
     /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1DriverSafetyScoreResponse> V1GetDriverSafetyScoreAsync(
-        long driverId,
         V1GetDriverSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -76,7 +75,6 @@ public partial interface ISafetyClient
     /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1VehicleSafetyScoreResponse> V1GetVehicleSafetyScoreAsync(
-        long vehicleId,
         V1GetVehicleSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

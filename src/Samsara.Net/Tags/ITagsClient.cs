@@ -38,7 +38,7 @@ public partial interface ITagsClient
     /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<TagResponse> GetTagAsync(
-        string id,
+        GetTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -51,7 +51,6 @@ public partial interface ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<TagResponse> ReplaceTagAsync(
-        string id,
         ReplaceTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -65,7 +64,7 @@ public partial interface ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteTagsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -82,7 +81,6 @@ public partial interface ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<TagResponse> PatchTagAsync(
-        string id,
         PatchTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

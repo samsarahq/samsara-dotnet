@@ -386,7 +386,7 @@ public partial class DocumentsClient : IDocumentsClient
     }
 
     private async Task<WithRawResponse<DocumentPdfQueryResponse>> GetDocumentPdfAsyncCore(
-        string id,
+        GetDocumentPdfRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -405,7 +405,7 @@ public partial class DocumentsClient : IDocumentsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/documents/pdfs/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -451,7 +451,7 @@ public partial class DocumentsClient : IDocumentsClient
     }
 
     private async Task<WithRawResponse<DocumentsGetDocumentResponseBody>> GetDocumentAsyncCore(
-        string id,
+        GetDocumentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -470,7 +470,7 @@ public partial class DocumentsClient : IDocumentsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/documents/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -660,16 +660,16 @@ public partial class DocumentsClient : IDocumentsClient
     /// To use this endpoint, select **Read Documents** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Documents.GetDocumentPdfAsync("id");
+    /// await client.Documents.GetDocumentPdfAsync(new GetDocumentPdfRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<DocumentPdfQueryResponse> GetDocumentPdfAsync(
-        string id,
+        GetDocumentPdfRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DocumentPdfQueryResponse>(
-            GetDocumentPdfAsyncCore(id, options, cancellationToken)
+            GetDocumentPdfAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -684,16 +684,16 @@ public partial class DocumentsClient : IDocumentsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Documents.GetDocumentAsync("id");
+    /// await client.Documents.GetDocumentAsync(new GetDocumentRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<DocumentsGetDocumentResponseBody> GetDocumentAsync(
-        string id,
+        GetDocumentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DocumentsGetDocumentResponseBody>(
-            GetDocumentAsyncCore(id, options, cancellationToken)
+            GetDocumentAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -708,10 +708,10 @@ public partial class DocumentsClient : IDocumentsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Documents.DeleteDocumentAsync("id");
+    /// await client.Documents.DeleteDocumentAsync(new DeleteDocumentRequest { Id = "id" });
     /// </code></example>
     public async Task DeleteDocumentAsync(
-        string id,
+        DeleteDocumentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -730,7 +730,7 @@ public partial class DocumentsClient : IDocumentsClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/documents/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,

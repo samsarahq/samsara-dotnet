@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
+using Samsara.Net.Users;
 
 namespace Samsara.Net.Test.Unit.MockServer.Users;
 
@@ -35,7 +36,7 @@ public class GetUserTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Users.GetUserAsync("id");
+        var response = await Client.Users.GetUserAsync(new GetUserRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

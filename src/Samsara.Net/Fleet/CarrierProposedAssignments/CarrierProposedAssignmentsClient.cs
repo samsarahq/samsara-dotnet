@@ -14,7 +14,7 @@ public partial class CarrierProposedAssignmentsClient : ICarrierProposedAssignme
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
+        DeleteCarrierProposedAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -33,7 +33,7 @@ public partial class CarrierProposedAssignmentsClient : ICarrierProposedAssignme
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/carrier-proposed-assignments/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -86,14 +86,18 @@ public partial class CarrierProposedAssignmentsClient : ICarrierProposedAssignme
     /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
+    /// await client.Fleet.CarrierProposedAssignments.DeleteAsync(
+    ///     new DeleteCarrierProposedAssignmentsRequest { Id = "id" }
+    /// );
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteCarrierProposedAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
+        return new WithRawResponseTask<string>(
+            DeleteAsyncCore(request, options, cancellationToken)
+        );
     }
 }

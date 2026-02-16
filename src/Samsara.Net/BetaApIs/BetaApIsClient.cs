@@ -233,7 +233,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     private async Task<
         WithRawResponse<AempEquipmentGetAempEquipmentListResponseBody>
     > GetAempEquipmentListAsyncCore(
-        string pageNumber,
+        GetAempEquipmentListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -252,7 +252,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "beta/aemp/Fleet/{0}",
-                        ValueConvert.ToPathParameterString(pageNumber)
+                        ValueConvert.ToPathParameterString(request.PageNumber)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -408,7 +408,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     private async Task<
         WithRawResponse<EquipmentPatchEquipmentResponseBody>
     > PatchEquipmentAsyncCore(
-        string id,
         EquipmentPatchEquipmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -428,7 +427,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "beta/fleet/equipment/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -1682,7 +1681,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     private async Task<
         WithRawResponse<FunctionsStartFunctionRunResponseBody>
     > StartFunctionRunAsyncCore(
-        string name,
         FunctionsStartFunctionRunRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -1702,7 +1700,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "functions/{0}/runs",
-                        ValueConvert.ToPathParameterString(name)
+                        ValueConvert.ToPathParameterString(request.Name)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -4175,16 +4173,18 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.GetAempEquipmentListAsync("pageNumber");
+    /// await client.BetaApIs.GetAempEquipmentListAsync(
+    ///     new GetAempEquipmentListRequest { PageNumber = "pageNumber" }
+    /// );
     /// </code></example>
     public WithRawResponseTask<AempEquipmentGetAempEquipmentListResponseBody> GetAempEquipmentListAsync(
-        string pageNumber,
+        GetAempEquipmentListRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AempEquipmentGetAempEquipmentListResponseBody>(
-            GetAempEquipmentListAsyncCore(pageNumber, options, cancellationToken)
+            GetAempEquipmentListAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -4226,17 +4226,16 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.PatchEquipmentAsync("id", new EquipmentPatchEquipmentRequestBody());
+    /// await client.BetaApIs.PatchEquipmentAsync(new EquipmentPatchEquipmentRequestBody { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<EquipmentPatchEquipmentResponseBody> PatchEquipmentAsync(
-        string id,
         EquipmentPatchEquipmentRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<EquipmentPatchEquipmentResponseBody>(
-            PatchEquipmentAsyncCore(id, request, options, cancellationToken)
+            PatchEquipmentAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -4365,9 +4364,9 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// </summary>
     /// <example><code>
     /// await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
-    ///     1000000,
     ///     new EngineImmobilizerUpdateEngineImmobilizerStateRequestBody
     ///     {
+    ///         Id = 1000000,
     ///         RelayStates = new List&lt;UpdateEngineImmobilizerRelayStateRequestBodyRequestBody&gt;()
     ///         {
     ///             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
@@ -4380,7 +4379,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// );
     /// </code></example>
     public async Task UpdateEngineImmobilizerStateAsync(
-        long id,
         EngineImmobilizerUpdateEngineImmobilizerStateRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -4400,7 +4398,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "beta/fleet/vehicles/{0}/immobilizer",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -4647,22 +4645,21 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// </summary>
     /// <example><code>
     /// await client.BetaApIs.StartFunctionRunAsync(
-    ///     "name",
     ///     new FunctionsStartFunctionRunRequestBody
     ///     {
+    ///         Name = "name",
     ///         ParamsOverride = new FunctionsStartFunctionRunRequestBodyParamsOverride(),
     ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<FunctionsStartFunctionRunResponseBody> StartFunctionRunAsync(
-        string name,
         FunctionsStartFunctionRunRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<FunctionsStartFunctionRunResponseBody>(
-            StartFunctionRunAsyncCore(name, request, options, cancellationToken)
+            StartFunctionRunAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -5219,7 +5216,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///             new ReadingDatapointRequestBody
     ///             {
     ///                 EntityId = "123451234512345",
-    ///                 EntityType = "asset",
+    ///                 EntityType = ReadingDatapointRequestBodyEntityType.Asset,
     ///                 HappenedAtTime = "2023-10-27T10:00:00Z",
     ///                 ReadingId = "airInletPressure",
     ///                 Value = new Dictionary&lt;string, object?&gt;() { { "key", "value" } },

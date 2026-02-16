@@ -319,7 +319,6 @@ public partial class RoutesClient : IRoutesClient
     }
 
     private async Task<WithRawResponse<RoutesFetchRouteResponseBody>> FetchRouteAsyncCore(
-        string id,
         FetchRouteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -343,7 +342,7 @@ public partial class RoutesClient : IRoutesClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/routes/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -424,7 +423,6 @@ public partial class RoutesClient : IRoutesClient
     }
 
     private async Task<WithRawResponse<RoutesPatchRouteResponseBody>> PatchRouteAsyncCore(
-        string id,
         RoutesPatchRouteRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -444,7 +442,7 @@ public partial class RoutesClient : IRoutesClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/routes/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -730,17 +728,16 @@ public partial class RoutesClient : IRoutesClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Routes.FetchRouteAsync("id", new FetchRouteRequest());
+    /// await client.Routes.FetchRouteAsync(new FetchRouteRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<RoutesFetchRouteResponseBody> FetchRouteAsync(
-        string id,
         FetchRouteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<RoutesFetchRouteResponseBody>(
-            FetchRouteAsyncCore(id, request, options, cancellationToken)
+            FetchRouteAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -755,10 +752,10 @@ public partial class RoutesClient : IRoutesClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Routes.DeleteRouteAsync("id");
+    /// await client.Routes.DeleteRouteAsync(new DeleteRouteRequest { Id = "id" });
     /// </code></example>
     public async Task DeleteRouteAsync(
-        string id,
+        DeleteRouteRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -777,7 +774,7 @@ public partial class RoutesClient : IRoutesClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/routes/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -846,17 +843,16 @@ public partial class RoutesClient : IRoutesClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Routes.PatchRouteAsync("id", new RoutesPatchRouteRequestBody());
+    /// await client.Routes.PatchRouteAsync(new RoutesPatchRouteRequestBody { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<RoutesPatchRouteResponseBody> PatchRouteAsync(
-        string id,
         RoutesPatchRouteRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<RoutesPatchRouteResponseBody>(
-            PatchRouteAsyncCore(id, request, options, cancellationToken)
+            PatchRouteAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -899,10 +895,11 @@ public partial class RoutesClient : IRoutesClient
     /// To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Routes.V1DeleteDispatchRouteByIdAsync("route_id_or_external_id", new InlineObject());
+    /// await client.Routes.V1DeleteDispatchRouteByIdAsync(
+    ///     new InlineObject { RouteIdOrExternalId = "route_id_or_external_id" }
+    /// );
     /// </code></example>
     public async Task V1DeleteDispatchRouteByIdAsync(
-        string routeIdOrExternalId,
         InlineObject request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -922,7 +919,7 @@ public partial class RoutesClient : IRoutesClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "v1/fleet/dispatch/routes/{0}",
-                        ValueConvert.ToPathParameterString(routeIdOrExternalId)
+                        ValueConvert.ToPathParameterString(request.RouteIdOrExternalId)
                     ),
                     Body = request,
                     Headers = _headers,

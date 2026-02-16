@@ -123,7 +123,7 @@ await client.Addresses.CreateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">GetAsync</a>(id) -> WithRawResponseTask&lt;AddressResponse&gt;</code></summary>
+<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">GetAsync</a>(GetAddressesRequest { ... }) -> WithRawResponseTask&lt;AddressResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -154,7 +154,7 @@ To use this endpoint, select **Read Addresses** under the Addresses category whe
 <dd>
 
 ```csharp
-await client.Addresses.GetAsync("id");
+await client.Addresses.GetAsync(new GetAddressesRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -169,7 +169,7 @@ await client.Addresses.GetAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the Address. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`
+**request:** `GetAddressesRequest` 
     
 </dd>
 </dl>
@@ -181,7 +181,7 @@ await client.Addresses.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">DeleteAsync</a>(DeleteAddressesRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -212,7 +212,7 @@ To use this endpoint, select **Write Addresses** under the Addresses category wh
 <dd>
 
 ```csharp
-await client.Addresses.DeleteAsync("id");
+await client.Addresses.DeleteAsync(new DeleteAddressesRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -227,7 +227,7 @@ await client.Addresses.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the Address. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`
+**request:** `DeleteAddressesRequest` 
     
 </dd>
 </dl>
@@ -239,7 +239,7 @@ await client.Addresses.DeleteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">UpdateAsync</a>(id, UpdateAddressRequest { ... }) -> WithRawResponseTask&lt;AddressResponse&gt;</code></summary>
+<details><summary><code>client.Addresses.<a href="/src/Samsara.Net/Addresses/AddressesClient.cs">UpdateAsync</a>(UpdateAddressRequest { ... }) -> WithRawResponseTask&lt;AddressResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -270,7 +270,7 @@ To use this endpoint, select **Write Addresses** under the Addresses category wh
 <dd>
 
 ```csharp
-await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
+await client.Addresses.UpdateAsync(new UpdateAddressRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -281,14 +281,6 @@ await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the Address. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -1051,7 +1043,7 @@ await client.Assets.V1GetAssetsReefersAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">V1GetAssetLocationAsync</a>(assetId, V1GetAssetLocationRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1AssetLocationResponseItem&gt;&gt;</code></summary>
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">V1GetAssetLocationAsync</a>(V1GetAssetLocationRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1AssetLocationResponseItem&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1090,8 +1082,12 @@ To use this endpoint, select **Read Equipment Statistics** under the Equipment c
 
 ```csharp
 await client.Assets.V1GetAssetLocationAsync(
-    1000000,
-    new V1GetAssetLocationRequest { StartMs = 1000000, EndMs = 1000000 }
+    new V1GetAssetLocationRequest
+    {
+        AssetId = 1000000,
+        StartMs = 1000000,
+        EndMs = 1000000,
+    }
 );
 ```
 </dd>
@@ -1103,14 +1099,6 @@ await client.Assets.V1GetAssetLocationAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**assetId:** `long` — ID of the asset. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -1127,7 +1115,7 @@ await client.Assets.V1GetAssetLocationAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">V1GetAssetReeferAsync</a>(assetId, V1GetAssetReeferRequest { ... }) -> WithRawResponseTask&lt;V1AssetReeferResponse&gt;</code></summary>
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">V1GetAssetReeferAsync</a>(V1GetAssetReeferRequest { ... }) -> WithRawResponseTask&lt;V1AssetReeferResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1166,8 +1154,12 @@ To use this endpoint, select **Read Trailers** under the Trailers category when 
 
 ```csharp
 await client.Assets.V1GetAssetReeferAsync(
-    1000000,
-    new V1GetAssetReeferRequest { StartMs = 1000000, EndMs = 1000000 }
+    new V1GetAssetReeferRequest
+    {
+        AssetId = 1000000,
+        StartMs = 1000000,
+        EndMs = 1000000,
+    }
 );
 ```
 </dd>
@@ -1179,14 +1171,6 @@ await client.Assets.V1GetAssetReeferAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**assetId:** `long` — ID of the asset. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -1203,7 +1187,7 @@ await client.Assets.V1GetAssetReeferAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">GetAsync</a>(id)</code></summary>
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">GetAsync</a>(GetAssetsRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -1216,7 +1200,7 @@ await client.Assets.V1GetAssetReeferAsync(
 <dd>
 
 ```csharp
-await client.Assets.GetAsync("id");
+await client.Assets.GetAsync(new GetAssetsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -1231,7 +1215,7 @@ await client.Assets.GetAsync("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**request:** `GetAssetsRequest` 
     
 </dd>
 </dl>
@@ -1243,7 +1227,7 @@ await client.Assets.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">UpdateAsync</a>(id)</code></summary>
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">UpdateAsync</a>(UpdateAssetsRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -1256,7 +1240,7 @@ await client.Assets.GetAsync("id");
 <dd>
 
 ```csharp
-await client.Assets.UpdateAsync("id");
+await client.Assets.UpdateAsync(new UpdateAssetsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -1271,7 +1255,7 @@ await client.Assets.UpdateAsync("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**request:** `UpdateAssetsRequest` 
     
 </dd>
 </dl>
@@ -1412,7 +1396,7 @@ await client.BetaApIs.GetAssetsInputsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetAempEquipmentListAsync</a>(pageNumber) -> WithRawResponseTask&lt;AempEquipmentGetAempEquipmentListResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetAempEquipmentListAsync</a>(GetAempEquipmentListRequest { ... }) -> WithRawResponseTask&lt;AempEquipmentGetAempEquipmentListResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1446,7 +1430,9 @@ To use this endpoint, select **Read AEMP** under the Equipment category when cre
 <dd>
 
 ```csharp
-await client.BetaApIs.GetAempEquipmentListAsync("pageNumber");
+await client.BetaApIs.GetAempEquipmentListAsync(
+    new GetAempEquipmentListRequest { PageNumber = "pageNumber" }
+);
 ```
 </dd>
 </dl>
@@ -1461,7 +1447,7 @@ await client.BetaApIs.GetAempEquipmentListAsync("pageNumber");
 <dl>
 <dd>
 
-**pageNumber:** `string` — The number corresponding to a specific page of paginated results, defaulting to the first page if not provided. The default page size is 100 records.
+**request:** `GetAempEquipmentListRequest` 
     
 </dd>
 </dl>
@@ -1535,7 +1521,7 @@ await client.BetaApIs.GetDriverEfficiencyAsync(new GetDriverEfficiencyRequest())
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PatchEquipmentAsync</a>(id, EquipmentPatchEquipmentRequestBody { ... }) -> WithRawResponseTask&lt;EquipmentPatchEquipmentResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PatchEquipmentAsync</a>(EquipmentPatchEquipmentRequestBody { ... }) -> WithRawResponseTask&lt;EquipmentPatchEquipmentResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -1571,7 +1557,7 @@ To use this endpoint, select **Write Equipment** under the Equipment category wh
 <dd>
 
 ```csharp
-await client.BetaApIs.PatchEquipmentAsync("id", new EquipmentPatchEquipmentRequestBody());
+await client.BetaApIs.PatchEquipmentAsync(new EquipmentPatchEquipmentRequestBody { Id = "id" });
 ```
 </dd>
 </dl>
@@ -1582,14 +1568,6 @@ await client.BetaApIs.PatchEquipmentAsync("id", new EquipmentPatchEquipmentReque
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The unique Samsara ID of the Equipment. This is automatically generated when the Equipment object is created. It cannot be changed.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -1867,7 +1845,7 @@ await client.BetaApIs.GetTrailerStatsHistoryAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateEngineImmobilizerStateAsync</a>(id, EngineImmobilizerUpdateEngineImmobilizerStateRequestBody { ... })</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateEngineImmobilizerStateAsync</a>(EngineImmobilizerUpdateEngineImmobilizerStateRequestBody { ... })</code></summary>
 <dl>
 <dd>
 
@@ -1902,9 +1880,9 @@ To use this endpoint, select **Write Vehicle Immobilization** under the Vehicles
 
 ```csharp
 await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
-    1000000,
     new EngineImmobilizerUpdateEngineImmobilizerStateRequestBody
     {
+        Id = 1000000,
         RelayStates = new List<UpdateEngineImmobilizerRelayStateRequestBodyRequestBody>()
         {
             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
@@ -1925,14 +1903,6 @@ await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `long` — Vehicle ID
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -2387,7 +2357,7 @@ await client.BetaApIs.GetEngineImmobilizerStatesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">StartFunctionRunAsync</a>(name, FunctionsStartFunctionRunRequestBody { ... }) -> WithRawResponseTask&lt;FunctionsStartFunctionRunResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">StartFunctionRunAsync</a>(FunctionsStartFunctionRunRequestBody { ... }) -> WithRawResponseTask&lt;FunctionsStartFunctionRunResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2422,9 +2392,9 @@ To use this endpoint, select **Write Functions** under the Closed Beta category 
 
 ```csharp
 await client.BetaApIs.StartFunctionRunAsync(
-    "name",
     new FunctionsStartFunctionRunRequestBody
     {
+        Name = "name",
         ParamsOverride = new FunctionsStartFunctionRunRequestBodyParamsOverride(),
     }
 );
@@ -2438,14 +2408,6 @@ await client.BetaApIs.StartFunctionRunAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**name:** `string` — The name of the Function to run.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -3259,7 +3221,7 @@ await client.BetaApIs.PostReadingsAsync(
             new ReadingDatapointRequestBody
             {
                 EntityId = "123451234512345",
-                EntityType = "asset",
+                EntityType = ReadingDatapointRequestBodyEntityType.Asset,
                 HappenedAtTime = "2023-10-27T10:00:00Z",
                 ReadingId = "airInletPressure",
                 Value = new Dictionary<string, object?>() { { "key", "value" } },
@@ -4369,7 +4331,7 @@ await client.Attributes.CreateAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">GetAttributeAsync</a>(id, GetAttributeRequest { ... }) -> WithRawResponseTask&lt;AttributeExpandedResponse&gt;</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">GetAttributeAsync</a>(GetAttributeRequest { ... }) -> WithRawResponseTask&lt;AttributeExpandedResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4401,8 +4363,7 @@ To use this endpoint, select **Read Attributes** under the Setup & Administratio
 
 ```csharp
 await client.Attributes.GetAttributeAsync(
-    "id",
-    new GetAttributeRequest { EntityType = GetAttributeRequestEntityType.Driver }
+    new GetAttributeRequest { Id = "id", EntityType = GetAttributeRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -4414,14 +4375,6 @@ await client.Attributes.GetAttributeAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Samsara-provided UUID of the attribute.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -4438,7 +4391,7 @@ await client.Attributes.GetAttributeAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAsync</a>(id, DeleteAttributesRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">DeleteAsync</a>(DeleteAttributesRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4470,8 +4423,7 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 
 ```csharp
 await client.Attributes.DeleteAsync(
-    "id",
-    new DeleteAttributesRequest { EntityType = DeleteAttributesRequestEntityType.Driver }
+    new DeleteAttributesRequest { Id = "id", EntityType = DeleteAttributesRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -4483,14 +4435,6 @@ await client.Attributes.DeleteAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Samsara-provided UUID of the attribute.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -4507,7 +4451,7 @@ await client.Attributes.DeleteAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">UpdateAttributeAsync</a>(id, UpdateAttributeRequest { ... }) -> WithRawResponseTask&lt;AttributeExpandedResponse&gt;</code></summary>
+<details><summary><code>client.Attributes.<a href="/src/Samsara.Net/Attributes/AttributesClient.cs">UpdateAttributeAsync</a>(UpdateAttributeRequest { ... }) -> WithRawResponseTask&lt;AttributeExpandedResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -4539,8 +4483,7 @@ To use this endpoint, select **Write Attributes** under the Setup & Administrati
 
 ```csharp
 await client.Attributes.UpdateAttributeAsync(
-    "id",
-    new UpdateAttributeRequest { EntityType = UpdateAttributeRequestEntityType.Driver }
+    new UpdateAttributeRequest { Id = "id", EntityType = UpdateAttributeRequestEntityType.Driver }
 );
 ```
 </dd>
@@ -4552,14 +4495,6 @@ await client.Attributes.UpdateAttributeAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Samsara-provided UUID of the attribute.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5088,7 +5023,7 @@ await client.Contacts.CreateContactAsync(new CreateContactRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">GetContactAsync</a>(id) -> WithRawResponseTask&lt;ContactResponse&gt;</code></summary>
+<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">GetContactAsync</a>(GetContactRequest { ... }) -> WithRawResponseTask&lt;ContactResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5119,7 +5054,7 @@ To use this endpoint, select **Read Alert Contacts** under the Setup & Administr
 <dd>
 
 ```csharp
-await client.Contacts.GetContactAsync("id");
+await client.Contacts.GetContactAsync(new GetContactRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5134,7 +5069,7 @@ await client.Contacts.GetContactAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the contact.
+**request:** `GetContactRequest` 
     
 </dd>
 </dl>
@@ -5146,7 +5081,7 @@ await client.Contacts.GetContactAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">DeleteAsync</a>(DeleteContactsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5177,7 +5112,7 @@ To use this endpoint, select **Write Alert Contacts** under the Setup & Administ
 <dd>
 
 ```csharp
-await client.Contacts.DeleteAsync("id");
+await client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5192,7 +5127,7 @@ await client.Contacts.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the contact.
+**request:** `DeleteContactsRequest` 
     
 </dd>
 </dl>
@@ -5204,7 +5139,7 @@ await client.Contacts.DeleteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">UpdateContactAsync</a>(id, UpdateContactRequest { ... }) -> WithRawResponseTask&lt;ContactResponse&gt;</code></summary>
+<details><summary><code>client.Contacts.<a href="/src/Samsara.Net/Contacts/ContactsClient.cs">UpdateContactAsync</a>(UpdateContactRequest { ... }) -> WithRawResponseTask&lt;ContactResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5235,7 +5170,7 @@ To use this endpoint, select **Write Alert Contacts** under the Setup & Administ
 <dd>
 
 ```csharp
-await client.Contacts.UpdateContactAsync("id", new UpdateContactRequest());
+await client.Contacts.UpdateContactAsync(new UpdateContactRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5246,14 +5181,6 @@ await client.Contacts.UpdateContactAsync("id", new UpdateContactRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Unique identifier for the contact.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5393,7 +5320,7 @@ await client.Maintenance.StreamDefectsAsync(new StreamDefectsRequest { StartTime
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">GetDefectAsync</a>(id, GetDefectRequest { ... }) -> WithRawResponseTask&lt;DvirDefectGetDefectResponseBody&gt;</code></summary>
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">GetDefectAsync</a>(GetDefectRequest { ... }) -> WithRawResponseTask&lt;DvirDefectGetDefectResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5427,7 +5354,7 @@ To use this endpoint, select **Read Defects** under the Maintenance category whe
 <dd>
 
 ```csharp
-await client.Maintenance.GetDefectAsync("id", new GetDefectRequest());
+await client.Maintenance.GetDefectAsync(new GetDefectRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5438,14 +5365,6 @@ await client.Maintenance.GetDefectAsync("id", new GetDefectRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The unique ID of the DVIR defect.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5523,7 +5442,7 @@ await client.Maintenance.GetDvirsAsync(new GetDvirsRequest { StartTime = "startT
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">GetDvirAsync</a>(id, GetDvirRequest { ... }) -> WithRawResponseTask&lt;DvirGetDvirResponseBody&gt;</code></summary>
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">GetDvirAsync</a>(GetDvirRequest { ... }) -> WithRawResponseTask&lt;DvirGetDvirResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5557,7 +5476,7 @@ To use this endpoint, select **Read DVIRs** under the Maintenance category when 
 <dd>
 
 ```csharp
-await client.Maintenance.GetDvirAsync("id", new GetDvirRequest());
+await client.Maintenance.GetDvirAsync(new GetDvirRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5568,14 +5487,6 @@ await client.Maintenance.GetDvirAsync("id", new GetDvirRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Id of the DVIR.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5592,7 +5503,7 @@ await client.Maintenance.GetDvirAsync("id", new GetDvirRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateDvirDefectAsync</a>(id, DefectPatch { ... }) -> WithRawResponseTask&lt;DefectResponse&gt;</code></summary>
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateDvirDefectAsync</a>(DefectPatch { ... }) -> WithRawResponseTask&lt;DefectResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5623,7 +5534,7 @@ To use this endpoint, select **Write Defects** under the Maintenance category wh
 <dd>
 
 ```csharp
-await client.Maintenance.UpdateDvirDefectAsync("id", new DefectPatch());
+await client.Maintenance.UpdateDvirDefectAsync(new DefectPatch { Id = "id" });
 ```
 </dd>
 </dl>
@@ -5634,14 +5545,6 @@ await client.Maintenance.UpdateDvirDefectAsync("id", new DefectPatch());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the defect.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -5694,7 +5597,7 @@ await client.Maintenance.CreateDvirAsync(
     {
         AuthorId = "11",
         SafetyStatus = CreateDvirRequestSafetyStatus.Safe,
-        Type = "mechanic",
+        Type = CreateDvirRequestType.Mechanic,
     }
 );
 ```
@@ -5723,7 +5626,7 @@ await client.Maintenance.CreateDvirAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateDvirAsync</a>(id, UpdateDvirRequest { ... }) -> WithRawResponseTask&lt;DvirResponse&gt;</code></summary>
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateDvirAsync</a>(UpdateDvirRequest { ... }) -> WithRawResponseTask&lt;DvirResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5755,8 +5658,12 @@ To use this endpoint, select **Write DVIRs** under the Maintenance category when
 
 ```csharp
 await client.Maintenance.UpdateDvirAsync(
-    "id",
-    new UpdateDvirRequest { AuthorId = "11", IsResolved = true }
+    new UpdateDvirRequest
+    {
+        Id = "id",
+        AuthorId = "11",
+        IsResolved = true,
+    }
 );
 ```
 </dd>
@@ -5768,14 +5675,6 @@ await client.Maintenance.UpdateDvirAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the DVIR.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -7125,7 +7024,7 @@ await client.LegacyApIs.GetVehiclesDriverAssignmentsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">V1GetVehicleHarshEventAsync</a>(vehicleId, V1GetVehicleHarshEventRequest { ... }) -> WithRawResponseTask&lt;V1VehicleHarshEventResponse&gt;</code></summary>
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">V1GetVehicleHarshEventAsync</a>(V1GetVehicleHarshEventRequest { ... }) -> WithRawResponseTask&lt;V1VehicleHarshEventResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7164,8 +7063,7 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 
 ```csharp
 await client.LegacyApIs.V1GetVehicleHarshEventAsync(
-    1000000,
-    new V1GetVehicleHarshEventRequest { Timestamp = 1000000 }
+    new V1GetVehicleHarshEventRequest { VehicleId = 1000000, Timestamp = 1000000 }
 );
 ```
 </dd>
@@ -7177,14 +7075,6 @@ await client.LegacyApIs.V1GetVehicleHarshEventAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `long` — ID of the vehicle. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -7453,7 +7343,7 @@ await client.Documents.GenerateDocumentPdfAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">GetDocumentPdfAsync</a>(id) -> WithRawResponseTask&lt;DocumentPdfQueryResponse&gt;</code></summary>
+<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">GetDocumentPdfAsync</a>(GetDocumentPdfRequest { ... }) -> WithRawResponseTask&lt;DocumentPdfQueryResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7484,7 +7374,7 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```csharp
-await client.Documents.GetDocumentPdfAsync("id");
+await client.Documents.GetDocumentPdfAsync(new GetDocumentPdfRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -7499,7 +7389,7 @@ await client.Documents.GetDocumentPdfAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the pdf.
+**request:** `GetDocumentPdfRequest` 
     
 </dd>
 </dl>
@@ -7511,7 +7401,7 @@ await client.Documents.GetDocumentPdfAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">GetDocumentAsync</a>(id) -> WithRawResponseTask&lt;DocumentsGetDocumentResponseBody&gt;</code></summary>
+<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">GetDocumentAsync</a>(GetDocumentRequest { ... }) -> WithRawResponseTask&lt;DocumentsGetDocumentResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -7545,7 +7435,7 @@ To use this endpoint, select **Read Documents** under the Driver Workflow catego
 <dd>
 
 ```csharp
-await client.Documents.GetDocumentAsync("id");
+await client.Documents.GetDocumentAsync(new GetDocumentRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -7560,7 +7450,7 @@ await client.Documents.GetDocumentAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the document
+**request:** `GetDocumentRequest` 
     
 </dd>
 </dl>
@@ -7572,7 +7462,7 @@ await client.Documents.GetDocumentAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">DeleteDocumentAsync</a>(id)</code></summary>
+<details><summary><code>client.Documents.<a href="/src/Samsara.Net/Documents/DocumentsClient.cs">DeleteDocumentAsync</a>(DeleteDocumentRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -7606,7 +7496,7 @@ To use this endpoint, select **Write Documents** under the Driver Workflow categ
 <dd>
 
 ```csharp
-await client.Documents.DeleteDocumentAsync("id");
+await client.Documents.DeleteDocumentAsync(new DeleteDocumentRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -7621,7 +7511,7 @@ await client.Documents.DeleteDocumentAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the document to delete
+**request:** `DeleteDocumentRequest` 
     
 </dd>
 </dl>
@@ -8092,7 +7982,7 @@ await client.Drivers.PostDriverRemoteSignoutAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">GetAsync</a>(id) -> WithRawResponseTask&lt;DriverResponse&gt;</code></summary>
+<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">GetAsync</a>(GetDriversRequest { ... }) -> WithRawResponseTask&lt;DriverResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8123,7 +8013,7 @@ To use this endpoint, select **Read Drivers** under the Drivers category when cr
 <dd>
 
 ```csharp
-await client.Drivers.GetAsync("id");
+await client.Drivers.GetAsync(new GetDriversRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -8138,7 +8028,7 @@ await client.Drivers.GetAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the driver. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
+**request:** `GetDriversRequest` 
     
 </dd>
 </dl>
@@ -8150,7 +8040,7 @@ await client.Drivers.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">DeleteAsync</a>(id)</code></summary>
+<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">DeleteAsync</a>(DeleteDriversRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -8163,7 +8053,7 @@ await client.Drivers.GetAsync("id");
 <dd>
 
 ```csharp
-await client.Drivers.DeleteAsync("id");
+await client.Drivers.DeleteAsync(new DeleteDriversRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -8178,7 +8068,7 @@ await client.Drivers.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**request:** `DeleteDriversRequest` 
     
 </dd>
 </dl>
@@ -8190,7 +8080,7 @@ await client.Drivers.DeleteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">UpdateAsync</a>(id, UpdateDriverRequest { ... }) -> WithRawResponseTask&lt;DriverResponse&gt;</code></summary>
+<details><summary><code>client.Drivers.<a href="/src/Samsara.Net/Drivers/DriversClient.cs">UpdateAsync</a>(UpdateDriverRequest { ... }) -> WithRawResponseTask&lt;DriverResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8221,7 +8111,7 @@ To use this endpoint, select **Write Drivers** under the Drivers category when c
 <dd>
 
 ```csharp
-await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
+await client.Drivers.UpdateAsync(new UpdateDriverRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -8232,14 +8122,6 @@ await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the driver. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -8930,7 +8812,7 @@ await client.Equipment.GetEquipmentStatsHistoryAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Equipment.<a href="/src/Samsara.Net/Equipment/EquipmentClient.cs">GetEquipmentAsync</a>(id) -> WithRawResponseTask&lt;EquipmentResponse&gt;</code></summary>
+<details><summary><code>client.Equipment.<a href="/src/Samsara.Net/Equipment/EquipmentClient.cs">GetEquipmentAsync</a>(GetEquipmentRequest { ... }) -> WithRawResponseTask&lt;EquipmentResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -8961,7 +8843,7 @@ To use this endpoint, select **Read Equipment** under the Equipment category whe
 <dd>
 
 ```csharp
-await client.Equipment.GetEquipmentAsync("id");
+await client.Equipment.GetEquipmentAsync(new GetEquipmentRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -8976,7 +8858,7 @@ await client.Equipment.GetEquipmentAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Samsara ID of the Equipment.
+**request:** `GetEquipmentRequest` 
     
 </dd>
 </dl>
@@ -9245,7 +9127,7 @@ await client.HoursOfService.GetHosViolationsAsync(new GetHosViolationsRequest())
 </dl>
 </details>
 
-<details><summary><code>client.HoursOfService.<a href="/src/Samsara.Net/HoursOfService/HoursOfServiceClient.cs">SetCurrentDutyStatusAsync</a>(driverId, InlineObject1 { ... })</code></summary>
+<details><summary><code>client.HoursOfService.<a href="/src/Samsara.Net/HoursOfService/HoursOfServiceClient.cs">SetCurrentDutyStatusAsync</a>(InlineObject1 { ... })</code></summary>
 <dl>
 <dd>
 
@@ -9286,8 +9168,7 @@ To use this endpoint, select **Write ELD Hours of Service (US)** under the Compl
 
 ```csharp
 await client.HoursOfService.SetCurrentDutyStatusAsync(
-    1000000,
-    new InlineObject1 { DutyStatus = "ON_DUTY" }
+    new InlineObject1 { DriverId = 1000000, DutyStatus = "ON_DUTY" }
 );
 ```
 </dd>
@@ -9299,14 +9180,6 @@ await client.HoursOfService.SetCurrentDutyStatusAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**driverId:** `long` — ID of the driver for whom the duty status is being set.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -9593,7 +9466,7 @@ await client.Ifta.CreateIftaDetailJobAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Ifta.<a href="/src/Samsara.Net/Ifta/IftaClient.cs">GetIftaDetailJobAsync</a>(id) -> WithRawResponseTask&lt;IftaGetIftaDetailJobResponseBody&gt;</code></summary>
+<details><summary><code>client.Ifta.<a href="/src/Samsara.Net/Ifta/IftaClient.cs">GetIftaDetailJobAsync</a>(GetIftaDetailJobRequest { ... }) -> WithRawResponseTask&lt;IftaGetIftaDetailJobResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9627,7 +9500,7 @@ To use this endpoint, select **Read IFTA (US)** under the Compliance category wh
 <dd>
 
 ```csharp
-await client.Ifta.GetIftaDetailJobAsync("id");
+await client.Ifta.GetIftaDetailJobAsync(new GetIftaDetailJobRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -9642,7 +9515,7 @@ await client.Ifta.GetIftaDetailJobAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the requested job.
+**request:** `GetIftaDetailJobRequest` 
     
 </dd>
 </dl>
@@ -9851,7 +9724,7 @@ await client.Routes.GetRoutesFeedAsync(new GetRoutesFeedRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">FetchRouteAsync</a>(id, FetchRouteRequest { ... }) -> WithRawResponseTask&lt;RoutesFetchRouteResponseBody&gt;</code></summary>
+<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">FetchRouteAsync</a>(FetchRouteRequest { ... }) -> WithRawResponseTask&lt;RoutesFetchRouteResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -9885,7 +9758,7 @@ To use this endpoint, select **Read Routes** under the Driver Workflow category 
 <dd>
 
 ```csharp
-await client.Routes.FetchRouteAsync("id", new FetchRouteRequest());
+await client.Routes.FetchRouteAsync(new FetchRouteRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -9896,14 +9769,6 @@ await client.Routes.FetchRouteAsync("id", new FetchRouteRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -9920,7 +9785,7 @@ await client.Routes.FetchRouteAsync("id", new FetchRouteRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">DeleteRouteAsync</a>(id)</code></summary>
+<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">DeleteRouteAsync</a>(DeleteRouteRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -9954,7 +9819,7 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 <dd>
 
 ```csharp
-await client.Routes.DeleteRouteAsync("id");
+await client.Routes.DeleteRouteAsync(new DeleteRouteRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -9969,7 +9834,7 @@ await client.Routes.DeleteRouteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
+**request:** `DeleteRouteRequest` 
     
 </dd>
 </dl>
@@ -9981,7 +9846,7 @@ await client.Routes.DeleteRouteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">PatchRouteAsync</a>(id, RoutesPatchRouteRequestBody { ... }) -> WithRawResponseTask&lt;RoutesPatchRouteResponseBody&gt;</code></summary>
+<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">PatchRouteAsync</a>(RoutesPatchRouteRequestBody { ... }) -> WithRawResponseTask&lt;RoutesPatchRouteResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10019,7 +9884,7 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 <dd>
 
 ```csharp
-await client.Routes.PatchRouteAsync("id", new RoutesPatchRouteRequestBody());
+await client.Routes.PatchRouteAsync(new RoutesPatchRouteRequestBody { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10030,14 +9895,6 @@ await client.Routes.PatchRouteAsync("id", new RoutesPatchRouteRequestBody());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -10115,7 +9972,7 @@ await client.Routes.ListHubPlanRoutesAsync(new ListHubPlanRoutesRequest { PlanId
 </dl>
 </details>
 
-<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">V1DeleteDispatchRouteByIdAsync</a>(routeIdOrExternalId, InlineObject { ... })</code></summary>
+<details><summary><code>client.Routes.<a href="/src/Samsara.Net/Routes/RoutesClient.cs">V1DeleteDispatchRouteByIdAsync</a>(InlineObject { ... })</code></summary>
 <dl>
 <dd>
 
@@ -10153,7 +10010,9 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 <dd>
 
 ```csharp
-await client.Routes.V1DeleteDispatchRouteByIdAsync("route_id_or_external_id", new InlineObject());
+await client.Routes.V1DeleteDispatchRouteByIdAsync(
+    new InlineObject { RouteIdOrExternalId = "route_id_or_external_id" }
+);
 ```
 </dd>
 </dl>
@@ -10164,14 +10023,6 @@ await client.Routes.V1DeleteDispatchRouteByIdAsync("route_id_or_external_id", ne
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**routeIdOrExternalId:** `string` — ID of the route. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `payrollId:ABFS18600`
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -10576,7 +10427,7 @@ await client.Trailers.CreateTrailerAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">GetTrailerAsync</a>(id) -> WithRawResponseTask&lt;TrailersGetTrailerResponseBody&gt;</code></summary>
+<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">GetTrailerAsync</a>(GetTrailerRequest { ... }) -> WithRawResponseTask&lt;TrailersGetTrailerResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10610,7 +10461,7 @@ To use this endpoint, select **Read Trailers** under the Trailers category when 
 <dd>
 
 ```csharp
-await client.Trailers.GetTrailerAsync("id");
+await client.Trailers.GetTrailerAsync(new GetTrailerRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10625,7 +10476,7 @@ await client.Trailers.GetTrailerAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the trailer. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: "key:value". For example, "maintenanceId:250020".
+**request:** `GetTrailerRequest` 
     
 </dd>
 </dl>
@@ -10637,7 +10488,7 @@ await client.Trailers.GetTrailerAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">DeleteTrailerAsync</a>(id)</code></summary>
+<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">DeleteTrailerAsync</a>(DeleteTrailerRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -10671,7 +10522,7 @@ To use this endpoint, select **Write Trailers** under the Trailers category when
 <dd>
 
 ```csharp
-await client.Trailers.DeleteTrailerAsync("id");
+await client.Trailers.DeleteTrailerAsync(new DeleteTrailerRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10686,7 +10537,7 @@ await client.Trailers.DeleteTrailerAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the trailer to delete.
+**request:** `DeleteTrailerRequest` 
     
 </dd>
 </dl>
@@ -10698,7 +10549,7 @@ await client.Trailers.DeleteTrailerAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">UpdateTrailerAsync</a>(id, TrailersUpdateTrailerRequestBody { ... }) -> WithRawResponseTask&lt;TrailersUpdateTrailerResponseBody&gt;</code></summary>
+<details><summary><code>client.Trailers.<a href="/src/Samsara.Net/Trailers/TrailersClient.cs">UpdateTrailerAsync</a>(TrailersUpdateTrailerRequestBody { ... }) -> WithRawResponseTask&lt;TrailersUpdateTrailerResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10734,7 +10585,7 @@ To use this endpoint, select **Write Trailers** under the Trailers category when
 <dd>
 
 ```csharp
-await client.Trailers.UpdateTrailerAsync("id", new TrailersUpdateTrailerRequestBody());
+await client.Trailers.UpdateTrailerAsync(new TrailersUpdateTrailerRequestBody { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10745,14 +10596,6 @@ await client.Trailers.UpdateTrailerAsync("id", new TrailersUpdateTrailerRequestB
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the trailer. Can be either unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the trailer.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -10831,7 +10674,7 @@ await client.Vehicles.ListAsync(new ListVehiclesRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">GetAsync</a>(id) -> WithRawResponseTask&lt;VehicleResponse&gt;</code></summary>
+<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">GetAsync</a>(GetVehiclesRequest { ... }) -> WithRawResponseTask&lt;VehicleResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10862,7 +10705,7 @@ To use this endpoint, select **Read Vehicles** under the Vehicles category when 
 <dd>
 
 ```csharp
-await client.Vehicles.GetAsync("id");
+await client.Vehicles.GetAsync(new GetVehiclesRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10877,7 +10720,7 @@ await client.Vehicles.GetAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource, or automatically populated by fields on the vehicle. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.vin:1HGBH41JXMN109186`.
+**request:** `GetVehiclesRequest` 
     
 </dd>
 </dl>
@@ -10889,7 +10732,7 @@ await client.Vehicles.GetAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">UpdateAsync</a>(id, UpdateVehicleRequest { ... }) -> WithRawResponseTask&lt;VehicleResponse&gt;</code></summary>
+<details><summary><code>client.Vehicles.<a href="/src/Samsara.Net/Vehicles/VehiclesClient.cs">UpdateAsync</a>(UpdateVehicleRequest { ... }) -> WithRawResponseTask&lt;VehicleResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -10926,7 +10769,7 @@ To use this endpoint, select **Write Vehicles** under the Vehicles category when
 <dd>
 
 ```csharp
-await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
+await client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -10937,14 +10780,6 @@ await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the vehicle. This can either be the Samsara-specified ID, or an external ID. External IDs are customer specified key-value pairs created in the POST or PATCH requests of this resource, or automatically populated by fields on the vehicle. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `maintenanceId:250020`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.vin:1HGBH41JXMN109186`.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -11449,7 +11284,7 @@ await client.Forms.PostFormSubmissionAsync(
             Id = "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
             RevisionId = "1214a1fa-f0c6-408b-bf85-51dc3bc71ac7",
         },
-        Status = "notStarted",
+        Status = FormSubmissionsPostFormSubmissionRequestBodyStatus.NotStarted,
     }
 );
 ```
@@ -11920,7 +11755,7 @@ await client.Gateways.PostGatewayAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Gateways.<a href="/src/Samsara.Net/Gateways/GatewaysClient.cs">DeleteGatewayAsync</a>(id)</code></summary>
+<details><summary><code>client.Gateways.<a href="/src/Samsara.Net/Gateways/GatewaysClient.cs">DeleteGatewayAsync</a>(DeleteGatewayRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -11954,7 +11789,7 @@ To use this endpoint, select **Write Gateways** under the Setup & Administration
 <dd>
 
 ```csharp
-await client.Gateways.DeleteGatewayAsync("id");
+await client.Gateways.DeleteGatewayAsync(new DeleteGatewayRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -11969,7 +11804,7 @@ await client.Gateways.DeleteGatewayAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Gateway serial number
+**request:** `DeleteGatewayRequest` 
     
 </dd>
 </dl>
@@ -12043,7 +11878,7 @@ await client.Hubs.ListHubCapacitiesAsync(new ListHubCapacitiesRequest { HubId = 
 </dl>
 </details>
 
-<details><summary><code>client.Hubs.<a href="/src/Samsara.Net/Hubs/HubsClient.cs">UpdateHubLocationAsync</a>(id, HubLocationsUpdateHubLocationRequestBody { ... }) -> WithRawResponseTask&lt;HubLocationsUpdateHubLocationResponseBody&gt;</code></summary>
+<details><summary><code>client.Hubs.<a href="/src/Samsara.Net/Hubs/HubsClient.cs">UpdateHubLocationAsync</a>(HubLocationsUpdateHubLocationRequestBody { ... }) -> WithRawResponseTask&lt;HubLocationsUpdateHubLocationResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12078,9 +11913,9 @@ To use this endpoint, select **Write Routes** under the Driver Workflow category
 
 ```csharp
 await client.Hubs.UpdateHubLocationAsync(
-    "id",
     new HubLocationsUpdateHubLocationRequestBody
     {
+        Id = "id",
         Data = new UpdateHubLocationRequestBodyRequestBody
         {
             Address = "123 Industrial Blvd, Los Angeles, CA 90210, US",
@@ -12122,14 +11957,6 @@ await client.Hubs.UpdateHubLocationAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — The unique Samsara ID of the hub location to update
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -12739,7 +12566,7 @@ await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "nam
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">PatchIndustrialAssetAsync</a>(id, AssetPatch { ... }) -> WithRawResponseTask&lt;InlineResponse200&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">PatchIndustrialAssetAsync</a>(AssetPatch { ... }) -> WithRawResponseTask&lt;InlineResponse200&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12770,7 +12597,7 @@ To use this endpoint, select **Write Equipment** under the Equipment category wh
 <dd>
 
 ```csharp
-await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
+await client.Industrial.PatchIndustrialAssetAsync(new AssetPatch { Id = "id" });
 ```
 </dd>
 </dl>
@@ -12781,14 +12608,6 @@ await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Id of the asset to be updated
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -12805,7 +12624,7 @@ await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">PatchAssetDataOutputsAsync</a>(id, AssetDataOutputsPatchAssetDataOutputsRequestBody { ... }) -> WithRawResponseTask&lt;AssetDataOutputsPatchAssetDataOutputsResponseBody&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">PatchAssetDataOutputsAsync</a>(AssetDataOutputsPatchAssetDataOutputsRequestBody { ... }) -> WithRawResponseTask&lt;AssetDataOutputsPatchAssetDataOutputsResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12840,9 +12659,9 @@ To use this endpoint, select **Write Equipment Statistics** under the Equipment 
 
 ```csharp
 await client.Industrial.PatchAssetDataOutputsAsync(
-    "id",
     new AssetDataOutputsPatchAssetDataOutputsRequestBody
     {
+        Id = "id",
         Values = new Dictionary<string, object?>() { { "key", "value" } },
     }
 );
@@ -12856,14 +12675,6 @@ await client.Industrial.PatchAssetDataOutputsAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Asset ID
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -13170,7 +12981,7 @@ await client.Industrial.V1GetCamerasAsync();
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionProgramsByCameraAsync</a>(cameraId) -> WithRawResponseTask&lt;IEnumerable&lt;V1ProgramsForTheCameraResponseItem&gt;&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionProgramsByCameraAsync</a>(V1GetVisionProgramsByCameraRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1ProgramsForTheCameraResponseItem&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13208,7 +13019,9 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 <dd>
 
 ```csharp
-await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
+await client.Industrial.V1GetVisionProgramsByCameraAsync(
+    new V1GetVisionProgramsByCameraRequest { CameraId = 1000000 }
+);
 ```
 </dd>
 </dl>
@@ -13223,7 +13036,7 @@ await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
 <dl>
 <dd>
 
-**cameraId:** `long` — The camera_id should be valid for the given accessToken.
+**request:** `V1GetVisionProgramsByCameraRequest` 
     
 </dd>
 </dl>
@@ -13235,7 +13048,7 @@ await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionLatestRunCameraAsync</a>(cameraId, V1GetVisionLatestRunCameraRequest { ... }) -> WithRawResponseTask&lt;V1VisionRunByCameraResponse&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionLatestRunCameraAsync</a>(V1GetVisionLatestRunCameraRequest { ... }) -> WithRawResponseTask&lt;V1VisionRunByCameraResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13267,8 +13080,7 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 
 ```csharp
 await client.Industrial.V1GetVisionLatestRunCameraAsync(
-    1000000,
-    new V1GetVisionLatestRunCameraRequest()
+    new V1GetVisionLatestRunCameraRequest { CameraId = 1000000 }
 );
 ```
 </dd>
@@ -13280,14 +13092,6 @@ await client.Industrial.V1GetVisionLatestRunCameraAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**cameraId:** `long` — The camera_id should be valid for the given accessToken.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -13369,7 +13173,7 @@ await client.Industrial.V1GetVisionRunsAsync(new V1GetVisionRunsRequest { Durati
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">GetVisionRunsByCameraAsync</a>(cameraId, GetVisionRunsByCameraRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1VisionRunsByCameraResponseItem&gt;&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">GetVisionRunsByCameraAsync</a>(GetVisionRunsByCameraRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1VisionRunsByCameraResponseItem&gt;&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13408,8 +13212,7 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 
 ```csharp
 await client.Industrial.GetVisionRunsByCameraAsync(
-    1000000,
-    new GetVisionRunsByCameraRequest { DurationMs = 1000000 }
+    new GetVisionRunsByCameraRequest { CameraId = 1000000, DurationMs = 1000000 }
 );
 ```
 </dd>
@@ -13421,14 +13224,6 @@ await client.Industrial.GetVisionRunsByCameraAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**cameraId:** `long` — The camera_id should be valid for the given accessToken.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -13445,7 +13240,7 @@ await client.Industrial.GetVisionRunsByCameraAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionRunsByCameraAndProgramAsync</a>(cameraId, programId, startedAtMs, V1GetVisionRunsByCameraAndProgramRequest { ... }) -> WithRawResponseTask&lt;V1VisionRunsByCameraAndProgramResponse&gt;</code></summary>
+<details><summary><code>client.Industrial.<a href="/src/Samsara.Net/Industrial/IndustrialClient.cs">V1GetVisionRunsByCameraAndProgramAsync</a>(V1GetVisionRunsByCameraAndProgramRequest { ... }) -> WithRawResponseTask&lt;V1VisionRunsByCameraAndProgramResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -13484,10 +13279,12 @@ To use this endpoint, select **Read Industrial** under the Industrial category w
 
 ```csharp
 await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
-    1000000,
-    1000000,
-    1000000,
-    new V1GetVisionRunsByCameraAndProgramRequest()
+    new V1GetVisionRunsByCameraAndProgramRequest
+    {
+        CameraId = 1000000,
+        ProgramId = 1000000,
+        StartedAtMs = 1000000,
+    }
 );
 ```
 </dd>
@@ -13499,30 +13296,6 @@ await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**cameraId:** `long` — The camera_id should be valid for the given accessToken.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**programId:** `long` — The configured program's ID on the camera.
-    
-</dd>
-</dl>
-
-<dl>
-<dd>
-
-**startedAtMs:** `long` — Started_at_ms is a required param. Indicates the start time of the run to be fetched.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -14656,7 +14429,7 @@ await client.PreviewApIs.CreateDriverAuthTokenAsync(
 </dl>
 </details>
 
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">LockVehicleAsync</a>(id)</code></summary>
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">LockVehicleAsync</a>(LockVehicleRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -14696,7 +14469,7 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```csharp
-await client.PreviewApIs.LockVehicleAsync("id");
+await client.PreviewApIs.LockVehicleAsync(new LockVehicleRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -14711,7 +14484,7 @@ await client.PreviewApIs.LockVehicleAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
+**request:** `LockVehicleRequest` 
     
 </dd>
 </dl>
@@ -14723,7 +14496,7 @@ await client.PreviewApIs.LockVehicleAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">UnlockVehicleAsync</a>(id)</code></summary>
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">UnlockVehicleAsync</a>(UnlockVehicleRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -14763,7 +14536,7 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```csharp
-await client.PreviewApIs.UnlockVehicleAsync("id");
+await client.PreviewApIs.UnlockVehicleAsync(new UnlockVehicleRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -14778,7 +14551,7 @@ await client.PreviewApIs.UnlockVehicleAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — The ID of the vehicle to lock or unlock. This can be a Samsara internal ID or an external ID in the format `samsara.vin:{VIN}`.
+**request:** `UnlockVehicleRequest` 
     
 </dd>
 </dl>
@@ -14977,7 +14750,7 @@ await client.Safety.GetSafetyEventsV2StreamAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Safety.<a href="/src/Samsara.Net/Safety/SafetyClient.cs">V1GetDriverSafetyScoreAsync</a>(driverId, V1GetDriverSafetyScoreRequest { ... }) -> WithRawResponseTask&lt;V1DriverSafetyScoreResponse&gt;</code></summary>
+<details><summary><code>client.Safety.<a href="/src/Samsara.Net/Safety/SafetyClient.cs">V1GetDriverSafetyScoreAsync</a>(V1GetDriverSafetyScoreRequest { ... }) -> WithRawResponseTask&lt;V1DriverSafetyScoreResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15018,8 +14791,12 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 
 ```csharp
 await client.Safety.V1GetDriverSafetyScoreAsync(
-    1000000,
-    new V1GetDriverSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
+    new V1GetDriverSafetyScoreRequest
+    {
+        DriverId = 1000000,
+        StartMs = 1000000,
+        EndMs = 1000000,
+    }
 );
 ```
 </dd>
@@ -15031,14 +14808,6 @@ await client.Safety.V1GetDriverSafetyScoreAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**driverId:** `long` — ID of the driver. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -15055,7 +14824,7 @@ await client.Safety.V1GetDriverSafetyScoreAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Safety.<a href="/src/Samsara.Net/Safety/SafetyClient.cs">V1GetVehicleSafetyScoreAsync</a>(vehicleId, V1GetVehicleSafetyScoreRequest { ... }) -> WithRawResponseTask&lt;V1VehicleSafetyScoreResponse&gt;</code></summary>
+<details><summary><code>client.Safety.<a href="/src/Samsara.Net/Safety/SafetyClient.cs">V1GetVehicleSafetyScoreAsync</a>(V1GetVehicleSafetyScoreRequest { ... }) -> WithRawResponseTask&lt;V1VehicleSafetyScoreResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15096,8 +14865,12 @@ To use this endpoint, select **Read Safety Events & Scores** under the Safety & 
 
 ```csharp
 await client.Safety.V1GetVehicleSafetyScoreAsync(
-    1000000,
-    new V1GetVehicleSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
+    new V1GetVehicleSafetyScoreRequest
+    {
+        VehicleId = 1000000,
+        StartMs = 1000000,
+        EndMs = 1000000,
+    }
 );
 ```
 </dd>
@@ -15109,14 +14882,6 @@ await client.Safety.V1GetVehicleSafetyScoreAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**vehicleId:** `long` — ID of the vehicle. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -15314,7 +15079,7 @@ await client.Tags.CreateTagAsync(new CreateTagRequest { Name = "California" });
 </dl>
 </details>
 
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">GetTagAsync</a>(id) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">GetTagAsync</a>(GetTagRequest { ... }) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15345,7 +15110,7 @@ To use this endpoint, select **Read Tags** under the Setup & Administration cate
 <dd>
 
 ```csharp
-await client.Tags.GetTagAsync("id");
+await client.Tags.GetTagAsync(new GetTagRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -15360,7 +15125,7 @@ await client.Tags.GetTagAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the Tag. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.name:ELD-exempt`.
+**request:** `GetTagRequest` 
     
 </dd>
 </dl>
@@ -15372,7 +15137,7 @@ await client.Tags.GetTagAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">ReplaceTagAsync</a>(id, ReplaceTagRequest { ... }) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">ReplaceTagAsync</a>(ReplaceTagRequest { ... }) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15403,7 +15168,7 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```csharp
-await client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
+await client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -15414,14 +15179,6 @@ await client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the Tag. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.name:ELD-exempt`.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -15438,7 +15195,7 @@ await client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
 </dl>
 </details>
 
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">DeleteAsync</a>(DeleteTagsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15469,7 +15226,7 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```csharp
-await client.Tags.DeleteAsync("id");
+await client.Tags.DeleteAsync(new DeleteTagsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -15484,7 +15241,7 @@ await client.Tags.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the Tag. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.name:ELD-exempt`.
+**request:** `DeleteTagsRequest` 
     
 </dd>
 </dl>
@@ -15496,7 +15253,7 @@ await client.Tags.DeleteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">PatchTagAsync</a>(id, PatchTagRequest { ... }) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
+<details><summary><code>client.Tags.<a href="/src/Samsara.Net/Tags/TagsClient.cs">PatchTagAsync</a>(PatchTagRequest { ... }) -> WithRawResponseTask&lt;TagResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15531,7 +15288,7 @@ To use this endpoint, select **Write Tags** under the Setup & Administration cat
 <dd>
 
 ```csharp
-await client.Tags.PatchTagAsync("id", new PatchTagRequest());
+await client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -15542,14 +15299,6 @@ await client.Tags.PatchTagAsync("id", new PatchTagRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — ID of the Tag. This can either be the Samsara-provided ID or an external ID. External IDs are customer-specified key-value pairs created in the POST or PATCH requests of this resource. To specify an external ID as part of a path parameter, use the following format: `key:value`. For example, `crmId:abc123`. Automatically populated external IDs are prefixed with `samsara.`. For example, `samsara.name:ELD-exempt`.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -16202,7 +15951,7 @@ await client.Users.CreateUserAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">GetUserAsync</a>(id) -> WithRawResponseTask&lt;UserResponse&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">GetUserAsync</a>(GetUserRequest { ... }) -> WithRawResponseTask&lt;UserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -16233,7 +15982,7 @@ To use this endpoint, select **Read Users** under the Setup & Administration cat
 <dd>
 
 ```csharp
-await client.Users.GetUserAsync("id");
+await client.Users.GetUserAsync(new GetUserRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -16248,7 +15997,7 @@ await client.Users.GetUserAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the user.
+**request:** `GetUserRequest` 
     
 </dd>
 </dl>
@@ -16260,7 +16009,7 @@ await client.Users.GetUserAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">DeleteAsync</a>(DeleteUsersRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -16291,7 +16040,7 @@ To use this endpoint, select **Write Users** under the Setup & Administration ca
 <dd>
 
 ```csharp
-await client.Users.DeleteAsync("id");
+await client.Users.DeleteAsync(new DeleteUsersRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -16306,7 +16055,7 @@ await client.Users.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the user.
+**request:** `DeleteUsersRequest` 
     
 </dd>
 </dl>
@@ -16318,7 +16067,7 @@ await client.Users.DeleteAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">UpdateUserAsync</a>(id, UpdateUserRequest { ... }) -> WithRawResponseTask&lt;UserResponse&gt;</code></summary>
+<details><summary><code>client.Users.<a href="/src/Samsara.Net/Users/UsersClient.cs">UpdateUserAsync</a>(UpdateUserRequest { ... }) -> WithRawResponseTask&lt;UserResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -16349,7 +16098,7 @@ To use this endpoint, select **Write Users** under the Setup & Administration ca
 <dd>
 
 ```csharp
-await client.Users.UpdateUserAsync("id", new UpdateUserRequest());
+await client.Users.UpdateUserAsync(new UpdateUserRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -16360,14 +16109,6 @@ await client.Users.UpdateUserAsync("id", new UpdateUserRequest());
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Unique identifier for the user.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -16639,7 +16380,7 @@ await client.TrailerAssignments.V1GetAllTrailerAssignmentsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.TrailerAssignments.<a href="/src/Samsara.Net/TrailerAssignments/TrailerAssignmentsClient.cs">V1GetFleetTrailerAssignmentsAsync</a>(trailerId, V1GetFleetTrailerAssignmentsRequest { ... }) -> WithRawResponseTask&lt;V1TrailerAssignmentsResponse&gt;</code></summary>
+<details><summary><code>client.TrailerAssignments.<a href="/src/Samsara.Net/TrailerAssignments/TrailerAssignmentsClient.cs">V1GetFleetTrailerAssignmentsAsync</a>(V1GetFleetTrailerAssignmentsRequest { ... }) -> WithRawResponseTask&lt;V1TrailerAssignmentsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -16680,8 +16421,7 @@ To use this endpoint, select **Read Assignments** under the Assignments category
 
 ```csharp
 await client.TrailerAssignments.V1GetFleetTrailerAssignmentsAsync(
-    1000000,
-    new V1GetFleetTrailerAssignmentsRequest()
+    new V1GetFleetTrailerAssignmentsRequest { TrailerId = 1000000 }
 );
 ```
 </dd>
@@ -16693,14 +16433,6 @@ await client.TrailerAssignments.V1GetFleetTrailerAssignmentsAsync(
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**trailerId:** `long` — ID of trailer. Must contain only digits 0-9.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -17247,7 +16979,7 @@ await client.Webhooks.PostWebhooksAsync(
 </dl>
 </details>
 
-<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">GetWebhookAsync</a>(id) -> WithRawResponseTask&lt;WebhooksGetWebhookResponseBody&gt;</code></summary>
+<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">GetWebhookAsync</a>(GetWebhookRequest { ... }) -> WithRawResponseTask&lt;WebhooksGetWebhookResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -17281,7 +17013,7 @@ To use this endpoint, select **Read Webhooks** under the Setup & Administration 
 <dd>
 
 ```csharp
-await client.Webhooks.GetWebhookAsync("id");
+await client.Webhooks.GetWebhookAsync(new GetWebhookRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -17296,7 +17028,7 @@ await client.Webhooks.GetWebhookAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the webhook. This is the Samsara-specified ID.
+**request:** `GetWebhookRequest` 
     
 </dd>
 </dl>
@@ -17308,7 +17040,7 @@ await client.Webhooks.GetWebhookAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">DeleteWebhookAsync</a>(id)</code></summary>
+<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">DeleteWebhookAsync</a>(DeleteWebhookRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -17342,7 +17074,7 @@ To use this endpoint, select **Write Webhooks** under the Setup & Administration
 <dd>
 
 ```csharp
-await client.Webhooks.DeleteWebhookAsync("id");
+await client.Webhooks.DeleteWebhookAsync(new DeleteWebhookRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -17357,7 +17089,7 @@ await client.Webhooks.DeleteWebhookAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Unique identifier for the webhook to delete.
+**request:** `DeleteWebhookRequest` 
     
 </dd>
 </dl>
@@ -17369,7 +17101,7 @@ await client.Webhooks.DeleteWebhookAsync("id");
 </dl>
 </details>
 
-<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">PatchWebhookAsync</a>(id, WebhooksPatchWebhookRequestBody { ... }) -> WithRawResponseTask&lt;WebhooksPatchWebhookResponseBody&gt;</code></summary>
+<details><summary><code>client.Webhooks.<a href="/src/Samsara.Net/Webhooks/WebhooksClient.cs">PatchWebhookAsync</a>(WebhooksPatchWebhookRequestBody { ... }) -> WithRawResponseTask&lt;WebhooksPatchWebhookResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -17405,7 +17137,7 @@ To use this endpoint, select **Write Webhooks** under the Setup & Administration
 <dd>
 
 ```csharp
-await client.Webhooks.PatchWebhookAsync("id", new WebhooksPatchWebhookRequestBody());
+await client.Webhooks.PatchWebhookAsync(new WebhooksPatchWebhookRequestBody { Id = "id" });
 ```
 </dd>
 </dl>
@@ -17416,14 +17148,6 @@ await client.Webhooks.PatchWebhookAsync("id", new WebhooksPatchWebhookRequestBod
 
 <dl>
 <dd>
-
-<dl>
-<dd>
-
-**id:** `string` — Unique identifier for the webhook to update.
-    
-</dd>
-</dl>
 
 <dl>
 <dd>
@@ -17441,7 +17165,7 @@ await client.Webhooks.PatchWebhookAsync("id", new WebhooksPatchWebhookRequestBod
 </details>
 
 ## Fleet CarrierProposedAssignments
-<details><summary><code>client.Fleet.CarrierProposedAssignments.<a href="/src/Samsara.Net/Fleet/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Fleet.CarrierProposedAssignments.<a href="/src/Samsara.Net/Fleet/CarrierProposedAssignments/CarrierProposedAssignmentsClient.cs">DeleteAsync</a>(DeleteCarrierProposedAssignmentsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -17472,7 +17196,9 @@ To use this endpoint, select **Write Carrier-Proposed Assignments** under the As
 <dd>
 
 ```csharp
-await client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
+await client.Fleet.CarrierProposedAssignments.DeleteAsync(
+    new DeleteCarrierProposedAssignmentsRequest { Id = "id" }
+);
 ```
 </dd>
 </dl>
@@ -17487,7 +17213,7 @@ await client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — ID of the assignment.
+**request:** `DeleteCarrierProposedAssignmentsRequest` 
     
 </dd>
 </dl>
@@ -17500,7 +17226,7 @@ await client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
 </details>
 
 ## Fleet Attributes
-<details><summary><code>client.Fleet.Attributes.<a href="/src/Samsara.Net/Fleet/Attributes/AttributesClient.cs">UpdateAsync</a>(id)</code></summary>
+<details><summary><code>client.Fleet.Attributes.<a href="/src/Samsara.Net/Fleet/Attributes/AttributesClient.cs">UpdateAsync</a>(UpdateAttributesRequest { ... })</code></summary>
 <dl>
 <dd>
 
@@ -17513,7 +17239,7 @@ await client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
 <dd>
 
 ```csharp
-await client.Fleet.Attributes.UpdateAsync("id");
+await client.Fleet.Attributes.UpdateAsync(new UpdateAttributesRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -17528,7 +17254,7 @@ await client.Fleet.Attributes.UpdateAsync("id");
 <dl>
 <dd>
 
-**id:** `string` 
+**request:** `UpdateAttributesRequest` 
     
 </dd>
 </dl>
@@ -17541,7 +17267,7 @@ await client.Fleet.Attributes.UpdateAsync("id");
 </details>
 
 ## Industrial Assets
-<details><summary><code>client.Industrial.Assets.<a href="/src/Samsara.Net/Industrial/Assets/AssetsClient.cs">DeleteAsync</a>(id) -> WithRawResponseTask&lt;string&gt;</code></summary>
+<details><summary><code>client.Industrial.Assets.<a href="/src/Samsara.Net/Industrial/Assets/AssetsClient.cs">DeleteAsync</a>(DeleteAssetsRequest { ... }) -> WithRawResponseTask&lt;string&gt;</code></summary>
 <dl>
 <dd>
 
@@ -17572,7 +17298,7 @@ To use this endpoint, select **Write Equipment** under the Equipment category wh
 <dd>
 
 ```csharp
-await client.Industrial.Assets.DeleteAsync("id");
+await client.Industrial.Assets.DeleteAsync(new DeleteAssetsRequest { Id = "id" });
 ```
 </dd>
 </dl>
@@ -17587,7 +17313,7 @@ await client.Industrial.Assets.DeleteAsync("id");
 <dl>
 <dd>
 
-**id:** `string` — Id of the asset to be deleted.
+**request:** `DeleteAssetsRequest` 
     
 </dd>
 </dl>

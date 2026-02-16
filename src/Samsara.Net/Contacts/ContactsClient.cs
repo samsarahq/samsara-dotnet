@@ -146,7 +146,7 @@ public partial class ContactsClient : IContactsClient
     }
 
     private async Task<WithRawResponse<ContactResponse>> GetContactAsyncCore(
-        string id,
+        GetContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -163,7 +163,10 @@ public partial class ContactsClient : IContactsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "contacts/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -208,7 +211,7 @@ public partial class ContactsClient : IContactsClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
+        DeleteContactsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -225,7 +228,10 @@ public partial class ContactsClient : IContactsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "contacts/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -270,7 +276,6 @@ public partial class ContactsClient : IContactsClient
     }
 
     private async Task<WithRawResponse<ContactResponse>> UpdateContactAsyncCore(
-        string id,
         UpdateContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -288,7 +293,10 @@ public partial class ContactsClient : IContactsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("contacts/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "contacts/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -384,16 +392,16 @@ public partial class ContactsClient : IContactsClient
     /// To use this endpoint, select **Read Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Contacts.GetContactAsync("id");
+    /// await client.Contacts.GetContactAsync(new GetContactRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<ContactResponse> GetContactAsync(
-        string id,
+        GetContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<ContactResponse>(
-            GetContactAsyncCore(id, options, cancellationToken)
+            GetContactAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -405,15 +413,17 @@ public partial class ContactsClient : IContactsClient
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Contacts.DeleteAsync("id");
+    /// await client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteContactsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
+        return new WithRawResponseTask<string>(
+            DeleteAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -424,17 +434,16 @@ public partial class ContactsClient : IContactsClient
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Contacts.UpdateContactAsync("id", new UpdateContactRequest());
+    /// await client.Contacts.UpdateContactAsync(new UpdateContactRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<ContactResponse> UpdateContactAsync(
-        string id,
         UpdateContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<ContactResponse>(
-            UpdateContactAsyncCore(id, request, options, cancellationToken)
+            UpdateContactAsyncCore(request, options, cancellationToken)
         );
     }
 }

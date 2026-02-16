@@ -47,7 +47,7 @@ public class UpdateUserTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Users.UpdateUserAsync("id", new UpdateUserRequest());
+        var response = await Client.Users.UpdateUserAsync(new UpdateUserRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

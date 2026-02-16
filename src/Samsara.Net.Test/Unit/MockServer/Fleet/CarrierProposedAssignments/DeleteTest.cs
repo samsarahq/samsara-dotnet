@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Fleet.CarrierProposedAssignments;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -28,7 +29,9 @@ public class DeleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Fleet.CarrierProposedAssignments.DeleteAsync("id");
+        var response = await Client.Fleet.CarrierProposedAssignments.DeleteAsync(
+            new DeleteCarrierProposedAssignmentsRequest { Id = "id" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

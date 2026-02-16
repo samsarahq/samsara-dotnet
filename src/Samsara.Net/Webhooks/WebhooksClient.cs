@@ -215,7 +215,7 @@ public partial class WebhooksClient : IWebhooksClient
     }
 
     private async Task<WithRawResponse<WebhooksGetWebhookResponseBody>> GetWebhookAsyncCore(
-        string id,
+        GetWebhookRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -232,7 +232,10 @@ public partial class WebhooksClient : IWebhooksClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -311,7 +314,6 @@ public partial class WebhooksClient : IWebhooksClient
     }
 
     private async Task<WithRawResponse<WebhooksPatchWebhookResponseBody>> PatchWebhookAsyncCore(
-        string id,
         WebhooksPatchWebhookRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -329,7 +331,10 @@ public partial class WebhooksClient : IWebhooksClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -474,16 +479,16 @@ public partial class WebhooksClient : IWebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.GetWebhookAsync("id");
+    /// await client.Webhooks.GetWebhookAsync(new GetWebhookRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<WebhooksGetWebhookResponseBody> GetWebhookAsync(
-        string id,
+        GetWebhookRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<WebhooksGetWebhookResponseBody>(
-            GetWebhookAsyncCore(id, options, cancellationToken)
+            GetWebhookAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -498,10 +503,10 @@ public partial class WebhooksClient : IWebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.DeleteWebhookAsync("id");
+    /// await client.Webhooks.DeleteWebhookAsync(new DeleteWebhookRequest { Id = "id" });
     /// </code></example>
     public async Task DeleteWebhookAsync(
-        string id,
+        DeleteWebhookRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -518,7 +523,10 @@ public partial class WebhooksClient : IWebhooksClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("webhooks/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "webhooks/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -584,17 +592,16 @@ public partial class WebhooksClient : IWebhooksClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Webhooks.PatchWebhookAsync("id", new WebhooksPatchWebhookRequestBody());
+    /// await client.Webhooks.PatchWebhookAsync(new WebhooksPatchWebhookRequestBody { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<WebhooksPatchWebhookResponseBody> PatchWebhookAsync(
-        string id,
         WebhooksPatchWebhookRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<WebhooksPatchWebhookResponseBody>(
-            PatchWebhookAsyncCore(id, request, options, cancellationToken)
+            PatchWebhookAsyncCore(request, options, cancellationToken)
         );
     }
 }

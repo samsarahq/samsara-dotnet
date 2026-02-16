@@ -112,8 +112,12 @@ public class UpdateDvirTest : BaseMockServerTest
             );
 
         var response = await Client.Maintenance.UpdateDvirAsync(
-            "id",
-            new UpdateDvirRequest { AuthorId = "11", IsResolved = true }
+            new UpdateDvirRequest
+            {
+                Id = "id",
+                AuthorId = "11",
+                IsResolved = true,
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

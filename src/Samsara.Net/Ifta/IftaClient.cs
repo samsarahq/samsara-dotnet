@@ -336,7 +336,7 @@ public partial class IftaClient : IIftaClient
     }
 
     private async Task<WithRawResponse<IftaGetIftaDetailJobResponseBody>> GetIftaDetailJobAsyncCore(
-        string id,
+        GetIftaDetailJobRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -355,7 +355,7 @@ public partial class IftaClient : IIftaClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "ifta-detail/csv/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -529,16 +529,16 @@ public partial class IftaClient : IIftaClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Ifta.GetIftaDetailJobAsync("id");
+    /// await client.Ifta.GetIftaDetailJobAsync(new GetIftaDetailJobRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<IftaGetIftaDetailJobResponseBody> GetIftaDetailJobAsync(
-        string id,
+        GetIftaDetailJobRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IftaGetIftaDetailJobResponseBody>(
-            GetIftaDetailJobAsyncCore(id, options, cancellationToken)
+            GetIftaDetailJobAsyncCore(request, options, cancellationToken)
         );
     }
 }

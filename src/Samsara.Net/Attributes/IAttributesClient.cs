@@ -38,7 +38,6 @@ public partial interface IAttributesClient
     /// To use this endpoint, select **Read Attributes** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<AttributeExpandedResponse> GetAttributeAsync(
-        string id,
         GetAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -52,7 +51,6 @@ public partial interface IAttributesClient
     /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        string id,
         DeleteAttributesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -66,7 +64,6 @@ public partial interface IAttributesClient
     /// To use this endpoint, select **Write Attributes** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<AttributeExpandedResponse> UpdateAttributeAsync(
-        string id,
         UpdateAttributeRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

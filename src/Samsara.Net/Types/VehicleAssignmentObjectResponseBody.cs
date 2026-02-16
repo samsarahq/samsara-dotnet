@@ -15,7 +15,7 @@ public record VehicleAssignmentObjectResponseBody : IJsonOnDeserialized
     /// Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is `driverApp` assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: `driverApp`
     /// </summary>
     [JsonPropertyName("assignmentType")]
-    public string AssignmentType { get; set; } = "driverApp";
+    public required VehicleAssignmentObjectResponseBodyAssignmentType AssignmentType { get; set; }
 
     /// <summary>
     /// An end time in RFC 3339 format. Omitted if not applicable. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).

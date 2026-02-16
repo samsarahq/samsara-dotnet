@@ -240,7 +240,6 @@ public partial class SafetyClient : ISafetyClient
     private async Task<
         WithRawResponse<V1DriverSafetyScoreResponse>
     > V1GetDriverSafetyScoreAsyncCore(
-        long driverId,
         V1GetDriverSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -265,7 +264,7 @@ public partial class SafetyClient : ISafetyClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/drivers/{0}/safety/score",
-                        ValueConvert.ToPathParameterString(driverId)
+                        ValueConvert.ToPathParameterString(request.DriverId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -316,7 +315,6 @@ public partial class SafetyClient : ISafetyClient
     private async Task<
         WithRawResponse<V1VehicleSafetyScoreResponse>
     > V1GetVehicleSafetyScoreAsyncCore(
-        long vehicleId,
         V1GetVehicleSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -341,7 +339,7 @@ public partial class SafetyClient : ISafetyClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/vehicles/{0}/safety/score",
-                        ValueConvert.ToPathParameterString(vehicleId)
+                        ValueConvert.ToPathParameterString(request.VehicleId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -457,19 +455,22 @@ public partial class SafetyClient : ISafetyClient
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetDriverSafetyScoreAsync(
-    ///     1000000,
-    ///     new V1GetDriverSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetDriverSafetyScoreRequest
+    ///     {
+    ///         DriverId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1DriverSafetyScoreResponse> V1GetDriverSafetyScoreAsync(
-        long driverId,
         V1GetDriverSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1DriverSafetyScoreResponse>(
-            V1GetDriverSafetyScoreAsyncCore(driverId, request, options, cancellationToken)
+            V1GetDriverSafetyScoreAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -491,19 +492,22 @@ public partial class SafetyClient : ISafetyClient
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetVehicleSafetyScoreAsync(
-    ///     1000000,
-    ///     new V1GetVehicleSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
+    ///     new V1GetVehicleSafetyScoreRequest
+    ///     {
+    ///         VehicleId = 1000000,
+    ///         StartMs = 1000000,
+    ///         EndMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1VehicleSafetyScoreResponse> V1GetVehicleSafetyScoreAsync(
-        long vehicleId,
         V1GetVehicleSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1VehicleSafetyScoreResponse>(
-            V1GetVehicleSafetyScoreAsyncCore(vehicleId, request, options, cancellationToken)
+            V1GetVehicleSafetyScoreAsyncCore(request, options, cancellationToken)
         );
     }
 }

@@ -272,7 +272,7 @@ public partial class DriversClient : IDriversClient
     }
 
     private async Task<WithRawResponse<DriverResponse>> GetAsyncCore(
-        string id,
+        GetDriversRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -291,7 +291,7 @@ public partial class DriversClient : IDriversClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/drivers/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -337,7 +337,6 @@ public partial class DriversClient : IDriversClient
     }
 
     private async Task<WithRawResponse<DriverResponse>> UpdateAsyncCore(
-        string id,
         UpdateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -357,7 +356,7 @@ public partial class DriversClient : IDriversClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/drivers/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -514,24 +513,24 @@ public partial class DriversClient : IDriversClient
     /// To use this endpoint, select **Read Drivers** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Drivers.GetAsync("id");
+    /// await client.Drivers.GetAsync(new GetDriversRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<DriverResponse> GetAsync(
-        string id,
+        GetDriversRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DriverResponse>(
-            GetAsyncCore(id, options, cancellationToken)
+            GetAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <example><code>
-    /// await client.Drivers.DeleteAsync("id");
+    /// await client.Drivers.DeleteAsync(new DeleteDriversRequest { Id = "id" });
     /// </code></example>
     public async Task DeleteAsync(
-        string id,
+        DeleteDriversRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -550,7 +549,7 @@ public partial class DriversClient : IDriversClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "fleet/drivers/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -580,17 +579,16 @@ public partial class DriversClient : IDriversClient
     /// To use this endpoint, select **Write Drivers** under the Drivers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Drivers.UpdateAsync("id", new UpdateDriverRequest());
+    /// await client.Drivers.UpdateAsync(new UpdateDriverRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<DriverResponse> UpdateAsync(
-        string id,
         UpdateDriverRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DriverResponse>(
-            UpdateAsyncCore(id, request, options, cancellationToken)
+            UpdateAsyncCore(request, options, cancellationToken)
         );
     }
 }

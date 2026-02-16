@@ -43,7 +43,7 @@ public partial interface IPreviewApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     Task LockVehicleAsync(
-        string id,
+        LockVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -65,7 +65,7 @@ public partial interface IPreviewApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     Task UnlockVehicleAsync(
-        string id,
+        UnlockVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

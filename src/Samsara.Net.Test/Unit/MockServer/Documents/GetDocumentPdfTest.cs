@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Documents;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -37,7 +38,9 @@ public class GetDocumentPdfTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Documents.GetDocumentPdfAsync("id");
+        var response = await Client.Documents.GetDocumentPdfAsync(
+            new GetDocumentPdfRequest { Id = "id" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

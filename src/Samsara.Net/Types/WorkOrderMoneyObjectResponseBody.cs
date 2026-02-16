@@ -24,7 +24,7 @@ public record WorkOrderMoneyObjectResponseBody : IJsonOnDeserialized
     /// Type of the currency. We currently only support usd.  Valid values: `usd`
     /// </summary>
     [JsonPropertyName("currency")]
-    public string Currency { get; set; } = "usd";
+    public required WorkOrderMoneyObjectResponseBodyCurrency Currency { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

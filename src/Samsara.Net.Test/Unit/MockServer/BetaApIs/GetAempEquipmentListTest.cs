@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -56,7 +57,9 @@ public class GetAempEquipmentListTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetAempEquipmentListAsync("pageNumber");
+        var response = await Client.BetaApIs.GetAempEquipmentListAsync(
+            new GetAempEquipmentListRequest { PageNumber = "pageNumber" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

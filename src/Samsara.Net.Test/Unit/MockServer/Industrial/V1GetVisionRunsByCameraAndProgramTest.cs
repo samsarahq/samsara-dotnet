@@ -53,10 +53,12 @@ public class V1GetVisionRunsByCameraAndProgramTest : BaseMockServerTest
             );
 
         var response = await Client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
-            1000000,
-            1000000,
-            1000000,
-            new V1GetVisionRunsByCameraAndProgramRequest()
+            new V1GetVisionRunsByCameraAndProgramRequest
+            {
+                CameraId = 1000000,
+                ProgramId = 1000000,
+                StartedAtMs = 1000000,
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

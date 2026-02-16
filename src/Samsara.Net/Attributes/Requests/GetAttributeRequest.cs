@@ -7,6 +7,12 @@ namespace Samsara.Net.Attributes;
 public record GetAttributeRequest
 {
     /// <summary>
+    /// Samsara-provided UUID of the attribute.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
     /// Denotes the type of entity, driver or asset.
     /// </summary>
     [JsonIgnore]

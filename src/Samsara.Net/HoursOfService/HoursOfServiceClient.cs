@@ -574,12 +574,10 @@ public partial class HoursOfServiceClient : IHoursOfServiceClient
     /// </summary>
     /// <example><code>
     /// await client.HoursOfService.SetCurrentDutyStatusAsync(
-    ///     1000000,
-    ///     new InlineObject1 { DutyStatus = "ON_DUTY" }
+    ///     new InlineObject1 { DriverId = 1000000, DutyStatus = "ON_DUTY" }
     /// );
     /// </code></example>
     public async Task SetCurrentDutyStatusAsync(
-        long driverId,
         InlineObject1 request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -599,7 +597,7 @@ public partial class HoursOfServiceClient : IHoursOfServiceClient
                     Method = HttpMethod.Post,
                     Path = string.Format(
                         "v1/fleet/drivers/{0}/hos/duty_status",
-                        ValueConvert.ToPathParameterString(driverId)
+                        ValueConvert.ToPathParameterString(request.DriverId)
                     ),
                     Body = request,
                     Headers = _headers,

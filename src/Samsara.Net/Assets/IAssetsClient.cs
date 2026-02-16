@@ -124,7 +124,6 @@ public partial interface IAssetsClient
     /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<IEnumerable<V1AssetLocationResponseItem>> V1GetAssetLocationAsync(
-        long assetId,
         V1GetAssetLocationRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -145,20 +144,19 @@ public partial interface IAssetsClient
     /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1AssetReeferResponse> V1GetAssetReeferAsync(
-        long assetId,
         V1GetAssetReeferRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     Task GetAsync(
-        string id,
+        GetAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
 
     Task UpdateAsync(
-        string id,
+        UpdateAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

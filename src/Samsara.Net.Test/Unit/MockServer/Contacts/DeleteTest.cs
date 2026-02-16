@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Contacts;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -23,7 +24,7 @@ public class DeleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Contacts.DeleteAsync("id");
+        var response = await Client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Industrial.Assets;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -28,7 +29,9 @@ public class DeleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Industrial.Assets.DeleteAsync("id");
+        var response = await Client.Industrial.Assets.DeleteAsync(
+            new DeleteAssetsRequest { Id = "id" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

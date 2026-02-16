@@ -51,7 +51,7 @@ public partial interface IUsersClient
     /// To use this endpoint, select **Read Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<UserResponse> GetUserAsync(
-        string id,
+        GetUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -64,7 +64,7 @@ public partial interface IUsersClient
     /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteUsersRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -77,7 +77,6 @@ public partial interface IUsersClient
     /// To use this endpoint, select **Write Users** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<UserResponse> UpdateUserAsync(
-        string id,
         UpdateUserRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

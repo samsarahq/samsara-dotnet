@@ -42,9 +42,9 @@ public class StartFunctionRunTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.StartFunctionRunAsync(
-            "name",
             new FunctionsStartFunctionRunRequestBody
             {
+                Name = "name",
                 ParamsOverride = new FunctionsStartFunctionRunRequestBodyParamsOverride(),
             }
         );

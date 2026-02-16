@@ -18,7 +18,7 @@ public record GetRoutesFeedRequest
     /// Valid value: `route`  Valid values: `route`
     /// </summary>
     [JsonIgnore]
-    public string? Expand { get; set; }
+    public GetRoutesFeedRequestExpand? Expand { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

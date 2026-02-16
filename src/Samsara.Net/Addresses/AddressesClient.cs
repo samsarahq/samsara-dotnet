@@ -167,7 +167,7 @@ public partial class AddressesClient : IAddressesClient
     }
 
     private async Task<WithRawResponse<AddressResponse>> GetAsyncCore(
-        string id,
+        GetAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -184,7 +184,10 @@ public partial class AddressesClient : IAddressesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -229,7 +232,7 @@ public partial class AddressesClient : IAddressesClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
+        DeleteAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -246,7 +249,10 @@ public partial class AddressesClient : IAddressesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -291,7 +297,6 @@ public partial class AddressesClient : IAddressesClient
     }
 
     private async Task<WithRawResponse<AddressResponse>> UpdateAsyncCore(
-        string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -309,7 +314,10 @@ public partial class AddressesClient : IAddressesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -435,16 +443,16 @@ public partial class AddressesClient : IAddressesClient
     /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.GetAsync("id");
+    /// await client.Addresses.GetAsync(new GetAddressesRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<AddressResponse> GetAsync(
-        string id,
+        GetAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AddressResponse>(
-            GetAsyncCore(id, options, cancellationToken)
+            GetAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -456,15 +464,17 @@ public partial class AddressesClient : IAddressesClient
     /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.DeleteAsync("id");
+    /// await client.Addresses.DeleteAsync(new DeleteAddressesRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
+        return new WithRawResponseTask<string>(
+            DeleteAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -475,17 +485,16 @@ public partial class AddressesClient : IAddressesClient
     /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
+    /// await client.Addresses.UpdateAsync(new UpdateAddressRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<AddressResponse> UpdateAsync(
-        string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AddressResponse>(
-            UpdateAsyncCore(id, request, options, cancellationToken)
+            UpdateAsyncCore(request, options, cancellationToken)
         );
     }
 }

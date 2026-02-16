@@ -126,7 +126,6 @@ public partial class HubsClient : IHubsClient
     private async Task<
         WithRawResponse<HubLocationsUpdateHubLocationResponseBody>
     > UpdateHubLocationAsyncCore(
-        string id,
         HubLocationsUpdateHubLocationRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -146,7 +145,7 @@ public partial class HubsClient : IHubsClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "hub/location/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -683,9 +682,9 @@ public partial class HubsClient : IHubsClient
     /// </summary>
     /// <example><code>
     /// await client.Hubs.UpdateHubLocationAsync(
-    ///     "id",
     ///     new HubLocationsUpdateHubLocationRequestBody
     ///     {
+    ///         Id = "id",
     ///         Data = new UpdateHubLocationRequestBodyRequestBody
     ///         {
     ///             Address = "123 Industrial Blvd, Los Angeles, CA 90210, US",
@@ -719,14 +718,13 @@ public partial class HubsClient : IHubsClient
     /// );
     /// </code></example>
     public WithRawResponseTask<HubLocationsUpdateHubLocationResponseBody> UpdateHubLocationAsync(
-        string id,
         HubLocationsUpdateHubLocationRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<HubLocationsUpdateHubLocationResponseBody>(
-            UpdateHubLocationAsyncCore(id, request, options, cancellationToken)
+            UpdateHubLocationAsyncCore(request, options, cancellationToken)
         );
     }
 

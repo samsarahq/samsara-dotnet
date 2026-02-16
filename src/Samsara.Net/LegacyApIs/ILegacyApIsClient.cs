@@ -136,7 +136,6 @@ public partial interface ILegacyApIsClient
     /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<V1VehicleHarshEventResponse> V1GetVehicleHarshEventAsync(
-        long vehicleId,
         V1GetVehicleHarshEventRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

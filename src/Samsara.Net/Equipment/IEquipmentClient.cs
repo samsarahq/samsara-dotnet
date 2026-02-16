@@ -117,7 +117,7 @@ public partial interface IEquipmentClient
     /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<EquipmentResponse> GetEquipmentAsync(
-        string id,
+        GetEquipmentRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

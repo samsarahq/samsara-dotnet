@@ -163,10 +163,10 @@ public partial class PreviewApIsClient : IPreviewApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.PreviewApIs.LockVehicleAsync("id");
+    /// await client.PreviewApIs.LockVehicleAsync(new LockVehicleRequest { Id = "id" });
     /// </code></example>
     public async Task LockVehicleAsync(
-        string id,
+        LockVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -185,7 +185,7 @@ public partial class PreviewApIsClient : IPreviewApIsClient
                     Method = HttpMethod.Put,
                     Path = string.Format(
                         "preview/fleet/vehicles/{0}/lock",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -256,10 +256,10 @@ public partial class PreviewApIsClient : IPreviewApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.PreviewApIs.UnlockVehicleAsync("id");
+    /// await client.PreviewApIs.UnlockVehicleAsync(new UnlockVehicleRequest { Id = "id" });
     /// </code></example>
     public async Task UnlockVehicleAsync(
-        string id,
+        UnlockVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -278,7 +278,7 @@ public partial class PreviewApIsClient : IPreviewApIsClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "preview/fleet/vehicles/{0}/lock",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,

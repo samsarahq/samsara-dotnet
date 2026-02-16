@@ -97,7 +97,6 @@ public partial interface IHoursOfServiceClient
     /// To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     Task SetCurrentDutyStatusAsync(
-        long driverId,
         InlineObject1 request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

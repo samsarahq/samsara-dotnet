@@ -87,7 +87,6 @@ public partial class TrailerAssignmentsClient : ITrailerAssignmentsClient
     private async Task<
         WithRawResponse<V1TrailerAssignmentsResponse>
     > V1GetFleetTrailerAssignmentsAsyncCore(
-        long trailerId,
         V1GetFleetTrailerAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -112,7 +111,7 @@ public partial class TrailerAssignmentsClient : ITrailerAssignmentsClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/trailers/{0}/assignments",
-                        ValueConvert.ToPathParameterString(trailerId)
+                        ValueConvert.ToPathParameterString(request.TrailerId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -210,19 +209,17 @@ public partial class TrailerAssignmentsClient : ITrailerAssignmentsClient
     /// </summary>
     /// <example><code>
     /// await client.TrailerAssignments.V1GetFleetTrailerAssignmentsAsync(
-    ///     1000000,
-    ///     new V1GetFleetTrailerAssignmentsRequest()
+    ///     new V1GetFleetTrailerAssignmentsRequest { TrailerId = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1TrailerAssignmentsResponse> V1GetFleetTrailerAssignmentsAsync(
-        long trailerId,
         V1GetFleetTrailerAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1TrailerAssignmentsResponse>(
-            V1GetFleetTrailerAssignmentsAsyncCore(trailerId, request, options, cancellationToken)
+            V1GetFleetTrailerAssignmentsAsyncCore(request, options, cancellationToken)
         );
     }
 }

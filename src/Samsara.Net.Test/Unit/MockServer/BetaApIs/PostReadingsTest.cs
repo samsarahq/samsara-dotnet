@@ -47,7 +47,7 @@ public class PostReadingsTest : BaseMockServerTest
                         new ReadingDatapointRequestBody
                         {
                             EntityId = "123451234512345",
-                            EntityType = "asset",
+                            EntityType = ReadingDatapointRequestBodyEntityType.Asset,
                             HappenedAtTime = "2023-10-27T10:00:00Z",
                             ReadingId = "airInletPressure",
                             Value = new Dictionary<string, object?>() { { "key", "value" } },

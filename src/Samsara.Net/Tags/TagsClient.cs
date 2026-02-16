@@ -146,7 +146,7 @@ public partial class TagsClient : ITagsClient
     }
 
     private async Task<WithRawResponse<TagResponse>> GetTagAsyncCore(
-        string id,
+        GetTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -163,7 +163,10 @@ public partial class TagsClient : ITagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -208,7 +211,6 @@ public partial class TagsClient : ITagsClient
     }
 
     private async Task<WithRawResponse<TagResponse>> ReplaceTagAsyncCore(
-        string id,
         ReplaceTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -226,7 +228,10 @@ public partial class TagsClient : ITagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Put,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -273,7 +278,7 @@ public partial class TagsClient : ITagsClient
     }
 
     private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
+        DeleteTagsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -290,7 +295,10 @@ public partial class TagsClient : ITagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Delete,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -335,7 +343,6 @@ public partial class TagsClient : ITagsClient
     }
 
     private async Task<WithRawResponse<TagResponse>> PatchTagAsyncCore(
-        string id,
         PatchTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -353,7 +360,10 @@ public partial class TagsClient : ITagsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("tags/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "tags/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -449,16 +459,16 @@ public partial class TagsClient : ITagsClient
     /// To use this endpoint, select **Read Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Tags.GetTagAsync("id");
+    /// await client.Tags.GetTagAsync(new GetTagRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<TagResponse> GetTagAsync(
-        string id,
+        GetTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TagResponse>(
-            GetTagAsyncCore(id, options, cancellationToken)
+            GetTagAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -470,17 +480,16 @@ public partial class TagsClient : ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
+    /// await client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<TagResponse> ReplaceTagAsync(
-        string id,
         ReplaceTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TagResponse>(
-            ReplaceTagAsyncCore(id, request, options, cancellationToken)
+            ReplaceTagAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -492,15 +501,17 @@ public partial class TagsClient : ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Tags.DeleteAsync("id");
+    /// await client.Tags.DeleteAsync(new DeleteTagsRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteTagsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
+        return new WithRawResponseTask<string>(
+            DeleteAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>
@@ -515,17 +526,16 @@ public partial class TagsClient : ITagsClient
     /// To use this endpoint, select **Write Tags** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Tags.PatchTagAsync("id", new PatchTagRequest());
+    /// await client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<TagResponse> PatchTagAsync(
-        string id,
         PatchTagRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<TagResponse>(
-            PatchTagAsyncCore(id, request, options, cancellationToken)
+            PatchTagAsyncCore(request, options, cancellationToken)
         );
     }
 }

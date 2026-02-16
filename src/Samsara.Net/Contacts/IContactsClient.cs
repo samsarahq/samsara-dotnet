@@ -38,7 +38,7 @@ public partial interface IContactsClient
     /// To use this endpoint, select **Read Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<ContactResponse> GetContactAsync(
-        string id,
+        GetContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -51,7 +51,7 @@ public partial interface IContactsClient
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteContactsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -64,7 +64,6 @@ public partial interface IContactsClient
     /// To use this endpoint, select **Write Alert Contacts** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<ContactResponse> UpdateContactAsync(
-        string id,
         UpdateContactRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default

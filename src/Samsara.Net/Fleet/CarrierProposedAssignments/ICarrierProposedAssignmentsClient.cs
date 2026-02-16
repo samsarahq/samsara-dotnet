@@ -12,7 +12,7 @@ public partial interface ICarrierProposedAssignmentsClient
     /// To use this endpoint, select **Write Carrier-Proposed Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<string> DeleteAsync(
-        string id,
+        DeleteCarrierProposedAssignmentsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
