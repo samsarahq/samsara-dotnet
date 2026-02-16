@@ -1179,7 +1179,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetIndustrialAssetsAsync(new GetIndustrialAssetsRequest());
@@ -1200,7 +1200,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "name" });
@@ -1221,7 +1221,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
@@ -1241,9 +1241,9 @@ public partial class IndustrialClient : IIndustrialClient
     /// <summary>
     /// Writes values to multiple data outputs on an asset simultaneously. Only the provided data outputs will be updated.
     ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -1274,7 +1274,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputsAsync(new GetDataInputsRequest());
@@ -1295,7 +1295,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataSnapshotAsync(new GetDataInputDataSnapshotRequest());
@@ -1322,7 +1322,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataFeedAsync(new GetDataInputDataFeedRequest());
@@ -1343,7 +1343,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataHistoryAsync(
@@ -1373,7 +1373,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetCamerasAsync();
@@ -1400,7 +1400,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
@@ -1423,7 +1423,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionLatestRunCameraAsync(
@@ -1455,7 +1455,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsAsync(new V1GetVisionRunsRequest { DurationMs = 1000000 });
@@ -1483,7 +1483,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetVisionRunsByCameraAsync(
@@ -1517,7 +1517,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
@@ -1560,7 +1560,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesHistoryAsync(
@@ -1590,7 +1590,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesAsync();

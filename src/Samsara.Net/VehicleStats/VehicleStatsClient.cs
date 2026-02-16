@@ -234,11 +234,11 @@ public partial class VehicleStatsClient : IVehicleStatsClient
     /// <summary>
     /// Returns the last known stats of all vehicles at the given `time`. If no `time` is specified, the current time is used.
     ///
-    /// Related guide: <a href="/docs/telematics" target="_blank">Telematics</a>.
+    /// Related guide: [Telematics](/docs/telematics).
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.VehicleStats.GetVehicleStatsAsync(new GetVehicleStatsRequest());
@@ -263,11 +263,11 @@ public partial class VehicleStatsClient : IVehicleStatsClient
     ///
     /// If `hasNextPage` is `false`, no new data is immediately available. You should wait a minimum of 5 seconds making a subsequent request.
     ///
-    /// Related guide: <a href="/docs/telematics" target="_blank">Telematics</a>.
+    /// Related guide: [Telematics](/docs/telematics).
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.VehicleStats.GetVehicleStatsFeedAsync(new GetVehicleStatsFeedRequest());
@@ -286,11 +286,11 @@ public partial class VehicleStatsClient : IVehicleStatsClient
     /// <summary>
     /// Returns vehicle stats during the given time range for all vehicles. This can be optionally filtered by tags or specific vehicle IDs.
     ///
-    /// Related guide: <a href="/docs/telematics" target="_blank">Telematics</a>.
+    /// Related guide: [Telematics](/docs/telematics).
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.VehicleStats.GetVehicleStatsHistoryAsync(

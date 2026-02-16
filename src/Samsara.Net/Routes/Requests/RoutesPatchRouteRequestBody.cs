@@ -8,7 +8,7 @@ namespace Samsara.Net.Routes;
 public record RoutesPatchRouteRequestBody
 {
     /// <summary>
-    /// ID of the driver. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+    /// ID of the driver. Can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the driver.
     /// </summary>
     [JsonPropertyName("driverId")]
     public string? DriverId { get; set; }
@@ -53,7 +53,7 @@ public record RoutesPatchRouteRequestBody
     public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
-    /// ID of the vehicle. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
+    /// ID of the vehicle. Can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the vehicle.
     /// </summary>
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
