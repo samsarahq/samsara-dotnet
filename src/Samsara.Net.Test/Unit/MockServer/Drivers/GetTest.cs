@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Drivers;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -105,7 +106,7 @@ public class GetTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Drivers.GetAsync("id");
+        var response = await Client.Drivers.GetAsync(new GetDriversRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

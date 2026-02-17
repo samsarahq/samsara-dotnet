@@ -154,7 +154,6 @@ public partial class IndustrialClient : IIndustrialClient
     }
 
     private async Task<WithRawResponse<InlineResponse200>> PatchIndustrialAssetAsyncCore(
-        string id,
         AssetPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -174,7 +173,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "industrial/assets/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -224,7 +223,6 @@ public partial class IndustrialClient : IIndustrialClient
     private async Task<
         WithRawResponse<AssetDataOutputsPatchAssetDataOutputsResponseBody>
     > PatchAssetDataOutputsAsyncCore(
-        string id,
         AssetDataOutputsPatchAssetDataOutputsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -244,7 +242,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "industrial/assets/{0}/data-outputs",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -682,7 +680,7 @@ public partial class IndustrialClient : IIndustrialClient
     private async Task<
         WithRawResponse<IEnumerable<V1ProgramsForTheCameraResponseItem>>
     > V1GetVisionProgramsByCameraAsyncCore(
-        long cameraId,
+        V1GetVisionProgramsByCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -701,7 +699,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/industrial/vision/cameras/{0}/programs",
-                        ValueConvert.ToPathParameterString(cameraId)
+                        ValueConvert.ToPathParameterString(request.CameraId)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -751,7 +749,6 @@ public partial class IndustrialClient : IIndustrialClient
     private async Task<
         WithRawResponse<V1VisionRunByCameraResponse>
     > V1GetVisionLatestRunCameraAsyncCore(
-        long cameraId,
         V1GetVisionLatestRunCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -778,7 +775,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/industrial/vision/run/camera/{0}",
-                        ValueConvert.ToPathParameterString(cameraId)
+                        ValueConvert.ToPathParameterString(request.CameraId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -897,7 +894,6 @@ public partial class IndustrialClient : IIndustrialClient
     private async Task<
         WithRawResponse<IEnumerable<V1VisionRunsByCameraResponseItem>>
     > GetVisionRunsByCameraAsyncCore(
-        long cameraId,
         GetVisionRunsByCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -922,7 +918,7 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/industrial/vision/runs/{0}",
-                        ValueConvert.ToPathParameterString(cameraId)
+                        ValueConvert.ToPathParameterString(request.CameraId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -973,9 +969,6 @@ public partial class IndustrialClient : IIndustrialClient
     private async Task<
         WithRawResponse<V1VisionRunsByCameraAndProgramResponse>
     > V1GetVisionRunsByCameraAndProgramAsyncCore(
-        long cameraId,
-        long programId,
-        long startedAtMs,
         V1GetVisionRunsByCameraAndProgramRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -999,9 +992,9 @@ public partial class IndustrialClient : IIndustrialClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/industrial/vision/runs/{0}/{1}/{2}",
-                        ValueConvert.ToPathParameterString(cameraId),
-                        ValueConvert.ToPathParameterString(programId),
-                        ValueConvert.ToPathParameterString(startedAtMs)
+                        ValueConvert.ToPathParameterString(request.CameraId),
+                        ValueConvert.ToPathParameterString(request.ProgramId),
+                        ValueConvert.ToPathParameterString(request.StartedAtMs)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -1179,7 +1172,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetIndustrialAssetsAsync(new GetIndustrialAssetsRequest());
@@ -1200,7 +1193,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.CreateIndustrialAssetAsync(new AssetCreate { Name = "name" });
@@ -1221,51 +1214,49 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Industrial.PatchIndustrialAssetAsync("id", new AssetPatch());
+    /// await client.Industrial.PatchIndustrialAssetAsync(new AssetPatch { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<InlineResponse200> PatchIndustrialAssetAsync(
-        string id,
         AssetPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<InlineResponse200>(
-            PatchIndustrialAssetAsyncCore(id, request, options, cancellationToken)
+            PatchIndustrialAssetAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <summary>
     /// Writes values to multiple data outputs on an asset simultaneously. Only the provided data outputs will be updated.
     ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
     /// await client.Industrial.PatchAssetDataOutputsAsync(
-    ///     "id",
     ///     new AssetDataOutputsPatchAssetDataOutputsRequestBody
     ///     {
+    ///         Id = "id",
     ///         Values = new Dictionary&lt;string, object?&gt;() { { "key", "value" } },
     ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<AssetDataOutputsPatchAssetDataOutputsResponseBody> PatchAssetDataOutputsAsync(
-        string id,
         AssetDataOutputsPatchAssetDataOutputsRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AssetDataOutputsPatchAssetDataOutputsResponseBody>(
-            PatchAssetDataOutputsAsyncCore(id, request, options, cancellationToken)
+            PatchAssetDataOutputsAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -1274,7 +1265,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputsAsync(new GetDataInputsRequest());
@@ -1295,7 +1286,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataSnapshotAsync(new GetDataInputDataSnapshotRequest());
@@ -1322,7 +1313,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataFeedAsync(new GetDataInputDataFeedRequest());
@@ -1343,7 +1334,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Equipment Statistics** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetDataInputDataHistoryAsync(
@@ -1373,7 +1364,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetCamerasAsync();
@@ -1400,21 +1391,23 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
+    /// await client.Industrial.V1GetVisionProgramsByCameraAsync(
+    ///     new V1GetVisionProgramsByCameraRequest { CameraId = 1000000 }
+    /// );
     /// </code></example>
     public WithRawResponseTask<
         IEnumerable<V1ProgramsForTheCameraResponseItem>
     > V1GetVisionProgramsByCameraAsync(
-        long cameraId,
+        V1GetVisionProgramsByCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IEnumerable<V1ProgramsForTheCameraResponseItem>>(
-            V1GetVisionProgramsByCameraAsyncCore(cameraId, options, cancellationToken)
+            V1GetVisionProgramsByCameraAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -1423,23 +1416,21 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionLatestRunCameraAsync(
-    ///     1000000,
-    ///     new V1GetVisionLatestRunCameraRequest()
+    ///     new V1GetVisionLatestRunCameraRequest { CameraId = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1VisionRunByCameraResponse> V1GetVisionLatestRunCameraAsync(
-        long cameraId,
         V1GetVisionLatestRunCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1VisionRunByCameraResponse>(
-            V1GetVisionLatestRunCameraAsyncCore(cameraId, request, options, cancellationToken)
+            V1GetVisionLatestRunCameraAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -1455,7 +1446,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsAsync(new V1GetVisionRunsRequest { DurationMs = 1000000 });
@@ -1483,25 +1474,23 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.GetVisionRunsByCameraAsync(
-    ///     1000000,
-    ///     new GetVisionRunsByCameraRequest { DurationMs = 1000000 }
+    ///     new GetVisionRunsByCameraRequest { CameraId = 1000000, DurationMs = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<
         IEnumerable<V1VisionRunsByCameraResponseItem>
     > GetVisionRunsByCameraAsync(
-        long cameraId,
         GetVisionRunsByCameraRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<IEnumerable<V1VisionRunsByCameraResponseItem>>(
-            GetVisionRunsByCameraAsyncCore(cameraId, request, options, cancellationToken)
+            GetVisionRunsByCameraAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -1517,34 +1506,26 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetVisionRunsByCameraAndProgramAsync(
-    ///     1000000,
-    ///     1000000,
-    ///     1000000,
-    ///     new V1GetVisionRunsByCameraAndProgramRequest()
+    ///     new V1GetVisionRunsByCameraAndProgramRequest
+    ///     {
+    ///         CameraId = 1000000,
+    ///         ProgramId = 1000000,
+    ///         StartedAtMs = 1000000,
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1VisionRunsByCameraAndProgramResponse> V1GetVisionRunsByCameraAndProgramAsync(
-        long cameraId,
-        long programId,
-        long startedAtMs,
         V1GetVisionRunsByCameraAndProgramRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1VisionRunsByCameraAndProgramResponse>(
-            V1GetVisionRunsByCameraAndProgramAsyncCore(
-                cameraId,
-                programId,
-                startedAtMs,
-                request,
-                options,
-                cancellationToken
-            )
+            V1GetVisionRunsByCameraAndProgramAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -1560,7 +1541,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesHistoryAsync(
@@ -1590,7 +1571,7 @@ public partial class IndustrialClient : IIndustrialClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Industrial** under the Industrial category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Industrial.V1GetMachinesAsync();

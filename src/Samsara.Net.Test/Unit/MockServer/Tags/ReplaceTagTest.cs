@@ -81,7 +81,7 @@ public class ReplaceTagTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Tags.ReplaceTagAsync("id", new ReplaceTagRequest());
+        var response = await Client.Tags.ReplaceTagAsync(new ReplaceTagRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

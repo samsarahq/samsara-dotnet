@@ -15,7 +15,7 @@ public record ExtendedDriverTinyResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The [external IDs](/docs/external-ids) for the given object.
+    /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     /// </summary>
     [JsonPropertyName("externalIds")]
     public ExtendedDriverTinyResponseExternalIds? ExternalIds { get; set; }

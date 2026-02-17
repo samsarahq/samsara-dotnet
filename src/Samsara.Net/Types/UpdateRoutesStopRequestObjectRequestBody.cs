@@ -12,7 +12,7 @@ public record UpdateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// ID of the address. An address [externalId](/docs/external-ids#using-external-ids) can also be used interchangeably here.
+    /// ID of the address. An address [externalId](https://developers.samsara.com/docs/external-ids#using-external-ids) can also be used interchangeably here.
     /// </summary>
     [JsonPropertyName("addressId")]
     public string? AddressId { get; set; }

@@ -9,11 +9,11 @@ public partial interface IVehicleLocationsClient
     ///
     /// Returns the last known location of all vehicles at the given `time`. If no `time` is specified, the current time is used. This can be optionally filtered by tags or specific vehicle IDs.
     ///
-    /// Related guide: [Vehicle Locations](/docs/vehicle-locations-1).
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<VehicleLocationsResponse> GetVehicleLocationsAsync(
         GetVehicleLocationsRequest request,
@@ -32,11 +32,11 @@ public partial interface IVehicleLocationsClient
     ///
     /// If `hasNextPage` is `false`, no updates are readily available yet. We'd suggest waiting a minimum of 5 seconds before requesting updates.
     ///
-    /// Related guide: [Vehicle Locations](/docs/vehicle-locations-1).
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<VehicleLocationsListResponse> GetVehicleLocationsFeedAsync(
         GetVehicleLocationsFeedRequest request,
@@ -49,11 +49,11 @@ public partial interface IVehicleLocationsClient
     ///
     /// Returns all known vehicle locations during the given time range. This can be optionally filtered by tags or specific vehicle IDs.
     ///
-    /// Related guide: [Vehicle Locations](/docs/vehicle-locations-1).
+    /// Related guide: <a href="/docs/vehicle-locations-1" target="_blank">Vehicle Locations</a>.
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicle Statistics** under the Vehicle category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     WithRawResponseTask<VehicleLocationsListResponse> GetVehicleLocationsHistoryAsync(
         GetVehicleLocationsHistoryRequest request,

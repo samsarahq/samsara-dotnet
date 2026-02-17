@@ -16,9 +16,9 @@ public partial class VehiclesClient : IVehiclesClient
     /// <summary>
     /// Returns a list of all vehicles.
     ///
-    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -143,7 +143,7 @@ public partial class VehiclesClient : IVehiclesClient
     }
 
     private async Task<WithRawResponse<VehicleResponse>> GetAsyncCore(
-        string id,
+        GetVehiclesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -162,7 +162,7 @@ public partial class VehiclesClient : IVehiclesClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -208,7 +208,6 @@ public partial class VehiclesClient : IVehiclesClient
     }
 
     private async Task<WithRawResponse<VehicleResponse>> UpdateAsyncCore(
-        string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -228,7 +227,7 @@ public partial class VehiclesClient : IVehiclesClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/vehicles/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -278,9 +277,9 @@ public partial class VehiclesClient : IVehiclesClient
     /// <summary>
     /// Returns a list of all vehicles.
     ///
-    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -327,19 +326,19 @@ public partial class VehiclesClient : IVehiclesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.GetAsync("id");
+    /// await client.Vehicles.GetAsync(new GetVehiclesRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<VehicleResponse> GetAsync(
-        string id,
+        GetVehiclesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<VehicleResponse>(
-            GetAsyncCore(id, options, cancellationToken)
+            GetAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -354,20 +353,19 @@ public partial class VehiclesClient : IVehiclesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Vehicles** under the Vehicles category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Vehicles** under the Vehicles category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
+    /// await client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<VehicleResponse> UpdateAsync(
-        string id,
         UpdateVehicleRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<VehicleResponse>(
-            UpdateAsyncCore(id, request, options, cancellationToken)
+            UpdateAsyncCore(request, options, cancellationToken)
         );
     }
 }

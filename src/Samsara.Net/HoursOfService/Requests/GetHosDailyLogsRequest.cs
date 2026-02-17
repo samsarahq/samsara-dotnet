@@ -54,7 +54,7 @@ public record GetHosDailyLogsRequest
     /// Valid value: `vehicle`  Valid values: `vehicle`
     /// </summary>
     [JsonIgnore]
-    public string? Expand { get; set; }
+    public GetHosDailyLogsRequestExpand? Expand { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

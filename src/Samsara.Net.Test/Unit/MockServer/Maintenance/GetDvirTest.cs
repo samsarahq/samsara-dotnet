@@ -78,7 +78,7 @@ public class GetDvirTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Maintenance.GetDvirAsync("id", new GetDvirRequest());
+        var response = await Client.Maintenance.GetDvirAsync(new GetDvirRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }
