@@ -140,6 +140,9 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("tax")]
     public WorkOrderTaxObjectResponseBody? Tax { get; set; }
 
+    [JsonPropertyName("unallocatedLabor")]
+    public WorkOrderUnallocatedLaborObjectResponseBody? UnallocatedLabor { get; set; }
+
     /// <summary>
     /// The time the work order was last updated in RFC 3339 format.
     /// </summary>
