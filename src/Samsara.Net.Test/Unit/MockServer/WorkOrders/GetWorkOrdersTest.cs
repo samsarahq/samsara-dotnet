@@ -84,6 +84,13 @@ public class GetWorkOrdersTest : BaseMockServerTest
                       "currency": "usd"
                     }
                   },
+                  "unallocatedLabor": {
+                    "cost": {
+                      "amount": "94.01",
+                      "currency": "usd"
+                    },
+                    "timeMinutes": 60
+                  },
                   "updatedAtTime": "2019-06-13T19:08:25.000Z",
                   "vendorUuid": "5523a39f-42ef-4820-83d0-dfe73dbe7853"
                 }
