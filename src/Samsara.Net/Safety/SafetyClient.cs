@@ -240,6 +240,7 @@ public partial class SafetyClient : ISafetyClient
     private async Task<
         WithRawResponse<V1DriverSafetyScoreResponse>
     > V1GetDriverSafetyScoreAsyncCore(
+        long driverId,
         V1GetDriverSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -264,7 +265,7 @@ public partial class SafetyClient : ISafetyClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/drivers/{0}/safety/score",
-                        ValueConvert.ToPathParameterString(request.DriverId)
+                        ValueConvert.ToPathParameterString(driverId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -315,6 +316,7 @@ public partial class SafetyClient : ISafetyClient
     private async Task<
         WithRawResponse<V1VehicleSafetyScoreResponse>
     > V1GetVehicleSafetyScoreAsyncCore(
+        long vehicleId,
         V1GetVehicleSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -339,7 +341,7 @@ public partial class SafetyClient : ISafetyClient
                     Method = HttpMethod.Get,
                     Path = string.Format(
                         "v1/fleet/vehicles/{0}/safety/score",
-                        ValueConvert.ToPathParameterString(request.VehicleId)
+                        ValueConvert.ToPathParameterString(vehicleId)
                     ),
                     QueryString = _queryString,
                     Headers = _headers,
@@ -390,9 +392,9 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// This endpoint will return details for the specified safety events based on the parameters passed in. Results are paginated.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -414,9 +416,9 @@ public partial class SafetyClient : ISafetyClient
     /// <summary>
     /// This endpoint will return all safety events associated with your organization based on the parameters passed in. To get core endpoint data, select Read Safety Events & Scores under the Safety & Cameras category when creating or editing an API token. Read Camera Media permissions required to get Safety Event video media via this endpoint. If you include an endTime, the endpoint will return data up until that point. If you do not include an endTime, you can continue to poll the API real-time with the pagination cursor that gets returned on every call. Results are paginated.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -447,30 +449,27 @@ public partial class SafetyClient : ISafetyClient
     ///
     /// Fetch the safety score for the driver.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetDriverSafetyScoreAsync(
-    ///     new V1GetDriverSafetyScoreRequest
-    ///     {
-    ///         DriverId = 1000000,
-    ///         StartMs = 1000000,
-    ///         EndMs = 1000000,
-    ///     }
+    ///     1000000,
+    ///     new V1GetDriverSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1DriverSafetyScoreResponse> V1GetDriverSafetyScoreAsync(
+        long driverId,
         V1GetDriverSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1DriverSafetyScoreResponse>(
-            V1GetDriverSafetyScoreAsyncCore(request, options, cancellationToken)
+            V1GetDriverSafetyScoreAsyncCore(driverId, request, options, cancellationToken)
         );
     }
 
@@ -484,30 +483,27 @@ public partial class SafetyClient : ISafetyClient
     ///
     /// Fetch the safety score for the vehicle.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Safety.V1GetVehicleSafetyScoreAsync(
-    ///     new V1GetVehicleSafetyScoreRequest
-    ///     {
-    ///         VehicleId = 1000000,
-    ///         StartMs = 1000000,
-    ///         EndMs = 1000000,
-    ///     }
+    ///     1000000,
+    ///     new V1GetVehicleSafetyScoreRequest { StartMs = 1000000, EndMs = 1000000 }
     /// );
     /// </code></example>
     public WithRawResponseTask<V1VehicleSafetyScoreResponse> V1GetVehicleSafetyScoreAsync(
+        long vehicleId,
         V1GetVehicleSafetyScoreRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<V1VehicleSafetyScoreResponse>(
-            V1GetVehicleSafetyScoreAsyncCore(request, options, cancellationToken)
+            V1GetVehicleSafetyScoreAsyncCore(vehicleId, request, options, cancellationToken)
         );
     }
 }

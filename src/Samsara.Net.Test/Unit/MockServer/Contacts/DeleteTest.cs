@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net.Contacts;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Contacts;
 
@@ -8,14 +8,22 @@ namespace Samsara.Net.Test.Unit.MockServer.Contacts;
 public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
-    public void MockServerTest()
+    public async Task MockServerTest()
     {
+        const string mockResponse = """
+            ""
+            """;
+
         Server
             .Given(WireMock.RequestBuilders.Request.Create().WithPath("/contacts/id").UsingDelete())
-            .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Contacts.DeleteAsync(new DeleteContactsRequest { Id = "id" })
-        );
+        var response = await Client.Contacts.DeleteAsync("id");
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

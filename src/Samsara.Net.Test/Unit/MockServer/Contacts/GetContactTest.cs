@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Contacts;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -32,7 +31,7 @@ public class GetContactTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Contacts.GetContactAsync(new GetContactRequest { Id = "id" });
+        var response = await Client.Contacts.GetContactAsync("id");
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

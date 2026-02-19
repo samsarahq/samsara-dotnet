@@ -1,6 +1,6 @@
 using NUnit.Framework;
-using Samsara.Net.Tags;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
 
 namespace Samsara.Net.Test.Unit.MockServer.Tags;
 
@@ -8,14 +8,22 @@ namespace Samsara.Net.Test.Unit.MockServer.Tags;
 public class DeleteTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
-    public void MockServerTest()
+    public async Task MockServerTest()
     {
+        const string mockResponse = """
+            ""
+            """;
+
         Server
             .Given(WireMock.RequestBuilders.Request.Create().WithPath("/tags/id").UsingDelete())
-            .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Tags.DeleteAsync(new DeleteTagsRequest { Id = "id" })
-        );
+        var response = await Client.Tags.DeleteAsync("id");
+        JsonAssert.AreEqual(response, mockResponse);
     }
 }

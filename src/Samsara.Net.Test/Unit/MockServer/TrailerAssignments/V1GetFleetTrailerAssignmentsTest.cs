@@ -40,7 +40,8 @@ public class V1GetFleetTrailerAssignmentsTest : BaseMockServerTest
             );
 
         var response = await Client.TrailerAssignments.V1GetFleetTrailerAssignmentsAsync(
-            new V1GetFleetTrailerAssignmentsRequest { TrailerId = 1000000 }
+            1000000,
+            new V1GetFleetTrailerAssignmentsRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

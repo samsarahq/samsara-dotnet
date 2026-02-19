@@ -24,7 +24,7 @@ public record ResolvedBy : IJsonOnDeserialized
     /// The type of user who is resolving the defect. Must be "mechanic".
     /// </summary>
     [JsonPropertyName("type")]
-    public required ResolvedByType Type { get; set; }
+    public string Type { get; set; } = "mechanic";
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -24,7 +24,7 @@ public record PatchIssueRequestBodyAssignedToRequestBody : IJsonOnDeserialized
     /// Type of the issue assignee.  Valid values: `user`
     /// </summary>
     [JsonPropertyName("type")]
-    public required PatchIssueRequestBodyAssignedToRequestBodyType Type { get; set; }
+    public string Type { get; set; } = "user";
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -57,7 +57,8 @@ public class V1GetVisionLatestRunCameraTest : BaseMockServerTest
             );
 
         var response = await Client.Industrial.V1GetVisionLatestRunCameraAsync(
-            new V1GetVisionLatestRunCameraRequest { CameraId = 1000000 }
+            1000000,
+            new V1GetVisionLatestRunCameraRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

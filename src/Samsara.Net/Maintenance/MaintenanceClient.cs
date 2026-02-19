@@ -225,6 +225,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     }
 
     private async Task<WithRawResponse<DvirDefectGetDefectResponseBody>> GetDefectAsyncCore(
+        string id,
         GetDefectRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -246,10 +247,7 @@ public partial class MaintenanceClient : IMaintenanceClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "defects/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("defects/{0}", ValueConvert.ToPathParameterString(id)),
                     QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
@@ -433,6 +431,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     }
 
     private async Task<WithRawResponse<DvirGetDvirResponseBody>> GetDvirAsyncCore(
+        string id,
         GetDvirRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -454,10 +453,7 @@ public partial class MaintenanceClient : IMaintenanceClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "dvirs/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("dvirs/{0}", ValueConvert.ToPathParameterString(id)),
                     QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
@@ -535,6 +531,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     }
 
     private async Task<WithRawResponse<DefectResponse>> UpdateDvirDefectAsyncCore(
+        string id,
         DefectPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -554,7 +551,7 @@ public partial class MaintenanceClient : IMaintenanceClient
                     Method = HttpMethodExtensions.Patch,
                     Path = string.Format(
                         "fleet/defects/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
+                        ValueConvert.ToPathParameterString(id)
                     ),
                     Body = request,
                     Headers = _headers,
@@ -666,6 +663,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     }
 
     private async Task<WithRawResponse<DvirResponse>> UpdateDvirAsyncCore(
+        string id,
         UpdateDvirRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -683,10 +681,7 @@ public partial class MaintenanceClient : IMaintenanceClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format(
-                        "fleet/dvirs/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
+                    Path = string.Format("fleet/dvirs/{0}", ValueConvert.ToPathParameterString(id)),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -796,9 +791,9 @@ public partial class MaintenanceClient : IMaintenanceClient
     /// <summary>
     /// Get DVIR defect types.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read Defect Types** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Defect Types** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -820,9 +815,9 @@ public partial class MaintenanceClient : IMaintenanceClient
     /// <summary>
     /// Stream DVIR defects.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -844,33 +839,34 @@ public partial class MaintenanceClient : IMaintenanceClient
     /// <summary>
     /// Get a single DVIR defect by ID.
     ///
-    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Maintenance.GetDefectAsync(new GetDefectRequest { Id = "id" });
+    /// await client.Maintenance.GetDefectAsync("id", new GetDefectRequest());
     /// </code></example>
     public WithRawResponseTask<DvirDefectGetDefectResponseBody> GetDefectAsync(
+        string id,
         GetDefectRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DvirDefectGetDefectResponseBody>(
-            GetDefectAsyncCore(request, options, cancellationToken)
+            GetDefectAsyncCore(id, request, options, cancellationToken)
         );
     }
 
     /// <summary>
     /// Returns a history/feed of changed DVIRs by updatedAtTime between startTime and endTime parameters. In case of missing `endTime` parameter it will return a never ending stream of data.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -892,24 +888,25 @@ public partial class MaintenanceClient : IMaintenanceClient
     /// <summary>
     /// Get a single DVIR by ID.
     ///
-    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits [here](/docs/rate-limits)).
     ///
-    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.Maintenance.GetDvirAsync(new GetDvirRequest { Id = "id" });
+    /// await client.Maintenance.GetDvirAsync("id", new GetDvirRequest());
     /// </code></example>
     public WithRawResponseTask<DvirGetDvirResponseBody> GetDvirAsync(
+        string id,
         GetDvirRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DvirGetDvirResponseBody>(
-            GetDvirAsyncCore(request, options, cancellationToken)
+            GetDvirAsyncCore(id, request, options, cancellationToken)
         );
     }
 
@@ -918,19 +915,20 @@ public partial class MaintenanceClient : IMaintenanceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Defects** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
-    /// await client.Maintenance.UpdateDvirDefectAsync(new DefectPatch { Id = "id" });
+    /// await client.Maintenance.UpdateDvirDefectAsync("id", new DefectPatch());
     /// </code></example>
     public WithRawResponseTask<DefectResponse> UpdateDvirDefectAsync(
+        string id,
         DefectPatch request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DefectResponse>(
-            UpdateDvirDefectAsyncCore(request, options, cancellationToken)
+            UpdateDvirDefectAsyncCore(id, request, options, cancellationToken)
         );
     }
 
@@ -939,7 +937,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write DVIRs** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Maintenance.CreateDvirAsync(
@@ -947,7 +945,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     ///     {
     ///         AuthorId = "11",
     ///         SafetyStatus = CreateDvirRequestSafetyStatus.Safe,
-    ///         Type = CreateDvirRequestType.Mechanic,
+    ///         Type = "mechanic",
     ///     }
     /// );
     /// </code></example>
@@ -967,26 +965,23 @@ public partial class MaintenanceClient : IMaintenanceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write DVIRs** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Maintenance.UpdateDvirAsync(
-    ///     new UpdateDvirRequest
-    ///     {
-    ///         Id = "id",
-    ///         AuthorId = "11",
-    ///         IsResolved = true,
-    ///     }
+    ///     "id",
+    ///     new UpdateDvirRequest { AuthorId = "11", IsResolved = true }
     /// );
     /// </code></example>
     public WithRawResponseTask<DvirResponse> UpdateDvirAsync(
+        string id,
         UpdateDvirRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<DvirResponse>(
-            UpdateDvirAsyncCore(request, options, cancellationToken)
+            UpdateDvirAsyncCore(id, request, options, cancellationToken)
         );
     }
 
@@ -1002,7 +997,7 @@ public partial class MaintenanceClient : IMaintenanceClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
     /// </summary>
     /// <example><code>
     /// await client.Maintenance.V1GetFleetMaintenanceListAsync();

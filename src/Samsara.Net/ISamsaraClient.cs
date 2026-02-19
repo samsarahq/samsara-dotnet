@@ -1,7 +1,7 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
 using Samsara.Net.AuthTokenForDriver;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.BetaApis;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Documents;
@@ -20,8 +20,7 @@ using Samsara.Net.Idling;
 using Samsara.Net.Ifta;
 using Samsara.Net.Industrial;
 using Samsara.Net.Issues;
-using Samsara.Net.Legacy;
-using Samsara.Net.LegacyApIs;
+using Samsara.Net.LegacyApis;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
 using Samsara.Net.Maintenance;
@@ -29,7 +28,7 @@ using Samsara.Net.Media;
 using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.PreviewApis;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
@@ -57,7 +56,7 @@ public partial interface ISamsaraClient
     public IAddressesClient Addresses { get; }
     public IAlertsClient Alerts { get; }
     public Samsara.Net.Assets.IAssetsClient Assets { get; }
-    public IBetaApIsClient BetaApIs { get; }
+    public IBetaApisClient BetaApis { get; }
     public ILocationAndSpeedClient LocationAndSpeed { get; }
     public Samsara.Net.Attributes.IAttributesClient Attributes { get; }
     public IMediaClient Media { get; }
@@ -68,7 +67,7 @@ public partial interface ISamsaraClient
     public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
     public IDriverQrCodesClient DriverQrCodes { get; }
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
-    public ILegacyApIsClient LegacyApIs { get; }
+    public ILegacyApisClient LegacyApis { get; }
     public IDocumentsClient Documents { get; }
     public IDriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
     public IDriversClient Drivers { get; }
@@ -93,7 +92,7 @@ public partial interface ISamsaraClient
     public ILiveSharingLinksClient LiveSharingLinks { get; }
     public IWorkOrdersClient WorkOrders { get; }
     public IOrganizationInfoClient OrganizationInfo { get; }
-    public IPreviewApIsClient PreviewApIs { get; }
+    public IPreviewApisClient PreviewApis { get; }
     public IRouteEventsClient RouteEvents { get; }
     public ISafetyClient Safety { get; }
     public ISpeedingIntervalsClient SpeedingIntervals { get; }
@@ -102,7 +101,6 @@ public partial interface ISamsaraClient
     public ITrainingCoursesClient TrainingCourses { get; }
     public ITripsClient Trips { get; }
     public IUsersClient Users { get; }
-    public ILegacyClient Legacy { get; }
     public IMessagesClient Messages { get; }
     public ITrailerAssignmentsClient TrailerAssignments { get; }
     public ISensorsClient Sensors { get; }

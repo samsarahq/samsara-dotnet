@@ -73,12 +73,8 @@ public class V1GetAssetReeferTest : BaseMockServerTest
             );
 
         var response = await Client.Assets.V1GetAssetReeferAsync(
-            new V1GetAssetReeferRequest
-            {
-                AssetId = 1000000,
-                StartMs = 1000000,
-                EndMs = 1000000,
-            }
+            1000000,
+            new V1GetAssetReeferRequest { StartMs = 1000000, EndMs = 1000000 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

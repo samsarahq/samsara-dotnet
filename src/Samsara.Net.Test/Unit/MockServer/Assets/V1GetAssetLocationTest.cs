@@ -40,12 +40,8 @@ public class V1GetAssetLocationTest : BaseMockServerTest
             );
 
         var response = await Client.Assets.V1GetAssetLocationAsync(
-            new V1GetAssetLocationRequest
-            {
-                AssetId = 1000000,
-                StartMs = 1000000,
-                EndMs = 1000000,
-            }
+            1000000,
+            new V1GetAssetLocationRequest { StartMs = 1000000, EndMs = 1000000 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

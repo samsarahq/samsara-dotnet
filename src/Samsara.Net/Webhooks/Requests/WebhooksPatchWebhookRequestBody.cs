@@ -8,12 +8,6 @@ namespace Samsara.Net.Webhooks;
 public record WebhooksPatchWebhookRequestBody
 {
     /// <summary>
-    /// Unique identifier for the webhook to update.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// The list of custom headers that users can include with their request
     /// </summary>
     [JsonPropertyName("customHeaders")]

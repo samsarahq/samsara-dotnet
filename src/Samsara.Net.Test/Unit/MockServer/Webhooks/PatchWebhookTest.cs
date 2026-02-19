@@ -53,7 +53,8 @@ public class PatchWebhookTest : BaseMockServerTest
             );
 
         var response = await Client.Webhooks.PatchWebhookAsync(
-            new WebhooksPatchWebhookRequestBody { Id = "id" }
+            "id",
+            new WebhooksPatchWebhookRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
