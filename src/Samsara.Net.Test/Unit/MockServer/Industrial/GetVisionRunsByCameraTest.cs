@@ -47,7 +47,8 @@ public class GetVisionRunsByCameraTest : BaseMockServerTest
             );
 
         var response = await Client.Industrial.GetVisionRunsByCameraAsync(
-            new GetVisionRunsByCameraRequest { CameraId = 1000000, DurationMs = 1000000 }
+            1000000,
+            new GetVisionRunsByCameraRequest { DurationMs = 1000000 }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

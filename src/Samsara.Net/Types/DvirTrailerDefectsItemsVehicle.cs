@@ -12,7 +12,7 @@ public record DvirTrailerDefectsItemsVehicle : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
+    /// The [external IDs](/docs/external-ids) for the given object.
     /// </summary>
     [JsonPropertyName("ExternalIds")]
     public Dictionary<string, string>? ExternalIds { get; set; }

@@ -15,7 +15,7 @@ public record WebhookParamsObjectRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// This determines the alert webhook payload type to use. Learn more: https://developers.samsara.com/docs/webhook-reference.  Valid values: `legacy`, `enriched`
+    /// This determines the alert webhook payload type to use. Learn more: /docs/webhook-reference.  Valid values: `legacy`, `enriched`
     /// </summary>
     [JsonPropertyName("payloadType")]
     public WebhookParamsObjectRequestBodyPayloadType? PayloadType { get; set; }

@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net.Fleet.Attributes;
 using Samsara.Net.Test.Unit.MockServer;
 
 namespace Samsara.Net.Test.Unit.MockServer.Fleet.Attributes;
@@ -19,8 +18,6 @@ public class UpdateTest : BaseMockServerTest
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () =>
-            await Client.Fleet.Attributes.UpdateAsync(new UpdateAttributesRequest { Id = "id" })
-        );
+        Assert.DoesNotThrowAsync(async () => await Client.Fleet.Attributes.UpdateAsync("id"));
     }
 }

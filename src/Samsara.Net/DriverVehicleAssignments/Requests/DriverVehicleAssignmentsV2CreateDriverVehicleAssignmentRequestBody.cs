@@ -14,7 +14,7 @@ public record DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody
     public string? AssignedAtTime { get; set; }
 
     /// <summary>
-    /// ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+    /// ID of the driver. This can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the driver.
     /// </summary>
     [JsonPropertyName("driverId")]
     public required string DriverId { get; set; }
@@ -41,7 +41,7 @@ public record DriverVehicleAssignmentsV2CreateDriverVehicleAssignmentRequestBody
     public string? StartTime { get; set; }
 
     /// <summary>
-    /// ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
+    /// ID of the vehicle. This can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the vehicle.
     /// </summary>
     [JsonPropertyName("vehicleId")]
     public required string VehicleId { get; set; }

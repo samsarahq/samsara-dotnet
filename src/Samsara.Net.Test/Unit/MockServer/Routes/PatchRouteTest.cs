@@ -133,9 +133,7 @@ public class PatchRouteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Routes.PatchRouteAsync(
-            new RoutesPatchRouteRequestBody { Id = "id" }
-        );
+        var response = await Client.Routes.PatchRouteAsync("id", new RoutesPatchRouteRequestBody());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

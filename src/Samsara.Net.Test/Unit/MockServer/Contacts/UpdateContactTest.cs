@@ -43,9 +43,7 @@ public class UpdateContactTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Contacts.UpdateContactAsync(
-            new UpdateContactRequest { Id = "id" }
-        );
+        var response = await Client.Contacts.UpdateContactAsync("id", new UpdateContactRequest());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

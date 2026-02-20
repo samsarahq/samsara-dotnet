@@ -23,7 +23,7 @@ public record IssuesPatchIssueRequestBody
     public Dictionary<string, string>? ExternalIds { get; set; }
 
     /// <summary>
-    /// ID of the issue. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the issue.
+    /// ID of the issue. Can be either a unique Samsara ID or an [external ID](/docs/external-ids) for the issue.
     /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }

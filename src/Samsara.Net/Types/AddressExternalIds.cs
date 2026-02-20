@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
+/// The [external IDs](/docs/external-ids) for the given object.
 /// </summary>
 [Serializable]
 public record AddressExternalIds : IJsonOnDeserialized
