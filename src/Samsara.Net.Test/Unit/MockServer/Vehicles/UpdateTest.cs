@@ -102,7 +102,7 @@ public class UpdateTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Vehicles.UpdateAsync("id", new UpdateVehicleRequest());
+        var response = await Client.Vehicles.UpdateAsync(new UpdateVehicleRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

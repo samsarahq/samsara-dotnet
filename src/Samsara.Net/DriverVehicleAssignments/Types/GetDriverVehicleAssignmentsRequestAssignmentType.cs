@@ -43,6 +43,10 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         Values.QrCode
     );
 
+    public static readonly GetDriverVehicleAssignmentsRequestAssignmentType DriverApp = new(
+        Values.DriverApp
+    );
+
     public GetDriverVehicleAssignmentsRequestAssignmentType(string value)
     {
         Value = value;
@@ -117,5 +121,7 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         public const string External = "external";
 
         public const string QrCode = "qrCode";
+
+        public const string DriverApp = "driverApp";
     }
 }

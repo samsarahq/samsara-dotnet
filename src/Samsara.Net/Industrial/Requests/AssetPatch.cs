@@ -7,6 +7,12 @@ namespace Samsara.Net.Industrial;
 [Serializable]
 public record AssetPatch
 {
+    /// <summary>
+    /// Id of the asset to be updated
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
     [JsonPropertyName("customMetadata")]
     public Dictionary<string, string>? CustomMetadata { get; set; }
 

@@ -21,7 +21,7 @@ public record DriverVehicleAssignmentV2ObjectResponseBody : IJsonOnDeserialized
     public string? AssignedAtTime { get; set; }
 
     /// <summary>
-    /// Name of the assigning source for the driver assignment record.  Valid values: `invalid`, `unknown`, `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`
+    /// Name of the assigning source for the driver assignment record.  Valid values: `invalid`, `unknown`, `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`, `driverApp`
     /// </summary>
     [JsonPropertyName("assignmentType")]
     public DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType? AssignmentType { get; set; }

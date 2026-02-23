@@ -7,6 +7,12 @@ namespace Samsara.Net.Maintenance;
 public record GetDefectRequest
 {
     /// <summary>
+    /// The unique ID of the DVIR defect.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
     /// Optional boolean indicating whether to return external IDs on supported entities
     /// </summary>
     [JsonIgnore]

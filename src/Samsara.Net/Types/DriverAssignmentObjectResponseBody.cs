@@ -15,7 +15,7 @@ public record DriverAssignmentObjectResponseBody : IJsonOnDeserialized
     /// Assignment type of the driver-vehicle assignment, indicating the provenance of the assignment. The only type of assignment supported right now is `driverApp` assignments. This list could change, so it is recommended that clients gracefully handle any types not enumerated in this list.  Valid values: `driverApp`
     /// </summary>
     [JsonPropertyName("assignmentType")]
-    public string? AssignmentType { get; set; }
+    public DriverAssignmentObjectResponseBodyAssignmentType? AssignmentType { get; set; }
 
     [JsonPropertyName("driver")]
     public GoaDriverTinyResponseResponseBody? Driver { get; set; }

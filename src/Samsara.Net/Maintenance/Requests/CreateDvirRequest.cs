@@ -58,7 +58,7 @@ public record CreateDvirRequest
     /// Only type 'mechanic' is currently accepted.
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "mechanic";
+    public required CreateDvirRequestType Type { get; set; }
 
     /// <summary>
     /// Id of vehicle being inspected. Either vehicleId or trailerId must be provided.

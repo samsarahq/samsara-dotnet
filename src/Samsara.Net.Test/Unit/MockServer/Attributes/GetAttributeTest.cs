@@ -54,8 +54,7 @@ public class GetAttributeTest : BaseMockServerTest
             );
 
         var response = await Client.Attributes.GetAttributeAsync(
-            "id",
-            new GetAttributeRequest { EntityType = GetAttributeRequestEntityType.Driver }
+            new GetAttributeRequest { Id = "id", EntityType = GetAttributeRequestEntityType.Driver }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

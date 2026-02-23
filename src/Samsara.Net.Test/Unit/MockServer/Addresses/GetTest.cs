@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Addresses;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -76,7 +77,7 @@ public class GetTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Addresses.GetAsync("id");
+        var response = await Client.Addresses.GetAsync(new GetAddressesRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

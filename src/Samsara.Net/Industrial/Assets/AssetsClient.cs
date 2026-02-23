@@ -1,4 +1,3 @@
-using System.Text.Json;
 using Samsara.Net;
 using Samsara.Net.Core;
 
@@ -13,8 +12,18 @@ public partial class AssetsClient : IAssetsClient
         _client = client;
     }
 
-    private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
+    /// <summary>
+    /// Delete asset.
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    ///
+    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// </summary>
+    /// <example><code>
+    /// await client.Industrial.Assets.DeleteAsync(new DeleteAssetsRequest { Id = "id" });
+    /// </code></example>
+    public async Task DeleteAsync(
+        DeleteAssetsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -33,7 +42,7 @@ public partial class AssetsClient : IAssetsClient
                     Method = HttpMethod.Delete,
                     Path = string.Format(
                         "industrial/assets/{0}",
-                        ValueConvert.ToPathParameterString(id)
+                        ValueConvert.ToPathParameterString(request.Id)
                     ),
                     Headers = _headers,
                     Options = options,
@@ -43,30 +52,7 @@ public partial class AssetsClient : IAssetsClient
             .ConfigureAwait(false);
         if (response.StatusCode is >= 200 and < 400)
         {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
-                return new WithRawResponse<string>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
+            return;
         }
         {
             var responseBody = await response.Raw.Content.ReadAsStringAsync();
@@ -76,24 +62,5 @@ public partial class AssetsClient : IAssetsClient
                 responseBody
             );
         }
-    }
-
-    /// <summary>
-    /// Delete asset.
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    ///
-    /// To use this endpoint, select **Write Equipment** under the Equipment category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
-    /// </summary>
-    /// <example><code>
-    /// await client.Industrial.Assets.DeleteAsync("id");
-    /// </code></example>
-    public WithRawResponseTask<string> DeleteAsync(
-        string id,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
     }
 }

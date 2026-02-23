@@ -81,7 +81,7 @@ public class PatchTagTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Tags.PatchTagAsync("id", new PatchTagRequest());
+        var response = await Client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

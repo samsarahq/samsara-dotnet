@@ -117,7 +117,7 @@ public class CreateDvirTest : BaseMockServerTest
             {
                 AuthorId = "11",
                 SafetyStatus = CreateDvirRequestSafetyStatus.Safe,
-                Type = "mechanic",
+                Type = CreateDvirRequestType.Mechanic,
             }
         );
         JsonAssert.AreEqual(response, mockResponse);
