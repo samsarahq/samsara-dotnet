@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Trailers;
 
 namespace Samsara.Net.Test.Unit.MockServer.Trailers;
 
@@ -18,6 +19,8 @@ public class DeleteTrailerTest : BaseMockServerTest
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () => await Client.Trailers.DeleteTrailerAsync("id"));
+        Assert.DoesNotThrowAsync(async () =>
+            await Client.Trailers.DeleteTrailerAsync(new DeleteTrailerRequest { Id = "id" })
+        );
     }
 }

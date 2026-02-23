@@ -1,7 +1,7 @@
 {
-  "cliVersion": "3.75.0",
+  "cliVersion": "3.76.0",
   "generatorName": "fernapi/fern-csharp-sdk",
-  "generatorVersion": "2.20.3",
+  "generatorVersion": "2.20.5",
   "generatorConfig": {
     "namespace": "Samsara.Net",
     "client-class-name": "SamsaraClient",
@@ -9,5 +9,5 @@
     "version-namespace-export": true,
     "enable-wire-tests": true
   },
-  "sdkVersion": "5.7.2"
+  "sdkVersion": "5.8.0"
 }

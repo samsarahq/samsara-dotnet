@@ -7,6 +7,12 @@ namespace Samsara.Net.Hubs;
 [Serializable]
 public record HubLocationsUpdateHubLocationRequestBody
 {
+    /// <summary>
+    /// The unique Samsara ID of the hub location to update
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
     [JsonPropertyName("data")]
     public required UpdateHubLocationRequestBodyRequestBody Data { get; set; }
 

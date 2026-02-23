@@ -5,7 +5,7 @@ namespace Samsara.Net.Fleet.Attributes;
 public partial interface IAttributesClient
 {
     Task UpdateAsync(
-        string id,
+        UpdateAttributesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

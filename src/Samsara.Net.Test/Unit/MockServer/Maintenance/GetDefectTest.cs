@@ -57,7 +57,7 @@ public class GetDefectTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Maintenance.GetDefectAsync("id", new GetDefectRequest());
+        var response = await Client.Maintenance.GetDefectAsync(new GetDefectRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

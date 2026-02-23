@@ -36,7 +36,7 @@ public record RouteStopDetailsObjectResponseBody : IJsonOnDeserialized
     /// The type of route update. The route tracking updates occur as a route is completed and stops transition from one state to another. Currently only Route Tracking updates are supported, but this will change in the future when additional types are added.  Valid values: `route tracking`
     /// </summary>
     [JsonPropertyName("type")]
-    public string Type { get; set; } = "route tracking";
+    public required RouteStopDetailsObjectResponseBodyType Type { get; set; }
 
     [JsonPropertyName("vehicle")]
     public VehicleWithGatewayTinyResponseResponseBody? Vehicle { get; set; }

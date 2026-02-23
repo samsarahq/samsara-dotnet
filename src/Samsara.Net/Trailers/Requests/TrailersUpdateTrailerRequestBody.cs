@@ -8,6 +8,12 @@ namespace Samsara.Net.Trailers;
 public record TrailersUpdateTrailerRequestBody
 {
     /// <summary>
+    /// ID of the trailer. Can be either unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the trailer.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
+    /// <summary>
     /// A list of attributes to assign to the trailer.
     /// </summary>
     [JsonPropertyName("attributes")]

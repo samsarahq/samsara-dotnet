@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
+using Samsara.Net.Vehicles;
 
 namespace Samsara.Net.Test.Unit.MockServer.Vehicles;
 
@@ -92,7 +93,7 @@ public class GetTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Vehicles.GetAsync("id");
+        var response = await Client.Vehicles.GetAsync(new GetVehiclesRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

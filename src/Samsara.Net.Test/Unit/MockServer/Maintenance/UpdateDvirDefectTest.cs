@@ -63,7 +63,9 @@ public class UpdateDvirDefectTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Maintenance.UpdateDvirDefectAsync("id", new DefectPatch());
+        var response = await Client.Maintenance.UpdateDvirDefectAsync(
+            new DefectPatch { Id = "id" }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

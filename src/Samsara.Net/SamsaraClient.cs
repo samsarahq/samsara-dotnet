@@ -1,7 +1,7 @@
 using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
 using Samsara.Net.AuthTokenForDriver;
-using Samsara.Net.BetaApis;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
@@ -21,7 +21,8 @@ using Samsara.Net.Idling;
 using Samsara.Net.Ifta;
 using Samsara.Net.Industrial;
 using Samsara.Net.Issues;
-using Samsara.Net.LegacyApis;
+using Samsara.Net.Legacy;
+using Samsara.Net.LegacyApIs;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
 using Samsara.Net.Maintenance;
@@ -29,7 +30,7 @@ using Samsara.Net.Media;
 using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
-using Samsara.Net.PreviewApis;
+using Samsara.Net.PreviewApIs;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
@@ -69,7 +70,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/5.7.2" },
+                { "User-Agent", "Samsara.Net/5.8.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -91,7 +92,7 @@ public partial class SamsaraClient : ISamsaraClient
         Addresses = new AddressesClient(_client);
         Alerts = new AlertsClient(_client);
         Assets = new Samsara.Net.Assets.AssetsClient(_client);
-        BetaApis = new BetaApisClient(_client);
+        BetaApIs = new BetaApIsClient(_client);
         LocationAndSpeed = new LocationAndSpeedClient(_client);
         Attributes = new Samsara.Net.Attributes.AttributesClient(_client);
         Media = new MediaClient(_client);
@@ -103,7 +104,7 @@ public partial class SamsaraClient : ISamsaraClient
         DriverQrCodes = new DriverQrCodesClient(_client);
         CarrierProposedAssignments =
             new Samsara.Net.CarrierProposedAssignments.CarrierProposedAssignmentsClient(_client);
-        LegacyApis = new LegacyApisClient(_client);
+        LegacyApIs = new LegacyApIsClient(_client);
         Documents = new DocumentsClient(_client);
         DriverVehicleAssignments = new DriverVehicleAssignmentsClient(_client);
         Drivers = new DriversClient(_client);
@@ -128,7 +129,7 @@ public partial class SamsaraClient : ISamsaraClient
         LiveSharingLinks = new LiveSharingLinksClient(_client);
         WorkOrders = new WorkOrdersClient(_client);
         OrganizationInfo = new OrganizationInfoClient(_client);
-        PreviewApis = new PreviewApisClient(_client);
+        PreviewApIs = new PreviewApIsClient(_client);
         RouteEvents = new RouteEventsClient(_client);
         Safety = new SafetyClient(_client);
         SpeedingIntervals = new SpeedingIntervalsClient(_client);
@@ -137,6 +138,7 @@ public partial class SamsaraClient : ISamsaraClient
         TrainingCourses = new TrainingCoursesClient(_client);
         Trips = new TripsClient(_client);
         Users = new UsersClient(_client);
+        Legacy = new LegacyClient(_client);
         Messages = new MessagesClient(_client);
         TrailerAssignments = new TrailerAssignmentsClient(_client);
         Sensors = new SensorsClient(_client);
@@ -150,7 +152,7 @@ public partial class SamsaraClient : ISamsaraClient
 
     public Samsara.Net.Assets.IAssetsClient Assets { get; }
 
-    public IBetaApisClient BetaApis { get; }
+    public IBetaApIsClient BetaApIs { get; }
 
     public ILocationAndSpeedClient LocationAndSpeed { get; }
 
@@ -172,7 +174,7 @@ public partial class SamsaraClient : ISamsaraClient
 
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
 
-    public ILegacyApisClient LegacyApis { get; }
+    public ILegacyApIsClient LegacyApIs { get; }
 
     public IDocumentsClient Documents { get; }
 
@@ -222,7 +224,7 @@ public partial class SamsaraClient : ISamsaraClient
 
     public IOrganizationInfoClient OrganizationInfo { get; }
 
-    public IPreviewApisClient PreviewApis { get; }
+    public IPreviewApIsClient PreviewApIs { get; }
 
     public IRouteEventsClient RouteEvents { get; }
 
@@ -239,6 +241,8 @@ public partial class SamsaraClient : ISamsaraClient
     public ITripsClient Trips { get; }
 
     public IUsersClient Users { get; }
+
+    public ILegacyClient Legacy { get; }
 
     public IMessagesClient Messages { get; }
 

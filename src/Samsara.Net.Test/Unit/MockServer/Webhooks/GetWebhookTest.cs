@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
+using Samsara.Net.Webhooks;
 
 namespace Samsara.Net.Test.Unit.MockServer.Webhooks;
 
@@ -41,7 +42,7 @@ public class GetWebhookTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Webhooks.GetWebhookAsync("id");
+        var response = await Client.Webhooks.GetWebhookAsync(new GetWebhookRequest { Id = "id" });
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

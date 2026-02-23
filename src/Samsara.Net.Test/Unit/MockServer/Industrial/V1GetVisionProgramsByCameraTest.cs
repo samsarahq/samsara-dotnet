@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Industrial;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
@@ -33,7 +34,9 @@ public class V1GetVisionProgramsByCameraTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.Industrial.V1GetVisionProgramsByCameraAsync(1000000);
+        var response = await Client.Industrial.V1GetVisionProgramsByCameraAsync(
+            new V1GetVisionProgramsByCameraRequest { CameraId = 1000000 }
+        );
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

@@ -55,7 +55,7 @@ public record GetDriverVehicleAssignmentsRequest
     public string? After { get; set; }
 
     /// <summary>
-    /// Specifies which assignment type to filter by.  Valid values: `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`
+    /// Specifies which assignment type to filter by.  Valid values: `HOS`, `idCard`, `static`, `faceId`, `tachograph`, `safetyManual`, `RFID`, `trailer`, `external`, `qrCode`, `driverApp`
     /// </summary>
     [JsonIgnore]
     public GetDriverVehicleAssignmentsRequestAssignmentType? AssignmentType { get; set; }

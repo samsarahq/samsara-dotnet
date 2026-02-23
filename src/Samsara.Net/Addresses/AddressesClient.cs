@@ -18,7 +18,7 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     private WithRawResponseTask<ListAddressesResponse> ListInternalAsync(
         ListAddressesRequest request,
@@ -167,7 +167,7 @@ public partial class AddressesClient : IAddressesClient
     }
 
     private async Task<WithRawResponse<AddressResponse>> GetAsyncCore(
-        string id,
+        GetAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -184,7 +184,10 @@ public partial class AddressesClient : IAddressesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Headers = _headers,
                     Options = options,
                 },
@@ -228,70 +231,7 @@ public partial class AddressesClient : IAddressesClient
         }
     }
 
-    private async Task<WithRawResponse<string>> DeleteAsyncCore(
-        string id,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData = JsonUtils.Deserialize<string>(responseBody)!;
-                return new WithRawResponse<string>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
     private async Task<WithRawResponse<AddressResponse>> UpdateAsyncCore(
-        string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
@@ -309,7 +249,10 @@ public partial class AddressesClient : IAddressesClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = string.Format("addresses/{0}", ValueConvert.ToPathParameterString(id)),
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -360,7 +303,7 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Addresses.ListAsync(new ListAddressesRequest());
@@ -404,7 +347,7 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
     /// await client.Addresses.CreateAsync(
@@ -432,19 +375,19 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Read Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.GetAsync("id");
+    /// await client.Addresses.GetAsync(new GetAddressesRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<AddressResponse> GetAsync(
-        string id,
+        GetAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AddressResponse>(
-            GetAsyncCore(id, options, cancellationToken)
+            GetAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -453,18 +396,51 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.DeleteAsync("id");
+    /// await client.Addresses.DeleteAsync(new DeleteAddressesRequest { Id = "id" });
     /// </code></example>
-    public WithRawResponseTask<string> DeleteAsync(
-        string id,
+    public async Task DeleteAsync(
+        DeleteAddressesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<string>(DeleteAsyncCore(id, options, cancellationToken));
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = string.Format(
+                        "addresses/{0}",
+                        ValueConvert.ToPathParameterString(request.Id)
+                    ),
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
     }
 
     /// <summary>
@@ -472,20 +448,19 @@ public partial class AddressesClient : IAddressesClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     ///
-    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. [Learn More.](/docs/authentication#scopes-for-api-tokens)
+    /// To use this endpoint, select **Write Addresses** under the Addresses category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     /// </summary>
     /// <example><code>
-    /// await client.Addresses.UpdateAsync("id", new UpdateAddressRequest());
+    /// await client.Addresses.UpdateAsync(new UpdateAddressRequest { Id = "id" });
     /// </code></example>
     public WithRawResponseTask<AddressResponse> UpdateAsync(
-        string id,
         UpdateAddressRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         return new WithRawResponseTask<AddressResponse>(
-            UpdateAsyncCore(id, request, options, cancellationToken)
+            UpdateAsyncCore(request, options, cancellationToken)
         );
     }
 }

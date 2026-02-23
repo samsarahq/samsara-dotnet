@@ -30,7 +30,7 @@ public record TagAllOf : IJsonOnDeserialized
     public IEnumerable<TaggedObject>? Drivers { get; set; }
 
     /// <summary>
-    /// The [external IDs](/docs/external-ids) for the given object.
+    /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     /// </summary>
     [JsonPropertyName("externalIds")]
     public TagAllOfExternalIds? ExternalIds { get; set; }

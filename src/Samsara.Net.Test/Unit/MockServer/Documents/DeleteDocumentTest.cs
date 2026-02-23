@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net.Documents;
 using Samsara.Net.Test.Unit.MockServer;
 
 namespace Samsara.Net.Test.Unit.MockServer.Documents;
@@ -18,6 +19,8 @@ public class DeleteDocumentTest : BaseMockServerTest
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
-        Assert.DoesNotThrowAsync(async () => await Client.Documents.DeleteDocumentAsync("id"));
+        Assert.DoesNotThrowAsync(async () =>
+            await Client.Documents.DeleteDocumentAsync(new DeleteDocumentRequest { Id = "id" })
+        );
     }
 }
