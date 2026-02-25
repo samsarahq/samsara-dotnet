@@ -14,7 +14,7 @@ public record UpdateAddressRequest
     public required string Id { get; set; }
 
     /// <summary>
-    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`.
+    /// Reporting location type associated with the address (used for ELD reporting purposes). Valid values: `yard`, `shortHaul`, `workforceSite`, `riskZone`, `industrialSite`, `alertsOnly`, `agricultureSource`, `avoidanceZone`, `knownGPSJammingZone`, `authorizedZone`, `unauthorizedZone`, `vendor`, `inventory`.
     /// </summary>
     [JsonPropertyName("addressTypes")]
     public IEnumerable<UpdateAddressRequestAddressTypesItem>? AddressTypes { get; set; }
