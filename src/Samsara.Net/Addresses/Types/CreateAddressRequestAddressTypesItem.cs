@@ -43,6 +43,10 @@ public readonly record struct CreateAddressRequestAddressTypesItem : IStringEnum
         Values.UnauthorizedZone
     );
 
+    public static readonly CreateAddressRequestAddressTypesItem Vendor = new(Values.Vendor);
+
+    public static readonly CreateAddressRequestAddressTypesItem Inventory = new(Values.Inventory);
+
     public CreateAddressRequestAddressTypesItem(string value)
     {
         Value = value;
@@ -113,5 +117,9 @@ public readonly record struct CreateAddressRequestAddressTypesItem : IStringEnum
         public const string AuthorizedZone = "authorizedZone";
 
         public const string UnauthorizedZone = "unauthorizedZone";
+
+        public const string Vendor = "vendor";
+
+        public const string Inventory = "inventory";
     }
 }

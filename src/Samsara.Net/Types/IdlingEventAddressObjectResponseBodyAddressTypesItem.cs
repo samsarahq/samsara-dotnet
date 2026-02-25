@@ -24,6 +24,10 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
     public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem IndustrialSite =
         new(Values.IndustrialSite);
 
+    public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem Inventory = new(
+        Values.Inventory
+    );
+
     public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem KnownGpsJammingZone =
         new(Values.KnownGpsJammingZone);
 
@@ -40,6 +44,10 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
 
     public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem Undefined = new(
         Values.Undefined
+    );
+
+    public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem Vendor = new(
+        Values.Vendor
     );
 
     public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem WorkforceSite = new(
@@ -115,6 +123,8 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
 
         public const string IndustrialSite = "industrialSite";
 
+        public const string Inventory = "inventory";
+
         public const string KnownGpsJammingZone = "knownGPSJammingZone";
 
         public const string RiskZone = "riskZone";
@@ -124,6 +134,8 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
         public const string UnauthorizedZone = "unauthorizedZone";
 
         public const string Undefined = "undefined";
+
+        public const string Vendor = "vendor";
 
         public const string WorkforceSite = "workforceSite";
 
