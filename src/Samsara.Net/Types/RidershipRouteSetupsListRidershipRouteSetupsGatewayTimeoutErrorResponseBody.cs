@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// An internal server error occurred
+/// Gateway timeout
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateInternalServerErrorResponseBody
+public record RidershipRouteSetupsListRidershipRouteSetupsGatewayTimeoutErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

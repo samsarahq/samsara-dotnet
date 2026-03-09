@@ -5,20 +5,14 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// The full recovery state for an asset, including notification recipients and recovery photos.
+/// A recovered asset with its recovery details, including recovery photos.
 /// </summary>
 [Serializable]
-public record DeviceRecoveryStateResponseBody : IJsonOnDeserialized
+public record RecoveryStateResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
-
-    /// <summary>
-    /// Additional details provided during recovery.
-    /// </summary>
-    [JsonPropertyName("additional_details")]
-    public string? AdditionalDetails { get; set; }
 
     /// <summary>
     /// The unique Samsara ID of the asset.
@@ -27,19 +21,13 @@ public record DeviceRecoveryStateResponseBody : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
-    /// The reason the asset was originally marked as missing.
-    /// </summary>
-    [JsonPropertyName("missing_reason")]
-    public string? MissingReason { get; set; }
-
-    /// <summary>
     /// The human-readable name of the asset.
     /// </summary>
     [JsonPropertyName("name")]
     public required string Name { get; set; }
 
     /// <summary>
-    /// A note associated with the recovery state.
+    /// A note associated with the recovery.
     /// </summary>
     [JsonPropertyName("note")]
     public string? Note { get; set; }
@@ -55,18 +43,6 @@ public record DeviceRecoveryStateResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("recovery_photos")]
     public IEnumerable<RecoveryPhotoResponseBody>? RecoveryPhotos { get; set; }
-
-    /// <summary>
-    /// Whether the asset was physically recovered.
-    /// </summary>
-    [JsonPropertyName("recovery_status")]
-    public string? RecoveryStatus { get; set; }
-
-    /// <summary>
-    /// The current recovery status of the asset.  Valid values: `UNKNOWN`, `MISSING`, `LOCATED`, `RECOVERED`
-    /// </summary>
-    [JsonPropertyName("status")]
-    public required DeviceRecoveryStateResponseBodyStatus Status { get; set; }
 
     /// <summary>
     /// Timestamp when the recovery state was last updated, in milliseconds since epoch.

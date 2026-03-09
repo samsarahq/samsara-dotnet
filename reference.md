@@ -4513,6 +4513,69 @@ await client.BetaApIs.GetRidershipPassengerAsync(new GetRidershipPassengerReques
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListRidershipRouteSetupsAsync</a>(ListRidershipRouteSetupsRequest { ... }) -> WithRawResponseTask&lt;RidershipRouteSetupsListRidershipRouteSetupsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all route setups for a ridership account.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Ridership** under the Ridership category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.ListRidershipRouteSetupsAsync(
+    new ListRidershipRouteSetupsRequest { AccountId = "accountId" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListRidershipRouteSetupsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateRidershipRouteSetupAsync</a>(RidershipRouteSetupsCreateRidershipRouteSetupRequestBody { ... }) -> WithRawResponseTask&lt;RidershipRouteSetupsCreateRidershipRouteSetupResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -4525,7 +4588,7 @@ await client.BetaApIs.GetRidershipPassengerAsync(new GetRidershipPassengerReques
 <dl>
 <dd>
 
-Create or replace the passenger assignment setup for a route.
+Create the passenger assignment setup for a route.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -15395,7 +15458,7 @@ await client.OrganizationInfo.GetOrganizationInfoAsync();
 </details>
 
 ## Preview APIs
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">ListDeviceRecoveryAssetsAsync</a>(ListDeviceRecoveryAssetsRequest { ... }) -> WithRawResponseTask&lt;DeviceRecoveryListDeviceRecoveryAssetsResponseBody&gt;</code></summary>
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">ListDeviceRecoveryMissingAssetsAsync</a>(ListDeviceRecoveryMissingAssetsRequest { ... }) -> WithRawResponseTask&lt;DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -15407,7 +15470,7 @@ await client.OrganizationInfo.GetOrganizationInfoAsync();
 <dl>
 <dd>
 
-List all assets that have a device recovery state for the organization. Optionally filter by one or more statuses (UNKNOWN, MISSING, LOCATED, RECOVERED).
+List all assets that are currently marked as missing for the organization.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -15435,7 +15498,9 @@ Endpoints in this section are in Preview. These APIs are not functional and are 
 <dd>
 
 ```csharp
-await client.PreviewApIs.ListDeviceRecoveryAssetsAsync(new ListDeviceRecoveryAssetsRequest());
+await client.PreviewApIs.ListDeviceRecoveryMissingAssetsAsync(
+    new ListDeviceRecoveryMissingAssetsRequest()
+);
 ```
 </dd>
 </dl>
@@ -15450,7 +15515,7 @@ await client.PreviewApIs.ListDeviceRecoveryAssetsAsync(new ListDeviceRecoveryAss
 <dl>
 <dd>
 
-**request:** `ListDeviceRecoveryAssetsRequest` 
+**request:** `ListDeviceRecoveryMissingAssetsRequest` 
     
 </dd>
 </dl>
@@ -15595,73 +15660,6 @@ await client.PreviewApIs.RecoverAssetAsync(
 <dd>
 
 **request:** `DeviceRecoveryRecoverAssetRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">GetAssetRecoveryStateAsync</a>(GetAssetRecoveryStateRequest { ... }) -> WithRawResponseTask&lt;DeviceRecoveryGetAssetRecoveryStateResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get the current recovery state for a specific asset, including recovery photos and notification recipients.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreviewApIs.GetAssetRecoveryStateAsync(new GetAssetRecoveryStateRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetAssetRecoveryStateRequest` 
     
 </dd>
 </dl>

@@ -21,6 +21,12 @@ public record RidershipRouteSetupObjectResponseBody : IJsonOnDeserialized
     public required string AccountId { get; set; }
 
     /// <summary>
+    /// The time the route setup was created in RFC 3339 format.
+    /// </summary>
+    [JsonPropertyName("createdAtTime")]
+    public required string CreatedAtTime { get; set; }
+
+    /// <summary>
     /// List of passenger assignments.
     /// </summary>
     [JsonPropertyName("passengers")]
@@ -32,6 +38,12 @@ public record RidershipRouteSetupObjectResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("routeId")]
     public required string RouteId { get; set; }
+
+    /// <summary>
+    /// The time the route setup was last updated in RFC 3339 format.
+    /// </summary>
+    [JsonPropertyName("updatedAtTime")]
+    public required string UpdatedAtTime { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

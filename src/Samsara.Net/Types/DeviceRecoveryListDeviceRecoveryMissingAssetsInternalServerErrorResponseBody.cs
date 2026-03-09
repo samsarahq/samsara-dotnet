@@ -5,10 +5,11 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Bad Gateway
+/// An internal server error occurred
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateBadGatewayErrorResponseBody : IJsonOnDeserialized
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsInternalServerErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

@@ -6,7 +6,7 @@ using Samsara.Net.Test.Utils;
 namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
 
 [TestFixture]
-public class ListDeviceRecoveryAssetsTest : BaseMockServerTest
+public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -15,9 +15,7 @@ public class ListDeviceRecoveryAssetsTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "additional_details": "Found in warehouse B",
                   "id": "12345",
-                  "missing_reason": "MISPLACED",
                   "name": "Trailer-A1234",
                   "note": "Asset was last seen at warehouse A",
                   "notification_recipients": [
@@ -28,16 +26,6 @@ public class ListDeviceRecoveryAssetsTest : BaseMockServerTest
                       "user_id": 1234
                     }
                   ],
-                  "recovery_photos": [
-                    {
-                      "start_ms": 1609459200000,
-                      "status": "EXISTS",
-                      "url": "https://s3.amazonaws.com/samsara-recovery-photos/example.jpg",
-                      "url_expires_at_ms": 1609462800000
-                    }
-                  ],
-                  "recovery_status": "YES",
-                  "status": "UNKNOWN",
                   "updated_at_ms": 1609459200000,
                   "updated_by_user_id": 1234,
                   "uuid": "550e8400-e29b-41d4-a716-446655440000"
@@ -54,7 +42,7 @@ public class ListDeviceRecoveryAssetsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/assets/device-recovery")
+                    .WithPath("/preview/fleet/assets/device-recovery-missing")
                     .UsingGet()
             )
             .RespondWith(
@@ -64,8 +52,8 @@ public class ListDeviceRecoveryAssetsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListDeviceRecoveryAssetsAsync(
-            new ListDeviceRecoveryAssetsRequest()
+        var response = await Client.PreviewApIs.ListDeviceRecoveryMissingAssetsAsync(
+            new ListDeviceRecoveryMissingAssetsRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

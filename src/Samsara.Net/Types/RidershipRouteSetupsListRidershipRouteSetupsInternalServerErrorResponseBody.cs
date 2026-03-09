@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Requested endpoint is not yet implemented
+/// An internal server error occurred
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsNotImplementedErrorResponseBody
+public record RidershipRouteSetupsListRidershipRouteSetupsInternalServerErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

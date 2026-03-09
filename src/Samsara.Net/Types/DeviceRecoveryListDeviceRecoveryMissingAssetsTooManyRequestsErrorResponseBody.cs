@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// Too many requests
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateTooManyRequestsErrorResponseBody
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsTooManyRequestsErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

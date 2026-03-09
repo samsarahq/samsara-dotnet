@@ -59,6 +59,9 @@ public readonly record struct DriverVehicleAssignmentV2ObjectResponseBodyAssignm
     public static readonly DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType DriverApp =
         new(Values.DriverApp);
 
+    public static readonly DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType VoiceSignIn =
+        new(Values.VoiceSignIn);
+
     public DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(string value)
     {
         Value = value;
@@ -139,5 +142,7 @@ public readonly record struct DriverVehicleAssignmentV2ObjectResponseBodyAssignm
         public const string QrCode = "qrCode";
 
         public const string DriverApp = "driverApp";
+
+        public const string VoiceSignIn = "voiceSignIn";
     }
 }

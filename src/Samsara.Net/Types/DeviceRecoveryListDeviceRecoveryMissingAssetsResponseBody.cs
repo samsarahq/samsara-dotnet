@@ -4,28 +4,22 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-/// <summary>
-/// Gateway timeout
-/// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsGatewayTimeoutErrorResponseBody
-    : IJsonOnDeserialized
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Message of error
+    /// List of assets currently marked as missing.
     /// </summary>
-    [JsonPropertyName("message")]
-    public required string Message { get; set; }
+    [JsonPropertyName("data")]
+    public IEnumerable<MissingStateResponseBody> Data { get; set; } =
+        new List<MissingStateResponseBody>();
 
-    /// <summary>
-    /// The request ID; used when reaching out to support for issues with requests.
-    /// </summary>
-    [JsonPropertyName("requestId")]
-    public required string RequestId { get; set; }
+    [JsonPropertyName("pagination")]
+    public required GoaPaginationResponseResponseBody Pagination { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

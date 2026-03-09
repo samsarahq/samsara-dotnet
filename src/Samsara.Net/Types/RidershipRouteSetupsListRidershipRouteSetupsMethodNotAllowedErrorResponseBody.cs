@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Too many requests
+/// Method not allowed
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsTooManyRequestsErrorResponseBody
+public record RidershipRouteSetupsListRidershipRouteSetupsMethodNotAllowedErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

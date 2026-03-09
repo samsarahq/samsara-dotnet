@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Service unavailable
+/// Method not allowed
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsServiceUnavailableErrorResponseBody
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsMethodNotAllowedErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

@@ -4,22 +4,28 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Bad Gateway
+/// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsResponseBody : IJsonOnDeserialized
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsBadGatewayErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// List of assets with a device recovery state.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("data")]
-    public IEnumerable<DeviceRecoveryStateResponseBody> Data { get; set; } =
-        new List<DeviceRecoveryStateResponseBody>();
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
-    [JsonPropertyName("pagination")]
-    public required GoaPaginationResponseResponseBody Pagination { get; set; }
+    /// <summary>
+    /// The request ID; used when reaching out to support for issues with requests.
+    /// </summary>
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

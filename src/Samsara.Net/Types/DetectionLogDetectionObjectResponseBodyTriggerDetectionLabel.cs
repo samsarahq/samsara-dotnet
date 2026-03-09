@@ -77,6 +77,9 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel RearCollisionWarning =
         new(Values.RearCollisionWarning);
 
+    public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel Reversing =
+        new(Values.Reversing);
+
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel RollingStop =
         new(Values.RollingStop);
 
@@ -204,6 +207,8 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
         public const string RanRedLight = "ranRedLight";
 
         public const string RearCollisionWarning = "rearCollisionWarning";
+
+        public const string Reversing = "reversing";
 
         public const string RollingStop = "rollingStop";
 

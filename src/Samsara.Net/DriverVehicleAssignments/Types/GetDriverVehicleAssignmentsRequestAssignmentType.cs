@@ -47,6 +47,10 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         Values.DriverApp
     );
 
+    public static readonly GetDriverVehicleAssignmentsRequestAssignmentType VoiceSignIn = new(
+        Values.VoiceSignIn
+    );
+
     public GetDriverVehicleAssignmentsRequestAssignmentType(string value)
     {
         Value = value;
@@ -123,5 +127,7 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         public const string QrCode = "qrCode";
 
         public const string DriverApp = "driverApp";
+
+        public const string VoiceSignIn = "voiceSignIn";
     }
 }
