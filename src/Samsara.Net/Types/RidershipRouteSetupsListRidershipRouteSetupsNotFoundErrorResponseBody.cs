@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// An internal server error occurred
+/// Resource not found
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsInternalServerErrorResponseBody
+public record RidershipRouteSetupsListRidershipRouteSetupsNotFoundErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

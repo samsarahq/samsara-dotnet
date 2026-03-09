@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// Unauthorized
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsUnauthorizedErrorResponseBody
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsUnauthorizedErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

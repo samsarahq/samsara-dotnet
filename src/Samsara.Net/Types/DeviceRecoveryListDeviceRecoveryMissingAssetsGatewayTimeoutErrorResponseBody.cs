@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Bad Gateway
+/// Gateway timeout
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsBadGatewayErrorResponseBody
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsGatewayTimeoutErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

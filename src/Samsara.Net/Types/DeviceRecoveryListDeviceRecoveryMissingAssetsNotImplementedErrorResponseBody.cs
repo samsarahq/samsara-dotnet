@@ -5,10 +5,11 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Resource not found
+/// Requested endpoint is not yet implemented
 /// </summary>
 [Serializable]
-public record DeviceRecoveryListDeviceRecoveryAssetsNotFoundErrorResponseBody : IJsonOnDeserialized
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsNotImplementedErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

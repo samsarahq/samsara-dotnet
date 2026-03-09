@@ -5,14 +5,21 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateResponseBody : IJsonOnDeserialized
+public record RidershipRouteSetupsListRidershipRouteSetupsResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    /// <summary>
+    /// List of ridership route setups
+    /// </summary>
     [JsonPropertyName("data")]
-    public required DeviceRecoveryStateResponseBody Data { get; set; }
+    public IEnumerable<RidershipRouteSetupObjectResponseBody> Data { get; set; } =
+        new List<RidershipRouteSetupObjectResponseBody>();
+
+    [JsonPropertyName("pagination")]
+    public required GoaPaginationResponseResponseBody Pagination { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

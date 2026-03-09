@@ -5,10 +5,11 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Unauthorized
+/// Bad Gateway
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateUnauthorizedErrorResponseBody : IJsonOnDeserialized
+public record RidershipRouteSetupsListRidershipRouteSetupsBadGatewayErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

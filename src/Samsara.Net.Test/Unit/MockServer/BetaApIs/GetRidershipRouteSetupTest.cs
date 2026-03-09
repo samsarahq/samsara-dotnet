@@ -15,6 +15,7 @@ public class GetRidershipRouteSetupTest : BaseMockServerTest
             {
               "data": {
                 "accountId": "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
+                "createdAtTime": "2024-11-15T10:00:00Z",
                 "passengers": [
                   {
                     "dropOffStopId": "790",
@@ -22,7 +23,8 @@ public class GetRidershipRouteSetupTest : BaseMockServerTest
                     "pickUpStopId": "789"
                   }
                 ],
-                "routeId": "123456"
+                "routeId": "123456",
+                "updatedAtTime": "2024-11-15T10:30:00Z"
               }
             }
             """;

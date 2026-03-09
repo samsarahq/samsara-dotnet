@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Gateway timeout
+/// Requested endpoint is not yet implemented
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateGatewayTimeoutErrorResponseBody
+public record RidershipRouteSetupsListRidershipRouteSetupsNotImplementedErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

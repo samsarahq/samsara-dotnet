@@ -12,7 +12,7 @@ public record DeviceRecoveryRecoverAssetResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("data")]
-    public required DeviceRecoveryStateResponseBody Data { get; set; }
+    public required RecoveryStateResponseBody Data { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

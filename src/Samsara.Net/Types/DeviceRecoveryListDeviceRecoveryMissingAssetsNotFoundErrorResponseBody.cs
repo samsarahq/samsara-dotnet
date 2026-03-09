@@ -8,7 +8,8 @@ namespace Samsara.Net;
 /// Resource not found
 /// </summary>
 [Serializable]
-public record DeviceRecoveryGetAssetRecoveryStateNotFoundErrorResponseBody : IJsonOnDeserialized
+public record DeviceRecoveryListDeviceRecoveryMissingAssetsNotFoundErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
