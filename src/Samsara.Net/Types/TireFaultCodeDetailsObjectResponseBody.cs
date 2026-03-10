@@ -27,7 +27,7 @@ public record TireFaultCodeDetailsObjectResponseBody : IJsonOnDeserialized
     public bool? HasCriticalTireFaultCodes { get; set; }
 
     /// <summary>
-    /// The tire manufacturer.  Valid values: `MANUFACTURER_BENDIX`, `MANUFACTURER_CONTINENTAL`, `MANUFACTURER_DORAN`, `MANUFACTURER_HENDRICKSON`, `MANUFACTURER_INVALID`, `MANUFACTURER_PRESSURE_PRO`, `MANUFACTURER_UNIVERSAL_J1939`, `MANUFACTURER_UNIVERSAL_R141`
+    /// The tire manufacturer.  Valid values: `MANUFACTURER_BENDIX`, `MANUFACTURER_CONTINENTAL`, `MANUFACTURER_DORAN`, `MANUFACTURER_HENDRICKSON`, `MANUFACTURER_INVALID`, `MANUFACTURER_PRESSURE_PRO`, `MANUFACTURER_SENSATA`, `MANUFACTURER_UNIVERSAL_J1939`, `MANUFACTURER_UNIVERSAL_R141`
     /// </summary>
     [JsonPropertyName("manufacturer")]
     public required TireFaultCodeDetailsObjectResponseBodyManufacturer Manufacturer { get; set; }

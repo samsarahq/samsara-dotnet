@@ -25,6 +25,9 @@ public readonly record struct TireFaultCodeDetailsObjectRequestBodyManufacturer 
     public static readonly TireFaultCodeDetailsObjectRequestBodyManufacturer ManufacturerPressurePro =
         new(Values.ManufacturerPressurePro);
 
+    public static readonly TireFaultCodeDetailsObjectRequestBodyManufacturer ManufacturerSensata =
+        new(Values.ManufacturerSensata);
+
     public static readonly TireFaultCodeDetailsObjectRequestBodyManufacturer ManufacturerUniversalJ1939 =
         new(Values.ManufacturerUniversalJ1939);
 
@@ -97,6 +100,8 @@ public readonly record struct TireFaultCodeDetailsObjectRequestBodyManufacturer 
         public const string ManufacturerInvalid = "MANUFACTURER_INVALID";
 
         public const string ManufacturerPressurePro = "MANUFACTURER_PRESSURE_PRO";
+
+        public const string ManufacturerSensata = "MANUFACTURER_SENSATA";
 
         public const string ManufacturerUniversalJ1939 = "MANUFACTURER_UNIVERSAL_J1939";
 
