@@ -51,6 +51,10 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         Values.VoiceSignIn
     );
 
+    public static readonly GetDriverVehicleAssignmentsRequestAssignmentType SmartAssign = new(
+        Values.SmartAssign
+    );
+
     public GetDriverVehicleAssignmentsRequestAssignmentType(string value)
     {
         Value = value;
@@ -129,5 +133,7 @@ public readonly record struct GetDriverVehicleAssignmentsRequestAssignmentType :
         public const string DriverApp = "driverApp";
 
         public const string VoiceSignIn = "voiceSignIn";
+
+        public const string SmartAssign = "smartAssign";
     }
 }

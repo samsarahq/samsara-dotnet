@@ -62,6 +62,9 @@ public readonly record struct DriverVehicleAssignmentV2ObjectResponseBodyAssignm
     public static readonly DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType VoiceSignIn =
         new(Values.VoiceSignIn);
 
+    public static readonly DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType SmartAssign =
+        new(Values.SmartAssign);
+
     public DriverVehicleAssignmentV2ObjectResponseBodyAssignmentType(string value)
     {
         Value = value;
@@ -144,5 +147,7 @@ public readonly record struct DriverVehicleAssignmentV2ObjectResponseBodyAssignm
         public const string DriverApp = "driverApp";
 
         public const string VoiceSignIn = "voiceSignIn";
+
+        public const string SmartAssign = "smartAssign";
     }
 }
