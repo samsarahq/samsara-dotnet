@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [JsonConverter(typeof(StringEnumSerializer<DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus>))]
 [Serializable]

@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
@@ -20,6 +20,8 @@ public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
                   "note": "Asset was last seen at warehouse A",
                   "notification_recipients": [
                     {
+                      "email": "jane.doe@example.com",
+                      "name": "Jane Doe",
                       "notification_types": [
                         "email"
                       ],
@@ -42,7 +44,7 @@ public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/assets/device-recovery-missing")
+                    .WithPath("/fleet/assets/device-recovery-missing")
                     .UsingGet()
             )
             .RespondWith(
@@ -52,7 +54,7 @@ public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListDeviceRecoveryMissingAssetsAsync(
+        var response = await Client.BetaApIs.ListDeviceRecoveryMissingAssetsAsync(
             new ListDeviceRecoveryMissingAssetsRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);

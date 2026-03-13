@@ -36,7 +36,7 @@ public record RecoveryStateResponseBody : IJsonOnDeserialized
     /// Users subscribed to location update notifications for this asset.
     /// </summary>
     [JsonPropertyName("notification_recipients")]
-    public IEnumerable<NotificationRecipientResponseBody>? NotificationRecipients { get; set; }
+    public IEnumerable<NotificationRecipientResponseResponseBody>? NotificationRecipients { get; set; }
 
     /// <summary>
     /// Photos associated with the recovery event. URLs are temporary and expire at url_expires_at_ms.

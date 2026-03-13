@@ -5,24 +5,36 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// A user to notify about recovery state changes.
+/// A user subscribed to recovery state change notifications, including their name and email.
 /// </summary>
 [Serializable]
-public record NotificationRecipientResponseBody : IJsonOnDeserialized
+public record NotificationRecipientResponseResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// How the user should be notified.
+    /// The email address of the user.
     /// </summary>
-    [JsonPropertyName("notification_types")]
-    public IEnumerable<NotificationRecipientResponseBodyNotificationTypesItem> NotificationTypes { get; set; } =
-        new List<NotificationRecipientResponseBodyNotificationTypesItem>();
+    [JsonPropertyName("email")]
+    public required string Email { get; set; }
 
     /// <summary>
-    /// The ID of the user to notify. Users can be retrieved via the getUser API endpoint.
+    /// The display name of the user.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
+
+    /// <summary>
+    /// How the user is notified.
+    /// </summary>
+    [JsonPropertyName("notification_types")]
+    public IEnumerable<NotificationRecipientResponseResponseBodyNotificationTypesItem> NotificationTypes { get; set; } =
+        new List<NotificationRecipientResponseResponseBodyNotificationTypesItem>();
+
+    /// <summary>
+    /// The ID of the user.
     /// </summary>
     [JsonPropertyName("user_id")]
     public required long UserId { get; set; }
