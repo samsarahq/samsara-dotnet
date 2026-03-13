@@ -25,7 +25,8 @@ public class ListMaintenanceVendorsTest : BaseMockServerTest
                     "key": "value"
                   },
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                  "servicesProvided": "Oil changes, tire rotations, brake services"
+                  "servicesProvided": "Oil changes, tire rotations, brake services",
+                  "vendorId": "0000000772"
                 }
               ],
               "pagination": {

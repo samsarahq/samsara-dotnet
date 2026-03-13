@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 using Samsara.Net;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
 public record DeviceRecoveryMarkAssetMissingRequestBody

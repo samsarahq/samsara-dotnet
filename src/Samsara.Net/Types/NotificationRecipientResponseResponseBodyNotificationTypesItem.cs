@@ -4,16 +4,16 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 [JsonConverter(
-    typeof(StringEnumSerializer<NotificationRecipientResponseBodyNotificationTypesItem>)
+    typeof(StringEnumSerializer<NotificationRecipientResponseResponseBodyNotificationTypesItem>)
 )]
 [Serializable]
-public readonly record struct NotificationRecipientResponseBodyNotificationTypesItem : IStringEnum
+public readonly record struct NotificationRecipientResponseResponseBodyNotificationTypesItem
+    : IStringEnum
 {
-    public static readonly NotificationRecipientResponseBodyNotificationTypesItem Email = new(
-        Values.Email
-    );
+    public static readonly NotificationRecipientResponseResponseBodyNotificationTypesItem Email =
+        new(Values.Email);
 
-    public NotificationRecipientResponseBodyNotificationTypesItem(string value)
+    public NotificationRecipientResponseResponseBodyNotificationTypesItem(string value)
     {
         Value = value;
     }
@@ -26,9 +26,11 @@ public readonly record struct NotificationRecipientResponseBodyNotificationTypes
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static NotificationRecipientResponseBodyNotificationTypesItem FromCustom(string value)
+    public static NotificationRecipientResponseResponseBodyNotificationTypesItem FromCustom(
+        string value
+    )
     {
-        return new NotificationRecipientResponseBodyNotificationTypesItem(value);
+        return new NotificationRecipientResponseResponseBodyNotificationTypesItem(value);
     }
 
     public bool Equals(string? other)
@@ -45,20 +47,20 @@ public readonly record struct NotificationRecipientResponseBodyNotificationTypes
     }
 
     public static bool operator ==(
-        NotificationRecipientResponseBodyNotificationTypesItem value1,
+        NotificationRecipientResponseResponseBodyNotificationTypesItem value1,
         string value2
     ) => value1.Value.Equals(value2);
 
     public static bool operator !=(
-        NotificationRecipientResponseBodyNotificationTypesItem value1,
+        NotificationRecipientResponseResponseBodyNotificationTypesItem value1,
         string value2
     ) => !value1.Value.Equals(value2);
 
     public static explicit operator string(
-        NotificationRecipientResponseBodyNotificationTypesItem value
+        NotificationRecipientResponseResponseBodyNotificationTypesItem value
     ) => value.Value;
 
-    public static explicit operator NotificationRecipientResponseBodyNotificationTypesItem(
+    public static explicit operator NotificationRecipientResponseResponseBodyNotificationTypesItem(
         string value
     ) => new(value);
 

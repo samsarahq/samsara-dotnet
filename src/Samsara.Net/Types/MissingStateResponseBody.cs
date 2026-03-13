@@ -36,7 +36,7 @@ public record MissingStateResponseBody : IJsonOnDeserialized
     /// Users subscribed to location update notifications for this asset.
     /// </summary>
     [JsonPropertyName("notification_recipients")]
-    public IEnumerable<NotificationRecipientResponseBody>? NotificationRecipients { get; set; }
+    public IEnumerable<NotificationRecipientResponseResponseBody>? NotificationRecipients { get; set; }
 
     /// <summary>
     /// Timestamp when the asset was marked as missing, in milliseconds since epoch.

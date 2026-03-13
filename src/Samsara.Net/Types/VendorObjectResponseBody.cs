@@ -44,6 +44,12 @@ public record VendorObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("servicesProvided")]
     public string? ServicesProvided { get; set; }
 
+    /// <summary>
+    /// The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.
+    /// </summary>
+    [JsonPropertyName("vendorId")]
+    public string? VendorId { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

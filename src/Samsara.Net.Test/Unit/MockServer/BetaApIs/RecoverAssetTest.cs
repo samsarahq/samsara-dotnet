@@ -1,18 +1,22 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
-public class MarkAssetMissingTest : BaseMockServerTest
+public class RecoverAssetTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string requestJson = """
-            {}
+            {
+              "missing_reason": "MISPLACED",
+              "recovery_status": "YES",
+              "status": "RECOVERED"
+            }
             """;
 
         const string mockResponse = """
@@ -23,10 +27,20 @@ public class MarkAssetMissingTest : BaseMockServerTest
                 "note": "Asset was last seen at warehouse A",
                 "notification_recipients": [
                   {
+                    "email": "jane.doe@example.com",
+                    "name": "Jane Doe",
                     "notification_types": [
                       "email"
                     ],
                     "user_id": 1234
+                  }
+                ],
+                "recovery_photos": [
+                  {
+                    "start_ms": 1609459200000,
+                    "status": "EXISTS",
+                    "url": "https://s3.amazonaws.com/samsara-recovery-photos/example.jpg",
+                    "url_expires_at_ms": 1609462800000
                   }
                 ],
                 "updated_at_ms": 1609459200000,
@@ -40,7 +54,7 @@ public class MarkAssetMissingTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/assets/device-recovery/id/missing")
+                    .WithPath("/fleet/assets/device-recovery/id/recovered")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -52,8 +66,14 @@ public class MarkAssetMissingTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.MarkAssetMissingAsync(
-            new DeviceRecoveryMarkAssetMissingRequestBody { Id = "id" }
+        var response = await Client.BetaApIs.RecoverAssetAsync(
+            new DeviceRecoveryRecoverAssetRequestBody
+            {
+                Id = "id",
+                MissingReason = DeviceRecoveryRecoverAssetRequestBodyMissingReason.Misplaced,
+                RecoveryStatus = DeviceRecoveryRecoverAssetRequestBodyRecoveryStatus.Yes,
+                Status = DeviceRecoveryRecoverAssetRequestBodyStatus.Recovered,
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
