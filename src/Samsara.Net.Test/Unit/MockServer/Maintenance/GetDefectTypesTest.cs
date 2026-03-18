@@ -18,7 +18,8 @@ public class GetDefectTypesTest : BaseMockServerTest
                   "createdAtTime": "2020-01-27T07:06:25Z",
                   "id": "25d6151e-29b5-453e-875a-7c5425332e09",
                   "label": "Air Compressor",
-                  "sectionType": "exteriorFront"
+                  "sectionType": "exteriorFront",
+                  "severity": "major"
                 }
               ],
               "pagination": {

@@ -41,7 +41,7 @@ public class CreateRidershipPassengerTest : BaseMockServerTest
                 "isActive": true,
                 "lastName": "Doe",
                 "specialInstructions": {
-                  "isGuardianRequired": false,
+                  "isGuardianRequired": true,
                   "isSpecialEducation": true
                 },
                 "updatedAtTime": "2024-11-15T10:30:00Z"
