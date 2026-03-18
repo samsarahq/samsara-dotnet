@@ -38,6 +38,12 @@ public record DefectTypesResponseDataResponseBody : IJsonOnDeserialized
     [JsonPropertyName("sectionType")]
     public required DefectTypesResponseDataResponseBodySectionType SectionType { get; set; }
 
+    /// <summary>
+    /// The severity of the defect type. Only present for DVIR 2.0 defect types.  Valid values: `major`, `minor`, `notApplicable`
+    /// </summary>
+    [JsonPropertyName("severity")]
+    public DefectTypesResponseDataResponseBodySeverity? Severity { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
