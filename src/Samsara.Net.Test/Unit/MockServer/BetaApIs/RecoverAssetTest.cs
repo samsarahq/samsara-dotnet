@@ -43,9 +43,9 @@ public class RecoverAssetTest : BaseMockServerTest
                     "url_expires_at_ms": 1609462800000
                   }
                 ],
+                "update_source": "dashboard",
                 "updated_at_ms": 1609459200000,
-                "updated_by_user_id": 1234,
-                "uuid": "550e8400-e29b-41d4-a716-446655440000"
+                "updated_by_user_id": 1234
               }
             }
             """;

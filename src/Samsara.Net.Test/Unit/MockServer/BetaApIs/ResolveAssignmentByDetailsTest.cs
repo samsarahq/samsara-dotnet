@@ -6,34 +6,23 @@ using Samsara.Net.Test.Utils;
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
-public class MarkAssetMissingTest : BaseMockServerTest
+public class ResolveAssignmentByDetailsTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string requestJson = """
-            {}
+            {
+              "driverName": "Jane Doe",
+              "vehicleId": "281474978683353"
+            }
             """;
 
         const string mockResponse = """
             {
               "data": {
-                "id": "12345",
-                "name": "Trailer-A1234",
-                "note": "Asset was last seen at warehouse A",
-                "notification_recipients": [
-                  {
-                    "email": "jane.doe@example.com",
-                    "name": "Jane Doe",
-                    "notification_types": [
-                      "email"
-                    ],
-                    "user_id": 1234
-                  }
-                ],
-                "update_source": "dashboard",
-                "updated_at_ms": 1609459200000,
-                "updated_by_user_id": 1234
+                "driverId": "1234567",
+                "driverName": "Jane Doe"
               }
             }
             """;
@@ -42,7 +31,7 @@ public class MarkAssetMissingTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/fleet/assets/device-recovery/id/missing")
+                    .WithPath("/fleet/drivers/voice-sign-in/resolve-assignment")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -54,8 +43,12 @@ public class MarkAssetMissingTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.MarkAssetMissingAsync(
-            new DeviceRecoveryMarkAssetMissingRequestBody { Id = "id" }
+        var response = await Client.BetaApIs.ResolveAssignmentByDetailsAsync(
+            new ResolveAssignmentByDetailsResolveAssignmentByDetailsRequestBody
+            {
+                DriverName = "Jane Doe",
+                VehicleId = "281474978683353",
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

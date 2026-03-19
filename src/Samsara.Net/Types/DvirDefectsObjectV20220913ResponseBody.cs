@@ -27,10 +27,22 @@ public record DvirDefectsObjectV20220913ResponseBody : IJsonOnDeserialized
     public required string CreatedAtTime { get; set; }
 
     /// <summary>
+    /// The severity of the DVIR defect.  Valid values: `minor`, `major`, `unspecified`
+    /// </summary>
+    [JsonPropertyName("defectSeverity")]
+    public DvirDefectsObjectV20220913ResponseBodyDefectSeverity? DefectSeverity { get; set; }
+
+    /// <summary>
     /// The type of DVIR defect.
     /// </summary>
     [JsonPropertyName("defectType")]
     public required string DefectType { get; set; }
+
+    /// <summary>
+    /// The ID of the DVIR defect type.
+    /// </summary>
+    [JsonPropertyName("defectTypeId")]
+    public string? DefectTypeId { get; set; }
 
     /// <summary>
     /// The ID of the defect.
