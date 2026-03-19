@@ -45,6 +45,12 @@ public record RecoveryStateResponseBody : IJsonOnDeserialized
     public IEnumerable<RecoveryPhotoResponseBody>? RecoveryPhotos { get; set; }
 
     /// <summary>
+    /// The source of the last update to this recovery state. Defaults to `dashboard` if not explicitly set.  Valid values: `dashboard`, `api`
+    /// </summary>
+    [JsonPropertyName("update_source")]
+    public RecoveryStateResponseBodyUpdateSource? UpdateSource { get; set; }
+
+    /// <summary>
     /// Timestamp when the recovery state was last updated, in milliseconds since epoch.
     /// </summary>
     [JsonPropertyName("updated_at_ms")]
@@ -55,12 +61,6 @@ public record RecoveryStateResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updated_by_user_id")]
     public long? UpdatedByUserId { get; set; }
-
-    /// <summary>
-    /// The unique UUID of this recovery state record.
-    /// </summary>
-    [JsonPropertyName("uuid")]
-    public required string Uuid { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -39,6 +39,12 @@ public record MissingStateResponseBody : IJsonOnDeserialized
     public IEnumerable<NotificationRecipientResponseResponseBody>? NotificationRecipients { get; set; }
 
     /// <summary>
+    /// The source of the last update to this recovery state. Defaults to `dashboard` if not explicitly set.  Valid values: `dashboard`, `api`
+    /// </summary>
+    [JsonPropertyName("update_source")]
+    public MissingStateResponseBodyUpdateSource? UpdateSource { get; set; }
+
+    /// <summary>
     /// Timestamp when the asset was marked as missing, in milliseconds since epoch.
     /// </summary>
     [JsonPropertyName("updated_at_ms")]
@@ -49,12 +55,6 @@ public record MissingStateResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updated_by_user_id")]
     public long? UpdatedByUserId { get; set; }
-
-    /// <summary>
-    /// The unique UUID of this recovery state record.
-    /// </summary>
-    [JsonPropertyName("uuid")]
-    public required string Uuid { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
