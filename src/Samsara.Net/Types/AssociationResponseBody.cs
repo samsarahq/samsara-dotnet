@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// An association between a vehicle (central device) and a peripheral device.
+/// An association between a central device (e.g. vehicle gateway) and a peripheral device.
 /// </summary>
 [Serializable]
 public record AssociationResponseBody : IJsonOnDeserialized
@@ -27,6 +27,12 @@ public record AssociationResponseBody : IJsonOnDeserialized
     public required string AssociationStartTime { get; set; }
 
     /// <summary>
+    /// The Samsara ID of the central device in this association.
+    /// </summary>
+    [JsonPropertyName("centralId")]
+    public required string CentralId { get; set; }
+
+    /// <summary>
     /// The Samsara ID of the peripheral device in this association.
     /// </summary>
     [JsonPropertyName("peripheralId")]
@@ -37,12 +43,6 @@ public record AssociationResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("peripheralName")]
     public string? PeripheralName { get; set; }
-
-    /// <summary>
-    /// The Samsara ID of the vehicle (central device) in this association.
-    /// </summary>
-    [JsonPropertyName("vehicleId")]
-    public required string VehicleId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
