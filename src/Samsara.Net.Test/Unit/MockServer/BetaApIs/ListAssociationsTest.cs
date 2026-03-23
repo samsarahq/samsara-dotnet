@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ListAssociationsTest : BaseMockServerTest
@@ -17,16 +17,16 @@ public class ListAssociationsTest : BaseMockServerTest
                 {
                   "associationEndTime": "associationEndTime",
                   "associationStartTime": "associationStartTime",
+                  "centralId": "centralId",
                   "peripheralId": "peripheralId",
-                  "peripheralName": "peripheralName",
-                  "vehicleId": "vehicleId"
+                  "peripheralName": "peripheralName"
                 },
                 {
                   "associationEndTime": "associationEndTime",
                   "associationStartTime": "associationStartTime",
+                  "centralId": "centralId",
                   "peripheralId": "peripheralId",
-                  "peripheralName": "peripheralName",
-                  "vehicleId": "vehicleId"
+                  "peripheralName": "peripheralName"
                 }
               ],
               "pagination": {
@@ -40,9 +40,8 @@ public class ListAssociationsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/assets/associations")
+                    .WithPath("/fleet/assets/associations")
                     .WithParam("startTime", "startTime")
-                    .WithParam("endTime", "endTime")
                     .UsingGet()
             )
             .RespondWith(
@@ -52,8 +51,8 @@ public class ListAssociationsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListAssociationsAsync(
-            new ListAssociationsRequest { StartTime = "startTime", EndTime = "endTime" }
+        var response = await Client.BetaApIs.ListAssociationsAsync(
+            new ListAssociationsRequest { StartTime = "startTime" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
