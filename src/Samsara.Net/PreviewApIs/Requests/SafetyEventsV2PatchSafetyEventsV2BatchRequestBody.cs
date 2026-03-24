@@ -8,16 +8,16 @@ namespace Samsara.Net.PreviewApIs;
 public record SafetyEventsV2PatchSafetyEventsV2BatchRequestBody
 {
     /// <summary>
-    /// Context label IDs to add to the Safety Events.
+    /// Context labels to add to the Safety Events.
     /// </summary>
-    [JsonPropertyName("contextLabelIdsToAdd")]
-    public IEnumerable<string>? ContextLabelIdsToAdd { get; set; }
+    [JsonPropertyName("contextLabelsToAdd")]
+    public IEnumerable<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem>? ContextLabelsToAdd { get; set; }
 
     /// <summary>
-    /// Context label IDs to remove from the Safety Events.
+    /// Context labels to remove from the Safety Events.
     /// </summary>
-    [JsonPropertyName("contextLabelIdsToRemove")]
-    public IEnumerable<string>? ContextLabelIdsToRemove { get; set; }
+    [JsonPropertyName("contextLabelsToRemove")]
+    public IEnumerable<SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem>? ContextLabelsToRemove { get; set; }
 
     [JsonPropertyName("dismissalReason")]
     public PatchSafetyEventsDismissalReasonBodyRequestBody? DismissalReason { get; set; }

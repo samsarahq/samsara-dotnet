@@ -35,7 +35,7 @@ public class ListRidershipPassengersTest : BaseMockServerTest
                   "lastName": "Doe",
                   "specialInstructions": {
                     "isGuardianRequired": true,
-                    "isSpecialEducation": true
+                    "isSpecialEducation": false
                   },
                   "updatedAtTime": "2024-11-15T10:30:00Z"
                 }
