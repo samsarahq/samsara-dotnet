@@ -443,6 +443,7 @@ public partial class AlertsClient : IAlertsClient
     /// Vehicle Engine Idle
     /// Asset Engine On
     /// Asset Engine Off
+    /// Harsh Event
     /// Scheduled Maintenance
     /// Scheduled Maintenance by Odometer
     /// Scheduled Maintenance by Engine Hours
@@ -513,7 +514,7 @@ public partial class AlertsClient : IAlertsClient
     ///         },
     ///         IsEnabled = true,
     ///         Name = "My Harsh Event Alert",
-    ///         Scope = new ScopeObjectRequestBody { All = true },
+    ///         Scope = new ScopeObjectRequestBody { All = false },
     ///         Triggers = new List&lt;WorkflowTriggerObjectRequestBody&gt;()
     ///         {
     ///             new WorkflowTriggerObjectRequestBody { TriggerTypeId = 1000 },

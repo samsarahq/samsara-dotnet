@@ -38,8 +38,7 @@ public class PatchConfigurationsTest : BaseMockServerTest
                   "timeRanges": [
                     {
                       "daysOfWeek": [
-                        "TUESDAY",
-                        "SUNDAY",
+                        "THURSDAY",
                         "TUESDAY"
                       ],
                       "endTime": "20:00",
