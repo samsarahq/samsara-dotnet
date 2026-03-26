@@ -2,6 +2,7 @@ using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
 using Samsara.Net.AuthTokenForDriver;
 using Samsara.Net.BetaApIs;
+using Samsara.Net.CarbCtc;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Documents;
@@ -67,6 +68,7 @@ public partial interface ISamsaraClient
     public IFuelAndEnergyClient FuelAndEnergy { get; }
     public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
     public IDriverQrCodesClient DriverQrCodes { get; }
+    public ICarbCtcClient CarbCtc { get; }
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
     public ILegacyApIsClient LegacyApIs { get; }
     public IDocumentsClient Documents { get; }
