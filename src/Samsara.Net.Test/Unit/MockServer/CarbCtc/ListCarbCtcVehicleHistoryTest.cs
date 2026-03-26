@@ -1,12 +1,12 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.CarbCtc;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.CarbCtc;
 
 [TestFixture]
-public class ListCarbCtcVehiclesTest : BaseMockServerTest
+public class ListCarbCtcVehicleHistoryTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -17,11 +17,10 @@ public class ListCarbCtcVehiclesTest : BaseMockServerTest
                 {
                   "enrollmentId": "550e8400-e29b-41d4-a716-446655440000",
                   "enrollmentVin": "1HGCM82633A123456",
+                  "happenedAtTime": "2024-06-15T08:00:00.000Z",
                   "id": "12345",
-                  "lastCollectionAtTime": "2024-06-15T08:00:00.000Z",
-                  "nextCollectionAtTime": "2024-12-15T00:00:00.000Z",
-                  "testStatus": "notScheduled",
-                  "testStatusDetails": "Response from CARB CTC: Vehicle PASSED emissions scan."
+                  "testResult": "pass",
+                  "testResultDetails": "Response from CARB CTC: Vehicle PASSED emissions scan."
                 }
               ],
               "pagination": {
@@ -35,7 +34,8 @@ public class ListCarbCtcVehiclesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/fleet/carb-ctc/vehicles")
+                    .WithPath("/fleet/carb-ctc/vehicles/history")
+                    .WithParam("vehicleIds", "vehicleIds")
                     .UsingGet()
             )
             .RespondWith(
@@ -45,8 +45,8 @@ public class ListCarbCtcVehiclesTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.ListCarbCtcVehiclesAsync(
-            new ListCarbCtcVehiclesRequest()
+        var response = await Client.CarbCtc.ListCarbCtcVehicleHistoryAsync(
+            new ListCarbCtcVehicleHistoryRequest { VehicleIds = "vehicleIds" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

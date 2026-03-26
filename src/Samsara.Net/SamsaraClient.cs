@@ -2,6 +2,7 @@ using Samsara.Net.Addresses;
 using Samsara.Net.Alerts;
 using Samsara.Net.AuthTokenForDriver;
 using Samsara.Net.BetaApIs;
+using Samsara.Net.CarbCtc;
 using Samsara.Net.Coaching;
 using Samsara.Net.Contacts;
 using Samsara.Net.Core;
@@ -70,7 +71,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/8.1.1" },
+                { "User-Agent", "Samsara.Net/8.1.2" },
             }
         );
         foreach (var header in platformHeaders)
@@ -102,6 +103,7 @@ public partial class SamsaraClient : ISamsaraClient
         FuelAndEnergy = new FuelAndEnergyClient(_client);
         DriverTrailerAssignments = new DriverTrailerAssignmentsClient(_client);
         DriverQrCodes = new DriverQrCodesClient(_client);
+        CarbCtc = new CarbCtcClient(_client);
         CarrierProposedAssignments =
             new Samsara.Net.CarrierProposedAssignments.CarrierProposedAssignmentsClient(_client);
         LegacyApIs = new LegacyApIsClient(_client);
@@ -171,6 +173,8 @@ public partial class SamsaraClient : ISamsaraClient
     public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
 
     public IDriverQrCodesClient DriverQrCodes { get; }
+
+    public ICarbCtcClient CarbCtc { get; }
 
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
 
