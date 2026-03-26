@@ -19,7 +19,7 @@ public record ListReadingsDefinitionsRequest
     public string? Ids { get; set; }
 
     /// <summary>
-    /// A list of entity type to return readings for. (Examples: asset, sensor)
+    /// A list of entity types to return readings for. (Examples: asset, sensor)
     /// </summary>
     [JsonIgnore]
     public string? EntityTypes { get; set; }

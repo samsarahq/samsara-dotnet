@@ -241,13 +241,13 @@ public record GetReadingsHistoryRequest
     public required string ReadingId { get; set; }
 
     /// <summary>
-    /// A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+    /// A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
     /// </summary>
     [JsonIgnore]
     public string? EntityIds { get; set; }
 
     /// <summary>
-    /// A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+    /// The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
     /// </summary>
     [JsonIgnore]
     public required string EntityType { get; set; }
@@ -259,7 +259,7 @@ public record GetReadingsHistoryRequest
     public string? ExternalIds { get; set; }
 
     /// <summary>
-    /// A filter on the data that returns the last known data points with timestamps greater than or equal to this value. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
+    /// A filter on the data that returns data points with timestamps greater than or equal to this value. Required when feed mode is not enabled. Must be a string in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2020-01-27T07:06:25Z)
     /// </summary>
     [JsonIgnore]
     public string? StartTime { get; set; }

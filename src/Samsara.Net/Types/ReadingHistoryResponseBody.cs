@@ -15,7 +15,7 @@ public record ReadingHistoryResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The ID of the entity this readings is for.
+    /// The ID of the entity this reading is for.
     /// </summary>
     [JsonPropertyName("entityId")]
     public required string EntityId { get; set; }

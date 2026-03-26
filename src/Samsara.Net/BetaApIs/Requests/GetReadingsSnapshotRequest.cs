@@ -13,7 +13,7 @@ public record GetReadingsSnapshotRequest
     public string? After { get; set; }
 
     /// <summary>
-    /// A collection of comma separated reading IDs. Include up to 3 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
+    /// A collection of comma separated reading IDs. Include up to 5 readings IDs. Use /readings/definitions endpoint to get a list of valid reading IDs. (Examples: engineRpm,fuelLevel)
     ///
     /// Available reading IDs (by category):
     ///
@@ -241,7 +241,7 @@ public record GetReadingsSnapshotRequest
     public required string ReadingIds { get; set; }
 
     /// <summary>
-    /// A filter on the data based on this comma-separated list of entity IDs or external IDs. If not set, all entities are returned.
+    /// A filter on the data based on this comma-separated list of entity IDs. If not set, all entities are returned.
     /// </summary>
     [JsonIgnore]
     public string? EntityIds { get; set; }
@@ -259,7 +259,7 @@ public record GetReadingsSnapshotRequest
     public string? AsOfTime { get; set; }
 
     /// <summary>
-    /// A entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
+    /// The entity type of the entityIds or externalIds to fetch readings for. Use /readings/definitions endpoint to get a list of valid entity types. (Examples: asset, sensor)
     /// </summary>
     [JsonIgnore]
     public required string EntityType { get; set; }
