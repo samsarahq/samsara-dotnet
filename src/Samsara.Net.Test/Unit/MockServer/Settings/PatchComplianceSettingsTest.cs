@@ -22,12 +22,12 @@ public class PatchComplianceSettingsTest : BaseMockServerTest
                 "canadaHosEnabled": false,
                 "carrierName": "ABC Trucking",
                 "dotNumber": 12345678,
-                "driverAutoDutyEnabled": true,
+                "driverAutoDutyEnabled": false,
                 "editCertifiedLogsEnabled": false,
-                "forceManualLocationForDutyStatusChangesEnabled": true,
-                "forceReviewUnassignedHosEnabled": true,
+                "forceManualLocationForDutyStatusChangesEnabled": false,
+                "forceReviewUnassignedHosEnabled": false,
                 "mainOfficeFormattedAddress": "123 Main Street",
-                "persistentDutyStatusEnabled": false
+                "persistentDutyStatusEnabled": true
               }
             }
             """;

@@ -33,7 +33,9 @@ public class GetConfigurationsTest : BaseMockServerTest
                     "timeRanges": [
                       {
                         "daysOfWeek": [
-                          "THURSDAY",
+                          "TUESDAY",
+                          "FRIDAY",
+                          "FRIDAY",
                           "TUESDAY"
                         ],
                         "endTime": "20:00",

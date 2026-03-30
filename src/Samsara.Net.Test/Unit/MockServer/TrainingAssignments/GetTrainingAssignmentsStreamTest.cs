@@ -24,7 +24,7 @@ public class GetTrainingAssignmentsStreamTest : BaseMockServerTest
                   "createdById": "user-4392",
                   "deletedAtTime": "2019-06-13T19:08:25.000Z",
                   "dueAtTime": "2019-06-13T19:08:25.000Z",
-                  "durationMinutes": 5498774855504382000,
+                  "durationMinutes": 3235248818899243000,
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "isCompletedLate": true,
                   "isOverdue": true,
@@ -32,7 +32,7 @@ public class GetTrainingAssignmentsStreamTest : BaseMockServerTest
                     "id": "938172",
                     "type": "driver"
                   },
-                  "scorePercent": 0.21176328452105003,
+                  "scorePercent": 0.928275626360249,
                   "startedAtTime": "2019-06-13T19:08:25.000Z",
                   "status": "notStarted",
                   "updatedAtTime": "2019-06-13T19:08:25.000Z",

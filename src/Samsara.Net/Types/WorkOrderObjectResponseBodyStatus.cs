@@ -15,6 +15,8 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
 
     public static readonly WorkOrderObjectResponseBodyStatus Completed = new(Values.Completed);
 
+    public static readonly WorkOrderObjectResponseBodyStatus Estimate = new(Values.Estimate);
+
     public static readonly WorkOrderObjectResponseBodyStatus InProgress = new(Values.InProgress);
 
     public static readonly WorkOrderObjectResponseBodyStatus OnHold = new(Values.OnHold);
@@ -83,6 +85,8 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
         public const string Closed = "Closed";
 
         public const string Completed = "Completed";
+
+        public const string Estimate = "Estimate";
 
         public const string InProgress = "In Progress";
 

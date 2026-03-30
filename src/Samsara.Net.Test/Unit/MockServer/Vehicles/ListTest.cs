@@ -46,7 +46,7 @@ public class ListTest : BaseMockServerTest
                   "auxInputType8": "boom",
                   "auxInputType9": "boom",
                   "cameraSerial": "CNCK-VT8-XA8",
-                  "createdAtTime": "2008-09-30T19:55:12.000Z",
+                  "createdAtTime": "2007-03-21T11:35:02.000Z",
                   "esn": "56349811",
                   "externalIds": {
                     "key": "value"
@@ -87,7 +87,7 @@ public class ListTest : BaseMockServerTest
                       "parentTagId": "4815"
                     }
                   ],
-                  "updatedAtTime": "1993-03-04T22:17:38.000Z",
+                  "updatedAtTime": "2015-02-05T04:46:53.000Z",
                   "vehicleRegulationMode": "regulated",
                   "vehicleType": "unset",
                   "vehicleWeight": 1000,

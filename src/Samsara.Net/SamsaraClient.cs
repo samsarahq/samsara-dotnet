@@ -35,6 +35,7 @@ using Samsara.Net.PreviewApIs;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
+using Samsara.Net.SafetyScores;
 using Samsara.Net.Sensors;
 using Samsara.Net.Settings;
 using Samsara.Net.SpeedingIntervals;
@@ -71,7 +72,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/8.1.2" },
+                { "User-Agent", "Samsara.Net/9.0.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -134,6 +135,7 @@ public partial class SamsaraClient : ISamsaraClient
         PreviewApIs = new PreviewApIsClient(_client);
         RouteEvents = new RouteEventsClient(_client);
         Safety = new SafetyClient(_client);
+        SafetyScores = new SafetyScoresClient(_client);
         SpeedingIntervals = new SpeedingIntervalsClient(_client);
         Tags = new TagsClient(_client);
         TrainingAssignments = new TrainingAssignmentsClient(_client);
@@ -233,6 +235,8 @@ public partial class SamsaraClient : ISamsaraClient
     public IRouteEventsClient RouteEvents { get; }
 
     public ISafetyClient Safety { get; }
+
+    public ISafetyScoresClient SafetyScores { get; }
 
     public ISpeedingIntervalsClient SpeedingIntervals { get; }
 

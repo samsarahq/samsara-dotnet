@@ -1,10 +1,10 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.BetaApIs;
+namespace Samsara.Net.SafetyScores;
 
 [Serializable]
-public record GetDriverSafetyScoresRequest
+public record GetVehicleSafetyScoresRequest
 {
     /// <summary>
     /// End time in RFC 3339 format. Millisecond precision and timezones are supported. Includes trips that end before this timestamp.
@@ -19,10 +19,10 @@ public record GetDriverSafetyScoresRequest
     public required string StartTime { get; set; }
 
     /// <summary>
-    /// Comma separated list of driver IDs to filter by. Include up to 100 IDs. Defaults to all drivers.
+    /// Comma separated list of vehicle IDs to filter by. Include up to 100 IDs. Defaults to all vehicles.
     /// </summary>
     [JsonIgnore]
-    public IEnumerable<string> DriverIds { get; set; } = new List<string>();
+    public IEnumerable<string> VehicleIds { get; set; } = new List<string>();
 
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.

@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.SafetyScores;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.SafetyScores;
 
 [TestFixture]
 public class GetTagGroupSafetyScoresTest : BaseMockServerTest
@@ -52,7 +52,7 @@ public class GetTagGroupSafetyScoresTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetTagGroupSafetyScoresAsync(
+        var response = await Client.SafetyScores.GetTagGroupSafetyScoresAsync(
             new GetTagGroupSafetyScoresRequest
             {
                 EndTime = "endTime",

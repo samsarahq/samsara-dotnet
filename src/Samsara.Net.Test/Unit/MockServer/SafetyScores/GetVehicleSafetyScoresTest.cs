@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.SafetyScores;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.SafetyScores;
 
 [TestFixture]
 public class GetVehicleSafetyScoresTest : BaseMockServerTest
@@ -58,7 +58,7 @@ public class GetVehicleSafetyScoresTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetVehicleSafetyScoresAsync(
+        var response = await Client.SafetyScores.GetVehicleSafetyScoresAsync(
             new GetVehicleSafetyScoresRequest { EndTime = "endTime", StartTime = "startTime" }
         );
         JsonAssert.AreEqual(response, mockResponse);
