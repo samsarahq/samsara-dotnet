@@ -63,8 +63,6 @@ public class UpdateHubLocationTest : BaseMockServerTest
                   {
                     "daysOfWeek": [
                       "monday",
-                      "monday",
-                      "monday",
                       "monday"
                     ],
                     "endTime": "17:00:00",

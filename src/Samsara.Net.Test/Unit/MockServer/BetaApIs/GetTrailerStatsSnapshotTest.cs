@@ -21,10 +21,10 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     "value": "`Off`, `On`"
                   },
                   "gps": {
-                    "headingDegrees": 5884745301771062000,
-                    "latitude": 0.1749686236067623,
-                    "longitude": 0.5715350249080758,
-                    "speedMilesPerHour": 4076655551097430000,
+                    "headingDegrees": 7734484761656803000,
+                    "latitude": 0.16321020618508525,
+                    "longitude": 0.9350613141400207,
+                    "speedMilesPerHour": 7888674681103413000,
                     "time": "2020-01-27T07:06:25Z"
                   },
                   "gpsOdometerMeters": {
@@ -39,7 +39,7 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                         "alarmCode": "3",
                         "description": "Test alarm",
                         "operatorAction": "Manually disable alarm",
-                        "severity": 6813924987772465000
+                        "severity": 6375280061622993000
                       }
                     ],
                     "time": "2020-01-27T07:06:25Z"

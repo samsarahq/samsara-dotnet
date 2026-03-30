@@ -21,6 +21,10 @@ public readonly record struct WorkOrdersPatchWorkOrdersRequestBodyStatus : IStri
         Values.Completed
     );
 
+    public static readonly WorkOrdersPatchWorkOrdersRequestBodyStatus Estimate = new(
+        Values.Estimate
+    );
+
     public static readonly WorkOrdersPatchWorkOrdersRequestBodyStatus InProgress = new(
         Values.InProgress
     );
@@ -97,6 +101,8 @@ public readonly record struct WorkOrdersPatchWorkOrdersRequestBodyStatus : IStri
         public const string Closed = "Closed";
 
         public const string Completed = "Completed";
+
+        public const string Estimate = "Estimate";
 
         public const string InProgress = "In Progress";
 

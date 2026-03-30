@@ -21,6 +21,10 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         Values.Completed
     );
 
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem Estimate = new(
+        Values.Estimate
+    );
+
     public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem InProgress = new(
         Values.InProgress
     );
@@ -97,6 +101,8 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         public const string Closed = "Closed";
 
         public const string Completed = "Completed";
+
+        public const string Estimate = "Estimate";
 
         public const string InProgress = "In Progress";
 

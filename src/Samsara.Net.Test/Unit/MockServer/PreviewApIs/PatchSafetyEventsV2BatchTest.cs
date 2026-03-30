@@ -15,7 +15,6 @@ public class PatchSafetyEventsV2BatchTest : BaseMockServerTest
             {
               "safetyEventIds": [
                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-                "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                 "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590"
               ]
             }
@@ -56,7 +55,6 @@ public class PatchSafetyEventsV2BatchTest : BaseMockServerTest
             {
                 SafetyEventIds = new List<string>()
                 {
-                    "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                     "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                     "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
                 },

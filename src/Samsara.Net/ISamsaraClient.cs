@@ -34,6 +34,7 @@ using Samsara.Net.PreviewApIs;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
+using Samsara.Net.SafetyScores;
 using Samsara.Net.Sensors;
 using Samsara.Net.Settings;
 using Samsara.Net.SpeedingIntervals;
@@ -98,6 +99,7 @@ public partial interface ISamsaraClient
     public IPreviewApIsClient PreviewApIs { get; }
     public IRouteEventsClient RouteEvents { get; }
     public ISafetyClient Safety { get; }
+    public ISafetyScoresClient SafetyScores { get; }
     public ISpeedingIntervalsClient SpeedingIntervals { get; }
     public ITagsClient Tags { get; }
     public ITrainingAssignmentsClient TrainingAssignments { get; }
