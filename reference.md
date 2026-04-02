@@ -1889,7 +1889,7 @@ await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
             {
                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-                IsOpen = false,
+                IsOpen = true,
             },
         },
     }
@@ -3174,6 +3174,69 @@ await client.BetaApIs.StartFunctionRunAsync(
 <dd>
 
 **request:** `FunctionsStartFunctionRunRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetFunctionRunAsync</a>(GetFunctionRunRequest { ... }) -> WithRawResponseTask&lt;FunctionsGetFunctionRunResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve the execution summary for a specific Function run, identified by the correlationId returned from the start run endpoint.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Functions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.GetFunctionRunAsync(
+    new GetFunctionRunRequest { Name = "name", CorrelationId = "correlationId" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetFunctionRunRequest` 
     
 </dd>
 </dl>
@@ -6030,7 +6093,6 @@ await client.Media.PostMediaRetrievalAsync(
         EndTime = "2019-06-13T19:08:55Z",
         Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
         {
-            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },
@@ -16080,6 +16142,7 @@ await client.PreviewApIs.PatchSafetyEventsV2BatchAsync(
     {
         SafetyEventIds = new List<string>()
         {
+            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },
