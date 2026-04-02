@@ -9,5 +9,5 @@
     "version-namespace-export": true,
     "enable-wire-tests": true
   },
-  "sdkVersion": "9.1.0"
+  "sdkVersion": "9.2.0"
 }
