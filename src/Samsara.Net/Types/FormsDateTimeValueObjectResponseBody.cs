@@ -15,6 +15,12 @@ public record FormsDateTimeValueObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Calendar date in YYYY-MM-DD format in the stored field timezone. Present when type is `date` (date-only fields).
+    /// </summary>
+    [JsonPropertyName("dateValue")]
+    public DateOnly? DateValue { get; set; }
+
+    /// <summary>
     /// The type of datetime format.  Valid values: `datetime`, `date`, `time`
     /// </summary>
     [JsonPropertyName("type")]

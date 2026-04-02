@@ -49,6 +49,7 @@ public class PatchQualificationRecordTest : BaseMockServerTest
                       ]
                     },
                     "dateTimeValue": {
+                      "dateValue": "2024-08-08",
                       "type": "datetime",
                       "value": "2024-08-08T18:53:23.000Z"
                     },
@@ -100,6 +101,7 @@ public class PatchQualificationRecordTest : BaseMockServerTest
                                 ]
                               },
                               "dateTimeValue": {
+                                "dateValue": "2024-08-08",
                                 "type": "datetime",
                                 "value": "2024-08-08T18:53:23.000Z"
                               },
