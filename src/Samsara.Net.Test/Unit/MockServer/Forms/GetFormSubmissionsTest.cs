@@ -59,6 +59,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                         ]
                       },
                       "dateTimeValue": {
+                        "dateValue": "2023-01-15",
                         "type": "datetime",
                         "value": "2024-01-15T09:30:00.000Z"
                       },
@@ -188,6 +189,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                         ]
                       },
                       "dateTimeValue": {
+                        "dateValue": "2023-01-15",
                         "type": "datetime",
                         "value": "2024-01-15T09:30:00.000Z"
                       },
@@ -376,6 +378,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                         ]
                       },
                       "dateTimeValue": {
+                        "dateValue": "2023-01-15",
                         "type": "datetime",
                         "value": "2024-01-15T09:30:00.000Z"
                       },
@@ -505,6 +508,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                         ]
                       },
                       "dateTimeValue": {
+                        "dateValue": "2023-01-15",
                         "type": "datetime",
                         "value": "2024-01-15T09:30:00.000Z"
                       },
