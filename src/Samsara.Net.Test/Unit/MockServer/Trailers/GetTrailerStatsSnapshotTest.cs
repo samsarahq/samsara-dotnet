@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
+using Samsara.Net.Trailers;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Trailers;
 
 [TestFixture]
 public class GetTrailerStatsSnapshotTest : BaseMockServerTest
@@ -21,10 +21,10 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     "value": "`Off`, `On`"
                   },
                   "gps": {
-                    "headingDegrees": 2095270408543559200,
-                    "latitude": 0.49658462223156263,
-                    "longitude": 0.21300199440256257,
-                    "speedMilesPerHour": 3791524945876355600,
+                    "headingDegrees": 5631003136208764000,
+                    "latitude": 0.11331136118623318,
+                    "longitude": 0.2965517819045647,
+                    "speedMilesPerHour": 6500481596243475000,
                     "time": "2020-01-27T07:06:25Z"
                   },
                   "gpsOdometerMeters": {
@@ -39,7 +39,7 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                         "alarmCode": "3",
                         "description": "Test alarm",
                         "operatorAction": "Manually disable alarm",
-                        "severity": 8614943346154379000
+                        "severity": 5406015254738261000
                       }
                     ],
                     "time": "2020-01-27T07:06:25Z"
@@ -136,7 +136,7 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/beta/fleet/trailers/stats")
+                    .WithPath("/fleet/trailers/stats")
                     .WithParam("types", "types")
                     .UsingGet()
             )
@@ -147,7 +147,7 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetTrailerStatsSnapshotAsync(
+        var response = await Client.Trailers.GetTrailerStatsSnapshotAsync(
             new GetTrailerStatsSnapshotRequest { Types = "types" }
         );
         JsonAssert.AreEqual(response, mockResponse);

@@ -21,14 +21,14 @@ public class UpdateShippingDocsTest : BaseMockServerTest
             {
               "data": {
                 "adverseDrivingClaimed": true,
-                "bigDayClaimed": false,
+                "bigDayClaimed": true,
                 "carrierFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                 "carrierName": "Carrier Name",
                 "carrierUsDotNumber": 1234,
                 "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                 "homeTerminalName": "Home Terminal Name",
-                "isCertified": false,
-                "isUsShortHaulActive": true,
+                "isCertified": true,
+                "isUsShortHaulActive": false,
                 "trailerNames": [
                   "10293",
                   "Trailer ID 1"

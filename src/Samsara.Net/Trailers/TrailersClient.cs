@@ -215,6 +215,335 @@ public partial class TrailersClient : ITrailersClient
         }
     }
 
+    private async Task<
+        WithRawResponse<TrailerStatsGetTrailerStatsSnapshotResponseBody>
+    > GetTrailerStatsSnapshotAsyncCore(
+        GetTrailerStatsSnapshotRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
+            .Add("types", request.Types)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .Add("trailerIds", request.TrailerIds)
+            .Add("time", request.Time)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "fleet/trailers/stats",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<TrailerStatsGetTrailerStatsSnapshotResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<TrailerStatsGetTrailerStatsSnapshotResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<TrailerStatsGetTrailerStatsFeedResponseBody>
+    > GetTrailerStatsFeedAsyncCore(
+        GetTrailerStatsFeedRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
+            .Add("types", request.Types)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .Add("trailerIds", request.TrailerIds)
+            .Add("decorations", request.Decorations)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "fleet/trailers/stats/feed",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<TrailerStatsGetTrailerStatsFeedResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<TrailerStatsGetTrailerStatsFeedResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<TrailerStatsGetTrailerStatsHistoryResponseBody>
+    > GetTrailerStatsHistoryAsyncCore(
+        GetTrailerStatsHistoryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("types", request.Types)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .Add("trailerIds", request.TrailerIds)
+            .Add("decorations", request.Decorations)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "fleet/trailers/stats/history",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<TrailerStatsGetTrailerStatsHistoryResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<TrailerStatsGetTrailerStatsHistoryResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     private async Task<WithRawResponse<TrailersGetTrailerResponseBody>> GetTrailerAsyncCore(
         GetTrailerRequest request,
         RequestOptions? options = null,
@@ -462,6 +791,93 @@ public partial class TrailersClient : ITrailersClient
     {
         return new WithRawResponseTask<TrailersCreateTrailerResponseBody>(
             CreateTrailerAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns the last known stats of all trailers at the given `time`. If no `time` is specified, the current time is used.
+    ///
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Trailer Statistics** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.Trailers.GetTrailerStatsSnapshotAsync(
+    ///     new GetTrailerStatsSnapshotRequest { Types = "types" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<TrailerStatsGetTrailerStatsSnapshotResponseBody> GetTrailerStatsSnapshotAsync(
+        GetTrailerStatsSnapshotRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TrailerStatsGetTrailerStatsSnapshotResponseBody>(
+            GetTrailerStatsSnapshotAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Follow a feed of trailer stats.
+    ///
+    /// The first call to this endpoint will provide the most recent stats for each trailer and an `endCursor`.
+    ///
+    /// Providing the `endCursor` value to the `after` query parameter will fetch all updates since the previous API call.
+    ///
+    /// If `hasNextPage` is false, no new data is immediately available. Please wait a minimum of 5 seconds before making a subsequent request.
+    ///
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Trailer Statistics** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.Trailers.GetTrailerStatsFeedAsync(new GetTrailerStatsFeedRequest { Types = "types" });
+    /// </code></example>
+    public WithRawResponseTask<TrailerStatsGetTrailerStatsFeedResponseBody> GetTrailerStatsFeedAsync(
+        GetTrailerStatsFeedRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TrailerStatsGetTrailerStatsFeedResponseBody>(
+            GetTrailerStatsFeedAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Returns trailer stats during the given time range for all trailers. This can be optionally filtered by tags or specific trailer IDs.
+    ///
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Trailer Statistics** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.Trailers.GetTrailerStatsHistoryAsync(
+    ///     new GetTrailerStatsHistoryRequest
+    ///     {
+    ///         StartTime = "startTime",
+    ///         EndTime = "endTime",
+    ///         Types = "types",
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<TrailerStatsGetTrailerStatsHistoryResponseBody> GetTrailerStatsHistoryAsync(
+        GetTrailerStatsHistoryRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TrailerStatsGetTrailerStatsHistoryResponseBody>(
+            GetTrailerStatsHistoryAsyncCore(request, options, cancellationToken)
         );
     }
 
