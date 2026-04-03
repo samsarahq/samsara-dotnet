@@ -1,23 +1,11 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.BetaApIs;
+namespace Samsara.Net.Trailers;
 
 [Serializable]
-public record GetTrailerStatsHistoryRequest
+public record GetTrailerStatsFeedRequest
 {
-    /// <summary>
-    /// A start time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    /// </summary>
-    [JsonIgnore]
-    public required string StartTime { get; set; }
-
-    /// <summary>
-    /// An end time in RFC 3339 format. Defaults to now if not provided. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
-    /// </summary>
-    [JsonIgnore]
-    public required string EndTime { get; set; }
-
     /// <summary>
     /// The stat types you want this endpoint to return information on.
     ///

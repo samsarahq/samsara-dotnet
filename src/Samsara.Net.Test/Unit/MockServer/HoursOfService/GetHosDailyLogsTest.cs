@@ -45,8 +45,8 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "certifiedAtTime": "2020-01-01T06:00:00Z",
                     "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                     "homeTerminalName": "Home Terminal Name",
-                    "isCertified": true,
-                    "isUsShortHaulActive": false,
+                    "isCertified": false,
+                    "isUsShortHaulActive": true,
                     "shippingDocs": "Delivery 123, chips and soda",
                     "trailerNames": [
                       "10293",

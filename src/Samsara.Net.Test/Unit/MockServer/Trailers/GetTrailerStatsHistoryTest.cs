@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
+using Samsara.Net.Trailers;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Trailers;
 
 [TestFixture]
 public class GetTrailerStatsHistoryTest : BaseMockServerTest
@@ -24,10 +24,10 @@ public class GetTrailerStatsHistoryTest : BaseMockServerTest
                   ],
                   "gps": [
                     {
-                      "headingDegrees": 5993387291059494000,
-                      "latitude": 0.5861213483677,
-                      "longitude": 0.6275969800755682,
-                      "speedMilesPerHour": 905164161221086300,
+                      "headingDegrees": 392081610554693300,
+                      "latitude": 0.571370134841778,
+                      "longitude": 0.08246576794243361,
+                      "speedMilesPerHour": 3138978820343500300,
                       "time": "2020-01-27T07:06:25Z"
                     }
                   ],
@@ -46,7 +46,7 @@ public class GetTrailerStatsHistoryTest : BaseMockServerTest
                           "alarmCode": "3",
                           "description": "Test alarm",
                           "operatorAction": "Manually disable alarm",
-                          "severity": 8614943346154379000
+                          "severity": 5406015254738261000
                         }
                       ],
                       "time": "2020-01-27T07:06:25Z"
@@ -182,7 +182,7 @@ public class GetTrailerStatsHistoryTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/beta/fleet/trailers/stats/history")
+                    .WithPath("/fleet/trailers/stats/history")
                     .WithParam("startTime", "startTime")
                     .WithParam("endTime", "endTime")
                     .WithParam("types", "types")
@@ -195,7 +195,7 @@ public class GetTrailerStatsHistoryTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetTrailerStatsHistoryAsync(
+        var response = await Client.Trailers.GetTrailerStatsHistoryAsync(
             new GetTrailerStatsHistoryRequest
             {
                 StartTime = "startTime",
