@@ -648,6 +648,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "trailerMovingWithoutPower": {
+                          "currentVoltage": 1,
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          }
+                        },
                         "unassignedDriving": {
                           "driver": {
                             "id": "id"
@@ -693,6 +702,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "vehicleTrailerMismatch": {
+                          "currentlyPullingTrailers": [],
+                          "driver": {
+                            "id": "id"
+                          },
+                          "driverSelectedTrailers": [],
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -1345,6 +1365,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "trailerMovingWithoutPower": {
+                          "currentVoltage": 1,
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          }
+                        },
                         "unassignedDriving": {
                           "driver": {
                             "id": "id"
@@ -1390,6 +1419,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "vehicleTrailerMismatch": {
+                          "currentlyPullingTrailers": [],
+                          "driver": {
+                            "id": "id"
+                          },
+                          "driverSelectedTrailers": [],
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -2052,6 +2092,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "trailerMovingWithoutPower": {
+                          "currentVoltage": 1,
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          }
+                        },
                         "unassignedDriving": {
                           "driver": {
                             "id": "id"
@@ -2097,6 +2146,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "vehicleTrailerMismatch": {
+                          "currentlyPullingTrailers": [],
+                          "driver": {
+                            "id": "id"
+                          },
+                          "driverSelectedTrailers": [],
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -2749,6 +2809,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "trailerMovingWithoutPower": {
+                          "currentVoltage": 1,
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          }
+                        },
                         "unassignedDriving": {
                           "driver": {
                             "id": "id"
@@ -2794,6 +2863,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "vehicleTrailerMismatch": {
+                          "currentlyPullingTrailers": [],
+                          "driver": {
+                            "id": "id"
+                          },
+                          "driverSelectedTrailers": [],
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
