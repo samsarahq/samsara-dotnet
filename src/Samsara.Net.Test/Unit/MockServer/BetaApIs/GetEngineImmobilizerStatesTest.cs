@@ -16,7 +16,7 @@ public class GetEngineImmobilizerStatesTest : BaseMockServerTest
               "data": [
                 {
                   "happenedAtTime": "2019-06-13T19:08:25Z",
-                  "isConnectedToVehicle": true,
+                  "isConnectedToVehicle": false,
                   "relayStates": [
                     {
                       "id": "relay1",

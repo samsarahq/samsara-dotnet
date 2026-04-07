@@ -23,11 +23,11 @@ public class PatchComplianceSettingsTest : BaseMockServerTest
                 "carrierName": "ABC Trucking",
                 "dotNumber": 12345678,
                 "driverAutoDutyEnabled": true,
-                "editCertifiedLogsEnabled": false,
+                "editCertifiedLogsEnabled": true,
                 "forceManualLocationForDutyStatusChangesEnabled": true,
                 "forceReviewUnassignedHosEnabled": true,
                 "mainOfficeFormattedAddress": "123 Main Street",
-                "persistentDutyStatusEnabled": false
+                "persistentDutyStatusEnabled": true
               }
             }
             """;

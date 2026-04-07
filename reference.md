@@ -1691,7 +1691,7 @@ await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
             {
                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-                IsOpen = true,
+                IsOpen = false,
             },
         },
     }
@@ -6022,6 +6022,7 @@ await client.Media.PostMediaRetrievalAsync(
         EndTime = "2019-06-13T19:08:55Z",
         Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
         {
+            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },

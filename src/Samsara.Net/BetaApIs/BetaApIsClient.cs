@@ -6009,7 +6009,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
     ///             {
     ///                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-    ///                 IsOpen = true,
+    ///                 IsOpen = false,
     ///             },
     ///         },
     ///     }

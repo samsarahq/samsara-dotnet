@@ -179,6 +179,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("tireFaults")]
     public TireFaultsResponseBody? TireFaults { get; set; }
 
+    [JsonPropertyName("trailerMovingWithoutPower")]
+    public TrailerMovingWithoutPowerDataResponseBody? TrailerMovingWithoutPower { get; set; }
+
     [JsonPropertyName("unassignedDriving")]
     public UnassignedDrivingDataResponseBody? UnassignedDriving { get; set; }
 
@@ -193,6 +196,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
 
     [JsonPropertyName("vehicleFaults")]
     public VehicleFaultsResponseBody? VehicleFaults { get; set; }
+
+    [JsonPropertyName("vehicleTrailerMismatch")]
+    public VehicleTrailerMismatchDataResponseBody? VehicleTrailerMismatch { get; set; }
 
     [JsonPropertyName("workerSafetySos")]
     public WorkerSafetySosDataResponseBody? WorkerSafetySos { get; set; }
