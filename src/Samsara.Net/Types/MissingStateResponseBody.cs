@@ -21,6 +21,18 @@ public record MissingStateResponseBody : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
+    /// Timestamp when the asset was first marked as missing, in milliseconds since epoch. Unlike updated_at_ms, this value is preserved when the missing state is edited.
+    /// </summary>
+    [JsonPropertyName("initiated_at_ms")]
+    public long? InitiatedAtMs { get; set; }
+
+    /// <summary>
+    /// The ID of the user who first marked this asset as missing. Unlike updated_by_user_id, this value is preserved when the missing state is edited.
+    /// </summary>
+    [JsonPropertyName("initiated_by_user_id")]
+    public long? InitiatedByUserId { get; set; }
+
+    /// <summary>
     /// The human-readable name of the asset.
     /// </summary>
     [JsonPropertyName("name")]
