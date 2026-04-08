@@ -16,6 +16,8 @@ public class ListDeviceRecoveryMissingAssetsTest : BaseMockServerTest
               "data": [
                 {
                   "id": "12345",
+                  "initiated_at_ms": 1609459200000,
+                  "initiated_by_user_id": 1234,
                   "name": "Trailer-A1234",
                   "note": "Asset was last seen at warehouse A",
                   "notification_recipients": [
