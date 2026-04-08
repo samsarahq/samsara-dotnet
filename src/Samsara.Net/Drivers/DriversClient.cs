@@ -439,7 +439,7 @@ public partial class DriversClient : IDriversClient
                 {
                     request.After = cursor;
                 },
-                response => response.Pagination?.EndCursor,
+                response => response.Pagination.EndCursor,
                 response => response.Data?.ToList(),
                 cancellationToken
             )

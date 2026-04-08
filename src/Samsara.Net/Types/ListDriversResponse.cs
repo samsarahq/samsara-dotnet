@@ -15,10 +15,10 @@ public record ListDriversResponse : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("data")]
-    public IEnumerable<Driver>? Data { get; set; }
+    public IEnumerable<Driver> Data { get; set; } = new List<Driver>();
 
     [JsonPropertyName("pagination")]
-    public PaginationResponse? Pagination { get; set; }
+    public required PaginationResponse Pagination { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
