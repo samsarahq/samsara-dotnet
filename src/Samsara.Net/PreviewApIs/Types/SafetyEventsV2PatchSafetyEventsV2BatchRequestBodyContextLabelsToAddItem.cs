@@ -10,6 +10,9 @@ namespace Samsara.Net.PreviewApIs;
 public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem
     : IStringEnum
 {
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem AnimalCollision =
+        new(Values.AnimalCollision);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Congested =
         new(Values.Congested);
 
@@ -142,6 +145,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
     [Serializable]
     public static class Values
     {
+        public const string AnimalCollision = "Animal Collision";
+
         public const string Congested = "Congested";
 
         public const string Construction = "Construction";
