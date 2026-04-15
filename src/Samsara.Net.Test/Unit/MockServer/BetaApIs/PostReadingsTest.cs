@@ -15,7 +15,6 @@ public class PostReadingsTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "entityId": "123451234512345",
                   "entityType": "asset",
                   "happenedAtTime": "2023-10-27T10:00:00Z",
                   "readingId": "airInletPressure",
@@ -46,7 +45,6 @@ public class PostReadingsTest : BaseMockServerTest
                     {
                         new ReadingDatapointRequestBody
                         {
-                            EntityId = "123451234512345",
                             EntityType = ReadingDatapointRequestBodyEntityType.Asset,
                             HappenedAtTime = "2023-10-27T10:00:00Z",
                             ReadingId = "airInletPressure",
