@@ -15,16 +15,22 @@ public record ReadingDatapointRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Samsara entity ID. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.
+    /// Samsara entity ID. Required if externalId is not provided. In case of an asset, it’s the assetId. If the asset is not yet present in the system, it is required to create a new one via the /assets endpoint.
     /// </summary>
     [JsonPropertyName("entityId")]
-    public required string EntityId { get; set; }
+    public string? EntityId { get; set; }
 
     /// <summary>
     /// The type of the entity (e.g., asset).  Valid values: `asset`
     /// </summary>
     [JsonPropertyName("entityType")]
     public required ReadingDatapointRequestBodyEntityType EntityType { get; set; }
+
+    /// <summary>
+    /// An external ID in key:value format. Required if entityId is not provided. Use this to reference an asset by its external ID instead of the Samsara entity ID.
+    /// </summary>
+    [JsonPropertyName("externalId")]
+    public string? ExternalId { get; set; }
 
     /// <summary>
     /// The timestamp of when the reading happened in RFC 3339 format. happenedAtTime must not be older than the last known reading for the same series.

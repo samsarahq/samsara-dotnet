@@ -7453,7 +7453,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///         {
     ///             new ReadingDatapointRequestBody
     ///             {
-    ///                 EntityId = "123451234512345",
     ///                 EntityType = ReadingDatapointRequestBodyEntityType.Asset,
     ///                 HappenedAtTime = "2023-10-27T10:00:00Z",
     ///                 ReadingId = "airInletPressure",
