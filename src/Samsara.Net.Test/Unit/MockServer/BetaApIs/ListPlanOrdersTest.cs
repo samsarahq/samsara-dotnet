@@ -1,5 +1,4 @@
 using NUnit.Framework;
-using Samsara.Net;
 using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
@@ -7,23 +6,11 @@ using Samsara.Net.Test.Utils;
 namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
-public class CreatePlanOrdersTest : BaseMockServerTest
+public class ListPlanOrdersTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
-        const string requestJson = """
-            {
-              "data": [
-                {
-                  "customerOrderId": "ORDER-2024-001",
-                  "hubId": "550e8400-e29b-41d4-a716-446655440000",
-                  "planId": "650e8400-e29b-41d4-a716-446655440023"
-                }
-              ]
-            }
-            """;
-
         const string mockResponse = """
             {
               "data": [
@@ -80,7 +67,11 @@ public class CreatePlanOrdersTest : BaseMockServerTest
                   ],
                   "updatedAtTime": "2024-04-10T11:30:00.000Z"
                 }
-              ]
+              ],
+              "pagination": {
+                "endCursor": "YXJyYXljb25uZWN0aW9uOjEwMA==",
+                "hasNextPage": false
+              }
             }
             """;
 
@@ -89,9 +80,8 @@ public class CreatePlanOrdersTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/hub/plan/orders")
-                    .WithHeader("Content-Type", "application/json")
-                    .UsingPost()
-                    .WithBodyAsJson(requestJson)
+                    .WithParam("planId", "planId")
+                    .UsingGet()
             )
             .RespondWith(
                 WireMock
@@ -100,19 +90,8 @@ public class CreatePlanOrdersTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.CreatePlanOrdersAsync(
-            new PlanOrdersCreatePlanOrdersRequestBody
-            {
-                Data = new List<OrderInputObjectRequestBody>()
-                {
-                    new OrderInputObjectRequestBody
-                    {
-                        CustomerOrderId = "ORDER-2024-001",
-                        HubId = "550e8400-e29b-41d4-a716-446655440000",
-                        PlanId = "650e8400-e29b-41d4-a716-446655440023",
-                    },
-                },
-            }
+        var response = await Client.BetaApIs.ListPlanOrdersAsync(
+            new ListPlanOrdersRequest { PlanId = "planId" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

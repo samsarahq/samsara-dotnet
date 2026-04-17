@@ -17,8 +17,8 @@ public record OrderObjectResponseBody : IJsonOnDeserialized
     /// <summary>
     /// The timestamp (in UTC) when the order was created
     /// </summary>
-    [JsonPropertyName("createdAt")]
-    public required DateTime CreatedAt { get; set; }
+    [JsonPropertyName("createdAtTime")]
+    public required DateTime CreatedAtTime { get; set; }
 
     /// <summary>
     /// An array of custom property values for the order
@@ -71,6 +71,12 @@ public record OrderObjectResponseBody : IJsonOnDeserialized
         new List<OrderQuantityResponseBody>();
 
     /// <summary>
+    /// The ID of the route this order is assigned to. Null if the order is unassigned. Only populated on list responses.
+    /// </summary>
+    [JsonPropertyName("routeId")]
+    public string? RouteId { get; set; }
+
+    /// <summary>
     /// An array of skill IDs required to fulfill the order
     /// </summary>
     [JsonPropertyName("skillsRequired")]
@@ -79,8 +85,8 @@ public record OrderObjectResponseBody : IJsonOnDeserialized
     /// <summary>
     /// The timestamp (in UTC) when the order was last updated
     /// </summary>
-    [JsonPropertyName("updatedAt")]
-    public required DateTime UpdatedAt { get; set; }
+    [JsonPropertyName("updatedAtTime")]
+    public required DateTime UpdatedAtTime { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
