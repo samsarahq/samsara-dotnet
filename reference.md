@@ -6099,7 +6099,6 @@ await client.Media.PostMediaRetrievalAsync(
         {
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },
         MediaType = MediaRetrievalPostMediaRetrievalRequestBodyMediaType.Image,
         StartTime = "2019-06-13T19:08:25Z",

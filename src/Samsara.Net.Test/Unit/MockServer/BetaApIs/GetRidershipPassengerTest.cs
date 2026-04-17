@@ -33,7 +33,7 @@ public class GetRidershipPassengerTest : BaseMockServerTest
                 "isActive": true,
                 "lastName": "Doe",
                 "specialInstructions": {
-                  "isGuardianRequired": false,
+                  "isGuardianRequired": true,
                   "isSpecialEducation": false
                 },
                 "updatedAtTime": "2024-11-15T10:30:00Z"

@@ -55,6 +55,12 @@ public record ListAssetsRequest
     public IEnumerable<string> Ids { get; set; } = new List<string>();
 
     /// <summary>
+    /// A filter on the data based on this comma-separated list of external IDs. Example: `externalIds=maintenanceId:250020,vin:1HGBH41JXMN109186`
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> ExternalIds { get; set; } = new List<string>();
+
+    /// <summary>
     /// A filter on the data based on this comma-separated list of attribute value IDs. Only entities associated with ALL of the referenced values will be returned (i.e. the intersection of the sets of entities with each value). Example: `attributeValueIds=076efac2-83b5-47aa-ba36-18428436dcac,6707b3f0-23b9-4fe3-b7be-11be34aea544`
     /// </summary>
     [JsonIgnore]

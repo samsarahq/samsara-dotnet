@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.Assets;
@@ -6,6 +7,12 @@ namespace Samsara.Net.Assets;
 [Serializable]
 public record AssetsCreateAssetRequestBody
 {
+    /// <summary>
+    /// A list of attributes to assign to the asset.
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyRequestBody>? Attributes { get; set; }
+
     /// <summary>
     /// A map of external ids
     /// </summary>
@@ -59,6 +66,12 @@ public record AssetsCreateAssetRequestBody
     /// </summary>
     [JsonPropertyName("serialNumber")]
     public string? SerialNumber { get; set; }
+
+    /// <summary>
+    /// An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+    /// </summary>
+    [JsonPropertyName("tagIds")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
     /// The operational context in which the asset interacts with the Samsara system. Examples: Vehicle (eg: truck, bus...), Trailer (eg: dry van, reefer, flatbed...), Powered Equipment (eg: dozer, crane...), Unpowered Equipment (eg: container, dumpster...), or Uncategorized.  Valid values: `uncategorized`, `trailer`, `equipment`, `unpowered`, `vehicle`
