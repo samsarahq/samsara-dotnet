@@ -72,7 +72,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/11.4.0" },
+                { "User-Agent", "Samsara.Net/11.5.0" },
             }
         );
         foreach (var header in platformHeaders)
