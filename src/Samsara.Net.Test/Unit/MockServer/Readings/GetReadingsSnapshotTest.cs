@@ -1,12 +1,12 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.Readings;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Readings;
 
 [TestFixture]
-public class ListReadingsDefinitionsTest : BaseMockServerTest
+public class GetReadingsSnapshotTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -15,19 +15,13 @@ public class ListReadingsDefinitionsTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "category": "smartTrailer",
-                  "description": "Engine Speed",
-                  "entityType": "sensor",
-                  "enumValues": [
-                    {
-                      "label": "Critically High",
-                      "symbol": "criticallyHigh"
-                    }
-                  ],
-                  "ingestionEnabled": true,
-                  "label": "engineRpm",
-                  "readingId": "12345",
-                  "type": {
+                  "entityId": "123456",
+                  "externalIds": {
+                    "key": "value"
+                  },
+                  "happenedAtTime": "2020-01-27T07:06:25Z",
+                  "readingId": "engineSpeed",
+                  "value": {
                     "key": "value"
                   }
                 }
@@ -43,7 +37,9 @@ public class ListReadingsDefinitionsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/readings/definitions")
+                    .WithPath("/readings/latest")
+                    .WithParam("readingIds", "readingIds")
+                    .WithParam("entityType", "entityType")
                     .UsingGet()
             )
             .RespondWith(
@@ -53,8 +49,8 @@ public class ListReadingsDefinitionsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.ListReadingsDefinitionsAsync(
-            new ListReadingsDefinitionsRequest()
+        var response = await Client.Readings.GetReadingsSnapshotAsync(
+            new GetReadingsSnapshotRequest { ReadingIds = "readingIds", EntityType = "entityType" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

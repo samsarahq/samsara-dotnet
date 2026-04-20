@@ -31,6 +31,7 @@ using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
 using Samsara.Net.PreviewApIs;
+using Samsara.Net.Readings;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
@@ -97,6 +98,7 @@ public partial interface ISamsaraClient
     public IWorkOrdersClient WorkOrders { get; }
     public IOrganizationInfoClient OrganizationInfo { get; }
     public IPreviewApIsClient PreviewApIs { get; }
+    public IReadingsClient Readings { get; }
     public IRouteEventsClient RouteEvents { get; }
     public ISafetyClient Safety { get; }
     public ISafetyScoresClient SafetyScores { get; }

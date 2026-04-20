@@ -154,6 +154,12 @@ public record CreateDriverRequest
     [JsonPropertyName("timezone")]
     public string? Timezone { get; set; }
 
+    /// <summary>
+    /// Tag ID which determines which trailers a driver will see when selecting trailers.
+    /// </summary>
+    [JsonPropertyName("trailerGroupTagId")]
+    public string? TrailerGroupTagId { get; set; }
+
     [JsonPropertyName("usDriverRulesetOverride")]
     public UsDriverRulesetOverride? UsDriverRulesetOverride { get; set; }
 

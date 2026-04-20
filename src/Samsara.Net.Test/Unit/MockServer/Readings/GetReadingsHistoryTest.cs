@@ -1,12 +1,12 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.Readings;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Readings;
 
 [TestFixture]
-public class GetReadingsSnapshotTest : BaseMockServerTest
+public class GetReadingsHistoryTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
@@ -20,7 +20,6 @@ public class GetReadingsSnapshotTest : BaseMockServerTest
                     "key": "value"
                   },
                   "happenedAtTime": "2020-01-27T07:06:25Z",
-                  "readingId": "engineSpeed",
                   "value": {
                     "key": "value"
                   }
@@ -37,8 +36,8 @@ public class GetReadingsSnapshotTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/readings/latest")
-                    .WithParam("readingIds", "readingIds")
+                    .WithPath("/readings/history")
+                    .WithParam("readingId", "readingId")
                     .WithParam("entityType", "entityType")
                     .UsingGet()
             )
@@ -49,8 +48,8 @@ public class GetReadingsSnapshotTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.GetReadingsSnapshotAsync(
-            new GetReadingsSnapshotRequest { ReadingIds = "readingIds", EntityType = "entityType" }
+        var response = await Client.Readings.GetReadingsHistoryAsync(
+            new GetReadingsHistoryRequest { ReadingId = "readingId", EntityType = "entityType" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

@@ -32,6 +32,7 @@ using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
 using Samsara.Net.PreviewApIs;
+using Samsara.Net.Readings;
 using Samsara.Net.RouteEvents;
 using Samsara.Net.Routes;
 using Samsara.Net.Safety;
@@ -72,7 +73,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/11.5.0" },
+                { "User-Agent", "Samsara.Net/11.6.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -133,6 +134,7 @@ public partial class SamsaraClient : ISamsaraClient
         WorkOrders = new WorkOrdersClient(_client);
         OrganizationInfo = new OrganizationInfoClient(_client);
         PreviewApIs = new PreviewApIsClient(_client);
+        Readings = new ReadingsClient(_client);
         RouteEvents = new RouteEventsClient(_client);
         Safety = new SafetyClient(_client);
         SafetyScores = new SafetyScoresClient(_client);
@@ -231,6 +233,8 @@ public partial class SamsaraClient : ISamsaraClient
     public IOrganizationInfoClient OrganizationInfo { get; }
 
     public IPreviewApIsClient PreviewApIs { get; }
+
+    public IReadingsClient Readings { get; }
 
     public IRouteEventsClient RouteEvents { get; }
 
