@@ -107,6 +107,9 @@ public record Driver : IJsonOnDeserialized
     [JsonPropertyName("timezone")]
     public string? Timezone { get; set; }
 
+    [JsonPropertyName("trailerGroupTag")]
+    public DriverTrailerGroupTag? TrailerGroupTag { get; set; }
+
     [JsonPropertyName("updatedAtTime")]
     public string? UpdatedAtTime { get; set; }
 

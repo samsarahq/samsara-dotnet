@@ -81,6 +81,11 @@ public class UpdateTest : BaseMockServerTest
                   }
                 ],
                 "timezone": "America/Los_Angeles",
+                "trailerGroupTag": {
+                  "id": "3914",
+                  "name": "West Coast",
+                  "parentTagId": "4815"
+                },
                 "updatedAtTime": "2019-06-13T19:08:25Z",
                 "usDriverRulesetOverride": {
                   "cycle": "USA Property (8/70)",
