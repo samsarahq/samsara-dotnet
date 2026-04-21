@@ -38,6 +38,9 @@ public record RouteObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("distanceMeters")]
     public required int DistanceMeters { get; set; }
 
+    [JsonPropertyName("driver")]
+    public RouteDriverObjectResponseBody? Driver { get; set; }
+
     /// <summary>
     /// The total duration of the route in seconds
     /// </summary>
@@ -122,6 +125,9 @@ public record RouteObjectResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("updatedAt")]
     public required DateTime UpdatedAt { get; set; }
+
+    [JsonPropertyName("vehicle")]
+    public RouteVehicleObjectResponseBody? Vehicle { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
