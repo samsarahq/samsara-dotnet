@@ -21,6 +21,12 @@ public record OrderTaskObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<OrderTaskCustomPropertyObjectResponseBody>? CustomProperties { get; set; }
 
     /// <summary>
+    /// The external ID of the location associated with this order
+    /// </summary>
+    [JsonPropertyName("customerLocationId")]
+    public string? CustomerLocationId { get; set; }
+
+    /// <summary>
     /// The order identifier
     /// </summary>
     [JsonPropertyName("id")]

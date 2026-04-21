@@ -19,6 +19,10 @@ public class ListHubPlanRoutesTest : BaseMockServerTest
                   "createdAt": "2024-04-10T10:30:00.000Z",
                   "dispatchRouteId": "123456",
                   "distanceMeters": 15420,
+                  "driver": {
+                    "id": "12345",
+                    "name": "Driver Bob"
+                  },
                   "durationSeconds": 3600,
                   "hubId": "550e8400-e29b-41d4-a716-446655440000",
                   "id": "950e8400-e29b-41d4-a716-446655440005",
@@ -50,6 +54,7 @@ public class ListHubPlanRoutesTest : BaseMockServerTest
                               "value": "Premium"
                             }
                           ],
+                          "customerLocationId": "LOC-12345",
                           "id": "e5f6a7b8-c9d0-1234-efab-567890123456",
                           "quantities": [
                             {
@@ -77,7 +82,11 @@ public class ListHubPlanRoutesTest : BaseMockServerTest
                     }
                   ],
                   "type": "dynamic",
-                  "updatedAt": "2024-04-10T10:30:00.000Z"
+                  "updatedAt": "2024-04-10T10:30:00.000Z",
+                  "vehicle": {
+                    "id": "67890",
+                    "name": "Fleet Truck #1"
+                  }
                 }
               ],
               "pagination": {
