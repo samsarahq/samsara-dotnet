@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.Plans;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Plans;
 
 [TestFixture]
 public class CreatePlanOrdersTest : BaseMockServerTest
@@ -99,7 +99,7 @@ public class CreatePlanOrdersTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.CreatePlanOrdersAsync(
+        var response = await Client.Plans.CreatePlanOrdersAsync(
             new PlanOrdersCreatePlanOrdersRequestBody
             {
                 Data = new List<OrderInputObjectRequestBody>()
