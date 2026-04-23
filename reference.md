@@ -3505,71 +3505,6 @@ await client.BetaApIs.UpdateShippingDocsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListHubCustomPropertiesAsync</a>(ListHubCustomPropertiesRequest { ... }) -> WithRawResponseTask&lt;HubCustomPropertiesListHubCustomPropertiesResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Retrieve custom properties for a specific hub.
-
-**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.
-
- <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListHubCustomPropertiesAsync(
-    new ListHubCustomPropertiesRequest { HubId = "hubId" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListHubCustomPropertiesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPlanOrdersAsync</a>(ListPlanOrdersRequest { ... }) -> WithRawResponseTask&lt;PlanOrdersListPlanOrdersResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -3622,82 +3557,6 @@ await client.BetaApIs.ListPlanOrdersAsync(new ListPlanOrdersRequest { PlanId = "
 <dd>
 
 **request:** `ListPlanOrdersRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreatePlanOrdersAsync</a>(PlanOrdersCreatePlanOrdersRequestBody { ... }) -> WithRawResponseTask&lt;PlanOrdersCreatePlanOrdersResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create one or more orders (bulk upsert). Pass an array of order objects; any object whose customerOrderId already exists will be updated, otherwise a new order is created. Functions can return JSON arrays in this Order POST format. Orders are initially created at the plan level but will migrate to hub-level entities, with planId becoming optional in future versions.
-
-**Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreatePlanOrdersAsync(
-    new PlanOrdersCreatePlanOrdersRequestBody
-    {
-        Data = new List<OrderInputObjectRequestBody>()
-        {
-            new OrderInputObjectRequestBody
-            {
-                CustomerOrderId = "ORDER-2024-001",
-                HubId = "550e8400-e29b-41d4-a716-446655440000",
-                PlanId = "650e8400-e29b-41d4-a716-446655440023",
-            },
-        },
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `PlanOrdersCreatePlanOrdersRequestBody` 
     
 </dd>
 </dl>
@@ -13802,6 +13661,69 @@ await client.Hubs.ListHubCapacitiesAsync(new ListHubCapacitiesRequest { HubId = 
 </dl>
 </details>
 
+<details><summary><code>client.Hubs.<a href="/src/Samsara.Net/Hubs/HubsClient.cs">ListHubCustomPropertiesAsync</a>(ListHubCustomPropertiesRequest { ... }) -> WithRawResponseTask&lt;HubCustomPropertiesListHubCustomPropertiesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Retrieve custom properties for a specific hub.
+
+ <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Hubs.ListHubCustomPropertiesAsync(
+    new ListHubCustomPropertiesRequest { HubId = "hubId" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListHubCustomPropertiesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Hubs.<a href="/src/Samsara.Net/Hubs/HubsClient.cs">UpdateHubLocationAsync</a>(HubLocationsUpdateHubLocationRequestBody { ... }) -> WithRawResponseTask&lt;HubLocationsUpdateHubLocationResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -14235,6 +14157,80 @@ await client.Plans.CreateHubPlanAsync(
 <dd>
 
 **request:** `HubPlansCreateHubPlanRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Plans.<a href="/src/Samsara.Net/Plans/PlansClient.cs">CreatePlanOrdersAsync</a>(PlanOrdersCreatePlanOrdersRequestBody { ... }) -> WithRawResponseTask&lt;PlanOrdersCreatePlanOrdersResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create one or more orders (bulk upsert). Pass an array of order objects; any object whose customerOrderId already exists will be updated, otherwise a new order is created. Functions can return JSON arrays in this Order POST format. Orders are initially created at the plan level but will migrate to hub-level entities, with planId becoming optional in future versions.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Plans.CreatePlanOrdersAsync(
+    new PlanOrdersCreatePlanOrdersRequestBody
+    {
+        Data = new List<OrderInputObjectRequestBody>()
+        {
+            new OrderInputObjectRequestBody
+            {
+                CustomerOrderId = "ORDER-2024-001",
+                HubId = "550e8400-e29b-41d4-a716-446655440000",
+                PlanId = "650e8400-e29b-41d4-a716-446655440023",
+            },
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PlanOrdersCreatePlanOrdersRequestBody` 
     
 </dd>
 </dl>

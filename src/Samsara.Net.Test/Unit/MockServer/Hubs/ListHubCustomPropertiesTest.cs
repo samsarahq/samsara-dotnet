@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.BetaApIs;
+using Samsara.Net.Hubs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
+namespace Samsara.Net.Test.Unit.MockServer.Hubs;
 
 [TestFixture]
 public class ListHubCustomPropertiesTest : BaseMockServerTest
@@ -45,7 +45,7 @@ public class ListHubCustomPropertiesTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.ListHubCustomPropertiesAsync(
+        var response = await Client.Hubs.ListHubCustomPropertiesAsync(
             new ListHubCustomPropertiesRequest { HubId = "hubId" }
         );
         JsonAssert.AreEqual(response, mockResponse);
