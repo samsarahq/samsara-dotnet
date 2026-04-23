@@ -40,7 +40,7 @@ public record FormTemplateResponseObjectResponseBody : IJsonOnDeserialized
         new List<FormsFieldDefinitionObjectResponseBody>();
 
     /// <summary>
-    /// Category of the form template.  Valid values: `general`, `routing`, `fuel`
+    /// Category of the form template.  Valid values: `general`, `routing`, `fuel`, `safety`
     /// </summary>
     [JsonPropertyName("formCategory")]
     public FormTemplateResponseObjectResponseBodyFormCategory? FormCategory { get; set; }
