@@ -636,6 +636,22 @@ public partial interface IBetaApIsClient
     );
 
     /// <summary>
+    /// Retrieve route templates for a specific hub. Optionally filter by route template ID or name.
+    ///
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<HubRouteTemplatesListHubRouteTemplatesResponseBody> ListHubRouteTemplatesAsync(
+        ListHubRouteTemplatesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// Returns qualification records for the specified list of IDs.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
