@@ -43,3 +43,36 @@ jobs:
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
+
+      - name: Extract version
+        id: version
+        run: |
+          VERSION=$(grep 'public const string Current' src/Samsara.Net/Core/Public/Version.cs | sed 's/.*"\(.*\)".*/\1/')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Notify Slack - .NET SDK published
+        if: success()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_SDK_BUILD_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{
+              \"text\": \":white_check_mark: .NET SDK v${{ steps.version.outputs.version }} published to NuGet\",
+              \"blocks\": [{
+                \"type\": \"section\",
+                \"text\": {
+                  \"type\": \"mrkdwn\",
+                  \"text\": \":white_check_mark: *.NET SDK Published to NuGet*\n*Version:* \`${{ steps.version.outputs.version }}\`\n*Package:* <https://www.nuget.org/packages/Samsara.Net/${{ steps.version.outputs.version }}|Samsara.Net>\n*Run:* <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View workflow>\"
+                }
+              }]
+            }"
+
+      - name: Notify Slack on failure
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_SDK_BUILD_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST "$SLACK_WEBHOOK_URL" \
+            -H 'Content-Type: application/json' \
+            -d "{\"text\": \":x: .NET SDK publish to NuGet failed — <${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}|View workflow>\"}"
