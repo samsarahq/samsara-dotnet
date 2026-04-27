@@ -39,16 +39,16 @@ jobs:
       - name: Pack
         run: dotnet pack src/Samsara.Net/Samsara.Net.csproj -c Release --no-build --no-restore
 
-      - name: Publish to NuGet
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-        run: dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
-
       - name: Extract version
         id: version
         run: |
           VERSION=$(grep 'public const string Current' src/Samsara.Net/Core/Public/Version.cs | sed 's/.*"\(.*\)".*/\1/')
           echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Publish to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
 
       - name: Notify Slack - .NET SDK published
         if: success()
