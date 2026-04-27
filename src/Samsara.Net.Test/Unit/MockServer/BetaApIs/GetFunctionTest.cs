@@ -20,7 +20,7 @@ public class GetFunctionTest : BaseMockServerTest
                 },
                 "config": {
                   "handler": "index.handler",
-                  "isScheduleEnabled": true,
+                  "isScheduleEnabled": false,
                   "params": {},
                   "schedule": {
                     "entries": [
