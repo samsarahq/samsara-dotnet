@@ -35,6 +35,13 @@ public class GetFormSubmissionsStreamTest : BaseMockServerTest
                   },
                   "fields": [
                     {
+                      "barcodeValue": {
+                        "barcodes": [
+                          {
+                            "value": "1A2B3C4D5E"
+                          }
+                        ]
+                      },
                       "checkBoxesValue": {
                         "value": [
                           "Option A",
@@ -101,6 +108,13 @@ public class GetFormSubmissionsStreamTest : BaseMockServerTest
                           {
                             "cells": [
                               {
+                                "barcodeValue": {
+                                  "barcodes": [
+                                    {
+                                      "value": "1A2B3C4D5E"
+                                    }
+                                  ]
+                                },
                                 "checkBoxesValue": {
                                   "value": [
                                     "Option A",

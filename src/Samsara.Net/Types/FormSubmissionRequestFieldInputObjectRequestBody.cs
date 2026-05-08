@@ -17,6 +17,9 @@ public record FormSubmissionRequestFieldInputObjectRequestBody : IJsonOnDeserial
     [JsonPropertyName("assetValue")]
     public FormSubmissionRequestAssetValueObjectRequestBody? AssetValue { get; set; }
 
+    [JsonPropertyName("barcodeValue")]
+    public FormSubmissionRequestBarcodeValueObjectRequestBody? BarcodeValue { get; set; }
+
     [JsonPropertyName("checkBoxesValue")]
     public FormSubmissionRequestCheckBoxesValueObjectRequestBody? CheckBoxesValue { get; set; }
 
@@ -48,7 +51,7 @@ public record FormSubmissionRequestFieldInputObjectRequestBody : IJsonOnDeserial
     public FormSubmissionRequestTextValueObjectRequestBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`, `geofence`
+    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`, `geofence`, `barcode`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormSubmissionRequestFieldInputObjectRequestBodyType Type { get; set; }

@@ -212,70 +212,6 @@ public partial interface IBetaApIsClient
     );
 
     /// <summary>
-    /// List active asset assignments for the authorized organization. This endpoint only returns currently active assignments. During Beta, response ordering is implementation-defined and will stabilize before GA when database-backed pagination lands.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    WithRawResponseTask<AssetAssignmentsListAssetAssignmentsResponseBody> ListAssetAssignmentsAsync(
-        ListAssetAssignmentsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Create an asset assignment.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    WithRawResponseTask<AssetAssignmentsCreateAssetAssignmentResponseBody> CreateAssetAssignmentAsync(
-        AssetAssignmentsCreateAssetAssignmentRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// Unassign an active asset assignment.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    Task UnassignAssetAssignmentAsync(
-        AssetAssignmentsUnassignAssetAssignmentRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
-    /// List associations between vehicles and peripheral devices within a given time range. Associations represent the relationship between a central device (vehicle) and a peripheral device (e.g. asset tag). An association with a null endTime is still active. If no endTime query parameter is provided, all associations from startTime onward are returned, including currently active (open) associations.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Assets** under the Assets category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    WithRawResponseTask<AssociationsListAssociationsResponseBody> ListAssociationsAsync(
-        ListAssociationsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    );
-
-    /// <summary>
     /// List all assets that are currently marked as missing for the organization.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -447,6 +383,38 @@ public partial interface IBetaApIsClient
     /// </summary>
     WithRawResponseTask<FunctionsCreateFunctionResponseBody> CreateFunctionAsync(
         FunctionsCreateFunctionRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<FunctionsStorageListFunctionsStorageFilesResponseBody> ListFunctionsStorageFilesAsync(
+        ListFunctionsStorageFilesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Delete a file from Functions storage by name.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    Task DeleteFunctionStorageFileAsync(
+        DeleteFunctionStorageFileRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -627,6 +595,22 @@ public partial interface IBetaApIsClient
     /// </summary>
     WithRawResponseTask<HubRouteTemplatesListHubRouteTemplatesResponseBody> ListHubRouteTemplatesAsync(
         ListHubRouteTemplatesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Delete a route template by its unique identifier.
+    ///
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    Task DeleteHubRouteTemplateAsync(
+        DeleteHubRouteTemplateRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -1095,6 +1079,22 @@ public partial interface IBetaApIsClient
     /// </summary>
     WithRawResponseTask<RidershipRouteSetupsGetRidershipRouteSetupResponseBody> GetRidershipRouteSetupAsync(
         GetRidershipRouteSetupRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Asynchronously update eventState, context labels, and/or behavior labels for one or more Safety Events. Returns 202 Accepted immediately. State changes propagate asynchronously; use GET /safety-events to confirm updated state. If any safetyEventIds are not found, the entire request fails with 404 before any mutations are executed.If both eventState and label fields are provided, the two mutations execute serially and are not transactional — a label mutation failure will not roll back a successful state change.
+    ///
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<SafetyEventsV2PatchSafetyEventsV2BatchResponseBody> PatchSafetyEventsV2BatchAsync(
+        SafetyEventsV2PatchSafetyEventsV2BatchRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

@@ -24,7 +24,7 @@ public class PatchComplianceSettingsTest : BaseMockServerTest
                 "dotNumber": 12345678,
                 "driverAutoDutyEnabled": true,
                 "editCertifiedLogsEnabled": true,
-                "forceManualLocationForDutyStatusChangesEnabled": true,
+                "forceManualLocationForDutyStatusChangesEnabled": false,
                 "forceReviewUnassignedHosEnabled": true,
                 "mainOfficeFormattedAddress": "123 Main Street",
                 "persistentDutyStatusEnabled": true

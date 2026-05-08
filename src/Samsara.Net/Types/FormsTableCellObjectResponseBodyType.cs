@@ -25,6 +25,8 @@ public readonly record struct FormsTableCellObjectResponseBodyType : IStringEnum
 
     public static readonly FormsTableCellObjectResponseBodyType Person = new(Values.Person);
 
+    public static readonly FormsTableCellObjectResponseBodyType Barcode = new(Values.Barcode);
+
     public FormsTableCellObjectResponseBodyType(string value)
     {
         Value = value;
@@ -89,5 +91,7 @@ public readonly record struct FormsTableCellObjectResponseBodyType : IStringEnum
         public const string Media = "media";
 
         public const string Person = "person";
+
+        public const string Barcode = "barcode";
     }
 }

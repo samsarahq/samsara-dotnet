@@ -27,7 +27,7 @@ public record FormsTableColumnObjectResponseBody : IJsonOnDeserialized
     public required string Label { get; set; }
 
     /// <summary>
-    /// Type of the column field.  Valid values: `text`, `number`, `datetime`, `check_boxes`, `multiple_choice`, `signature`, `media`, `person`
+    /// Type of the column field.  Valid values: `text`, `number`, `datetime`, `check_boxes`, `multiple_choice`, `signature`, `media`, `person`, `barcode`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormsTableColumnObjectResponseBodyType Type { get; set; }

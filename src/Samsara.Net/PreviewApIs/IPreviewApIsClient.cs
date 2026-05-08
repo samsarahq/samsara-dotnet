@@ -71,11 +71,11 @@ public partial interface IPreviewApIsClient
     );
 
     /// <summary>
-    /// Asynchronously update eventState and/or context labels for one or more Safety Events. Returns 202 Accepted immediately. State changes propagate asynchronously; use GET /safety-events to confirm updated state. If any safetyEventIds are not found, the entire request fails with 404 before any mutations are executed. If both eventState and label fields are provided, the two mutations execute serially and are not transactional — a label mutation failure will not roll back a successful state change.
+    /// Reassign one or more gateways to different devices in a single call. Mirrors the dashboard's "Pair Gateway" flow and accepts up to 50 gateway-device pairs per request. Works for any device type: vehicles, assets, equipment, trailers, industrial machines, and asset tags. By default, devices that the reassigned gateways were previously linked to remain in their current group. Pass `removeOrphanDevices: true` to move those orphaned devices to the unassigned group and clear their tags. The endpoint is currently in Preview and gated behind a feature configuration; contact your Samsara representative to enable access.
     ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Gateways** under the Setup & Administration category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     /// Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
     ///
@@ -86,8 +86,8 @@ public partial interface IPreviewApIsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
-    WithRawResponseTask<SafetyEventsV2PatchSafetyEventsV2BatchResponseBody> PatchSafetyEventsV2BatchAsync(
-        SafetyEventsV2PatchSafetyEventsV2BatchRequestBody request,
+    WithRawResponseTask<GatewaysPairGatewaysResponseBody> PairGatewaysAsync(
+        GatewaysPairGatewaysRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );

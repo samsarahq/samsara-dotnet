@@ -20,7 +20,7 @@ public class GetEngineImmobilizerStatesTest : BaseMockServerTest
                   "relayStates": [
                     {
                       "id": "relay1",
-                      "isOpen": true
+                      "isOpen": false
                     }
                   ],
                   "vehicleId": "1234"
