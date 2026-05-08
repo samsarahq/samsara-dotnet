@@ -47,6 +47,8 @@ public readonly record struct FormsFieldDefinitionObjectResponseBodyType : IStri
 
     public static readonly FormsFieldDefinitionObjectResponseBodyType Table = new(Values.Table);
 
+    public static readonly FormsFieldDefinitionObjectResponseBodyType Barcode = new(Values.Barcode);
+
     public FormsFieldDefinitionObjectResponseBodyType(string value)
     {
         Value = value;
@@ -125,5 +127,7 @@ public readonly record struct FormsFieldDefinitionObjectResponseBodyType : IStri
         public const string MediaInstruction = "media_instruction";
 
         public const string Table = "table";
+
+        public const string Barcode = "barcode";
     }
 }

@@ -19,6 +19,12 @@ public record HubPlansCreateHubPlanRequestBody
     public required string Name { get; set; }
 
     /// <summary>
+    /// The ID of a saved session configuration (preset) to apply when creating the plan. When provided, the preset's optimization settings and route constructions are applied to the new plan, replacing any defaults.
+    /// </summary>
+    [JsonPropertyName("sessionConfigurationId")]
+    public string? SessionConfigurationId { get; set; }
+
+    /// <summary>
     /// The shift start time for the plan in RFC 3339 format. If not provided, defaults to 9:00 AM on the next business day in the hub's timezone.
     /// </summary>
     [JsonPropertyName("shiftStartTime")]

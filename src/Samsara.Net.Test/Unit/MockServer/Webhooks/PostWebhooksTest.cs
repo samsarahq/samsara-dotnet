@@ -28,6 +28,8 @@ public class PostWebhooksTest : BaseMockServerTest
               ],
               "eventTypes": [
                 "AddressCreated",
+                "AddressCreated",
+                "AddressCreated",
                 "AddressCreated"
               ],
               "id": "23918",

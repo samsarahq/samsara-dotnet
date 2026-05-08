@@ -31,6 +31,10 @@ public readonly record struct FormSubmissionRequestTableCellObjectRequestBodyTyp
         Values.Person
     );
 
+    public static readonly FormSubmissionRequestTableCellObjectRequestBodyType Barcode = new(
+        Values.Barcode
+    );
+
     public FormSubmissionRequestTableCellObjectRequestBodyType(string value)
     {
         Value = value;
@@ -97,5 +101,7 @@ public readonly record struct FormSubmissionRequestTableCellObjectRequestBodyTyp
         public const string Datetime = "datetime";
 
         public const string Person = "person";
+
+        public const string Barcode = "barcode";
     }
 }

@@ -48,6 +48,16 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                           "name": "name"
                         }
                       },
+                      "barcodeValue": {
+                        "barcodes": [
+                          {
+                            "value": "value"
+                          },
+                          {
+                            "value": "value"
+                          }
+                        ]
+                      },
                       "checkBoxesValue": {
                         "value": [
                           "value",
@@ -177,6 +187,16 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                           "id": "id",
                           "name": "name"
                         }
+                      },
+                      "barcodeValue": {
+                        "barcodes": [
+                          {
+                            "value": "value"
+                          },
+                          {
+                            "value": "value"
+                          }
+                        ]
                       },
                       "checkBoxesValue": {
                         "value": [
@@ -367,6 +387,16 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                           "name": "name"
                         }
                       },
+                      "barcodeValue": {
+                        "barcodes": [
+                          {
+                            "value": "value"
+                          },
+                          {
+                            "value": "value"
+                          }
+                        ]
+                      },
                       "checkBoxesValue": {
                         "value": [
                           "value",
@@ -496,6 +526,16 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                           "id": "id",
                           "name": "name"
                         }
+                      },
+                      "barcodeValue": {
+                        "barcodes": [
+                          {
+                            "value": "value"
+                          },
+                          {
+                            "value": "value"
+                          }
+                        ]
                       },
                       "checkBoxesValue": {
                         "value": [

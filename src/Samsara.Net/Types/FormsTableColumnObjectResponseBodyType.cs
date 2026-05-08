@@ -27,6 +27,8 @@ public readonly record struct FormsTableColumnObjectResponseBodyType : IStringEn
 
     public static readonly FormsTableColumnObjectResponseBodyType Person = new(Values.Person);
 
+    public static readonly FormsTableColumnObjectResponseBodyType Barcode = new(Values.Barcode);
+
     public FormsTableColumnObjectResponseBodyType(string value)
     {
         Value = value;
@@ -91,5 +93,7 @@ public readonly record struct FormsTableColumnObjectResponseBodyType : IStringEn
         public const string Media = "media";
 
         public const string Person = "person";
+
+        public const string Barcode = "barcode";
     }
 }

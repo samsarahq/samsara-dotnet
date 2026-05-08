@@ -33,6 +33,8 @@ public readonly record struct FormsFieldInputObjectResponseBodyType : IStringEnu
 
     public static readonly FormsFieldInputObjectResponseBodyType Geofence = new(Values.Geofence);
 
+    public static readonly FormsFieldInputObjectResponseBodyType Barcode = new(Values.Barcode);
+
     public FormsFieldInputObjectResponseBodyType(string value)
     {
         Value = value;
@@ -103,5 +105,7 @@ public readonly record struct FormsFieldInputObjectResponseBodyType : IStringEnu
         public const string Person = "person";
 
         public const string Geofence = "geofence";
+
+        public const string Barcode = "barcode";
     }
 }

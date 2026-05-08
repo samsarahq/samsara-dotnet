@@ -98,6 +98,13 @@ public class PostQualificationRecordTest : BaseMockServerTest
                         {
                           "cells": [
                             {
+                              "barcodeValue": {
+                                "barcodes": [
+                                  {
+                                    "value": "1A2B3C4D5E"
+                                  }
+                                ]
+                              },
                               "checkBoxesValue": {
                                 "value": [
                                   "Option A",

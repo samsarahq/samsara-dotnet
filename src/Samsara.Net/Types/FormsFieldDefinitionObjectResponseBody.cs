@@ -111,7 +111,7 @@ public record FormsFieldDefinitionObjectResponseBody : IJsonOnDeserialized
     public long? QuestionWeight { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `media`, `datetime`, `signature`, `asset`, `person`, `geofence`, `instruction`, `media_instruction`, `table`
+    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `media`, `datetime`, `signature`, `asset`, `person`, `geofence`, `instruction`, `media_instruction`, `table`, `barcode`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormsFieldDefinitionObjectResponseBodyType Type { get; set; }

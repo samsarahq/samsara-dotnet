@@ -17,6 +17,9 @@ public record FormsFieldInputObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("assetValue")]
     public FormsAssetValueObjectResponseBody? AssetValue { get; set; }
 
+    [JsonPropertyName("barcodeValue")]
+    public FormsBarcodeValueObjectResponseBody? BarcodeValue { get; set; }
+
     [JsonPropertyName("checkBoxesValue")]
     public FormsCheckBoxesValueObjectResponseBody? CheckBoxesValue { get; set; }
 
@@ -75,7 +78,7 @@ public record FormsFieldInputObjectResponseBody : IJsonOnDeserialized
     public FormsTextValueObjectResponseBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `asset`, `table`, `person`, `geofence`
+    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `asset`, `table`, `person`, `geofence`, `barcode`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormsFieldInputObjectResponseBodyType Type { get; set; }

@@ -14,6 +14,9 @@ public record FormsTableCellObjectResponseBody : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("barcodeValue")]
+    public FormsBarcodeValueObjectResponseBody? BarcodeValue { get; set; }
+
     [JsonPropertyName("checkBoxesValue")]
     public FormsCheckBoxesValueObjectResponseBody? CheckBoxesValue { get; set; }
 
@@ -45,7 +48,7 @@ public record FormsTableCellObjectResponseBody : IJsonOnDeserialized
     public FormsTextValueObjectResponseBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the cell field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `person`
+    /// Type of the cell field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `signature`, `media`, `person`, `barcode`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormsTableCellObjectResponseBodyType Type { get; set; }
