@@ -8,16 +8,10 @@ namespace Samsara.Net.BetaApIs;
 public record RidershipPassengersUpdateRidershipPassengerRequestBody
 {
     /// <summary>
-    /// The Samsara UUID of the ridership passenger.
+    /// ID of the ridership passenger. This can either be the Samsara-specified UUID, or an external ID. External IDs are customer-specified key-value pairs. To specify an external ID, use the following format: `key:value`. For example, `student:STU-001`.
     /// </summary>
     [JsonIgnore]
     public required string Id { get; set; }
-
-    /// <summary>
-    /// The Samsara UUID of the ridership account this passenger belongs to.
-    /// </summary>
-    [JsonPropertyName("accountId")]
-    public required string AccountId { get; set; }
 
     /// <summary>
     /// Classification or grade level of the passenger.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
@@ -51,6 +45,12 @@ public record RidershipPassengersUpdateRidershipPassengerRequestBody
 
     [JsonPropertyName("specialInstructions")]
     public RidershipPassengerSpecialInstructionsInputRequestBody? SpecialInstructions { get; set; }
+
+    /// <summary>
+    /// IDs of tags to associate with the passenger.
+    /// </summary>
+    [JsonPropertyName("tagIds")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

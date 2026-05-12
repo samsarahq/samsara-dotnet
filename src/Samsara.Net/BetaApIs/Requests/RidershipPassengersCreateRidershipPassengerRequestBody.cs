@@ -8,12 +8,6 @@ namespace Samsara.Net.BetaApIs;
 public record RidershipPassengersCreateRidershipPassengerRequestBody
 {
     /// <summary>
-    /// The Samsara UUID of the ridership account this passenger belongs to.
-    /// </summary>
-    [JsonPropertyName("accountId")]
-    public required string AccountId { get; set; }
-
-    /// <summary>
     /// Classification or grade level of the passenger.  Valid values: `unknown`, `pk1`, `pk2`, `pk3`, `pk4`, `k`, `grade1`, `grade2`, `grade3`, `grade4`, `grade5`, `grade6`, `grade7`, `grade8`, `grade9`, `grade10`, `grade11`, `grade12`
     /// </summary>
     [JsonPropertyName("classification")]
@@ -45,6 +39,12 @@ public record RidershipPassengersCreateRidershipPassengerRequestBody
 
     [JsonPropertyName("specialInstructions")]
     public RidershipPassengerSpecialInstructionsInputRequestBody? SpecialInstructions { get; set; }
+
+    /// <summary>
+    /// IDs of tags to associate with the passenger.
+    /// </summary>
+    [JsonPropertyName("tagIds")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

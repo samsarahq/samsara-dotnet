@@ -15,12 +15,6 @@ public record RidershipRouteSetupObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The Samsara UUID of the ridership account.
-    /// </summary>
-    [JsonPropertyName("accountId")]
-    public required string AccountId { get; set; }
-
-    /// <summary>
     /// The time the route setup was created in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("createdAtTime")]

@@ -7,10 +7,10 @@ namespace Samsara.Net.BetaApIs;
 public record ListRidershipPassengersRequest
 {
     /// <summary>
-    /// The Samsara UUID of the ridership account to filter passengers by.
+    /// ID of a tag to filter passengers by.
     /// </summary>
     [JsonIgnore]
-    public required string AccountId { get; set; }
+    public required string TagId { get; set; }
 
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.

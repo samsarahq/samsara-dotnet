@@ -14,7 +14,6 @@ public class UpdateRidershipRouteSetupTest : BaseMockServerTest
     {
         const string requestJson = """
             {
-              "accountId": "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
               "passengers": [
                 {
                   "passengerId": "a1b2c3d4-5e6f-7a8b-9c0d-1e2f3a4b5c6d"
@@ -26,7 +25,6 @@ public class UpdateRidershipRouteSetupTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "accountId": "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
                 "createdAtTime": "2024-11-15T10:00:00Z",
                 "passengers": [
                   {
@@ -62,7 +60,6 @@ public class UpdateRidershipRouteSetupTest : BaseMockServerTest
             new RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody
             {
                 RouteId = "routeId",
-                AccountId = "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
                 Passengers = new List<RidershipRouteSetupPassengerInputRequestBody>()
                 {
                     new RidershipRouteSetupPassengerInputRequestBody
