@@ -31,6 +31,9 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem ImproperSeatBelt =
         new(Values.ImproperSeatBelt);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem LeadCar =
+        new(Values.LeadCar);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem LightTraffic =
         new(Values.LightTraffic);
 
@@ -78,6 +81,9 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem SpeedSignVerified =
         new(Values.SpeedSignVerified);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem TrailerCar =
+        new(Values.TrailerCar);
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToRemoveItem VeryDrowsy =
         new(Values.VeryDrowsy);
@@ -161,6 +167,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
         public const string ImproperSeatBelt = "Improper Seat Belt";
 
+        public const string LeadCar = "Lead Car";
+
         public const string LightTraffic = "Light Traffic";
 
         public const string ModerateTraffic = "Moderate Traffic";
@@ -192,6 +200,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
         public const string SnowyRoad = "Snowy Road";
 
         public const string SpeedSignVerified = "Speed Sign Verified";
+
+        public const string TrailerCar = "Trailer Car";
 
         public const string VeryDrowsy = "Very Drowsy";
 

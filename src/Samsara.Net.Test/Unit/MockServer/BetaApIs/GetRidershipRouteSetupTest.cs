@@ -14,7 +14,6 @@ public class GetRidershipRouteSetupTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "accountId": "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
                 "createdAtTime": "2024-11-15T10:00:00Z",
                 "passengers": [
                   {

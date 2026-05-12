@@ -449,6 +449,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "routeStartDelayed": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "routeStopArrival": {
                           "driver": {
                             "id": "id"
@@ -518,6 +527,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "routeStopEarlyLateArrival": {
+                          "arrivalStatus": "early",
+                          "deviationMinutes": 1000000,
+                          "driver": {
                             "id": "id"
                           },
                           "vehicle": {
@@ -1166,6 +1186,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "routeStartDelayed": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "routeStopArrival": {
                           "driver": {
                             "id": "id"
@@ -1235,6 +1264,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "routeStopEarlyLateArrival": {
+                          "arrivalStatus": "early",
+                          "deviationMinutes": 1000000,
+                          "driver": {
                             "id": "id"
                           },
                           "vehicle": {
@@ -1893,6 +1933,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "routeStartDelayed": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "routeStopArrival": {
                           "driver": {
                             "id": "id"
@@ -1962,6 +2011,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "routeStopEarlyLateArrival": {
+                          "arrivalStatus": "early",
+                          "deviationMinutes": 1000000,
+                          "driver": {
                             "id": "id"
                           },
                           "vehicle": {
@@ -2610,6 +2670,15 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "routeStartDelayed": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "routeStopArrival": {
                           "driver": {
                             "id": "id"
@@ -2679,6 +2748,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "routeStopEarlyLateArrival": {
+                          "arrivalStatus": "early",
+                          "deviationMinutes": 1000000,
+                          "driver": {
                             "id": "id"
                           },
                           "vehicle": {

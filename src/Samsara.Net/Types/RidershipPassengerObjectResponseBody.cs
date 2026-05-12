@@ -15,12 +15,6 @@ public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The Samsara UUID of the account this passenger belongs to.
-    /// </summary>
-    [JsonPropertyName("accountId")]
-    public required string AccountId { get; set; }
-
-    /// <summary>
     /// Classification or grade level of the passenger.
     /// </summary>
     [JsonPropertyName("classification")]
@@ -70,6 +64,12 @@ public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
 
     [JsonPropertyName("specialInstructions")]
     public RidershipPassengerSpecialInstructionsObjectResponseBody? SpecialInstructions { get; set; }
+
+    /// <summary>
+    /// IDs of tags associated with this passenger.
+    /// </summary>
+    [JsonPropertyName("tagIds")]
+    public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
     /// The time the passenger was last updated in RFC 3339 format.

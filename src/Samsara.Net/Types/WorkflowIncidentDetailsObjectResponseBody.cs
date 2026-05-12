@@ -140,6 +140,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("reeferTemperature")]
     public ReeferTemperatureResponseBody? ReeferTemperature { get; set; }
 
+    [JsonPropertyName("routeStartDelayed")]
+    public RouteStartDelayedDataResponseBody? RouteStartDelayed { get; set; }
+
     [JsonPropertyName("routeStopArrival")]
     public RouteStopDetailsObjectResponseBody? RouteStopArrival { get; set; }
 
@@ -148,6 +151,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
 
     [JsonPropertyName("routeStopETA")]
     public RouteStopEtaResponseBody? RouteStopEta { get; set; }
+
+    [JsonPropertyName("routeStopEarlyLateArrival")]
+    public RouteStopEarlyLateArrivalDataResponseBody? RouteStopEarlyLateArrival { get; set; }
 
     [JsonPropertyName("scheduledMaintenance")]
     public ScheduledMaintenanceDataResponseBody? ScheduledMaintenance { get; set; }

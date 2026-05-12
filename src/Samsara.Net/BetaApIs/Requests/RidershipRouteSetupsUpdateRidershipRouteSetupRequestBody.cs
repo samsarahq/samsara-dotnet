@@ -14,12 +14,6 @@ public record RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody
     public required string RouteId { get; set; }
 
     /// <summary>
-    /// The Samsara UUID of the ridership account.
-    /// </summary>
-    [JsonPropertyName("accountId")]
-    public required string AccountId { get; set; }
-
-    /// <summary>
     /// List of passenger assignments for the route.
     /// </summary>
     [JsonPropertyName("passengers")]

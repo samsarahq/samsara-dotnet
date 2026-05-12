@@ -15,7 +15,6 @@ public class ListRidershipPassengersTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "accountId": "e4b2c3a5-7d6f-4e8b-9a0c-1b2d3e4f5a6b",
                   "classification": "grade5",
                   "createdAtTime": "2024-11-15T10:00:00Z",
                   "externalIds": {
@@ -34,9 +33,15 @@ public class ListRidershipPassengersTest : BaseMockServerTest
                   "isActive": true,
                   "lastName": "Doe",
                   "specialInstructions": {
-                    "isGuardianRequired": false,
-                    "isSpecialEducation": false
+                    "isGuardianRequired": true,
+                    "isSpecialEducation": true
                   },
+                  "tagIds": [
+                    "Beatae minus.",
+                    "Voluptatum voluptatem qui.",
+                    "Tempora voluptatem voluptatem veritatis molestiae.",
+                    "Quis est eaque voluptas quia id voluptates."
+                  ],
                   "updatedAtTime": "2024-11-15T10:30:00Z"
                 }
               ],
@@ -52,7 +57,7 @@ public class ListRidershipPassengersTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/ridership/passengers")
-                    .WithParam("accountId", "accountId")
+                    .WithParam("tagId", "tagId")
                     .UsingGet()
             )
             .RespondWith(
@@ -63,7 +68,7 @@ public class ListRidershipPassengersTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.ListRidershipPassengersAsync(
-            new ListRidershipPassengersRequest { AccountId = "accountId" }
+            new ListRidershipPassengersRequest { TagId = "tagId" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
