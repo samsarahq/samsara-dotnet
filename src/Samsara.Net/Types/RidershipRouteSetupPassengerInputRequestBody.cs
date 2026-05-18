@@ -15,19 +15,19 @@ public record RidershipRouteSetupPassengerInputRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The stop ID for the passenger's drop-off. This is the stop task ID returned by the Routing API.
+    /// The stop task ID returned by the Routing API for the passenger's drop-off, or an external ID in `key:value` format. For example, `stopKey:stop-456`.
     /// </summary>
     [JsonPropertyName("dropOffStopId")]
     public string? DropOffStopId { get; set; }
 
     /// <summary>
-    /// The Samsara UUID of the passenger.
+    /// The Samsara UUID of the passenger, or an external ID in `key:value` format. For example, `student:STU-001`.
     /// </summary>
     [JsonPropertyName("passengerId")]
     public required string PassengerId { get; set; }
 
     /// <summary>
-    /// The stop ID for the passenger's pick-up. This is the stop task ID returned by the Routing API.
+    /// The stop task ID returned by the Routing API for the passenger's pick-up, or an external ID in `key:value` format. For example, `stopKey:stop-123`.
     /// </summary>
     [JsonPropertyName("pickUpStopId")]
     public string? PickUpStopId { get; set; }

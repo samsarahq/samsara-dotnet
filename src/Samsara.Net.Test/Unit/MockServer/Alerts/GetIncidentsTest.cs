@@ -395,6 +395,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "outOfSequenceStopArrival": {
+                          "actualStopName": "actualStopName",
+                          "driver": {
+                            "id": "id"
+                          },
+                          "expectedStopName": "expectedStopName",
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "outsideGeofence": {
                           "driver": {
                             "id": "id"
@@ -1127,6 +1138,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "outOfSequenceStopArrival": {
+                          "actualStopName": "actualStopName",
+                          "driver": {
+                            "id": "id"
+                          },
+                          "expectedStopName": "expectedStopName",
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -1879,6 +1901,17 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "outOfSequenceStopArrival": {
+                          "actualStopName": "actualStopName",
+                          "driver": {
+                            "id": "id"
+                          },
+                          "expectedStopName": "expectedStopName",
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "outsideGeofence": {
                           "driver": {
                             "id": "id"
@@ -2611,6 +2644,17 @@ public class GetIncidentsTest : BaseMockServerTest
                           "trailer": {
                             "id": "id"
                           },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "outOfSequenceStopArrival": {
+                          "actualStopName": "actualStopName",
+                          "driver": {
+                            "id": "id"
+                          },
+                          "expectedStopName": "expectedStopName",
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"

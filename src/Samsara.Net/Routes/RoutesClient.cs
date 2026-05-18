@@ -19,12 +19,14 @@ public partial class RoutesClient : IRoutesClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
             .Add("limit", request.Limit)
             .Add("after", request.After)
             .Add("include", request.Include)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()

@@ -21,6 +21,10 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
         Values.AvoidanceZone
     );
 
+    public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem CustomerSite = new(
+        Values.CustomerSite
+    );
+
     public static readonly IdlingEventAddressObjectResponseBodyAddressTypesItem IndustrialSite =
         new(Values.IndustrialSite);
 
@@ -120,6 +124,8 @@ public readonly record struct IdlingEventAddressObjectResponseBodyAddressTypesIt
         public const string AuthorizedZone = "authorizedZone";
 
         public const string AvoidanceZone = "avoidanceZone";
+
+        public const string CustomerSite = "customerSite";
 
         public const string IndustrialSite = "industrialSite";
 

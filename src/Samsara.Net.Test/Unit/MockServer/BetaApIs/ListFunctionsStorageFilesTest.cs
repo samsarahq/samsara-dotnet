@@ -38,7 +38,7 @@ public class ListFunctionsStorageFilesTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/functions-storage/files")
+                    .WithPath("/functions-storage/ls")
                     .UsingGet()
             )
             .RespondWith(

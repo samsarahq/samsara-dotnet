@@ -15,7 +15,7 @@ public record RidershipRouteSetupsCreateRidershipRouteSetupRequestBody
         new List<RidershipRouteSetupPassengerInputRequestBody>();
 
     /// <summary>
-    /// The route ID. This is the Samsara route ID returned by the Routing API.
+    /// The Samsara route ID returned by the Routing API, or an external ID in `key:value` format. For example, `extRoute:WB-12`.
     /// </summary>
     [JsonPropertyName("routeId")]
     public required string RouteId { get; set; }

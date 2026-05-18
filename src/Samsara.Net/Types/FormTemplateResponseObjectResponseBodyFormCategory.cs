@@ -23,6 +23,10 @@ public readonly record struct FormTemplateResponseObjectResponseBodyFormCategory
         Values.Safety
     );
 
+    public static readonly FormTemplateResponseObjectResponseBodyFormCategory AssetInspection = new(
+        Values.AssetInspection
+    );
+
     public FormTemplateResponseObjectResponseBodyFormCategory(string value)
     {
         Value = value;
@@ -85,5 +89,7 @@ public readonly record struct FormTemplateResponseObjectResponseBodyFormCategory
         public const string Fuel = "fuel";
 
         public const string Safety = "safety";
+
+        public const string AssetInspection = "assetInspection";
     }
 }

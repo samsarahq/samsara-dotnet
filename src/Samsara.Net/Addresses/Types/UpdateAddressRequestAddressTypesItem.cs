@@ -47,6 +47,10 @@ public readonly record struct UpdateAddressRequestAddressTypesItem : IStringEnum
 
     public static readonly UpdateAddressRequestAddressTypesItem Inventory = new(Values.Inventory);
 
+    public static readonly UpdateAddressRequestAddressTypesItem CustomerSite = new(
+        Values.CustomerSite
+    );
+
     public UpdateAddressRequestAddressTypesItem(string value)
     {
         Value = value;
@@ -121,5 +125,7 @@ public readonly record struct UpdateAddressRequestAddressTypesItem : IStringEnum
         public const string Vendor = "vendor";
 
         public const string Inventory = "inventory";
+
+        public const string CustomerSite = "customerSite";
     }
 }

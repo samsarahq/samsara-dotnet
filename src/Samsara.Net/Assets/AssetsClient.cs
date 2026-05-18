@@ -40,7 +40,7 @@ public partial class AssetsClient : IAssetsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 11)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 12)
             .Add("type", request.Type)
             .Add("after", request.After)
             .Add("updatedAfterTime", request.UpdatedAfterTime)
@@ -52,6 +52,7 @@ public partial class AssetsClient : IAssetsClient
             .Add("externalIds", request.ExternalIds)
             .Add("attributeValueIds", request.AttributeValueIds)
             .Add("attributes", request.Attributes)
+            .Add("includeAttributes", request.IncludeAttributes)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()

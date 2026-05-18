@@ -23,6 +23,10 @@ public readonly record struct LocationObjectRequestBodyAddressTypesItem : IStrin
         Values.AvoidanceZone
     );
 
+    public static readonly LocationObjectRequestBodyAddressTypesItem CustomerSite = new(
+        Values.CustomerSite
+    );
+
     public static readonly LocationObjectRequestBodyAddressTypesItem IndustrialSite = new(
         Values.IndustrialSite
     );
@@ -119,6 +123,8 @@ public readonly record struct LocationObjectRequestBodyAddressTypesItem : IStrin
         public const string AuthorizedZone = "authorizedZone";
 
         public const string AvoidanceZone = "avoidanceZone";
+
+        public const string CustomerSite = "customerSite";
 
         public const string IndustrialSite = "industrialSite";
 

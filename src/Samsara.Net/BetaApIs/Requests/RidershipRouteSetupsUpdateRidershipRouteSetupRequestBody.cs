@@ -8,7 +8,7 @@ namespace Samsara.Net.BetaApIs;
 public record RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody
 {
     /// <summary>
-    /// The route ID. This is the Samsara route ID returned by the Routing API.
+    /// The Samsara route ID returned by the Routing API, or an external ID in `key:value` format. For example, `extRoute:WB-12`.
     /// </summary>
     [JsonIgnore]
     public required string RouteId { get; set; }

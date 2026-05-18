@@ -15,6 +15,9 @@ public class GetDvirTest : BaseMockServerTest
             {
               "authorSignature": {
                 "signatoryUser": {
+                  "externalIds": {
+                    "key": "value"
+                  },
                   "id": "938172"
                 },
                 "signedAtTime": "2020-01-27T07:06:25Z",
@@ -33,6 +36,9 @@ public class GetDvirTest : BaseMockServerTest
               "safetyStatus": "unknown",
               "secondSignature": {
                 "signatoryUser": {
+                  "externalIds": {
+                    "key": "value"
+                  },
                   "id": "938172"
                 },
                 "signedAtTime": "2020-01-27T07:06:25Z",
@@ -40,6 +46,9 @@ public class GetDvirTest : BaseMockServerTest
               },
               "thirdSignature": {
                 "signatoryUser": {
+                  "externalIds": {
+                    "key": "value"
+                  },
                   "id": "938172"
                 },
                 "signedAtTime": "2020-01-27T07:06:25Z",
