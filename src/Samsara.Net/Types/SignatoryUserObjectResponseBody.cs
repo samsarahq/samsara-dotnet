@@ -15,6 +15,12 @@ public record SignatoryUserObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// A map of external ids
+    /// </summary>
+    [JsonPropertyName("externalIds")]
+    public Dictionary<string, string>? ExternalIds { get; set; }
+
+    /// <summary>
     /// ID of the user.
     /// </summary>
     [JsonPropertyName("id")]

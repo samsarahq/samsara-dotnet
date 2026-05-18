@@ -15,6 +15,12 @@ public record AssetResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// List of attributes associated with the entity
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyResponseBody>? Attributes { get; set; }
+
+    /// <summary>
     /// The time the asset was created in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("createdAtTime")]

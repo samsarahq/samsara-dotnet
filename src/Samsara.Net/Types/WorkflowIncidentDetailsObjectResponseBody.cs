@@ -125,6 +125,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("outOfRoute")]
     public OutOfRouteResponseBody? OutOfRoute { get; set; }
 
+    [JsonPropertyName("outOfSequenceStopArrival")]
+    public OutOfSequenceStopArrivalDataResponseBody? OutOfSequenceStopArrival { get; set; }
+
     [JsonPropertyName("outsideGeofence")]
     public OutsideGeofenceDataResponseBody? OutsideGeofence { get; set; }
 

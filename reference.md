@@ -2799,7 +2799,7 @@ await client.BetaApIs.CreateFunctionAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListFunctionsStorageFilesAsync</a>(ListFunctionsStorageFilesRequest { ... }) -> WithRawResponseTask&lt;FunctionsStorageListFunctionsStorageFilesResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetFunctionStorageFileAsync</a>(GetFunctionStorageFileRequest { ... }) -> WithRawResponseTask&lt;FunctionsStorageGetFunctionStorageFileResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -2811,7 +2811,7 @@ await client.BetaApIs.CreateFunctionAsync(
 <dl>
 <dd>
 
-List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+Get a file from Functions storage by name. Returns file metadata and a presigned download URL.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -2833,7 +2833,9 @@ To use this endpoint, select **Read Functions Storage** under the Functions cate
 <dd>
 
 ```csharp
-await client.BetaApIs.ListFunctionsStorageFilesAsync(new ListFunctionsStorageFilesRequest());
+await client.BetaApIs.GetFunctionStorageFileAsync(
+    new GetFunctionStorageFileRequest { Name = "name" }
+);
 ```
 </dd>
 </dl>
@@ -2848,7 +2850,133 @@ await client.BetaApIs.ListFunctionsStorageFilesAsync(new ListFunctionsStorageFil
 <dl>
 <dd>
 
-**request:** `ListFunctionsStorageFilesRequest` 
+**request:** `GetFunctionStorageFileRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateFunctionStorageFileAsync</a>(FunctionsStorageCreateFunctionStorageFileRequestBody { ... }) -> WithRawResponseTask&lt;FunctionsStorageCreateFunctionStorageFileResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a new file in Functions storage. Returns a presigned upload URL. Returns an error if the file already exists.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.CreateFunctionStorageFileAsync(
+    new FunctionsStorageCreateFunctionStorageFileRequestBody { Name = "my-script.js" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FunctionsStorageCreateFunctionStorageFileRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateFunctionStorageFileAsync</a>(UpdateFunctionStorageFileRequest { ... }) -> WithRawResponseTask&lt;FunctionsStorageUpdateFunctionStorageFileResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a presigned upload URL for overwriting an existing file in Functions storage. Returns an error if the file does not exist.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.UpdateFunctionStorageFileAsync(
+    new UpdateFunctionStorageFileRequest { Name = "name" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `UpdateFunctionStorageFileRequest` 
     
 </dd>
 </dl>
@@ -2912,6 +3040,67 @@ await client.BetaApIs.DeleteFunctionStorageFileAsync(
 <dd>
 
 **request:** `DeleteFunctionStorageFileRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListFunctionsStorageFilesAsync</a>(ListFunctionsStorageFilesRequest { ... }) -> WithRawResponseTask&lt;FunctionsStorageListFunctionsStorageFilesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.ListFunctionsStorageFilesAsync(new ListFunctionsStorageFilesRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListFunctionsStorageFilesRequest` 
     
 </dd>
 </dl>
@@ -5314,6 +5503,7 @@ await client.BetaApIs.PatchSafetyEventsV2BatchAsync(
     {
         SafetyEventIds = new List<string>()
         {
+            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },

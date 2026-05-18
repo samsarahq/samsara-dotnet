@@ -72,6 +72,12 @@ public record ListAssetsRequest
     [JsonIgnore]
     public IEnumerable<string> Attributes { get; set; } = new List<string>();
 
+    /// <summary>
+    /// Optional boolean indicating whether to return attributes on supported entities
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeAttributes { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

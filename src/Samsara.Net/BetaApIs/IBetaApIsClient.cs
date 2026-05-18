@@ -388,7 +388,7 @@ public partial interface IBetaApIsClient
     );
 
     /// <summary>
-    /// List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+    /// Get a file from Functions storage by name. Returns file metadata and a presigned download URL.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -397,8 +397,40 @@ public partial interface IBetaApIsClient
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
-    WithRawResponseTask<FunctionsStorageListFunctionsStorageFilesResponseBody> ListFunctionsStorageFilesAsync(
-        ListFunctionsStorageFilesRequest request,
+    WithRawResponseTask<FunctionsStorageGetFunctionStorageFileResponseBody> GetFunctionStorageFileAsync(
+        GetFunctionStorageFileRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Create a new file in Functions storage. Returns a presigned upload URL. Returns an error if the file already exists.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<FunctionsStorageCreateFunctionStorageFileResponseBody> CreateFunctionStorageFileAsync(
+        FunctionsStorageCreateFunctionStorageFileRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// Get a presigned upload URL for overwriting an existing file in Functions storage. Returns an error if the file does not exist.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<FunctionsStorageUpdateFunctionStorageFileResponseBody> UpdateFunctionStorageFileAsync(
+        UpdateFunctionStorageFileRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
@@ -415,6 +447,22 @@ public partial interface IBetaApIsClient
     /// </summary>
     Task DeleteFunctionStorageFileAsync(
         DeleteFunctionStorageFileRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
+    /// List files in Functions storage for the organization. Returns file metadata and optionally includes presigned download or upload URLs.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Functions Storage** under the Functions category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<FunctionsStorageListFunctionsStorageFilesResponseBody> ListFunctionsStorageFilesAsync(
+        ListFunctionsStorageFilesRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     );
