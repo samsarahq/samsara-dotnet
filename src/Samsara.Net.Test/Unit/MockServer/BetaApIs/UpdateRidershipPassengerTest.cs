@@ -39,13 +39,14 @@ public class UpdateRidershipPassengerTest : BaseMockServerTest
                 "isActive": true,
                 "lastName": "Doe",
                 "specialInstructions": {
-                  "isGuardianRequired": false,
-                  "isSpecialEducation": false
+                  "isGuardianRequired": true,
+                  "isSpecialEducation": true
                 },
                 "tagIds": [
-                  "Possimus excepturi ducimus.",
-                  "Quam earum perspiciatis eligendi id possimus non.",
-                  "Magni consequatur vel ducimus nesciunt ipsam."
+                  "Beatae minus.",
+                  "Voluptatum voluptatem qui.",
+                  "Tempora voluptatem voluptatem veritatis molestiae.",
+                  "Quis est eaque voluptas quia id voluptates."
                 ],
                 "updatedAtTime": "2024-11-15T10:30:00Z"
               }

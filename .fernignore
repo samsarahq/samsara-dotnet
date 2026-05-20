@@ -13,3 +13,6 @@ README.md
 src/Samsara.Net/Webhooks/Utils/WebhooksHelper.cs
 src/Samsara.Net.Test/Utils/WebhooksHelperTests.cs
 changelog.md
+.fern/replay.lock
+.fern/replay.yml
+.gitattributes
