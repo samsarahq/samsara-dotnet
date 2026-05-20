@@ -31,10 +31,16 @@ public record GetIssuesStreamRequest
     public IEnumerable<string> Status { get; set; } = new List<string>();
 
     /// <summary>
-    /// A comma-separated list containing up to 50 asset IDs to filter issues on. Issues with untracked assets can also be included by passing the value: 'untracked'.
+    /// A comma-separated list containing up to 50 asset IDs to filter issues on. Each value can be a Samsara asset ID, an [external ID](https://developers.samsara.com/docs/external-ids) (`key:value` format), or the literal `untracked` to include issues with untracked assets.
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> AssetIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// A comma-separated list containing up to 50 asset [external IDs](https://developers.samsara.com/docs/external-ids) (`key:value` format) to filter issues on.
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> AssetExternalIds { get; set; } = new List<string>();
 
     /// <summary>
     /// A comma separated list of additional fields to include on requested objects. Valid values: `externalIds`

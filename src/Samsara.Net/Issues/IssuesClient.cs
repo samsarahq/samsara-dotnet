@@ -219,12 +219,13 @@ public partial class IssuesClient : IIssuesClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
             .Add("after", request.After)
             .Add("status", request.Status)
             .Add("assetIds", request.AssetIds)
+            .Add("assetExternalIds", request.AssetExternalIds)
             .Add("include", request.Include)
             .Add("assignedToRouteStopIds", request.AssignedToRouteStopIds)
             .MergeAdditional(options?.AdditionalQueryParameters)

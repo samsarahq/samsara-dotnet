@@ -11,6 +11,12 @@ public record IssuesPatchIssueRequestBody
     public PatchIssueRequestBodyAssignedToRequestBody? AssignedTo { get; set; }
 
     /// <summary>
+    /// Description of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+    /// </summary>
+    [JsonPropertyName("description")]
+    public string? Description { get; set; }
+
+    /// <summary>
     /// Due date of the issue. UTC timestamp in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("dueDate")]
@@ -29,10 +35,28 @@ public record IssuesPatchIssueRequestBody
     public required string Id { get; set; }
 
     /// <summary>
+    /// Media items to append to the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+    /// </summary>
+    [JsonPropertyName("media")]
+    public IEnumerable<FormSubmissionRequestMediaItemObjectRequestBody>? Media { get; set; }
+
+    /// <summary>
+    /// Priority of the issue. Requires the `issue-api-media-attachment-endpoints` feature.  Valid values: `low`, `medium`, `high`
+    /// </summary>
+    [JsonPropertyName("priority")]
+    public IssuesPatchIssueRequestBodyPriority? Priority { get; set; }
+
+    /// <summary>
     /// Status of the issue.  Valid values: `open`, `inProgress`, `resolved`, `dismissed`
     /// </summary>
     [JsonPropertyName("status")]
     public IssuesPatchIssueRequestBodyStatus? Status { get; set; }
+
+    /// <summary>
+    /// Title of the issue. Requires the `issue-api-media-attachment-endpoints` feature.
+    /// </summary>
+    [JsonPropertyName("title")]
+    public string? Title { get; set; }
 
     /// <inheritdoc />
     public override string ToString()
