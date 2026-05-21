@@ -73,7 +73,15 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                         "currency": "usd"
                       },
                       "serviceTaskId": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                      "status": "Unknown"
+                      "status": "Unknown",
+                      "timeEntries": [
+                        {
+                          "clockInAtTime": "2026-05-11T14:00:00.000Z",
+                          "clockOutAtTime": "2026-05-11T15:30:00.000Z",
+                          "driverId": "12345",
+                          "userId": "67890"
+                        }
+                      ]
                     }
                   ],
                   "status": "Assigned",

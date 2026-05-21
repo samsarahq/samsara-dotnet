@@ -15,8 +15,8 @@ public record WorkOrdersGetWorkOrdersResponseBody : IJsonOnDeserialized
     /// Work Orders
     /// </summary>
     [JsonPropertyName("data")]
-    public IEnumerable<WorkOrderObjectResponseBody> Data { get; set; } =
-        new List<WorkOrderObjectResponseBody>();
+    public IEnumerable<WorkOrderWithTimeEntriesObjectResponseBody> Data { get; set; } =
+        new List<WorkOrderWithTimeEntriesObjectResponseBody>();
 
     [JsonPropertyName("pagination")]
     public required GoaPaginationResponseResponseBody Pagination { get; set; }
