@@ -131,6 +131,9 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
         Values.VehicleUpdated
     );
 
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem WorkOrderCreatedOrChanged =
+        new(Values.WorkOrderCreatedOrChanged);
+
     public WebhooksPatchWebhookResponseBodyEventTypesItem(string value)
     {
         Value = value;
@@ -247,5 +250,7 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
         public const string VehicleCreated = "VehicleCreated";
 
         public const string VehicleUpdated = "VehicleUpdated";
+
+        public const string WorkOrderCreatedOrChanged = "WorkOrderCreatedOrChanged";
     }
 }

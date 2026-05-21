@@ -16,6 +16,8 @@ public class PostMediaRetrievalTest : BaseMockServerTest
               "endTime": "2019-06-13T19:08:55Z",
               "inputs": [
                 "dashcamRoadFacing",
+                "dashcamRoadFacing",
+                "dashcamRoadFacing",
                 "dashcamRoadFacing"
               ],
               "mediaType": "image",
@@ -55,6 +57,8 @@ public class PostMediaRetrievalTest : BaseMockServerTest
                 EndTime = "2019-06-13T19:08:55Z",
                 Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
                 {
+                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
+                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
                     MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
                     MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
                 },
