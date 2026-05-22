@@ -4120,6 +4120,326 @@ await client.BetaApIs.PatchPlaceAsync(new PlacesPatchPlaceRequestBody { PlaceId 
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreferredStationsAsync</a>(ListPreferredStationsRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsListPreferredStationsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all preferred fuel stations for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.ListPreferredStationsAsync(new ListPreferredStationsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPreferredStationsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PostPreferredStationAsync</a>(PreferredStationsPostPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPostPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.PostPreferredStationAsync(
+    new PreferredStationsPostPreferredStationRequestBody
+    {
+        Address = new PreferredStationAddressRequestBody
+        {
+            City = "Green River",
+            Country = "US",
+            Line1 = "8901 US Hwy 374",
+            PostalCode = "82935",
+        },
+        ExternalIds = new Dictionary<string, string>() { { "key", "value" } },
+        Name = "Station #432",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PreferredStationsPostPreferredStationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeletePreferredStationAsync</a>(DeletePreferredStationRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.DeletePreferredStationAsync(new DeletePreferredStationRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeletePreferredStationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PatchPreferredStationAsync</a>(PreferredStationsPatchPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPatchPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.PatchPreferredStationAsync(
+    new PreferredStationsPatchPreferredStationRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PreferredStationsPatchPreferredStationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetPreferredStationAsync</a>(GetPreferredStationRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsGetPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a single preferred fuel station by ID.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.GetPreferredStationAsync(new GetPreferredStationRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetPreferredStationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetQualificationRecordsAsync</a>(GetQualificationRecordsRequest { ... }) -> WithRawResponseTask&lt;QualificationsGetQualificationRecordsResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -6324,8 +6644,6 @@ await client.Media.PostMediaRetrievalAsync(
         EndTime = "2019-06-13T19:08:55Z",
         Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
         {
-            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },

@@ -43,9 +43,9 @@ public class UpdateRidershipPassengerTest : BaseMockServerTest
                   "isSpecialEducation": false
                 },
                 "tagIds": [
-                  "Adipisci rerum.",
-                  "Sit pariatur voluptatem.",
-                  "Aliquam quia qui et alias."
+                  "Doloribus quia eos soluta in.",
+                  "Sunt eum explicabo amet eum.",
+                  "Dignissimos quaerat debitis."
                 ],
                 "updatedAtTime": "2024-11-15T10:30:00Z"
               }
