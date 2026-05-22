@@ -5,10 +5,13 @@ using Samsara.Net.Core;
 namespace Samsara.Net.Issues;
 
 [Serializable]
-public record IssuesPatchIssueRequestBody
+public record IssuesPostIssueRequestBody
 {
+    [JsonPropertyName("asset")]
+    public required PostIssueRequestBodyAssetRequestBody Asset { get; set; }
+
     [JsonPropertyName("assignedTo")]
-    public PatchIssueRequestBodyAssignedToRequestBody? AssignedTo { get; set; }
+    public PostIssueRequestBodyAssignedToRequestBody? AssignedTo { get; set; }
 
     /// <summary>
     /// Description of the issue.
@@ -29,13 +32,7 @@ public record IssuesPatchIssueRequestBody
     public Dictionary<string, string>? ExternalIds { get; set; }
 
     /// <summary>
-    /// ID of the issue. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the issue.
-    /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    /// <summary>
-    /// Media items to append to the issue.
+    /// Media items to attach to the issue.
     /// </summary>
     [JsonPropertyName("media")]
     public IEnumerable<FormSubmissionRequestMediaItemObjectRequestBody>? Media { get; set; }
@@ -44,19 +41,19 @@ public record IssuesPatchIssueRequestBody
     /// Priority of the issue.  Valid values: `low`, `medium`, `high`
     /// </summary>
     [JsonPropertyName("priority")]
-    public IssuesPatchIssueRequestBodyPriority? Priority { get; set; }
+    public IssuesPostIssueRequestBodyPriority? Priority { get; set; }
 
     /// <summary>
-    /// Status of the issue.  Valid values: `open`, `inProgress`, `resolved`, `dismissed`
+    /// Status of the issue. Defaults to `open` when omitted.  Valid values: `open`, `inProgress`, `resolved`, `dismissed`
     /// </summary>
     [JsonPropertyName("status")]
-    public IssuesPatchIssueRequestBodyStatus? Status { get; set; }
+    public IssuesPostIssueRequestBodyStatus? Status { get; set; }
 
     /// <summary>
     /// Title of the issue.
     /// </summary>
     [JsonPropertyName("title")]
-    public string? Title { get; set; }
+    public required string Title { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

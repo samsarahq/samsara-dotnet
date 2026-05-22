@@ -6646,6 +6646,7 @@ await client.Media.PostMediaRetrievalAsync(
         {
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
+            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },
         MediaType = MediaRetrievalPostMediaRetrievalRequestBodyMediaType.Image,
         StartTime = "2019-06-13T19:08:25Z",
@@ -15900,6 +15901,73 @@ await client.Issues.GetIssuesAsync(new GetIssuesRequest());
 <dd>
 
 **request:** `GetIssuesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Issues.<a href="/src/Samsara.Net/Issues/IssuesClient.cs">PostIssueAsync</a>(IssuesPostIssueRequestBody { ... }) -> WithRawResponseTask&lt;IssuesPostIssueResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a new issue associated with an asset, with optional media attachments uploaded inline as base64.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Issues** under the Forms category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Issues.PostIssueAsync(
+    new IssuesPostIssueRequestBody
+    {
+        Asset = new PostIssueRequestBodyAssetRequestBody { Id = "hertzAssetId:HZ-100423" },
+        Title = "Front bumper scratch",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `IssuesPostIssueRequestBody` 
     
 </dd>
 </dl>
