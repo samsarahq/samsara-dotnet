@@ -61,9 +61,9 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Cumque ullam quasi accusamus aliquid error.",
-                          "Quia optio rerum.",
-                          "Occaecati accusantium quia ea consequatur voluptas assumenda."
+                          "Illum neque vitae assumenda perferendis.",
+                          "Quo maiores minus.",
+                          "Non ducimus eligendi in."
                         ],
                         "endTime": 57961,
                         "startTime": 57600
@@ -74,9 +74,8 @@ public class PatchPlaceTest : BaseMockServerTest
                 ],
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Voluptates saepe autem neque perspiciatis.",
-                  "Deleniti in nihil ad odio aut.",
-                  "Et quasi mollitia."
+                  "Optio rerum.",
+                  "Occaecati accusantium quia ea consequatur voluptas assumenda."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -96,17 +95,14 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Non rerum magni consequatur vel ducimus nesciunt.",
-                  "Temporibus eum.",
-                  "Eos quia.",
-                  "Voluptas laudantium."
+                  "Possimus fugiat.",
+                  "Veritatis repudiandae doloribus eos sunt blanditiis et."
                 ],
                 "radiusMeters": 150,
                 "safetyEventExclusions": [
-                  "Doloribus eos sunt blanditiis.",
-                  "Neque adipisci.",
-                  "Sint numquam voluptate sint id dolorum.",
-                  "Laboriosam error et enim."
+                  "Deleniti in nihil ad odio aut.",
+                  "Et quasi mollitia.",
+                  "Ad rerum."
                 ],
                 "streetView": {
                   "heading": 90,
