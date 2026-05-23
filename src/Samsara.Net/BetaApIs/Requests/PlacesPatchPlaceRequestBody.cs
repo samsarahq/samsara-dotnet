@@ -26,6 +26,12 @@ public record PlacesPatchPlaceRequestBody
     public string? Address { get; set; }
 
     /// <summary>
+    /// Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: `fullRecording`, `driverPrivacy`, `completePrivacy`, `inherit`, `unknown`, `unspecified`
+    /// </summary>
+    [JsonPropertyName("cameraRecordingModeType")]
+    public PlacesPatchPlaceRequestBodyCameraRecordingModeType? CameraRecordingModeType { get; set; }
+
+    /// <summary>
     /// When present, replaces external ids for the place.
     /// </summary>
     [JsonPropertyName("externalIds")]
@@ -39,6 +45,12 @@ public record PlacesPatchPlaceRequestBody
 
     [JsonPropertyName("hubLocations")]
     public PatchPlaceHubLocationsBodyRequestBody? HubLocations { get; set; }
+
+    /// <summary>
+    /// When present, replaces IFTA exemption types for the place.
+    /// </summary>
+    [JsonPropertyName("iftaExemptionTypes")]
+    public IEnumerable<string>? IftaExemptionTypes { get; set; }
 
     /// <summary>
     /// Center latitude when switching to or editing a circle geofence.
@@ -78,6 +90,15 @@ public record PlacesPatchPlaceRequestBody
     /// </summary>
     [JsonPropertyName("radiusMeters")]
     public long? RadiusMeters { get; set; }
+
+    /// <summary>
+    /// When present, replaces safety event exclusions for the place.
+    /// </summary>
+    [JsonPropertyName("safetyEventExclusions")]
+    public IEnumerable<string>? SafetyEventExclusions { get; set; }
+
+    [JsonPropertyName("streetView")]
+    public PlaceStreetViewResponseRequestBody? StreetView { get; set; }
 
     /// <summary>
     /// When present, replaces all tag associations for the place.

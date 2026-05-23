@@ -14,6 +14,12 @@ public record PlacesPostPlaceRequestBody
     public required string Address { get; set; }
 
     /// <summary>
+    /// Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: `fullRecording`, `driverPrivacy`, `completePrivacy`, `inherit`, `unknown`, `unspecified`
+    /// </summary>
+    [JsonPropertyName("cameraRecordingModeType")]
+    public PlacesPostPlaceRequestBodyCameraRecordingModeType? CameraRecordingModeType { get; set; }
+
+    /// <summary>
     /// External identifiers.
     /// </summary>
     [JsonPropertyName("externalIds")]
@@ -30,6 +36,12 @@ public record PlacesPostPlaceRequestBody
     /// </summary>
     [JsonPropertyName("hubLocations")]
     public IEnumerable<PatchPlaceHubLocationUpsertBodyRequestBody>? HubLocations { get; set; }
+
+    /// <summary>
+    /// IFTA exemption types for this place.
+    /// </summary>
+    [JsonPropertyName("iftaExemptionTypes")]
+    public IEnumerable<string>? IftaExemptionTypes { get; set; }
 
     /// <summary>
     /// Center latitude when using a circle geofence with radiusMeters.
@@ -69,6 +81,15 @@ public record PlacesPostPlaceRequestBody
     /// </summary>
     [JsonPropertyName("radiusMeters")]
     public long? RadiusMeters { get; set; }
+
+    /// <summary>
+    /// Safety event types excluded at this place.
+    /// </summary>
+    [JsonPropertyName("safetyEventExclusions")]
+    public IEnumerable<string>? SafetyEventExclusions { get; set; }
+
+    [JsonPropertyName("streetView")]
+    public PlaceStreetViewResponseRequestBody? StreetView { get; set; }
 
     /// <summary>
     /// Tags to associate.
