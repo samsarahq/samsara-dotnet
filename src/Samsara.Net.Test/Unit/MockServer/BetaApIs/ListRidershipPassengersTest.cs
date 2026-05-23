@@ -34,12 +34,11 @@ public class ListRidershipPassengersTest : BaseMockServerTest
                   "lastName": "Doe",
                   "specialInstructions": {
                     "isGuardianRequired": false,
-                    "isSpecialEducation": false
+                    "isSpecialEducation": true
                   },
                   "tagIds": [
-                    "Doloribus quia eos soluta in.",
-                    "Sunt eum explicabo amet eum.",
-                    "Dignissimos quaerat debitis."
+                    "Dolorem quis autem nostrum voluptas et quasi.",
+                    "Tenetur eveniet aliquid."
                   ],
                   "updatedAtTime": "2024-11-15T10:30:00Z"
                 }

@@ -60,6 +60,7 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                         "currency": "usd"
                       },
                       "laborTimeMinutes": 60,
+                      "notes": "Replaced gasket; will revisit next service.",
                       "parts": [
                         {
                           "costCentsOverride": 1000,

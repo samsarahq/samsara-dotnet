@@ -30,6 +30,12 @@ public record ServiceTaskInstanceWithTimeEntriesObjectResponseBody : IJsonOnDese
     public int? LaborTimeMinutes { get; set; }
 
     /// <summary>
+    /// Free-form technician notes for the service task.
+    /// </summary>
+    [JsonPropertyName("notes")]
+    public string? Notes { get; set; }
+
+    /// <summary>
     /// Parts for the service task.
     /// </summary>
     [JsonPropertyName("parts")]
