@@ -8,13 +8,13 @@ namespace Samsara.Net.BetaApIs;
 public record PlacesPatchPlaceRequestBody
 {
     /// <summary>
-    /// Samsara place id to update (required). Do not send `externalId` in the same request.
+    /// Samsara place id to update. Mutually exclusive with `externalId`; provide exactly one.
     /// </summary>
     [JsonIgnore]
-    public required long PlaceId { get; set; }
+    public long? PlaceId { get; set; }
 
     /// <summary>
-    /// External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`. Batch lookup by external id is not implemented for this endpoint yet; callers should use `placeId` until supported.
+    /// External id token in `key:value` form (e.g. crmId:warehouse-east). Mutually exclusive with `placeId`; provide exactly one.
     /// </summary>
     [JsonIgnore]
     public string? ExternalId { get; set; }
@@ -80,7 +80,7 @@ public record PlacesPatchPlaceRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Unsupported on patch; when provided this API returns InvalidArgument.
+    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.
     /// </summary>
     [JsonPropertyName("placeTypes")]
     public IEnumerable<string>? PlaceTypes { get; set; }

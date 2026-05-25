@@ -7863,7 +7863,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via `placeIds`.
+    /// Returns places for the authorized organization. Supports cursor pagination or batch fetch by Samsara place ids via `placeIds` or by external ids via `externalIds` (mutually exclusive).
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -8002,7 +8002,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Updates a place. Query parameter `placeId` (Samsara id) is required. Optional `externalId` (key:value) is reserved for a future release and must not be combined with `placeId`. Only fields present in the JSON body are changed; omit a field to leave it unchanged.
+    /// Updates a place. Provide exactly one of query parameter `placeId` (Samsara id) or `externalId` (key:value). Only fields present in the JSON body are changed; omit a field to leave it unchanged.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -8012,7 +8012,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.PatchPlaceAsync(new PlacesPatchPlaceRequestBody { PlaceId = 1000000 });
+    /// await client.BetaApIs.PatchPlaceAsync(new PlacesPatchPlaceRequestBody());
     /// </code></example>
     public WithRawResponseTask<PlacesPatchPlaceResponseBody> PatchPlaceAsync(
         PlacesPatchPlaceRequestBody request,
