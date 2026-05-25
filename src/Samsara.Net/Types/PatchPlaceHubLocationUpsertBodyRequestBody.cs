@@ -56,6 +56,24 @@ public record PatchPlaceHubLocationUpsertBodyRequestBody : IJsonOnDeserialized
     [JsonPropertyName("locationPositionType")]
     public string? LocationPositionType { get; set; }
 
+    /// <summary>
+    /// Required planner skills for this hub location.
+    /// </summary>
+    [JsonPropertyName("requiredSkills")]
+    public IEnumerable<PlaceHubLocationRequiredSkillInputRequestBody>? RequiredSkills { get; set; }
+
+    /// <summary>
+    /// Recurring local-time service windows for this hub location.
+    /// </summary>
+    [JsonPropertyName("serviceWindows")]
+    public IEnumerable<PlaceHubLocationServiceWindowInputRequestBody>? ServiceWindows { get; set; }
+
+    /// <summary>
+    /// Default instructions for drivers at this hub location.
+    /// </summary>
+    [JsonPropertyName("standardDriverInstructions")]
+    public string? StandardDriverInstructions { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

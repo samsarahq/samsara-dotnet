@@ -129,7 +129,6 @@ public class PatchPlaceTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/places")
-                    .WithParam("placeId", "1000000")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPatch()
                     .WithBodyAsJson(requestJson)
@@ -141,9 +140,7 @@ public class PatchPlaceTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.BetaApIs.PatchPlaceAsync(
-            new PlacesPatchPlaceRequestBody { PlaceId = 1000000 }
-        );
+        var response = await Client.BetaApIs.PatchPlaceAsync(new PlacesPatchPlaceRequestBody());
         JsonAssert.AreEqual(response, mockResponse);
     }
 }

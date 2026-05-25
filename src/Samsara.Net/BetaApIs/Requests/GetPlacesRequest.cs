@@ -19,13 +19,13 @@ public record GetPlacesRequest
     public long? Limit { get; set; }
 
     /// <summary>
-    /// Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. External id tokens (key:value) are not supported in this version.
+    /// Comma-separated Samsara place IDs for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with `externalIds`.
     /// </summary>
     [JsonIgnore]
     public string? PlaceIds { get; set; }
 
     /// <summary>
-    /// Reserved. Batch lookup by external IDs is not implemented in this API version.
+    /// Comma-separated external ID tokens (`key:value`) for batch lookup (max 100). When set, list filters and cursor pagination are ignored. Mutually exclusive with `placeIds`.
     /// </summary>
     [JsonIgnore]
     public string? ExternalIds { get; set; }

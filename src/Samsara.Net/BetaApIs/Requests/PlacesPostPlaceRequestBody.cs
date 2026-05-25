@@ -71,7 +71,7 @@ public record PlacesPostPlaceRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Unsupported on create; when provided this API returns InvalidArgument.
+    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
     /// </summary>
     [JsonPropertyName("placeTypes")]
     public IEnumerable<string>? PlaceTypes { get; set; }
