@@ -57,10 +57,22 @@ public record PatchPlaceHubLocationUpsertBodyRequestBody : IJsonOnDeserialized
     public string? LocationPositionType { get; set; }
 
     /// <summary>
+    /// Route priority from 1 (lowest) to 5 (highest).
+    /// </summary>
+    [JsonPropertyName("locationPriority")]
+    public int? LocationPriority { get; set; }
+
+    [JsonPropertyName("orderServiceTime")]
+    public PlaceHubLocationOrderServiceTimeInputRequestBody? OrderServiceTime { get; set; }
+
+    /// <summary>
     /// Required planner skills for this hub location.
     /// </summary>
     [JsonPropertyName("requiredSkills")]
     public IEnumerable<PlaceHubLocationRequiredSkillInputRequestBody>? RequiredSkills { get; set; }
+
+    [JsonPropertyName("serviceTime")]
+    public PlaceHubLocationServiceTimeInputRequestBody? ServiceTime { get; set; }
 
     /// <summary>
     /// Recurring local-time service windows for this hub location.

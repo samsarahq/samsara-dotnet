@@ -53,6 +53,12 @@ public record PlacesPatchPlaceRequestBody
     public IEnumerable<string>? IftaExemptionTypes { get; set; }
 
     /// <summary>
+    /// When true, show addresses inside the geofence on the map.
+    /// </summary>
+    [JsonPropertyName("isShowAddressesEnabled")]
+    public bool? IsShowAddressesEnabled { get; set; }
+
+    /// <summary>
     /// Center latitude when switching to or editing a circle geofence.
     /// </summary>
     [JsonPropertyName("latitude")]
