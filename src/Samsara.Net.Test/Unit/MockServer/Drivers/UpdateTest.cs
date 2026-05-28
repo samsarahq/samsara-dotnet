@@ -33,6 +33,7 @@ public class UpdateTest : BaseMockServerTest
                 },
                 "createdAtTime": "2019-05-18T20:27:35Z",
                 "currentIdCardCode": "941767043",
+                "dateOfBirth": "1985-07-21",
                 "driverActivationStatus": "active",
                 "eldAdverseWeatherExemptionEnabled": true,
                 "eldBigDayExemptionEnabled": true,
