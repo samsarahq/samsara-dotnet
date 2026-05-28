@@ -25,6 +25,9 @@ public record UpdateDriverRequest
     [JsonPropertyName("currentIdCardCode")]
     public string? CurrentIdCardCode { get; set; }
 
+    [JsonPropertyName("dateOfBirth")]
+    public DateOnly? DateOfBirth { get; set; }
+
     /// <summary>
     /// The date and time this driver is considered to be deactivated in RFC 3339 format.
     /// </summary>

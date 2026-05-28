@@ -107,6 +107,9 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("items")]
     public IEnumerable<WorkOrderItemObjectResponseBody>? Items { get; set; }
 
+    [JsonPropertyName("maintenanceSite")]
+    public WorkOrderMaintenanceSiteObjectResponseBody? MaintenanceSite { get; set; }
+
     /// <summary>
     /// The odometer reading at the time of the work order.
     /// </summary>

@@ -18,6 +18,12 @@ public record GetWorkOrdersRequest
     [JsonIgnore]
     public string? After { get; set; }
 
+    /// <summary>
+    /// When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeExternalIds { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

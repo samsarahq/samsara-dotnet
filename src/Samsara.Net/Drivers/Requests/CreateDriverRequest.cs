@@ -19,6 +19,9 @@ public record CreateDriverRequest
     [JsonPropertyName("currentIdCardCode")]
     public string? CurrentIdCardCode { get; set; }
 
+    [JsonPropertyName("dateOfBirth")]
+    public DateOnly? DateOfBirth { get; set; }
+
     /// <summary>
     /// Flag indicating this driver may use Adverse Weather exemptions in ELD logs.
     /// </summary>

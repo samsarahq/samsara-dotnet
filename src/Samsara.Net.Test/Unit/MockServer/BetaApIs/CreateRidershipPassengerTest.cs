@@ -43,9 +43,10 @@ public class CreateRidershipPassengerTest : BaseMockServerTest
                   "isSpecialEducation": false
                 },
                 "tagIds": [
-                  "Tenetur eveniet aliquid.",
-                  "Nesciunt qui dolorem quibusdam est rem sit.",
-                  "Et hic similique nihil."
+                  "Molestiae necessitatibus maiores dicta.",
+                  "Assumenda suscipit ratione ut sed animi est.",
+                  "Quidem quae voluptatibus ut voluptas.",
+                  "Accusantium est labore doloremque magni."
                 ],
                 "updatedAtTime": "2024-11-15T10:30:00Z"
               }

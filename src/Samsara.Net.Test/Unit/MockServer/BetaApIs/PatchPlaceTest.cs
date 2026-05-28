@@ -61,9 +61,8 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Illum neque vitae assumenda perferendis.",
-                          "Quo maiores minus.",
-                          "Non ducimus eligendi in."
+                          "Consequatur distinctio.",
+                          "Sed dolorum hic."
                         ],
                         "endTime": 57961,
                         "startTime": 57600
@@ -74,8 +73,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 ],
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Optio rerum.",
-                  "Occaecati accusantium quia ea consequatur voluptas assumenda."
+                  "Omnis qui consequatur.",
+                  "Id et magnam est aperiam a.",
+                  "Quia minima error voluptate accusamus doloribus."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -95,14 +95,15 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Possimus fugiat.",
-                  "Veritatis repudiandae doloribus eos sunt blanditiis et."
+                  "Quis odit voluptatem sequi maiores.",
+                  "Sunt laborum voluptas quis quasi debitis dignissimos.",
+                  "Eum quae.",
+                  "Beatae cum sint cum corrupti."
                 ],
                 "radiusMeters": 150,
                 "safetyEventExclusions": [
-                  "Deleniti in nihil ad odio aut.",
-                  "Et quasi mollitia.",
-                  "Ad rerum."
+                  "Optio rem.",
+                  "Reiciendis ex nulla cupiditate magnam rerum."
                 ],
                 "streetView": {
                   "heading": 90,

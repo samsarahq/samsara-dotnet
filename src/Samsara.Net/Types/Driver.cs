@@ -29,6 +29,9 @@ public record Driver : IJsonOnDeserialized
     [JsonPropertyName("currentIdCardCode")]
     public string? CurrentIdCardCode { get; set; }
 
+    [JsonPropertyName("dateOfBirth")]
+    public DateOnly? DateOfBirth { get; set; }
+
     [JsonPropertyName("driverActivationStatus")]
     public DriverActivationStatus? DriverActivationStatus { get; set; }
 

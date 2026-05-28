@@ -54,6 +54,13 @@ public class PatchWorkOrdersTest : BaseMockServerTest
                     "type": "DVIR"
                   }
                 ],
+                "maintenanceSite": {
+                  "name": "LAX Service Bay 3",
+                  "placeExternalIds": {
+                    "Natus et non cum.": "Consequatur cum voluptatem atque."
+                  },
+                  "placeId": "123456"
+                },
                 "odometerMeters": 91823,
                 "poNumber": "123456",
                 "priority": "High",

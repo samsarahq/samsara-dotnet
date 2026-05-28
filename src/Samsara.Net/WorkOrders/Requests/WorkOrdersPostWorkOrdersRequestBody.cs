@@ -65,6 +65,18 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public long? OdometerMeters { get; set; }
 
     /// <summary>
+    /// External ID (`key:value`) of the Place where the work is performed. Resolved against the organization's external IDs for places; the resolved Place must be linked to a maintenance site. Mutually exclusive with `placeId`.
+    /// </summary>
+    [JsonPropertyName("placeExternalId")]
+    public string? PlaceExternalId { get; set; }
+
+    /// <summary>
+    /// ID of the Place where the work is performed. Must reference a Place returned by the Places API that is linked to a maintenance site in the organization. Mutually exclusive with `placeExternalId`.
+    /// </summary>
+    [JsonPropertyName("placeId")]
+    public string? PlaceId { get; set; }
+
+    /// <summary>
     /// The purchase order number for the work order.
     /// </summary>
     [JsonPropertyName("poNumber")]

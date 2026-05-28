@@ -43,6 +43,12 @@ public record StreamWorkOrdersRequest
     [JsonIgnore]
     public IEnumerable<string> AssignedUserIds { get; set; } = new List<string>();
 
+    /// <summary>
+    /// When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeExternalIds { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {
