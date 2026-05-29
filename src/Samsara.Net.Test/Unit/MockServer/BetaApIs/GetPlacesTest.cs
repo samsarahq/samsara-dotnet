@@ -58,8 +58,10 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Consequatur distinctio.",
-                            "Sed dolorum hic."
+                            "Sed dolorum hic.",
+                            "Itaque assumenda possimus placeat.",
+                            "Excepturi ratione facilis.",
+                            "Officia autem id natus."
                           ],
                           "endTime": 57961,
                           "startTime": 57600
@@ -70,9 +72,9 @@ public class GetPlacesTest : BaseMockServerTest
                   ],
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Omnis qui consequatur.",
-                    "Id et magnam est aperiam a.",
-                    "Quia minima error voluptate accusamus doloribus."
+                    "Error voluptate.",
+                    "Doloribus velit.",
+                    "Repellat placeat sit."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -92,15 +94,16 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Quis odit voluptatem sequi maiores.",
-                    "Sunt laborum voluptas quis quasi debitis dignissimos.",
-                    "Eum quae.",
-                    "Beatae cum sint cum corrupti."
+                    "Voluptatem sequi maiores quidem sunt laborum voluptas.",
+                    "Quasi debitis dignissimos quibusdam.",
+                    "Quae aspernatur beatae cum sint cum corrupti.",
+                    "Iusto aut molestias alias dolores doloribus."
                   ],
                   "radiusMeters": 150,
                   "safetyEventExclusions": [
-                    "Optio rem.",
-                    "Reiciendis ex nulla cupiditate magnam rerum."
+                    "Rerum atque et corrupti.",
+                    "Distinctio aspernatur.",
+                    "Dolorum omnis qui consequatur odio."
                   ],
                   "streetView": {
                     "heading": 90,
