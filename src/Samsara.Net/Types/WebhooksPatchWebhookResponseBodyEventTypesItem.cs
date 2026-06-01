@@ -108,6 +108,9 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
     public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SevereSpeedingStarted =
         new(Values.SevereSpeedingStarted);
 
+    public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem ShipmentTrackingEvent =
+        new(Values.ShipmentTrackingEvent);
+
     public static readonly WebhooksPatchWebhookResponseBodyEventTypesItem SpeedingEventEnded = new(
         Values.SpeedingEventEnded
     );
@@ -238,6 +241,8 @@ public readonly record struct WebhooksPatchWebhookResponseBodyEventTypesItem : I
         public const string SevereSpeedingEnded = "SevereSpeedingEnded";
 
         public const string SevereSpeedingStarted = "SevereSpeedingStarted";
+
+        public const string ShipmentTrackingEvent = "ShipmentTrackingEvent";
 
         public const string SpeedingEventEnded = "SpeedingEventEnded";
 
