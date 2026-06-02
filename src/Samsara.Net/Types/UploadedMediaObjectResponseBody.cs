@@ -12,6 +12,12 @@ public record UploadedMediaObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Serial number of the auxiliary camera that captured this media. Only present for analog inputs from auxiliary camera devices (e.g. Octo-1, Octo-4). Examples: ABDVJ123456789
+    /// </summary>
+    [JsonPropertyName("auxCamSerial")]
+    public string? AuxCamSerial { get; set; }
+
+    /// <summary>
     /// Timestamp, in RFC 3339 format, at which the media item was made available. Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00
     /// </summary>
     [JsonPropertyName("availableAtTime")]

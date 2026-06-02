@@ -58,9 +58,9 @@ namespace Samsara.Net;
 public partial interface ISamsaraClient
 {
     public IAddressesClient Addresses { get; }
+    public IBetaApIsClient BetaApIs { get; }
     public IAlertsClient Alerts { get; }
     public Samsara.Net.Assets.IAssetsClient Assets { get; }
-    public IBetaApIsClient BetaApIs { get; }
     public ILocationAndSpeedClient LocationAndSpeed { get; }
     public Samsara.Net.Attributes.IAttributesClient Attributes { get; }
     public IMediaClient Media { get; }

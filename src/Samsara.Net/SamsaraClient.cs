@@ -73,7 +73,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/13.11.0" },
+                { "User-Agent", "Samsara.Net/13.12.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -93,9 +93,9 @@ public partial class SamsaraClient : ISamsaraClient
         }
         _client = new RawClient(clientOptionsWithAuth);
         Addresses = new AddressesClient(_client);
+        BetaApIs = new BetaApIsClient(_client);
         Alerts = new AlertsClient(_client);
         Assets = new Samsara.Net.Assets.AssetsClient(_client);
-        BetaApIs = new BetaApIsClient(_client);
         LocationAndSpeed = new LocationAndSpeedClient(_client);
         Attributes = new Samsara.Net.Attributes.AttributesClient(_client);
         Media = new MediaClient(_client);
@@ -154,11 +154,11 @@ public partial class SamsaraClient : ISamsaraClient
 
     public IAddressesClient Addresses { get; }
 
+    public IBetaApIsClient BetaApIs { get; }
+
     public IAlertsClient Alerts { get; }
 
     public Samsara.Net.Assets.IAssetsClient Assets { get; }
-
-    public IBetaApIsClient BetaApIs { get; }
 
     public ILocationAndSpeedClient LocationAndSpeed { get; }
 
