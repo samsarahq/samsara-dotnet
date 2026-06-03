@@ -19,16 +19,16 @@ public class PatchDriverAppSettingsTest : BaseMockServerTest
             {
               "data": {
                 "driverFleetId": "abc_trucking_co",
-                "gamification": false,
+                "gamification": true,
                 "gamificationConfig": {
-                  "anonymizeDriverNames": true
+                  "anonymizeDriverNames": false
                 },
                 "orgVehicleSearch": false,
                 "trailerSelection": false,
                 "trailerSelectionConfig": {
                   "driverTrailerCreationEnabled": true,
                   "maxNumOfTrailersSelected": 1000000,
-                  "orgTrailerSearch": false
+                  "orgTrailerSearch": true
                 }
               }
             }

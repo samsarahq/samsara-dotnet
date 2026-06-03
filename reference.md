@@ -298,6 +298,67 @@ await client.Addresses.UpdateAsync(new UpdateAddressRequest { Id = "id" });
 </details>
 
 ## Beta APIs
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetVoiceSessionsAsync</a>(GetVoiceSessionsRequest { ... }) -> WithRawResponseTask&lt;AgentStudioVoiceSessionsGetVoiceSessionsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns full details — including the transcript, tool calls, lifecycle events, and a recording URL — for a batch of voice agent sessions identified by `ids`. Discover session IDs with GET /agent-studio/voice-sessions/stream. Up to 100 IDs may be requested per call; IDs that are not found are omitted from the response.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Agent Studio Voice Sessions** under the Closed Beta category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.GetVoiceSessionsAsync(new GetVoiceSessionsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetVoiceSessionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetVoiceSessionsStreamAsync</a>(GetVoiceSessionsStreamRequest { ... }) -> WithRawResponseTask&lt;AgentStudioVoiceSessionsGetVoiceSessionsStreamResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -783,7 +844,7 @@ await client.BetaApIs.UpdateEngineImmobilizerStateAsync(
             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
             {
                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-                IsOpen = false,
+                IsOpen = true,
             },
         },
     }
@@ -5251,7 +5312,6 @@ await client.BetaApIs.PatchSafetyEventsV2BatchAsync(
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },
     }
 );
@@ -5434,7 +5494,7 @@ await client.Alerts.PostConfigurationsAsync(
         },
         IsEnabled = true,
         Name = "My Harsh Event Alert",
-        Scope = new ScopeObjectRequestBody { All = false },
+        Scope = new ScopeObjectRequestBody { All = true },
         Triggers = new List<WorkflowTriggerObjectRequestBody>()
         {
             new WorkflowTriggerObjectRequestBody { TriggerTypeId = 1000 },
@@ -6796,7 +6856,6 @@ await client.Media.PostMediaRetrievalAsync(
         EndTime = "2019-06-13T19:08:55Z",
         Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
         {
-            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
         },
