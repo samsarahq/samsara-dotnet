@@ -49,7 +49,7 @@ public record GetPlacesRequest
     public string? TagIds { get; set; }
 
     /// <summary>
-    /// Reserved. Filtering by parent tag IDs is not implemented in this API version.
+    /// Comma-separated parent tag IDs to filter places. Includes places tagged with each parent tag and its descendant tags.
     /// </summary>
     [JsonIgnore]
     public string? ParentTagIds { get; set; }
