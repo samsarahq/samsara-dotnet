@@ -57,7 +57,9 @@ public class PatchWorkOrdersTest : BaseMockServerTest
                 "maintenanceSite": {
                   "name": "LAX Service Bay 3",
                   "placeExternalIds": {
-                    "Natus et non cum.": "Consequatur cum voluptatem atque."
+                    "Repudiandae est dolores dolorem voluptas.": "Amet cupiditate.",
+                    "Sit harum facilis veritatis impedit.": "Velit debitis corporis.",
+                    "Vel expedita sint magni tenetur necessitatibus.": "Quibusdam aut ab expedita."
                   },
                   "placeId": "123456"
                 },

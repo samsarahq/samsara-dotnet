@@ -20,15 +20,15 @@ public class UpdateShippingDocsTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "adverseDrivingClaimed": false,
-                "bigDayClaimed": true,
+                "adverseDrivingClaimed": true,
+                "bigDayClaimed": false,
                 "carrierFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                 "carrierName": "Carrier Name",
                 "carrierUsDotNumber": 1234,
                 "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                 "homeTerminalName": "Home Terminal Name",
-                "isCertified": true,
-                "isUsShortHaulActive": true,
+                "isCertified": false,
+                "isUsShortHaulActive": false,
                 "trailerNames": [
                   "10293",
                   "Trailer ID 1"

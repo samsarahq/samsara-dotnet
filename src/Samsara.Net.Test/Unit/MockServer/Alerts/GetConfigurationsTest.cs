@@ -33,8 +33,8 @@ public class GetConfigurationsTest : BaseMockServerTest
                     "timeRanges": [
                       {
                         "daysOfWeek": [
-                          "THURSDAY",
-                          "TUESDAY"
+                          "WEDNESDAY",
+                          "SUNDAY"
                         ],
                         "endTime": "20:00",
                         "startTime": "11:00",
@@ -43,7 +43,7 @@ public class GetConfigurationsTest : BaseMockServerTest
                     ]
                   },
                   "scope": {
-                    "all": true,
+                    "all": false,
                     "assets": [
                       {
                         "assetId": "12443",

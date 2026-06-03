@@ -58,10 +58,10 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Sed dolorum hic.",
-                            "Itaque assumenda possimus placeat.",
-                            "Excepturi ratione facilis.",
-                            "Officia autem id natus."
+                            "Harum fugiat ea cupiditate dignissimos.",
+                            "Quae pariatur.",
+                            "Non aut porro.",
+                            "Ipsum eum eos doloribus omnis."
                           ],
                           "endTime": 57961,
                           "startTime": 57600
@@ -72,9 +72,10 @@ public class GetPlacesTest : BaseMockServerTest
                   ],
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Error voluptate.",
-                    "Doloribus velit.",
-                    "Repellat placeat sit."
+                    "Ut molestiae a.",
+                    "Qui possimus officiis quae.",
+                    "Ut sequi accusantium qui sequi rem quisquam.",
+                    "Omnis et."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -94,16 +95,15 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Voluptatem sequi maiores quidem sunt laborum voluptas.",
-                    "Quasi debitis dignissimos quibusdam.",
-                    "Quae aspernatur beatae cum sint cum corrupti.",
-                    "Iusto aut molestias alias dolores doloribus."
+                    "Magnam est aperiam.",
+                    "Dolorum quia minima error voluptate accusamus.",
+                    "Velit expedita."
                   ],
                   "radiusMeters": 150,
                   "safetyEventExclusions": [
-                    "Rerum atque et corrupti.",
-                    "Distinctio aspernatur.",
-                    "Dolorum omnis qui consequatur odio."
+                    "Ratione facilis suscipit officia autem id.",
+                    "Aut ad est vel voluptatem unde.",
+                    "Tempora necessitatibus explicabo."
                   ],
                   "streetView": {
                     "heading": 90,
