@@ -65,6 +65,10 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         Values.GenericTailgating
     );
 
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType HarshImpact = new(
+        Values.HarshImpact
+    );
+
     public static readonly SafetyEventBehaviorLabelsResponseBodyType HarshTurn = new(
         Values.HarshTurn
     );
@@ -232,6 +236,8 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         public const string GenericDistraction = "GenericDistraction";
 
         public const string GenericTailgating = "GenericTailgating";
+
+        public const string HarshImpact = "HarshImpact";
 
         public const string HarshTurn = "HarshTurn";
 

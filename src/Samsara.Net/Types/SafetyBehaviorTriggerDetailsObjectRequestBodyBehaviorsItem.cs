@@ -113,6 +113,9 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
     public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem GenericTailgating =
         new(Values.GenericTailgating);
 
+    public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem HarshImpact =
+        new(Values.HarshImpact);
+
     public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem HarshTurn =
         new(Values.HarshTurn);
 
@@ -371,6 +374,8 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
         public const string GenericDistraction = "GenericDistraction";
 
         public const string GenericTailgating = "GenericTailgating";
+
+        public const string HarshImpact = "HarshImpact";
 
         public const string HarshTurn = "HarshTurn";
 

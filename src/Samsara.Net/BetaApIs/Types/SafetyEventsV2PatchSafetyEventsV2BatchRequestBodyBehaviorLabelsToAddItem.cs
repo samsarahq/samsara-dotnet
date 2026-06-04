@@ -79,6 +79,9 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem GenericTailgating =
         new(Values.GenericTailgating);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem HarshImpact =
+        new(Values.HarshImpact);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem HarshTurn =
         new(Values.HarshTurn);
 
@@ -289,6 +292,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
         public const string GenericDistraction = "GenericDistraction";
 
         public const string GenericTailgating = "GenericTailgating";
+
+        public const string HarshImpact = "HarshImpact";
 
         public const string HarshTurn = "HarshTurn";
 
