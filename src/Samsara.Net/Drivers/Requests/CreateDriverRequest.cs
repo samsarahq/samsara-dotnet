@@ -64,6 +64,9 @@ public record CreateDriverRequest
     [JsonPropertyName("eldYmEnabled")]
     public bool? EldYmEnabled { get; set; }
 
+    [JsonPropertyName("email")]
+    public string? Email { get; set; }
+
     /// <summary>
     /// The [external IDs](https://developers.samsara.com/docs/external-ids) for the given object.
     /// </summary>

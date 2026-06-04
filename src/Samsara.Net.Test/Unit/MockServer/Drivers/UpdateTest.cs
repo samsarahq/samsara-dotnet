@@ -49,6 +49,7 @@ public class UpdateTest : BaseMockServerTest
                   ]
                 },
                 "eldYmEnabled": true,
+                "email": "susan.jones@example.com",
                 "externalIds": {
                   "maintenanceId": "250020",
                   "payrollId": "ABFS18600"
