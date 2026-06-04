@@ -52,6 +52,10 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
     public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaHighSpeedSuddenDisconnect =
         new(Values.HaHighSpeedSuddenDisconnect);
 
+    public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaImpact = new(
+        Values.HaImpact
+    );
+
     public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaInvalid = new(
         Values.HaInvalid
     );
@@ -230,6 +234,8 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
         public const string HaFoodPolicy = "haFoodPolicy";
 
         public const string HaHighSpeedSuddenDisconnect = "haHighSpeedSuddenDisconnect";
+
+        public const string HaImpact = "haImpact";
 
         public const string HaInvalid = "haInvalid";
 

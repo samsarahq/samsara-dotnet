@@ -38,6 +38,9 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel GenericDistraction =
         new(Values.GenericDistraction);
 
+    public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HarshImpact =
+        new(Values.HarshImpact);
+
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel HarshTurn =
         new(Values.HarshTurn);
 
@@ -181,6 +184,8 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
         public const string ForwardCollisionWarning = "forwardCollisionWarning";
 
         public const string GenericDistraction = "genericDistraction";
+
+        public const string HarshImpact = "harshImpact";
 
         public const string HarshTurn = "harshTurn";
 
