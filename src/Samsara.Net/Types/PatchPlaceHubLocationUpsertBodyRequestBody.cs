@@ -15,7 +15,7 @@ public record PatchPlaceHubLocationUpsertBodyRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Optional label; stored as planner-facing notes for this hub row.
+    /// Optional label override for this hub location row.
     /// </summary>
     [JsonPropertyName("displayName")]
     public string? DisplayName { get; set; }
@@ -64,6 +64,12 @@ public record PatchPlaceHubLocationUpsertBodyRequestBody : IJsonOnDeserialized
 
     [JsonPropertyName("orderServiceTime")]
     public PlaceHubLocationOrderServiceTimeInputRequestBody? OrderServiceTime { get; set; }
+
+    /// <summary>
+    /// Planner-facing notes for this hub location row.
+    /// </summary>
+    [JsonPropertyName("plannerNotes")]
+    public string? PlannerNotes { get; set; }
 
     /// <summary>
     /// Required planner skills for this hub location.
