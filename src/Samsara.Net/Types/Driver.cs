@@ -59,6 +59,9 @@ public record Driver : IJsonOnDeserialized
     [JsonPropertyName("eldYmEnabled")]
     public bool? EldYmEnabled { get; set; }
 
+    [JsonPropertyName("email")]
+    public string? Email { get; set; }
+
     [JsonPropertyName("externalIds")]
     public Dictionary<string, object?>? ExternalIds { get; set; }
 
