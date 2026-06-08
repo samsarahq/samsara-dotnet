@@ -14,9 +14,13 @@ public class V1GetSensorsTest : BaseMockServerTest
             {
               "sensors": [
                 {
+                  "activatedAtMs": 1635881752799,
+                  "healthStatus": "RequiresInvestigation",
                   "id": 123,
+                  "lastTransmissionAtMs": 1613440186723,
                   "macAddress": "11:11:11:11:11:11",
-                  "name": "Freezer ABC"
+                  "name": "Freezer ABC",
+                  "sensorType": "EM21"
                 }
               ]
             }

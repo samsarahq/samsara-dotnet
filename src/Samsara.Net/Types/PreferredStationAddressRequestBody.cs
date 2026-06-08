@@ -39,7 +39,7 @@ public record PreferredStationAddressRequestBody : IJsonOnDeserialized
     public required string PostalCode { get; set; }
 
     /// <summary>
-    /// State or province code.
+    /// State or province code. Required when country is "US".
     /// </summary>
     [JsonPropertyName("state")]
     public string? State { get; set; }
