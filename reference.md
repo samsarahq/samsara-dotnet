@@ -4230,6 +4230,7 @@ Readings that currently support ingestion (by category):
 * `faultCodesJ1939`
 * `faultCodesOBDII`
 * `fuelLevelPerc`
+* `gps`
 * `location`
 * `odometerEcu`
 * `oilPressure`

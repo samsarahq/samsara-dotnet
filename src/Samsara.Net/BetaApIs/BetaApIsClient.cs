@@ -9073,6 +9073,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// * `faultCodesJ1939`
     /// * `faultCodesOBDII`
     /// * `fuelLevelPerc`
+    /// * `gps`
     /// * `location`
     /// * `odometerEcu`
     /// * `oilPressure`
