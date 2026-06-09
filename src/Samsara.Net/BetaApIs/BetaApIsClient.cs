@@ -9070,6 +9070,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// * `engineHours`
     /// * `engineRpm`
     /// * `engineState` (values: off | running | idling)
+    /// * `faultCodes`
     /// * `faultCodesJ1939`
     /// * `faultCodesOBDII`
     /// * `fuelLevelPerc`
