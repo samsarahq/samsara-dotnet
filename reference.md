@@ -4227,6 +4227,7 @@ Readings that currently support ingestion (by category):
 * `engineHours`
 * `engineRpm`
 * `engineState` (values: off | running | idling)
+* `faultCodes`
 * `faultCodesJ1939`
 * `faultCodesOBDII`
 * `fuelLevelPerc`
