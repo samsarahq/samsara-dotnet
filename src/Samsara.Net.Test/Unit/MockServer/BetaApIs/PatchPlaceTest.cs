@@ -98,13 +98,14 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Magnam est aperiam.",
-                  "Dolorum quia minima error voluptate accusamus.",
-                  "Velit expedita."
+                  "Atque et corrupti iste distinctio aspernatur.",
+                  "Dolorum omnis qui consequatur odio.",
+                  "Et magnam est aperiam a."
                 ],
                 "radiusMeters": 150,
                 "safetyEventExclusions": [
-                  "Ratione facilis suscipit officia autem id.",
+                  "Voluptates excepturi.",
+                  "Facilis suscipit officia autem id.",
                   "Aut ad est vel voluptatem unde.",
                   "Tempora necessitatibus explicabo."
                 ],
