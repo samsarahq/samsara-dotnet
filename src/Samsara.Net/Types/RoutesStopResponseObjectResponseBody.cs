@@ -33,6 +33,12 @@ public record RoutesStopResponseObjectResponseBody : IJsonOnDeserialized
     public GoaAddressTinyResponseResponseBody? Address { get; set; }
 
     /// <summary>
+    /// Appointment windows for the stop.
+    /// </summary>
+    [JsonPropertyName("appointmentWindows")]
+    public IEnumerable<HosViolationDayObjectResponseBody>? AppointmentWindows { get; set; }
+
+    /// <summary>
     /// List of documents associated with the stop.
     /// </summary>
     [JsonPropertyName("documents")]

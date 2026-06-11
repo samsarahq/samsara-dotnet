@@ -18,6 +18,12 @@ public record UpdateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     public string? AddressId { get; set; }
 
     /// <summary>
+    /// Appointment windows for the stop.
+    /// </summary>
+    [JsonPropertyName("appointmentWindows")]
+    public IEnumerable<HosViolationDayObjectRequestBody>? AppointmentWindows { get; set; }
+
+    /// <summary>
     /// A map of external ids
     /// </summary>
     [JsonPropertyName("externalIds")]

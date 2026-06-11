@@ -37,7 +37,7 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                   },
                   "endTime": "2019-06-20T19:08:25Z",
                   "logMetaData": {
-                    "adverseDrivingClaimed": true,
+                    "adverseDrivingClaimed": false,
                     "bigDayClaimed": true,
                     "carrierFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                     "carrierName": "Carrier Name",
@@ -46,7 +46,7 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                     "homeTerminalName": "Home Terminal Name",
                     "isCertified": true,
-                    "isUsShortHaulActive": false,
+                    "isUsShortHaulActive": true,
                     "shippingDocs": "Delivery 123, chips and soda",
                     "trailerNames": [
                       "10293",

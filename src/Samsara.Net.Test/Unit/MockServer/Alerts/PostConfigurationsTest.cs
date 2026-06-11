@@ -53,7 +53,8 @@ public class PostConfigurationsTest : BaseMockServerTest
                   "timeRanges": [
                     {
                       "daysOfWeek": [
-                        "WEDNESDAY",
+                        "THURSDAY",
+                        "SUNDAY",
                         "SUNDAY"
                       ],
                       "endTime": "20:00",
@@ -63,7 +64,7 @@ public class PostConfigurationsTest : BaseMockServerTest
                   ]
                 },
                 "scope": {
-                  "all": false,
+                  "all": true,
                   "assets": [
                     {
                       "assetId": "12443",

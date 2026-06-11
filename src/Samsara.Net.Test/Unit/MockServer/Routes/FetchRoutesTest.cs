@@ -46,6 +46,12 @@ public class FetchRoutesTest : BaseMockServerTest
                         "id": "494123",
                         "name": "Company Office #1"
                       },
+                      "appointmentWindows": [
+                        {
+                          "endTime": "2019-06-14T12:00:00Z",
+                          "startTime": "2019-06-13T12:00:00Z"
+                        }
+                      ],
                       "documents": [
                         {
                           "id": "494123",

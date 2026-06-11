@@ -38,7 +38,8 @@ public class PatchConfigurationsTest : BaseMockServerTest
                   "timeRanges": [
                     {
                       "daysOfWeek": [
-                        "WEDNESDAY",
+                        "THURSDAY",
+                        "SUNDAY",
                         "SUNDAY"
                       ],
                       "endTime": "20:00",
@@ -48,7 +49,7 @@ public class PatchConfigurationsTest : BaseMockServerTest
                   ]
                 },
                 "scope": {
-                  "all": false,
+                  "all": true,
                   "assets": [
                     {
                       "assetId": "12443",
