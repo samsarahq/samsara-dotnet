@@ -95,14 +95,13 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Atque et corrupti iste distinctio aspernatur.",
-                    "Dolorum omnis qui consequatur odio.",
-                    "Et magnam est aperiam a."
+                    "Magnam est aperiam.",
+                    "Dolorum quia minima error voluptate accusamus.",
+                    "Velit expedita."
                   ],
                   "radiusMeters": 150,
                   "safetyEventExclusions": [
-                    "Voluptates excepturi.",
-                    "Facilis suscipit officia autem id.",
+                    "Ratione facilis suscipit officia autem id.",
                     "Aut ad est vel voluptatem unde.",
                     "Tempora necessitatibus explicabo."
                   ],

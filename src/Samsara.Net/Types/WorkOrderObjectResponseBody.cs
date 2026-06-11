@@ -158,6 +158,12 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("vendorUuid")]
     public string? VendorUuid { get; set; }
 
+    /// <summary>
+    /// IDs of the work order template(s) this work order was created from. May include templates that have since been deleted.
+    /// </summary>
+    [JsonPropertyName("workOrderTemplateIds")]
+    public IEnumerable<string>? WorkOrderTemplateIds { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 
