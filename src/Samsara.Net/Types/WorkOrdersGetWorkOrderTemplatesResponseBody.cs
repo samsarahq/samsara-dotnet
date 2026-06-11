@@ -18,6 +18,9 @@ public record WorkOrdersGetWorkOrderTemplatesResponseBody : IJsonOnDeserialized
     public IEnumerable<WorkOrderTemplateObjectResponseBody> Data { get; set; } =
         new List<WorkOrderTemplateObjectResponseBody>();
 
+    [JsonPropertyName("pagination")]
+    public required GoaPaginationResponseResponseBody Pagination { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

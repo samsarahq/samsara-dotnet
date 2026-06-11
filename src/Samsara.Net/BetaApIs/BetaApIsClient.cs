@@ -3962,8 +3962,9 @@ public partial class BetaApIsClient : IBetaApIsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
             .Add("ids", request.Ids)
+            .Add("after", request.After)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
@@ -8336,7 +8337,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Gets work order templates by id. Ids that do not resolve to a template (e.g. deleted) are omitted from the response.
+    /// Gets work order templates. Optionally filter to specific template ids; ids that do not resolve to a template (e.g. deleted) are omitted from the response.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///

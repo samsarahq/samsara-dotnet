@@ -15,14 +15,14 @@ public class GetWorkOrderTemplatesTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "id": "id",
-                  "name": "name"
-                },
-                {
-                  "id": "id",
-                  "name": "name"
+                  "id": "5523a39f-42ef-4820-83d0-dfe73dbe7853",
+                  "name": "PM Service - 5000mi"
                 }
-              ]
+              ],
+              "pagination": {
+                "endCursor": "MjkY",
+                "hasNextPage": true
+              }
             }
             """;
 
