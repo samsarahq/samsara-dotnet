@@ -101,6 +101,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("harshEvent")]
     public HarshEventDataResponseBody? HarshEvent { get; set; }
 
+    [JsonPropertyName("hosDutyStatus")]
+    public HosDutyStatusDataResponseBody? HosDutyStatus { get; set; }
+
     [JsonPropertyName("hosViolation")]
     public HosViolationDataResponseBody? HosViolation { get; set; }
 
