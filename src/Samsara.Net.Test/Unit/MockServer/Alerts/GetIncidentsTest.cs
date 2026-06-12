@@ -315,6 +315,11 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "hosDutyStatus": {
+                          "driver": {
+                            "id": "id"
+                          }
+                        },
                         "hosViolation": {
                           "driver": {
                             "id": "id"
@@ -1061,6 +1066,11 @@ public class GetIncidentsTest : BaseMockServerTest
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
+                          }
+                        },
+                        "hosDutyStatus": {
+                          "driver": {
+                            "id": "id"
                           }
                         },
                         "hosViolation": {
@@ -1821,6 +1831,11 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "hosDutyStatus": {
+                          "driver": {
+                            "id": "id"
+                          }
+                        },
                         "hosViolation": {
                           "driver": {
                             "id": "id"
@@ -2567,6 +2582,11 @@ public class GetIncidentsTest : BaseMockServerTest
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
+                          }
+                        },
+                        "hosDutyStatus": {
+                          "driver": {
+                            "id": "id"
                           }
                         },
                         "hosViolation": {
