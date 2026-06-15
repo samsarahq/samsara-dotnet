@@ -21,7 +21,7 @@ public record UpdateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     /// Appointment windows for the stop.
     /// </summary>
     [JsonPropertyName("appointmentWindows")]
-    public IEnumerable<HosViolationDayObjectRequestBody>? AppointmentWindows { get; set; }
+    public IEnumerable<RouteStopAppointmentWindowRequestBody>? AppointmentWindows { get; set; }
 
     /// <summary>
     /// A map of external ids

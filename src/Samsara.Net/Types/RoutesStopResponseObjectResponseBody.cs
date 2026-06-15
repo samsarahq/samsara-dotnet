@@ -36,7 +36,7 @@ public record RoutesStopResponseObjectResponseBody : IJsonOnDeserialized
     /// Appointment windows for the stop.
     /// </summary>
     [JsonPropertyName("appointmentWindows")]
-    public IEnumerable<HosViolationDayObjectResponseBody>? AppointmentWindows { get; set; }
+    public IEnumerable<RouteStopAppointmentWindowResponseBody>? AppointmentWindows { get; set; }
 
     /// <summary>
     /// List of documents associated with the stop.

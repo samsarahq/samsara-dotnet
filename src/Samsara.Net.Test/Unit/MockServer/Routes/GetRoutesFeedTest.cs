@@ -79,8 +79,8 @@ public class GetRoutesFeedTest : BaseMockServerTest
                         },
                         "appointmentWindows": [
                           {
-                            "endTime": "2019-06-14T12:00:00Z",
-                            "startTime": "2019-06-13T12:00:00Z"
+                            "endTime": "2019-06-13T20:08:25Z",
+                            "startTime": "2019-06-13T19:08:25Z"
                           }
                         ],
                         "documents": [
