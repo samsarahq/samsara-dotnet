@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using Samsara.Net;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class PairGatewaysTest : BaseMockServerTest
@@ -58,7 +58,7 @@ public class PairGatewaysTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/gateways/pair")
+                    .WithPath("/gateways/pair")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -70,7 +70,7 @@ public class PairGatewaysTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.PairGatewaysAsync(
+        var response = await Client.BetaApIs.PairGatewaysAsync(
             new GatewaysPairGatewaysRequestBody
             {
                 Pairs = new List<PairGatewayPairObjectRequestBody>()
