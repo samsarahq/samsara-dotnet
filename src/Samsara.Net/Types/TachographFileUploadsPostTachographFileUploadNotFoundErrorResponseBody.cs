@@ -5,32 +5,27 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Recurring service window for a place hub location row.
+/// Resource not found
 /// </summary>
 [Serializable]
-public record PlaceHubLocationServiceWindowInputRequestBody : IJsonOnDeserialized
+public record TachographFileUploadsPostTachographFileUploadNotFoundErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Days this window applies.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("days")]
-    public IEnumerable<string> Days { get; set; } = new List<string>();
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     /// <summary>
-    /// End time as seconds since local midnight.
+    /// The request ID; used when reaching out to support for issues with requests.
     /// </summary>
-    [JsonPropertyName("endTime")]
-    public required long EndTime { get; set; }
-
-    /// <summary>
-    /// Start time as seconds since local midnight.
-    /// </summary>
-    [JsonPropertyName("startTime")]
-    public required long StartTime { get; set; }
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

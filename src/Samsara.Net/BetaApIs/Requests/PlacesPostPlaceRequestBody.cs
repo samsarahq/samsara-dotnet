@@ -25,17 +25,8 @@ public record PlacesPostPlaceRequestBody
     [JsonPropertyName("externalIds")]
     public PlacesPostPlaceRequestBodyExternalIds? ExternalIds { get; set; }
 
-    /// <summary>
-    /// Polygon vertices; at least three when using polygon mode (omit entirely when using latitude, longitude, and radiusMeters for a circle).
-    /// </summary>
     [JsonPropertyName("geofence")]
-    public IEnumerable<GeofenceVertexInputRequestBody>? Geofence { get; set; }
-
-    /// <summary>
-    /// Initial route-planning hub rows for the new place. Each entry requires hubId. Omit hubLocationId to let the server assign a row UUID, or set hubLocationId to pin the UUID for idempotent creates.
-    /// </summary>
-    [JsonPropertyName("hubLocations")]
-    public IEnumerable<PatchPlaceHubLocationUpsertBodyRequestBody>? HubLocations { get; set; }
+    public required PlaceGeofenceInputRequestBody Geofence { get; set; }
 
     /// <summary>
     /// IFTA exemption types for this place.
@@ -48,18 +39,6 @@ public record PlacesPostPlaceRequestBody
     /// </summary>
     [JsonPropertyName("isShowAddressesEnabled")]
     public bool? IsShowAddressesEnabled { get; set; }
-
-    /// <summary>
-    /// Center latitude when using a circle geofence with radiusMeters.
-    /// </summary>
-    [JsonPropertyName("latitude")]
-    public double? Latitude { get; set; }
-
-    /// <summary>
-    /// Center longitude when using a circle geofence with radiusMeters.
-    /// </summary>
-    [JsonPropertyName("longitude")]
-    public double? Longitude { get; set; }
 
     /// <summary>
     /// Place name.
@@ -77,16 +56,16 @@ public record PlacesPostPlaceRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
+    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and existing IFTA metadata in the same request; conflicting combinations return InvalidArgument.
     /// </summary>
     [JsonPropertyName("placeTypes")]
     public IEnumerable<string>? PlaceTypes { get; set; }
 
     /// <summary>
-    /// Circle radius in meters; requires latitude and longitude. Must be at least 1 when set.
+    /// Initial route-planning rows for the new place. Each entry requires hubId; (placeId, hubId) must be unique.
     /// </summary>
-    [JsonPropertyName("radiusMeters")]
-    public long? RadiusMeters { get; set; }
+    [JsonPropertyName("routing")]
+    public IEnumerable<PlaceRoutingInputRequestBody>? Routing { get; set; }
 
     /// <summary>
     /// Safety event types excluded at this place.
@@ -95,7 +74,7 @@ public record PlacesPostPlaceRequestBody
     public IEnumerable<string>? SafetyEventExclusions { get; set; }
 
     [JsonPropertyName("streetView")]
-    public PlaceStreetViewResponseRequestBody? StreetView { get; set; }
+    public PlaceStreetViewInputRequestBody? StreetView { get; set; }
 
     /// <summary>
     /// Tags to associate.

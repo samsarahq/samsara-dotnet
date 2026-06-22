@@ -5,26 +5,26 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Partial hub location changes for a place. When present on PATCH, applies upserts and removals; omitted leaves hub rows unchanged.
+/// Additional service time at a routing row.
 /// </summary>
 [Serializable]
-public record PatchPlaceHubLocationsBodyRequestBody : IJsonOnDeserialized
+public record RoutingServiceTimeResponseResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Hub location ids to remove.
+    /// Whether additional service time is enabled.
     /// </summary>
-    [JsonPropertyName("removeHubLocationIds")]
-    public IEnumerable<string>? RemoveHubLocationIds { get; set; }
+    [JsonPropertyName("isEnabled")]
+    public required bool IsEnabled { get; set; }
 
     /// <summary>
-    /// Hub rows to create or update.
+    /// Whole minutes of additional service time.
     /// </summary>
-    [JsonPropertyName("upsert")]
-    public IEnumerable<PatchPlaceHubLocationUpsertBodyRequestBody>? Upsert { get; set; }
+    [JsonPropertyName("serviceTimeMinutes")]
+    public required long ServiceTimeMinutes { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -37,14 +37,8 @@ public record PlacesPatchPlaceRequestBody
     [JsonPropertyName("externalIds")]
     public PlacesPatchPlaceRequestBodyExternalIds? ExternalIds { get; set; }
 
-    /// <summary>
-    /// Polygon vertices; at least three when switching to polygon mode.
-    /// </summary>
     [JsonPropertyName("geofence")]
-    public IEnumerable<GeofenceVertexInputRequestBody>? Geofence { get; set; }
-
-    [JsonPropertyName("hubLocations")]
-    public PatchPlaceHubLocationsBodyRequestBody? HubLocations { get; set; }
+    public PlaceGeofenceInputRequestBody? Geofence { get; set; }
 
     /// <summary>
     /// When present, replaces IFTA exemption types for the place.
@@ -57,18 +51,6 @@ public record PlacesPatchPlaceRequestBody
     /// </summary>
     [JsonPropertyName("isShowAddressesEnabled")]
     public bool? IsShowAddressesEnabled { get; set; }
-
-    /// <summary>
-    /// Center latitude when switching to or editing a circle geofence.
-    /// </summary>
-    [JsonPropertyName("latitude")]
-    public double? Latitude { get; set; }
-
-    /// <summary>
-    /// Center longitude when switching to or editing a circle geofence.
-    /// </summary>
-    [JsonPropertyName("longitude")]
-    public double? Longitude { get; set; }
 
     /// <summary>
     /// Place name.
@@ -86,16 +68,13 @@ public record PlacesPatchPlaceRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match hubLocations, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.
+    /// When present, replaces address-type categories via address metadata. Metadata-derived types (hubLocation, navigation, iftaExemption) must match routing, navigation, and IFTA metadata after this request; conflicting combinations return InvalidArgument.
     /// </summary>
     [JsonPropertyName("placeTypes")]
     public IEnumerable<string>? PlaceTypes { get; set; }
 
-    /// <summary>
-    /// Circle radius in meters; use with latitude and longitude.
-    /// </summary>
-    [JsonPropertyName("radiusMeters")]
-    public long? RadiusMeters { get; set; }
+    [JsonPropertyName("routing")]
+    public PlaceRoutingPatchInputRequestBody? Routing { get; set; }
 
     /// <summary>
     /// When present, replaces safety event exclusions for the place.
@@ -104,7 +83,7 @@ public record PlacesPatchPlaceRequestBody
     public IEnumerable<string>? SafetyEventExclusions { get; set; }
 
     [JsonPropertyName("streetView")]
-    public PlaceStreetViewResponseRequestBody? StreetView { get; set; }
+    public PlaceStreetViewInputRequestBody? StreetView { get; set; }
 
     /// <summary>
     /// When present, replaces all tag associations for the place.

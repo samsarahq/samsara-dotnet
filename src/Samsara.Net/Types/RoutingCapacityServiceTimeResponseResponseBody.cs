@@ -5,32 +5,32 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Order service time configuration for a hub location row.
+/// Per-capacity order service time entry.
 /// </summary>
 [Serializable]
-public record PlaceHubLocationOrderServiceTimeInputRequestBody : IJsonOnDeserialized
+public record RoutingCapacityServiceTimeResponseResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Capacity-based service times for variable mode.
+    /// Capacity UUID.
     /// </summary>
-    [JsonPropertyName("capacityServiceTimes")]
-    public IEnumerable<PlaceHubLocationCapacityServiceTimeInputRequestBody>? CapacityServiceTimes { get; set; }
+    [JsonPropertyName("capacityId")]
+    public required string CapacityId { get; set; }
 
     /// <summary>
-    /// Fixed order service time in seconds when applicable.
+    /// Quantity units per service time chunk.
     /// </summary>
-    [JsonPropertyName("fixedTimeSeconds")]
-    public long? FixedTimeSeconds { get; set; }
+    [JsonPropertyName("quantityUnitPerServiceTime")]
+    public required double QuantityUnitPerServiceTime { get; set; }
 
     /// <summary>
-    /// Mode: fixed or variable.  Valid values: `fixed`, `variable`, `unknown`, `unspecified`
+    /// Service time in seconds.
     /// </summary>
-    [JsonPropertyName("modeType")]
-    public required PlaceHubLocationOrderServiceTimeInputRequestBodyModeType ModeType { get; set; }
+    [JsonPropertyName("serviceTimeSeconds")]
+    public required long ServiceTimeSeconds { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

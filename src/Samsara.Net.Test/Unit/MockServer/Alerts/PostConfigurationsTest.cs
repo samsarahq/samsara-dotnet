@@ -22,7 +22,7 @@ public class PostConfigurationsTest : BaseMockServerTest
               "isEnabled": true,
               "name": "My Harsh Event Alert",
               "scope": {
-                "all": true
+                "all": false
               },
               "triggers": [
                 {
@@ -54,8 +54,7 @@ public class PostConfigurationsTest : BaseMockServerTest
                     {
                       "daysOfWeek": [
                         "THURSDAY",
-                        "SUNDAY",
-                        "SUNDAY"
+                        "TUESDAY"
                       ],
                       "endTime": "20:00",
                       "startTime": "11:00",
@@ -123,7 +122,7 @@ public class PostConfigurationsTest : BaseMockServerTest
                 },
                 IsEnabled = true,
                 Name = "My Harsh Event Alert",
-                Scope = new ScopeObjectRequestBody { All = true },
+                Scope = new ScopeObjectRequestBody { All = false },
                 Triggers = new List<WorkflowTriggerObjectRequestBody>()
                 {
                     new WorkflowTriggerObjectRequestBody { TriggerTypeId = 1000 },

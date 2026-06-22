@@ -5,32 +5,27 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Order service time configuration for a hub location.
+/// Unauthorized
 /// </summary>
 [Serializable]
-public record HubLocationOrderServiceTimeResponseResponseBody : IJsonOnDeserialized
+public record TachographFileUploadsPostTachographFileUploadUnauthorizedErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Capacity-based service times for variable mode.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("capacityServiceTimes")]
-    public IEnumerable<HubLocationCapacityServiceTimeResponseResponseBody>? CapacityServiceTimes { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     /// <summary>
-    /// Fixed order service time in seconds when applicable.
+    /// The request ID; used when reaching out to support for issues with requests.
     /// </summary>
-    [JsonPropertyName("fixedTimeSeconds")]
-    public long? FixedTimeSeconds { get; set; }
-
-    /// <summary>
-    /// Mode: unknown, unspecified, fixed, or variable.
-    /// </summary>
-    [JsonPropertyName("modeType")]
-    public required string ModeType { get; set; }
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -7411,7 +7411,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
     ///             {
     ///                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-    ///                 IsOpen = true,
+    ///                 IsOpen = false,
     ///             },
     ///         },
     ///     }
@@ -8795,7 +8795,12 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// </summary>
     /// <example><code>
     /// await client.BetaApIs.PostPlaceAsync(
-    ///     new PlacesPostPlaceRequestBody { Address = "123 Main St, Oakland, CA", Name = "Oakland Yard" }
+    ///     new PlacesPostPlaceRequestBody
+    ///     {
+    ///         Address = "123 Main St, Oakland, CA",
+    ///         Geofence = new PlaceGeofenceInputRequestBody(),
+    ///         Name = "Oakland Yard",
+    ///     }
     /// );
     /// </code></example>
     public WithRawResponseTask<PlacesPostPlaceResponseBody> PostPlaceAsync(
@@ -9599,19 +9604,14 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// * `engineRpm`
     /// * `engineState` (values: off | running | idling)
     /// * `faultCodes`
-    /// * `faultCodesJ1939`
-    /// * `faultCodesOBDII`
     /// * `fuelLevelPerc`
     /// * `gps`
-    /// * `location`
     /// * `odometerEcu`
     /// * `oilPressure`
     ///
     /// &lt;/details&gt;
     ///
-    /// **Note:** Use the `GET /readings/definitions` endpoint and check the `ingestionEnabled` field for the authoritative, up-to-date set of ingestible readings for your organization.
-    ///
-    /// When ingesting location data, the readingID 'location' must be used and the value object must contain at least the following fields: 'speed', 'latitude', 'longitude'.
+    /// When ingesting GPS location data, use the readingID 'gps'. The value object must contain the following fields: 'latitude' (decimal degrees), 'longitude' (decimal degrees), and 'speed' (meters per second).
     ///
     /// Related guide: [Readings](https://developers.samsara.com/docs/readings).
     ///
@@ -10270,6 +10270,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///     {
     ///         SafetyEventIds = new List&lt;string&gt;()
     ///         {
+    ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",

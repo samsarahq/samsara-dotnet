@@ -5,32 +5,27 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Per-capacity order service time entry.
+/// Bad Gateway
 /// </summary>
 [Serializable]
-public record HubLocationCapacityServiceTimeResponseResponseBody : IJsonOnDeserialized
+public record TachographFileUploadsPostTachographFileUploadBadGatewayErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Capacity UUID.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("capacityId")]
-    public required string CapacityId { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     /// <summary>
-    /// Service time in seconds.
+    /// The request ID; used when reaching out to support for issues with requests.
     /// </summary>
-    [JsonPropertyName("serviceTimeSeconds")]
-    public required long ServiceTimeSeconds { get; set; }
-
-    /// <summary>
-    /// Additional service time per quantity unit.
-    /// </summary>
-    [JsonPropertyName("serviceTimeSecondsPerQuantityUnit")]
-    public required double ServiceTimeSecondsPerQuantityUnit { get; set; }
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

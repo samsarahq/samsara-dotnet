@@ -5,26 +5,29 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Additional service time configuration for a hub location row.
+/// Order service time configuration for a routing row.
 /// </summary>
 [Serializable]
-public record PlaceHubLocationServiceTimeInputRequestBody : IJsonOnDeserialized
+public record PlaceRoutingOrderServiceTimeInputRequestBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    /// <summary>
-    /// Whole minutes of additional service time.
-    /// </summary>
-    [JsonPropertyName("additionalTimeMinutes")]
-    public required long AdditionalTimeMinutes { get; set; }
+    [JsonPropertyName("capacityServiceTime")]
+    public PlaceRoutingCapacityServiceTimeInputRequestBody? CapacityServiceTime { get; set; }
 
     /// <summary>
-    /// Whether additional service time is enabled.
+    /// When true, order service time settings apply at this stop; when false, hub/session defaults apply.
     /// </summary>
     [JsonPropertyName("isEnabled")]
-    public required bool IsEnabled { get; set; }
+    public bool? IsEnabled { get; set; }
+
+    /// <summary>
+    /// Mode: fixed or variable.  Valid values: `fixed`, `variable`
+    /// </summary>
+    [JsonPropertyName("modeType")]
+    public required PlaceRoutingOrderServiceTimeInputRequestBodyModeType ModeType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

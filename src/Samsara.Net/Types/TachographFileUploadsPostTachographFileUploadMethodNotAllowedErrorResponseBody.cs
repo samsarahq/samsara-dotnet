@@ -5,26 +5,27 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Additional service time at a hub location.
+/// Method not allowed
 /// </summary>
 [Serializable]
-public record HubLocationServiceTimeResponseResponseBody : IJsonOnDeserialized
+public record TachographFileUploadsPostTachographFileUploadMethodNotAllowedErrorResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Whole minutes of additional service time.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("additionalTimeMinutes")]
-    public required long AdditionalTimeMinutes { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
 
     /// <summary>
-    /// Whether additional service time is enabled.
+    /// The request ID; used when reaching out to support for issues with requests.
     /// </summary>
-    [JsonPropertyName("isEnabled")]
-    public required bool IsEnabled { get; set; }
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
