@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Samsara.Net;
 using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
@@ -14,6 +15,7 @@ public class PostPlaceTest : BaseMockServerTest
         const string requestJson = """
             {
               "address": "123 Main St, Oakland, CA",
+              "geofence": {},
               "name": "Oakland Yard"
             }
             """;
@@ -24,69 +26,30 @@ public class PostPlaceTest : BaseMockServerTest
                 "address": "123 Main St",
                 "cameraRecordingModeType": "inherit",
                 "createdAtTime": "2019-06-13T19:08:25.000Z",
-                "geofence": [
-                  {
+                "geofence": {
+                  "circle": {
                     "latitude": 37.7749,
-                    "longitude": -122.4194
-                  }
-                ],
-                "hubLocations": [
-                  {
-                    "displayName": "North entrance",
-                    "externalId": "store-A",
-                    "hubId": "550e8400-e29b-41d4-a716-446655440003",
-                    "hubLocationId": "550e8400-e29b-41d4-a716-446655440002",
-                    "isDepot": false,
-                    "isIgnoreOrderServiceTimeEnabled": false,
-                    "locationPositionType": "first",
-                    "locationPriority": 3,
-                    "orderServiceTime": {
-                      "capacityServiceTimes": [
-                        {
-                          "capacityId": "550e8400-e29b-41d4-a716-446655440001",
-                          "serviceTimeSeconds": 60,
-                          "serviceTimeSecondsPerQuantityUnit": 0.5
-                        }
-                      ],
-                      "fixedTimeSeconds": 120,
-                      "modeType": "variable"
-                    },
-                    "plannerNotes": "Zone A preferred",
-                    "requiredSkills": [
+                    "longitude": -122.4194,
+                    "radiusMeters": 150
+                  },
+                  "polygon": {
+                    "vertices": [
                       {
-                        "id": "550e8400-e29b-41d4-a716-446655440000"
+                        "latitude": 37.7749,
+                        "longitude": -122.4194
                       }
-                    ],
-                    "serviceTime": {
-                      "additionalTimeMinutes": 5,
-                      "isEnabled": true
-                    },
-                    "serviceWindows": [
-                      {
-                        "days": [
-                          "Harum fugiat ea cupiditate dignissimos.",
-                          "Quae pariatur.",
-                          "Non aut porro.",
-                          "Ipsum eum eos doloribus omnis."
-                        ],
-                        "endTime": 57961,
-                        "startTime": 57600
-                      }
-                    ],
-                    "standardDriverInstructions": "Use lane 2"
-                  }
-                ],
+                    ]
+                  },
+                  "type": "circle"
+                },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Ut molestiae a.",
-                  "Qui possimus officiis quae.",
-                  "Ut sequi accusantium qui sequi rem quisquam.",
-                  "Omnis et."
+                  "Error voluptate.",
+                  "Doloribus velit.",
+                  "Repellat placeat sit."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
-                "latitude": 37.7749,
-                "longitude": -122.4194,
                 "name": "Oakland Yard",
                 "navigation": {
                   "locations": [
@@ -101,22 +64,63 @@ public class PostPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Magnam est aperiam.",
-                  "Dolorum quia minima error voluptate accusamus.",
-                  "Velit expedita."
+                  "Eligendi in.",
+                  "Odit voluptatem sequi maiores.",
+                  "Sunt laborum voluptas quis quasi debitis dignissimos.",
+                  "Eum quae."
                 ],
-                "radiusMeters": 150,
+                "routing": [
+                  {
+                    "hubId": "550e8400-e29b-41d4-a716-446655440003",
+                    "isDepot": false,
+                    "orderServiceTime": {
+                      "capacityServiceTime": {
+                        "capacityId": "550e8400-e29b-41d4-a716-446655440001",
+                        "quantityUnitPerServiceTime": 0.5,
+                        "serviceTimeSeconds": 60
+                      },
+                      "isEnabled": true,
+                      "modeType": "variable"
+                    },
+                    "plannerNotes": "Zone A preferred",
+                    "position": "first",
+                    "priority": 3,
+                    "requiredSkills": [
+                      {
+                        "id": "550e8400-e29b-41d4-a716-446655440000",
+                        "name": "Refrigerated"
+                      }
+                    ],
+                    "routingExternalId": "store-A",
+                    "serviceTime": {
+                      "isEnabled": true,
+                      "serviceTimeMinutes": 5
+                    },
+                    "serviceWindows": [
+                      {
+                        "days": [
+                          "Sed dolorum hic.",
+                          "Itaque assumenda possimus placeat.",
+                          "Excepturi ratione facilis.",
+                          "Officia autem id natus."
+                        ],
+                        "endTime": "17:00:01",
+                        "startTime": "09:00:00"
+                      }
+                    ],
+                    "standardDriverInstructions": "Use lane 2"
+                  }
+                ],
                 "safetyEventExclusions": [
-                  "Ratione facilis suscipit officia autem id.",
-                  "Aut ad est vel voluptatem unde.",
-                  "Tempora necessitatibus explicabo."
+                  "Iste distinctio aspernatur.",
+                  "Dolorum omnis qui consequatur odio."
                 ],
                 "streetView": {
-                  "heading": 90,
+                  "headingDegrees": 90,
                   "isEnabled": true,
                   "latitude": 37.7749,
                   "longitude": -122.4194,
-                  "pitch": 0,
+                  "pitchDegrees": 0,
                   "zoom": 1
                 },
                 "tags": [
@@ -151,6 +155,7 @@ public class PostPlaceTest : BaseMockServerTest
             new PlacesPostPlaceRequestBody
             {
                 Address = "123 Main St, Oakland, CA",
+                Geofence = new PlaceGeofenceInputRequestBody(),
                 Name = "Oakland Yard",
             }
         );

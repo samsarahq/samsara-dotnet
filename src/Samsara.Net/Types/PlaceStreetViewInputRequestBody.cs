@@ -1,0 +1,64 @@
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Samsara.Net.Core;
+
+namespace Samsara.Net;
+
+/// <summary>
+/// Street view settings on write.
+/// </summary>
+[Serializable]
+public record PlaceStreetViewInputRequestBody : IJsonOnDeserialized
+{
+    [JsonExtensionData]
+    private readonly IDictionary<string, JsonElement> _extensionData =
+        new Dictionary<string, JsonElement>();
+
+    /// <summary>
+    /// Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360.
+    /// </summary>
+    [JsonPropertyName("headingDegrees")]
+    public double? HeadingDegrees { get; set; }
+
+    /// <summary>
+    /// Whether street view is enabled.
+    /// </summary>
+    [JsonPropertyName("isEnabled")]
+    public required bool IsEnabled { get; set; }
+
+    /// <summary>
+    /// Latitude.
+    /// </summary>
+    [JsonPropertyName("latitude")]
+    public double? Latitude { get; set; }
+
+    /// <summary>
+    /// Longitude.
+    /// </summary>
+    [JsonPropertyName("longitude")]
+    public double? Longitude { get; set; }
+
+    /// <summary>
+    /// Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.
+    /// </summary>
+    [JsonPropertyName("pitchDegrees")]
+    public double? PitchDegrees { get; set; }
+
+    /// <summary>
+    /// Zoom level.
+    /// </summary>
+    [JsonPropertyName("zoom")]
+    public double? Zoom { get; set; }
+
+    [JsonIgnore]
+    public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
+
+    void IJsonOnDeserialized.OnDeserialized() =>
+        AdditionalProperties.CopyFromExtensionData(_extensionData);
+
+    /// <inheritdoc />
+    public override string ToString()
+    {
+        return JsonUtils.Serialize(this);
+    }
+}

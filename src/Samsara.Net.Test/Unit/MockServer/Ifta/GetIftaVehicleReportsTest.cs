@@ -17,7 +17,7 @@ public class GetIftaVehicleReportsTest : BaseMockServerTest
                 "month": "January",
                 "quarter": "Q4",
                 "troubleshooting": {
-                  "noPurchasesFound": true,
+                  "noPurchasesFound": false,
                   "unassignedFuelTypePurchases": 200,
                   "unassignedFuelTypeVehicles": 2500,
                   "unassignedVehiclePurchases": 2500

@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Required planner skill reference.
+/// Required planner skill reference for a routing row.
 /// </summary>
 [Serializable]
-public record HubLocationRequiredSkillResponseResponseBody : IJsonOnDeserialized
+public record PlaceRoutingRequiredSkillInputRequestBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

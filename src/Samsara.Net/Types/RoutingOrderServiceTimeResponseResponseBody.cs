@@ -5,50 +5,29 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Street view settings for a place.
+/// Order service time configuration for a routing row.
 /// </summary>
 [Serializable]
-public record PlaceStreetViewResponseRequestBody : IJsonOnDeserialized
+public record RoutingOrderServiceTimeResponseResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
-    /// <summary>
-    /// Camera heading.
-    /// </summary>
-    [JsonPropertyName("heading")]
-    public double? Heading { get; set; }
+    [JsonPropertyName("capacityServiceTime")]
+    public RoutingCapacityServiceTimeResponseResponseBody? CapacityServiceTime { get; set; }
 
     /// <summary>
-    /// Whether street view is enabled.
+    /// Whether order service time settings apply at this stop.
     /// </summary>
     [JsonPropertyName("isEnabled")]
     public required bool IsEnabled { get; set; }
 
     /// <summary>
-    /// Latitude.
+    /// Mode: unknown, unspecified, fixed, or variable.
     /// </summary>
-    [JsonPropertyName("latitude")]
-    public double? Latitude { get; set; }
-
-    /// <summary>
-    /// Longitude.
-    /// </summary>
-    [JsonPropertyName("longitude")]
-    public double? Longitude { get; set; }
-
-    /// <summary>
-    /// Camera pitch.
-    /// </summary>
-    [JsonPropertyName("pitch")]
-    public double? Pitch { get; set; }
-
-    /// <summary>
-    /// Zoom level.
-    /// </summary>
-    [JsonPropertyName("zoom")]
-    public double? Zoom { get; set; }
+    [JsonPropertyName("modeType")]
+    public required string ModeType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

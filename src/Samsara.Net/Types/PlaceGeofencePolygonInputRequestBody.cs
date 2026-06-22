@@ -5,32 +5,21 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Per-capacity order service time entry for a hub location row.
+/// Polygon geofence on write.
 /// </summary>
 [Serializable]
-public record PlaceHubLocationCapacityServiceTimeInputRequestBody : IJsonOnDeserialized
+public record PlaceGeofencePolygonInputRequestBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Capacity UUID.
+    /// Polygon vertices; at least three.
     /// </summary>
-    [JsonPropertyName("capacityId")]
-    public required string CapacityId { get; set; }
-
-    /// <summary>
-    /// Service time in seconds.
-    /// </summary>
-    [JsonPropertyName("serviceTimeSeconds")]
-    public required long ServiceTimeSeconds { get; set; }
-
-    /// <summary>
-    /// Additional service time per quantity unit.
-    /// </summary>
-    [JsonPropertyName("serviceTimeSecondsPerQuantityUnit")]
-    public required double ServiceTimeSecondsPerQuantityUnit { get; set; }
+    [JsonPropertyName("vertices")]
+    public IEnumerable<GeofenceVertexInputRequestBody> Vertices { get; set; } =
+        new List<GeofenceVertexInputRequestBody>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

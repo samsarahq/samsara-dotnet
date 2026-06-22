@@ -1,0 +1,77 @@
+using System.Text.Json.Serialization;
+using Samsara.Net.Core;
+
+namespace Samsara.Net;
+
+[JsonConverter(typeof(StringEnumSerializer<PlaceRoutingOrderServiceTimeInputRequestBodyModeType>))]
+[Serializable]
+public readonly record struct PlaceRoutingOrderServiceTimeInputRequestBodyModeType : IStringEnum
+{
+    public static readonly PlaceRoutingOrderServiceTimeInputRequestBodyModeType Fixed = new(
+        Values.Fixed
+    );
+
+    public static readonly PlaceRoutingOrderServiceTimeInputRequestBodyModeType Variable = new(
+        Values.Variable
+    );
+
+    public PlaceRoutingOrderServiceTimeInputRequestBodyModeType(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static PlaceRoutingOrderServiceTimeInputRequestBodyModeType FromCustom(string value)
+    {
+        return new PlaceRoutingOrderServiceTimeInputRequestBodyModeType(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(
+        PlaceRoutingOrderServiceTimeInputRequestBodyModeType value1,
+        string value2
+    ) => value1.Value.Equals(value2);
+
+    public static bool operator !=(
+        PlaceRoutingOrderServiceTimeInputRequestBodyModeType value1,
+        string value2
+    ) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(
+        PlaceRoutingOrderServiceTimeInputRequestBodyModeType value
+    ) => value.Value;
+
+    public static explicit operator PlaceRoutingOrderServiceTimeInputRequestBodyModeType(
+        string value
+    ) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Fixed = "fixed";
+
+        public const string Variable = "variable";
+    }
+}

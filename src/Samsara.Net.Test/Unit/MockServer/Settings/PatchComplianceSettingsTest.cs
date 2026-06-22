@@ -19,7 +19,7 @@ public class PatchComplianceSettingsTest : BaseMockServerTest
             {
               "data": {
                 "allowUnregulatedVehiclesEnabled": false,
-                "canadaHosEnabled": true,
+                "canadaHosEnabled": false,
                 "carrierName": "ABC Trucking",
                 "dotNumber": 12345678,
                 "driverAutoDutyEnabled": true,

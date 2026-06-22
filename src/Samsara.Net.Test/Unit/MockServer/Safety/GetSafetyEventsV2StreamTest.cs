@@ -80,8 +80,8 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                     }
                   ],
                   "speedingMetadata": {
-                    "maxSpeedKilometersPerHour": 6947494294812868000,
-                    "postedSpeedLimitKilometersPerHour": 238463150322735100
+                    "maxSpeedKilometersPerHour": 6650321255030301000,
+                    "postedSpeedLimitKilometersPerHour": 7268345302945496000
                   },
                   "startMs": "2023-01-27T07:01:25Z",
                   "tripEndTime": "2023-01-27T07:06:25Z",

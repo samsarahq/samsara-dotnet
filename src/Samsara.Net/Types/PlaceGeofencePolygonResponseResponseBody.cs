@@ -5,32 +5,21 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Recurring service window for a hub location.
+/// Polygon geofence geometry.
 /// </summary>
 [Serializable]
-public record HubLocationServiceWindowResponseResponseBody : IJsonOnDeserialized
+public record PlaceGeofencePolygonResponseResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Days this window applies.
+    /// Polygon vertices; at least three.
     /// </summary>
-    [JsonPropertyName("days")]
-    public IEnumerable<string> Days { get; set; } = new List<string>();
-
-    /// <summary>
-    /// End time as seconds since local midnight.
-    /// </summary>
-    [JsonPropertyName("endTime")]
-    public required long EndTime { get; set; }
-
-    /// <summary>
-    /// Start time as seconds since local midnight.
-    /// </summary>
-    [JsonPropertyName("startTime")]
-    public required long StartTime { get; set; }
+    [JsonPropertyName("vertices")]
+    public IEnumerable<PlaceGeofenceVertexResponseResponseBody> Vertices { get; set; } =
+        new List<PlaceGeofenceVertexResponseResponseBody>();
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

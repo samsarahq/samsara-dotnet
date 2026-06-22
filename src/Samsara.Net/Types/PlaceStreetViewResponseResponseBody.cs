@@ -15,10 +15,10 @@ public record PlaceStreetViewResponseResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Camera heading.
+    /// Camera heading clockwise from true north; 0 ≤ headingDegrees &lt; 360 on write, normalized mod 360 on GET.
     /// </summary>
-    [JsonPropertyName("heading")]
-    public double? Heading { get; set; }
+    [JsonPropertyName("headingDegrees")]
+    public double? HeadingDegrees { get; set; }
 
     /// <summary>
     /// Whether street view is enabled.
@@ -39,10 +39,10 @@ public record PlaceStreetViewResponseResponseBody : IJsonOnDeserialized
     public double? Longitude { get; set; }
 
     /// <summary>
-    /// Camera pitch.
+    /// Camera pitch relative to the Street View horizon; −90 ≤ pitchDegrees ≤ 90.
     /// </summary>
-    [JsonPropertyName("pitch")]
-    public double? Pitch { get; set; }
+    [JsonPropertyName("pitchDegrees")]
+    public double? PitchDegrees { get; set; }
 
     /// <summary>
     /// Zoom level.

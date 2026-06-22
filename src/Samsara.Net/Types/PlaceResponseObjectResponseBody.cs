@@ -38,17 +38,8 @@ public record PlaceResponseObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("externalIds")]
     public PlaceResponseObjectResponseBodyExternalIds? ExternalIds { get; set; }
 
-    /// <summary>
-    /// Polygon vertices when applicable.
-    /// </summary>
     [JsonPropertyName("geofence")]
-    public IEnumerable<PlaceGeofenceVertexResponseResponseBody>? Geofence { get; set; }
-
-    /// <summary>
-    /// Route-planning hub location rows when present.
-    /// </summary>
-    [JsonPropertyName("hubLocations")]
-    public IEnumerable<HubLocationResponseResponseBody>? HubLocations { get; set; }
+    public required PlaceGeofenceResponseResponseBody Geofence { get; set; }
 
     /// <summary>
     /// Samsara place id.
@@ -75,18 +66,6 @@ public record PlaceResponseObjectResponseBody : IJsonOnDeserialized
     public bool? IsShowAddressesEnabled { get; set; }
 
     /// <summary>
-    /// Center latitude when applicable.
-    /// </summary>
-    [JsonPropertyName("latitude")]
-    public double? Latitude { get; set; }
-
-    /// <summary>
-    /// Center longitude when applicable.
-    /// </summary>
-    [JsonPropertyName("longitude")]
-    public double? Longitude { get; set; }
-
-    /// <summary>
     /// Place name.
     /// </summary>
     [JsonPropertyName("name")]
@@ -108,10 +87,10 @@ public record PlaceResponseObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<string>? PlaceTypes { get; set; }
 
     /// <summary>
-    /// Circle radius in meters when geometry is a point + buffer.
+    /// Route-planning rows when present.
     /// </summary>
-    [JsonPropertyName("radiusMeters")]
-    public long? RadiusMeters { get; set; }
+    [JsonPropertyName("routing")]
+    public IEnumerable<RoutingResponseResponseBody>? Routing { get; set; }
 
     /// <summary>
     /// Configured safety exclusions.
