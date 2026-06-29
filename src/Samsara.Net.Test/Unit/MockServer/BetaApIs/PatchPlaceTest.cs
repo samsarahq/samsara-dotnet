@@ -66,7 +66,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 ],
                 "routing": [
                   {
+                    "driverInstructions": "Use lane 2",
                     "hubId": "550e8400-e29b-41d4-a716-446655440003",
+                    "hubNotes": "Zone A preferred",
                     "isDepot": false,
                     "orderServiceTime": {
                       "capacityServiceTime": {
@@ -77,7 +79,6 @@ public class PatchPlaceTest : BaseMockServerTest
                       "isEnabled": true,
                       "modeType": "variable"
                     },
-                    "plannerNotes": "Zone A preferred",
                     "position": "first",
                     "priority": 3,
                     "requiredSkills": [
@@ -102,8 +103,7 @@ public class PatchPlaceTest : BaseMockServerTest
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
                       }
-                    ],
-                    "standardDriverInstructions": "Use lane 2"
+                    ]
                   }
                 ],
                 "safetyEventExclusions": [

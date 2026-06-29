@@ -2395,6 +2395,107 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
+        WithRawResponse<TachographFileUploadsPostTachographFileUploadResponseBody>
+    > PostTachographFileUploadAsyncCore(
+        TachographFileUploadsPostTachographFileUploadRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "fleet/tachograph/file-uploads",
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<TachographFileUploadsPostTachographFileUploadResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<TachographFileUploadsPostTachographFileUploadResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
         WithRawResponse<EngineImmobilizerGetEngineImmobilizerStatesResponseBody>
     > GetEngineImmobilizerStatesAsyncCore(
         GetEngineImmobilizerStatesRequest request,
@@ -7882,6 +7983,62 @@ public partial class BetaApIsClient : IBetaApIsClient
     {
         return new WithRawResponseTask<EntityTachographLiveDataRecordsServiceListTachographLiveDataResponseBody>(
             ListTachographLiveDataAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Reserve a tachograph file upload and return a presigned URL. Upload the file bytes directly to the URL with the returned headers. The driver or device the file belongs to is resolved from the file contents after upload.
+    ///
+    /// **Uploading the file**
+    ///
+    /// Once you have the `uploadUrl` and `requiredHeaders` from the response, PUT the raw file bytes directly to the URL — do not send the request through the Samsara API servers:
+    ///
+    /// ```bash
+    /// curl -X PUT "&lt;uploadUrl&gt;" \
+    ///   -H "Content-Type: <value from requiredHeaders>" \
+    ///   -H "Content-MD5: <value from requiredHeaders>" \
+    ///   -H "Content-Length: <value from requiredHeaders>" \
+    ///   --data-binary @/path/to/file.ddd
+    /// ```
+    ///
+    /// Every header listed in `requiredHeaders` must be sent verbatim — they are part of the URL signature, and the upload is rejected with a `403` if any header is missing or has a different value.
+    ///
+    /// **Retrieving uploaded files**
+    ///
+    /// A successful response to this request reserves the upload; it does not indicate that a file has been received or processed. Uploaded files are processed asynchronously after the PUT completes. Once a file has been processed, it can be retrieved through the standard tachograph file endpoints:
+    ///
+    /// - **Driver-card files** — `GET /fleet/drivers/tachograph-files/history`
+    /// - **Vehicle-unit files** — `GET /fleet/vehicles/tachograph-files/history`
+    ///
+    /// Files that cannot be processed — for example files that are corrupt, are not valid tachograph files, or cannot be matched to a driver or vehicle in your organization — are not retrievable through these endpoints.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.PostTachographFileUploadAsync(
+    ///     new TachographFileUploadsPostTachographFileUploadRequestBody
+    ///     {
+    ///         ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
+    ///         ContentType =
+    ///             TachographFileUploadsPostTachographFileUploadRequestBodyContentType.ApplicationOctetStream,
+    ///         FileSizeBytes = 8192,
+    ///         FileType = TachographFileUploadsPostTachographFileUploadRequestBodyFileType.DriverCard,
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<TachographFileUploadsPostTachographFileUploadResponseBody> PostTachographFileUploadAsync(
+        TachographFileUploadsPostTachographFileUploadRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<TachographFileUploadsPostTachographFileUploadResponseBody>(
+            PostTachographFileUploadAsyncCore(request, options, cancellationToken)
         );
     }
 

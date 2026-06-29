@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
 public record TachographFileUploadsPostTachographFileUploadRequestBody
@@ -19,7 +19,7 @@ public record TachographFileUploadsPostTachographFileUploadRequestBody
     public required TachographFileUploadsPostTachographFileUploadRequestBodyContentType ContentType { get; set; }
 
     /// <summary>
-    /// The size of the file in bytes. Enforced as the Content-Length on upload and validated against the maximum allowed tachograph file size.
+    /// The size of the file in bytes. Enforced as the Content-Length on upload. Maximum 10 MB (10485760 bytes).
     /// </summary>
     [JsonPropertyName("fileSizeBytes")]
     public required long FileSizeBytes { get; set; }

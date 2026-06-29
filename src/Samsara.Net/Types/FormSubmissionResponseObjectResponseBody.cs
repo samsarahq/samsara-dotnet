@@ -42,6 +42,12 @@ public record FormSubmissionResponseObjectResponseBody : IJsonOnDeserialized
     public DateTime? DueAtTime { get; set; }
 
     /// <summary>
+    /// Duration between when the form submission was started on the client and submitted, in milliseconds. Omitted until the form is actually submitted or when the client start timestamp was not recorded.
+    /// </summary>
+    [JsonPropertyName("durationMs")]
+    public long? DurationMs { get; set; }
+
+    /// <summary>
     /// A map of external ids
     /// </summary>
     [JsonPropertyName("externalIds")]

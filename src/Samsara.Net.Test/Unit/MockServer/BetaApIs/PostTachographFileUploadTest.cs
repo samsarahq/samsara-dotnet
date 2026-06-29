@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class PostTachographFileUploadTest : BaseMockServerTest
@@ -39,7 +39,7 @@ public class PostTachographFileUploadTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/tachograph/file-uploads")
+                    .WithPath("/fleet/tachograph/file-uploads")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -51,7 +51,7 @@ public class PostTachographFileUploadTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.PostTachographFileUploadAsync(
+        var response = await Client.BetaApIs.PostTachographFileUploadAsync(
             new TachographFileUploadsPostTachographFileUploadRequestBody
             {
                 ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",

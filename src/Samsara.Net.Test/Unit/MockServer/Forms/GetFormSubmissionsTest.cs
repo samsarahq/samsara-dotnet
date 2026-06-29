@@ -33,6 +33,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                   },
                   "createdAtTime": "2024-01-15T09:30:00.000Z",
                   "dueAtTime": "2024-01-15T09:30:00.000Z",
+                  "durationMs": 1000000,
                   "externalIds": {
                     "externalIds": "externalIds"
                   },
@@ -372,6 +373,7 @@ public class GetFormSubmissionsTest : BaseMockServerTest
                   },
                   "createdAtTime": "2024-01-15T09:30:00.000Z",
                   "dueAtTime": "2024-01-15T09:30:00.000Z",
+                  "durationMs": 1000000,
                   "externalIds": {
                     "externalIds": "externalIds"
                   },

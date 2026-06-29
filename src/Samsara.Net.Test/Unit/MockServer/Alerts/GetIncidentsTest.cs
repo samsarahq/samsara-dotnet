@@ -196,6 +196,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -221,6 +222,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -949,6 +951,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -974,6 +977,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -1712,6 +1716,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -1737,6 +1742,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -2465,6 +2471,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
@@ -2490,6 +2497,7 @@ public class GetIncidentsTest : BaseMockServerTest
                             "assignedAtTime": "2024-01-15T09:30:00.000Z",
                             "createdAtTime": "2024-01-15T09:30:00.000Z",
                             "dueAtTime": "2024-01-15T09:30:00.000Z",
+                            "durationMs": 1000000,
                             "externalIds": {},
                             "fields": [],
                             "formTemplate": {
