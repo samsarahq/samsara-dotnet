@@ -39,6 +39,7 @@ public class PatchFormSubmissionTest : BaseMockServerTest
                 },
                 "createdAtTime": "2019-06-13T19:08:25.000Z",
                 "dueAtTime": "2019-06-13T19:08:25.000Z",
+                "durationMs": 105000,
                 "externalIds": {
                   "key": "value"
                 },

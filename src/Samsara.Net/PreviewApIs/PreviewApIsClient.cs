@@ -115,9 +115,116 @@ public partial class PreviewApIsClient : IPreviewApIsClient
     }
 
     private async Task<
-        WithRawResponse<TachographFileUploadsPostTachographFileUploadResponseBody>
-    > PostTachographFileUploadAsyncCore(
-        TachographFileUploadsPostTachographFileUploadRequestBody request,
+        WithRawResponse<FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody>
+    > GetFleetInstallerPhotoUploadsAsyncCore(
+        GetFleetInstallerPhotoUploadsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("ids", request.Ids)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "preview/fleet/installer/photo-uploads",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>
+    > PostFleetInstallerPhotoUploadAsyncCore(
+        FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
@@ -134,7 +241,7 @@ public partial class PreviewApIsClient : IPreviewApIsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
-                    Path = "preview/fleet/tachograph/file-uploads",
+                    Path = "preview/fleet/installer/photo-uploads",
                     Body = request,
                     Headers = _headers,
                     ContentType = "application/json",
@@ -149,10 +256,114 @@ public partial class PreviewApIsClient : IPreviewApIsClient
             try
             {
                 var responseData =
-                    JsonUtils.Deserialize<TachographFileUploadsPostTachographFileUploadResponseBody>(
+                    JsonUtils.Deserialize<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>(
                         responseBody
                     )!;
-                return new WithRawResponse<TachographFileUploadsPostTachographFileUploadResponseBody>()
+                return new WithRawResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>
+    > PostFleetInstallerPhotoUploadCompleteAsyncCore(
+        PostFleetInstallerPhotoUploadCompleteRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("id", request.Id)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "preview/fleet/installer/photo-uploads/complete",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -248,11 +459,11 @@ public partial class PreviewApIsClient : IPreviewApIsClient
     }
 
     /// <summary>
-    /// Reserve a tachograph file upload and return a presigned URL. Upload the file bytes directly to the URL with the returned headers. The driver or device the file belongs to is resolved from the file contents after upload.
+    /// Returns fleet installer photo upload sessions for the caller's org. Results are ordered by updatedAtTime ascending and paginated (up to 25 per page). Supports filtering by session IDs, startTime, and endTime. Omitting startTime returns all sessions for the org. endTime requires startTime.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Tachograph (EU)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     /// Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
     ///
@@ -264,25 +475,94 @@ public partial class PreviewApIsClient : IPreviewApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.PreviewApIs.PostTachographFileUploadAsync(
-    ///     new TachographFileUploadsPostTachographFileUploadRequestBody
-    ///     {
-    ///         ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
-    ///         ContentType =
-    ///             TachographFileUploadsPostTachographFileUploadRequestBodyContentType.ApplicationOctetStream,
-    ///         FileSizeBytes = 8192,
-    ///         FileType = TachographFileUploadsPostTachographFileUploadRequestBodyFileType.DriverCard,
-    ///     }
+    /// await client.PreviewApIs.GetFleetInstallerPhotoUploadsAsync(
+    ///     new GetFleetInstallerPhotoUploadsRequest()
     /// );
     /// </code></example>
-    public WithRawResponseTask<TachographFileUploadsPostTachographFileUploadResponseBody> PostTachographFileUploadAsync(
-        TachographFileUploadsPostTachographFileUploadRequestBody request,
+    public WithRawResponseTask<FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody> GetFleetInstallerPhotoUploadsAsync(
+        GetFleetInstallerPhotoUploadsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<TachographFileUploadsPostTachographFileUploadResponseBody>(
-            PostTachographFileUploadAsyncCore(request, options, cancellationToken)
+        return new WithRawResponseTask<FleetInstallerPhotoUploadsGetFleetInstallerPhotoUploadsResponseBody>(
+            GetFleetInstallerPhotoUploadsAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    /// Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+    ///
+    /// - Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+    ///
+    /// - When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreviewApIs.PostFleetInstallerPhotoUploadAsync(
+    ///     new FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
+    ///     {
+    ///         ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
+    ///         DeviceId = "281474977961335",
+    ///         FileFormatType =
+    ///             FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType.ImageJpeg,
+    ///         FileName = "front_camera_install.jpg",
+    ///         HardwareType =
+    ///             FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType.VehicleGateway,
+    ///         PhotoType =
+    ///             FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType.InstallPhoto,
+    ///         SizeBytes = 482193,
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody> PostFleetInstallerPhotoUploadAsync(
+        FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody>(
+            PostFleetInstallerPhotoUploadAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    /// Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+    ///
+    /// - Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+    ///
+    /// - When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.PreviewApIs.PostFleetInstallerPhotoUploadCompleteAsync(
+    ///     new PostFleetInstallerPhotoUploadCompleteRequest { Id = "id" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody> PostFleetInstallerPhotoUploadCompleteAsync(
+        PostFleetInstallerPhotoUploadCompleteRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody>(
+            PostFleetInstallerPhotoUploadCompleteAsyncCore(request, options, cancellationToken)
         );
     }
 

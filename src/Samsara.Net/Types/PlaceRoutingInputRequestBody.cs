@@ -15,10 +15,22 @@ public record PlaceRoutingInputRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Default instructions for drivers at this stop.
+    /// </summary>
+    [JsonPropertyName("driverInstructions")]
+    public string? DriverInstructions { get; set; }
+
+    /// <summary>
     /// Planner hub UUID for this row.
     /// </summary>
     [JsonPropertyName("hubId")]
     public required string HubId { get; set; }
+
+    /// <summary>
+    /// Hub-facing notes for this routing row.
+    /// </summary>
+    [JsonPropertyName("hubNotes")]
+    public string? HubNotes { get; set; }
 
     /// <summary>
     /// Whether this routing row is a depot.
@@ -28,12 +40,6 @@ public record PlaceRoutingInputRequestBody : IJsonOnDeserialized
 
     [JsonPropertyName("orderServiceTime")]
     public PlaceRoutingOrderServiceTimeInputRequestBody? OrderServiceTime { get; set; }
-
-    /// <summary>
-    /// Planner-facing notes for this routing row.
-    /// </summary>
-    [JsonPropertyName("plannerNotes")]
-    public string? PlannerNotes { get; set; }
 
     /// <summary>
     /// Stop position preference: unknown, unspecified, any, first, or last.
@@ -67,12 +73,6 @@ public record PlaceRoutingInputRequestBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("serviceWindows")]
     public IEnumerable<PlaceRoutingServiceWindowInputRequestBody>? ServiceWindows { get; set; }
-
-    /// <summary>
-    /// Default instructions for drivers at this stop.
-    /// </summary>
-    [JsonPropertyName("standardDriverInstructions")]
-    public string? StandardDriverInstructions { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

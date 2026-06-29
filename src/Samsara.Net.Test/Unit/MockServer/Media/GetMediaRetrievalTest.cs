@@ -16,6 +16,7 @@ public class GetMediaRetrievalTest : BaseMockServerTest
               "data": {
                 "media": [
                   {
+                    "auxcamSerial": "CSS6-23A-HJF",
                     "availableAtTime": "2019-11-11T14:00:12-04:00",
                     "endTime": "2019-06-13T19:08:25Z",
                     "input": "dashcamDriverFacing",
