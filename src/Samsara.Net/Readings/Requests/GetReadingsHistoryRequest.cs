@@ -292,6 +292,12 @@ public record GetReadingsHistoryRequest
     public required string EntityType { get; set; }
 
     /// <summary>
+    /// A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
+    /// </summary>
+    [JsonIgnore]
+    public string? AssetTypes { get; set; }
+
+    /// <summary>
     /// A filter on the data based on this comma-separated list of external IDs. (Examples: samsara.serial:ZPXKLMN7VJ, samsara.serial:ABXKIMN4NM)
     /// </summary>
     [JsonIgnore]

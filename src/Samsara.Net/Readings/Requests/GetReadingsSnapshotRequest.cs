@@ -304,6 +304,12 @@ public record GetReadingsSnapshotRequest
     public required string EntityType { get; set; }
 
     /// <summary>
+    /// A filter on asset readings based on this comma-separated list of asset types. Only supported when entityType is asset. Valid values are: uncategorized, trailer, equipment, unpowered, vehicle.
+    /// </summary>
+    [JsonIgnore]
+    public string? AssetTypes { get; set; }
+
+    /// <summary>
     /// Optional boolean indicating whether to return external IDs on supported entities
     /// </summary>
     [JsonIgnore]
