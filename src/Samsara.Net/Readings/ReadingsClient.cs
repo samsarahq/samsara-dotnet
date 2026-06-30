@@ -127,11 +127,12 @@ public partial class ReadingsClient : IReadingsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 9)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 10)
             .Add("after", request.After)
             .Add("readingId", request.ReadingId)
             .Add("entityIds", request.EntityIds)
             .Add("entityType", request.EntityType)
+            .Add("assetTypes", request.AssetTypes)
             .Add("externalIds", request.ExternalIds)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
@@ -238,13 +239,14 @@ public partial class ReadingsClient : IReadingsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
             .Add("after", request.After)
             .Add("readingIds", request.ReadingIds)
             .Add("entityIds", request.EntityIds)
             .Add("externalIds", request.ExternalIds)
             .Add("asOfTime", request.AsOfTime)
             .Add("entityType", request.EntityType)
+            .Add("assetTypes", request.AssetTypes)
             .Add("includeExternalIds", request.IncludeExternalIds)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
