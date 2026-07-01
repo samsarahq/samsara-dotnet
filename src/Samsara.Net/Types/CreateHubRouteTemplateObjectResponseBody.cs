@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// A route template for a hub.
+/// A newly created route template.
 /// </summary>
 [Serializable]
-public record HubRouteTemplateObjectResponseBody : IJsonOnDeserialized
+public record CreateHubRouteTemplateObjectResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -49,12 +49,6 @@ public record HubRouteTemplateObjectResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("hubId")]
     public required string HubId { get; set; }
-
-    /// <summary>
-    /// The IANA timezone of the hub (e.g. 'America/Los_Angeles').
-    /// </summary>
-    [JsonPropertyName("hubTimezone")]
-    public required string HubTimezone { get; set; }
 
     /// <summary>
     /// The unique identifier for the route template.

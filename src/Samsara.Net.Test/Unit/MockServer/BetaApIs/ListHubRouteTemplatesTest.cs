@@ -32,9 +32,9 @@ public class ListHubRouteTemplatesTest : BaseMockServerTest
                     "longitude": -118.2437,
                     "name": "Main Warehouse"
                   },
+                  "defaultStartTimeOfDay": "08:00",
                   "distanceMeters": 15000,
                   "durationSeconds": 3600,
-                  "earliestStartTime": "08:00",
                   "hubId": "550e8400-e29b-41d4-a716-446655440000",
                   "hubTimezone": "America/Los_Angeles",
                   "id": "660e8400-e29b-41d4-a716-446655440001",
@@ -42,7 +42,6 @@ public class ListHubRouteTemplatesTest : BaseMockServerTest
                     {
                       "externalId": "LOC-123",
                       "formattedAddress": "456 Main St, Los Angeles, CA 90210, US",
-                      "id": "850e8400-e29b-41d4-a716-446655440003",
                       "latitude": 34.0522,
                       "longitude": -118.2437,
                       "name": "Customer ABC Warehouse",
