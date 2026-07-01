@@ -27,12 +27,6 @@ public record HubRouteTemplateLocationObjectResponseBody : IJsonOnDeserialized
     public required string FormattedAddress { get; set; }
 
     /// <summary>
-    /// The unique identifier for the location.
-    /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
-
-    /// <summary>
     /// Latitude coordinate of the location.
     /// </summary>
     [JsonPropertyName("latitude")]

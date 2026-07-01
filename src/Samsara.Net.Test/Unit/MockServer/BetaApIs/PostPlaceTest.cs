@@ -64,10 +64,10 @@ public class PostPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Eligendi in.",
-                  "Odit voluptatem sequi maiores.",
-                  "Sunt laborum voluptas quis quasi debitis dignissimos.",
-                  "Eum quae."
+                  "Voluptatem sequi maiores quidem sunt laborum voluptas.",
+                  "Quasi debitis dignissimos quibusdam.",
+                  "Quae aspernatur beatae cum sint cum corrupti.",
+                  "Iusto aut molestias alias dolores doloribus."
                 ],
                 "routing": [
                   {
@@ -112,7 +112,8 @@ public class PostPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Iste distinctio aspernatur.",
+                  "Rerum atque et corrupti.",
+                  "Distinctio aspernatur.",
                   "Dolorum omnis qui consequatur odio."
                 ],
                 "streetView": {
