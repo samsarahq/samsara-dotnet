@@ -42,10 +42,10 @@ public record PlaceRoutingInputRequestBody : IJsonOnDeserialized
     public PlaceRoutingOrderServiceTimeInputRequestBody? OrderServiceTime { get; set; }
 
     /// <summary>
-    /// Stop position preference: unknown, unspecified, any, first, or last.
+    /// Stop position preference: first or last.  Valid values: `first`, `last`
     /// </summary>
     [JsonPropertyName("position")]
-    public string? Position { get; set; }
+    public PlaceRoutingInputRequestBodyPosition? Position { get; set; }
 
     /// <summary>
     /// Route priority from 1 (lowest) to 5 (highest).

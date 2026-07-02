@@ -23,8 +23,8 @@ public record PlaceRoutingCapacityServiceTimeInputRequestBody : IJsonOnDeseriali
     /// <summary>
     /// Quantity units per service time chunk.
     /// </summary>
-    [JsonPropertyName("quantityUnitPerServiceTime")]
-    public required double QuantityUnitPerServiceTime { get; set; }
+    [JsonPropertyName("quantityPerServiceTime")]
+    public required double QuantityPerServiceTime { get; set; }
 
     /// <summary>
     /// Service time in seconds.
