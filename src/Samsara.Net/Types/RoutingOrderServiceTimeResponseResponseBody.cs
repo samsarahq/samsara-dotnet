@@ -18,6 +18,12 @@ public record RoutingOrderServiceTimeResponseResponseBody : IJsonOnDeserialized
     public RoutingCapacityServiceTimeResponseResponseBody? CapacityServiceTime { get; set; }
 
     /// <summary>
+    /// Fixed order service time in seconds.
+    /// </summary>
+    [JsonPropertyName("fixedServiceTimeSeconds")]
+    public long? FixedServiceTimeSeconds { get; set; }
+
+    /// <summary>
     /// Whether order service time settings apply at this stop.
     /// </summary>
     [JsonPropertyName("isEnabled")]

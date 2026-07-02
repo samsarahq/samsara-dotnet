@@ -78,9 +78,10 @@ public class PostPlaceTest : BaseMockServerTest
                     "orderServiceTime": {
                       "capacityServiceTime": {
                         "capacityId": "550e8400-e29b-41d4-a716-446655440001",
-                        "quantityUnitPerServiceTime": 0.5,
+                        "quantityPerServiceTime": 0.5,
                         "serviceTimeSeconds": 60
                       },
+                      "fixedServiceTimeSeconds": 300,
                       "isEnabled": true,
                       "modeType": "variable"
                     },

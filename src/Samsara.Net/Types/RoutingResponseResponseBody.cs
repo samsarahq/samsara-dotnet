@@ -42,10 +42,10 @@ public record RoutingResponseResponseBody : IJsonOnDeserialized
     public RoutingOrderServiceTimeResponseResponseBody? OrderServiceTime { get; set; }
 
     /// <summary>
-    /// Stop position preference: unknown, unspecified, any, first, or last.
+    /// Stop position preference: first or last.
     /// </summary>
     [JsonPropertyName("position")]
-    public required string Position { get; set; }
+    public string? Position { get; set; }
 
     /// <summary>
     /// Route priority from 1 (lowest) to 5 (highest).

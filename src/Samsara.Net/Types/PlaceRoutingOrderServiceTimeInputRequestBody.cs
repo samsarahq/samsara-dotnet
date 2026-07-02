@@ -18,6 +18,12 @@ public record PlaceRoutingOrderServiceTimeInputRequestBody : IJsonOnDeserialized
     public PlaceRoutingCapacityServiceTimeInputRequestBody? CapacityServiceTime { get; set; }
 
     /// <summary>
+    /// Fixed order service time in seconds. Required when modeType is fixed.
+    /// </summary>
+    [JsonPropertyName("fixedServiceTimeSeconds")]
+    public long? FixedServiceTimeSeconds { get; set; }
+
+    /// <summary>
     /// When true, order service time settings apply at this stop; when false, hub/session defaults apply.
     /// </summary>
     [JsonPropertyName("isEnabled")]
