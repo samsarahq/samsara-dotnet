@@ -557,12 +557,7 @@ public partial class HoursOfServiceClient : IHoursOfServiceClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Set an individual driver’s current duty status to 'On Duty' or 'Off Duty'.
     ///
@@ -622,12 +617,7 @@ public partial class HoursOfServiceClient : IHoursOfServiceClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Get the HOS (hours of service) signin and signout logs for the specified driver. The response includes 4 fields that are now deprecated.
     ///

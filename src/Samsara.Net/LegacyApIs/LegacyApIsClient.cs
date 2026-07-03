@@ -924,12 +924,7 @@ public partial class LegacyApIsClient : ILegacyApIsClient
     }
 
     /// <summary>
-    /// **Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// **Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch harsh event details for a vehicle.
     ///

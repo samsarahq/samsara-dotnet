@@ -86,6 +86,9 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
     public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaPolicyDetector =
         new(Values.HaPolicyDetector);
 
+    public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaProximityWarning =
+        new(Values.HaProximityWarning);
+
     public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaRearCollisionWarning =
         new(Values.HaRearCollisionWarning);
 
@@ -254,6 +257,8 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
         public const string HaPhonePolicy = "haPhonePolicy";
 
         public const string HaPolicyDetector = "haPolicyDetector";
+
+        public const string HaProximityWarning = "haProximityWarning";
 
         public const string HaRearCollisionWarning = "haRearCollisionWarning";
 
