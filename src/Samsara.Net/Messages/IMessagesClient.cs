@@ -5,12 +5,7 @@ namespace Samsara.Net.Messages;
 public partial interface IMessagesClient
 {
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Get all messages.
     ///
@@ -27,12 +22,7 @@ public partial interface IMessagesClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Send a message to a list of driver ids.
     ///

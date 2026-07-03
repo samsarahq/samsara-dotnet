@@ -120,12 +120,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch all cameras.
     ///
@@ -139,12 +134,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch configured programs on the camera.
     ///
@@ -174,12 +164,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch runs.
     ///
@@ -194,12 +179,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch runs by camera.
     ///
@@ -214,12 +194,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch runs by camera and program.
     ///
@@ -234,12 +209,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Get historical data for machine objects. This method returns a set of historical data for all machines.
     ///
@@ -254,12 +224,7 @@ public partial interface IIndustrialClient
     );
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Get machine objects. This method returns a list of the machine objects in the Samsara Cloud and information about them.
     ///

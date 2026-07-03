@@ -818,12 +818,7 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch current locations of all assets.
     ///
@@ -846,12 +841,7 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetches all reefers and reefer-specific stats.
     ///
@@ -876,12 +866,7 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// List historical locations for a given asset.
     ///
@@ -911,12 +896,7 @@ public partial class AssetsClient : IAssetsClient
     }
 
     /// <summary>
-    /// &lt;n class="warning"&gt;
-    /// &lt;nh&gt;
-    /// <i class="fa fa-exclamation-circle"></i>
-    /// This endpoint is still on our legacy API.
-    /// &lt;/nh&gt;
-    /// &lt;/n&gt;
+    /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// Fetch the reefer-specific stats of an asset.
     ///
