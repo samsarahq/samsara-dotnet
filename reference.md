@@ -3759,6 +3759,67 @@ await client.BetaApIs.GetPlaceDeletionsAsync(new GetPlaceDeletionsRequest());
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetPlaceGeocodeAsync</a>(GetPlaceGeocodeRequest { ... }) -> WithRawResponseTask&lt;PlacesGetPlaceGeocodeResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Forward-geocodes a free-form address string. Does not create or update a Place. Returns geocode candidates with cursor pagination.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Places** under the Places category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.GetPlaceGeocodeAsync(new GetPlaceGeocodeRequest { Address = "address" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetPlaceGeocodeRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreferredStationsAsync</a>(ListPreferredStationsRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsListPreferredStationsResponseBody&gt;</code></summary>
 <dl>
 <dd>
