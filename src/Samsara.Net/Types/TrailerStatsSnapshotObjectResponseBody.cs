@@ -17,6 +17,12 @@ public record TrailerStatsSnapshotObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("carrierReeferState")]
     public TrailerStatReeferStateTypeResponseBody? CarrierReeferState { get; set; }
 
+    /// <summary>
+    /// A map of external ids
+    /// </summary>
+    [JsonPropertyName("externalIds")]
+    public Dictionary<string, string>? ExternalIds { get; set; }
+
     [JsonPropertyName("gps")]
     public TrailerStatGpsTypeResponseBody? Gps { get; set; }
 

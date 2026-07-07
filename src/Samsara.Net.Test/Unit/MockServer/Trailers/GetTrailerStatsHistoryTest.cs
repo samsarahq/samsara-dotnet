@@ -22,6 +22,9 @@ public class GetTrailerStatsHistoryTest : BaseMockServerTest
                       "value": "`Off`, `On`"
                     }
                   ],
+                  "externalIds": {
+                    "key": "value"
+                  },
                   "gps": [
                     {
                       "headingDegrees": 392081610554693300,
