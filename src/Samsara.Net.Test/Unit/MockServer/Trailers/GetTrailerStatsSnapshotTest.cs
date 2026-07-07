@@ -20,6 +20,9 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     "time": "2020-01-27T07:06:25Z",
                     "value": "`Off`, `On`"
                   },
+                  "externalIds": {
+                    "key": "value"
+                  },
                   "gps": {
                     "headingDegrees": 5631003136208764000,
                     "latitude": 0.11331136118623318,

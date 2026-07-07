@@ -21,6 +21,12 @@ public record TrailerStatsObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<TrailerStatReeferStateWithDecorationsTypeResponseBody>? CarrierReeferState { get; set; }
 
     /// <summary>
+    /// A map of external ids
+    /// </summary>
+    [JsonPropertyName("externalIds")]
+    public Dictionary<string, string>? ExternalIds { get; set; }
+
+    /// <summary>
     /// A list of GPS points.
     /// </summary>
     [JsonPropertyName("gps")]
