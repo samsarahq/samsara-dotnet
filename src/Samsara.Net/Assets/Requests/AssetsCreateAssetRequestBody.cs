@@ -8,7 +8,7 @@ namespace Samsara.Net.Assets;
 public record AssetsCreateAssetRequestBody
 {
     /// <summary>
-    /// A list of attributes to assign to the asset.
+    /// A list of attributes to assign to the asset. If provided, this replaces the asset's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them.
     /// </summary>
     [JsonPropertyName("attributes")]
     public IEnumerable<GoaAttributeTinyRequestBody>? Attributes { get; set; }
@@ -68,7 +68,7 @@ public record AssetsCreateAssetRequestBody
     public string? SerialNumber { get; set; }
 
     /// <summary>
-    /// An array of IDs of tags to associate with this asset. If your access to the API is scoped by one or more tags, this field is required to pass in.
+    /// An array of IDs of tags to associate with this asset. If provided, this replaces the asset's entire set of tag associations with exactly this list; omit this field to leave existing tag associations unchanged, or pass an empty array to clear them. If your access to the API is scoped by one or more tags, this field is required to pass in.
     /// </summary>
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }

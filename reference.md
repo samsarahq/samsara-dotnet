@@ -5794,8 +5794,6 @@ await client.BetaApIs.PatchSafetyEventsV2BatchAsync(
         {
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
-            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },
     }
 );
@@ -7320,6 +7318,7 @@ await client.Media.PostMediaRetrievalAsync(
         EndTime = "2019-06-13T19:08:55Z",
         Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
         {
+            MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
             MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
