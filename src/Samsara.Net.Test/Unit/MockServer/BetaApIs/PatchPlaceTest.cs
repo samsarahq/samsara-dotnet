@@ -39,9 +39,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Error voluptate.",
-                  "Doloribus velit.",
-                  "Repellat placeat sit."
+                  "Excepturi ratione facilis.",
+                  "Officia autem id natus.",
+                  "Ad est vel voluptatem unde ut tempora."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -59,10 +59,10 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Voluptatem sequi maiores quidem sunt laborum voluptas.",
-                  "Quasi debitis dignissimos quibusdam.",
-                  "Quae aspernatur beatae cum sint cum corrupti.",
-                  "Iusto aut molestias alias dolores doloribus."
+                  "Similique aut totam numquam.",
+                  "Est corrupti cum non.",
+                  "Iste voluptas.",
+                  "Animi commodi optio rem quia reiciendis ex."
                 ],
                 "routing": [
                   {
@@ -96,10 +96,9 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Sed dolorum hic.",
-                          "Itaque assumenda possimus placeat.",
-                          "Excepturi ratione facilis.",
-                          "Officia autem id natus."
+                          "Voluptates ut molestiae a laborum qui possimus.",
+                          "Quae non ut sequi accusantium qui.",
+                          "Rem quisquam veritatis omnis et fugiat vitae."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -108,9 +107,8 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Rerum atque et corrupti.",
-                  "Distinctio aspernatur.",
-                  "Dolorum omnis qui consequatur odio."
+                  "Repellat placeat sit.",
+                  "Hic dolore est consequatur."
                 ],
                 "streetView": {
                   "headingDegrees": 90,
