@@ -14,12 +14,6 @@ public class PostMediaRetrievalTest : BaseMockServerTest
         const string requestJson = """
             {
               "endTime": "2019-06-13T19:08:55Z",
-              "inputs": [
-                "dashcamRoadFacing",
-                "dashcamRoadFacing",
-                "dashcamRoadFacing",
-                "dashcamRoadFacing"
-              ],
               "mediaType": "image",
               "startTime": "2019-06-13T19:08:25Z",
               "vehicleId": "1234"
@@ -55,13 +49,6 @@ public class PostMediaRetrievalTest : BaseMockServerTest
             new MediaRetrievalPostMediaRetrievalRequestBody
             {
                 EndTime = "2019-06-13T19:08:55Z",
-                Inputs = new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>()
-                {
-                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-                    MediaRetrievalPostMediaRetrievalRequestBodyInputsItem.DashcamRoadFacing,
-                },
                 MediaType = MediaRetrievalPostMediaRetrievalRequestBodyMediaType.Image,
                 StartTime = "2019-06-13T19:08:25Z",
                 VehicleId = "1234",

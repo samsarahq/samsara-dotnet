@@ -16,6 +16,14 @@ public class GetPlacesTest : BaseMockServerTest
               "data": [
                 {
                   "address": "123 Main St",
+                  "businessContacts": {
+                    "email": [
+                      "warehouse@example.com"
+                    ],
+                    "phoneNumbers": [
+                      "+14155551234"
+                    ]
+                  },
                   "cameraRecordingModeType": "inherit",
                   "createdAtTime": "2019-06-13T19:08:25.000Z",
                   "geofence": {
@@ -36,9 +44,8 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Excepturi ratione facilis.",
-                    "Officia autem id natus.",
-                    "Ad est vel voluptatem unde ut tempora."
+                    "Doloribus omnis dolor.",
+                    "Quas natus consequatur ad a cum."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -56,10 +63,9 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Similique aut totam numquam.",
-                    "Est corrupti cum non.",
-                    "Iste voluptas.",
-                    "Animi commodi optio rem quia reiciendis ex."
+                    "Minima error voluptate accusamus doloribus velit expedita.",
+                    "Placeat sit distinctio hic.",
+                    "Est consequatur distinctio."
                   ],
                   "routing": [
                     {
@@ -93,9 +99,10 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Voluptates ut molestiae a laborum qui possimus.",
-                            "Quae non ut sequi accusantium qui.",
-                            "Rem quisquam veritatis omnis et fugiat vitae."
+                            "Ut nobis dolorem cupiditate eos.",
+                            "Non voluptatibus placeat qui.",
+                            "Et et ut harum necessitatibus vel voluptas.",
+                            "At dignissimos magni officia."
                           ],
                           "endTime": "17:00:01",
                           "startTime": "09:00:00"
@@ -104,8 +111,9 @@ public class GetPlacesTest : BaseMockServerTest
                     }
                   ],
                   "safetyEventExclusions": [
-                    "Repellat placeat sit.",
-                    "Hic dolore est consequatur."
+                    "Voluptates ut molestiae a laborum qui possimus.",
+                    "Quae non ut sequi accusantium qui.",
+                    "Rem quisquam veritatis omnis et fugiat vitae."
                   ],
                   "streetView": {
                     "headingDegrees": 90,

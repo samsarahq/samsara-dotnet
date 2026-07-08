@@ -7,17 +7,22 @@ namespace Samsara.Net.Media;
 public record MediaRetrievalPostMediaRetrievalRequestBody
 {
     /// <summary>
+    /// Optional list of camera roles to resolve to analog inputs at request time. Requires an AHD4 auxcam device. Can be used alone or combined with inputs.
+    /// </summary>
+    [JsonPropertyName("cameraRoles")]
+    public IEnumerable<MediaRetrievalPostMediaRetrievalRequestBodyCameraRolesItem>? CameraRoles { get; set; }
+
+    /// <summary>
     /// An end time in RFC 3339 format. If endTime is the same as startTime, an image will be captured at startTime. Must be 1 second or more after startTime and no more than the maximum allowed duration per video retrieval type. Please refer to our KB articles for more information. (Examples: 2019-06-13T19:08:55Z, 2019-06-13T19:08:55.455Z, OR 2015-09-15T14:00:42-04:00).
     /// </summary>
     [JsonPropertyName("endTime")]
     public required string EndTime { get; set; }
 
     /// <summary>
-    /// A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. An empty list is invalid.
+    /// A list of desired camera inputs for which to capture media. Only media with valid inputs (e.g. device has that input stream and device was recording at the time) will be uploaded. At least one of inputs or cameraRoles must be provided.
     /// </summary>
     [JsonPropertyName("inputs")]
-    public IEnumerable<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem> Inputs { get; set; } =
-        new List<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>();
+    public IEnumerable<MediaRetrievalPostMediaRetrievalRequestBodyInputsItem>? Inputs { get; set; }
 
     /// <summary>
     /// The desired media type. If a video is requested, endTime must be after startTime. If an image is requested, endTime must be the same as startTime. Must be one of: image, videoHighRes, videoLowRes. Examples: image, videoHighRes, videoLowRes, hyperlapse.  Valid values: `image`, `videoHighRes`, `videoLowRes`, `hyperlapse`

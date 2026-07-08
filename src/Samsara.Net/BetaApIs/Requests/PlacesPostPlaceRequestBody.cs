@@ -13,6 +13,9 @@ public record PlacesPostPlaceRequestBody
     [JsonPropertyName("address")]
     public required string Address { get; set; }
 
+    [JsonPropertyName("businessContacts")]
+    public PostPlaceBusinessContactsInputRequestBody? BusinessContacts { get; set; }
+
     /// <summary>
     /// Camera recording mode: fullRecording, driverPrivacy, completePrivacy, or inherit.  Valid values: `fullRecording`, `driverPrivacy`, `completePrivacy`, `inherit`, `unknown`, `unspecified`
     /// </summary>
