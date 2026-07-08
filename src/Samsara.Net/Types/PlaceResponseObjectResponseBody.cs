@@ -20,6 +20,9 @@ public record PlaceResponseObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public required string Address { get; set; }
 
+    [JsonPropertyName("businessContacts")]
+    public PlaceBusinessContactsResponseResponseBody? BusinessContacts { get; set; }
+
     /// <summary>
     /// Camera recording mode: inherit, fullRecording, driverPrivacy, completePrivacy, or unknown.
     /// </summary>
