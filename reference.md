@@ -6624,6 +6624,74 @@ await client.Assets.V1GetAssetsReefersAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">GetAssetReeferAsync</a>(GetAssetReeferRequest { ... }) -> WithRawResponseTask&lt;AssetsGetAssetReeferResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Fetch the reefer-specific stats of an asset.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Assets.GetAssetReeferAsync(
+    new GetAssetReeferRequest
+    {
+        AssetId = 1000000,
+        StartMs = 1000000,
+        EndMs = 1000000,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetAssetReeferRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Assets.<a href="/src/Samsara.Net/Assets/AssetsClient.cs">V1GetAssetLocationAsync</a>(V1GetAssetLocationRequest { ... }) -> WithRawResponseTask&lt;IEnumerable&lt;V1AssetLocationResponseItem&gt;&gt;</code></summary>
 <dl>
 <dd>
