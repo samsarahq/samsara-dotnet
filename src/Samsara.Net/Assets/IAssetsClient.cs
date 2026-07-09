@@ -100,6 +100,22 @@ public partial interface IAssetsClient
     );
 
     /// <summary>
+    /// Fetch the reefer-specific stats of an asset.
+    ///
+    ///  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Trailers** under the Trailers category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    WithRawResponseTask<AssetsGetAssetReeferResponseBody> GetAssetReeferAsync(
+        GetAssetReeferRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    );
+
+    /// <summary>
     /// &gt; 🚧 This endpoint is still on our legacy API.
     ///
     /// List historical locations for a given asset.
