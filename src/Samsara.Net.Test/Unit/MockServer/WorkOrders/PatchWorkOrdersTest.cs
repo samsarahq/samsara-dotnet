@@ -57,7 +57,9 @@ public class PatchWorkOrdersTest : BaseMockServerTest
                 "maintenanceSite": {
                   "name": "LAX Service Bay 3",
                   "placeExternalIds": {
-                    "Debitis ut voluptas maxime culpa beatae aut.": "Minima quia earum illum."
+                    "Repudiandae est dolores dolorem voluptas.": "Amet cupiditate.",
+                    "Sit harum facilis veritatis impedit.": "Velit debitis corporis.",
+                    "Vel expedita sint magni tenetur necessitatibus.": "Quibusdam aut ab expedita."
                   },
                   "placeId": "123456"
                 },
@@ -107,7 +109,6 @@ public class PatchWorkOrdersTest : BaseMockServerTest
                 "updatedAtTime": "2019-06-13T19:08:25.000Z",
                 "vendorUuid": "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                 "workOrderTemplateIds": [
-                  "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "5523a39f-42ef-4820-83d0-dfe73dbe7853"

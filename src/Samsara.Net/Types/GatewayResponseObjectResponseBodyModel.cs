@@ -45,6 +45,16 @@ public readonly record struct GatewayResponseObjectResponseBodyModel : IStringEn
 
     public static readonly GatewayResponseObjectResponseBodyModel Ag53Eu = new(Values.Ag53Eu);
 
+    public static readonly GatewayResponseObjectResponseBodyModel At11 = new(Values.At11);
+
+    public static readonly GatewayResponseObjectResponseBodyModel At11X = new(Values.At11X);
+
+    public static readonly GatewayResponseObjectResponseBodyModel At12 = new(Values.At12);
+
+    public static readonly GatewayResponseObjectResponseBodyModel At12X = new(Values.At12X);
+
+    public static readonly GatewayResponseObjectResponseBodyModel At13 = new(Values.At13);
+
     public static readonly GatewayResponseObjectResponseBodyModel Ig15 = new(Values.Ig15);
 
     public static readonly GatewayResponseObjectResponseBodyModel Ig21 = new(Values.Ig21);
@@ -179,6 +189,16 @@ public readonly record struct GatewayResponseObjectResponseBodyModel : IStringEn
         public const string Ag53 = "AG53";
 
         public const string Ag53Eu = "AG53EU";
+
+        public const string At11 = "AT11";
+
+        public const string At11X = "AT11X";
+
+        public const string At12 = "AT12";
+
+        public const string At12X = "AT12X";
+
+        public const string At13 = "AT13";
 
         public const string Ig15 = "IG15";
 
