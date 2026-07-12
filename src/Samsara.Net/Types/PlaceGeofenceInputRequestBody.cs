@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Discriminated geofence on write. Exactly one of circle or polygon must be set.
+/// Discriminated geofence on write. Exactly one of circle, polygon, or auto must be set.
 /// </summary>
 [Serializable]
 public record PlaceGeofenceInputRequestBody : IJsonOnDeserialized
@@ -14,6 +14,9 @@ public record PlaceGeofenceInputRequestBody : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("auto")]
+    public PlaceGeofenceAutoInputRequestBody? Auto { get; set; }
+
     [JsonPropertyName("circle")]
     public PlaceGeofenceCircleInputRequestBody? Circle { get; set; }
 
@@ -21,7 +24,7 @@ public record PlaceGeofenceInputRequestBody : IJsonOnDeserialized
     public PlaceGeofencePolygonInputRequestBody? Polygon { get; set; }
 
     /// <summary>
-    /// Geofence type: circle or polygon. When present, must match the populated branch.  Valid values: `circle`, `polygon`
+    /// Geofence type: circle, polygon, or auto (write only). When present, must match the populated branch.  Valid values: `circle`, `polygon`, `auto`
     /// </summary>
     [JsonPropertyName("type")]
     public PlaceGeofenceInputRequestBodyType? Type { get; set; }

@@ -39,9 +39,19 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
 
     public static readonly DeviceResponseResponseBodyModel Ag53Eu = new(Values.Ag53Eu);
 
+    public static readonly DeviceResponseResponseBodyModel Ahd1 = new(Values.Ahd1);
+
+    public static readonly DeviceResponseResponseBodyModel Aim4 = new(Values.Aim4);
+
     public static readonly DeviceResponseResponseBodyModel At11 = new(Values.At11);
 
     public static readonly DeviceResponseResponseBodyModel At11X = new(Values.At11X);
+
+    public static readonly DeviceResponseResponseBodyModel At12 = new(Values.At12);
+
+    public static readonly DeviceResponseResponseBodyModel At12X = new(Values.At12X);
+
+    public static readonly DeviceResponseResponseBodyModel At13 = new(Values.At13);
 
     public static readonly DeviceResponseResponseBodyModel Cm31 = new(Values.Cm31);
 
@@ -50,6 +60,8 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
     public static readonly DeviceResponseResponseBodyModel Cm33 = new(Values.Cm33);
 
     public static readonly DeviceResponseResponseBodyModel Cm34 = new(Values.Cm34);
+
+    public static readonly DeviceResponseResponseBodyModel Lm11 = new(Values.Lm11);
 
     public static readonly DeviceResponseResponseBodyModel Oem = new(Values.Oem);
 
@@ -154,9 +166,19 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
 
         public const string Ag53Eu = "AG53EU";
 
+        public const string Ahd1 = "AHD1";
+
+        public const string Aim4 = "AIM4";
+
         public const string At11 = "AT11";
 
         public const string At11X = "AT11X";
+
+        public const string At12 = "AT12";
+
+        public const string At12X = "AT12X";
+
+        public const string At13 = "AT13";
 
         public const string Cm31 = "CM31";
 
@@ -165,6 +187,8 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
         public const string Cm33 = "CM33";
 
         public const string Cm34 = "CM34";
+
+        public const string Lm11 = "LM11";
 
         public const string Oem = "OEM";
 

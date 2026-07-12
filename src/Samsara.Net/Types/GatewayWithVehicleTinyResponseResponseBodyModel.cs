@@ -65,6 +65,20 @@ public readonly record struct GatewayWithVehicleTinyResponseResponseBodyModel : 
         Values.Ag53Eu
     );
 
+    public static readonly GatewayWithVehicleTinyResponseResponseBodyModel At11 = new(Values.At11);
+
+    public static readonly GatewayWithVehicleTinyResponseResponseBodyModel At11X = new(
+        Values.At11X
+    );
+
+    public static readonly GatewayWithVehicleTinyResponseResponseBodyModel At12 = new(Values.At12);
+
+    public static readonly GatewayWithVehicleTinyResponseResponseBodyModel At12X = new(
+        Values.At12X
+    );
+
+    public static readonly GatewayWithVehicleTinyResponseResponseBodyModel At13 = new(Values.At13);
+
     public static readonly GatewayWithVehicleTinyResponseResponseBodyModel Ig15 = new(Values.Ig15);
 
     public static readonly GatewayWithVehicleTinyResponseResponseBodyModel Ig21 = new(Values.Ig21);
@@ -229,6 +243,16 @@ public readonly record struct GatewayWithVehicleTinyResponseResponseBodyModel : 
         public const string Ag53 = "AG53";
 
         public const string Ag53Eu = "AG53EU";
+
+        public const string At11 = "AT11";
+
+        public const string At11X = "AT11X";
+
+        public const string At12 = "AT12";
+
+        public const string At12X = "AT12X";
+
+        public const string At13 = "AT13";
 
         public const string Ig15 = "IG15";
 

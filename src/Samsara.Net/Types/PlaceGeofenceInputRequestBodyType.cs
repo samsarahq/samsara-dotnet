@@ -11,6 +11,8 @@ public readonly record struct PlaceGeofenceInputRequestBodyType : IStringEnum
 
     public static readonly PlaceGeofenceInputRequestBodyType Polygon = new(Values.Polygon);
 
+    public static readonly PlaceGeofenceInputRequestBodyType Auto = new(Values.Auto);
+
     public PlaceGeofenceInputRequestBodyType(string value)
     {
         Value = value;
@@ -61,5 +63,7 @@ public readonly record struct PlaceGeofenceInputRequestBodyType : IStringEnum
         public const string Circle = "circle";
 
         public const string Polygon = "polygon";
+
+        public const string Auto = "auto";
     }
 }

@@ -1199,7 +1199,7 @@ await client.BetaApIs.GetDetectionsAsync(new GetDetectionsRequest { StartTime = 
 <dl>
 <dd>
 
-Returns all installed cameras (CM3x), vehicle gateways (VGs), and asset gateways (AGs) and their health information within an organization. 
+Returns all installed cameras (CM3x, AIM4, AHD1), vehicle gateways (VGs), asset gateways (AGs), and asset tags (AT11–AT13) and their health information within an organization. 
 
 **Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have Devices API enabled for your organization.
 
@@ -3520,7 +3520,7 @@ await client.BetaApIs.GetPlacesAsync(new GetPlacesRequest());
 <dl>
 <dd>
 
-Creates a place. Supply either a polygon `geofence` (at least three vertices) or `radiusMeters` with `latitude` and `longitude`.
+Creates a place. Supply a polygon `geofence`, a circle `geofence`, or an `auto` geofence that resolves geometry server-side.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -5855,6 +5855,7 @@ await client.BetaApIs.PatchSafetyEventsV2BatchAsync(
     {
         SafetyEventIds = new List<string>()
         {
+            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },

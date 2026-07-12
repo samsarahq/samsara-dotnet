@@ -54,8 +54,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Doloribus omnis dolor.",
-                  "Quas natus consequatur ad a cum."
+                  "Ut harum.",
+                  "Vel voluptas nobis at dignissimos magni officia.",
+                  "Qui et quod dolores nobis."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -73,9 +74,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Minima error voluptate accusamus doloribus velit expedita.",
-                  "Placeat sit distinctio hic.",
-                  "Est consequatur distinctio."
+                  "Quis aut ipsa itaque.",
+                  "Ut molestiae a.",
+                  "Qui possimus officiis quae."
                 ],
                 "routing": [
                   {
@@ -109,10 +110,10 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Ut nobis dolorem cupiditate eos.",
-                          "Non voluptatibus placeat qui.",
-                          "Et et ut harum necessitatibus vel voluptas.",
-                          "At dignissimos magni officia."
+                          "Officiis temporibus minus dolores incidunt.",
+                          "Maiores est saepe earum excepturi.",
+                          "Et nulla.",
+                          "Quos aut qui perspiciatis possimus eos omnis."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -121,9 +122,9 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Voluptates ut molestiae a laborum qui possimus.",
-                  "Quae non ut sequi accusantium qui.",
-                  "Rem quisquam veritatis omnis et fugiat vitae."
+                  "Pariatur vel non aut porro corporis ipsum.",
+                  "Eos doloribus omnis dolor.",
+                  "Quas natus consequatur ad a cum."
                 ],
                 "streetView": {
                   "headingDegrees": 90,
