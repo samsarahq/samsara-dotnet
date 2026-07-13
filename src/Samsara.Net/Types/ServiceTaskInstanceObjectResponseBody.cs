@@ -56,6 +56,12 @@ public record ServiceTaskInstanceObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("status")]
     public required ServiceTaskInstanceObjectResponseBodyStatus Status { get; set; }
 
+    /// <summary>
+    /// Subtasks for the service task.
+    /// </summary>
+    [JsonPropertyName("subtasks")]
+    public IEnumerable<ServiceTaskSubtaskObjectResponseBody>? Subtasks { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

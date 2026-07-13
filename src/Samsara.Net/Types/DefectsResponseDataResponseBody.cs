@@ -33,6 +33,12 @@ public record DefectsResponseDataResponseBody : IJsonOnDeserialized
     public IEnumerable<DefectPhotoResponseResponseBody>? DefectPhotos { get; set; }
 
     /// <summary>
+    /// Driver-designated safety classification for this defect.  Valid values: `safe`, `unsafe`
+    /// </summary>
+    [JsonPropertyName("defectSafetyStatus")]
+    public DefectsResponseDataResponseBodyDefectSafetyStatus? DefectSafetyStatus { get; set; }
+
+    /// <summary>
     /// The unique ID of the defect type.
     /// </summary>
     [JsonPropertyName("defectTypeId")]

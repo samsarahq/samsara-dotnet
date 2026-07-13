@@ -23,6 +23,7 @@ public class StreamDefectsTest : BaseMockServerTest
                       "url": "https://s3.samsara.com/samsara-driver-media-upload/defect-photo-path"
                     }
                   ],
+                  "defectSafetyStatus": "safe",
                   "defectTypeId": "25d6151e-29b5-453e-875a-7c5425332e09",
                   "dvirId": "292371177",
                   "id": "9700544",
