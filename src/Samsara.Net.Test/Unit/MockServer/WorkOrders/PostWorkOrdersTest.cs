@@ -57,7 +57,7 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "maintenanceSite": {
                   "name": "LAX Service Bay 3",
                   "placeExternalIds": {
-                    "Repudiandae est dolores dolorem voluptas.": "Amet cupiditate.",
+                    "Dolorem voluptas.": "Amet cupiditate.",
                     "Sit harum facilis veritatis impedit.": "Velit debitis corporis.",
                     "Vel expedita sint magni tenetur necessitatibus.": "Quibusdam aut ab expedita."
                   },

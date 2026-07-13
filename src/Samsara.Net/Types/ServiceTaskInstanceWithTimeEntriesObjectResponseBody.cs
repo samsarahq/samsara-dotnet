@@ -57,6 +57,12 @@ public record ServiceTaskInstanceWithTimeEntriesObjectResponseBody : IJsonOnDese
     public required ServiceTaskInstanceWithTimeEntriesObjectResponseBodyStatus Status { get; set; }
 
     /// <summary>
+    /// Subtasks for the service task.
+    /// </summary>
+    [JsonPropertyName("subtasks")]
+    public IEnumerable<ServiceTaskSubtaskObjectResponseBody>? Subtasks { get; set; }
+
+    /// <summary>
     /// Technician time entries logged against this service task. Only returned for organizations using Technician Management. Includes both completed entries (clockOutAtTime is set) and entries that are still open (clockOutAtTime is null).
     /// </summary>
     [JsonPropertyName("timeEntries")]
