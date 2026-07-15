@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Circle geometry used when fallbackBehavior.behaviorType is circle.
+/// Circle geometry for circle fallback. When present, behaviorType defaults to circle if omitted.
 /// </summary>
 [Serializable]
 public record PlaceGeofenceAutoFallbackCircleInputRequestBody : IJsonOnDeserialized
