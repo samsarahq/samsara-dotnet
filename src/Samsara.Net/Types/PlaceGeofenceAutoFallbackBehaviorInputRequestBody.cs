@@ -15,7 +15,7 @@ public record PlaceGeofenceAutoFallbackBehaviorInputRequestBody : IJsonOnDeseria
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Fallback action: fail (default) or circle.  Valid values: `fail`, `circle`
+    /// Fallback action: fail (default) or circle. Optional when fallbackBehavior.circle is set; inferred as circle.  Valid values: `fail`, `circle`
     /// </summary>
     [JsonPropertyName("behaviorType")]
     public PlaceGeofenceAutoFallbackBehaviorInputRequestBodyBehaviorType? BehaviorType { get; set; }

@@ -62,7 +62,6 @@ public class ListPlanOrdersTest : BaseMockServerTest
                   "skillsRequired": [
                     "650e8400-e29b-41d4-a716-446655440001",
                     "650e8400-e29b-41d4-a716-446655440001",
-                    "650e8400-e29b-41d4-a716-446655440001",
                     "650e8400-e29b-41d4-a716-446655440001"
                   ],
                   "updatedAtTime": "2024-04-10T11:30:00.000Z"

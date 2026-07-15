@@ -15,16 +15,16 @@ public record PlaceGeofenceCircleInputRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Circle center latitude in decimal degrees.
+    /// Circle center latitude in decimal degrees. Omit on POST to geocode from top-level address.
     /// </summary>
     [JsonPropertyName("latitude")]
-    public required double Latitude { get; set; }
+    public double? Latitude { get; set; }
 
     /// <summary>
-    /// Circle center longitude in decimal degrees.
+    /// Circle center longitude in decimal degrees. Omit on POST to geocode from top-level address.
     /// </summary>
     [JsonPropertyName("longitude")]
-    public required double Longitude { get; set; }
+    public double? Longitude { get; set; }
 
     /// <summary>
     /// Radius in meters; must be positive.

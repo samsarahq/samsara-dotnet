@@ -54,9 +54,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Ut harum.",
-                  "Vel voluptas nobis at dignissimos magni officia.",
-                  "Qui et quod dolores nobis."
+                  "Est vel voluptatem unde ut tempora necessitatibus.",
+                  "Repudiandae corrupti voluptatem dolor.",
+                  "Aut ipsa itaque voluptates."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -74,9 +74,10 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Quis aut ipsa itaque.",
-                  "Ut molestiae a.",
-                  "Qui possimus officiis quae."
+                  "Similique aut totam numquam.",
+                  "Est corrupti cum non.",
+                  "Iste voluptas.",
+                  "Animi commodi optio rem quia reiciendis ex."
                 ],
                 "routing": [
                   {
@@ -110,10 +111,8 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Officiis temporibus minus dolores incidunt.",
-                          "Maiores est saepe earum excepturi.",
-                          "Et nulla.",
-                          "Quos aut qui perspiciatis possimus eos omnis."
+                          "Ut sequi accusantium qui sequi rem quisquam.",
+                          "Omnis et."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -122,9 +121,8 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Pariatur vel non aut porro corporis ipsum.",
-                  "Eos doloribus omnis dolor.",
-                  "Quas natus consequatur ad a cum."
+                  "Repellat placeat sit.",
+                  "Hic dolore est consequatur."
                 ],
                 "streetView": {
                   "headingDegrees": 90,

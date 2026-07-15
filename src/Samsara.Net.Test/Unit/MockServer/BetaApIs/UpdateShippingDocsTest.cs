@@ -27,7 +27,7 @@ public class UpdateShippingDocsTest : BaseMockServerTest
                 "carrierUsDotNumber": 1234,
                 "homeTerminalFormattedAddress": "1990 Alameda Street, San Francisco, CA 94103",
                 "homeTerminalName": "Home Terminal Name",
-                "isCertified": true,
+                "isCertified": false,
                 "isUsShortHaulActive": false,
                 "trailerNames": [
                   "10293",
