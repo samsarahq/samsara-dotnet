@@ -31,7 +31,7 @@ public class GetIftaDetailJobTest : BaseMockServerTest
                     "downloadUrl": "https://s3.download-url.com",
                     "downloadUrlExpirationTime": "2019-06-13T19:00:00Z",
                     "name": "output-001.csv.gz",
-                    "recordCount": 5129972912872035000
+                    "recordCount": 8529160667199005000
                   }
                 ],
                 "jobId": "8cabba84-bef4-4951-8cd2-78ce898fd8e6",

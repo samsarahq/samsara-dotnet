@@ -44,9 +44,9 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Est vel voluptatem unde ut tempora necessitatibus.",
-                    "Repudiandae corrupti voluptatem dolor.",
-                    "Aut ipsa itaque voluptates."
+                    "Dolores architecto velit dolorem.",
+                    "Blanditiis deserunt velit voluptatem atque deserunt.",
+                    "Sed veniam magnam molestiae."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -64,10 +64,10 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Similique aut totam numquam.",
-                    "Est corrupti cum non.",
-                    "Iste voluptas.",
-                    "Animi commodi optio rem quia reiciendis ex."
+                    "Quia eos.",
+                    "In adipisci sunt.",
+                    "Explicabo amet eum exercitationem dignissimos quaerat debitis.",
+                    "Dolorem quo enim voluptas saepe."
                   ],
                   "routing": [
                     {
@@ -101,8 +101,10 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Ut sequi accusantium qui sequi rem quisquam.",
-                            "Omnis et."
+                            "Ut sed.",
+                            "Est quo quidem quae.",
+                            "Ut voluptas et accusantium est labore.",
+                            "Magni sint quia."
                           ],
                           "endTime": "17:00:01",
                           "startTime": "09:00:00"
@@ -111,8 +113,9 @@ public class GetPlacesTest : BaseMockServerTest
                     }
                   ],
                   "safetyEventExclusions": [
-                    "Repellat placeat sit.",
-                    "Hic dolore est consequatur."
+                    "Beatae tenetur nobis ut voluptate et ut.",
+                    "Id rem unde earum quia libero.",
+                    "Dolor suscipit explicabo esse labore."
                   ],
                   "streetView": {
                     "headingDegrees": 90,

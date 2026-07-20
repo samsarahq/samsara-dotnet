@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class GetFleetInstallerPhotoUploadsTest : BaseMockServerTest
@@ -39,7 +39,7 @@ public class GetFleetInstallerPhotoUploadsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/installer/photo-uploads")
+                    .WithPath("/fleet/installer/photo-uploads")
                     .UsingGet()
             )
             .RespondWith(
@@ -49,7 +49,7 @@ public class GetFleetInstallerPhotoUploadsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.GetFleetInstallerPhotoUploadsAsync(
+        var response = await Client.BetaApIs.GetFleetInstallerPhotoUploadsAsync(
             new GetFleetInstallerPhotoUploadsRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
