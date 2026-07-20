@@ -20,6 +20,12 @@ public record FormSubmissionsPatchFormSubmissionRequestBody
     public DateTime? DueAtTime { get; set; }
 
     /// <summary>
+    /// List of field inputs to update in a form submission.
+    /// </summary>
+    [JsonPropertyName("fields")]
+    public IEnumerable<FormSubmissionRequestFieldInputObjectRequestBody>? Fields { get; set; }
+
+    /// <summary>
     /// ID of the form submission.
     /// </summary>
     [JsonPropertyName("id")]
