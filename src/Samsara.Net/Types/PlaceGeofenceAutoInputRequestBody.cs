@@ -30,13 +30,13 @@ public record PlaceGeofenceAutoInputRequestBody : IJsonOnDeserialized
     public bool? IsValidateAddressEnabled { get; set; }
 
     /// <summary>
-    /// Seed latitude in WGS84 decimal degrees. Omit to geocode from top-level address.
+    /// Seed latitude in WGS84 decimal degrees. Supply together with longitude, or omit both to geocode from top-level address.
     /// </summary>
     [JsonPropertyName("latitude")]
     public double? Latitude { get; set; }
 
     /// <summary>
-    /// Seed longitude in WGS84 decimal degrees. Omit to geocode from top-level address.
+    /// Seed longitude in WGS84 decimal degrees. Supply together with latitude, or omit both to geocode from top-level address.
     /// </summary>
     [JsonPropertyName("longitude")]
     public double? Longitude { get; set; }
