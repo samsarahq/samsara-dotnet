@@ -57,9 +57,7 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "maintenanceSite": {
                   "name": "LAX Service Bay 3",
                   "placeExternalIds": {
-                    "In doloribus quia aut aut autem.": "Illo reiciendis repudiandae aut possimus enim.",
-                    "Vel veniam possimus aut est.": "Possimus odio ut.",
-                    "Voluptates consectetur alias voluptates aspernatur.": "Id est."
+                    "Aliquam explicabo illo blanditiis mollitia qui.": "Et non ipsa sit impedit omnis iste."
                   },
                   "placeId": "123456"
                 },
@@ -109,6 +107,8 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "updatedAtTime": "2019-06-13T19:08:25.000Z",
                 "vendorUuid": "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                 "workOrderTemplateIds": [
+                  "5523a39f-42ef-4820-83d0-dfe73dbe7853",
+                  "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "5523a39f-42ef-4820-83d0-dfe73dbe7853"
                 ]

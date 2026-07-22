@@ -62,7 +62,9 @@ public class FetchRoutesTest : BaseMockServerTest
                       "eta": "2006-01-02T08:04:05.000Z",
                       "forms": [
                         {
-                          "id": "41234"
+                          "formTemplateId": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "id": "41234",
+                          "isRequired": true
                         }
                       ],
                       "id": "324231",

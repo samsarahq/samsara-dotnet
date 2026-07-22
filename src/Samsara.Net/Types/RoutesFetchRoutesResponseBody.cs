@@ -15,8 +15,8 @@ public record RoutesFetchRoutesResponseBody : IJsonOnDeserialized
     /// An array containing multiple routes.
     /// </summary>
     [JsonPropertyName("data")]
-    public IEnumerable<BaseRouteResponseObjectResponseBody> Data { get; set; } =
-        new List<BaseRouteResponseObjectResponseBody>();
+    public IEnumerable<BaseRouteWithStopFormsResponseObjectResponseBody> Data { get; set; } =
+        new List<BaseRouteWithStopFormsResponseObjectResponseBody>();
 
     [JsonPropertyName("pagination")]
     public required GoaPaginationResponseResponseBody Pagination { get; set; }

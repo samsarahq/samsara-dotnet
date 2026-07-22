@@ -37,8 +37,8 @@ public class PostGatewayTest : BaseMockServerTest
                   "lastConnected": "2019-06-13T19:08:25Z"
                 },
                 "dataUsageLast30Days": {
-                  "cellularDataUsageBytes": 5396601475416102000,
-                  "hotspotUsageBytes": 6963554094657865000
+                  "cellularDataUsageBytes": 9168409908548378000,
+                  "hotspotUsageBytes": 4543079929184920000
                 },
                 "model": "AG15",
                 "serial": "GFRV-43N-VGX"

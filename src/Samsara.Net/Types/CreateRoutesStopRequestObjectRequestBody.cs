@@ -30,6 +30,12 @@ public record CreateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     public Dictionary<string, string>? ExternalIds { get; set; }
 
     /// <summary>
+    /// Form attachments for the stop.
+    /// </summary>
+    [JsonPropertyName("forms")]
+    public IEnumerable<RouteStopFormRequestObjectRequestBody>? Forms { get; set; }
+
+    /// <summary>
     /// Name of the stop
     /// </summary>
     [JsonPropertyName("name")]

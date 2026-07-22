@@ -175,6 +175,10 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
         Values.ProtectiveEquipment
     );
 
+    public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel ProximityWarning = new(
+        Values.ProximityWarning
+    );
+
     public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel RanRedLight = new(
         Values.RanRedLight
     );
@@ -371,6 +375,8 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
         public const string PolicyViolationMask = "PolicyViolationMask";
 
         public const string ProtectiveEquipment = "ProtectiveEquipment";
+
+        public const string ProximityWarning = "ProximityWarning";
 
         public const string RanRedLight = "RanRedLight";
 

@@ -30,7 +30,13 @@ public record UpdateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     public Dictionary<string, string>? ExternalIds { get; set; }
 
     /// <summary>
-    /// ID of the stop
+    /// Form attachments for the stop.
+    /// </summary>
+    [JsonPropertyName("forms")]
+    public IEnumerable<RouteStopFormRequestObjectRequestBody>? Forms { get; set; }
+
+    /// <summary>
+    /// ID of the stop. This can either be the Samsara-specified ID or an external ID in `key:value` format.
     /// </summary>
     [JsonPropertyName("id")]
     public string? Id { get; set; }

@@ -44,9 +44,8 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Dolores architecto velit dolorem.",
-                    "Blanditiis deserunt velit voluptatem atque deserunt.",
-                    "Sed veniam magnam molestiae."
+                    "Deserunt velit voluptatem atque deserunt voluptas sed.",
+                    "Magnam molestiae necessitatibus maiores dicta maiores."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -64,10 +63,8 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Quia eos.",
-                    "In adipisci sunt.",
-                    "Explicabo amet eum exercitationem dignissimos quaerat debitis.",
-                    "Dolorem quo enim voluptas saepe."
+                    "Dolorem quis autem nostrum voluptas et quasi.",
+                    "Tenetur eveniet aliquid."
                   ],
                   "routing": [
                     {
@@ -101,9 +98,8 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Ut sed.",
-                            "Est quo quidem quae.",
-                            "Ut voluptas et accusantium est labore.",
+                            "Quo quidem.",
+                            "Voluptatibus ut voluptas et accusantium est labore.",
                             "Magni sint quia."
                           ],
                           "endTime": "17:00:01",
@@ -113,9 +109,8 @@ public class GetPlacesTest : BaseMockServerTest
                     }
                   ],
                   "safetyEventExclusions": [
-                    "Beatae tenetur nobis ut voluptate et ut.",
-                    "Id rem unde earum quia libero.",
-                    "Dolor suscipit explicabo esse labore."
+                    "Id dolor suscipit.",
+                    "Esse labore temporibus velit."
                   ],
                   "streetView": {
                     "headingDegrees": 90,
