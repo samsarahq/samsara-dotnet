@@ -181,6 +181,9 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
     public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem ProtectiveEquipment =
         new(Values.ProtectiveEquipment);
 
+    public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem ProximityWarning =
+        new(Values.ProximityWarning);
+
     public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem RanRedLight =
         new(Values.RanRedLight);
 
@@ -418,6 +421,8 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
         public const string PolicyViolationMask = "PolicyViolationMask";
 
         public const string ProtectiveEquipment = "ProtectiveEquipment";
+
+        public const string ProximityWarning = "ProximityWarning";
 
         public const string RanRedLight = "RanRedLight";
 

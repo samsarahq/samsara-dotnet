@@ -22,7 +22,7 @@ public class GetDriverVehicleAssignmentsTest : BaseMockServerTest
                     "name": "Driver Bob"
                   },
                   "endTime": "2019-06-13T19:08:25Z",
-                  "isPassenger": true,
+                  "isPassenger": false,
                   "metadata": {
                     "sourceName": "ExternalSourceName"
                   },

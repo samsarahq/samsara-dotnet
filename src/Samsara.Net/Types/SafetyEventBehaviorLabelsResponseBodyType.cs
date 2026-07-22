@@ -118,6 +118,10 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         Values.ProtectiveEquipment
     );
 
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType ProximityWarning = new(
+        Values.ProximityWarning
+    );
+
     public static readonly SafetyEventBehaviorLabelsResponseBodyType RanRedLight = new(
         Values.RanRedLight
     );
@@ -264,6 +268,8 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         public const string PolicyViolationMask = "PolicyViolationMask";
 
         public const string ProtectiveEquipment = "ProtectiveEquipment";
+
+        public const string ProximityWarning = "ProximityWarning";
 
         public const string RanRedLight = "RanRedLight";
 

@@ -74,6 +74,9 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel PolicyViolationMask =
         new(Values.PolicyViolationMask);
 
+    public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel ProximityWarning =
+        new(Values.ProximityWarning);
+
     public static readonly DetectionLogDetectionObjectResponseBodyTriggerDetectionLabel RanRedLight =
         new(Values.RanRedLight);
 
@@ -208,6 +211,8 @@ public readonly record struct DetectionLogDetectionObjectResponseBodyTriggerDete
         public const string Passenger = "passenger";
 
         public const string PolicyViolationMask = "policyViolationMask";
+
+        public const string ProximityWarning = "proximityWarning";
 
         public const string RanRedLight = "ranRedLight";
 

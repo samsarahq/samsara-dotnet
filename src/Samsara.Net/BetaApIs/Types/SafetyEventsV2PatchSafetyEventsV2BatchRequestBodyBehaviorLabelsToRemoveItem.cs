@@ -148,6 +148,9 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem ProtectiveEquipment =
         new(Values.ProtectiveEquipment);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem ProximityWarning =
+        new(Values.ProximityWarning);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToRemoveItem RanRedLight =
         new(Values.RanRedLight);
 
@@ -340,6 +343,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
         public const string PolicyViolationMask = "PolicyViolationMask";
 
         public const string ProtectiveEquipment = "ProtectiveEquipment";
+
+        public const string ProximityWarning = "ProximityWarning";
 
         public const string RanRedLight = "RanRedLight";
 

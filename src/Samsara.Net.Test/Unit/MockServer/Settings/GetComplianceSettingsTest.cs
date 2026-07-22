@@ -13,13 +13,13 @@ public class GetComplianceSettingsTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "allowUnregulatedVehiclesEnabled": false,
+                "allowUnregulatedVehiclesEnabled": true,
                 "canadaHosEnabled": true,
                 "carrierName": "ABC Trucking",
                 "dotNumber": 12345678,
-                "driverAutoDutyEnabled": true,
+                "driverAutoDutyEnabled": false,
                 "editCertifiedLogsEnabled": true,
-                "forceManualLocationForDutyStatusChangesEnabled": false,
+                "forceManualLocationForDutyStatusChangesEnabled": true,
                 "forceReviewUnassignedHosEnabled": true,
                 "mainOfficeFormattedAddress": "123 Main Street",
                 "persistentDutyStatusEnabled": true

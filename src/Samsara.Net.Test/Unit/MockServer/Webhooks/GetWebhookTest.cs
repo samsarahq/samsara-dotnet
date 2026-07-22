@@ -21,7 +21,6 @@ public class GetWebhookTest : BaseMockServerTest
               ],
               "eventTypes": [
                 "AddressCreated",
-                "AddressCreated",
                 "AddressCreated"
               ],
               "id": "23918",

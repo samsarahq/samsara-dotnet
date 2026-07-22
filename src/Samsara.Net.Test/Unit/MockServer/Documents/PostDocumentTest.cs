@@ -23,13 +23,13 @@ public class PostDocumentTest : BaseMockServerTest
               "data": {
                 "conditionalFieldSections": [
                   {
-                    "conditionalFieldFirstIndex": 9106080664073678000,
-                    "conditionalFieldLastIndex": 8497322976191243000,
-                    "triggeringFieldIndex": 3960240099702426000,
+                    "conditionalFieldFirstIndex": 2529239247727561700,
+                    "conditionalFieldLastIndex": 5262110667266989000,
+                    "triggeringFieldIndex": 1302825110937476600,
                     "triggeringFieldValue": "Optiona 1"
                   }
                 ],
-                "createdAtTime": "1998-06-03T07:37:04.000Z",
+                "createdAtTime": "1997-05-08T01:03:55.000Z",
                 "documentType": {
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "name": "Fleet Truck List"
@@ -69,7 +69,7 @@ public class PostDocumentTest : BaseMockServerTest
                   "name": "Company Warehouse #1"
                 },
                 "state": "submitted",
-                "updatedAtTime": "1995-09-17T19:16:28.000Z",
+                "updatedAtTime": "2001-01-20T14:48:23.000Z",
                 "vehicle": {
                   "externalIds": {
                     "key": "value"
