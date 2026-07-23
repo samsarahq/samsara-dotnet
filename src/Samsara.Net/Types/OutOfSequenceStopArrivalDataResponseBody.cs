@@ -29,6 +29,9 @@ public record OutOfSequenceStopArrivalDataResponseBody : IJsonOnDeserialized
     [JsonPropertyName("expectedStopName")]
     public string? ExpectedStopName { get; set; }
 
+    [JsonPropertyName("route")]
+    public AlertObjectRouteResponseBody? Route { get; set; }
+
     [JsonPropertyName("vehicle")]
     public AlertObjectVehicleResponseBody? Vehicle { get; set; }
 
