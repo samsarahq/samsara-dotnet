@@ -408,6 +408,9 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "expectedStopName": "expectedStopName",
+                          "route": {
+                            "id": "id"
+                          },
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -1163,6 +1166,9 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "expectedStopName": "expectedStopName",
+                          "route": {
+                            "id": "id"
+                          },
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -1928,6 +1934,9 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "expectedStopName": "expectedStopName",
+                          "route": {
+                            "id": "id"
+                          },
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
@@ -2683,6 +2692,9 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           },
                           "expectedStopName": "expectedStopName",
+                          "route": {
+                            "id": "id"
+                          },
                           "vehicle": {
                             "id": "id",
                             "serial": "serial"
