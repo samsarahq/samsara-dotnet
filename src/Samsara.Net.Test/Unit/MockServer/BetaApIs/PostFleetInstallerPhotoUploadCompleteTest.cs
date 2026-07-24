@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class PostFleetInstallerPhotoUploadCompleteTest : BaseMockServerTest
@@ -33,7 +33,7 @@ public class PostFleetInstallerPhotoUploadCompleteTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/installer/photo-uploads/complete")
+                    .WithPath("/fleet/installer/photo-uploads/complete")
                     .WithParam("id", "id")
                     .UsingPost()
             )
@@ -44,7 +44,7 @@ public class PostFleetInstallerPhotoUploadCompleteTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.PostFleetInstallerPhotoUploadCompleteAsync(
+        var response = await Client.BetaApIs.PostFleetInstallerPhotoUploadCompleteAsync(
             new PostFleetInstallerPhotoUploadCompleteRequest { Id = "id" }
         );
         JsonAssert.AreEqual(response, mockResponse);

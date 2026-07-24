@@ -48,7 +48,7 @@ public record EntityListPreventiveMaintenanceSchedulesTypeResponseBody : IJsonOn
     /// IDs of other preventive maintenance schedules linked to this schedule.
     /// </summary>
     [JsonPropertyName("linkedSchedules")]
-    public IEnumerable<EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody>? LinkedSchedules { get; set; }
+    public IEnumerable<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>? LinkedSchedules { get; set; }
 
     /// <summary>
     /// Title of the preventive maintenance schedule.

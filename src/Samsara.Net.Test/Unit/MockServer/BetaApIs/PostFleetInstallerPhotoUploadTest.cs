@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class PostFleetInstallerPhotoUploadTest : BaseMockServerTest
@@ -54,7 +54,7 @@ public class PostFleetInstallerPhotoUploadTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/fleet/installer/photo-uploads")
+                    .WithPath("/fleet/installer/photo-uploads")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -66,7 +66,7 @@ public class PostFleetInstallerPhotoUploadTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.PostFleetInstallerPhotoUploadAsync(
+        var response = await Client.BetaApIs.PostFleetInstallerPhotoUploadAsync(
             new FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
             {
                 ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
