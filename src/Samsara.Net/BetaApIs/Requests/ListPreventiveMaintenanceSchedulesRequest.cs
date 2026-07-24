@@ -10,7 +10,7 @@ public record ListPreventiveMaintenanceSchedulesRequest
     /// A filter on the data based on this comma-separated list of ID values.
     /// </summary>
     [JsonIgnore]
-    public string? IdIn { get; set; }
+    public string? Ids { get; set; }
 
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.

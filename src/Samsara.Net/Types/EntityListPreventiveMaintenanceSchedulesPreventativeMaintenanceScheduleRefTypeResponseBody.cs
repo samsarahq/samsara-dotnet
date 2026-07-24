@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// Reference to a PreventativeMaintenanceSchedule
 /// </summary>
 [Serializable]
-public record EntityPreventativeMaintenanceSchedulePreventativeMaintenanceScheduleRefTypeResponseBody
+public record EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]

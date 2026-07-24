@@ -2563,6 +2563,144 @@ await client.BetaApIs.GetFleetInstallerPhotoUploadsAsync(
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PostFleetInstallerPhotoUploadAsync</a>(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody { ... }) -> WithRawResponseTask&lt;FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.PostFleetInstallerPhotoUploadAsync(
+    new FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
+    {
+        ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
+        DeviceId = "281474977961335",
+        FileFormatType =
+            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType.ImageJpeg,
+        FileName = "front_camera_install.jpg",
+        HardwareType =
+            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType.VehicleGateway,
+        PhotoType =
+            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType.InstallPhoto,
+        SizeBytes = 482193,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PostFleetInstallerPhotoUploadCompleteAsync</a>(PostFleetInstallerPhotoUploadCompleteRequest { ... }) -> WithRawResponseTask&lt;FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.PostFleetInstallerPhotoUploadCompleteAsync(
+    new PostFleetInstallerPhotoUploadCompleteRequest { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PostFleetInstallerPhotoUploadCompleteRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListVendorCategoriesAsync</a>(ListVendorCategoriesRequest { ... }) -> WithRawResponseTask&lt;MaintenanceVendorsListVendorCategoriesResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -18952,156 +19090,6 @@ await client.PreviewApIs.CreateDriverAuthTokenAsync(
 <dd>
 
 **request:** `DriversAuthTokenCreateDriverAuthTokenRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">PostFleetInstallerPhotoUploadAsync</a>(FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody { ... }) -> WithRawResponseTask&lt;FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a fleet installer photo upload session and returns a presigned S3 PUT URL. Upload the file bytes directly to the presigned URL using the headers in uploadContext, then call POST /fleet/installer/photo-uploads/complete to finalize.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreviewApIs.PostFleetInstallerPhotoUploadAsync(
-    new FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody
-    {
-        ContentMd5 = "rL0Y20zC+Fzt72VPzMSk2A==",
-        DeviceId = "281474977961335",
-        FileFormatType =
-            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyFileFormatType.ImageJpeg,
-        FileName = "front_camera_install.jpg",
-        HardwareType =
-            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyHardwareType.VehicleGateway,
-        PhotoType =
-            FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBodyPhotoType.InstallPhoto,
-        SizeBytes = 482193,
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">PostFleetInstallerPhotoUploadCompleteAsync</a>(PostFleetInstallerPhotoUploadCompleteRequest { ... }) -> WithRawResponseTask&lt;FleetInstallerPhotoUploadsPostFleetInstallerPhotoUploadCompleteResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Marks a fleet installer photo upload session as complete after the file bytes have been uploaded to S3. Triggers async processing of the photo. Poll GET /fleet/installer/photo-uploads to observe the final state.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Devices** under the Devices category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreviewApIs.PostFleetInstallerPhotoUploadCompleteAsync(
-    new PostFleetInstallerPhotoUploadCompleteRequest { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `PostFleetInstallerPhotoUploadCompleteRequest` 
     
 </dd>
 </dl>
