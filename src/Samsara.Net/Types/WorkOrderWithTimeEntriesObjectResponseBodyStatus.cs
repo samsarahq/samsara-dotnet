@@ -45,6 +45,10 @@ public readonly record struct WorkOrderWithTimeEntriesObjectResponseBodyStatus :
         Values.PendingParts
     );
 
+    public static readonly WorkOrderWithTimeEntriesObjectResponseBodyStatus Planning = new(
+        Values.Planning
+    );
+
     public WorkOrderWithTimeEntriesObjectResponseBodyStatus(string value)
     {
         Value = value;
@@ -119,5 +123,7 @@ public readonly record struct WorkOrderWithTimeEntriesObjectResponseBodyStatus :
         public const string PendingApproval = "Pending Approval";
 
         public const string PendingParts = "Pending Parts";
+
+        public const string Planning = "Planning";
     }
 }

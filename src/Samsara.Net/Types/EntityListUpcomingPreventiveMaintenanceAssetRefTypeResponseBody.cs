@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// Reference to a Asset
 /// </summary>
 [Serializable]
-public record EntityUpcomingPreventativeMaintenanceAssetRefTypeResponseBody : IJsonOnDeserialized
+public record EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =

@@ -109,9 +109,9 @@ public partial interface ISamsaraClient
     public ITripsClient Trips { get; }
     public IUsersClient Users { get; }
     public ILegacyClient Legacy { get; }
+    public IFleetClient Fleet { get; }
     public IMessagesClient Messages { get; }
     public ITrailerAssignmentsClient TrailerAssignments { get; }
     public ISensorsClient Sensors { get; }
     public IWebhooksClient Webhooks { get; }
-    public IFleetClient Fleet { get; }
 }

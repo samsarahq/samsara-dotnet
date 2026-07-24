@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Reference to a PreventativeMaintenanceSchedule
+/// Service unavailable
 /// </summary>
 [Serializable]
-public record EntityUpcomingPreventativeMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody
+public record FleetLocationsGetFleetLocationsServiceUnavailableErrorResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -16,10 +16,16 @@ public record EntityUpcomingPreventativeMaintenancePreventativeMaintenanceSchedu
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The ID of the referenced PreventativeMaintenanceSchedule.
+    /// Message of error
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    [JsonPropertyName("message")]
+    public required string Message { get; set; }
+
+    /// <summary>
+    /// The request ID; used when reaching out to support for issues with requests.
+    /// </summary>
+    [JsonPropertyName("requestId")]
+    public required string RequestId { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

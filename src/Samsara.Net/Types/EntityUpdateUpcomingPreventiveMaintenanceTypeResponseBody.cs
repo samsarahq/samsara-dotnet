@@ -8,14 +8,14 @@ namespace Samsara.Net;
 /// UpcomingPreventativeMaintenance object
 /// </summary>
 [Serializable]
-public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnDeserialized
+public record EntityUpdateUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("asset")]
-    public EntityListUpcomingPreventiveMaintenanceAssetRefTypeResponseBody? Asset { get; set; }
+    public EntityUpdateUpcomingPreventiveMaintenanceAssetRefTypeResponseBody? Asset { get; set; }
 
     /// <summary>
     /// Current engine hours for the asset at the time of query.
@@ -28,6 +28,12 @@ public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnD
     /// </summary>
     [JsonPropertyName("currentOdometer")]
     public long? CurrentOdometer { get; set; }
+
+    /// <summary>
+    /// Current odometer reading for the asset at the time of query. Measured in miles.
+    /// </summary>
+    [JsonPropertyName("currentOdometerMiles")]
+    public long? CurrentOdometerMiles { get; set; }
 
     /// <summary>
     /// The number of days until the next scheduled service for a date based PM.
@@ -46,6 +52,12 @@ public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnD
     /// </summary>
     [JsonPropertyName("dueInOdometer")]
     public long? DueInOdometer { get; set; }
+
+    /// <summary>
+    /// The odometer distance until the next scheduled service. Measured in miles.
+    /// </summary>
+    [JsonPropertyName("dueInOdometerMiles")]
+    public long? DueInOdometerMiles { get; set; }
 
     /// <summary>
     /// Date and time when the prior instance was resolved.
@@ -78,13 +90,25 @@ public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnD
     public long? NextOdometer { get; set; }
 
     /// <summary>
+    /// The next odometer value that the vehicle is scheduled to be serviced. Measured in miles.
+    /// </summary>
+    [JsonPropertyName("nextOdometerMiles")]
+    public long? NextOdometerMiles { get; set; }
+
+    /// <summary>
     /// The next time that the vehicle is scheduled to be serviced for a date based PM.
     /// </summary>
     [JsonPropertyName("nextTime")]
     public string? NextTime { get; set; }
 
+    /// <summary>
+    /// Estimated number of days until the next scheduled service, calculated by converting mileage and engine hour schedules to approximate daily rates. We take the minimum value for schedules with multiple interval types.
+    /// </summary>
+    [JsonPropertyName("priority")]
+    public long? Priority { get; set; }
+
     [JsonPropertyName("schedule")]
-    public EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody? Schedule { get; set; }
+    public EntityUpdateUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody? Schedule { get; set; }
 
     /// <summary>
     /// Status of the preventive maintenance schedule.
@@ -93,7 +117,7 @@ public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnD
     public string? Status { get; set; }
 
     [JsonPropertyName("workOrder")]
-    public EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody? WorkOrder { get; set; }
+    public EntityUpdateUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody? WorkOrder { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

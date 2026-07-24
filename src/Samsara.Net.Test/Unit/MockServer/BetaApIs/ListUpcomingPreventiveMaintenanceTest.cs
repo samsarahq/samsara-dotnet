@@ -29,7 +29,7 @@ public class ListUpcomingPreventiveMaintenanceTest : BaseMockServerTest
                   "nextEngineHours": 12345,
                   "nextOdometer": 12345,
                   "nextTime": "2019-06-13T19:08:25Z",
-                  "preventativeMaintenanceSchedule": {
+                  "schedule": {
                     "id": "281474976710656"
                   },
                   "status": "12345",
