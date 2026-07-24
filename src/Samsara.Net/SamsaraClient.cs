@@ -73,7 +73,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/13.40.0" },
+                { "User-Agent", "Samsara.Net/13.41.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -145,11 +145,11 @@ public partial class SamsaraClient : ISamsaraClient
         Trips = new TripsClient(_client);
         Users = new UsersClient(_client);
         Legacy = new LegacyClient(_client);
+        Fleet = new FleetClient(_client);
         Messages = new MessagesClient(_client);
         TrailerAssignments = new TrailerAssignmentsClient(_client);
         Sensors = new SensorsClient(_client);
         Webhooks = new WebhooksClient(_client);
-        Fleet = new FleetClient(_client);
     }
 
     public IAddressesClient Addresses { get; }
@@ -256,6 +256,8 @@ public partial class SamsaraClient : ISamsaraClient
 
     public ILegacyClient Legacy { get; }
 
+    public IFleetClient Fleet { get; }
+
     public IMessagesClient Messages { get; }
 
     public ITrailerAssignmentsClient TrailerAssignments { get; }
@@ -263,8 +265,6 @@ public partial class SamsaraClient : ISamsaraClient
     public ISensorsClient Sensors { get; }
 
     public IWebhooksClient Webhooks { get; }
-
-    public IFleetClient Fleet { get; }
 
     private static string GetFromEnvironmentOrThrow(string env, string message)
     {

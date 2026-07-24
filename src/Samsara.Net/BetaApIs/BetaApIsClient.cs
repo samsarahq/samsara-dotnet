@@ -6042,7 +6042,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     )
     {
         var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
-            .Add("preventativeMaintenanceScheduleIds", request.PreventativeMaintenanceScheduleIds)
+            .Add("scheduleIds", request.ScheduleIds)
             .Add("assetIds", request.AssetIds)
             .Add("after", request.After)
             .Add("limit", request.Limit)

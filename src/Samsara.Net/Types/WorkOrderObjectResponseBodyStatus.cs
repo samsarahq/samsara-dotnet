@@ -31,6 +31,8 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
         Values.PendingParts
     );
 
+    public static readonly WorkOrderObjectResponseBodyStatus Planning = new(Values.Planning);
+
     public WorkOrderObjectResponseBodyStatus(string value)
     {
         Value = value;
@@ -97,5 +99,7 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
         public const string PendingApproval = "Pending Approval";
 
         public const string PendingParts = "Pending Parts";
+
+        public const string Planning = "Planning";
     }
 }

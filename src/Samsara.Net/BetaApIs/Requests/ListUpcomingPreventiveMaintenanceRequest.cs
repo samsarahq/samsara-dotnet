@@ -7,10 +7,10 @@ namespace Samsara.Net.BetaApIs;
 public record ListUpcomingPreventiveMaintenanceRequest
 {
     /// <summary>
-    /// A filter on the data based on this comma-separated list of Preventive Maintenance Schedule ID values.
+    /// A filter on the data based on this comma-separated list of Preventive maintenance schedule ID values.
     /// </summary>
     [JsonIgnore]
-    public string? PreventativeMaintenanceScheduleIds { get; set; }
+    public string? ScheduleIds { get; set; }
 
     /// <summary>
     /// A filter on the data based on this comma-separated list of Asset ID values.

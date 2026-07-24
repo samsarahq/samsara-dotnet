@@ -41,6 +41,10 @@ public readonly record struct WorkOrdersPatchWorkOrdersRequestBodyStatus : IStri
         Values.PendingParts
     );
 
+    public static readonly WorkOrdersPatchWorkOrdersRequestBodyStatus Planning = new(
+        Values.Planning
+    );
+
     public WorkOrdersPatchWorkOrdersRequestBodyStatus(string value)
     {
         Value = value;
@@ -113,5 +117,7 @@ public readonly record struct WorkOrdersPatchWorkOrdersRequestBodyStatus : IStri
         public const string PendingApproval = "Pending Approval";
 
         public const string PendingParts = "Pending Parts";
+
+        public const string Planning = "Planning";
     }
 }

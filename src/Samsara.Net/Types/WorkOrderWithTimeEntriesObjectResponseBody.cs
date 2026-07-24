@@ -135,7 +135,7 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<ServiceTaskInstanceWithTimeEntriesObjectResponseBody>? ServiceTaskInstances { get; set; }
 
     /// <summary>
-    /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`
+    /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]
     public required WorkOrderWithTimeEntriesObjectResponseBodyStatus Status { get; set; }

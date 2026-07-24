@@ -41,6 +41,10 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         Values.PendingParts
     );
 
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem Planning = new(
+        Values.Planning
+    );
+
     public StreamWorkOrdersRequestWorkOrderStatusesItem(string value)
     {
         Value = value;
@@ -113,5 +117,7 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         public const string PendingApproval = "Pending Approval";
 
         public const string PendingParts = "Pending Parts";
+
+        public const string Planning = "Planning";
     }
 }
