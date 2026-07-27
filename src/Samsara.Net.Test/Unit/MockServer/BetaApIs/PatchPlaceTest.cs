@@ -54,8 +54,8 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Deserunt velit voluptatem atque deserunt voluptas sed.",
-                  "Magnam molestiae necessitatibus maiores dicta maiores."
+                  "Eum quam sunt sit doloribus in deserunt.",
+                  "Laudantium temporibus enim quia fugiat praesentium in."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -73,8 +73,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Dolorem quis autem nostrum voluptas et quasi.",
-                  "Tenetur eveniet aliquid."
+                  "Voluptatem atque deserunt.",
+                  "Sed veniam magnam molestiae.",
+                  "Maiores dicta maiores assumenda."
                 ],
                 "routing": [
                   {
@@ -108,9 +109,8 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Quo quidem.",
-                          "Voluptatibus ut voluptas et accusantium est labore.",
-                          "Magni sint quia."
+                          "Ut debitis distinctio sed.",
+                          "Hic tempore amet nostrum alias."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -119,8 +119,10 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Id dolor suscipit.",
-                  "Esse labore temporibus velit."
+                  "Repudiandae et laborum commodi possimus.",
+                  "Consequatur eos voluptatibus.",
+                  "Harum rerum ut doloribus voluptatum quaerat.",
+                  "Voluptatem reiciendis consectetur praesentium."
                 ],
                 "streetView": {
                   "headingDegrees": 90,
