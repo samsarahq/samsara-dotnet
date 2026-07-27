@@ -4883,6 +4883,74 @@ await client.BetaApIs.UpdatePartInventoryLocationAsync(
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateStockMovementAsync</a>(CreateStockMovementActionServiceCreateStockMovementRequestBody { ... }) -> WithRawResponseTask&lt;CreateStockMovementActionServiceCreateStockMovementResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.CreateStockMovementAsync(
+    new CreateStockMovementActionServiceCreateStockMovementRequestBody
+    {
+        MovementType = "12345",
+        PartSamsaraId = "12345",
+        Quantity = 123.45,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateStockMovementActionServiceCreateStockMovementRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreventiveMaintenanceSchedulesAsync</a>(ListPreventiveMaintenanceSchedulesRequest { ... }) -> WithRawResponseTask&lt;EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody&gt;</code></summary>
 <dl>
 <dd>
