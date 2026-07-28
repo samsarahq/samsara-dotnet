@@ -5395,6 +5395,107 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
+        WithRawResponse<EntityWatchpointsServiceCreateWatchpointResponseBody>
+    > CreateWatchpointAsyncCore(
+        EntityWatchpointsServiceCreateWatchpointRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "ground-intelligence/watchpoints",
+                    Body = request,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityWatchpointsServiceCreateWatchpointResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityWatchpointsServiceCreateWatchpointResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
         WithRawResponse<HosDailyLogsUpdateShippingDocsResponseBody>
     > UpdateShippingDocsAsyncCore(
         HosDailyLogsUpdateShippingDocsRequestBody request,
@@ -10238,7 +10339,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///             new UpdateEngineImmobilizerRelayStateRequestBodyRequestBody
     ///             {
     ///                 Id = UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-    ///                 IsOpen = true,
+    ///                 IsOpen = false,
     ///             },
     ///         },
     ///     }
@@ -11921,6 +12022,42 @@ public partial class BetaApIsClient : IBetaApIsClient
     {
         return new WithRawResponseTask<GatewaysPairGatewaysResponseBody>(
             PairGatewaysAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Creates a Ground Intelligence watchpoint for the organization.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Watchpoints** under the Ground Intelligence category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.CreateWatchpointAsync(
+    ///     new EntityWatchpointsServiceCreateWatchpointRequestBody
+    ///     {
+    ///         Location = new WatchpointLatLngTypeRequestBody
+    ///         {
+    ///             Latitude = 37.7749,
+    ///             Longitude = -122.4194,
+    ///         },
+    ///         Mode = EntityWatchpointsServiceCreateWatchpointRequestBodyMode.JustOnce,
+    ///         ObservationType =
+    ///             EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType.RoadDefect,
+    ///     }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EntityWatchpointsServiceCreateWatchpointResponseBody> CreateWatchpointAsync(
+        EntityWatchpointsServiceCreateWatchpointRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityWatchpointsServiceCreateWatchpointResponseBody>(
+            CreateWatchpointAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -14154,7 +14291,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///     {
     ///         SafetyEventIds = new List&lt;string&gt;()
     ///         {
-    ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",

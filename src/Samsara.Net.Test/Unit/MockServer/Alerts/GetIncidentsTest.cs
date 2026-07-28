@@ -445,6 +445,25 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           }
                         },
+                        "preventiveMaintenanceScheduleDue": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "dueReasons": [
+                            "date",
+                            "date"
+                          ],
+                          "scheduleDescription": "scheduleDescription",
+                          "scheduleId": "scheduleId",
+                          "scheduleTitle": "scheduleTitle",
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "reading": {
                           "asset": {
                             "id": "id",
@@ -1201,6 +1220,25 @@ public class GetIncidentsTest : BaseMockServerTest
                         "personDetected": {
                           "cameraStream": {
                             "id": "id"
+                          }
+                        },
+                        "preventiveMaintenanceScheduleDue": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "dueReasons": [
+                            "date",
+                            "date"
+                          ],
+                          "scheduleDescription": "scheduleDescription",
+                          "scheduleId": "scheduleId",
+                          "scheduleTitle": "scheduleTitle",
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
                           }
                         },
                         "reading": {
@@ -1971,6 +2009,25 @@ public class GetIncidentsTest : BaseMockServerTest
                             "id": "id"
                           }
                         },
+                        "preventiveMaintenanceScheduleDue": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "dueReasons": [
+                            "date",
+                            "date"
+                          ],
+                          "scheduleDescription": "scheduleDescription",
+                          "scheduleId": "scheduleId",
+                          "scheduleTitle": "scheduleTitle",
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "reading": {
                           "asset": {
                             "id": "id",
@@ -2727,6 +2784,25 @@ public class GetIncidentsTest : BaseMockServerTest
                         "personDetected": {
                           "cameraStream": {
                             "id": "id"
+                          }
+                        },
+                        "preventiveMaintenanceScheduleDue": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "dueReasons": [
+                            "date",
+                            "date"
+                          ],
+                          "scheduleDescription": "scheduleDescription",
+                          "scheduleId": "scheduleId",
+                          "scheduleTitle": "scheduleTitle",
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
                           }
                         },
                         "reading": {

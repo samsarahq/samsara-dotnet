@@ -28,8 +28,8 @@ public class GetGatewaysTest : BaseMockServerTest
                     "lastConnected": "2019-06-13T19:08:25Z"
                   },
                   "dataUsageLast30Days": {
-                    "cellularDataUsageBytes": 9168409908548378000,
-                    "hotspotUsageBytes": 4543079929184920000
+                    "cellularDataUsageBytes": 8966766145435889000,
+                    "hotspotUsageBytes": 6933367980144720000
                   },
                   "model": "AG15",
                   "serial": "GFRV-43N-VGX"

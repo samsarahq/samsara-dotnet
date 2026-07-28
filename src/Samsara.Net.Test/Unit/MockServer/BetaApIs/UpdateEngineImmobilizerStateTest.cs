@@ -16,7 +16,7 @@ public class UpdateEngineImmobilizerStateTest : BaseMockServerTest
               "relayStates": [
                 {
                   "id": "relay1",
-                  "isOpen": true
+                  "isOpen": false
                 }
               ]
             }
@@ -45,7 +45,7 @@ public class UpdateEngineImmobilizerStateTest : BaseMockServerTest
                             {
                                 Id =
                                     UpdateEngineImmobilizerRelayStateRequestBodyRequestBodyId.Relay1,
-                                IsOpen = true,
+                                IsOpen = false,
                             },
                         },
                 }

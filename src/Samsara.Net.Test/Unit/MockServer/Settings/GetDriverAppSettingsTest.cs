@@ -14,16 +14,16 @@ public class GetDriverAppSettingsTest : BaseMockServerTest
             {
               "data": {
                 "driverFleetId": "abc_trucking_co",
-                "gamification": false,
+                "gamification": true,
                 "gamificationConfig": {
                   "anonymizeDriverNames": false
                 },
-                "orgVehicleSearch": false,
-                "trailerSelection": true,
+                "orgVehicleSearch": true,
+                "trailerSelection": false,
                 "trailerSelectionConfig": {
                   "driverTrailerCreationEnabled": false,
                   "maxNumOfTrailersSelected": 1000000,
-                  "orgTrailerSearch": true
+                  "orgTrailerSearch": false
                 }
               }
             }
