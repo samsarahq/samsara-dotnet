@@ -54,10 +54,10 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Ut voluptas et accusantium est labore.",
-                  "Magni sint quia.",
-                  "Nihil sequi enim rem exercitationem.",
-                  "Quaerat earum repudiandae et laborum commodi possimus."
+                  "Commodi fuga quis dolores architecto velit dolorem.",
+                  "Blanditiis deserunt velit voluptatem atque deserunt.",
+                  "Sed veniam magnam molestiae.",
+                  "Maiores dicta maiores assumenda."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -75,8 +75,9 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Voluptas et.",
-                  "Quo tenetur eveniet aliquid dolor nesciunt qui."
+                  "Et quasi quo tenetur eveniet.",
+                  "Dolor nesciunt.",
+                  "Dolorem quibusdam est."
                 ],
                 "routing": [
                   {
@@ -110,8 +111,10 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Rerum ut doloribus voluptatum quaerat nobis.",
-                          "Reiciendis consectetur praesentium cumque."
+                          "Ut voluptas et accusantium est labore.",
+                          "Magni sint quia.",
+                          "Nihil sequi enim rem exercitationem.",
+                          "Quaerat earum repudiandae et laborum commodi possimus."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -120,10 +123,8 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Beatae ad autem.",
-                  "Nam ut eum.",
-                  "Quis commodi fuga.",
-                  "Dolores architecto velit dolorem."
+                  "Ut voluptate et ut voluptas id rem.",
+                  "Earum quia libero."
                 ],
                 "streetView": {
                   "headingDegrees": 90,
