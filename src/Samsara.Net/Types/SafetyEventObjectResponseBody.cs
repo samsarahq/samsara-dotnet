@@ -35,6 +35,12 @@ public record SafetyEventObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("time")]
     public string? Time { get; set; }
 
+    /// <summary>
+    /// The unique Samsara ID (uuid) of the safety event.
+    /// </summary>
+    [JsonPropertyName("uuid")]
+    public string? Uuid { get; set; }
+
     [JsonPropertyName("vehicle")]
     public SafetyEventVehicleObjectResponseBody? Vehicle { get; set; }
 

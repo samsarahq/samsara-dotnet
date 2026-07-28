@@ -12,7 +12,7 @@ public record HubRouteTemplatesCreateHubRouteTemplateResponseBody : IJsonOnDeser
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("data")]
-    public required CreateHubRouteTemplateObjectResponseBody Data { get; set; }
+    public required HubRouteTemplateObjectResponseBody Data { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
