@@ -18,16 +18,16 @@ public class PatchComplianceSettingsTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
-                "allowUnregulatedVehiclesEnabled": true,
+                "allowUnregulatedVehiclesEnabled": false,
                 "canadaHosEnabled": true,
                 "carrierName": "ABC Trucking",
                 "dotNumber": 12345678,
                 "driverAutoDutyEnabled": false,
-                "editCertifiedLogsEnabled": true,
+                "editCertifiedLogsEnabled": false,
                 "forceManualLocationForDutyStatusChangesEnabled": true,
                 "forceReviewUnassignedHosEnabled": true,
                 "mainOfficeFormattedAddress": "123 Main Street",
-                "persistentDutyStatusEnabled": true
+                "persistentDutyStatusEnabled": false
               }
             }
             """;

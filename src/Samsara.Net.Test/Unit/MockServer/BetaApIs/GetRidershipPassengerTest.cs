@@ -32,12 +32,14 @@ public class GetRidershipPassengerTest : BaseMockServerTest
                 "isActive": true,
                 "lastName": "Doe",
                 "specialInstructions": {
-                  "isGuardianRequired": true,
-                  "isSpecialEducation": false
+                  "isGuardianRequired": false,
+                  "isSpecialEducation": true
                 },
                 "tagIds": [
-                  "Officiis inventore est nemo molestias aut.",
-                  "Beatae libero laborum iure sit est."
+                  "Recusandae temporibus eveniet nostrum autem.",
+                  "A harum temporibus aliquid eum exercitationem.",
+                  "Amet laborum odit.",
+                  "Ullam totam esse dolorum quis numquam."
                 ],
                 "updatedAtTime": "2024-11-15T10:30:00Z"
               }

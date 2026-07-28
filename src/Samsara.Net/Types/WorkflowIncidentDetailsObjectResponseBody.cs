@@ -140,6 +140,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("personDetected")]
     public PersonDetectedResponseBody? PersonDetected { get; set; }
 
+    [JsonPropertyName("preventiveMaintenanceScheduleDue")]
+    public PreventiveMaintenanceScheduleDueDataResponseBody? PreventiveMaintenanceScheduleDue { get; set; }
+
     [JsonPropertyName("reading")]
     public ReadingTriggerDetailsResponseBody? Reading { get; set; }
 
