@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 [Serializable]
-public record CreateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
+public record CreateRouteStopWithOrdersRequestObjectRequestBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -58,6 +58,12 @@ public record CreateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("ontimeWindowBeforeArrivalMs")]
     public long? OntimeWindowBeforeArrivalMs { get; set; }
+
+    /// <summary>
+    /// Orders to upsert and attach to this stop.
+    /// </summary>
+    [JsonPropertyName("orders")]
+    public IEnumerable<RouteStopOrderUpsertInputRequestBody>? Orders { get; set; }
 
     /// <summary>
     /// This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.

@@ -3,35 +3,35 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
-[JsonConverter(typeof(StringEnumSerializer<RoutesStopWithFormsResponseObjectResponseBodyState>))]
+[JsonConverter(typeof(StringEnumSerializer<RouteStopWithOrdersResponseObjectResponseBodyState>))]
 [Serializable]
-public readonly record struct RoutesStopWithFormsResponseObjectResponseBodyState : IStringEnum
+public readonly record struct RouteStopWithOrdersResponseObjectResponseBodyState : IStringEnum
 {
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState Unassigned = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState Unassigned = new(
         Values.Unassigned
     );
 
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState Scheduled = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState Scheduled = new(
         Values.Scheduled
     );
 
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState EnRoute = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState EnRoute = new(
         Values.EnRoute
     );
 
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState Skipped = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState Skipped = new(
         Values.Skipped
     );
 
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState Arrived = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState Arrived = new(
         Values.Arrived
     );
 
-    public static readonly RoutesStopWithFormsResponseObjectResponseBodyState Departed = new(
+    public static readonly RouteStopWithOrdersResponseObjectResponseBodyState Departed = new(
         Values.Departed
     );
 
-    public RoutesStopWithFormsResponseObjectResponseBodyState(string value)
+    public RouteStopWithOrdersResponseObjectResponseBodyState(string value)
     {
         Value = value;
     }
@@ -44,9 +44,9 @@ public readonly record struct RoutesStopWithFormsResponseObjectResponseBodyState
     /// <summary>
     /// Create a string enum with the given value.
     /// </summary>
-    public static RoutesStopWithFormsResponseObjectResponseBodyState FromCustom(string value)
+    public static RouteStopWithOrdersResponseObjectResponseBodyState FromCustom(string value)
     {
-        return new RoutesStopWithFormsResponseObjectResponseBodyState(value);
+        return new RouteStopWithOrdersResponseObjectResponseBodyState(value);
     }
 
     public bool Equals(string? other)
@@ -63,20 +63,20 @@ public readonly record struct RoutesStopWithFormsResponseObjectResponseBodyState
     }
 
     public static bool operator ==(
-        RoutesStopWithFormsResponseObjectResponseBodyState value1,
+        RouteStopWithOrdersResponseObjectResponseBodyState value1,
         string value2
     ) => value1.Value.Equals(value2);
 
     public static bool operator !=(
-        RoutesStopWithFormsResponseObjectResponseBodyState value1,
+        RouteStopWithOrdersResponseObjectResponseBodyState value1,
         string value2
     ) => !value1.Value.Equals(value2);
 
     public static explicit operator string(
-        RoutesStopWithFormsResponseObjectResponseBodyState value
+        RouteStopWithOrdersResponseObjectResponseBodyState value
     ) => value.Value;
 
-    public static explicit operator RoutesStopWithFormsResponseObjectResponseBodyState(
+    public static explicit operator RouteStopWithOrdersResponseObjectResponseBodyState(
         string value
     ) => new(value);
 

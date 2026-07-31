@@ -66,6 +66,12 @@ public record UpdateRoutesStopRequestObjectRequestBody : IJsonOnDeserialized
     public long? OntimeWindowBeforeArrivalMs { get; set; }
 
     /// <summary>
+    /// Orders to replace on this stop. Omit this field to preserve existing order attachments; provide an empty array to clear them.
+    /// </summary>
+    [JsonPropertyName("orders")]
+    public IEnumerable<RouteStopOrderUpsertInputRequestBody>? Orders { get; set; }
+
+    /// <summary>
     /// This is a required field for all stops EXCEPT the start and end, based on route start and stop settings selected.
     /// </summary>
     [JsonPropertyName("scheduledArrivalTime")]

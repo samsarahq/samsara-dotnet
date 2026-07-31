@@ -675,9 +675,9 @@ public partial class RoutesClient : IRoutesClient
     ///     new RoutesCreateRouteRequestBody
     ///     {
     ///         Name = "Bid 123",
-    ///         Stops = new List&lt;CreateRoutesStopRequestObjectRequestBody&gt;()
+    ///         Stops = new List&lt;CreateRouteStopWithOrdersRequestObjectRequestBody&gt;()
     ///         {
-    ///             new CreateRoutesStopRequestObjectRequestBody(),
+    ///             new CreateRouteStopWithOrdersRequestObjectRequestBody(),
     ///         },
     ///     }
     /// );

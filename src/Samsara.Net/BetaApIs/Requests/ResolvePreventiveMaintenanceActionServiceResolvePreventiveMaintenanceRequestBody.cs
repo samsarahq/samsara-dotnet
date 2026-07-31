@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
 public record ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody
@@ -19,7 +19,7 @@ public record ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintena
     public string? ScheduleId { get; set; }
 
     /// <summary>
-    /// When the maintenance was resolved, in epoch milliseconds. Defaults to the current time if not provided.
+    /// RFC3339 time when the maintenance was resolved. Defaults to the current time if not provided.
     /// </summary>
     [JsonPropertyName("resolvedAt")]
     public string? ResolvedAt { get; set; }

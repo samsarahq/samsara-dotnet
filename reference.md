@@ -5087,6 +5087,69 @@ await client.BetaApIs.CreateStockMovementAsync(
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ResolvePreventiveMaintenanceAsync</a>(ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.ResolvePreventiveMaintenanceAsync(
+    new ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreventiveMaintenanceSchedulesAsync</a>(ListPreventiveMaintenanceSchedulesRequest { ... }) -> WithRawResponseTask&lt;EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -5202,6 +5265,69 @@ await client.BetaApIs.ListUpcomingPreventiveMaintenanceAsync(
 <dd>
 
 **request:** `ListUpcomingPreventiveMaintenanceRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateUpcomingPreventiveMaintenanceAsync</a>(EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.UpdateUpcomingPreventiveMaintenanceAsync(
+    new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody` 
     
 </dd>
 </dl>
@@ -7928,7 +8054,7 @@ await client.Alerts.PostConfigurationsAsync(
         },
         IsEnabled = true,
         Name = "My Harsh Event Alert",
-        Scope = new ScopeObjectRequestBody { All = false },
+        Scope = new ScopeObjectRequestBody { All = true },
         Triggers = new List<WorkflowTriggerObjectRequestBody>()
         {
             new WorkflowTriggerObjectRequestBody { TriggerTypeId = 1000 },
@@ -14451,9 +14577,9 @@ await client.Routes.CreateRouteAsync(
     new RoutesCreateRouteRequestBody
     {
         Name = "Bid 123",
-        Stops = new List<CreateRoutesStopRequestObjectRequestBody>()
+        Stops = new List<CreateRouteStopWithOrdersRequestObjectRequestBody>()
         {
-            new CreateRoutesStopRequestObjectRequestBody(),
+            new CreateRouteStopWithOrdersRequestObjectRequestBody(),
         },
     }
 );
@@ -19615,6 +19741,351 @@ await client.PreviewApIs.CreateDriverAuthTokenAsync(
 </dl>
 </details>
 
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">GetOrdersAsync</a>(GetOrdersRequest { ... }) -> WithRawResponseTask&lt;OrdersGetOrdersResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns current canonical order state for up to 100 supplied order IDs.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreviewApIs.GetOrdersAsync(new GetOrdersRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetOrdersRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">DeleteOrderAsync</a>(DeleteOrderRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes one canonical order by Samsara UUID or external ID.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreviewApIs.DeleteOrderAsync(new DeleteOrderRequest { OrderId = "orderId" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteOrderRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">PostOrdersBatchAsync</a>(OrdersPostOrdersBatchRequestBody { ... }) -> WithRawResponseTask&lt;OrdersPostOrdersBatchResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Atomically creates or updates up to 250 canonical orders.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreviewApIs.PostOrdersBatchAsync(
+    new OrdersPostOrdersBatchRequestBody
+    {
+        Data = new List<FleetOrderBatchUpsertInputRequestBody>()
+        {
+            new FleetOrderBatchUpsertInputRequestBody(),
+        },
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `OrdersPostOrdersBatchRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">GetOrderDeletionsAsync</a>(GetOrderDeletionsRequest { ... }) -> WithRawResponseTask&lt;OrdersGetOrderDeletionsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns deletion markers for order replication.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreviewApIs.GetOrderDeletionsAsync(new GetOrderDeletionsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetOrderDeletionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">GetOrdersStreamAsync</a>(GetOrdersStreamRequest { ... }) -> WithRawResponseTask&lt;OrdersGetOrdersStreamResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns live order create and update state for replication.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Routes** under the Driver Workflow category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+
+Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
+
+- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
+
+- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreviewApIs.GetOrdersStreamAsync(
+    new GetOrdersStreamRequest { StartTime = new DateTime(2024, 01, 15, 09, 30, 00, 000) }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetOrdersStreamRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">LockVehicleAsync</a>(LockVehicleRequest { ... })</code></summary>
 <dl>
 <dd>
@@ -19807,144 +20278,6 @@ await client.PreviewApIs.ListPartTransactionsAsync(
 <dd>
 
 **request:** `ListPartTransactionsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">ResolvePreventiveMaintenanceAsync</a>(ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreviewApIs.ResolvePreventiveMaintenanceAsync(
-    new ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.PreviewApIs.<a href="/src/Samsara.Net/PreviewApIs/PreviewApIsClient.cs">UpdateUpcomingPreventiveMaintenanceAsync</a>(EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-
-Endpoints in this section are in Preview. These APIs are not functional and are instead for soliciting feedback from our API users on the intended design of this API. Additionally, it is not guaranteed that we will be releasing an endpoint included in this section to production. This means that developers should **NOT** rely on these APIs to build business critical applications
-
-- Samsara may change the structure of a preview API's interface without versioning or any notice to API users.
-
-- When an endpoint becomes generally available, it will be announced in the API [changelog](https://developers.samsara.com/changelog).
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.PreviewApIs.UpdateUpcomingPreventiveMaintenanceAsync(
-    new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody` 
     
 </dd>
 </dl>

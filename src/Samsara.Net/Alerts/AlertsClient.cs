@@ -515,7 +515,7 @@ public partial class AlertsClient : IAlertsClient
     ///         },
     ///         IsEnabled = true,
     ///         Name = "My Harsh Event Alert",
-    ///         Scope = new ScopeObjectRequestBody { All = false },
+    ///         Scope = new ScopeObjectRequestBody { All = true },
     ///         Triggers = new List&lt;WorkflowTriggerObjectRequestBody&gt;()
     ///         {
     ///             new WorkflowTriggerObjectRequestBody { TriggerTypeId = 1000 },
