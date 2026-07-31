@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 [Serializable]
-public record RoutesStopWithFormsResponseObjectResponseBody : IJsonOnDeserialized
+public record RouteStopWithOrdersResponseObjectResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -117,6 +117,13 @@ public record RoutesStopWithFormsResponseObjectResponseBody : IJsonOnDeserialize
     public long? OntimeWindowBeforeArrivalMs { get; set; }
 
     /// <summary>
+    /// Canonical order tasks attached to this stop.
+    /// </summary>
+    [JsonPropertyName("orders")]
+    public IEnumerable<RouteStopOrderTaskReferenceObjectResponseBody> Orders { get; set; } =
+        new List<RouteStopOrderTaskReferenceObjectResponseBody>();
+
+    /// <summary>
     /// Planned driving distance from the previous stop in meters. Based on routing calculations at route creation time. Null for the first stop or if routing data is unavailable.
     /// </summary>
     [JsonPropertyName("plannedDistanceMeters")]
@@ -153,7 +160,7 @@ public record RoutesStopWithFormsResponseObjectResponseBody : IJsonOnDeserialize
     /// The current state of the route stop.  Valid values: `unassigned`, `scheduled`, `en route`, `skipped`, `arrived`, `departed`
     /// </summary>
     [JsonPropertyName("state")]
-    public required RoutesStopWithFormsResponseObjectResponseBodyState State { get; set; }
+    public required RouteStopWithOrdersResponseObjectResponseBodyState State { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

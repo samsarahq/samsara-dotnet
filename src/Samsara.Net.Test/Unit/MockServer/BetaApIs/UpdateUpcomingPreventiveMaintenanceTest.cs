@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class UpdateUpcomingPreventiveMaintenanceTest : BaseMockServerTest
@@ -51,7 +51,7 @@ public class UpdateUpcomingPreventiveMaintenanceTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/preventive/upcoming")
+                    .WithPath("/maintenance/preventive/upcoming")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPatch()
                     .WithBodyAsJson(requestJson)
@@ -63,7 +63,7 @@ public class UpdateUpcomingPreventiveMaintenanceTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.UpdateUpcomingPreventiveMaintenanceAsync(
+        var response = await Client.BetaApIs.UpdateUpcomingPreventiveMaintenanceAsync(
             new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);

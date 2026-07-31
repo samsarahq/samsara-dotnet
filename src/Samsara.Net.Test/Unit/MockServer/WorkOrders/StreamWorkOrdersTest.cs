@@ -52,7 +52,9 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                   "maintenanceSite": {
                     "name": "LAX Service Bay 3",
                     "placeExternalIds": {
-                      "Explicabo illo.": "Mollitia qui inventore et."
+                      "Totam ipsum quaerat.": "Blanditiis laborum.",
+                      "Velit nihil.": "Placeat id.",
+                      "Velit quia consequatur saepe.": "Repellendus temporibus."
                     },
                     "placeId": "123456"
                   },

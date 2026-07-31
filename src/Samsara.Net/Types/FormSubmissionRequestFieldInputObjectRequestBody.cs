@@ -35,6 +35,9 @@ public record FormSubmissionRequestFieldInputObjectRequestBody : IJsonOnDeserial
     [JsonPropertyName("id")]
     public required string Id { get; set; }
 
+    [JsonPropertyName("mediaValue")]
+    public FormSubmissionRequestMediaValueObjectRequestBody? MediaValue { get; set; }
+
     [JsonPropertyName("multipleChoiceValue")]
     public FormSubmissionRequestMultipleChoiceValueObjectRequestBody? MultipleChoiceValue { get; set; }
 
@@ -51,7 +54,7 @@ public record FormSubmissionRequestFieldInputObjectRequestBody : IJsonOnDeserial
     public FormSubmissionRequestTextValueObjectRequestBody? TextValue { get; set; }
 
     /// <summary>
-    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`, `geofence`, `barcode`
+    /// Type of the field.  Valid values: `number`, `text`, `multiple_choice`, `check_boxes`, `datetime`, `asset`, `person`, `table`, `geofence`, `barcode`, `media`
     /// </summary>
     [JsonPropertyName("type")]
     public required FormSubmissionRequestFieldInputObjectRequestBodyType Type { get; set; }

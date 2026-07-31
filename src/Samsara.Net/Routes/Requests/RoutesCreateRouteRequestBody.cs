@@ -44,8 +44,8 @@ public record RoutesCreateRouteRequestBody
     /// List of stops along the route. For each stop, exactly one of `addressId` and `singleUseLocation` are required. Depending on the `settings` on your route, either a `scheduledArrivalTime` or `scheduledDepartureTime` must be specified for the first job.
     /// </summary>
     [JsonPropertyName("stops")]
-    public IEnumerable<CreateRoutesStopRequestObjectRequestBody> Stops { get; set; } =
-        new List<CreateRoutesStopRequestObjectRequestBody>();
+    public IEnumerable<CreateRouteStopWithOrdersRequestObjectRequestBody> Stops { get; set; } =
+        new List<CreateRouteStopWithOrdersRequestObjectRequestBody>();
 
     /// <summary>
     /// An array of IDs of tags to associate with this route.

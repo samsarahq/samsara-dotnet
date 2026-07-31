@@ -59,10 +59,8 @@ public class PostPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Commodi fuga quis dolores architecto velit dolorem.",
-                  "Blanditiis deserunt velit voluptatem atque deserunt.",
-                  "Sed veniam magnam molestiae.",
-                  "Maiores dicta maiores assumenda."
+                  "Et hic tempore.",
+                  "Nostrum alias repellat."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -80,9 +78,10 @@ public class PostPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Et quasi quo tenetur eveniet.",
-                  "Dolor nesciunt.",
-                  "Dolorem quibusdam est."
+                  "Exercitationem quos.",
+                  "Earum repudiandae et laborum commodi possimus.",
+                  "Consequatur eos voluptatibus.",
+                  "Harum rerum ut doloribus voluptatum quaerat."
                 ],
                 "routing": [
                   {
@@ -116,10 +115,8 @@ public class PostPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Ut voluptas et accusantium est labore.",
-                          "Magni sint quia.",
-                          "Nihil sequi enim rem exercitationem.",
-                          "Quaerat earum repudiandae et laborum commodi possimus."
+                          "Et architecto sapiente suscipit qui porro.",
+                          "Quo enim alias error eaque."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -128,8 +125,9 @@ public class PostPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Ut voluptate et ut voluptas id rem.",
-                  "Earum quia libero."
+                  "Quidem aspernatur saepe aut.",
+                  "Dolor odio quo.",
+                  "Dolor eum."
                 ],
                 "streetView": {
                   "headingDegrees": 90,

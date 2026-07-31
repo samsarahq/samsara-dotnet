@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 [Serializable]
-public record BaseRouteWithStopFormsResponseObjectResponseBody : IJsonOnDeserialized
+public record BaseRouteWithOrdersResponseObjectResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
@@ -81,7 +81,7 @@ public record BaseRouteWithStopFormsResponseObjectResponseBody : IJsonOnDeserial
     /// List of stops along the route
     /// </summary>
     [JsonPropertyName("stops")]
-    public IEnumerable<RoutesStopWithFormsResponseObjectResponseBody>? Stops { get; set; }
+    public IEnumerable<RouteStopWithOrdersResponseObjectResponseBody>? Stops { get; set; }
 
     /// <summary>
     /// An array of IDs of tags to associate with this route.

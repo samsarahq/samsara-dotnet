@@ -12,7 +12,7 @@ public record RoutesPatchRouteResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("data")]
-    public BaseRouteWithStopFormsResponseObjectResponseBody? Data { get; set; }
+    public BaseRouteWithOrdersResponseObjectResponseBody? Data { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

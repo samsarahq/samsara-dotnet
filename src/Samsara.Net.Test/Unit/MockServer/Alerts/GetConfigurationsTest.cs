@@ -34,8 +34,9 @@ public class GetConfigurationsTest : BaseMockServerTest
                       {
                         "daysOfWeek": [
                           "SATURDAY",
-                          "FRIDAY",
-                          "SUNDAY"
+                          "WEDNESDAY",
+                          "SUNDAY",
+                          "FRIDAY"
                         ],
                         "endTime": "20:00",
                         "startTime": "11:00",
@@ -44,7 +45,7 @@ public class GetConfigurationsTest : BaseMockServerTest
                     ]
                   },
                   "scope": {
-                    "all": false,
+                    "all": true,
                     "assets": [
                       {
                         "assetId": "12443",

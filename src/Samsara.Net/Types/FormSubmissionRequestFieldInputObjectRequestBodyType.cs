@@ -46,6 +46,10 @@ public readonly record struct FormSubmissionRequestFieldInputObjectRequestBodyTy
         Values.Barcode
     );
 
+    public static readonly FormSubmissionRequestFieldInputObjectRequestBodyType Media = new(
+        Values.Media
+    );
+
     public FormSubmissionRequestFieldInputObjectRequestBodyType(string value)
     {
         Value = value;
@@ -120,5 +124,7 @@ public readonly record struct FormSubmissionRequestFieldInputObjectRequestBodyTy
         public const string Geofence = "geofence";
 
         public const string Barcode = "barcode";
+
+        public const string Media = "media";
     }
 }
