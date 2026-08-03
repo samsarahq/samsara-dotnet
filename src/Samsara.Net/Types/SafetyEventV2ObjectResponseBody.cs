@@ -38,7 +38,7 @@ public record SafetyEventV2ObjectResponseBody : IJsonOnDeserialized
         new List<SafetyEventV2ContextLabelsResponseBody>();
 
     /// <summary>
-    /// UTC time the Safety Event was created in Samsara in RFC 3339 format.
+    /// UTC time the Safety Event was created in Samsara in RFC 3339 format. This field may differ from when the event was detected (`startMs`).
     /// </summary>
     [JsonPropertyName("createdAtTime")]
     public required string CreatedAtTime { get; set; }
@@ -56,7 +56,7 @@ public record SafetyEventV2ObjectResponseBody : IJsonOnDeserialized
     public required SafetyEventV2DriverObjectResponseBody Driver { get; set; }
 
     /// <summary>
-    /// UTC time the Safety Event ended in RFC 3339 format.
+    /// UTC time the Safety Event detection ended in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("endMs")]
     public required string EndMs { get; set; }
@@ -104,7 +104,7 @@ public record SafetyEventV2ObjectResponseBody : IJsonOnDeserialized
     public SafetyEventSpeedingMetadataResponseBody? SpeedingMetadata { get; set; }
 
     /// <summary>
-    /// UTC time the Safety Event started in RFC 3339 format.
+    /// UTC time the Safety Event was detected in RFC 3339 format.
     /// </summary>
     [JsonPropertyName("startMs")]
     public required string StartMs { get; set; }

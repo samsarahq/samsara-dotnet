@@ -7,19 +7,19 @@ namespace Samsara.Net.Safety;
 public record GetSafetyEventsV2StreamRequest
 {
     /// <summary>
-    /// RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` or `createdAtTime` depending on the `queryByTimeField` parameter.
+    /// RFC 3339 timestamp that indicates when to begin receiving data. Value is compared against `updatedAtTime` or the event detection time (`startMs`) depending on the `queryByTimeField` parameter.
     /// </summary>
     [JsonIgnore]
     public required string StartTime { get; set; }
 
     /// <summary>
-    /// RFC 3339 timestamp. If not provided and filtering by `updatedAtTime` then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against `updatedAtTime` or `createdAtTime` depending on the `queryByTimeField` parameter.
+    /// RFC 3339 timestamp. If not provided and filtering by `updatedAtTime` then the endpoint behaves as an unending feed of changes. If endTime is set the same as startTime, the most recent data point before that time will be returned per asset. Value is compared against `updatedAtTime` or the event detection time (`startMs`) depending on the `queryByTimeField` parameter.
     /// </summary>
     [JsonIgnore]
     public string? EndTime { get; set; }
 
     /// <summary>
-    /// Optional string that decides which field to compare against the provided time range.  Valid values: `updatedAtTime`, `createdAtTime`
+    /// Optional string that decides which timestamp to compare against the provided time range. `updatedAtTime` filters by when the Safety Event was last updated in Samsara. `createdAtTime` filters by when the Safety Event was detected (`startMs` in the response).  Valid values: `updatedAtTime`, `createdAtTime`
     /// </summary>
     [JsonIgnore]
     public GetSafetyEventsV2StreamRequestQueryByTimeField? QueryByTimeField { get; set; }
