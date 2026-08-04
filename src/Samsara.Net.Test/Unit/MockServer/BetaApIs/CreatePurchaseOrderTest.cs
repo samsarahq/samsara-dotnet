@@ -1,18 +1,21 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
-public class UpdatePurchaseOrderTest : BaseMockServerTest
+public class CreatePurchaseOrderTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string requestJson = """
-            {}
+            {
+              "orderStatus": "12345",
+              "vendorId": "281474976710656"
+            }
             """;
 
         const string mockResponse = """
@@ -27,6 +30,7 @@ public class UpdatePurchaseOrderTest : BaseMockServerTest
                 "id": "12345",
                 "invoiceNumber": "12345",
                 "mediaItemIds": [
+                  "12345",
                   "12345",
                   "12345",
                   "12345"
@@ -70,10 +74,9 @@ public class UpdatePurchaseOrderTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/purchase-orders")
-                    .WithParam("id", "id")
+                    .WithPath("/maintenance/purchase-orders")
                     .WithHeader("Content-Type", "application/json")
-                    .UsingPatch()
+                    .UsingPost()
                     .WithBodyAsJson(requestJson)
             )
             .RespondWith(
@@ -83,8 +86,12 @@ public class UpdatePurchaseOrderTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.UpdatePurchaseOrderAsync(
-            new EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody { Id = "id" }
+        var response = await Client.BetaApIs.CreatePurchaseOrderAsync(
+            new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
+            {
+                OrderStatus = "12345",
+                VendorId = "281474976710656",
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

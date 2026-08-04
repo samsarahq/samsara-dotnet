@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ListPurchaseOrdersTest : BaseMockServerTest
@@ -73,7 +73,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/purchase-orders")
+                    .WithPath("/maintenance/purchase-orders")
                     .WithParam("startTime", "startTime")
                     .UsingGet()
             )
@@ -84,7 +84,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListPurchaseOrdersAsync(
+        var response = await Client.BetaApIs.ListPurchaseOrdersAsync(
             new ListPurchaseOrdersRequest { StartTime = "startTime" }
         );
         JsonAssert.AreEqual(response, mockResponse);

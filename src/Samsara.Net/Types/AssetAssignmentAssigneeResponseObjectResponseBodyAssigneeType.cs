@@ -22,6 +22,10 @@ public readonly record struct AssetAssignmentAssigneeResponseObjectResponseBodyA
     public static readonly AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType Geofence =
         new(Values.Geofence);
 
+    public static readonly AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType Job = new(
+        Values.Job
+    );
+
     public AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType(string value)
     {
         Value = value;
@@ -86,5 +90,7 @@ public readonly record struct AssetAssignmentAssigneeResponseObjectResponseBodyA
         public const string Asset = "asset";
 
         public const string Geofence = "geofence";
+
+        public const string Job = "job";
     }
 }

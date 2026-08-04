@@ -2,11 +2,17 @@ using System.Text.Json.Serialization;
 using Samsara.Net;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
-public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
+public record EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
 {
+    /// <summary>
+    /// Unique identifier for the PurchaseOrder record.
+    /// </summary>
+    [JsonIgnore]
+    public required string Id { get; set; }
+
     /// <summary>
     /// General ledger code associated with this purchase order.
     /// </summary>
@@ -29,28 +35,16 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     /// Current customer-visible status of the purchase order.
     /// </summary>
     [JsonPropertyName("orderStatus")]
-    public required string OrderStatus { get; set; }
+    public string? OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
-    public CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody? OtherCost { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody? OtherCost { get; set; }
 
     /// <summary>
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>? Parts { get; set; }
-
-    /// <summary>
-    /// Optional prefix included in the purchase order number.
-    /// </summary>
-    [JsonPropertyName("poNumberPrefix")]
-    public string? PoNumberPrefix { get; set; }
-
-    /// <summary>
-    /// Optional suffix included in the purchase order number.
-    /// </summary>
-    [JsonPropertyName("poNumberSuffix")]
-    public string? PoNumberSuffix { get; set; }
+    public IEnumerable<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>? Parts { get; set; }
 
     /// <summary>
     /// Shipment tracking number for the purchase order.
@@ -62,7 +56,7 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     /// ID of the vendor supplying this purchase order.
     /// </summary>
     [JsonPropertyName("vendorId")]
-    public required string VendorId { get; set; }
+    public string? VendorId { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

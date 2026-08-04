@@ -1,21 +1,18 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
-public class CreatePurchaseOrderTest : BaseMockServerTest
+public class UpdatePurchaseOrderTest : BaseMockServerTest
 {
     [NUnit.Framework.Test]
     public async Task MockServerTest()
     {
         const string requestJson = """
-            {
-              "orderStatus": "12345",
-              "vendorId": "281474976710656"
-            }
+            {}
             """;
 
         const string mockResponse = """
@@ -30,7 +27,6 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                 "id": "12345",
                 "invoiceNumber": "12345",
                 "mediaItemIds": [
-                  "12345",
                   "12345",
                   "12345",
                   "12345"
@@ -74,9 +70,10 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/purchase-orders")
+                    .WithPath("/maintenance/purchase-orders")
+                    .WithParam("id", "id")
                     .WithHeader("Content-Type", "application/json")
-                    .UsingPost()
+                    .UsingPatch()
                     .WithBodyAsJson(requestJson)
             )
             .RespondWith(
@@ -86,12 +83,8 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.CreatePurchaseOrderAsync(
-            new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
-            {
-                OrderStatus = "12345",
-                VendorId = "281474976710656",
-            }
+        var response = await Client.BetaApIs.UpdatePurchaseOrderAsync(
+            new EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody { Id = "id" }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }
