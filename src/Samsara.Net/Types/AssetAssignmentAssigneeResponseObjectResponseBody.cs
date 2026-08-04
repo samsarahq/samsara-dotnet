@@ -15,7 +15,7 @@ public record AssetAssignmentAssigneeResponseObjectResponseBody : IJsonOnDeseria
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Type of the assignee.  Valid values: `unknown`, `driver`, `asset`, `geofence`
+    /// Type of the assignee.  Valid values: `unknown`, `driver`, `asset`, `geofence`, `job`
     /// </summary>
     [JsonPropertyName("assigneeType")]
     public required AssetAssignmentAssigneeResponseObjectResponseBodyAssigneeType AssigneeType { get; set; }
