@@ -24,6 +24,10 @@ public class ListReadingsDefinitionsTest : BaseMockServerTest
                       "symbol": "criticallyHigh"
                     }
                   ],
+                  "grouping": {
+                    "id": "brakeLiningRemaining",
+                    "label": "Brake Lining Remaining"
+                  },
                   "ingestionEnabled": true,
                   "label": "engineRpm",
                   "readingId": "12345",

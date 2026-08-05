@@ -38,6 +38,9 @@ public record ReadingDefinitionResponseBody : IJsonOnDeserialized
     [JsonPropertyName("enumValues")]
     public IEnumerable<EnumValueResponseBody>? EnumValues { get; set; }
 
+    [JsonPropertyName("grouping")]
+    public ReadingGroupingResponseBody? Grouping { get; set; }
+
     /// <summary>
     /// Indicates whether this reading can be ingested using the API.
     /// </summary>

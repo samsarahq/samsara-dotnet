@@ -14,16 +14,34 @@ public record EntityPartDefinitionsServiceCreatePartRequestBody
     public string? BarcodeString { get; set; }
 
     /// <summary>
+    /// Type of barcode associated with the part definition.
+    /// </summary>
+    [JsonPropertyName("barcodeType")]
+    public string? BarcodeType { get; set; }
+
+    /// <summary>
     /// Description of the part definition.
     /// </summary>
     [JsonPropertyName("description")]
     public string? Description { get; set; }
 
     /// <summary>
+    /// Customer-supplied external identifier for the part.
+    /// </summary>
+    [JsonPropertyName("externalId")]
+    public string? ExternalId { get; set; }
+
+    /// <summary>
     /// Whether inventory tracking is enabled for this part.
     /// </summary>
     [JsonPropertyName("isInventoryTracked")]
     public bool? IsInventoryTracked { get; set; }
+
+    /// <summary>
+    /// Name of the manufacturer for the part definition.
+    /// </summary>
+    [JsonPropertyName("manufacturerName")]
+    public string? ManufacturerName { get; set; }
 
     /// <summary>
     /// Manufacturer-supplied part number.

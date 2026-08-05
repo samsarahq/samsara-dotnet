@@ -26,7 +26,6 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                   "mediaItemIds": [
                     "12345",
                     "12345",
-                    "12345",
                     "12345"
                   ],
                   "notes": "12345",
