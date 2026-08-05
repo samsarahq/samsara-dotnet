@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ListPartTransactionsTest : BaseMockServerTest
@@ -49,7 +49,7 @@ public class ListPartTransactionsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/parts/transactions")
+                    .WithPath("/maintenance/parts/transactions")
                     .WithParam("happenedAtTimeStart", "happenedAtTimeStart")
                     .UsingGet()
             )
@@ -60,7 +60,7 @@ public class ListPartTransactionsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListPartTransactionsAsync(
+        var response = await Client.BetaApIs.ListPartTransactionsAsync(
             new ListPartTransactionsRequest { HappenedAtTimeStart = "happenedAtTimeStart" }
         );
         JsonAssert.AreEqual(response, mockResponse);
