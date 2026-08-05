@@ -28,7 +28,6 @@ public class UpdatePurchaseOrderTest : BaseMockServerTest
                 "invoiceNumber": "12345",
                 "mediaItemIds": [
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "notes": "12345",
