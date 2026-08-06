@@ -137,6 +137,10 @@ public readonly record struct WebhooksGetWebhookResponseBodyEventTypesItem : ISt
         Values.VehicleUpdated
     );
 
+    public static readonly WebhooksGetWebhookResponseBodyEventTypesItem VisualSearchMatch = new(
+        Values.VisualSearchMatch
+    );
+
     public static readonly WebhooksGetWebhookResponseBodyEventTypesItem WorkOrderCreatedOrChanged =
         new(Values.WorkOrderCreatedOrChanged);
 
@@ -258,6 +262,8 @@ public readonly record struct WebhooksGetWebhookResponseBodyEventTypesItem : ISt
         public const string VehicleCreated = "VehicleCreated";
 
         public const string VehicleUpdated = "VehicleUpdated";
+
+        public const string VisualSearchMatch = "VisualSearchMatch";
 
         public const string WorkOrderCreatedOrChanged = "WorkOrderCreatedOrChanged";
     }
