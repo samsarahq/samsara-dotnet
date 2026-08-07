@@ -46,7 +46,7 @@ public class CreateAssetTest : BaseMockServerTest
                 "model": "S630 T4",
                 "name": "MyAsset-1234",
                 "notes": "These are notes.",
-                "readingsIngestionEnabled": true,
+                "readingsIngestionEnabled": false,
                 "regulationMode": "mixed",
                 "serialNumber": "LN016251",
                 "tags": [

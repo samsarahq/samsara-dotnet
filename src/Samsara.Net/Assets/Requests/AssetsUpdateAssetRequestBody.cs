@@ -56,7 +56,7 @@ public record AssetsUpdateAssetRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Indicates whether the asset is expected to have data ingested using the Readings API.
+    /// Indicates whether the asset is expected to have data ingested using the Readings API. Do not set this to true for an asset that has, or is intended to have, a connected gateway.
     /// </summary>
     [JsonPropertyName("readingsIngestionEnabled")]
     public bool? ReadingsIngestionEnabled { get; set; }
