@@ -91,6 +91,8 @@ public partial class CarbCtcClient : ICarbCtcClient
                         throw new MethodNotAllowedError(
                             JsonUtils.Deserialize<object>(responseBody)
                         );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
                     case 429:
                         throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
@@ -198,6 +200,8 @@ public partial class CarbCtcClient : ICarbCtcClient
                         throw new MethodNotAllowedError(
                             JsonUtils.Deserialize<object>(responseBody)
                         );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
                     case 429:
                         throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
                     case 500:
