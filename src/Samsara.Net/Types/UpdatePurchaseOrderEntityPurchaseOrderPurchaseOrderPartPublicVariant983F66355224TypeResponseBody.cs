@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPart object
 /// </summary>
 [Serializable]
-public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeResponseBody
+public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -55,7 +55,7 @@ public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartTypeRespons
     public double? QuantityReceived { get; set; }
 
     [JsonPropertyName("unitCost")]
-    public UpdatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody? UnitCost { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
     /// Unit of measure for quantities on this line.

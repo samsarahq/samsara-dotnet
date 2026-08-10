@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInput object
+/// CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPart object
 /// </summary>
 [Serializable]
-public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody
+public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant7E1B94919242TypeResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -22,7 +22,7 @@ public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRe
     public string? BatchNumber { get; set; }
 
     [JsonPropertyName("coreCharge")]
-    public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody? CoreCharge { get; set; }
+    public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBody? CoreCharge { get; set; }
 
     /// <summary>
     /// Description of the ordered part.
@@ -36,38 +36,32 @@ public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRe
     [JsonPropertyName("lineItemId")]
     public string? LineItemId { get; set; }
 
-    /// <summary>
-    /// ID of the part definition ordered on this line.
-    /// </summary>
-    [JsonPropertyName("partSamsaraId")]
-    public required string PartSamsaraId { get; set; }
+    [JsonPropertyName("partSamsara")]
+    public EntityCreatePurchaseOrderPartDefinitionRefTypeResponseBody? PartSamsara { get; set; }
 
-    /// <summary>
-    /// Place linked to the maintenance site holding this line's inventory. The internal location identifier is never exposed.
-    /// </summary>
-    [JsonPropertyName("placeId")]
-    public string? PlaceId { get; set; }
+    [JsonPropertyName("place")]
+    public EntityCreatePurchaseOrderPlaceRefTypeResponseBody? Place { get; set; }
 
     /// <summary>
     /// Quantity ordered on this line.
     /// </summary>
     [JsonPropertyName("quantityOrdered")]
-    public required double QuantityOrdered { get; set; }
+    public double? QuantityOrdered { get; set; }
 
     /// <summary>
     /// Quantity received on this line.
     /// </summary>
     [JsonPropertyName("quantityReceived")]
-    public required double QuantityReceived { get; set; }
+    public double? QuantityReceived { get; set; }
 
     [JsonPropertyName("unitCost")]
-    public CreatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody? UnitCost { get; set; }
+    public CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
     /// Unit of measure for quantities on this line.
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
-    public required string UnitOfMeasureType { get; set; }
+    public string? UnitOfMeasureType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

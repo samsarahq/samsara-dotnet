@@ -21,7 +21,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                   "firstReceivedAtTime": "2019-06-13T19:08:25Z",
                   "fullyReceivedAtTime": "2019-06-13T19:08:25Z",
                   "glCode": "12345",
-                  "id": "12345",
+                  "id": "281474976710656",
                   "invoiceNumber": "12345",
                   "mediaItemIds": [
                     "12345",
@@ -50,7 +50,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                       "unitOfMeasureType": "12345"
                     }
                   ],
-                  "poNumber": "12345",
+                  "poNumber": "PO-1001",
                   "poNumberPrefix": "12345",
                   "poNumberSuffix": "12345",
                   "sentAtTime": "2019-06-13T19:08:25Z",
@@ -73,7 +73,11 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                 WireMock
                     .RequestBuilders.Request.Create()
                     .WithPath("/maintenance/purchase-orders")
-                    .WithParam("startTime", "startTime")
+                    .WithParam("ids", "281474976710656")
+                    .WithParam("poNumbers", "PO-1001")
+                    .WithParam("vendorIds", "281474976710656")
+                    .WithParam("endTime", "2026-07-31T00:00:00Z")
+                    .WithParam("startTime", "2026-07-01T00:00:00Z")
                     .UsingGet()
             )
             .RespondWith(
@@ -84,7 +88,14 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
             );
 
         var response = await Client.BetaApIs.ListPurchaseOrdersAsync(
-            new ListPurchaseOrdersRequest { StartTime = "startTime" }
+            new ListPurchaseOrdersRequest
+            {
+                Ids = "281474976710656",
+                PoNumbers = "PO-1001",
+                VendorIds = "281474976710656",
+                EndTime = "2026-07-31T00:00:00Z",
+                StartTime = "2026-07-01T00:00:00Z",
+            }
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

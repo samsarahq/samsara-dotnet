@@ -22,7 +22,11 @@ public class GetCoachingSessionsTest : BaseMockServerTest
                       "coachableBehaviorType": "acceleration",
                       "coachableEvents": [
                         {
-                          "id": "f5271458-21f9-4a9f-a290-780c6d8840ff"
+                          "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                          "linkage": {
+                            "sourceId": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "sourceType": "triageEvent"
+                          }
                         }
                       ],
                       "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",

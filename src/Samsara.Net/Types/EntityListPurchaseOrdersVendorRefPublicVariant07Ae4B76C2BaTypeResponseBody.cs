@@ -5,23 +5,21 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Object reference for the coachable event within the behavior.
+/// Reference to a Vendor
 /// </summary>
 [Serializable]
-public record CoachableEventResponseBody : IJsonOnDeserialized
+public record EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique ID for an event within the item in a coaching session.
+    /// The ID of the referenced Vendor.
     /// </summary>
     [JsonPropertyName("id")]
     public required string Id { get; set; }
-
-    [JsonPropertyName("linkage")]
-    public CoachableEventLinkageResponseBody? Linkage { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -5498,7 +5498,14 @@ To use this endpoint, select **Read Purchase Orders** under the Work Orders cate
 
 ```csharp
 await client.BetaApIs.ListPurchaseOrdersAsync(
-    new ListPurchaseOrdersRequest { StartTime = "startTime" }
+    new ListPurchaseOrdersRequest
+    {
+        Ids = "281474976710656",
+        PoNumbers = "PO-1001",
+        VendorIds = "281474976710656",
+        EndTime = "2026-07-31T00:00:00Z",
+        StartTime = "2026-07-01T00:00:00Z",
+    }
 );
 ```
 </dd>
@@ -5563,7 +5570,7 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 await client.BetaApIs.CreatePurchaseOrderAsync(
     new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     {
-        OrderStatus = "12345",
+        OrderStatus = "draft",
         VendorId = "281474976710656",
     }
 );

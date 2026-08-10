@@ -126,7 +126,7 @@ public record EntityListPurchaseOrdersTypeResponseBody : IJsonOnDeserialized
     public string? UpdatedAtTime { get; set; }
 
     [JsonPropertyName("vendor")]
-    public EntityListPurchaseOrdersVendorRefTypeResponseBody? Vendor { get; set; }
+    public EntityListPurchaseOrdersVendorRefPublicVariant07Ae4B76C2BaTypeResponseBody? Vendor { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

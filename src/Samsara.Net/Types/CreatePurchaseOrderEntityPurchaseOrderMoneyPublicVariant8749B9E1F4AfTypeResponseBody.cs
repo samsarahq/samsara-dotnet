@@ -5,23 +5,27 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Object reference for the coachable event within the behavior.
+/// CreatePurchaseOrderEntityPurchaseOrderMoney object
 /// </summary>
 [Serializable]
-public record CoachableEventResponseBody : IJsonOnDeserialized
+public record CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Unique ID for an event within the item in a coaching session.
+    /// Monetary amount as a decimal string in major currency units (e.g. "24.50").
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    [JsonPropertyName("amount")]
+    public string? Amount { get; set; }
 
-    [JsonPropertyName("linkage")]
-    public CoachableEventLinkageResponseBody? Linkage { get; set; }
+    /// <summary>
+    /// ISO 4217 currency code, lowercased (e.g. "usd").
+    /// </summary>
+    [JsonPropertyName("currency")]
+    public string? Currency { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
