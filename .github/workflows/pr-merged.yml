@@ -58,6 +58,9 @@ jobs:
   publish:
     needs: tag-and-release
     if: needs.tag-and-release.outputs.should_publish == 'true'
+    permissions:
+      id-token: write
+      contents: read
     uses: ./.github/workflows/publish.yml
     secrets: inherit
         
