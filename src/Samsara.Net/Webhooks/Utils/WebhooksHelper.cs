@@ -10,36 +10,42 @@ namespace Samsara;
 /// </summary>
 public static class WebhooksHelper
 {
+    private const string SignaturePrefix = "v1=";
+
     /// <summary>
-    /// Verify and Validate an Event Notification.
+    /// Verify and Validate an Event Notification using the Samsara <c>v1</c> signature scheme.
     /// </summary>
-    /// <param name="requestBody">The JSON body of the request.</param>
-    /// <param name="signatureHeader">The value for the <c>x-samsara-hmacsha256-signature</c> header.</param>
-    /// <param name="signatureKey">The signature key from the Samsara Developer portal for the webhook subscription.</param>
-    /// <param name="notificationUrl">The notification endpoint URL as defined in the Samsara Developer portal for the webhook subscription.</param>
+    /// <param name="requestBody">The raw JSON body of the request, exactly as received (do not re-serialize or reformat it).</param>
+    /// <param name="signatureHeader">The value of the <c>X-Samsara-Signature</c> header. It has the form <c>v1=&lt;hex&gt;</c>.</param>
+    /// <param name="timestampHeader">The value of the <c>X-Samsara-Timestamp</c> header (unix seconds).</param>
+    /// <param name="signatureKey">The Base64 signature secret from the Samsara Developer portal for the webhook subscription.</param>
     /// <returns>
     /// <c>true</c> if the signature is valid, indicating that the event can be trusted as it came from Samsara.
     /// <c>false</c> if the signature validation fails, indicating the event did not come from Samsara so may be malicious and should be discarded.
     /// </returns>
     /// <exception cref="ArgumentNullException">
-    /// Thrown if <paramref name="signatureKey"/> or <paramref name="notificationUrl"/> are not set.
+    /// Thrown if <paramref name="signatureKey"/> is not set.
     /// </exception>
     /// <remarks>
+    /// Samsara signs each webhook by computing <c>HMAC-SHA256</c> over the base string
+    /// <c>v1:{timestamp}:{rawBody}</c>, using the Base64-decoded signature secret as the key, and sends the
+    /// result as a lowercase hex string in the <c>X-Samsara-Signature</c> header, prefixed with <c>v1=</c>.
+    /// See https://developers.samsara.com/docs/webhooks#webhook-signatures.
     /// <example>
     /// For example, if you wanted to verify a webhook notification that was sent to an ASP.NET endpoint
     /// in your app, you could do the following:
     /// <code>
     /// public static async System.Threading.Tasks.Task CheckWebhooksEvent(
     ///     Microsoft.AspNetCore.Http.HttpRequest request,
-    ///     string signatureKey,
-    ///     string notificationUrl
+    ///     string signatureKey
     /// )
     /// {
-    ///     var signature = request.Headers["x-samsara-hmacsha256-signature"].ToString();
+    ///     var signature = request.Headers["X-Samsara-Signature"].ToString();
+    ///     var timestamp = request.Headers["X-Samsara-Timestamp"].ToString();
     ///     using (var reader = new System.IO.StreamReader(request.Body, System.Text.Encoding.UTF8))
     ///     {
     ///         var requestBody = await reader.ReadToEndAsync();
-    ///         if (!WebhooksHelper.VerifySignature(requestBody, signature, signatureKey, notificationUrl))
+    ///         if (!WebhooksHelper.VerifySignature(requestBody, signature, timestamp, signatureKey))
     ///         {
     ///             throw new System.Exception("A webhook event was received that was not from Samsara.");
     ///         }
@@ -51,8 +57,8 @@ public static class WebhooksHelper
     public static bool VerifySignature(
         string requestBody,
         string signatureHeader,
-        string signatureKey,
-        string notificationUrl
+        string timestampHeader,
+        string signatureKey
     )
     {
         if (string.IsNullOrEmpty(signatureKey))
@@ -60,273 +66,91 @@ public static class WebhooksHelper
             throw new ArgumentNullException(nameof(signatureKey));
         }
 
-        if (string.IsNullOrEmpty(notificationUrl))
-        {
-            throw new ArgumentNullException(nameof(notificationUrl));
-        }
-
-        if (signatureHeader is null)
+        if (
+            requestBody is null
+            || string.IsNullOrEmpty(signatureHeader)
+            || string.IsNullOrEmpty(timestampHeader)
+        )
         {
             return false;
         }
 
-#if NET6_0_OR_GREATER
-        return VerifySignature(
-            requestBody.AsSpan(),
-            signatureHeader.AsSpan(),
-            signatureKey.AsSpan(),
-            notificationUrl.AsSpan()
-        );
-#else
-        return VerifySignatureOld(requestBody, signatureHeader, signatureKey, notificationUrl);
-#endif
-    }
+        // Step 1: The signature header is "v1=<hex>". Strip the "v1=" prefix.
+        if (!signatureHeader.StartsWith(SignaturePrefix, StringComparison.Ordinal))
+        {
+            return false;
+        }
+        var providedHex = signatureHeader.Substring(SignaturePrefix.Length);
 
-    internal static bool VerifySignatureOld(
-        string requestBody,
-        string signatureHeader,
-        string signatureKey,
-        string notificationUrl
-    )
-    {
-        // Step 1: concatenate the notification URL and the request body and get bytes
-        var payload = $"{notificationUrl}{requestBody}";
-        var payloadBytes = Encoding.UTF8.GetBytes(payload);
-
-        // Step 2: Get bytes for secret
-        var secret = Encoding.UTF8.GetBytes(signatureKey);
-
-        // Step 3: Compute hash
-        using var hmac = new HMACSHA256(secret);
-        var hash = hmac.ComputeHash(payloadBytes);
-
-        // Step 4: Decode the signature header from Base64
-        byte[] signatureBytes;
+        // Step 2: The portal secret is Base64. Decode it to get the raw HMAC key bytes.
+        byte[] keyBytes;
         try
         {
-            signatureBytes = Convert.FromBase64String(signatureHeader);
+            keyBytes = Convert.FromBase64String(signatureKey);
         }
         catch (FormatException)
         {
-            // Invalid Base64 string
             return false;
         }
 
-        // Step 5: Compare the signature header to the hash using constant-time comparison
-        return CryptographicEqual(hash, signatureBytes);
+        // Step 3: Build the base string "v1:{timestamp}:{rawBody}" and HMAC-SHA256 it.
+        var baseString = $"v1:{timestampHeader}:{requestBody}";
+        var baseBytes = Encoding.UTF8.GetBytes(baseString);
+
+        byte[] computedHash;
+        using (var hmac = new HMACSHA256(keyBytes))
+        {
+            computedHash = hmac.ComputeHash(baseBytes);
+        }
+
+        // Step 4: Hex-encode the HMAC (lowercase) and compare to the provided signature in constant time.
+        var computedHex = ToLowerHex(computedHash);
+        return FixedTimeEquals(
+            Encoding.ASCII.GetBytes(computedHex),
+            Encoding.ASCII.GetBytes(providedHex)
+        );
+    }
+
+    /// <summary>
+    /// Encodes <paramref name="bytes"/> as a lowercase hexadecimal string.
+    /// </summary>
+    private static string ToLowerHex(byte[] bytes)
+    {
+#if NET6_0_OR_GREATER
+        return Convert.ToHexString(bytes).ToLowerInvariant();
+#else
+        const string hexChars = "0123456789abcdef";
+        var chars = new char[bytes.Length * 2];
+        for (var i = 0; i < bytes.Length; i++)
+        {
+            chars[i * 2] = hexChars[bytes[i] >> 4];
+            chars[i * 2 + 1] = hexChars[bytes[i] & 0xF];
+        }
+        return new string(chars);
+#endif
     }
 
     /// <summary>
     /// Compares two byte arrays in constant time to prevent timing attacks.
     /// </summary>
-    /// <param name="a">The first byte array to compare.</param>
-    /// <param name="b">The second byte array to compare.</param>
-    /// <returns>True if the arrays are equal, false otherwise.</returns>
-    private static bool CryptographicEqual(byte[] a, byte[] b)
+    private static bool FixedTimeEquals(byte[] a, byte[] b)
     {
-        // If either array is null or their lengths differ, they can't be equal
-        if (a is null || b is null || a.Length != b.Length)
+#if NET6_0_OR_GREATER
+        return CryptographicOperations.FixedTimeEquals(a, b);
+#else
+        // Constant-time comparison for frameworks without CryptographicOperations
+        // (net462, netstandard2.0). Every byte is inspected regardless of an early mismatch.
+        if (a.Length != b.Length)
         {
             return false;
         }
 
-        // Different from standard equality check - we always check ALL bytes
-        // regardless of whether we've already found a difference
         var result = 0;
         for (var i = 0; i < a.Length; i++)
         {
-            // XOR each byte pair and OR the result
-            // Any difference makes result non-zero
             result |= a[i] ^ b[i];
         }
-
-        // Only if all bytes were identical will result still be zero
         return result == 0;
-    }
-
-#if NET6_0_OR_GREATER
-    /// <summary>
-    /// Verify and Validate an Event Notification
-    /// </summary>
-    /// <param name="requestBody">The JSON body of the request.</param>
-    /// <param name="signatureHeader">The value for the <c>x-samsara-hmacsha256-signature</c> header.</param>
-    /// <param name="signatureKey">The signature key from the Samsara Developer portal for the webhook subscription.</param>
-    /// <param name="notificationUrl">The notification endpoint URL as defined in the Samsara Developer portal for the webhook subscription.</param>
-    /// <returns>
-    /// <c>true</c> if the signature is valid, indicating that the event can be trusted as it came from Samsara.
-    /// <c>false</c> if the signature validation fails, indicating the event did not come from Samsara so may be malicious and should be discarded.
-    /// </returns>
-    /// <remarks>
-    /// <example>
-    /// For example, if you wanted to verify a webhook notification that was sent to an ASP.NET endpoint
-    /// in your app, you could do the following:
-    /// <code>
-    /// public static async System.Threading.Tasks.Task CheckWebhooksEvent(
-    ///     Microsoft.AspNetCore.Http.HttpRequest request,
-    ///     string signatureKey,
-    ///     string notificationUrl
-    /// )
-    /// {
-    ///     // Get the signature header
-    ///     var signature = request.Headers["x-samsara-hmacsha256-signature"].ToString();
-    ///
-    ///     // Read the request body
-    ///     using (var reader = new System.IO.StreamReader(request.Body, System.Text.Encoding.UTF8))
-    ///     {
-    ///         var requestBody = await reader.ReadToEndAsync();
-    ///
-    ///         // Use the span-based verification method
-    ///         if (!WebhooksHelper.VerifySignature(
-    ///             requestBody.AsSpan(),
-    ///             signature.AsSpan(),
-    ///             signatureKey.AsSpan(),
-    ///             notificationUrl.AsSpan()))
-    ///         {
-    ///             throw new System.Exception("A webhook event was received that was not from Samsara.");
-    ///         }
-    ///     }
-    ///
-    ///     // Reset stream position if needed
-    ///     if (request.Body.CanSeek)
-    ///     {
-    ///         request.Body.Position = 0;
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
-    /// </remarks>
-    public static bool VerifySignature(
-        ReadOnlySpan<char> requestBody,
-        ReadOnlySpan<char> signatureHeader,
-        ReadOnlySpan<char> signatureKey,
-        ReadOnlySpan<char> notificationUrl
-    )
-    {
-        // Convert request body to bytes
-        Span<byte> requestBodyBytes = stackalloc byte[Encoding.UTF8.GetByteCount(requestBody)];
-        Encoding.UTF8.GetBytes(requestBody, requestBodyBytes);
-
-        // Convert signature header to bytes
-        Span<byte> signatureHeaderBytes =
-            stackalloc byte[Encoding.UTF8.GetByteCount(signatureHeader)];
-        Encoding.UTF8.GetBytes(signatureHeader, signatureHeaderBytes);
-
-        // Convert signature key to bytes
-        Span<byte> signatureKeyBytes = stackalloc byte[Encoding.UTF8.GetByteCount(signatureKey)];
-        Encoding.UTF8.GetBytes(signatureKey, signatureKeyBytes);
-
-        // Convert notification URL to bytes
-        Span<byte> notificationUrlBytes =
-            stackalloc byte[Encoding.UTF8.GetByteCount(notificationUrl)];
-        Encoding.UTF8.GetBytes(notificationUrl, notificationUrlBytes);
-
-        // Delegate to the byte-based implementation
-        return VerifySignature(
-            requestBodyBytes,
-            signatureHeaderBytes,
-            signatureKeyBytes,
-            notificationUrlBytes
-        );
-    }
-
-    /// <summary>
-    /// Verify and Validate an Event Notification.
-    /// </summary>
-    /// <param name="requestBody">The JSON body of the request.</param>
-    /// <param name="signatureHeader">The value for the <c>x-samsara-hmacsha256-signature</c> header.</param>
-    /// <param name="signatureKey">The signature key from the Samsara Developer portal for the webhook subscription.</param>
-    /// <param name="notificationUrl">The notification endpoint URL as defined in the Samsara Developer portal for the webhook subscription.</param>
-    /// <returns>
-    /// <c>true</c> if the signature is valid, indicating that the event can be trusted as it came from Samsara.
-    /// <c>false</c> if the signature validation fails, indicating the event did not come from Samsara so may be malicious and should be discarded.
-    /// </returns>
-    /// <remarks>
-    /// <example>
-    /// For example, if you wanted to verify a webhook notification that was sent to an ASP.NET endpoint
-    /// in your app, you could do the following:
-    /// <code>
-    /// public static async System.Threading.Tasks.Task CheckWebhooksEvent(
-    ///     Microsoft.AspNetCore.Http.HttpRequest request,
-    ///     string signatureKey,
-    ///     string notificationUrl
-    /// )
-    /// {
-    ///     // Get the signature header
-    ///     var signature = request.Headers["x-samsara-hmacsha256-signature"].ToString();
-    ///
-    ///     // Read the request body directly into a memory stream
-    ///     using var memoryStream = new System.IO.MemoryStream();
-    ///     await request.Body.CopyToAsync(memoryStream);
-    ///     memoryStream.Position = 0;
-    ///
-    ///     // Get a span over the raw bytes
-    ///     ReadOnlySpan&lt;byte&gt; bodyBytes = memoryStream.GetBuffer().AsSpan(0, (int)memoryStream.Length);
-    ///
-    ///     // Convert signature header to bytes
-    ///     byte[] signatureBytes = System.Text.Encoding.UTF8.GetBytes(signature);
-    ///     byte[] keyBytes = System.Text.Encoding.UTF8.GetBytes(signatureKey);
-    ///     byte[] urlBytes = System.Text.Encoding.UTF8.GetBytes(notificationUrl);
-    ///
-    ///     // Use the byte-based verification method
-    ///     if (!WebhooksHelper.VerifySignature(
-    ///         bodyBytes,
-    ///         signatureBytes,
-    ///         keyBytes,
-    ///         urlBytes))
-    ///     {
-    ///         throw new System.Exception("A webhook event was received that was not from Samsara.");
-    ///     }
-    ///
-    ///     // Reset stream position if needed
-    ///     if (request.Body.CanSeek)
-    ///     {
-    ///         request.Body.Position = 0;
-    ///     }
-    /// }
-    /// </code>
-    /// </example>
-    /// </remarks>
-    public static bool VerifySignature(
-        ReadOnlySpan<byte> requestBody,
-        ReadOnlySpan<byte> signatureHeader,
-        ReadOnlySpan<byte> signatureKey,
-        ReadOnlySpan<byte> notificationUrl
-    )
-    {
-        // Step 1: Concatenate the notification URL and request body bytes
-        var urlLength = notificationUrl.Length;
-        var bodyLength = requestBody.Length;
-        var totalLength = urlLength + bodyLength;
-
-        // Allocate a buffer for the combined payload
-        Span<byte> payloadBytes = stackalloc byte[totalLength];
-
-        // Copy both parts directly into the buffer
-        notificationUrl.CopyTo(payloadBytes);
-        requestBody.CopyTo(payloadBytes.Slice(urlLength));
-
-        // Step 2: Compute the hash
-        Span<byte> hashBytes = stackalloc byte[32]; // SHA256 produces 32 bytes
-        HMACSHA256.HashData(signatureKey, payloadBytes, hashBytes);
-
-        // Step 3: Convert signature header bytes to char span for Base64 decoding
-        // This step is necessary because TryFromBase64Chars works with char spans
-        Span<char> signatureChars = stackalloc char[Encoding.UTF8.GetCharCount(signatureHeader)];
-        Encoding.UTF8.GetChars(signatureHeader, signatureChars);
-
-        // Step 4: Decode the signature from Base64
-        Span<byte> decodedHeader = stackalloc byte[32]; // SHA256 produces 32 bytes
-        if (Convert.TryFromBase64Chars(signatureChars, decodedHeader, out var bytesWritten))
-        {
-            // Step 5: Compare the signature header to the hash
-            return CryptographicOperations.FixedTimeEquals(
-                hashBytes,
-                decodedHeader.Slice(0, bytesWritten)
-            );
-        }
-
-        // If the Base64 conversion fails, the signature is invalid
-        return false;
-    }
 #endif
+    }
 }
