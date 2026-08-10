@@ -13,7 +13,7 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
     {
         const string requestJson = """
             {
-              "orderStatus": "12345",
+              "orderStatus": "draft",
               "vendorId": "281474976710656"
             }
             """;
@@ -26,25 +26,25 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                 "deliveryAtTime": "2019-06-13T19:08:25Z",
                 "firstReceivedAtTime": "2019-06-13T19:08:25Z",
                 "fullyReceivedAtTime": "2019-06-13T19:08:25Z",
-                "glCode": "12345",
+                "glCode": "GL-4000",
                 "id": "12345",
-                "invoiceNumber": "12345",
+                "invoiceNumber": "INV-12345",
                 "mediaItemIds": [
                   "12345",
                   "12345",
                   "12345",
                   "12345"
                 ],
-                "notes": "12345",
-                "orderStatus": "12345",
+                "notes": "Deliver to maintenance shop.",
+                "orderStatus": "draft",
                 "otherCost": {
-                  "amount": "12345",
-                  "currency": "12345"
+                  "amount": "24.50",
+                  "currency": "usd"
                 },
                 "parts": [
                   {
-                    "batchNumber": "12345",
-                    "description": "12345",
+                    "batchNumber": "LOT-42",
+                    "description": "Oil filter",
                     "lineItemId": "12345",
                     "partSamsara": {
                       "id": "281474976710656"
@@ -52,16 +52,16 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                     "place": {
                       "id": "281474976710656"
                     },
-                    "quantityOrdered": 123.45,
+                    "quantityOrdered": 10,
                     "quantityReceived": 123.45,
-                    "unitOfMeasureType": "12345"
+                    "unitOfMeasureType": "each"
                   }
                 ],
                 "poNumber": "12345",
-                "poNumberPrefix": "12345",
-                "poNumberSuffix": "12345",
+                "poNumberPrefix": "PO",
+                "poNumberSuffix": "A",
                 "sentAtTime": "2019-06-13T19:08:25Z",
-                "trackingNumber": "12345",
+                "trackingNumber": "1Z999AA10123456784",
                 "updatedAtTime": "2019-06-13T19:08:25Z",
                 "vendor": {
                   "id": "281474976710656"
@@ -89,7 +89,7 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
         var response = await Client.BetaApIs.CreatePurchaseOrderAsync(
             new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
             {
-                OrderStatus = "12345",
+                OrderStatus = "draft",
                 VendorId = "281474976710656",
             }
         );

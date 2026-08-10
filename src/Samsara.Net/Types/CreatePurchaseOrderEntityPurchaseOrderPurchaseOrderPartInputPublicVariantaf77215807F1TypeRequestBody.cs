@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInput object
+/// CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInput object
 /// </summary>
 [Serializable]
-public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody
+public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -22,7 +22,7 @@ public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRe
     public string? BatchNumber { get; set; }
 
     [JsonPropertyName("coreCharge")]
-    public UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody? CoreCharge { get; set; }
+    public CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBody? CoreCharge { get; set; }
 
     /// <summary>
     /// Description of the ordered part.
@@ -61,7 +61,7 @@ public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRe
     public required double QuantityReceived { get; set; }
 
     [JsonPropertyName("unitCost")]
-    public UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody? UnitCost { get; set; }
+    public CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody? UnitCost { get; set; }
 
     /// <summary>
     /// Unit of measure for quantities on this line.

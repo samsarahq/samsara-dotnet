@@ -38,13 +38,13 @@ public record EntityPurchaseOrdersServiceUpdatePurchaseOrderRequestBody
     public string? OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
-    public UpdatePurchaseOrderEntityPurchaseOrderMoneyInputTypeRequestBody? OtherCost { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody? OtherCost { get; set; }
 
     /// <summary>
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputTypeRequestBody>? Parts { get; set; }
+    public IEnumerable<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVarianta398Dc3A25A6TypeRequestBody>? Parts { get; set; }
 
     /// <summary>
     /// Shipment tracking number for the purchase order.
