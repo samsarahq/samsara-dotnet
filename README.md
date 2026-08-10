@@ -91,9 +91,14 @@ await foreach (var item in pager)
 
 ## Webhook Signature Verification
 
-The SDK provides utility methods that allow you to verify webhook signatures and ensure
-that all webhook events originate from Samsara. The `WebhooksHelper.verifySignature` method
-can be used to verify the signature like so:
+The SDK provides a utility method that allows you to verify webhook signatures and ensure
+that all webhook events originate from Samsara. Samsara signs each webhook using the `v1`
+scheme documented at
+[developers.samsara.com](https://developers.samsara.com/docs/webhooks#webhook-signatures):
+it computes `HMAC-SHA256` over the base string `v1:{timestamp}:{rawBody}` using the
+Base64-decoded signature secret as the key, and sends the result as lowercase hex in the
+`X-Samsara-Signature` header (prefixed with `v1=`), alongside the `X-Samsara-Timestamp`
+header. The `WebhooksHelper.VerifySignature` method verifies this signature like so:
 
 ```csharp
 using Microsoft.AspNetCore.Http;
@@ -101,21 +106,23 @@ using Samsara;
 
 public static async Task CheckWebhooksEvent(
     HttpRequest request,
-    string signatureKey,
-    string notificationUrl
+    string signatureKey
 )
 {
-    var signature = request.Headers["x-samsara-hmacsha256-signature"].ToString();
+    var signature = request.Headers["X-Samsara-Signature"].ToString();
+    var timestamp = request.Headers["X-Samsara-Timestamp"].ToString();
     using var reader = new StreamReader(request.Body, System.Text.Encoding.UTF8);
     var requestBody = await reader.ReadToEndAsync();
-    if (!WebhooksHelper.VerifySignature(requestBody, signature, signatureKey, notificationUrl))
+    if (!WebhooksHelper.VerifySignature(requestBody, signature, timestamp, signatureKey))
     {
         throw new Exception("A webhook event was received that was not from Samsara.");
     }
 }
 ```
 
-In .NET 6 and above, there are also overloads using spans for allocation free webhook verification.
+`signatureKey` is the Base64 signature secret from the Samsara Developer portal for the
+webhook subscription. Pass the raw request body exactly as received — do not re-serialize
+or reformat it, or the signature will not match.
 
 ## Advanced
 
