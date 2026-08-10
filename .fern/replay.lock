@@ -168,14 +168,20 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-csharp-sdk: 2.20.5
-current_generation: 62ed75c38be243190b6a1dbe83747f3de3fa6e68
+  - commit_sha: d5bd520eee90a5f9e1291169d8adc3afd2ae1e11
+    tree_hash: 310a828dd396cf1d469ba5c26a62743e6f731450
+    timestamp: 2026-08-10T18:01:34.446Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-csharp-sdk: 2.20.5
+current_generation: d5bd520eee90a5f9e1291169d8adc3afd2ae1e11
 patches:
   - id: patch-7dc50af1
     content_hash: sha256:095cc58c49c5a9cba9469bccbda8a13d05c4f3a7a45b916ce6380c1e8618c3ce
     original_commit: 7dc50af194e01215d26e28fdbd4317a17cca1832
     original_message: Use OIDC trusted publishing for NuGet instead of API key
     original_author: Dariusz Wojciechowski <dariusz.wojciechowski@samsara.com>
-    base_generation: 62ed75c38be243190b6a1dbe83747f3de3fa6e68
+    base_generation: d5bd520eee90a5f9e1291169d8adc3afd2ae1e11
     files:
       - .github/workflows/ci.yml
     patch_content: |
@@ -286,3 +292,4 @@ patches:
               - name: Run Tests
                 run: dotnet test src/Samsara.Net.Test/Samsara.Net.Test.csproj -c Release --no-build --no-restore
 
+    user_owned: true
