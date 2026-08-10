@@ -162,5 +162,127 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-csharp-sdk: 2.20.5
-current_generation: c8af3d154dd31cee7ee9091773ed99c5bff94464
-patches: []
+  - commit_sha: 62ed75c38be243190b6a1dbe83747f3de3fa6e68
+    tree_hash: afa5e03c0040f17374ecd06cb97eae2ef4b77ded
+    timestamp: 2026-08-10T11:56:45.419Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-csharp-sdk: 2.20.5
+current_generation: 62ed75c38be243190b6a1dbe83747f3de3fa6e68
+patches:
+  - id: patch-7dc50af1
+    content_hash: sha256:095cc58c49c5a9cba9469bccbda8a13d05c4f3a7a45b916ce6380c1e8618c3ce
+    original_commit: 7dc50af194e01215d26e28fdbd4317a17cca1832
+    original_message: Use OIDC trusted publishing for NuGet instead of API key
+    original_author: Dariusz Wojciechowski <dariusz.wojciechowski@samsara.com>
+    base_generation: 62ed75c38be243190b6a1dbe83747f3de3fa6e68
+    files:
+      - .github/workflows/ci.yml
+    patch_content: |
+      diff --git a/.github/workflows/ci.yml b/.github/workflows/ci.yml
+      index c217ec65..7a47d3f7 100644
+      --- a/.github/workflows/ci.yml
+      +++ b/.github/workflows/ci.yml
+      @@ -61,37 +61,3 @@ jobs:
+             - name: Run Tests
+               run: dotnet test src/Samsara.Net.Test/Samsara.Net.Test.csproj -c Release --no-build --no-restore
+       
+      -
+      -  publish:
+      -    needs: [compile]
+      -    if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
+      -    runs-on: ubuntu-latest
+      -
+      -    steps:
+      -      - name: Checkout repo
+      -        uses: actions/checkout@v5
+      -
+      -      - name: Setup .NET
+      -        uses: actions/setup-dotnet@v5
+      -        with:
+      -          dotnet-version: 10.x
+      -
+      -      - name: Print .NET info
+      -        run: dotnet --info
+      -
+      -      - name: Install tools
+      -        run: dotnet tool restore
+      -
+      -      - name: Restore dependencies
+      -        run: dotnet restore src/Samsara.Net/Samsara.Net.csproj
+      -
+      -      - name: Build Release
+      -        run: dotnet build src/Samsara.Net/Samsara.Net.csproj -c Release --no-restore
+      -
+      -      - name: Publish
+      -        env:
+      -          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      -        run: |
+      -          dotnet pack src/Samsara.Net/Samsara.Net.csproj -c Release --no-build --no-restore
+      -          dotnet nuget push src/Samsara.Net/bin/Release/*.nupkg --api-key $NUGET_API_KEY --source "nuget.org"
+      -
+    theirs_snapshot:
+      .github/workflows/ci.yml: |+
+        name: ci
+
+        on: [push]
+
+        env:
+          DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_NOLOGO: true
+
+        jobs:
+          compile:
+            runs-on: ubuntu-latest
+
+            steps:
+              - name: Checkout repo
+                uses: actions/checkout@v5
+
+              - uses: actions/checkout@master
+
+              - name: Setup .NET
+                uses: actions/setup-dotnet@v5
+                with:
+                  dotnet-version: 10.x
+
+              - name: Print .NET info
+                run: dotnet --info
+
+              - name: Install tools
+                run: dotnet tool restore
+
+              - name: Restore dependencies
+                run: dotnet restore src/Samsara.Net/Samsara.Net.csproj
+
+              - name: Build Release
+                run: dotnet build src/Samsara.Net/Samsara.Net.csproj -c Release --no-restore
+
+          unit-tests:
+            runs-on: ubuntu-latest
+
+            steps:
+              - name: Checkout repo
+                uses: actions/checkout@v5
+
+              - name: Setup .NET
+                uses: actions/setup-dotnet@v5
+                with:
+                  dotnet-version: 10.x
+
+              - name: Print .NET info
+                run: dotnet --info
+
+              - name: Install tools
+                run: |
+                  dotnet tool restore
+
+              - name: Restore dependencies
+                run: dotnet restore src/Samsara.Net.Test/Samsara.Net.Test.csproj
+
+              - name: Build Release
+                run: dotnet build src/Samsara.Net.Test/Samsara.Net.Test.csproj -c Release --no-restore
+
+              - name: Run Tests
+                run: dotnet test src/Samsara.Net.Test/Samsara.Net.Test.csproj -c Release --no-build --no-restore
+
