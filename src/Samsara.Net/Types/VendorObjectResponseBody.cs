@@ -39,6 +39,12 @@ public record VendorObjectResponseBody : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
+    /// The vendor's accounts-payable/ERP payee ID.
+    /// </summary>
+    [JsonPropertyName("payeeId")]
+    public string? PayeeId { get; set; }
+
+    /// <summary>
     /// Description of services provided by the vendor.
     /// </summary>
     [JsonPropertyName("servicesProvided")]

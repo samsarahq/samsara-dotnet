@@ -20,6 +20,18 @@ public record PlaceResponseObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("address")]
     public required string Address { get; set; }
 
+    /// <summary>
+    /// Latitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.
+    /// </summary>
+    [JsonPropertyName("addressLatitude")]
+    public double? AddressLatitude { get; set; }
+
+    /// <summary>
+    /// Longitude of the place pin (map marker), stored independently of the geofence. Omitted when no pin is set.
+    /// </summary>
+    [JsonPropertyName("addressLongitude")]
+    public double? AddressLongitude { get; set; }
+
     [JsonPropertyName("businessContacts")]
     public PlaceBusinessContactsResponseResponseBody? BusinessContacts { get; set; }
 

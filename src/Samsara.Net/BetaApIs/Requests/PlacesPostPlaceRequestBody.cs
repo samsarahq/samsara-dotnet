@@ -13,6 +13,18 @@ public record PlacesPostPlaceRequestBody
     [JsonPropertyName("address")]
     public required string Address { get; set; }
 
+    /// <summary>
+    /// Latitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLongitude.
+    /// </summary>
+    [JsonPropertyName("addressLatitude")]
+    public double? AddressLatitude { get; set; }
+
+    /// <summary>
+    /// Longitude of the place pin (map marker), stored independently of the geofence. When supplied, sets the pin; otherwise the pin is left empty. Provide together with addressLatitude.
+    /// </summary>
+    [JsonPropertyName("addressLongitude")]
+    public double? AddressLongitude { get; set; }
+
     [JsonPropertyName("businessContacts")]
     public PostPlaceBusinessContactsInputRequestBody? BusinessContacts { get; set; }
 

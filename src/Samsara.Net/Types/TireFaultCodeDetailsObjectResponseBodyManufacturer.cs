@@ -22,6 +22,9 @@ public readonly record struct TireFaultCodeDetailsObjectResponseBodyManufacturer
     public static readonly TireFaultCodeDetailsObjectResponseBodyManufacturer ManufacturerInvalid =
         new(Values.ManufacturerInvalid);
 
+    public static readonly TireFaultCodeDetailsObjectResponseBodyManufacturer ManufacturerPassengerCan =
+        new(Values.ManufacturerPassengerCan);
+
     public static readonly TireFaultCodeDetailsObjectResponseBodyManufacturer ManufacturerPressurePro =
         new(Values.ManufacturerPressurePro);
 
@@ -101,6 +104,8 @@ public readonly record struct TireFaultCodeDetailsObjectResponseBodyManufacturer
         public const string ManufacturerHendrickson = "MANUFACTURER_HENDRICKSON";
 
         public const string ManufacturerInvalid = "MANUFACTURER_INVALID";
+
+        public const string ManufacturerPassengerCan = "MANUFACTURER_PASSENGER_CAN";
 
         public const string ManufacturerPressurePro = "MANUFACTURER_PRESSURE_PRO";
 
