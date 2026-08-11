@@ -24,6 +24,8 @@ public class PostPlaceTest : BaseMockServerTest
             {
               "data": {
                 "address": "123 Main St",
+                "addressLatitude": 37.7749,
+                "addressLongitude": -122.4194,
                 "businessContacts": {
                   "contacts": [
                     {
