@@ -39,7 +39,7 @@ public record RouteStopOrderUpsertInputRequestBody : IJsonOnDeserialized
     public string? SamsaraCustomerOrderName { get; set; }
 
     /// <summary>
-    /// The task to upsert and attach to the containing stop.
+    /// Tasks to upsert and attach to the containing stop.
     /// </summary>
     [JsonPropertyName("tasks")]
     public IEnumerable<FleetOrderTaskUpsertInputRequestBody> Tasks { get; set; } =

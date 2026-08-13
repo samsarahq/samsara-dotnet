@@ -23,7 +23,7 @@ public class GetDocumentsTest : BaseMockServerTest
                       "triggeringFieldValue": "Optiona 1"
                     }
                   ],
-                  "createdAtTime": "2014-09-02T18:11:09.000Z",
+                  "createdAtTime": "2015-09-08T06:33:15.000Z",
                   "documentType": {
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                     "name": "Fleet Truck List"
@@ -54,7 +54,7 @@ public class GetDocumentsTest : BaseMockServerTest
                     "name": "Company Warehouse #1"
                   },
                   "state": "submitted",
-                  "updatedAtTime": "1980-08-29T21:44:37.000Z",
+                  "updatedAtTime": "1975-05-20T03:23:39.000Z",
                   "vehicle": {
                     "id": "494123",
                     "name": "Fleet Truck #1"
