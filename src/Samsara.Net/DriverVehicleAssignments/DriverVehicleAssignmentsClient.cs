@@ -21,12 +21,13 @@ public partial class DriverVehicleAssignmentsClient : IDriverVehicleAssignmentsC
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 9)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 10)
             .Add("filterBy", request.FilterBy)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
             .Add("driverIds", request.DriverIds)
             .Add("vehicleIds", request.VehicleIds)
+            .Add("sourceName", request.SourceName)
             .Add("driverTagIds", request.DriverTagIds)
             .Add("vehicleTagIds", request.VehicleTagIds)
             .Add("after", request.After)
