@@ -15,11 +15,11 @@ public class ListIssuesTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "createdAtTime": "2019-06-13T19:08:25Z",
-                  "dashboardUrl": "https://cloud.samsara.com/o/123456/ground-intelligence/issues/123e4567-e89b-12d3-a456-426614174000",
-                  "firstSeenTime": "2019-06-13T19:08:25Z",
-                  "id": "123e4567-e89b-12d3-a456-426614174000",
-                  "lastSeenTime": "2019-06-13T19:08:25Z",
+                  "createdAtTime": "2026-08-06T08:00:00Z",
+                  "dashboardUrl": "https://cloud.samsara.com/o/123456/ground-intelligence/issues/5267696d-a9f9-4031-bdf4-6fbc9ec64e57",
+                  "firstSeenTime": "2026-08-06T08:00:00Z",
+                  "id": "5267696d-a9f9-4031-bdf4-6fbc9ec64e57",
+                  "lastSeenTime": "2026-08-06T09:00:00Z",
                   "location": {
                     "type": "point"
                   },
@@ -28,9 +28,9 @@ public class ListIssuesTest : BaseMockServerTest
                     "roadName": "Market Street"
                   },
                   "severity": "high",
-                  "status": "needsReview",
+                  "status": "dismissed",
                   "type": "pothole",
-                  "updatedAtTime": "2019-06-13T19:08:25Z"
+                  "updatedAtTime": "2026-08-06T10:00:00Z"
                 }
               ],
               "pagination": {

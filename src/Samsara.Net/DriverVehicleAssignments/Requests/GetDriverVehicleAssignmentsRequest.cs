@@ -37,6 +37,12 @@ public record GetDriverVehicleAssignmentsRequest
     public IEnumerable<string> VehicleIds { get; set; } = new List<string>();
 
     /// <summary>
+    /// Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.
+    /// </summary>
+    [JsonIgnore]
+    public string? SourceName { get; set; }
+
+    /// <summary>
     /// A filter on the data based on this comma-separated list of driver tag IDs. Example: `tagIds=1234,5678`
     /// </summary>
     [JsonIgnore]
