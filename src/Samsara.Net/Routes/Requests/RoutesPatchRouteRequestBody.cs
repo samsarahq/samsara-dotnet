@@ -14,7 +14,7 @@ public record RoutesPatchRouteRequestBody
     public required string Id { get; set; }
 
     /// <summary>
-    /// ID of the driver. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
+    /// ID of the driver. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver. Set to null to unassign the driver from the route.
     /// </summary>
     [JsonPropertyName("driverId")]
     public string? DriverId { get; set; }
@@ -59,7 +59,7 @@ public record RoutesPatchRouteRequestBody
     public IEnumerable<string>? TagIds { get; set; }
 
     /// <summary>
-    /// ID of the vehicle. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
+    /// ID of the vehicle. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle. Set to null to unassign the vehicle from the route.
     /// </summary>
     [JsonPropertyName("vehicleId")]
     public string? VehicleId { get; set; }
