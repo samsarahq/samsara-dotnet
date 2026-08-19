@@ -16,33 +16,33 @@ public class ListTimeEntriesTest : BaseMockServerTest
               "data": [
                 {
                   "activityType": "12345",
-                  "clockInAtTime": "2019-06-13T19:08:25Z",
+                  "clockInAtTime": "2026-07-09T14:10:47.648Z",
                   "clockInLocation": {
-                    "latitude": 123.45,
-                    "longitude": 123.45
+                    "latitude": 42.2364884,
+                    "longitude": -83.3113959
                   },
-                  "clockInSource": "12345",
-                  "clockOutAtTime": "2019-06-13T19:08:25Z",
+                  "clockInSource": "mobile",
+                  "clockOutAtTime": "2026-07-09T14:15:47.296Z",
                   "clockOutLocation": {
-                    "latitude": 123.45,
-                    "longitude": 123.45
+                    "latitude": 42.2365116,
+                    "longitude": -83.3114372
                   },
-                  "clockOutMethodType": "12345",
-                  "clockOutSource": "12345",
-                  "createdAtTime": "2019-06-13T19:08:25Z",
+                  "clockOutMethodType": "manual",
+                  "clockOutSource": "mobile",
+                  "createdAtTime": "2026-07-09T14:10:48.245Z",
                   "deletedAtTime": "2019-06-13T19:08:25Z",
                   "deletedByUserId": "12345",
                   "hourlyRate": {
-                    "amount": "12345",
-                    "currency": "12345"
+                    "amount": "24.50",
+                    "currency": "usd"
                   },
-                  "id": "12345",
-                  "placeId": "12345",
-                  "serviceTaskId": "12345",
-                  "timeEntryStatus": "12345",
-                  "updatedAtTime": "2019-06-13T19:08:25Z",
-                  "userId": "12345",
-                  "workOrderId": "12345"
+                  "id": "85436931-026c-466a-95ae-419a829e3a26",
+                  "placeId": "5000000795134",
+                  "serviceTaskId": "98e645fa-4b7e-446c-8613-cf2bb0a70727",
+                  "timeEntryStatus": "completed",
+                  "updatedAtTime": "2026-07-09T14:15:47.820Z",
+                  "userId": "590838",
+                  "workOrderId": "34"
                 }
               ],
               "pagination": {

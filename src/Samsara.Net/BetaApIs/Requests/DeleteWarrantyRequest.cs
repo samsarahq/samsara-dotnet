@@ -1,13 +1,13 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
-public record DeleteWarrantyClaimRequest
+public record DeleteWarrantyRequest
 {
     /// <summary>
-    /// Unique identifier for the WarrantyClaim record.
+    /// Unique identifier for the Warranty record.
     /// </summary>
     [JsonIgnore]
     public required string Id { get; set; }

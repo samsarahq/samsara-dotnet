@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class UpdateWarrantyClaimTest : BaseMockServerTest
@@ -102,7 +102,7 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/warranty-claims")
+                    .WithPath("/maintenance/warranty-claims")
                     .WithParam("id", "id")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPatch()
@@ -115,7 +115,7 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.UpdateWarrantyClaimAsync(
+        var response = await Client.BetaApIs.UpdateWarrantyClaimAsync(
             new EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { Id = "id" }
         );
         JsonAssert.AreEqual(response, mockResponse);

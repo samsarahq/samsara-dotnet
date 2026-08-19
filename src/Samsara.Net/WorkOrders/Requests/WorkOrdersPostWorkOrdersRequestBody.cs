@@ -8,6 +8,12 @@ namespace Samsara.Net.WorkOrders;
 public record WorkOrdersPostWorkOrdersRequestBody
 {
     /// <summary>
+    /// The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status is Closed or Cancelled and this field is not provided.
+    /// </summary>
+    [JsonPropertyName("archivedAtTime")]
+    public DateTime? ArchivedAtTime { get; set; }
+
+    /// <summary>
     /// The ID of the asset.
     /// </summary>
     [JsonPropertyName("assetId")]
@@ -24,6 +30,12 @@ public record WorkOrdersPostWorkOrdersRequestBody
     /// </summary>
     [JsonPropertyName("category")]
     public string? Category { get; set; }
+
+    /// <summary>
+    /// The historical time the work order was completed, in RFC 3339 format. Is automatically set when the status is Closed or Completed and this field is not provided.
+    /// </summary>
+    [JsonPropertyName("completedAtTime")]
+    public DateTime? CompletedAtTime { get; set; }
 
     /// <summary>
     /// A description of what needs to be fixed.
@@ -93,6 +105,18 @@ public record WorkOrdersPostWorkOrdersRequestBody
     /// </summary>
     [JsonPropertyName("serviceTaskInstances")]
     public IEnumerable<ServiceTaskInstanceInputObjectRequestBody>? ServiceTaskInstances { get; set; }
+
+    /// <summary>
+    /// The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.
+    /// </summary>
+    [JsonPropertyName("startedAtTime")]
+    public DateTime? StartedAtTime { get; set; }
+
+    /// <summary>
+    /// The initial status of the work order. Defaults to Open when not provided.  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
+    /// </summary>
+    [JsonPropertyName("status")]
+    public WorkOrdersPostWorkOrdersRequestBodyStatus? Status { get; set; }
 
     [JsonPropertyName("tax")]
     public WorkOrderTaxCreateObjectRequestBody? Tax { get; set; }

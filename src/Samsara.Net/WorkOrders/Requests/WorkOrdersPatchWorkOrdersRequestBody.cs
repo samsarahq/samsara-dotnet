@@ -8,6 +8,12 @@ namespace Samsara.Net.WorkOrders;
 public record WorkOrdersPatchWorkOrdersRequestBody
 {
     /// <summary>
+    /// The historical time the work order was archived (closed or cancelled), in RFC 3339 format. Is automatically set when the status changes to Closed or Cancelled and this field is not provided.
+    /// </summary>
+    [JsonPropertyName("archivedAtTime")]
+    public DateTime? ArchivedAtTime { get; set; }
+
+    /// <summary>
     /// The ID of the assigned mechanic.
     /// </summary>
     [JsonPropertyName("assignedUserId")]
@@ -105,6 +111,12 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     /// </summary>
     [JsonPropertyName("serviceTaskInstances")]
     public IEnumerable<ServiceTaskInstanceInputObjectRequestBody>? ServiceTaskInstances { get; set; }
+
+    /// <summary>
+    /// The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.
+    /// </summary>
+    [JsonPropertyName("startedAtTime")]
+    public DateTime? StartedAtTime { get; set; }
 
     /// <summary>
     /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`

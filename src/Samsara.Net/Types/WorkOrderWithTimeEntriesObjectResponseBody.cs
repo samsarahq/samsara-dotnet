@@ -135,6 +135,12 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<ServiceTaskInstanceWithTimeEntriesObjectResponseBody>? ServiceTaskInstances { get; set; }
 
     /// <summary>
+    /// The time work started on the work order, in RFC 3339 format.
+    /// </summary>
+    [JsonPropertyName("startedAtTime")]
+    public DateTime? StartedAtTime { get; set; }
+
+    /// <summary>
     /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]

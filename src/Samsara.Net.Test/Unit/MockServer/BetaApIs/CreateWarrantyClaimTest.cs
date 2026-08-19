@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class CreateWarrantyClaimTest : BaseMockServerTest
@@ -108,7 +108,7 @@ public class CreateWarrantyClaimTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/warranty-claims")
+                    .WithPath("/maintenance/warranty-claims")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -120,7 +120,7 @@ public class CreateWarrantyClaimTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.CreateWarrantyClaimAsync(
+        var response = await Client.BetaApIs.CreateWarrantyClaimAsync(
             new EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
             {
                 AssetId = "281474976710656",

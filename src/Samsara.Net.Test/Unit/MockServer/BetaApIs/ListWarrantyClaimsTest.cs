@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ListWarrantyClaimsTest : BaseMockServerTest
@@ -106,7 +106,7 @@ public class ListWarrantyClaimsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/warranty-claims")
+                    .WithPath("/maintenance/warranty-claims")
                     .UsingGet()
             )
             .RespondWith(
@@ -116,7 +116,7 @@ public class ListWarrantyClaimsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ListWarrantyClaimsAsync(
+        var response = await Client.BetaApIs.ListWarrantyClaimsAsync(
             new ListWarrantyClaimsRequest()
         );
         JsonAssert.AreEqual(response, mockResponse);
