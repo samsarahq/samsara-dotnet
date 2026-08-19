@@ -5,20 +5,29 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// A minified form object.
+/// Result for one requested asset sharing.
 /// </summary>
 [Serializable]
-public record GoaFormTinyResponseResponseBody : IJsonOnDeserialized
+public record CancelSharedAssetBatchResponseItemResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("data")]
+    public SharedAssetResponseObjectResponseBody? Data { get; set; }
+
     /// <summary>
-    /// ID of the form
+    /// Failure message for this asset sharing.
     /// </summary>
-    [JsonPropertyName("id")]
-    public required string Id { get; set; }
+    [JsonPropertyName("message")]
+    public string? Message { get; set; }
+
+    /// <summary>
+    /// HTTP status for this asset sharing.
+    /// </summary>
+    [JsonPropertyName("status")]
+    public required long Status { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

@@ -66,7 +66,7 @@ public record RoutesStopResponseObjectResponseBody : IJsonOnDeserialized
     /// List of forms associated with the stop.
     /// </summary>
     [JsonPropertyName("forms")]
-    public IEnumerable<GoaFormTinyResponseResponseBody>? Forms { get; set; }
+    public IEnumerable<IdReferenceObjectResponseBody>? Forms { get; set; }
 
     /// <summary>
     /// Id of the stop

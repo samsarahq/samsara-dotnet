@@ -2,22 +2,16 @@ using System.Text.Json.Serialization;
 using Samsara.Net;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
-public record EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
+public record EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody
 {
-    /// <summary>
-    /// Unique identifier for the WarrantyClaim record.
-    /// </summary>
-    [JsonIgnore]
-    public required string Id { get; set; }
-
     /// <summary>
     /// ID of the asset the claim is filed for. Immutable once set.
     /// </summary>
     [JsonPropertyName("assetId")]
-    public string? AssetId { get; set; }
+    public required string AssetId { get; set; }
 
     /// <summary>
     /// The cause of the 3 Cs - the root cause found.
@@ -65,13 +59,13 @@ public record EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
     /// Customer-supplied external identifiers for the warranty claim, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
     /// </summary>
     [JsonPropertyName("externalIds")]
-    public IEnumerable<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>? ExternalIds { get; set; }
+    public IEnumerable<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdInputTypeRequestBody>? ExternalIds { get; set; }
 
     /// <summary>
     /// Labor being claimed.
     /// </summary>
     [JsonPropertyName("labor")]
-    public IEnumerable<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>? Labor { get; set; }
+    public IEnumerable<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborInputTypeRequestBody>? Labor { get; set; }
 
     /// <summary>
     /// ID of the warranty this claim is filed against.
@@ -92,13 +86,13 @@ public record EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
     public IEnumerable<string>? MediaItemIds { get; set; }
 
     [JsonPropertyName("otherCost")]
-    public UpdateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody? OtherCost { get; set; }
+    public CreateWarrantyClaimEntityWarrantyClaimMoneyInputTypeRequestBody? OtherCost { get; set; }
 
     /// <summary>
     /// Parts being claimed.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>? Parts { get; set; }
+    public IEnumerable<CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimPartInputTypeRequestBody>? Parts { get; set; }
 
     /// <summary>
     /// When reimbursement was received.
@@ -110,7 +104,7 @@ public record EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody
     /// Reimbursement amounts, optionally linked to a work order.
     /// </summary>
     [JsonPropertyName("reimbursements")]
-    public IEnumerable<UpdateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>? Reimbursements { get; set; }
+    public IEnumerable<CreateWarrantyClaimEntityWarrantyClaimClaimReimbursementInputTypeRequestBody>? Reimbursements { get; set; }
 
     /// <summary>
     /// When the repair was completed.

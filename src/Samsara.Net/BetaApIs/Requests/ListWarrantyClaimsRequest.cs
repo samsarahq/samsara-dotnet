@@ -1,22 +1,34 @@
 using System.Text.Json.Serialization;
 using Samsara.Net.Core;
 
-namespace Samsara.Net.PreviewApIs;
+namespace Samsara.Net.BetaApIs;
 
 [Serializable]
-public record ListWarrantiesRequest
+public record ListWarrantyClaimsRequest
 {
     /// <summary>
     /// A filter on the data based on this comma-separated list of ID values.
     /// </summary>
     [JsonIgnore]
-    public string? WarrantyIds { get; set; }
+    public string? WarrantyClaimIds { get; set; }
 
     /// <summary>
-    /// A filter on the data based on this comma-separated list of Name values.
+    /// A filter on the data based on this comma-separated list of Asset values.
     /// </summary>
     [JsonIgnore]
-    public string? Name { get; set; }
+    public string? AssetIds { get; set; }
+
+    /// <summary>
+    /// A filter on the data based on this comma-separated list of Claim status values.
+    /// </summary>
+    [JsonIgnore]
+    public string? ClaimStatus { get; set; }
+
+    /// <summary>
+    /// A filter on the data based on this comma-separated list of Warranty values.
+    /// </summary>
+    [JsonIgnore]
+    public string? WarrantyIds { get; set; }
 
     /// <summary>
     /// If specified, this should be the endCursor value from the previous page of results. When present, this request will return the next page of results that occur immediately after the previous page of results.

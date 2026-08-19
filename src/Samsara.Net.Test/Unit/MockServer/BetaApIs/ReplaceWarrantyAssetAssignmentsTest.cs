@@ -1,9 +1,9 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 using Samsara.Net.Test.Utils;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class ReplaceWarrantyAssetAssignmentsTest : BaseMockServerTest
@@ -38,7 +38,7 @@ public class ReplaceWarrantyAssetAssignmentsTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/warranties/assets/replace")
+                    .WithPath("/maintenance/warranties/assets/replace")
                     .WithHeader("Content-Type", "application/json")
                     .UsingPost()
                     .WithBodyAsJson(requestJson)
@@ -50,7 +50,7 @@ public class ReplaceWarrantyAssetAssignmentsTest : BaseMockServerTest
                     .WithBody(mockResponse)
             );
 
-        var response = await Client.PreviewApIs.ReplaceWarrantyAssetAssignmentsAsync(
+        var response = await Client.BetaApIs.ReplaceWarrantyAssetAssignmentsAsync(
             new ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);

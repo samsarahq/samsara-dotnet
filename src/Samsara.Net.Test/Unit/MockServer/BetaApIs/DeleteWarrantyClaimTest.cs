@@ -1,8 +1,8 @@
 using NUnit.Framework;
-using Samsara.Net.PreviewApIs;
+using Samsara.Net.BetaApIs;
 using Samsara.Net.Test.Unit.MockServer;
 
-namespace Samsara.Net.Test.Unit.MockServer.PreviewApIs;
+namespace Samsara.Net.Test.Unit.MockServer.BetaApIs;
 
 [TestFixture]
 public class DeleteWarrantyClaimTest : BaseMockServerTest
@@ -14,14 +14,14 @@ public class DeleteWarrantyClaimTest : BaseMockServerTest
             .Given(
                 WireMock
                     .RequestBuilders.Request.Create()
-                    .WithPath("/preview/maintenance/warranty-claims")
+                    .WithPath("/maintenance/warranty-claims")
                     .WithParam("id", "id")
                     .UsingDelete()
             )
             .RespondWith(WireMock.ResponseBuilders.Response.Create().WithStatusCode(200));
 
         Assert.DoesNotThrowAsync(async () =>
-            await Client.PreviewApIs.DeleteWarrantyClaimAsync(
+            await Client.BetaApIs.DeleteWarrantyClaimAsync(
                 new DeleteWarrantyClaimRequest { Id = "id" }
             )
         );

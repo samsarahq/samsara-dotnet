@@ -91,6 +91,7 @@ public class PatchWorkOrdersTest : BaseMockServerTest
                     "status": "Unknown"
                   }
                 ],
+                "startedAtTime": "2019-06-13T19:08:25.000Z",
                 "status": "Assigned",
                 "tax": {
                   "basisPoints": 700,
