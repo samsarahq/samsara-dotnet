@@ -49,6 +49,27 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Night =
         new(Values.Night);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoBoots =
+        new(Values.NoBoots);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoCoveralls =
+        new(Values.NoCoveralls);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoFaceShield =
+        new(Values.NoFaceShield);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoGloves =
+        new(Values.NoGloves);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoHardHat =
+        new(Values.NoHardHat);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoHiVisVest =
+        new(Values.NoHiVisVest);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoSafetyGlasses =
+        new(Values.NoSafetyGlasses);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem ParkingLot =
         new(Values.ParkingLot);
 
@@ -182,6 +203,20 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
         public const string MountedPhone = "Mounted Phone";
 
         public const string Night = "Night";
+
+        public const string NoBoots = "No Boots";
+
+        public const string NoCoveralls = "No Coveralls";
+
+        public const string NoFaceShield = "No Face Shield";
+
+        public const string NoGloves = "No Gloves";
+
+        public const string NoHardHat = "No Hard Hat";
+
+        public const string NoHiVisVest = "No Hi-Vis Vest";
+
+        public const string NoSafetyGlasses = "No Safety Glasses";
 
         public const string ParkingLot = "Parking Lot";
 

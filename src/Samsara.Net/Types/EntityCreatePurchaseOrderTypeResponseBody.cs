@@ -21,10 +21,10 @@ public record EntityCreatePurchaseOrderTypeResponseBody : IJsonOnDeserialized
     public string? CreatedAtTime { get; set; }
 
     /// <summary>
-    /// Source that created the purchase order.
+    /// Source that created the purchase order.  Valid values: `Unknown`, `User`, `ScanPackingList`
     /// </summary>
     [JsonPropertyName("creationSource")]
-    public string? CreationSource { get; set; }
+    public EntityCreatePurchaseOrderTypeResponseBodyCreationSource? CreationSource { get; set; }
 
     /// <summary>
     /// RFC3339 expected delivery time.
@@ -75,10 +75,10 @@ public record EntityCreatePurchaseOrderTypeResponseBody : IJsonOnDeserialized
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Current customer-visible status of the purchase order.
+    /// Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
     /// </summary>
     [JsonPropertyName("orderStatus")]
-    public string? OrderStatus { get; set; }
+    public EntityCreatePurchaseOrderTypeResponseBodyOrderStatus? OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
     public CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant8749B9E1F4AfTypeResponseBody? OtherCost { get; set; }
@@ -87,7 +87,7 @@ public record EntityCreatePurchaseOrderTypeResponseBody : IJsonOnDeserialized
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant7E1B94919242TypeResponseBody>? Parts { get; set; }
+    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant0241C1BeccaeTypeResponseBody>? Parts { get; set; }
 
     /// <summary>
     /// Customer-visible purchase order number.
@@ -112,6 +112,12 @@ public record EntityCreatePurchaseOrderTypeResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sentAtTime")]
     public string? SentAtTime { get; set; }
+
+    [JsonPropertyName("tax")]
+    public CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody? Tax { get; set; }
+
+    [JsonPropertyName("taxTotal")]
+    public CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody? TaxTotal { get; set; }
 
     /// <summary>
     /// Shipment tracking number for the purchase order.

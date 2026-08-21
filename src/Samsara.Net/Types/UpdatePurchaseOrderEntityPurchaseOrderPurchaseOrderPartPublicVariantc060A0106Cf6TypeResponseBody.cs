@@ -8,7 +8,7 @@ namespace Samsara.Net;
 /// UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPart object
 /// </summary>
 [Serializable]
-public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariant983F66355224TypeResponseBody
+public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -54,14 +54,17 @@ public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVaria
     [JsonPropertyName("quantityReceived")]
     public double? QuantityReceived { get; set; }
 
+    [JsonPropertyName("tax")]
+    public UpdatePurchaseOrderEntityPurchaseOrderTaxAdjustmentTypeResponseBody? Tax { get; set; }
+
     [JsonPropertyName("unitCost")]
     public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
-    /// Unit of measure for quantities on this line.
+    /// Unit of measure for quantities on this line.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
-    public string? UnitOfMeasureType { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

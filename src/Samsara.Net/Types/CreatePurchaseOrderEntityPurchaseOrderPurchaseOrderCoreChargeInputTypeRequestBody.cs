@@ -16,10 +16,10 @@ public record CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInput
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Whether the core charge is active or removed or disabled.
+    /// Whether the core charge is active or removed or disabled.  Valid values: `Unknown`, `Active`, `RemovedOrDisabled`
     /// </summary>
     [JsonPropertyName("coreChargeStatus")]
-    public required string CoreChargeStatus { get; set; }
+    public required CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeInputTypeRequestBodyCoreChargeStatus CoreChargeStatus { get; set; }
 
     /// <summary>
     /// ID of the returnable core part.

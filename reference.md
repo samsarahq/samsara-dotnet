@@ -5702,7 +5702,7 @@ To use this endpoint, select **Write Purchase Orders** under the Work Orders cat
 await client.BetaApIs.CreatePurchaseOrderAsync(
     new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     {
-        OrderStatus = "draft",
+        OrderStatus = EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.Unknown,
         VendorId = "281474976710656",
     }
 );

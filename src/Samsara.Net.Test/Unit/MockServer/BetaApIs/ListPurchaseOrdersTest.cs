@@ -16,7 +16,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
               "data": [
                 {
                   "createdAtTime": "2019-06-13T19:08:25Z",
-                  "creationSource": "12345",
+                  "creationSource": "Unknown",
                   "deliveryAtTime": "2019-06-13T19:08:25Z",
                   "firstReceivedAtTime": "2019-06-13T19:08:25Z",
                   "fullyReceivedAtTime": "2019-06-13T19:08:25Z",
@@ -29,7 +29,7 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                     "12345"
                   ],
                   "notes": "12345",
-                  "orderStatus": "12345",
+                  "orderStatus": "Unknown",
                   "otherCost": {
                     "amount": "12345",
                     "currency": "12345"
@@ -46,14 +46,20 @@ public class ListPurchaseOrdersTest : BaseMockServerTest
                         "id": "281474976710656"
                       },
                       "quantityOrdered": 123.45,
-                      "quantityReceived": 123.45,
-                      "unitOfMeasureType": "12345"
+                      "quantityReceived": 123.45
                     }
                   ],
                   "poNumber": "PO-1001",
                   "poNumberPrefix": "12345",
                   "poNumberSuffix": "12345",
                   "sentAtTime": "2019-06-13T19:08:25Z",
+                  "tax": {
+                    "basisPoints": 12345
+                  },
+                  "taxTotal": {
+                    "amount": "12345",
+                    "currency": "12345"
+                  },
                   "trackingNumber": "12345",
                   "updatedAtTime": "2019-06-13T19:08:25Z",
                   "vendor": {

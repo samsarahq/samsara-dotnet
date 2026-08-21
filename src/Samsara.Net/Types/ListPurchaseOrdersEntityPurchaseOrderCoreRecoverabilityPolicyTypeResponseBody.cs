@@ -22,10 +22,10 @@ public record ListPurchaseOrdersEntityPurchaseOrderCoreRecoverabilityPolicyTypeR
     public string? FixedRecoverableUntilTime { get; set; }
 
     /// <summary>
-    /// Recoverability policy type.
+    /// Recoverability policy type.  Valid values: `Unknown`, `RelativeToReceipt`, `FixedDate`, `NoDeadline`
     /// </summary>
     [JsonPropertyName("policyType")]
-    public string? PolicyType { get; set; }
+    public ListPurchaseOrdersEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBodyPolicyType? PolicyType { get; set; }
 
     /// <summary>
     /// Duration after receipt when the core must be returned. Measured in milliseconds.
