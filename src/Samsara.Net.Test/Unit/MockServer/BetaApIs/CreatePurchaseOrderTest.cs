@@ -13,7 +13,7 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
     {
         const string requestJson = """
             {
-              "orderStatus": "draft",
+              "orderStatus": "Unknown",
               "vendorId": "281474976710656"
             }
             """;
@@ -22,7 +22,7 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
             {
               "data": {
                 "createdAtTime": "2019-06-13T19:08:25Z",
-                "creationSource": "12345",
+                "creationSource": "Unknown",
                 "deliveryAtTime": "2019-06-13T19:08:25Z",
                 "firstReceivedAtTime": "2019-06-13T19:08:25Z",
                 "fullyReceivedAtTime": "2019-06-13T19:08:25Z",
@@ -36,7 +36,7 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                   "12345"
                 ],
                 "notes": "Deliver to maintenance shop.",
-                "orderStatus": "draft",
+                "orderStatus": "Unknown",
                 "otherCost": {
                   "amount": "24.50",
                   "currency": "usd"
@@ -53,14 +53,24 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                       "id": "281474976710656"
                     },
                     "quantityOrdered": 10,
-                    "quantityReceived": 123.45,
-                    "unitOfMeasureType": "each"
+                    "quantityReceived": 123.45
                   }
                 ],
                 "poNumber": "12345",
                 "poNumberPrefix": "PO",
                 "poNumberSuffix": "A",
                 "sentAtTime": "2019-06-13T19:08:25Z",
+                "tax": {
+                  "basisPoints": 12345,
+                  "money": {
+                    "amount": "12345",
+                    "currency": "12345"
+                  }
+                },
+                "taxTotal": {
+                  "amount": "12345",
+                  "currency": "12345"
+                },
                 "trackingNumber": "1Z999AA10123456784",
                 "updatedAtTime": "2019-06-13T19:08:25Z",
                 "vendor": {
@@ -89,7 +99,8 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
         var response = await Client.BetaApIs.CreatePurchaseOrderAsync(
             new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
             {
-                OrderStatus = "draft",
+                OrderStatus =
+                    EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.Unknown,
                 VendorId = "281474976710656",
             }
         );

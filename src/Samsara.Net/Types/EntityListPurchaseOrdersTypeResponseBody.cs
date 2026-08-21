@@ -21,10 +21,10 @@ public record EntityListPurchaseOrdersTypeResponseBody : IJsonOnDeserialized
     public string? CreatedAtTime { get; set; }
 
     /// <summary>
-    /// Source that created the purchase order.
+    /// Source that created the purchase order.  Valid values: `Unknown`, `User`, `ScanPackingList`
     /// </summary>
     [JsonPropertyName("creationSource")]
-    public string? CreationSource { get; set; }
+    public EntityListPurchaseOrdersTypeResponseBodyCreationSource? CreationSource { get; set; }
 
     /// <summary>
     /// RFC3339 expected delivery time.
@@ -75,10 +75,10 @@ public record EntityListPurchaseOrdersTypeResponseBody : IJsonOnDeserialized
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Current customer-visible status of the purchase order.
+    /// Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
     /// </summary>
     [JsonPropertyName("orderStatus")]
-    public string? OrderStatus { get; set; }
+    public EntityListPurchaseOrdersTypeResponseBodyOrderStatus? OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
     public ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody? OtherCost { get; set; }
@@ -112,6 +112,12 @@ public record EntityListPurchaseOrdersTypeResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("sentAtTime")]
     public string? SentAtTime { get; set; }
+
+    [JsonPropertyName("tax")]
+    public ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody? Tax { get; set; }
+
+    [JsonPropertyName("taxTotal")]
+    public ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody? TaxTotal { get; set; }
 
     /// <summary>
     /// Shipment tracking number for the purchase order.

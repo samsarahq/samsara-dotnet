@@ -26,10 +26,10 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     public string? Notes { get; set; }
 
     /// <summary>
-    /// Current customer-visible status of the purchase order.
+    /// Current customer-visible status of the purchase order.  Valid values: `Unknown`, `Draft`, `Open`, `InReview`, `Approved`, `Rejected`, `SentToVendor`, `PartiallyReceived`, `FullyReceived`, `Returned`, `Cancelled`, `Closed`
     /// </summary>
     [JsonPropertyName("orderStatus")]
-    public required string OrderStatus { get; set; }
+    public required EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
     public CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody? OtherCost { get; set; }
@@ -38,7 +38,7 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantaf77215807F1TypeRequestBody>? Parts { get; set; }
+    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>? Parts { get; set; }
 
     /// <summary>
     /// Optional prefix included in the purchase order number.
@@ -51,6 +51,9 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     /// </summary>
     [JsonPropertyName("poNumberSuffix")]
     public string? PoNumberSuffix { get; set; }
+
+    [JsonPropertyName("tax")]
+    public CreatePurchaseOrderEntityPurchaseOrderTaxAdjustmentInputTypeRequestBody? Tax { get; set; }
 
     /// <summary>
     /// Shipment tracking number for the purchase order.

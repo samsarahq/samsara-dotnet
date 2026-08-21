@@ -54,14 +54,17 @@ public record ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponse
     [JsonPropertyName("quantityReceived")]
     public double? QuantityReceived { get; set; }
 
+    [JsonPropertyName("tax")]
+    public ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody? Tax { get; set; }
+
     [JsonPropertyName("unitCost")]
     public ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
-    /// Unit of measure for quantities on this line.
+    /// Unit of measure for quantities on this line.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
-    public string? UnitOfMeasureType { get; set; }
+    public ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

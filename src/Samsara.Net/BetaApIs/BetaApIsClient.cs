@@ -15094,7 +15094,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     /// await client.BetaApIs.CreatePurchaseOrderAsync(
     ///     new EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     ///     {
-    ///         OrderStatus = "draft",
+    ///         OrderStatus = EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus.Unknown,
     ///         VendorId = "281474976710656",
     ///     }
     /// );

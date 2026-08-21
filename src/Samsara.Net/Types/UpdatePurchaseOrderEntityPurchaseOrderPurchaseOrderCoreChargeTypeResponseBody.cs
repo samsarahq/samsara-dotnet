@@ -16,10 +16,10 @@ public record UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeR
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Whether the core charge is active or removed or disabled.
+    /// Whether the core charge is active or removed or disabled.  Valid values: `Unknown`, `Active`, `RemovedOrDisabled`
     /// </summary>
     [JsonPropertyName("coreChargeStatus")]
-    public string? CoreChargeStatus { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderCoreChargeTypeResponseBodyCoreChargeStatus? CoreChargeStatus { get; set; }
 
     [JsonPropertyName("corePartSamsara")]
     public EntityUpdatePurchaseOrderPartDefinitionRefTypeResponseBody? CorePartSamsara { get; set; }
