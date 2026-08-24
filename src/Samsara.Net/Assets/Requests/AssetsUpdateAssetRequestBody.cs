@@ -8,7 +8,7 @@ namespace Samsara.Net.Assets;
 public record AssetsUpdateAssetRequestBody
 {
     /// <summary>
-    /// A filter selecting a single asset by id.
+    /// ID of the asset to update. Can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the asset.
     /// </summary>
     [JsonIgnore]
     public required string Id { get; set; }

@@ -32,7 +32,6 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                 "mediaItemIds": [
                   "12345",
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "notes": "Deliver to maintenance shop.",
