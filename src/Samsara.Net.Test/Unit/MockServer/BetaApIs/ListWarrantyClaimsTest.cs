@@ -24,8 +24,6 @@ public class ListWarrantyClaimsTest : BaseMockServerTest
                   "claimStatus": "12345",
                   "componentInstanceIds": [
                     "12345",
-                    "12345",
-                    "12345",
                     "12345"
                   ],
                   "concern": "12345",
@@ -52,9 +50,12 @@ public class ListWarrantyClaimsTest : BaseMockServerTest
                   "linkedWorkOrderIds": [
                     "12345",
                     "12345",
+                    "12345",
                     "12345"
                   ],
                   "mediaItemIds": [
+                    "12345",
+                    "12345",
                     "12345",
                     "12345"
                   ],

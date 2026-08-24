@@ -30,7 +30,6 @@ public class CreateWarrantyClaimTest : BaseMockServerTest
                 "componentInstanceIds": [
                   "12345",
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "concern": "12345",
@@ -56,11 +55,9 @@ public class CreateWarrantyClaimTest : BaseMockServerTest
                 },
                 "linkedWorkOrderIds": [
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "mediaItemIds": [
-                  "12345",
                   "12345",
                   "12345",
                   "12345"

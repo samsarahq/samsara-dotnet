@@ -53,9 +53,13 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 },
                 "linkedWorkOrderIds": [
                   "12345",
+                  "12345",
+                  "12345",
                   "12345"
                 ],
                 "mediaItemIds": [
+                  "12345",
+                  "12345",
                   "12345",
                   "12345"
                 ],
