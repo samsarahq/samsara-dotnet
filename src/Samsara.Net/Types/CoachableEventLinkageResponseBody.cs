@@ -21,7 +21,7 @@ public record CoachableEventLinkageResponseBody : IJsonOnDeserialized
     public required string SourceId { get; set; }
 
     /// <summary>
-    /// Upstream data source backing this coachable event.  Valid values: `triageEvent`, `hosViolation`, `idling`
+    /// Upstream data source backing this coachable event.  Valid values: `safetyEvent`, `hosViolation`, `idling`
     /// </summary>
     [JsonPropertyName("sourceType")]
     public required CoachableEventLinkageResponseBodySourceType SourceType { get; set; }

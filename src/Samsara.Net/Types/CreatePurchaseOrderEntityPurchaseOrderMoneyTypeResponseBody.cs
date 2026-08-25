@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreatePurchaseOrderEntityPurchaseOrderMoney object
+/// Money object
 /// </summary>
 [Serializable]
 public record CreatePurchaseOrderEntityPurchaseOrderMoneyTypeResponseBody : IJsonOnDeserialized

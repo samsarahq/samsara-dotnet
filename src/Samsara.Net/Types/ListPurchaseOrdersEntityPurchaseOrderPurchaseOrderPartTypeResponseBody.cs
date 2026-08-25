@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPart object
+/// PurchaseOrderPart object
 /// </summary>
 [Serializable]
 public record ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBody
@@ -61,7 +61,7 @@ public record ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponse
     public ListPurchaseOrdersEntityPurchaseOrderMoneyTypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
-    /// Unit of measure for quantities on this line.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
+    /// Unit of measure for quantities on this line. Read-only: derived from the line's part definition, and ignored if supplied on create or update.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
     public ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponseBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }

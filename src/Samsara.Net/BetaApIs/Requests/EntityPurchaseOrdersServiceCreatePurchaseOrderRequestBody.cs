@@ -32,13 +32,13 @@ public record EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBody
     public required EntityPurchaseOrdersServiceCreatePurchaseOrderRequestBodyOrderStatus OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
-    public CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody? OtherCost { get; set; }
+    public CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVariantc9366B66E6FcTypeRequestBody? OtherCost { get; set; }
 
     /// <summary>
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariant63E9Febe395ETypeRequestBody>? Parts { get; set; }
+    public IEnumerable<CreatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartInputPublicVariantfe4658938A0FTypeRequestBody>? Parts { get; set; }
 
     /// <summary>
     /// Optional prefix included in the purchase order number.

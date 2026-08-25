@@ -27,6 +27,11 @@ public class ListFunctionsStorageFilesTest : BaseMockServerTest
                   ]
                 }
               ],
+              "folders": [
+                {
+                  "name": "logs/archive/"
+                }
+              ],
               "pagination": {
                 "endCursor": "MjkY",
                 "hasNextPage": true
