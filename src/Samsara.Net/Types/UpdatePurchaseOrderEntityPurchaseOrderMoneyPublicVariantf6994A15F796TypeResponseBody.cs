@@ -4,28 +4,28 @@ using Samsara.Net.Core;
 
 namespace Samsara.Net;
 
+/// <summary>
+/// Money object
+/// </summary>
 [Serializable]
-public record FunctionsStorageListFunctionsStorageFilesResponseBody : IJsonOnDeserialized
+public record UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody
+    : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Array of files in Functions storage.
+    /// Monetary amount as a decimal string in major currency units (e.g. "24.50").
     /// </summary>
-    [JsonPropertyName("data")]
-    public IEnumerable<FunctionsStorageFileResponseBody> Data { get; set; } =
-        new List<FunctionsStorageFileResponseBody>();
+    [JsonPropertyName("amount")]
+    public string? Amount { get; set; }
 
     /// <summary>
-    /// Immediate subfolders under the prefix. Populated only when `groupByFolder` is true.
+    /// ISO 4217 currency code, lowercased (e.g. "usd").
     /// </summary>
-    [JsonPropertyName("folders")]
-    public IEnumerable<FunctionsStorageFolderResponseBody>? Folders { get; set; }
-
-    [JsonPropertyName("pagination")]
-    public required GoaPaginationResponseResponseBody Pagination { get; set; }
+    [JsonPropertyName("currency")]
+    public string? Currency { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

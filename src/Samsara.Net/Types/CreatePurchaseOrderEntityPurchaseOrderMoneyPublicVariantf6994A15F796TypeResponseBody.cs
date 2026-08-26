@@ -5,10 +5,10 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreatePurchaseOrderEntityPurchaseOrderMoneyInput object
+/// Money object
 /// </summary>
 [Serializable]
-public record CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E1675A5A65TypeRequestBody
+public record CreatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody
     : IJsonOnDeserialized
 {
     [JsonExtensionData]
@@ -19,13 +19,13 @@ public record CreatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta2E16
     /// Monetary amount as a decimal string in major currency units (e.g. "24.50").
     /// </summary>
     [JsonPropertyName("amount")]
-    public required string Amount { get; set; }
+    public string? Amount { get; set; }
 
     /// <summary>
     /// ISO 4217 currency code, lowercased (e.g. "usd").
     /// </summary>
     [JsonPropertyName("currency")]
-    public required string Currency { get; set; }
+    public string? Currency { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

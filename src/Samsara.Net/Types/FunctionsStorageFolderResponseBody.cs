@@ -5,27 +5,20 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// UpdatePurchaseOrderEntityPurchaseOrderMoneyInput object
+/// An immediate subfolder under the requested prefix in Functions storage.
 /// </summary>
 [Serializable]
-public record UpdatePurchaseOrderEntityPurchaseOrderMoneyInputPublicVarianta34Bfd5A4152TypeRequestBody
-    : IJsonOnDeserialized
+public record FunctionsStorageFolderResponseBody : IJsonOnDeserialized
 {
     [JsonExtensionData]
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Monetary amount as a decimal string in major currency units (e.g. "24.50").
+    /// Full path of the subfolder, ending in a slash.
     /// </summary>
-    [JsonPropertyName("amount")]
-    public required string Amount { get; set; }
-
-    /// <summary>
-    /// ISO 4217 currency code, lowercased (e.g. "usd").
-    /// </summary>
-    [JsonPropertyName("currency")]
-    public required string Currency { get; set; }
+    [JsonPropertyName("name")]
+    public required string Name { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

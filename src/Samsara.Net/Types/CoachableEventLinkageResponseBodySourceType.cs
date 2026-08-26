@@ -7,8 +7,8 @@ namespace Samsara.Net;
 [Serializable]
 public readonly record struct CoachableEventLinkageResponseBodySourceType : IStringEnum
 {
-    public static readonly CoachableEventLinkageResponseBodySourceType TriageEvent = new(
-        Values.TriageEvent
+    public static readonly CoachableEventLinkageResponseBodySourceType SafetyEvent = new(
+        Values.SafetyEvent
     );
 
     public static readonly CoachableEventLinkageResponseBodySourceType HosViolation = new(
@@ -70,7 +70,7 @@ public readonly record struct CoachableEventLinkageResponseBodySourceType : IStr
     [Serializable]
     public static class Values
     {
-        public const string TriageEvent = "triageEvent";
+        public const string SafetyEvent = "safetyEvent";
 
         public const string HosViolation = "hosViolation";
 

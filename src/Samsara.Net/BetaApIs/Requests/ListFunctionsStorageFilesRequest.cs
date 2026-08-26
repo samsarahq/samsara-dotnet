@@ -30,6 +30,18 @@ public record ListFunctionsStorageFilesRequest
     [JsonIgnore]
     public bool? IncludeUploadUrls { get; set; }
 
+    /// <summary>
+    /// Only list files and immediate subfolders under this path prefix, for example `logs/`.
+    /// </summary>
+    [JsonIgnore]
+    public string? Prefix { get; set; }
+
+    /// <summary>
+    /// When true, roll immediate subfolders up into the `folders` field and return only files directly under the prefix in `data`.
+    /// </summary>
+    [JsonIgnore]
+    public bool? GroupByFolder { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

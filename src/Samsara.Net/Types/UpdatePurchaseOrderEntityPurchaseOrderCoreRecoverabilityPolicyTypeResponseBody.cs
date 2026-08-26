@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicy object
+/// CoreRecoverabilityPolicy object
 /// </summary>
 [Serializable]
 public record UpdatePurchaseOrderEntityPurchaseOrderCoreRecoverabilityPolicyTypeResponseBody

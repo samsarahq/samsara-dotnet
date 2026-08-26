@@ -81,13 +81,13 @@ public record EntityUpdatePurchaseOrderTypeResponseBody : IJsonOnDeserialized
     public EntityUpdatePurchaseOrderTypeResponseBodyOrderStatus? OrderStatus { get; set; }
 
     [JsonPropertyName("otherCost")]
-    public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariant55Aeb6731578TypeResponseBody? OtherCost { get; set; }
+    public UpdatePurchaseOrderEntityPurchaseOrderMoneyPublicVariantf6994A15F796TypeResponseBody? OtherCost { get; set; }
 
     /// <summary>
     /// Parts ordered on the purchase order.
     /// </summary>
     [JsonPropertyName("parts")]
-    public IEnumerable<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVariantc060A0106Cf6TypeResponseBody>? Parts { get; set; }
+    public IEnumerable<UpdatePurchaseOrderEntityPurchaseOrderPurchaseOrderPartPublicVarianteafe48Db3764TypeResponseBody>? Parts { get; set; }
 
     /// <summary>
     /// Customer-visible purchase order number.

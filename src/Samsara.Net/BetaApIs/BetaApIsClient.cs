@@ -4770,11 +4770,13 @@ public partial class BetaApIsClient : IBetaApIsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
             .Add("after", request.After)
             .Add("limit", request.Limit)
             .Add("includeDownloadUrls", request.IncludeDownloadUrls)
             .Add("includeUploadUrls", request.IncludeUploadUrls)
+            .Add("prefix", request.Prefix)
+            .Add("groupByFolder", request.GroupByFolder)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()

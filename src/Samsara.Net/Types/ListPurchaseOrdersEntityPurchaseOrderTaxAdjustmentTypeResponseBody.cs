@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// ListPurchaseOrdersEntityPurchaseOrderTaxAdjustment object
+/// TaxAdjustment object
 /// </summary>
 [Serializable]
 public record ListPurchaseOrdersEntityPurchaseOrderTaxAdjustmentTypeResponseBody
