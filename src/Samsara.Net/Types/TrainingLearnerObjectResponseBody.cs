@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Learner that is associated with the training assignment. Only driver learners are supported currently.
+/// Learner that is associated with the training assignment.
 /// </summary>
 [Serializable]
 public record TrainingLearnerObjectResponseBody : IJsonOnDeserialized
@@ -21,7 +21,7 @@ public record TrainingLearnerObjectResponseBody : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
-    /// The type of the polymorphic user.  Valid values: `driver`
+    /// The learner type. Returns `unknown` when the learner type is not recognized. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.  Valid values: `unknown`, `driver`, `user`
     /// </summary>
     [JsonPropertyName("type")]
     public required TrainingLearnerObjectResponseBodyType Type { get; set; }

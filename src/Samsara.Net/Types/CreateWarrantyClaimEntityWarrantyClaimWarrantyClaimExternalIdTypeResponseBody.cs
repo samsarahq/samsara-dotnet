@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalId object
+/// WarrantyClaimExternalId object
 /// </summary>
 [Serializable]
 public record CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimExternalIdTypeResponseBody

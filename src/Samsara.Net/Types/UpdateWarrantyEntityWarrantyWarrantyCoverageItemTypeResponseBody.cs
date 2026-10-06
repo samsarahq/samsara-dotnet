@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// UpdateWarrantyEntityWarrantyWarrantyCoverageItem object
+/// WarrantyCoverageItem object
 /// </summary>
 [Serializable]
 public record UpdateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBody : IJsonOnDeserialized
@@ -21,10 +21,10 @@ public record UpdateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBody :
     public string? Id { get; set; }
 
     /// <summary>
-    /// Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).
+    /// Kind of covered item, indicating how the ID should be interpreted (VMRS code or service task).  Valid values: `unknown`, `vmrsCode`, `serviceTask`
     /// </summary>
     [JsonPropertyName("itemType")]
-    public string? ItemType { get; set; }
+    public UpdateWarrantyEntityWarrantyWarrantyCoverageItemTypeResponseBodyItemType? ItemType { get; set; }
 
     /// <summary>
     /// Dotted VMRS code path (e.g. 034-005-001). Use with itemType vmrsCode instead of id.

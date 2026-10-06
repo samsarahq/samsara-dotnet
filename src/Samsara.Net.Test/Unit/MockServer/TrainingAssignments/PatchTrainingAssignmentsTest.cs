@@ -30,7 +30,7 @@ public class PatchTrainingAssignmentsTest : BaseMockServerTest
                   "isOverdue": true,
                   "learner": {
                     "id": "id",
-                    "type": "driver"
+                    "type": "unknown"
                   },
                   "scorePercent": 1.1,
                   "startedAtTime": "2024-01-15T09:30:00.000Z",
@@ -54,7 +54,7 @@ public class PatchTrainingAssignmentsTest : BaseMockServerTest
                   "isOverdue": true,
                   "learner": {
                     "id": "id",
-                    "type": "driver"
+                    "type": "unknown"
                   },
                   "scorePercent": 1.1,
                   "startedAtTime": "2024-01-15T09:30:00.000Z",

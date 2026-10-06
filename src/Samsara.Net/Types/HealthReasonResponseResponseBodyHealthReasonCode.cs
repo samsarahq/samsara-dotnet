@@ -29,15 +29,30 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode IrregularRecording =
         new(Values.IrregularRecording);
 
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode LowConnectivity = new(
+        Values.LowConnectivity
+    );
+
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode LowDeviceBattery = new(
         Values.LowDeviceBattery
     );
+
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode LowUptime = new(
+        Values.LowUptime
+    );
+
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode MediaInputLowConnectivity =
+        new(Values.MediaInputLowConnectivity);
 
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode MissingEldDiagnostics =
         new(Values.MissingEldDiagnostics);
 
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode MissingVin = new(
         Values.MissingVin
+    );
+
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode NeedsAttribute = new(
+        Values.NeedsAttribute
     );
 
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode NeedsReplacement = new(
@@ -63,6 +78,10 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
 
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode Unknown = new(
         Values.Unknown
+    );
+
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode UnstablePower = new(
+        Values.UnstablePower
     );
 
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode VgUnplugged = new(
@@ -136,11 +155,19 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
 
         public const string IrregularRecording = "irregularRecording";
 
+        public const string LowConnectivity = "lowConnectivity";
+
         public const string LowDeviceBattery = "lowDeviceBattery";
+
+        public const string LowUptime = "lowUptime";
+
+        public const string MediaInputLowConnectivity = "mediaInputLowConnectivity";
 
         public const string MissingEldDiagnostics = "missingEldDiagnostics";
 
         public const string MissingVin = "missingVin";
+
+        public const string NeedsAttribute = "needsAttribute";
 
         public const string NeedsReplacement = "needsReplacement";
 
@@ -155,6 +182,8 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
         public const string RecordingTimeRequired = "recordingTimeRequired";
 
         public const string Unknown = "unknown";
+
+        public const string UnstablePower = "unstablePower";
 
         public const string VgUnplugged = "vgUnplugged";
     }

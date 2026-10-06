@@ -26,10 +26,12 @@ using Samsara.Net.LegacyApIs;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
 using Samsara.Net.Maintenance;
+using Samsara.Net.MaintenanceSites;
 using Samsara.Net.Media;
 using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
+using Samsara.Net.PreventiveMaintenance;
 using Samsara.Net.PreviewApIs;
 using Samsara.Net.Readings;
 using Samsara.Net.RouteEvents;
@@ -67,12 +69,11 @@ public partial interface ISamsaraClient
     public ICoachingClient Coaching { get; }
     public IContactsClient Contacts { get; }
     public IMaintenanceClient Maintenance { get; }
-    public IFuelAndEnergyClient FuelAndEnergy { get; }
+    public ILegacyApIsClient LegacyApIs { get; }
     public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
     public IDriverQrCodesClient DriverQrCodes { get; }
     public ICarbCtcClient CarbCtc { get; }
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
-    public ILegacyApIsClient LegacyApIs { get; }
     public IDocumentsClient Documents { get; }
     public IDriverVehicleAssignmentsClient DriverVehicleAssignments { get; }
     public IDriversClient Drivers { get; }
@@ -80,6 +81,7 @@ public partial interface ISamsaraClient
     public ITachographEuOnlyClient TachographEuOnly { get; }
     public IEquipmentClient Equipment { get; }
     public IHoursOfServiceClient HoursOfService { get; }
+    public IFuelAndEnergyClient FuelAndEnergy { get; }
     public IIftaClient Ifta { get; }
     public IRoutesClient Routes { get; }
     public ISettingsClient Settings { get; }
@@ -96,6 +98,8 @@ public partial interface ISamsaraClient
     public IIssuesClient Issues { get; }
     public ILiveSharingLinksClient LiveSharingLinks { get; }
     public IWorkOrdersClient WorkOrders { get; }
+    public IPreventiveMaintenanceClient PreventiveMaintenance { get; }
+    public IMaintenanceSitesClient MaintenanceSites { get; }
     public IOrganizationInfoClient OrganizationInfo { get; }
     public IPreviewApIsClient PreviewApIs { get; }
     public IReadingsClient Readings { get; }

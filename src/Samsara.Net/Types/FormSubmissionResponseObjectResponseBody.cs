@@ -97,7 +97,7 @@ public record FormSubmissionResponseObjectResponseBody : IJsonOnDeserialized
     public FormsScoreObjectResponseBody? Score { get; set; }
 
     /// <summary>
-    /// State for the Form Submission. Always returned.  Valid values: `notStarted`, `completed`, `archived`, `inProgress`, `needsReview`, `changesRequested`, `approved`
+    /// State for the Form Submission. Always returned.  Valid values: `notStarted`, `completed`, `archived`, `inProgress`, `needsReview`, `changesRequested`, `approved`, `denied`
     /// </summary>
     [JsonPropertyName("status")]
     public required FormSubmissionResponseObjectResponseBodyStatus Status { get; set; }

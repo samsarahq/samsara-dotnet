@@ -3916,6 +3916,332 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
+        WithRawResponse<EntityVendorProfilesServiceListVendorGroupsResponseBody>
+    > ListVendorGroupsAsyncCore(
+        ListVendorGroupsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("ids", request.Ids)
+            .Add("after", request.After)
+            .Add("limit", request.Limit)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "fleet/maintenance/vendor-groups",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityVendorProfilesServiceListVendorGroupsResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityVendorProfilesServiceListVendorGroupsResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<EntityVendorProfilesServiceCreateVendorGroupResponseBody>
+    > CreateVendorGroupAsyncCore(
+        EntityVendorProfilesServiceCreateVendorGroupRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "fleet/maintenance/vendor-groups",
+                    Body = request,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityVendorProfilesServiceCreateVendorGroupResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityVendorProfilesServiceCreateVendorGroupResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<EntityVendorProfilesServiceUpdateVendorGroupResponseBody>
+    > UpdateVendorGroupAsyncCore(
+        EntityVendorProfilesServiceUpdateVendorGroupRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .Add("id", request.Id)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = "fleet/maintenance/vendor-groups",
+                    Body = request,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityVendorProfilesServiceUpdateVendorGroupResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityVendorProfilesServiceUpdateVendorGroupResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
         WithRawResponse<MaintenanceVendorsListMaintenanceVendorsResponseBody>
     > ListMaintenanceVendorsAsyncCore(
         ListMaintenanceVendorsRequest request,
@@ -3923,8 +4249,10 @@ public partial class BetaApIsClient : IBetaApIsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 3)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
             .Add("ids", request.Ids)
+            .Add("externalIds", request.ExternalIds)
+            .Add("includeResolvedSettings", request.IncludeResolvedSettings)
             .Add("includeExternalIds", request.IncludeExternalIds)
             .Add("after", request.After)
             .MergeAdditional(options?.AdditionalQueryParameters)
@@ -3959,6 +4287,223 @@ public partial class BetaApIsClient : IBetaApIsClient
                         responseBody
                     )!;
                 return new WithRawResponse<MaintenanceVendorsListMaintenanceVendorsResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<EntityVendorsServiceCreateVendorResponseBody>
+    > CreateVendorAsyncCore(
+        EntityVendorsServiceCreateVendorRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Post,
+                    Path = "fleet/maintenance/vendors",
+                    Body = request,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityVendorsServiceCreateVendorResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityVendorsServiceCreateVendorResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<EntityVendorsServiceUpdateVendorResponseBody>
+    > UpdateVendorAsyncCore(
+        EntityVendorsServiceUpdateVendorRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("includeExternalIds", request.IncludeExternalIds)
+            .Add("id", request.Id)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethodExtensions.Patch,
+                    Path = "fleet/maintenance/vendors",
+                    Body = request,
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    ContentType = "application/json",
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<EntityVendorsServiceUpdateVendorResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<EntityVendorsServiceUpdateVendorResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -6035,115 +6580,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
-        WithRawResponse<HosDailyLogsUpdateShippingDocsResponseBody>
-    > UpdateShippingDocsAsyncCore(
-        HosDailyLogsUpdateShippingDocsRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
-            .Add("hosDate", request.HosDate)
-            .Add("driverID", request.DriverId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "hos/daily-logs/log-meta-data",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<HosDailyLogsUpdateShippingDocsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<HosDailyLogsUpdateShippingDocsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
         WithRawResponse<PlanOrdersListPlanOrdersResponseBody>
     > ListPlanOrdersAsyncCore(
         ListPlanOrdersRequest request,
@@ -6573,1306 +7009,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
-        WithRawResponse<EntityPartDefinitionsServiceListPartsResponseBody>
-    > ListPartsAsyncCore(
-        ListPartsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
-            .Add("idIn", request.IdIn)
-            .Add("partIds", request.PartIds)
-            .Add("partStatus", request.PartStatus)
-            .Add("includeDeleted", request.IncludeDeleted)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/parts",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartDefinitionsServiceListPartsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartDefinitionsServiceListPartsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPartDefinitionsServiceCreatePartResponseBody>
-    > CreatePartAsyncCore(
-        EntityPartDefinitionsServiceCreatePartRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/parts",
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartDefinitionsServiceCreatePartResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartDefinitionsServiceCreatePartResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPartDefinitionsServiceUpdatePartResponseBody>
-    > UpdatePartAsyncCore(
-        EntityPartDefinitionsServiceUpdatePartRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/parts",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartDefinitionsServiceUpdatePartResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartDefinitionsServiceUpdatePartResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPartInventoryLocationsServiceListPartInventoryResponseBody>
-    > ListPartInventoryAsyncCore(
-        ListPartInventoryRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
-            .Add("placeIds", request.PlaceIds)
-            .Add("isLowStock", request.IsLowStock)
-            .Add("partSamsaraIds", request.PartSamsaraIds)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/parts/inventory-location",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartInventoryLocationsServiceListPartInventoryResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartInventoryLocationsServiceListPartInventoryResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>
-    > CreatePartInventoryLocationAsyncCore(
-        EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
-            .Add("partSamsaraId", request.PartSamsaraId)
-            .Add("placeId", request.PlaceId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/parts/inventory-location",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>
-    > UpdatePartInventoryLocationAsyncCore(
-        EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
-            .Add("partSamsaraId", request.PartSamsaraId)
-            .Add("placeId", request.PlaceId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/parts/inventory-location",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<CreateStockMovementActionServiceCreateStockMovementResponseBody>
-    > CreateStockMovementAsyncCore(
-        CreateStockMovementActionServiceCreateStockMovementRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/parts/stock-movements",
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<CreateStockMovementActionServiceCreateStockMovementResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<CreateStockMovementActionServiceCreateStockMovementResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>
-    > ListPartTransactionsAsyncCore(
-        ListPartTransactionsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
-            .Add("happenedAtTimeStart", request.HappenedAtTimeStart)
-            .Add("happenedAtTimeEnd", request.HappenedAtTimeEnd)
-            .Add("partSamsaraIds", request.PartSamsaraIds)
-            .Add("placeIds", request.PlaceIds)
-            .Add("transactionTypeIn", request.TransactionTypeIn)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/parts/transactions",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>
-    > ResolvePreventiveMaintenanceAsyncCore(
-        ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
-            .Add("assetId", request.AssetId)
-            .Add("scheduleId", request.ScheduleId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/preventive/resolve",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>
-    > ListPreventiveMaintenanceSchedulesAsyncCore(
-        ListPreventiveMaintenanceSchedulesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 3)
-            .Add("ids", request.Ids)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/preventive/schedules",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>
-    > ListUpcomingPreventiveMaintenanceAsyncCore(
-        ListUpcomingPreventiveMaintenanceRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
-            .Add("scheduleIds", request.ScheduleIds)
-            .Add("assetIds", request.AssetIds)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/preventive/upcoming",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>
-    > UpdateUpcomingPreventiveMaintenanceAsyncCore(
-        EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
-            .Add("assetId", request.AssetId)
-            .Add("scheduleId", request.ScheduleId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/preventive/upcoming",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
         WithRawResponse<EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody>
     > ListPurchaseOrdersAsyncCore(
         ListPurchaseOrdersRequest request,
@@ -8196,449 +7332,21 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
-        WithRawResponse<EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody>
-    > ListMaintenanceSitesAsyncCore(
-        ListMaintenanceSitesRequest request,
+        WithRawResponse<TechnicianShiftsListTechnicianShiftsResponseBody>
+    > ListTechnicianShiftsAsyncCore(
+        ListTechnicianShiftsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 6)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
             .Add("ids", request.Ids)
-            .Add("isArchived", request.IsArchived)
-            .Add("placeIds", request.PlaceIds)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .Add("includeExternalIds", request.IncludeExternalIds)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/sites",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody>
-    > CreateMaintenanceSiteAsyncCore(
-        EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/sites",
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody>
-    > UpdateMaintenanceSiteAsyncCore(
-        EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/sites",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityTimeEntriesServiceListTimeEntriesResponseBody>
-    > ListTimeEntriesAsyncCore(
-        ListTimeEntriesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
+            .Add("userIds", request.UserIds)
+            .Add("externalTechnicianIds", request.ExternalTechnicianIds)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
             .Add("after", request.After)
             .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/time-entries/stream",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityTimeEntriesServiceListTimeEntriesResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityTimeEntriesServiceListTimeEntriesResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityWarrantiesServiceListWarrantiesResponseBody>
-    > ListWarrantiesAsyncCore(
-        ListWarrantiesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 5)
-            .Add("warrantyIds", request.WarrantyIds)
-            .Add("name", request.Name)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
             .Add("includeExternalIds", request.IncludeExternalIds)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
@@ -8654,7 +7362,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Get,
-                    Path = "maintenance/warranties",
+                    Path = "maintenance/technician-shifts",
                     QueryString = _queryString,
                     Headers = _headers,
                     Options = options,
@@ -8668,10 +7376,10 @@ public partial class BetaApIsClient : IBetaApIsClient
             try
             {
                 var responseData =
-                    JsonUtils.Deserialize<EntityWarrantiesServiceListWarrantiesResponseBody>(
+                    JsonUtils.Deserialize<TechnicianShiftsListTechnicianShiftsResponseBody>(
                         responseBody
                     )!;
-                return new WithRawResponse<EntityWarrantiesServiceListWarrantiesResponseBody>()
+                return new WithRawResponse<TechnicianShiftsListTechnicianShiftsResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -8737,447 +7445,14 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
-        WithRawResponse<EntityWarrantiesServiceCreateWarrantyResponseBody>
-    > CreateWarrantyAsyncCore(
-        EntityWarrantiesServiceCreateWarrantyRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/warranties",
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityWarrantiesServiceCreateWarrantyResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityWarrantiesServiceCreateWarrantyResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityWarrantiesServiceUpdateWarrantyResponseBody>
-    > UpdateWarrantyAsyncCore(
-        EntityWarrantiesServiceUpdateWarrantyRequestBody request,
+        WithRawResponse<TechnicianShiftsCreateTechnicianShiftResponseBody>
+    > CreateTechnicianShiftAsyncCore(
+        TechnicianShiftsCreateTechnicianShiftRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
         var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/warranties",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityWarrantiesServiceUpdateWarrantyResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityWarrantiesServiceUpdateWarrantyResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>
-    > ListWarrantyAssetAssignmentsAsyncCore(
-        ListWarrantyAssetAssignmentsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 3)
-            .Add("warrantyId", request.WarrantyId)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/warranties/assets",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>
-    > ReplaceWarrantyAssetAssignmentsAsyncCore(
-        ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("warrantyId", request.WarrantyId)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "maintenance/warranties/assets/replace",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody>
-    > ListWarrantyClaimsAsyncCore(
-        ListWarrantyClaimsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
-            .Add("warrantyClaimIds", request.WarrantyClaimIds)
-            .Add("assetIds", request.AssetIds)
-            .Add("claimStatus", request.ClaimStatus)
-            .Add("warrantyIds", request.WarrantyIds)
-            .Add("after", request.After)
-            .Add("limit", request.Limit)
             .Add("includeExternalIds", request.IncludeExternalIds)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
@@ -9192,111 +7467,10 @@ public partial class BetaApIsClient : IBetaApIsClient
                 new JsonRequest
                 {
                     BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "maintenance/warranty-claims",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody>
-    > CreateWarrantyClaimAsyncCore(
-        EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethod.Post,
-                    Path = "maintenance/warranty-claims",
+                    Path = "maintenance/technician-shifts",
                     Body = request,
+                    QueryString = _queryString,
                     Headers = _headers,
                     ContentType = "application/json",
                     Options = options,
@@ -9310,10 +7484,10 @@ public partial class BetaApIsClient : IBetaApIsClient
             try
             {
                 var responseData =
-                    JsonUtils.Deserialize<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody>(
+                    JsonUtils.Deserialize<TechnicianShiftsCreateTechnicianShiftResponseBody>(
                         responseBody
                     )!;
-                return new WithRawResponse<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody>()
+                return new WithRawResponse<TechnicianShiftsCreateTechnicianShiftResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -9348,6 +7522,8 @@ public partial class BetaApIsClient : IBetaApIsClient
                         throw new MethodNotAllowedError(
                             JsonUtils.Deserialize<object>(responseBody)
                         );
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
                     case 413:
                         throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
                     case 429:
@@ -9379,14 +7555,15 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     private async Task<
-        WithRawResponse<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody>
-    > UpdateWarrantyClaimAsyncCore(
-        EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request,
+        WithRawResponse<TechnicianShiftsPatchTechnicianShiftResponseBody>
+    > PatchTechnicianShiftAsyncCore(
+        TechnicianShiftsPatchTechnicianShiftRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
+            .Add("includeExternalIds", request.IncludeExternalIds)
             .Add("id", request.Id)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
@@ -9402,7 +7579,7 @@ public partial class BetaApIsClient : IBetaApIsClient
                 {
                     BaseUrl = _client.Options.BaseUrl,
                     Method = HttpMethodExtensions.Patch,
-                    Path = "maintenance/warranty-claims",
+                    Path = "maintenance/technician-shifts",
                     Body = request,
                     QueryString = _queryString,
                     Headers = _headers,
@@ -9418,10 +7595,10 @@ public partial class BetaApIsClient : IBetaApIsClient
             try
             {
                 var responseData =
-                    JsonUtils.Deserialize<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody>(
+                    JsonUtils.Deserialize<TechnicianShiftsPatchTechnicianShiftResponseBody>(
                         responseBody
                     )!;
-                return new WithRawResponse<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody>()
+                return new WithRawResponse<TechnicianShiftsPatchTechnicianShiftResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -9456,6 +7633,8 @@ public partial class BetaApIsClient : IBetaApIsClient
                         throw new MethodNotAllowedError(
                             JsonUtils.Deserialize<object>(responseBody)
                         );
+                    case 409:
+                        throw new ConflictError(JsonUtils.Deserialize<object>(responseBody));
                     case 413:
                         throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
                     case 429:
@@ -9599,7 +7778,7 @@ public partial class BetaApIsClient : IBetaApIsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 10)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 11)
             .Add("after", request.After)
             .Add("limit", request.Limit)
             .Add("placeIds", request.PlaceIds)
@@ -9610,6 +7789,7 @@ public partial class BetaApIsClient : IBetaApIsClient
             .Add("parentTagIds", request.ParentTagIds)
             .Add("placeTypes", request.PlaceTypes)
             .Add("name", request.Name)
+            .Add("hubIds", request.HubIds)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
@@ -10175,434 +8355,6 @@ public partial class BetaApIsClient : IBetaApIsClient
                     responseBody
                 )!;
                 return new WithRawResponse<PlacesGetPlaceGeofenceResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PreferredStationsListPreferredStationsResponseBody>
-    > ListPreferredStationsAsyncCore(
-        ListPreferredStationsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 3)
-            .Add("limit", request.Limit)
-            .Add("after", request.After)
-            .Add("includeExternalIds", request.IncludeExternalIds)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = "preferred-stations",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<PreferredStationsListPreferredStationsResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<PreferredStationsListPreferredStationsResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PreferredStationsPostPreferredStationResponseBody>
-    > PostPreferredStationAsyncCore(
-        PreferredStationsPostPreferredStationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Post,
-                    Path = "preferred-stations",
-                    Body = request,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<PreferredStationsPostPreferredStationResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<PreferredStationsPostPreferredStationResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PreferredStationsPatchPreferredStationResponseBody>
-    > PatchPreferredStationAsyncCore(
-        PreferredStationsPatchPreferredStationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethodExtensions.Patch,
-                    Path = "preferred-stations",
-                    Body = request,
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    ContentType = "application/json",
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<PreferredStationsPatchPreferredStationResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<PreferredStationsPatchPreferredStationResponseBody>()
-                {
-                    Data = responseData,
-                    RawResponse = new RawResponse()
-                    {
-                        StatusCode = response.Raw.StatusCode,
-                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
-                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
-                    },
-                };
-            }
-            catch (JsonException e)
-            {
-                throw new SamsaraClientApiException(
-                    "Failed to deserialize response",
-                    response.StatusCode,
-                    responseBody,
-                    e
-                );
-            }
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    private async Task<
-        WithRawResponse<PreferredStationsGetPreferredStationResponseBody>
-    > GetPreferredStationAsyncCore(
-        GetPreferredStationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("includeExternalIds", request.IncludeExternalIds)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Get,
-                    Path = string.Format(
-                        "preferred-stations/{0}",
-                        ValueConvert.ToPathParameterString(request.Id)
-                    ),
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                var responseData =
-                    JsonUtils.Deserialize<PreferredStationsGetPreferredStationResponseBody>(
-                        responseBody
-                    )!;
-                return new WithRawResponse<PreferredStationsGetPreferredStationResponseBody>()
                 {
                     Data = responseData,
                     RawResponse = new RawResponse()
@@ -13998,6 +11750,173 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
+    /// Manage vendor group identity and defaults inherited by vendor locations.
+    ///
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.ListVendorGroupsAsync(new ListVendorGroupsRequest());
+    /// </code></example>
+    public WithRawResponseTask<EntityVendorProfilesServiceListVendorGroupsResponseBody> ListVendorGroupsAsync(
+        ListVendorGroupsRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityVendorProfilesServiceListVendorGroupsResponseBody>(
+            ListVendorGroupsAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Manage vendor group identity and defaults inherited by vendor locations.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.CreateVendorGroupAsync(
+    ///     new EntityVendorProfilesServiceCreateVendorGroupRequestBody { Name = "12345" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EntityVendorProfilesServiceCreateVendorGroupResponseBody> CreateVendorGroupAsync(
+        EntityVendorProfilesServiceCreateVendorGroupRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityVendorProfilesServiceCreateVendorGroupResponseBody>(
+            CreateVendorGroupAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Soft-deletes a vendor group after all vendor locations have been detached, moved, or deleted.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.DeleteVendorGroupAsync(new DeleteVendorGroupRequest { Id = "id" });
+    /// </code></example>
+    public async Task DeleteVendorGroupAsync(
+        DeleteVendorGroupRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("id", request.Id)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = "fleet/maintenance/vendor-groups",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Manage vendor group identity and defaults inherited by vendor locations.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.UpdateVendorGroupAsync(
+    ///     new EntityVendorProfilesServiceUpdateVendorGroupRequestBody { Id = "id" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EntityVendorProfilesServiceUpdateVendorGroupResponseBody> UpdateVendorGroupAsync(
+        EntityVendorProfilesServiceUpdateVendorGroupRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityVendorProfilesServiceUpdateVendorGroupResponseBody>(
+            UpdateVendorGroupAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
     /// Returns a paginated list of maintenance vendors in the organization.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -14018,6 +11937,149 @@ public partial class BetaApIsClient : IBetaApIsClient
     {
         return new WithRawResponseTask<MaintenanceVendorsListMaintenanceVendorsResponseBody>(
             ListMaintenanceVendorsAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Creates a maintenance vendor for the organization. Exactly one of addressId or address must be set.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.CreateVendorAsync(
+    ///     new EntityVendorsServiceCreateVendorRequestBody { Name = "12345" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EntityVendorsServiceCreateVendorResponseBody> CreateVendorAsync(
+        EntityVendorsServiceCreateVendorRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityVendorsServiceCreateVendorResponseBody>(
+            CreateVendorAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// Soft-deletes a vendor location without deleting its linked Place or work orders.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.DeleteVendorAsync(new DeleteVendorRequest { Id = "id" });
+    /// </code></example>
+    public async Task DeleteVendorAsync(
+        DeleteVendorRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+            .Add("id", request.Id)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Delete,
+                    Path = "fleet/maintenance/vendors",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            return;
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    /// <summary>
+    /// Updates an existing maintenance vendor for the organization. Migrating a vendor between a linked Place (addressId) and a self-contained address (address) is not supported.
+    ///
+    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.BetaApIs.UpdateVendorAsync(
+    ///     new EntityVendorsServiceUpdateVendorRequestBody { Id = "id" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<EntityVendorsServiceUpdateVendorResponseBody> UpdateVendorAsync(
+        EntityVendorsServiceUpdateVendorRequestBody request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<EntityVendorsServiceUpdateVendorResponseBody>(
+            UpdateVendorAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -14751,37 +12813,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Update the shippingDocs field of an existing assignment.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdateShippingDocsAsync(
-    ///     new HosDailyLogsUpdateShippingDocsRequestBody
-    ///     {
-    ///         HosDate = "hosDate",
-    ///         DriverId = "driverID",
-    ///         ShippingDocs = "ShippingID1, ShippingID2",
-    ///     }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<HosDailyLogsUpdateShippingDocsResponseBody> UpdateShippingDocsAsync(
-        HosDailyLogsUpdateShippingDocsRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<HosDailyLogsUpdateShippingDocsResponseBody>(
-            UpdateShippingDocsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Retrieve all orders for a specific plan, including both assigned and unassigned orders.
     ///
     /// **Beta:** This endpoint is in beta and is likely to change before being broadly available. Reach out to your Samsara Representative to have RoutePlanning APIs enabled for your organization.
@@ -15076,410 +13107,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Returns a paginated list of parts for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListPartsAsync(new ListPartsRequest());
-    /// </code></example>
-    public WithRawResponseTask<EntityPartDefinitionsServiceListPartsResponseBody> ListPartsAsync(
-        ListPartsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartDefinitionsServiceListPartsResponseBody>(
-            ListPartsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Creates a part for the organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.CreatePartAsync(
-    ///     new EntityPartDefinitionsServiceCreatePartRequestBody { PartNumber = "12345" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityPartDefinitionsServiceCreatePartResponseBody> CreatePartAsync(
-        EntityPartDefinitionsServiceCreatePartRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartDefinitionsServiceCreatePartResponseBody>(
-            CreatePartAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Deletes a part for the organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.DeletePartAsync(new DeletePartRequest { Id = "id" });
-    /// </code></example>
-    public async Task DeletePartAsync(
-        DeletePartRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = "maintenance/parts",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Updates an existing part for the organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdatePartAsync(
-    ///     new EntityPartDefinitionsServiceUpdatePartRequestBody { Id = "id" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityPartDefinitionsServiceUpdatePartResponseBody> UpdatePartAsync(
-        EntityPartDefinitionsServiceUpdatePartRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartDefinitionsServiceUpdatePartResponseBody>(
-            UpdatePartAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated list of per-part, per-location inventory levels for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListPartInventoryAsync(new ListPartInventoryRequest());
-    /// </code></example>
-    public WithRawResponseTask<EntityPartInventoryLocationsServiceListPartInventoryResponseBody> ListPartInventoryAsync(
-        ListPartInventoryRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartInventoryLocationsServiceListPartInventoryResponseBody>(
-            ListPartInventoryAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.CreatePartInventoryLocationAsync(
-    ///     new EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody> CreatePartInventoryLocationAsync(
-        EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody>(
-            CreatePartInventoryLocationAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Updates existing per-part, per-location inventory metadata for the organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdatePartInventoryLocationAsync(
-    ///     new EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody> UpdatePartInventoryLocationAsync(
-        EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody>(
-            UpdatePartInventoryLocationAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.CreateStockMovementAsync(
-    ///     new CreateStockMovementActionServiceCreateStockMovementRequestBody
-    ///     {
-    ///         MovementType = "12345",
-    ///         PartSamsaraId = "12345",
-    ///         Quantity = 123.45,
-    ///     }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<CreateStockMovementActionServiceCreateStockMovementResponseBody> CreateStockMovementAsync(
-        CreateStockMovementActionServiceCreateStockMovementRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<CreateStockMovementActionServiceCreateStockMovementResponseBody>(
-            CreateStockMovementAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListPartTransactionsAsync(
-    ///     new ListPartTransactionsRequest { HappenedAtTimeStart = "happenedAtTimeStart" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityInventoryTransactionsServiceListPartTransactionsResponseBody> ListPartTransactionsAsync(
-        ListPartTransactionsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityInventoryTransactionsServiceListPartTransactionsResponseBody>(
-            ListPartTransactionsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ResolvePreventiveMaintenanceAsync(
-    ///     new ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody> ResolvePreventiveMaintenanceAsync(
-        ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody>(
-            ResolvePreventiveMaintenanceAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated list of preventive maintenance schedules for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListPreventiveMaintenanceSchedulesAsync(
-    ///     new ListPreventiveMaintenanceSchedulesRequest()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody> ListPreventiveMaintenanceSchedulesAsync(
-        ListPreventiveMaintenanceSchedulesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody>(
-            ListPreventiveMaintenanceSchedulesAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListUpcomingPreventiveMaintenanceAsync(
-    ///     new ListUpcomingPreventiveMaintenanceRequest()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody> ListUpcomingPreventiveMaintenanceAsync(
-        ListUpcomingPreventiveMaintenanceRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody>(
-            ListUpcomingPreventiveMaintenanceAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdateUpcomingPreventiveMaintenanceAsync(
-    ///     new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody> UpdateUpcomingPreventiveMaintenanceAsync(
-        EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody>(
-            UpdateUpcomingPreventiveMaintenanceAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
     /// Returns a paginated list of purchase orders ordered by last update time.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -15660,493 +13287,82 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Returns a paginated list of maintenance sites for the organization.
+    /// List shifts ordered by updated time and UUID. ID filters allow up to 100 values each, with OR within and AND across filters. Lists are eventually consistent; reconcile overlapping time windows and deduplicate by ID and version.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Read Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Read Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest());
+    /// await client.BetaApIs.ListTechnicianShiftsAsync(new ListTechnicianShiftsRequest());
     /// </code></example>
-    public WithRawResponseTask<EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody> ListMaintenanceSitesAsync(
-        ListMaintenanceSitesRequest request,
+    public WithRawResponseTask<TechnicianShiftsListTechnicianShiftsResponseBody> ListTechnicianShiftsAsync(
+        ListTechnicianShiftsRequest request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody>(
-            ListMaintenanceSitesAsyncCore(request, options, cancellationToken)
+        return new WithRawResponseTask<TechnicianShiftsListTechnicianShiftsResponseBody>(
+            ListTechnicianShiftsAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <summary>
-    /// Creates a maintenance site for the organization. Exactly one of placeIds or customAddress must be set.
+    /// Create an open or completed shift. Equivalent retries using registered external IDs return the existing shift; conflicting content or aliases return 409.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.CreateMaintenanceSiteAsync(
-    ///     new EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody
+    /// await client.BetaApIs.CreateTechnicianShiftAsync(
+    ///     new TechnicianShiftsCreateTechnicianShiftRequestBody
     ///     {
-    ///         Name = "12345",
-    ///         SiteCode = "12345",
-    ///         SiteType = EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType.Unknown,
+    ///         ClockInAtTime = new DateTime(2026, 09, 10, 15, 00, 00, 000),
+    ///         UserId = "281474976710656",
     ///     }
     /// );
     /// </code></example>
-    public WithRawResponseTask<EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody> CreateMaintenanceSiteAsync(
-        EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody request,
+    public WithRawResponseTask<TechnicianShiftsCreateTechnicianShiftResponseBody> CreateTechnicianShiftAsync(
+        TechnicianShiftsCreateTechnicianShiftRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody>(
-            CreateMaintenanceSiteAsyncCore(request, options, cancellationToken)
+        return new WithRawResponseTask<TechnicianShiftsCreateTechnicianShiftResponseBody>(
+            CreateTechnicianShiftAsyncCore(request, options, cancellationToken)
         );
     }
 
     /// <summary>
-    /// Updates an existing maintenance site for the organization. Moving a site between placeIds and customAddress is not supported.
+    /// Close or correct a shift using the last received version. An already-applied retry returns the current shift. External IDs fully replace the previous map; an empty object clears it.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
-    /// To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    /// To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
     ///
     ///
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.UpdateMaintenanceSiteAsync(
-    ///     new EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody { Id = "id" }
+    /// await client.BetaApIs.PatchTechnicianShiftAsync(
+    ///     new TechnicianShiftsPatchTechnicianShiftRequestBody { Id = "id", Version = 1 }
     /// );
     /// </code></example>
-    public WithRawResponseTask<EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody> UpdateMaintenanceSiteAsync(
-        EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody request,
+    public WithRawResponseTask<TechnicianShiftsPatchTechnicianShiftResponseBody> PatchTechnicianShiftAsync(
+        TechnicianShiftsPatchTechnicianShiftRequestBody request,
         RequestOptions? options = null,
         CancellationToken cancellationToken = default
     )
     {
-        return new WithRawResponseTask<EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody>(
-            UpdateMaintenanceSiteAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Time Entries** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListTimeEntriesAsync(new ListTimeEntriesRequest { StartTime = "startTime" });
-    /// </code></example>
-    public WithRawResponseTask<EntityTimeEntriesServiceListTimeEntriesResponseBody> ListTimeEntriesAsync(
-        ListTimeEntriesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityTimeEntriesServiceListTimeEntriesResponseBody>(
-            ListTimeEntriesAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated list of warranties for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListWarrantiesAsync(new ListWarrantiesRequest());
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantiesServiceListWarrantiesResponseBody> ListWarrantiesAsync(
-        ListWarrantiesRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantiesServiceListWarrantiesResponseBody>(
-            ListWarrantiesAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Creates a warranty for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.CreateWarrantyAsync(
-    ///     new EntityWarrantiesServiceCreateWarrantyRequestBody { Name = "12345" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantiesServiceCreateWarrantyResponseBody> CreateWarrantyAsync(
-        EntityWarrantiesServiceCreateWarrantyRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantiesServiceCreateWarrantyResponseBody>(
-            CreateWarrantyAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Deletes a warranty for the organization. Asset associations are removed server-side.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.DeleteWarrantyAsync(new DeleteWarrantyRequest { Id = "id" });
-    /// </code></example>
-    public async Task DeleteWarrantyAsync(
-        DeleteWarrantyRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = "maintenance/warranties",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Updates an existing warranty for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdateWarrantyAsync(
-    ///     new EntityWarrantiesServiceUpdateWarrantyRequestBody { Id = "id" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantiesServiceUpdateWarrantyResponseBody> UpdateWarrantyAsync(
-        EntityWarrantiesServiceUpdateWarrantyRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantiesServiceUpdateWarrantyResponseBody>(
-            UpdateWarrantyAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns the assets assigned to a warranty.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListWarrantyAssetAssignmentsAsync(
-    ///     new ListWarrantyAssetAssignmentsRequest { WarrantyId = "warrantyId" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody> ListWarrantyAssetAssignmentsAsync(
-        ListWarrantyAssetAssignmentsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody>(
-            ListWarrantyAssetAssignmentsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Replaces the full set of assets assigned to a warranty.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ReplaceWarrantyAssetAssignmentsAsync(
-    ///     new ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody()
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody> ReplaceWarrantyAssetAssignmentsAsync(
-        ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody>(
-            ReplaceWarrantyAssetAssignmentsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Returns a paginated list of warranty claims for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListWarrantyClaimsAsync(new ListWarrantyClaimsRequest());
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody> ListWarrantyClaimsAsync(
-        ListWarrantyClaimsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody>(
-            ListWarrantyClaimsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Creates a warranty claim for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.CreateWarrantyClaimAsync(
-    ///     new EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody { AssetId = "281474976710656" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody> CreateWarrantyClaimAsync(
-        EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody>(
-            CreateWarrantyClaimAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Deletes a warranty claim for the organization. Component links are removed server-side.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.DeleteWarrantyClaimAsync(new DeleteWarrantyClaimRequest { Id = "id" });
-    /// </code></example>
-    public async Task DeleteWarrantyClaimAsync(
-        DeleteWarrantyClaimRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = "maintenance/warranty-claims",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Updates an existing warranty claim for the organization.
-    ///
-    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.UpdateWarrantyClaimAsync(
-    ///     new EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { Id = "id" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody> UpdateWarrantyClaimAsync(
-        EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody>(
-            UpdateWarrantyClaimAsyncCore(request, options, cancellationToken)
+        return new WithRawResponseTask<TechnicianShiftsPatchTechnicianShiftResponseBody>(
+            PatchTechnicianShiftAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -16230,7 +13446,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Deletes a place. Pass `placeId` (Samsara id) as a query parameter.
+    /// Deletes a place. Provide exactly one of query parameter `placeId` (Samsara id) or `externalId` (key:value).
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -16240,7 +13456,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
     /// </summary>
     /// <example><code>
-    /// await client.BetaApIs.DeletePlaceAsync(new DeletePlaceRequest { PlaceId = 1000000 });
+    /// await client.BetaApIs.DeletePlaceAsync(new DeletePlaceRequest());
     /// </code></example>
     public async Task DeletePlaceAsync(
         DeletePlaceRequest request,
@@ -16248,8 +13464,9 @@ public partial class BetaApIsClient : IBetaApIsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 2)
             .Add("placeId", request.PlaceId)
+            .Add("externalId", request.ExternalId)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
@@ -16415,208 +13632,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     {
         return new WithRawResponseTask<PlacesGetPlaceGeofenceResponseBody>(
             GetPlaceGeofenceAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// List all preferred fuel stations for your organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.ListPreferredStationsAsync(new ListPreferredStationsRequest());
-    /// </code></example>
-    public WithRawResponseTask<PreferredStationsListPreferredStationsResponseBody> ListPreferredStationsAsync(
-        ListPreferredStationsRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PreferredStationsListPreferredStationsResponseBody>(
-            ListPreferredStationsAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Create a preferred fuel station for your organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.PostPreferredStationAsync(
-    ///     new PreferredStationsPostPreferredStationRequestBody
-    ///     {
-    ///         Address = new PreferredStationAddressRequestBody
-    ///         {
-    ///             City = "Green River",
-    ///             Country = "US",
-    ///             Line1 = "8901 US Hwy 374",
-    ///             PostalCode = "82935",
-    ///         },
-    ///         ExternalIds = new Dictionary&lt;string, string&gt;() { { "key", "value" } },
-    ///         Name = "Station #432",
-    ///     }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<PreferredStationsPostPreferredStationResponseBody> PostPreferredStationAsync(
-        PreferredStationsPostPreferredStationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PreferredStationsPostPreferredStationResponseBody>(
-            PostPreferredStationAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Delete a preferred fuel station for your organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.DeletePreferredStationAsync(new DeletePreferredStationRequest { Id = "id" });
-    /// </code></example>
-    public async Task DeletePreferredStationAsync(
-        DeletePreferredStationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 1)
-            .Add("id", request.Id)
-            .MergeAdditional(options?.AdditionalQueryParameters)
-            .Build();
-        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
-            .Add(_client.Options.Headers)
-            .Add(_client.Options.AdditionalHeaders)
-            .Add(options?.AdditionalHeaders)
-            .BuildAsync()
-            .ConfigureAwait(false);
-        var response = await _client
-            .SendRequestAsync(
-                new JsonRequest
-                {
-                    BaseUrl = _client.Options.BaseUrl,
-                    Method = HttpMethod.Delete,
-                    Path = "preferred-stations",
-                    QueryString = _queryString,
-                    Headers = _headers,
-                    Options = options,
-                },
-                cancellationToken
-            )
-            .ConfigureAwait(false);
-        if (response.StatusCode is >= 200 and < 400)
-        {
-            return;
-        }
-        {
-            var responseBody = await response.Raw.Content.ReadAsStringAsync();
-            try
-            {
-                switch (response.StatusCode)
-                {
-                    case 401:
-                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 404:
-                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
-                    case 405:
-                        throw new MethodNotAllowedError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 413:
-                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
-                    case 429:
-                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
-                    case 500:
-                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
-                    case 501:
-                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
-                    case 502:
-                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
-                    case 503:
-                        throw new ServiceUnavailableError(
-                            JsonUtils.Deserialize<object>(responseBody)
-                        );
-                    case 504:
-                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
-                }
-            }
-            catch (JsonException)
-            {
-                // unable to map error response, throwing generic error
-            }
-            throw new SamsaraClientApiException(
-                $"Error with status code {response.StatusCode}",
-                response.StatusCode,
-                responseBody
-            );
-        }
-    }
-
-    /// <summary>
-    /// Update a preferred fuel station for your organization.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.PatchPreferredStationAsync(
-    ///     new PreferredStationsPatchPreferredStationRequestBody { Id = "id" }
-    /// );
-    /// </code></example>
-    public WithRawResponseTask<PreferredStationsPatchPreferredStationResponseBody> PatchPreferredStationAsync(
-        PreferredStationsPatchPreferredStationRequestBody request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PreferredStationsPatchPreferredStationResponseBody>(
-            PatchPreferredStationAsyncCore(request, options, cancellationToken)
-        );
-    }
-
-    /// <summary>
-    /// Get a single preferred fuel station by ID.
-    ///
-    ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-    ///
-    /// To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-    ///
-    ///
-    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-    /// </summary>
-    /// <example><code>
-    /// await client.BetaApIs.GetPreferredStationAsync(new GetPreferredStationRequest { Id = "id" });
-    /// </code></example>
-    public WithRawResponseTask<PreferredStationsGetPreferredStationResponseBody> GetPreferredStationAsync(
-        GetPreferredStationRequest request,
-        RequestOptions? options = null,
-        CancellationToken cancellationToken = default
-    )
-    {
-        return new WithRawResponseTask<PreferredStationsGetPreferredStationResponseBody>(
-            GetPreferredStationAsyncCore(request, options, cancellationToken)
         );
     }
 
@@ -17315,7 +14330,9 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// List ridership passengers by tag.
+    /// List passengers assigned to a tag. External IDs are omitted from the response unless `includeExternalIds=true`.
+    ///
+    /// Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17341,7 +14358,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Create a new ridership passenger.
+    /// Create a new ridership passenger. The response includes the passenger's external IDs.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17371,7 +14388,11 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Update a ridership passenger by ID. All provided fields will overwrite existing values (PUT semantics). The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+    /// Update a passenger by Samsara UUID or external ID, such as `student:STU-001`. The response includes the passenger's external IDs.
+    ///
+    /// Both first and last name are required. Include the values you want to keep:
+    /// - Omitted classification, special instructions, identifiers, and external IDs are cleared.
+    /// - Omitted tags are kept. Send `tagIds: []` to remove them.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17402,7 +14423,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Delete a ridership passenger by ID. The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+    /// Delete a passenger by Samsara UUID or external ID, such as `student:STU-001`. The passenger is no longer returned by get or list requests, and their external IDs are removed. Deleting a passenger that does not exist or has already been deleted returns not found.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17495,7 +14516,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Get a single ridership passenger by ID. The ID can be a Samsara UUID or an external ID in `key:value` format.
+    /// Get a passenger by Samsara UUID or external ID, such as `student:STU-001`. External IDs are omitted from the response unless `includeExternalIds=true`.
     ///
     ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17519,7 +14540,9 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// List all route setups for a ridership account.
+    /// List route setups associated with the specified ridership account.
+    ///
+    /// Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
     ///
     ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17545,7 +14568,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Create the passenger assignment setup for a route.
+    /// Create passenger assignments for an existing Routing API route. If the route already has a setup, use the update endpoint instead.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17581,7 +14604,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Update (replace) the passenger assignment setup for a route. All existing assignments will be replaced with the provided assignments.
+    /// Add or update passenger assignments for an existing Routing API route. Creates a setup if none exists. Passengers omitted from the request keep their assignments; an empty passenger list leaves existing assignments unchanged.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17617,7 +14640,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Delete the passenger assignment setup for a route.
+    /// Remove the route's passenger setup and assignments. The route and passenger records are kept. Deleting a setup that does not exist returns not found.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17710,7 +14733,7 @@ public partial class BetaApIsClient : IBetaApIsClient
     }
 
     /// <summary>
-    /// Get the passenger assignment setup for a route by route ID.
+    /// Get the passenger assignments for a route by Samsara route ID or external ID, such as `extRoute:WB-12`.
     ///
     ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///
@@ -17751,7 +14774,6 @@ public partial class BetaApIsClient : IBetaApIsClient
     ///     {
     ///         SafetyEventIds = new List&lt;string&gt;()
     ///         {
-    ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
     ///         },

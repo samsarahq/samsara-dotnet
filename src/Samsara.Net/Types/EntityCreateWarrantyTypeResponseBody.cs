@@ -87,10 +87,10 @@ public record EntityCreateWarrantyTypeResponseBody : IJsonOnDeserialized
     public EntityCreateWarrantyVendorRefTypeResponseBody? Vendor { get; set; }
 
     /// <summary>
-    /// Type of warranty, for example manufacturer, extended, other, or unknown.
+    /// Type of warranty, for example manufacturer, extended, other, or unknown.  Valid values: `unknown`, `manufacturer`, `extended`, `other`
     /// </summary>
     [JsonPropertyName("warrantyType")]
-    public string? WarrantyType { get; set; }
+    public EntityCreateWarrantyTypeResponseBodyWarrantyType? WarrantyType { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

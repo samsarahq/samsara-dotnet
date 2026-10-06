@@ -53,6 +53,8 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
 
     public static readonly DeviceResponseResponseBodyModel At13 = new(Values.At13);
 
+    public static readonly DeviceResponseResponseBodyModel Baxter = new(Values.Baxter);
+
     public static readonly DeviceResponseResponseBodyModel Cm31 = new(Values.Cm31);
 
     public static readonly DeviceResponseResponseBodyModel Cm32 = new(Values.Cm32);
@@ -179,6 +181,8 @@ public readonly record struct DeviceResponseResponseBodyModel : IStringEnum
         public const string At12X = "AT12X";
 
         public const string At13 = "AT13";
+
+        public const string Baxter = "Baxter";
 
         public const string Cm31 = "CM31";
 

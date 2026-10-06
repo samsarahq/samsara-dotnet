@@ -108,6 +108,10 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
 
     public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel Idling = new(Values.Idling);
 
+    public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel ImproperEgress = new(
+        Values.ImproperEgress
+    );
+
     public static readonly SafetyEventV2BehaviorLabelsResponseBodyLabel Invalid = new(
         Values.Invalid
     );
@@ -341,6 +345,8 @@ public readonly record struct SafetyEventV2BehaviorLabelsResponseBodyLabel : ISt
         public const string HosViolation = "HosViolation";
 
         public const string Idling = "Idling";
+
+        public const string ImproperEgress = "ImproperEgress";
 
         public const string Invalid = "Invalid";
 

@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalId object
+/// MaintenanceSiteExternalId object
 /// </summary>
 [Serializable]
 public record CreateMaintenanceSiteEntityMaintenanceSiteMaintenanceSiteExternalIdTypeResponseBody

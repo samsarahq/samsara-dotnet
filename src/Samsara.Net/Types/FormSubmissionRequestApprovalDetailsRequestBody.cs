@@ -15,7 +15,7 @@ public record FormSubmissionRequestApprovalDetailsRequestBody : IJsonOnDeseriali
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Comment for the approval decision. Sometimes required when updating status to 'changesRequested'. Only valid when requesting changes or approving a form submission.
+    /// Comment for the approval decision. Required when updating status to 'changesRequested' or 'denied'. Only valid when requesting changes, approving, or denying a form submission.
     /// </summary>
     [JsonPropertyName("comment")]
     public string? Comment { get; set; }

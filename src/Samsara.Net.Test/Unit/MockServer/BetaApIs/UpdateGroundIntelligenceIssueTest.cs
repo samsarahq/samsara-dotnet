@@ -36,7 +36,7 @@ public class UpdateGroundIntelligenceIssueTest : BaseMockServerTest
                 },
                 "severity": "high",
                 "status": "dismissed",
-                "type": "pothole",
+                "type": "unknown",
                 "updatedAtTime": "2026-08-06T10:00:00Z"
               }
             }

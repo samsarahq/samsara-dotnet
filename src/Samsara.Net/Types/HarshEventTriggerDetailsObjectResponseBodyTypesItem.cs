@@ -56,6 +56,9 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
         Values.HaImpact
     );
 
+    public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaImproperEgress =
+        new(Values.HaImproperEgress);
+
     public static readonly HarshEventTriggerDetailsObjectResponseBodyTypesItem HaInvalid = new(
         Values.HaInvalid
     );
@@ -239,6 +242,8 @@ public readonly record struct HarshEventTriggerDetailsObjectResponseBodyTypesIte
         public const string HaHighSpeedSuddenDisconnect = "haHighSpeedSuddenDisconnect";
 
         public const string HaImpact = "haImpact";
+
+        public const string HaImproperEgress = "haImproperEgress";
 
         public const string HaInvalid = "haInvalid";
 

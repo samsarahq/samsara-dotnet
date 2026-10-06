@@ -15,6 +15,12 @@ public record ServiceTaskInstanceObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
+    /// Dashboard users assigned to the service task. Only returned for organizations with service task assignees enabled. Technicians backed only by a driver are not represented.
+    /// </summary>
+    [JsonPropertyName("assignees")]
+    public IEnumerable<ServiceTaskAssigneeObjectResponseBody>? Assignees { get; set; }
+
+    /// <summary>
     /// ID of the service task instance.
     /// </summary>
     [JsonPropertyName("id")]

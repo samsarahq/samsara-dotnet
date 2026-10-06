@@ -17,7 +17,7 @@ public record DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
     /// ID of the driver. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the driver.
     /// </summary>
     [JsonPropertyName("driverId")]
-    public required string DriverId { get; set; }
+    public string? DriverId { get; set; }
 
     /// <summary>
     /// The end time in RFC 3339 format. To make this an ongoing assignment (ie. an assignment with no end time), provide an endTime value of 'null'. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
@@ -35,16 +35,16 @@ public record DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
     public PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody? Metadata { get; set; }
 
     /// <summary>
-    /// The start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    /// The start time in RFC 3339 format that identifies the assignment to update. Required together with vehicleId and driverId, unless metadata.sourceName is provided instead. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
     [JsonPropertyName("startTime")]
-    public required string StartTime { get; set; }
+    public string? StartTime { get; set; }
 
     /// <summary>
     /// ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
     /// </summary>
     [JsonPropertyName("vehicleId")]
-    public required string VehicleId { get; set; }
+    public string? VehicleId { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

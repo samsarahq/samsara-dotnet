@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignment object
+/// WarrantyAssetAssignment object
 /// </summary>
 [Serializable]
 public record EntityReplaceWarrantyAssetAssignmentsWarrantyAssetAssignmentTypeResponseBody

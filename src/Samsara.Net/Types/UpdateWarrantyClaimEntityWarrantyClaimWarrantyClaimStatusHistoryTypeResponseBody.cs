@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimStatusHistory object
+/// WarrantyClaimStatusHistory object
 /// </summary>
 [Serializable]
 public record UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBody
@@ -22,10 +22,10 @@ public record UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimStatusHistoryTy
     public string? HappenedAtTime { get; set; }
 
     /// <summary>
-    /// The status the claim moved into.
+    /// The status the claim moved into.  Valid values: `unknown`, `created`, `submitted`, `inReview`, `approved`, `rejected`, `resubmitted`, `reimbursed`
     /// </summary>
     [JsonPropertyName("status")]
-    public string? Status { get; set; }
+    public UpdateWarrantyClaimEntityWarrantyClaimWarrantyClaimStatusHistoryTypeResponseBodyStatus? Status { get; set; }
 
     /// <summary>
     /// ID of the user who made the change.

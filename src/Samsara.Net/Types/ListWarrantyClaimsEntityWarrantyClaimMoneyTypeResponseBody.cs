@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// ListWarrantyClaimsEntityWarrantyClaimMoney object
+/// Money object
 /// </summary>
 [Serializable]
 public record ListWarrantyClaimsEntityWarrantyClaimMoneyTypeResponseBody : IJsonOnDeserialized

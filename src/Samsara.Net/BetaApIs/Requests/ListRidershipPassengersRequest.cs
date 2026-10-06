@@ -7,7 +7,7 @@ namespace Samsara.Net.BetaApIs;
 public record ListRidershipPassengersRequest
 {
     /// <summary>
-    /// ID of a tag to filter passengers by.
+    /// Samsara ID of the tag to filter passengers by, such as `5678`. External IDs are not supported here.
     /// </summary>
     [JsonIgnore]
     public required string TagId { get; set; }

@@ -39,7 +39,7 @@ public record EntityListPartInventoryTypeResponseBody : IJsonOnDeserialized
     public string? CreatedAtTime { get; set; }
 
     /// <summary>
-    /// Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Read-only; changes only via stock movements.
+    /// Total physical quantity on hand at this location, equal to the available quantity plus the reserved quantity. Settable only when creating the record, to seed initial stock; thereafter it changes only via stock movements.
     /// </summary>
     [JsonPropertyName("currentQuantity")]
     public double? CurrentQuantity { get; set; }
@@ -55,6 +55,12 @@ public record EntityListPartInventoryTypeResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("isLowStock")]
     public bool? IsLowStock { get; set; }
+
+    /// <summary>
+    /// Whether the part is tracked at this location without stock management.
+    /// </summary>
+    [JsonPropertyName("isNonStock")]
+    public bool? IsNonStock { get; set; }
 
     /// <summary>
     /// Maximum quantity to keep in stock at this location.
@@ -102,10 +108,10 @@ public record EntityListPartInventoryTypeResponseBody : IJsonOnDeserialized
     public ListPartInventoryEntityPartInventoryLocationMoneyTypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
-    /// Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.
+    /// Unit of measure that the quantity fields on this record are expressed in. Surfaced here so the unit of all quantity fields is visible in-response.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
-    public string? UnitOfMeasureType { get; set; }
+    public EntityListPartInventoryTypeResponseBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }
 
     /// <summary>
     /// Time when the inventory level record was last updated.

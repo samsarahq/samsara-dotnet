@@ -28,7 +28,7 @@ public record RidershipRouteSetupObjectResponseBody : IJsonOnDeserialized
         new List<RidershipRouteSetupPassengerObjectResponseBody>();
 
     /// <summary>
-    /// The route ID.
+    /// Samsara ID of the Routing API route associated with this passenger setup.
     /// </summary>
     [JsonPropertyName("routeId")]
     public required string RouteId { get; set; }

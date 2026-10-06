@@ -27,10 +27,12 @@ using Samsara.Net.LegacyApIs;
 using Samsara.Net.LiveSharingLinks;
 using Samsara.Net.LocationAndSpeed;
 using Samsara.Net.Maintenance;
+using Samsara.Net.MaintenanceSites;
 using Samsara.Net.Media;
 using Samsara.Net.Messages;
 using Samsara.Net.OrganizationInfo;
 using Samsara.Net.Plans;
+using Samsara.Net.PreventiveMaintenance;
 using Samsara.Net.PreviewApIs;
 using Samsara.Net.Readings;
 using Samsara.Net.RouteEvents;
@@ -73,7 +75,7 @@ public partial class SamsaraClient : ISamsaraClient
                 { "X-Fern-Language", "C#" },
                 { "X-Fern-SDK-Name", "Samsara.Net" },
                 { "X-Fern-SDK-Version", Version.Current },
-                { "User-Agent", "Samsara.Net/14.9.0" },
+                { "User-Agent", "Samsara.Net/14.10.0" },
             }
         );
         foreach (var header in platformHeaders)
@@ -102,13 +104,12 @@ public partial class SamsaraClient : ISamsaraClient
         Coaching = new CoachingClient(_client);
         Contacts = new ContactsClient(_client);
         Maintenance = new MaintenanceClient(_client);
-        FuelAndEnergy = new FuelAndEnergyClient(_client);
+        LegacyApIs = new LegacyApIsClient(_client);
         DriverTrailerAssignments = new DriverTrailerAssignmentsClient(_client);
         DriverQrCodes = new DriverQrCodesClient(_client);
         CarbCtc = new CarbCtcClient(_client);
         CarrierProposedAssignments =
             new Samsara.Net.CarrierProposedAssignments.CarrierProposedAssignmentsClient(_client);
-        LegacyApIs = new LegacyApIsClient(_client);
         Documents = new DocumentsClient(_client);
         DriverVehicleAssignments = new DriverVehicleAssignmentsClient(_client);
         Drivers = new DriversClient(_client);
@@ -116,6 +117,7 @@ public partial class SamsaraClient : ISamsaraClient
         TachographEuOnly = new TachographEuOnlyClient(_client);
         Equipment = new EquipmentClient(_client);
         HoursOfService = new HoursOfServiceClient(_client);
+        FuelAndEnergy = new FuelAndEnergyClient(_client);
         Ifta = new IftaClient(_client);
         Routes = new RoutesClient(_client);
         Settings = new SettingsClient(_client);
@@ -132,6 +134,8 @@ public partial class SamsaraClient : ISamsaraClient
         Issues = new IssuesClient(_client);
         LiveSharingLinks = new LiveSharingLinksClient(_client);
         WorkOrders = new WorkOrdersClient(_client);
+        PreventiveMaintenance = new PreventiveMaintenanceClient(_client);
+        MaintenanceSites = new MaintenanceSitesClient(_client);
         OrganizationInfo = new OrganizationInfoClient(_client);
         PreviewApIs = new PreviewApIsClient(_client);
         Readings = new ReadingsClient(_client);
@@ -172,7 +176,7 @@ public partial class SamsaraClient : ISamsaraClient
 
     public IMaintenanceClient Maintenance { get; }
 
-    public IFuelAndEnergyClient FuelAndEnergy { get; }
+    public ILegacyApIsClient LegacyApIs { get; }
 
     public IDriverTrailerAssignmentsClient DriverTrailerAssignments { get; }
 
@@ -181,8 +185,6 @@ public partial class SamsaraClient : ISamsaraClient
     public ICarbCtcClient CarbCtc { get; }
 
     public Samsara.Net.CarrierProposedAssignments.ICarrierProposedAssignmentsClient CarrierProposedAssignments { get; }
-
-    public ILegacyApIsClient LegacyApIs { get; }
 
     public IDocumentsClient Documents { get; }
 
@@ -197,6 +199,8 @@ public partial class SamsaraClient : ISamsaraClient
     public IEquipmentClient Equipment { get; }
 
     public IHoursOfServiceClient HoursOfService { get; }
+
+    public IFuelAndEnergyClient FuelAndEnergy { get; }
 
     public IIftaClient Ifta { get; }
 
@@ -229,6 +233,10 @@ public partial class SamsaraClient : ISamsaraClient
     public ILiveSharingLinksClient LiveSharingLinks { get; }
 
     public IWorkOrdersClient WorkOrders { get; }
+
+    public IPreventiveMaintenanceClient PreventiveMaintenance { get; }
+
+    public IMaintenanceSitesClient MaintenanceSites { get; }
 
     public IOrganizationInfoClient OrganizationInfo { get; }
 

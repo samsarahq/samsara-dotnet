@@ -76,6 +76,10 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
     public static readonly SafetyEventBehaviorLabelsResponseBodyType HighSpeedSuddenDisconnect =
         new(Values.HighSpeedSuddenDisconnect);
 
+    public static readonly SafetyEventBehaviorLabelsResponseBodyType ImproperEgress = new(
+        Values.ImproperEgress
+    );
+
     public static readonly SafetyEventBehaviorLabelsResponseBodyType Invalid = new(Values.Invalid);
 
     public static readonly SafetyEventBehaviorLabelsResponseBodyType LaneDeparture = new(
@@ -246,6 +250,8 @@ public readonly record struct SafetyEventBehaviorLabelsResponseBodyType : IStrin
         public const string HarshTurn = "HarshTurn";
 
         public const string HighSpeedSuddenDisconnect = "HighSpeedSuddenDisconnect";
+
+        public const string ImproperEgress = "ImproperEgress";
 
         public const string Invalid = "Invalid";
 

@@ -14,7 +14,7 @@ public record RidershipRouteSetupsUpdateRidershipRouteSetupRequestBody
     public required string RouteId { get; set; }
 
     /// <summary>
-    /// List of passenger assignments for the route.
+    /// Passenger assignments for the route, with each passenger listed once.
     /// </summary>
     [JsonPropertyName("passengers")]
     public IEnumerable<RidershipRouteSetupPassengerInputRequestBody> Passengers { get; set; } =

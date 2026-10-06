@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLabor object
+/// WarrantyClaimLabor object
 /// </summary>
 [Serializable]
 public record CreateWarrantyClaimEntityWarrantyClaimWarrantyClaimLaborTypeResponseBody

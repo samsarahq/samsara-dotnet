@@ -97,6 +97,9 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem Idling =
         new(Values.Idling);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem ImproperEgress =
+        new(Values.ImproperEgress);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyBehaviorLabelsToAddItem Invalid =
         new(Values.Invalid);
 
@@ -307,6 +310,8 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyB
         public const string HosViolation = "HosViolation";
 
         public const string Idling = "Idling";
+
+        public const string ImproperEgress = "ImproperEgress";
 
         public const string Invalid = "Invalid";
 

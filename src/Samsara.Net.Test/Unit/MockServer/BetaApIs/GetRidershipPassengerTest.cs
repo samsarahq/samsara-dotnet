@@ -36,8 +36,8 @@ public class GetRidershipPassengerTest : BaseMockServerTest
                   "isSpecialEducation": true
                 },
                 "tagIds": [
-                  "Sit sint totam quod.",
-                  "Ratione sed repellat labore quas corrupti qui."
+                  "5678",
+                  "9012"
                 ],
                 "updatedAtTime": "2024-11-15T10:30:00Z"
               }

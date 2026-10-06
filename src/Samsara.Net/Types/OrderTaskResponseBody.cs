@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Order task
+/// Order task. One of `customerLocationId`, `address`, or both `latitude` and `longitude` is required.
 /// </summary>
 [Serializable]
 public record OrderTaskResponseBody : IJsonOnDeserialized
@@ -15,7 +15,7 @@ public record OrderTaskResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The full address string for the order
+    /// The full address string for the order. One of `customerLocationId`, `address`, or both `latitude` and `longitude` is required.
     /// </summary>
     [JsonPropertyName("address")]
     public string? Address { get; set; }
@@ -24,19 +24,19 @@ public record OrderTaskResponseBody : IJsonOnDeserialized
     public AppointmentWindowResponseBody? AppointmentWindow { get; set; }
 
     /// <summary>
-    /// The customer-provided identifier of the location associated with the order
+    /// The customer-provided identifier of the location associated with the order. One of `customerLocationId`, `address`, or both `latitude` and `longitude` is required.
     /// </summary>
     [JsonPropertyName("customerLocationId")]
     public string? CustomerLocationId { get; set; }
 
     /// <summary>
-    /// Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
+    /// Latitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of `customerLocationId`, `address`, or both `latitude` and `longitude` is required.
     /// </summary>
     [JsonPropertyName("latitude")]
     public double? Latitude { get; set; }
 
     /// <summary>
-    /// Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates.
+    /// Longitude of the order. Optional if address is provided; the address will be geocoded to obtain coordinates. One of `customerLocationId`, `address`, or both `latitude` and `longitude` is required.
     /// </summary>
     [JsonPropertyName("longitude")]
     public double? Longitude { get; set; }

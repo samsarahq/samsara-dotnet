@@ -21,10 +21,19 @@ public record VendorObjectResponseBody : IJsonOnDeserialized
     public string? AddressId { get; set; }
 
     /// <summary>
+    /// Configured asset attributes. An empty array is explicit; omission inherits.
+    /// </summary>
+    [JsonPropertyName("assetAttributeSelections")]
+    public IEnumerable<VendorPublicAttributeSelectionResponseBody>? AssetAttributeSelections { get; set; }
+
+    /// <summary>
     /// Category UUIDs for this vendor. Use the Vendor Categories endpoint to resolve names.
     /// </summary>
     [JsonPropertyName("categoryIds")]
     public IEnumerable<string> CategoryIds { get; set; } = new List<string>();
+
+    [JsonPropertyName("defaultLaborRatePerHour")]
+    public VendorPublicMoneyResponseBody? DefaultLaborRatePerHour { get; set; }
 
     /// <summary>
     /// A map of external ids
@@ -39,16 +48,49 @@ public record VendorObjectResponseBody : IJsonOnDeserialized
     public required string Id { get; set; }
 
     /// <summary>
+    /// Explicit mobile-service override; omitted when inherited.
+    /// </summary>
+    [JsonPropertyName("isMobile")]
+    public bool? IsMobile { get; set; }
+
+    /// <summary>
+    /// Explicit preferred override; omitted when inherited.
+    /// </summary>
+    [JsonPropertyName("isPreferred")]
+    public bool? IsPreferred { get; set; }
+
+    /// <summary>
+    /// The name of the vendor.
+    /// </summary>
+    [JsonPropertyName("name")]
+    public string? Name { get; set; }
+
+    /// <summary>
     /// The vendor's accounts-payable/ERP payee ID.
     /// </summary>
     [JsonPropertyName("payeeId")]
     public string? PayeeId { get; set; }
+
+    [JsonPropertyName("resolvedSettings")]
+    public VendorPublicResolvedSettingsResponseBody? ResolvedSettings { get; set; }
 
     /// <summary>
     /// Description of services provided by the vendor.
     /// </summary>
     [JsonPropertyName("servicesProvided")]
     public string? ServicesProvided { get; set; }
+
+    /// <summary>
+    /// Own lifecycle status: active, inactive, or unknown. Defaults to active.
+    /// </summary>
+    [JsonPropertyName("status")]
+    public string? Status { get; set; }
+
+    /// <summary>
+    /// Parent vendor group ID, when configured.
+    /// </summary>
+    [JsonPropertyName("vendorGroupId")]
+    public string? VendorGroupId { get; set; }
 
     /// <summary>
     /// The vendor's legacy vendor ID from the source system. Multiple vendor locations may share the same vendorId if they belong to the same parent company.

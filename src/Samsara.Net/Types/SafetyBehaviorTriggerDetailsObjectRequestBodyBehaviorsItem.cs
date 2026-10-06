@@ -132,6 +132,9 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
         Values.Idling
     );
 
+    public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem ImproperEgress =
+        new(Values.ImproperEgress);
+
     public static readonly SafetyBehaviorTriggerDetailsObjectRequestBodyBehaviorsItem Invalid = new(
         Values.Invalid
     );
@@ -389,6 +392,8 @@ public readonly record struct SafetyBehaviorTriggerDetailsObjectRequestBodyBehav
         public const string HosViolation = "HosViolation";
 
         public const string Idling = "Idling";
+
+        public const string ImproperEgress = "ImproperEgress";
 
         public const string Invalid = "Invalid";
 

@@ -15,7 +15,7 @@ public record PatchDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody : IJ
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Describes where the external assignment is coming from
+    /// Exact metadata source name. When vehicleId, driverId, and startTime are omitted, identifies the existing assignment to update. When those identity fields are provided, sets or updates the assignment's source name.
     /// </summary>
     [JsonPropertyName("sourceName")]
     public string? SourceName { get; set; }

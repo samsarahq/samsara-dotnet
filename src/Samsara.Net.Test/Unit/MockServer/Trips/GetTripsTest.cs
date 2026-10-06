@@ -45,6 +45,7 @@ public class GetTripsTest : BaseMockServerTest
                     "latitude": 1.1,
                     "longitude": 1.1
                   },
+                  "finalDistanceMeters": 1000000,
                   "startLocation": {
                     "accuracyMeters": 1.1,
                     "address": {
@@ -68,6 +69,7 @@ public class GetTripsTest : BaseMockServerTest
                     "longitude": 1.1
                   },
                   "tripEndTime": "tripEndTime",
+                  "tripPurpose": "unknown",
                   "tripStartTime": "tripStartTime",
                   "updatedAtTime": "updatedAtTime"
                 },
@@ -102,6 +104,7 @@ public class GetTripsTest : BaseMockServerTest
                     "latitude": 1.1,
                     "longitude": 1.1
                   },
+                  "finalDistanceMeters": 1000000,
                   "startLocation": {
                     "accuracyMeters": 1.1,
                     "address": {
@@ -125,6 +128,7 @@ public class GetTripsTest : BaseMockServerTest
                     "longitude": 1.1
                   },
                   "tripEndTime": "tripEndTime",
+                  "tripPurpose": "unknown",
                   "tripStartTime": "tripStartTime",
                   "updatedAtTime": "updatedAtTime"
                 }

@@ -19,7 +19,7 @@ public record PostTrainingAssignmentsRequest
     public required string DueAtTime { get; set; }
 
     /// <summary>
-    /// Optional string of comma separated learner IDs. If learner ID is present, training assignments for the specified learner(s) will be returned. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,driver-46282156`
+    /// String of comma separated learner IDs using the format `driver-&lt;id&gt;` or `user-&lt;id&gt;`. Training assignments for the specified course ID and learner(s) will be created. Max value for this value is 100 objects. Example: `learnerIds=driver-281474,user-46282156`. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> LearnerIds { get; set; } = new List<string>();

@@ -41,6 +41,11 @@ public class GetReportRunDataTest : BaseMockServerTest
                     },
                     {
                       "key": "value"
+                    }
+                  ],
+                  [
+                    {
+                      "key": "value"
                     },
                     {
                       "key": "value"

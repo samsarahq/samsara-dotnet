@@ -35,6 +35,10 @@ public readonly record struct FormSubmissionResponseObjectResponseBodyStatus : I
         Values.Approved
     );
 
+    public static readonly FormSubmissionResponseObjectResponseBodyStatus Denied = new(
+        Values.Denied
+    );
+
     public FormSubmissionResponseObjectResponseBodyStatus(string value)
     {
         Value = value;
@@ -101,5 +105,7 @@ public readonly record struct FormSubmissionResponseObjectResponseBodyStatus : I
         public const string ChangesRequested = "changesRequested";
 
         public const string Approved = "approved";
+
+        public const string Denied = "denied";
     }
 }

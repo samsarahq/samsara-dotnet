@@ -30,7 +30,7 @@ public record HealthResponseResponseBody : IJsonOnDeserialized
     public HealthResponseResponseBodyHealthStatus? HealthStatus { get; set; }
 
     /// <summary>
-    /// Primary health reason affecting the device's current health status.  Valid values: `assetUnplugged`, `cameraMisaligned`, `dataPending`, `healthy`, `inwardCameraObstruction`, `irregularRecording`, `lowDeviceBattery`, `missingEldDiagnostics`, `missingVin`, `needsReplacement`, `newlyInstalledDevice`, `noGpsSignal`, `notDetected`, `outwardCameraObstruction`, `recordingTimeRequired`, `unknown`, `vgUnplugged`
+    /// Primary health reason affecting the device's current health status.  Valid values: `assetUnplugged`, `cameraMisaligned`, `dataPending`, `healthy`, `inwardCameraObstruction`, `irregularRecording`, `lowConnectivity`, `lowDeviceBattery`, `lowUptime`, `mediaInputLowConnectivity`, `missingEldDiagnostics`, `missingVin`, `needsAttribute`, `needsReplacement`, `newlyInstalledDevice`, `noGpsSignal`, `notDetected`, `outwardCameraObstruction`, `recordingTimeRequired`, `unknown`, `unstablePower`, `vgUnplugged`
     /// </summary>
     [JsonPropertyName("primaryHealthReason")]
     public HealthResponseResponseBodyPrimaryHealthReason? PrimaryHealthReason { get; set; }
@@ -50,15 +50,18 @@ public record HealthResponseResponseBody : IJsonOnDeserialized
     /// * `recommendedActionAgLowDeviceBatteryAG51`: Gateway batteries require replacement.
     /// * `recommendedActionAgLowDeviceBatteryPoweredAG`: The gateway battery is low. Power on the asset to charge the gateway.
     /// * `recommendedActionAgNoGpsSignal`: Gateway has no GPS signal. Verify that the gateway is securely attached to the exterior of the asset. Ensure that the device is outside and avoid obstructions such as underground structures, heavily insulated buildings, bridges, and trees.
-    /// * `recommendedActionAgNotDetected`: The gateway has not been detected for at least 24 hours. See troubleshooting steps to reboot the gateway.
+    /// * `recommendedActionAgNotDetected`: The gateway has not been detected for at least the configured check-in interval (typically 24, 48, or 72 hours). See troubleshooting steps to reboot the gateway.
     /// * `recommendedActionAgUnplugged`: The asset gateway is unplugged or cut. Check the gateway connection to ensure it is plugged in and has been installed correctly
+    /// * `recommendedActionAgUnstablePower`: The asset gateway is receiving unstable power from the asset. Check that the power cable is securely connected to the gateway and the asset, and that the wiring and fuse are intact. If the issue continues, contact Support.
     /// * `recommendedActionBLEDataPending`: This device has recently been installed and more data is required to calculate health. No action required.
     /// * `recommendedActionBLEHealthy`: Device is healthy. No action required.
     /// * `recommendedActionBLELowBattery`: The device battery is low. Please contact support.
     /// * `recommendedActionBLENotDetected`: The device has not been detected by a gateway in the Samsara Network for at least 30 days. Verify that the device is securely attached to the asset, not in a remote area, and minimize obstructions that may disrupt detection by nearby gateways.
     /// * `recommendedActionCcHealthy`: Device is healthy. No action required.
+    /// * `recommendedActionCcLowConnectivity`: Check the device's connection and verify that it has been installed correctly.
     /// * `recommendedActionCcLowUptime`: Please ensure all cameras are physically connected to the device.
     /// * `recommendedActionCcMediaInputUptime`: Please ensure the camera is properly connected to the device.
+    /// * `recommendedActionCcNeedsAttribute`: Set the Analog Camera Setup attribute to Ignition On or Reverse Only so uptime can be calculated correctly.
     /// * `recommendedActionCcNotDetected`: None
     /// * `recommendedActionCmCameraMisaligned`: The position of the road-facing dash cam is not aligned with the horizon. Video quality and AI detection may be impacted. Reposition dash cam and Test Dash Cam Positioning.
     /// * `recommendedActionCmHealthy`: Dash cam recording is healthy. No action required.
@@ -76,6 +79,7 @@ public record HealthResponseResponseBody : IJsonOnDeserialized
     /// * `recommendedActionLowBatteryVoltage`: Asset has reported low battery voltage. Please contact support.
     /// * `recommendedActionOemNotReporting`: Data for this asset has not been received as expected. Please contact support.
     /// * `recommendedActionVehicleOff`: Asset has reported an expected power-off event, and is healthy. No action required.
+    /// * `recommendedActionVgFrequentPowerLoss`: The vehicle gateway is losing power during trips. The vehicle gateway cannot function without a stable power source from the asset. Please ensure the vehicle gateway cable is securely connected to both the gateway and the vehicle port. If the issue continues, contact support for assistance.
     /// * `recommendedActionVgHealthy`: Gateway is healthy. No action required.
     /// * `recommendedActionVgMissingEldDiagnostics`: To ensure full compliance, request exchange.
     /// * `recommendedActionVgMissingEldDiagnosticsExchangeSubmitted`: Exchange submitted. Please allow 12-24 hours for exchange to appear in the orders and exchanges page.
@@ -88,7 +92,7 @@ public record HealthResponseResponseBody : IJsonOnDeserialized
     /// * `unknown`: None
     ///
     ///
-    ///   Valid values: `recommendedActionAgHealthy`, `recommendedActionAgLowDeviceBatteryAG45`, `recommendedActionAgLowDeviceBatteryAG46`, `recommendedActionAgLowDeviceBatteryAG51`, `recommendedActionAgLowDeviceBatteryPoweredAG`, `recommendedActionAgNoGpsSignal`, `recommendedActionAgNotDetected`, `recommendedActionAgUnplugged`, `recommendedActionBLEDataPending`, `recommendedActionBLEHealthy`, `recommendedActionBLELowBattery`, `recommendedActionBLENotDetected`, `recommendedActionCcHealthy`, `recommendedActionCcLowUptime`, `recommendedActionCcMediaInputUptime`, `recommendedActionCcNotDetected`, `recommendedActionCmCameraMisaligned`, `recommendedActionCmHealthy`, `recommendedActionCmInactive`, `recommendedActionCmInwardCameraObstruction`, `recommendedActionCmIrregularRecording`, `recommendedActionCmLowUptime`, `recommendedActionCmNewlyInstalledDevice`, `recommendedActionCmNotDetected`, `recommendedActionCmOutwardCameraObstruction`, `recommendedActionCmRecordingTimeRequired`, `recommendedActionCmVgUnplugged`, `recommendedActionGatewayNewlyInstalledDevice`, `recommendedActionHealthy`, `recommendedActionLowBatteryVoltage`, `recommendedActionOemNotReporting`, `recommendedActionVehicleOff`, `recommendedActionVgHealthy`, `recommendedActionVgMissingEldDiagnostics`, `recommendedActionVgMissingEldDiagnosticsExchangeSubmitted`, `recommendedActionVgMissingEldDiagnosticsHardwareExchanged`, `recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted`, `recommendedActionVgMissingVin`, `recommendedActionVgNeedsReplacement`, `recommendedActionVgNotDetected`, `recommendedActionVgVgUnplugged`, `unknown`
+    ///   Valid values: `recommendedActionAgHealthy`, `recommendedActionAgLowDeviceBatteryAG45`, `recommendedActionAgLowDeviceBatteryAG46`, `recommendedActionAgLowDeviceBatteryAG51`, `recommendedActionAgLowDeviceBatteryPoweredAG`, `recommendedActionAgNoGpsSignal`, `recommendedActionAgNotDetected`, `recommendedActionAgUnplugged`, `recommendedActionAgUnstablePower`, `recommendedActionBLEDataPending`, `recommendedActionBLEHealthy`, `recommendedActionBLELowBattery`, `recommendedActionBLENotDetected`, `recommendedActionCcHealthy`, `recommendedActionCcLowConnectivity`, `recommendedActionCcLowUptime`, `recommendedActionCcMediaInputUptime`, `recommendedActionCcNeedsAttribute`, `recommendedActionCcNotDetected`, `recommendedActionCmCameraMisaligned`, `recommendedActionCmHealthy`, `recommendedActionCmInactive`, `recommendedActionCmInwardCameraObstruction`, `recommendedActionCmIrregularRecording`, `recommendedActionCmLowUptime`, `recommendedActionCmNewlyInstalledDevice`, `recommendedActionCmNotDetected`, `recommendedActionCmOutwardCameraObstruction`, `recommendedActionCmRecordingTimeRequired`, `recommendedActionCmVgUnplugged`, `recommendedActionGatewayNewlyInstalledDevice`, `recommendedActionHealthy`, `recommendedActionLowBatteryVoltage`, `recommendedActionOemNotReporting`, `recommendedActionVehicleOff`, `recommendedActionVgFrequentPowerLoss`, `recommendedActionVgHealthy`, `recommendedActionVgMissingEldDiagnostics`, `recommendedActionVgMissingEldDiagnosticsExchangeSubmitted`, `recommendedActionVgMissingEldDiagnosticsHardwareExchanged`, `recommendedActionVgMissingEldDiagnosticsNoExchangeSubmitted`, `recommendedActionVgMissingVin`, `recommendedActionVgNeedsReplacement`, `recommendedActionVgNotDetected`, `recommendedActionVgVgUnplugged`, `unknown`
     /// </summary>
     [JsonPropertyName("recommendedAction")]
     public HealthResponseResponseBodyRecommendedAction? RecommendedAction { get; set; }

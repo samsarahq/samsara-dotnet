@@ -66,6 +66,12 @@ public record GetPlacesRequest
     [JsonIgnore]
     public string? Name { get; set; }
 
+    /// <summary>
+    /// Comma-separated route-planning hub IDs (UUIDs). Returns places associated with any of the given hubs.
+    /// </summary>
+    [JsonIgnore]
+    public string? HubIds { get; set; }
+
     /// <inheritdoc />
     public override string ToString()
     {

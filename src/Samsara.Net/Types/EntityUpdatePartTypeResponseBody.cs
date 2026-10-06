@@ -99,10 +99,19 @@ public record EntityUpdatePartTypeResponseBody : IJsonOnDeserialized
     public string? PartNumber { get; set; }
 
     /// <summary>
-    /// Status of the part.
+    /// Status of the part.  Valid values: `Unknown`, `Active`, `Archived`, `Deleted`
     /// </summary>
     [JsonPropertyName("partStatus")]
-    public string? PartStatus { get; set; }
+    public EntityUpdatePartTypeResponseBodyPartStatus? PartStatus { get; set; }
+
+    [JsonPropertyName("preferredVendor")]
+    public EntityUpdatePartVendorRefTypeResponseBody? PreferredVendor { get; set; }
+
+    /// <summary>
+    /// The preferred vendor's part number for this part definition.
+    /// </summary>
+    [JsonPropertyName("preferredVendorPartNumber")]
+    public string? PreferredVendorPartNumber { get; set; }
 
     /// <summary>
     /// Subcategory of the part definition.
@@ -114,10 +123,10 @@ public record EntityUpdatePartTypeResponseBody : IJsonOnDeserialized
     public UpdatePartEntityPartDefinitionMoneyTypeResponseBody? UnitCost { get; set; }
 
     /// <summary>
-    /// Unit of measure for the part.
+    /// Unit of measure for the part.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
     /// </summary>
     [JsonPropertyName("unitOfMeasureType")]
-    public string? UnitOfMeasureType { get; set; }
+    public EntityUpdatePartTypeResponseBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }
 
     /// <summary>
     /// Time when the part was last updated.

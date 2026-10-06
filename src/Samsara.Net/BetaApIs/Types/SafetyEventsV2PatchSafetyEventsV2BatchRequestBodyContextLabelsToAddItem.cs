@@ -25,11 +25,17 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Defensive =
         new(Values.Defensive);
 
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem FacingAwayFromVehicle =
+        new(Values.FacingAwayFromVehicle);
+
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Fog =
         new(Values.Fog);
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem ImproperSeatBelt =
         new(Values.ImproperSeatBelt);
+
+    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem ItemsInHand =
+        new(Values.ItemsInHand);
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem LeadCar =
         new(Values.LeadCar);
@@ -45,9 +51,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem MountedPhone =
         new(Values.MountedPhone);
-
-    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Night =
-        new(Values.Night);
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem NoBoots =
         new(Values.NoBoots);
@@ -85,9 +88,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Pedestrians =
         new(Values.Pedestrians);
 
-    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem PersonActivelyDirectingTraffic =
-        new(Values.PersonActivelyDirectingTraffic);
-
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem Raining =
         new(Values.Raining);
 
@@ -105,9 +105,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem SpeedSignVerified =
         new(Values.SpeedSignVerified);
-
-    public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem TrafficControlPersonPresent =
-        new(Values.TrafficControlPersonPresent);
 
     public static readonly SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyContextLabelsToAddItem TrailerCar =
         new(Values.TrailerCar);
@@ -188,9 +185,13 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
         public const string Defensive = "Defensive";
 
+        public const string FacingAwayFromVehicle = "Facing Away From Vehicle";
+
         public const string Fog = "Fog";
 
         public const string ImproperSeatBelt = "Improper Seat Belt";
+
+        public const string ItemsInHand = "Items in Hand";
 
         public const string LeadCar = "Lead Car";
 
@@ -201,8 +202,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
         public const string ModeratelyDrowsy = "Moderately Drowsy";
 
         public const string MountedPhone = "Mounted Phone";
-
-        public const string Night = "Night";
 
         public const string NoBoots = "No Boots";
 
@@ -228,8 +227,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
 
         public const string Pedestrians = "Pedestrians";
 
-        public const string PersonActivelyDirectingTraffic = "Person Actively Directing Traffic";
-
         public const string Raining = "Raining";
 
         public const string SensitiveMedia = "Sensitive Media";
@@ -241,8 +238,6 @@ public readonly record struct SafetyEventsV2PatchSafetyEventsV2BatchRequestBodyC
         public const string SnowyRoad = "Snowy Road";
 
         public const string SpeedSignVerified = "Speed Sign Verified";
-
-        public const string TrafficControlPersonPresent = "Traffic Control Person Present";
 
         public const string TrailerCar = "Trailer Car";
 

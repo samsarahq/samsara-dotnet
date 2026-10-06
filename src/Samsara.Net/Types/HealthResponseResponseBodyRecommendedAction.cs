@@ -31,6 +31,9 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionAgUnplugged =
         new(Values.RecommendedActionAgUnplugged);
 
+    public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionAgUnstablePower =
+        new(Values.RecommendedActionAgUnstablePower);
+
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionBleDataPending =
         new(Values.RecommendedActionBleDataPending);
 
@@ -46,11 +49,17 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcHealthy =
         new(Values.RecommendedActionCcHealthy);
 
+    public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcLowConnectivity =
+        new(Values.RecommendedActionCcLowConnectivity);
+
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcLowUptime =
         new(Values.RecommendedActionCcLowUptime);
 
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcMediaInputUptime =
         new(Values.RecommendedActionCcMediaInputUptime);
+
+    public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcNeedsAttribute =
+        new(Values.RecommendedActionCcNeedsAttribute);
 
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionCcNotDetected =
         new(Values.RecommendedActionCcNotDetected);
@@ -102,6 +111,9 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
 
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionVehicleOff =
         new(Values.RecommendedActionVehicleOff);
+
+    public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionVgFrequentPowerLoss =
+        new(Values.RecommendedActionVgFrequentPowerLoss);
 
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionVgHealthy =
         new(Values.RecommendedActionVgHealthy);
@@ -207,6 +219,8 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
 
         public const string RecommendedActionAgUnplugged = "recommendedActionAgUnplugged";
 
+        public const string RecommendedActionAgUnstablePower = "recommendedActionAgUnstablePower";
+
         public const string RecommendedActionBleDataPending = "recommendedActionBLEDataPending";
 
         public const string RecommendedActionBleHealthy = "recommendedActionBLEHealthy";
@@ -217,10 +231,15 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
 
         public const string RecommendedActionCcHealthy = "recommendedActionCcHealthy";
 
+        public const string RecommendedActionCcLowConnectivity =
+            "recommendedActionCcLowConnectivity";
+
         public const string RecommendedActionCcLowUptime = "recommendedActionCcLowUptime";
 
         public const string RecommendedActionCcMediaInputUptime =
             "recommendedActionCcMediaInputUptime";
+
+        public const string RecommendedActionCcNeedsAttribute = "recommendedActionCcNeedsAttribute";
 
         public const string RecommendedActionCcNotDetected = "recommendedActionCcNotDetected";
 
@@ -263,6 +282,9 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
         public const string RecommendedActionOemNotReporting = "recommendedActionOemNotReporting";
 
         public const string RecommendedActionVehicleOff = "recommendedActionVehicleOff";
+
+        public const string RecommendedActionVgFrequentPowerLoss =
+            "recommendedActionVgFrequentPowerLoss";
 
         public const string RecommendedActionVgHealthy = "recommendedActionVgHealthy";
 

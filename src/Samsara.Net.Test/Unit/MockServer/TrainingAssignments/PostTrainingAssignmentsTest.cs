@@ -26,7 +26,7 @@ public class PostTrainingAssignmentsTest : BaseMockServerTest
                   "isExistingAssignment": true,
                   "learner": {
                     "id": "id",
-                    "type": "driver"
+                    "type": "unknown"
                   }
                 },
                 {
@@ -41,7 +41,7 @@ public class PostTrainingAssignmentsTest : BaseMockServerTest
                   "isExistingAssignment": true,
                   "learner": {
                     "id": "id",
-                    "type": "driver"
+                    "type": "unknown"
                   }
                 }
               ]

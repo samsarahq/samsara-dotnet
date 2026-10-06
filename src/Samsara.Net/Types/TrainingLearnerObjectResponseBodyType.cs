@@ -7,7 +7,11 @@ namespace Samsara.Net;
 [Serializable]
 public readonly record struct TrainingLearnerObjectResponseBodyType : IStringEnum
 {
+    public static readonly TrainingLearnerObjectResponseBodyType Unknown = new(Values.Unknown);
+
     public static readonly TrainingLearnerObjectResponseBodyType Driver = new(Values.Driver);
+
+    public static readonly TrainingLearnerObjectResponseBodyType User = new(Values.User);
 
     public TrainingLearnerObjectResponseBodyType(string value)
     {
@@ -58,6 +62,10 @@ public readonly record struct TrainingLearnerObjectResponseBodyType : IStringEnu
     [Serializable]
     public static class Values
     {
+        public const string Unknown = "unknown";
+
         public const string Driver = "driver";
+
+        public const string User = "user";
     }
 }

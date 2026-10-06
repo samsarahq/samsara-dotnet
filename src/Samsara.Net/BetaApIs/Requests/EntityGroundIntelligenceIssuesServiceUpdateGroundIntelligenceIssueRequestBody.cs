@@ -31,7 +31,7 @@ public record EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssue
     public EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyStatus? Status { get; set; }
 
     /// <summary>
-    /// Customer-facing road-condition type for the issue.  Valid values: `pothole`, `roadCracking`, `patchedPothole`
+    /// Customer-facing road-condition type for the issue.  Valid values: `pothole`, `roadCracking`, `patchedPothole`, `transverseCrack`, `longitudinalCrack`, `alligatorCrack`, `utilityCut`, `steelPlate`, `repavingNeeded`
     /// </summary>
     [JsonPropertyName("type")]
     public EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType? Type { get; set; }

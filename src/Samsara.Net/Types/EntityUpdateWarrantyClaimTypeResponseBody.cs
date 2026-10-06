@@ -36,10 +36,10 @@ public record EntityUpdateWarrantyClaimTypeResponseBody : IJsonOnDeserialized
     public long? ClaimOdometerMeters { get; set; }
 
     /// <summary>
-    /// Current status of the claim.
+    /// Current status of the claim.  Valid values: `unknown`, `created`, `submitted`, `inReview`, `approved`, `rejected`, `resubmitted`, `reimbursed`
     /// </summary>
     [JsonPropertyName("claimStatus")]
-    public string? ClaimStatus { get; set; }
+    public EntityUpdateWarrantyClaimTypeResponseBodyClaimStatus? ClaimStatus { get; set; }
 
     /// <summary>
     /// IDs of asset component instances covered by this claim.

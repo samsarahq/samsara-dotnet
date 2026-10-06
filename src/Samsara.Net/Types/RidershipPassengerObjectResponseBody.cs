@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// A ridership passenger entity.
+/// A passenger and their ridership details.
 /// </summary>
 [Serializable]
 public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
@@ -15,7 +15,7 @@ public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Classification or grade level of the passenger.
+    /// Passenger grade level: `pk1`–`pk4` are pre-kindergarten categories, `k` is kindergarten, and `grade1`–`grade12` are grades 1–12.
     /// </summary>
     [JsonPropertyName("classification")]
     public string? Classification { get; set; }
@@ -27,7 +27,7 @@ public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
     public required string CreatedAtTime { get; set; }
 
     /// <summary>
-    /// A map of external ids
+    /// Customer-defined IDs that link this passenger to another system, such as {"student": "STU-001"}.
     /// </summary>
     [JsonPropertyName("externalIds")]
     public Dictionary<string, string>? ExternalIds { get; set; }
@@ -66,7 +66,7 @@ public record RidershipPassengerObjectResponseBody : IJsonOnDeserialized
     public RidershipPassengerSpecialInstructionsObjectResponseBody? SpecialInstructions { get; set; }
 
     /// <summary>
-    /// IDs of tags associated with this passenger.
+    /// Samsara IDs of the tags assigned to this passenger.
     /// </summary>
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }

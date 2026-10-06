@@ -19,6 +19,24 @@ public readonly record struct EntityGroundIntelligenceIssuesServiceUpdateGroundI
     public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType PatchedPothole =
         new(Values.PatchedPothole);
 
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType TransverseCrack =
+        new(Values.TransverseCrack);
+
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType LongitudinalCrack =
+        new(Values.LongitudinalCrack);
+
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType AlligatorCrack =
+        new(Values.AlligatorCrack);
+
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType UtilityCut =
+        new(Values.UtilityCut);
+
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType SteelPlate =
+        new(Values.SteelPlate);
+
+    public static readonly EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType RepavingNeeded =
+        new(Values.RepavingNeeded);
+
     public EntityGroundIntelligenceIssuesServiceUpdateGroundIntelligenceIssueRequestBodyType(
         string value
     )
@@ -85,5 +103,17 @@ public readonly record struct EntityGroundIntelligenceIssuesServiceUpdateGroundI
         public const string RoadCracking = "roadCracking";
 
         public const string PatchedPothole = "patchedPothole";
+
+        public const string TransverseCrack = "transverseCrack";
+
+        public const string LongitudinalCrack = "longitudinalCrack";
+
+        public const string AlligatorCrack = "alligatorCrack";
+
+        public const string UtilityCut = "utilityCut";
+
+        public const string SteelPlate = "steelPlate";
+
+        public const string RepavingNeeded = "repavingNeeded";
     }
 }
