@@ -12,11 +12,7 @@ public class UpdateDriverVehicleAssignmentTest : BaseMockServerTest
     public async Task MockServerTest()
     {
         const string requestJson = """
-            {
-              "driverId": "494123",
-              "startTime": "2019-06-13T19:08:25Z",
-              "vehicleId": "281474978683353"
-            }
+            {}
             """;
 
         const string mockResponse = """
@@ -44,12 +40,7 @@ public class UpdateDriverVehicleAssignmentTest : BaseMockServerTest
             );
 
         var response = await Client.DriverVehicleAssignments.UpdateDriverVehicleAssignmentAsync(
-            new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
-            {
-                DriverId = "494123",
-                StartTime = "2019-06-13T19:08:25Z",
-                VehicleId = "281474978683353",
-            }
+            new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody()
         );
         JsonAssert.AreEqual(response, mockResponse);
     }

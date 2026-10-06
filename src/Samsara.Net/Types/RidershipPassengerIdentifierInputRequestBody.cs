@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// An identifier (e.g., RFID tag) associated with the passenger.
+/// An identifier used to recognize the passenger, such as an RFID card value. This is separate from the passenger's external IDs.
 /// </summary>
 [Serializable]
 public record RidershipPassengerIdentifierInputRequestBody : IJsonOnDeserialized
@@ -15,7 +15,7 @@ public record RidershipPassengerIdentifierInputRequestBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The status of the identifier.  Valid values: `active`, `inactive`, `unknown`
+    /// Whether the identifier is active or inactive. Defaults to `active`.  Valid values: `active`, `inactive`, `unknown`
     /// </summary>
     [JsonPropertyName("status")]
     public required RidershipPassengerIdentifierInputRequestBodyStatus Status { get; set; }
@@ -27,7 +27,7 @@ public record RidershipPassengerIdentifierInputRequestBody : IJsonOnDeserialized
     public required RidershipPassengerIdentifierInputRequestBodyType Type { get; set; }
 
     /// <summary>
-    /// The identifier value.
+    /// Value of the identifier, such as the value read from an RFID card.
     /// </summary>
     [JsonPropertyName("value")]
     public required string Value { get; set; }

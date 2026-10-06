@@ -14,7 +14,7 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public DateTime? ArchivedAtTime { get; set; }
 
     /// <summary>
-    /// The ID of the asset.
+    /// The ID of the asset. Either a Samsara ID or an external ID in `key:value` form, for example `vin:1HGCM82633A004352`.
     /// </summary>
     [JsonPropertyName("assetId")]
     public required string AssetId { get; set; }

@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// ListTimeEntriesEntityTimeEntryTimeEntryLocation object
+/// TimeEntryLocation object
 /// </summary>
 [Serializable]
 public record ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody : IJsonOnDeserialized

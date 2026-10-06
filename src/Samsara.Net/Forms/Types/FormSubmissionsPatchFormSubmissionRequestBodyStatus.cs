@@ -26,6 +26,10 @@ public readonly record struct FormSubmissionsPatchFormSubmissionRequestBodyStatu
         Values.Approved
     );
 
+    public static readonly FormSubmissionsPatchFormSubmissionRequestBodyStatus Denied = new(
+        Values.Denied
+    );
+
     public FormSubmissionsPatchFormSubmissionRequestBodyStatus(string value)
     {
         Value = value;
@@ -90,5 +94,7 @@ public readonly record struct FormSubmissionsPatchFormSubmissionRequestBodyStatu
         public const string ChangesRequested = "changesRequested";
 
         public const string Approved = "approved";
+
+        public const string Denied = "denied";
     }
 }

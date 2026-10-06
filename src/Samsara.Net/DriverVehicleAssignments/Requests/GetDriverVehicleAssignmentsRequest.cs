@@ -37,7 +37,7 @@ public record GetDriverVehicleAssignmentsRequest
     public IEnumerable<string> VehicleIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported.
+    /// Filters assignments by the exact metadata source name supplied when the assignment was created. Requires filterBy=drivers. When set, driver and vehicle ID, tag, and assignment type filters are not supported. `startTime` and `endTime` are optional here: if omitted, matching assignments are returned regardless of when they occurred, rather than being limited to the recent window used by the other filters.
     /// </summary>
     [JsonIgnore]
     public string? SourceName { get; set; }

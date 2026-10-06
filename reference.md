@@ -2894,6 +2894,254 @@ await client.BetaApIs.ListVendorCategoriesAsync(new ListVendorCategoriesRequest(
 </dl>
 </details>
 
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListVendorGroupsAsync</a>(ListVendorGroupsRequest { ... }) -> WithRawResponseTask&lt;EntityVendorProfilesServiceListVendorGroupsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.ListVendorGroupsAsync(new ListVendorGroupsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListVendorGroupsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateVendorGroupAsync</a>(EntityVendorProfilesServiceCreateVendorGroupRequestBody { ... }) -> WithRawResponseTask&lt;EntityVendorProfilesServiceCreateVendorGroupResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.CreateVendorGroupAsync(
+    new EntityVendorProfilesServiceCreateVendorGroupRequestBody { Name = "12345" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityVendorProfilesServiceCreateVendorGroupRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeleteVendorGroupAsync</a>(DeleteVendorGroupRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a vendor group after all vendor locations have been detached, moved, or deleted.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.DeleteVendorGroupAsync(new DeleteVendorGroupRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteVendorGroupRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateVendorGroupAsync</a>(EntityVendorProfilesServiceUpdateVendorGroupRequestBody { ... }) -> WithRawResponseTask&lt;EntityVendorProfilesServiceUpdateVendorGroupResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Manage vendor group identity and defaults inherited by vendor locations.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.UpdateVendorGroupAsync(
+    new EntityVendorProfilesServiceUpdateVendorGroupRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityVendorProfilesServiceUpdateVendorGroupRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListMaintenanceVendorsAsync</a>(ListMaintenanceVendorsRequest { ... }) -> WithRawResponseTask&lt;MaintenanceVendorsListMaintenanceVendorsResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -2944,6 +3192,193 @@ await client.BetaApIs.ListMaintenanceVendorsAsync(new ListMaintenanceVendorsRequ
 <dd>
 
 **request:** `ListMaintenanceVendorsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateVendorAsync</a>(EntityVendorsServiceCreateVendorRequestBody { ... }) -> WithRawResponseTask&lt;EntityVendorsServiceCreateVendorResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a maintenance vendor for the organization. Exactly one of addressId or address must be set.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.CreateVendorAsync(
+    new EntityVendorsServiceCreateVendorRequestBody { Name = "12345" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityVendorsServiceCreateVendorRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeleteVendorAsync</a>(DeleteVendorRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Soft-deletes a vendor location without deleting its linked Place or work orders.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.DeleteVendorAsync(new DeleteVendorRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteVendorRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateVendorAsync</a>(EntityVendorsServiceUpdateVendorRequestBody { ... }) -> WithRawResponseTask&lt;EntityVendorsServiceUpdateVendorResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing maintenance vendor for the organization. Migrating a vendor between a linked Place (addressId) and a self-contained address (address) is not supported.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Work Orders** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.BetaApIs.UpdateVendorAsync(
+    new EntityVendorsServiceUpdateVendorRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityVendorsServiceUpdateVendorRequestBody` 
     
 </dd>
 </dl>
@@ -4329,74 +4764,6 @@ await client.BetaApIs.UpdateWatchpointAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateShippingDocsAsync</a>(HosDailyLogsUpdateShippingDocsRequestBody { ... }) -> WithRawResponseTask&lt;HosDailyLogsUpdateShippingDocsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update the shippingDocs field of an existing assignment.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdateShippingDocsAsync(
-    new HosDailyLogsUpdateShippingDocsRequestBody
-    {
-        HosDate = "hosDate",
-        DriverId = "driverID",
-        ShippingDocs = "ShippingID1, ShippingID2",
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `HosDailyLogsUpdateShippingDocsRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPlanOrdersAsync</a>(ListPlanOrdersRequest { ... }) -> WithRawResponseTask&lt;PlanOrdersListPlanOrdersResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -4777,824 +5144,6 @@ await client.BetaApIs.UpdateHubRouteTemplateAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPartsAsync</a>(ListPartsRequest { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceListPartsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of parts for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListPartsAsync(new ListPartsRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListPartsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreatePartAsync</a>(EntityPartDefinitionsServiceCreatePartRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceCreatePartResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreatePartAsync(
-    new EntityPartDefinitionsServiceCreatePartRequestBody { PartNumber = "12345" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityPartDefinitionsServiceCreatePartRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeletePartAsync</a>(DeletePartRequest { ... })</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.DeletePartAsync(new DeletePartRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeletePartRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdatePartAsync</a>(EntityPartDefinitionsServiceUpdatePartRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceUpdatePartResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing part for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdatePartAsync(
-    new EntityPartDefinitionsServiceUpdatePartRequestBody { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityPartDefinitionsServiceUpdatePartRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPartInventoryAsync</a>(ListPartInventoryRequest { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceListPartInventoryResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of per-part, per-location inventory levels for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListPartInventoryAsync(new ListPartInventoryRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListPartInventoryRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreatePartInventoryLocationAsync</a>(EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreatePartInventoryLocationAsync(
-    new EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdatePartInventoryLocationAsync</a>(EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates existing per-part, per-location inventory metadata for the organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdatePartInventoryLocationAsync(
-    new EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateStockMovementAsync</a>(CreateStockMovementActionServiceCreateStockMovementRequestBody { ... }) -> WithRawResponseTask&lt;CreateStockMovementActionServiceCreateStockMovementResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreateStockMovementAsync(
-    new CreateStockMovementActionServiceCreateStockMovementRequestBody
-    {
-        MovementType = "12345",
-        PartSamsaraId = "12345",
-        Quantity = 123.45,
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `CreateStockMovementActionServiceCreateStockMovementRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPartTransactionsAsync</a>(ListPartTransactionsRequest { ... }) -> WithRawResponseTask&lt;EntityInventoryTransactionsServiceListPartTransactionsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListPartTransactionsAsync(
-    new ListPartTransactionsRequest { HappenedAtTimeStart = "happenedAtTimeStart" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListPartTransactionsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ResolvePreventiveMaintenanceAsync</a>(ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ResolvePreventiveMaintenanceAsync(
-    new ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreventiveMaintenanceSchedulesAsync</a>(ListPreventiveMaintenanceSchedulesRequest { ... }) -> WithRawResponseTask&lt;EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of preventive maintenance schedules for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListPreventiveMaintenanceSchedulesAsync(
-    new ListPreventiveMaintenanceSchedulesRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListPreventiveMaintenanceSchedulesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListUpcomingPreventiveMaintenanceAsync</a>(ListUpcomingPreventiveMaintenanceRequest { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListUpcomingPreventiveMaintenanceAsync(
-    new ListUpcomingPreventiveMaintenanceRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListUpcomingPreventiveMaintenanceRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateUpcomingPreventiveMaintenanceAsync</a>(EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdateUpcomingPreventiveMaintenanceAsync(
-    new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
 <details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPurchaseOrdersAsync</a>(ListPurchaseOrdersRequest { ... }) -> WithRawResponseTask&lt;EntityPurchaseOrdersServiceListPurchaseOrdersResponseBody&gt;</code></summary>
 <dl>
 <dd>
@@ -5856,7 +5405,7 @@ await client.BetaApIs.UpdatePurchaseOrderAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListMaintenanceSitesAsync</a>(ListMaintenanceSitesRequest { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListTechnicianShiftsAsync</a>(ListTechnicianShiftsRequest { ... }) -> WithRawResponseTask&lt;TechnicianShiftsListTechnicianShiftsResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5868,11 +5417,11 @@ await client.BetaApIs.UpdatePurchaseOrderAsync(
 <dl>
 <dd>
 
-Returns a paginated list of maintenance sites for the organization.
+List shifts ordered by updated time and UUID. ID filters allow up to 100 values each, with OR within and AND across filters. Lists are eventually consistent; reconcile overlapping time windows and deduplicate by ID and version.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Read Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Read Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5890,7 +5439,7 @@ To use this endpoint, select **Read Maintenance Sites** under the Work Orders ca
 <dd>
 
 ```csharp
-await client.BetaApIs.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest());
+await client.BetaApIs.ListTechnicianShiftsAsync(new ListTechnicianShiftsRequest());
 ```
 </dd>
 </dl>
@@ -5905,7 +5454,7 @@ await client.BetaApIs.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest(
 <dl>
 <dd>
 
-**request:** `ListMaintenanceSitesRequest` 
+**request:** `ListTechnicianShiftsRequest` 
     
 </dd>
 </dl>
@@ -5917,7 +5466,7 @@ await client.BetaApIs.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateMaintenanceSiteAsync</a>(EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateTechnicianShiftAsync</a>(TechnicianShiftsCreateTechnicianShiftRequestBody { ... }) -> WithRawResponseTask&lt;TechnicianShiftsCreateTechnicianShiftResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5929,11 +5478,11 @@ await client.BetaApIs.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest(
 <dl>
 <dd>
 
-Creates a maintenance site for the organization. Exactly one of placeIds or customAddress must be set.
+Create an open or completed shift. Equivalent retries using registered external IDs return the existing shift; conflicting content or aliases return 409.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -5951,12 +5500,11 @@ To use this endpoint, select **Write Maintenance Sites** under the Work Orders c
 <dd>
 
 ```csharp
-await client.BetaApIs.CreateMaintenanceSiteAsync(
-    new EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody
+await client.BetaApIs.CreateTechnicianShiftAsync(
+    new TechnicianShiftsCreateTechnicianShiftRequestBody
     {
-        Name = "12345",
-        SiteCode = "12345",
-        SiteType = EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType.Unknown,
+        ClockInAtTime = new DateTime(2026, 09, 10, 15, 00, 00, 000),
+        UserId = "281474976710656",
     }
 );
 ```
@@ -5973,7 +5521,7 @@ await client.BetaApIs.CreateMaintenanceSiteAsync(
 <dl>
 <dd>
 
-**request:** `EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody` 
+**request:** `TechnicianShiftsCreateTechnicianShiftRequestBody` 
     
 </dd>
 </dl>
@@ -5985,7 +5533,7 @@ await client.BetaApIs.CreateMaintenanceSiteAsync(
 </dl>
 </details>
 
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateMaintenanceSiteAsync</a>(EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody&gt;</code></summary>
+<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PatchTechnicianShiftAsync</a>(TechnicianShiftsPatchTechnicianShiftRequestBody { ... }) -> WithRawResponseTask&lt;TechnicianShiftsPatchTechnicianShiftResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -5997,11 +5545,11 @@ await client.BetaApIs.CreateMaintenanceSiteAsync(
 <dl>
 <dd>
 
-Updates an existing maintenance site for the organization. Moving a site between placeIds and customAddress is not supported.
+Close or correct a shift using the last received version. An already-applied retry returns the current shift. External IDs fully replace the previous map; an empty object clears it.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
-To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+To use this endpoint, select **Write Technician Shifts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -6019,8 +5567,8 @@ To use this endpoint, select **Write Maintenance Sites** under the Work Orders c
 <dd>
 
 ```csharp
-await client.BetaApIs.UpdateMaintenanceSiteAsync(
-    new EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody { Id = "id" }
+await client.BetaApIs.PatchTechnicianShiftAsync(
+    new TechnicianShiftsPatchTechnicianShiftRequestBody { Id = "id", Version = 1 }
 );
 ```
 </dd>
@@ -6036,690 +5584,7 @@ await client.BetaApIs.UpdateMaintenanceSiteAsync(
 <dl>
 <dd>
 
-**request:** `EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListTimeEntriesAsync</a>(ListTimeEntriesRequest { ... }) -> WithRawResponseTask&lt;EntityTimeEntriesServiceListTimeEntriesResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Time Entries** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListTimeEntriesAsync(new ListTimeEntriesRequest { StartTime = "startTime" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListTimeEntriesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListWarrantiesAsync</a>(ListWarrantiesRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceListWarrantiesResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranties for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListWarrantiesAsync(new ListWarrantiesRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListWarrantiesRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateWarrantyAsync</a>(EntityWarrantiesServiceCreateWarrantyRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceCreateWarrantyResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreateWarrantyAsync(
-    new EntityWarrantiesServiceCreateWarrantyRequestBody { Name = "12345" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityWarrantiesServiceCreateWarrantyRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeleteWarrantyAsync</a>(DeleteWarrantyRequest { ... })</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty for the organization. Asset associations are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.DeleteWarrantyAsync(new DeleteWarrantyRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeleteWarrantyRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateWarrantyAsync</a>(EntityWarrantiesServiceUpdateWarrantyRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceUpdateWarrantyResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdateWarrantyAsync(
-    new EntityWarrantiesServiceUpdateWarrantyRequestBody { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityWarrantiesServiceUpdateWarrantyRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListWarrantyAssetAssignmentsAsync</a>(ListWarrantyAssetAssignmentsRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns the assets assigned to a warranty.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListWarrantyAssetAssignmentsAsync(
-    new ListWarrantyAssetAssignmentsRequest { WarrantyId = "warrantyId" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListWarrantyAssetAssignmentsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ReplaceWarrantyAssetAssignmentsAsync</a>(ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody { ... }) -> WithRawResponseTask&lt;ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Replaces the full set of assets assigned to a warranty.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ReplaceWarrantyAssetAssignmentsAsync(
-    new ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListWarrantyClaimsAsync</a>(ListWarrantyClaimsRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Returns a paginated list of warranty claims for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListWarrantyClaimsAsync(new ListWarrantyClaimsRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListWarrantyClaimsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">CreateWarrantyClaimAsync</a>(EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Creates a warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.CreateWarrantyClaimAsync(
-    new EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody { AssetId = "281474976710656" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeleteWarrantyClaimAsync</a>(DeleteWarrantyClaimRequest { ... })</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Deletes a warranty claim for the organization. Component links are removed server-side.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.DeleteWarrantyClaimAsync(new DeleteWarrantyClaimRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeleteWarrantyClaimRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">UpdateWarrantyClaimAsync</a>(EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Updates an existing warranty claim for the organization.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.UpdateWarrantyClaimAsync(
-    new EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody` 
+**request:** `TechnicianShiftsPatchTechnicianShiftRequestBody` 
     
 </dd>
 </dl>
@@ -6933,7 +5798,7 @@ await client.BetaApIs.PostPlaceAsync(
 <dl>
 <dd>
 
-Deletes a place. Pass `placeId` (Samsara id) as a query parameter.
+Deletes a place. Provide exactly one of query parameter `placeId` (Samsara id) or `externalId` (key:value).
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -6955,7 +5820,7 @@ To use this endpoint, select **Write Places** under the Places category when cre
 <dd>
 
 ```csharp
-await client.BetaApIs.DeletePlaceAsync(new DeletePlaceRequest { PlaceId = 1000000 });
+await client.BetaApIs.DeletePlaceAsync(new DeletePlaceRequest());
 ```
 </dd>
 </dl>
@@ -7217,326 +6082,6 @@ await client.BetaApIs.GetPlaceGeofenceAsync(
 <dd>
 
 **request:** `GetPlaceGeofenceRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">ListPreferredStationsAsync</a>(ListPreferredStationsRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsListPreferredStationsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-List all preferred fuel stations for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.ListPreferredStationsAsync(new ListPreferredStationsRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `ListPreferredStationsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PostPreferredStationAsync</a>(PreferredStationsPostPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPostPreferredStationResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Create a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.PostPreferredStationAsync(
-    new PreferredStationsPostPreferredStationRequestBody
-    {
-        Address = new PreferredStationAddressRequestBody
-        {
-            City = "Green River",
-            Country = "US",
-            Line1 = "8901 US Hwy 374",
-            PostalCode = "82935",
-        },
-        ExternalIds = new Dictionary<string, string>() { { "key", "value" } },
-        Name = "Station #432",
-    }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `PreferredStationsPostPreferredStationRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">DeletePreferredStationAsync</a>(DeletePreferredStationRequest { ... })</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Delete a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.DeletePreferredStationAsync(new DeletePreferredStationRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `DeletePreferredStationRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">PatchPreferredStationAsync</a>(PreferredStationsPatchPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPatchPreferredStationResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Update a preferred fuel station for your organization.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.PatchPreferredStationAsync(
-    new PreferredStationsPatchPreferredStationRequestBody { Id = "id" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `PreferredStationsPatchPreferredStationRequestBody` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.BetaApIs.<a href="/src/Samsara.Net/BetaApIs/BetaApIsClient.cs">GetPreferredStationAsync</a>(GetPreferredStationRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsGetPreferredStationResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-Get a single preferred fuel station by ID.
-
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.BetaApIs.GetPreferredStationAsync(new GetPreferredStationRequest { Id = "id" });
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetPreferredStationRequest` 
     
 </dd>
 </dl>
@@ -8516,7 +7061,9 @@ await client.BetaApIs.GetReportRunDataAsync(new GetReportRunDataRequest { Id = "
 <dl>
 <dd>
 
-List ridership passengers by tag.
+List passengers assigned to a tag. External IDs are omitted from the response unless `includeExternalIds=true`.
+
+Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8579,7 +7126,7 @@ await client.BetaApIs.ListRidershipPassengersAsync(
 <dl>
 <dd>
 
-Create a new ridership passenger.
+Create a new ridership passenger. The response includes the passenger's external IDs.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8646,7 +7193,11 @@ await client.BetaApIs.CreateRidershipPassengerAsync(
 <dl>
 <dd>
 
-Update a ridership passenger by ID. All provided fields will overwrite existing values (PUT semantics). The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+Update a passenger by Samsara UUID or external ID, such as `student:STU-001`. The response includes the passenger's external IDs.
+
+Both first and last name are required. Include the values you want to keep:
+- Omitted classification, special instructions, identifiers, and external IDs are cleared.
+- Omitted tags are kept. Send `tagIds: []` to remove them.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8714,7 +7265,7 @@ await client.BetaApIs.UpdateRidershipPassengerAsync(
 <dl>
 <dd>
 
-Delete a ridership passenger by ID. The id query parameter accepts either a Samsara UUID or an external ID in key:value format (e.g. student:STU-001).
+Delete a passenger by Samsara UUID or external ID, such as `student:STU-001`. The passenger is no longer returned by get or list requests, and their external IDs are removed. Deleting a passenger that does not exist or has already been deleted returns not found.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8777,7 +7328,7 @@ await client.BetaApIs.DeleteRidershipPassengerAsync(
 <dl>
 <dd>
 
-Get a single ridership passenger by ID. The ID can be a Samsara UUID or an external ID in `key:value` format.
+Get a passenger by Samsara UUID or external ID, such as `student:STU-001`. External IDs are omitted from the response unless `includeExternalIds=true`.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8838,7 +7389,9 @@ await client.BetaApIs.GetRidershipPassengerAsync(new GetRidershipPassengerReques
 <dl>
 <dd>
 
-List all route setups for a ridership account.
+List route setups associated with the specified ridership account.
+
+Results are paginated. A page may contain fewer results than requested. While `pagination.hasNextPage` is true, pass `pagination.endCursor` as `after` to retrieve the next page.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8901,7 +7454,7 @@ await client.BetaApIs.ListRidershipRouteSetupsAsync(
 <dl>
 <dd>
 
-Create the passenger assignment setup for a route.
+Create passenger assignments for an existing Routing API route. If the route already has a setup, use the update endpoint instead.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -8974,7 +7527,7 @@ await client.BetaApIs.CreateRidershipRouteSetupAsync(
 <dl>
 <dd>
 
-Update (replace) the passenger assignment setup for a route. All existing assignments will be replaced with the provided assignments.
+Add or update passenger assignments for an existing Routing API route. Creates a setup if none exists. Passengers omitted from the request keep their assignments; an empty passenger list leaves existing assignments unchanged.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -9047,7 +7600,7 @@ await client.BetaApIs.UpdateRidershipRouteSetupAsync(
 <dl>
 <dd>
 
-Delete the passenger assignment setup for a route.
+Remove the route's passenger setup and assignments. The route and passenger records are kept. Deleting a setup that does not exist returns not found.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -9110,7 +7663,7 @@ await client.BetaApIs.DeleteRidershipRouteSetupAsync(
 <dl>
 <dd>
 
-Get the passenger assignment setup for a route by route ID.
+Get the passenger assignments for a route by Samsara route ID or external ID, such as `extRoute:WB-12`.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -9200,7 +7753,6 @@ await client.BetaApIs.PatchSafetyEventsV2BatchAsync(
     {
         SafetyEventIds = new List<string>()
         {
-            "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
             "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590",
         },
@@ -11865,6 +10417,1257 @@ await client.Maintenance.UpdateDvirAsync(
 </dl>
 </details>
 
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListPartsAsync</a>(ListPartsRequest { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceListPartsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of parts for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListPartsAsync(new ListPartsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPartsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">CreatePartAsync</a>(EntityPartDefinitionsServiceCreatePartRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceCreatePartResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.CreatePartAsync(
+    new EntityPartDefinitionsServiceCreatePartRequestBody { PartNumber = "12345" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityPartDefinitionsServiceCreatePartRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">DeletePartAsync</a>(DeletePartRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.DeletePartAsync(new DeletePartRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeletePartRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdatePartAsync</a>(EntityPartDefinitionsServiceUpdatePartRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartDefinitionsServiceUpdatePartResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing part for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.UpdatePartAsync(
+    new EntityPartDefinitionsServiceUpdatePartRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityPartDefinitionsServiceUpdatePartRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListPartInventoryAsync</a>(ListPartInventoryRequest { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceListPartInventoryResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of per-part, per-location inventory levels for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListPartInventoryAsync(new ListPartInventoryRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPartInventoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">CreatePartInventoryLocationAsync</a>(EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceCreatePartInventoryLocationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates per-part, per-location inventory metadata for the organization. Upserts by part and place — a second create at the same pair updates the existing record instead of duplicating it.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.CreatePartInventoryLocationAsync(
+    new EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityPartInventoryLocationsServiceCreatePartInventoryLocationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdatePartInventoryLocationAsync</a>(EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody { ... }) -> WithRawResponseTask&lt;EntityPartInventoryLocationsServiceUpdatePartInventoryLocationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates existing per-part, per-location inventory metadata for the organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.UpdatePartInventoryLocationAsync(
+    new EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityPartInventoryLocationsServiceUpdatePartInventoryLocationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">CreateStockMovementAsync</a>(CreateStockMovementActionServiceCreateStockMovementRequestBody { ... }) -> WithRawResponseTask&lt;CreateStockMovementActionServiceCreateStockMovementResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Records a receive, transfer, scrap, or adjust stock movement against a part's inventory and returns the resulting inventory location(s). Not idempotent — retrying a request that already succeeded records the movement again.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.CreateStockMovementAsync(
+    new CreateStockMovementActionServiceCreateStockMovementRequestBody
+    {
+        MovementType = "12345",
+        PartSamsaraId = "12345",
+        Quantity = 123.45,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `CreateStockMovementActionServiceCreateStockMovementRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListPartTransactionsAsync</a>(ListPartTransactionsRequest { ... }) -> WithRawResponseTask&lt;EntityInventoryTransactionsServiceListPartTransactionsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated, time-windowed feed of inventory transactions (an append-only parts audit log) for the organization, ordered by the time each transaction occurred.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Parts** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListPartTransactionsAsync(
+    new ListPartTransactionsRequest { HappenedAtTimeStart = "happenedAtTimeStart" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPartTransactionsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListTimeEntriesAsync</a>(ListTimeEntriesRequest { ... }) -> WithRawResponseTask&lt;EntityTimeEntriesServiceListTimeEntriesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated feed of technician time entries updated in the requested time window, including deletion tombstones.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Time Entries** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListTimeEntriesAsync(
+    new ListTimeEntriesRequest { StartTime = "startTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListTimeEntriesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListWarrantiesAsync</a>(ListWarrantiesRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceListWarrantiesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranties for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListWarrantiesAsync(new ListWarrantiesRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListWarrantiesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">CreateWarrantyAsync</a>(EntityWarrantiesServiceCreateWarrantyRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceCreateWarrantyResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.CreateWarrantyAsync(
+    new EntityWarrantiesServiceCreateWarrantyRequestBody { Name = "12345" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityWarrantiesServiceCreateWarrantyRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">DeleteWarrantyAsync</a>(DeleteWarrantyRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty for the organization. Asset associations are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.DeleteWarrantyAsync(new DeleteWarrantyRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteWarrantyRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateWarrantyAsync</a>(EntityWarrantiesServiceUpdateWarrantyRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantiesServiceUpdateWarrantyResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.UpdateWarrantyAsync(
+    new EntityWarrantiesServiceUpdateWarrantyRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityWarrantiesServiceUpdateWarrantyRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListWarrantyAssetAssignmentsAsync</a>(ListWarrantyAssetAssignmentsRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantyAssetAssignmentsServiceListWarrantyAssetAssignmentsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns the assets assigned to a warranty.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListWarrantyAssetAssignmentsAsync(
+    new ListWarrantyAssetAssignmentsRequest { WarrantyId = "warrantyId" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListWarrantyAssetAssignmentsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ReplaceWarrantyAssetAssignmentsAsync</a>(ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody { ... }) -> WithRawResponseTask&lt;ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Replaces the full set of assets assigned to a warranty.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ReplaceWarrantyAssetAssignmentsAsync(
+    new ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ReplaceWarrantyAssetAssignmentsActionServiceReplaceWarrantyAssetAssignmentsRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">ListWarrantyClaimsAsync</a>(ListWarrantyClaimsRequest { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceListWarrantyClaimsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of warranty claims for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.ListWarrantyClaimsAsync(new ListWarrantyClaimsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListWarrantyClaimsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">CreateWarrantyClaimAsync</a>(EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceCreateWarrantyClaimResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.CreateWarrantyClaimAsync(
+    new EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody { AssetId = "281474976710656" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityWarrantyClaimsServiceCreateWarrantyClaimRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">DeleteWarrantyClaimAsync</a>(DeleteWarrantyClaimRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Deletes a warranty claim for the organization. Component links are removed server-side.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.DeleteWarrantyClaimAsync(new DeleteWarrantyClaimRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeleteWarrantyClaimRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">UpdateWarrantyClaimAsync</a>(EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { ... }) -> WithRawResponseTask&lt;EntityWarrantyClaimsServiceUpdateWarrantyClaimResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing warranty claim for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Warranties** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.Maintenance.UpdateWarrantyClaimAsync(
+    new EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityWarrantyClaimsServiceUpdateWarrantyClaimRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.Maintenance.<a href="/src/Samsara.Net/Maintenance/MaintenanceClient.cs">V1GetFleetMaintenanceListAsync</a>() -> WithRawResponseTask&lt;InlineResponse2004&gt;</code></summary>
 <dl>
 <dd>
@@ -11910,8 +11713,8 @@ await client.Maintenance.V1GetFleetMaintenanceListAsync();
 </dl>
 </details>
 
-## FuelAndEnergy
-<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetDriverEfficiencyByDriversAsync</a>(GetDriverEfficiencyByDriversRequest { ... }) -> WithRawResponseTask&lt;DriverEfficiencyGetDriverEfficiencyByDriversResponseBody&gt;</code></summary>
+## Legacy APIs
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDriverEfficiencyByDriversAsync</a>(GetDriverEfficiencyByDriversRequest { ... }) -> WithRawResponseTask&lt;DriverEfficiencyGetDriverEfficiencyByDriversResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11922,6 +11725,8 @@ await client.Maintenance.V1GetFleetMaintenanceListAsync();
 
 <dl>
 <dd>
+
+**⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
 
 This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated. 
 
@@ -11947,7 +11752,7 @@ To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy 
 <dd>
 
 ```csharp
-await client.FuelAndEnergy.GetDriverEfficiencyByDriversAsync(
+await client.LegacyApIs.GetDriverEfficiencyByDriversAsync(
     new GetDriverEfficiencyByDriversRequest { StartTime = "startTime", EndTime = "endTime" }
 );
 ```
@@ -11976,7 +11781,7 @@ await client.FuelAndEnergy.GetDriverEfficiencyByDriversAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetDriverEfficiencyByVehiclesAsync</a>(GetDriverEfficiencyByVehiclesRequest { ... }) -> WithRawResponseTask&lt;DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody&gt;</code></summary>
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDriverEfficiencyByVehiclesAsync</a>(GetDriverEfficiencyByVehiclesRequest { ... }) -> WithRawResponseTask&lt;DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody&gt;</code></summary>
 <dl>
 <dd>
 
@@ -11987,6 +11792,8 @@ await client.FuelAndEnergy.GetDriverEfficiencyByDriversAsync(
 
 <dl>
 <dd>
+
+**⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
 
 This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated. 
 
@@ -12012,7 +11819,7 @@ To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy 
 <dd>
 
 ```csharp
-await client.FuelAndEnergy.GetDriverEfficiencyByVehiclesAsync(
+await client.LegacyApIs.GetDriverEfficiencyByVehiclesAsync(
     new GetDriverEfficiencyByVehiclesRequest { StartTime = "startTime", EndTime = "endTime" }
 );
 ```
@@ -12041,7 +11848,7 @@ await client.FuelAndEnergy.GetDriverEfficiencyByVehiclesAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetFuelEnergyDriverReportsAsync</a>(GetFuelEnergyDriverReportsRequest { ... }) -> WithRawResponseTask&lt;FuelEnergyGetFuelEnergyDriverReportsResponseBody&gt;</code></summary>
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDvirDefectsAsync</a>(GetDvirDefectsRequest { ... }) -> WithRawResponseTask&lt;DefectsResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12053,11 +11860,73 @@ await client.FuelAndEnergy.GetDriverEfficiencyByVehiclesAsync(
 <dl>
 <dd>
 
-Get fuel and energy efficiency driver reports for the requested time range.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/streamdefects) instead. The endpoint will continue to function as documented.** 
 
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days. 
 
-To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.LegacyApIs.GetDvirDefectsAsync(
+    new GetDvirDefectsRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetDvirDefectsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDriversVehicleAssignmentsAsync</a>(GetDriversVehicleAssignmentsRequest { ... }) -> WithRawResponseTask&lt;DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -12075,8 +11944,8 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```csharp
-await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
-    new GetFuelEnergyDriverReportsRequest { StartDate = "startDate", EndDate = "endDate" }
+await client.LegacyApIs.GetDriversVehicleAssignmentsAsync(
+    new GetDriversVehicleAssignmentsRequest()
 );
 ```
 </dd>
@@ -12092,7 +11961,7 @@ await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
 <dl>
 <dd>
 
-**request:** `GetFuelEnergyDriverReportsRequest` 
+**request:** `GetDriversVehicleAssignmentsRequest` 
     
 </dd>
 </dl>
@@ -12104,7 +11973,7 @@ await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetFuelEnergyVehicleReportsAsync</a>(GetFuelEnergyVehicleReportsRequest { ... }) -> WithRawResponseTask&lt;FuelEnergyGetFuelEnergyVehicleReportsResponseBody&gt;</code></summary>
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDvirHistoryAsync</a>(GetDvirHistoryRequest { ... }) -> WithRawResponseTask&lt;DvirsListResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12116,7 +11985,69 @@ await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
 <dl>
 <dd>
 
-Get fuel and energy efficiency vehicle reports for the requested time range.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdvirs) instead. The endpoint will continue to function as documented.** 
+
+ Returns a list of all DVIRs in an organization. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.LegacyApIs.GetDvirHistoryAsync(
+    new GetDvirHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetDvirHistoryRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetVehicleIdlingReportsAsync</a>(GetVehicleIdlingReportsRequest { ... }) -> WithRawResponseTask&lt;IdlingReportsGetVehicleIdlingReportsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getidlingevents) instead. The endpoint will continue to function as documented.** Get all vehicle idling reports for the requested time duration.
 
  <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -12138,8 +12069,8 @@ To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy cate
 <dd>
 
 ```csharp
-await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
-    new GetFuelEnergyVehicleReportsRequest { StartDate = "startDate", EndDate = "endDate" }
+await client.LegacyApIs.GetVehicleIdlingReportsAsync(
+    new GetVehicleIdlingReportsRequest { StartTime = "startTime", EndTime = "endTime" }
 );
 ```
 </dd>
@@ -12155,7 +12086,7 @@ await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
 <dl>
 <dd>
 
-**request:** `GetFuelEnergyVehicleReportsRequest` 
+**request:** `GetVehicleIdlingReportsRequest` 
     
 </dd>
 </dl>
@@ -12167,7 +12098,7 @@ await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
 </dl>
 </details>
 
-<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">PostFuelPurchaseAsync</a>(FuelPurchasePostFuelPurchaseRequestBody { ... }) -> WithRawResponseTask&lt;FuelPurchasePostFuelPurchaseResponseBody&gt;</code></summary>
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetSafetyEventsAsync</a>(GetSafetyEventsRequest { ... }) -> WithRawResponseTask&lt;SafetyEventsListResponse&gt;</code></summary>
 <dl>
 <dd>
 
@@ -12179,11 +12110,81 @@ await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
 <dl>
 <dd>
 
-Create a fuel purchase transaction.
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** 
 
- <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+ Fetch safety events for the organization in a given time period. 
 
-To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.LegacyApIs.GetSafetyEventsAsync(
+    new GetSafetyEventsRequest { StartTime = "startTime", EndTime = "endTime" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetSafetyEventsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetSafetyActivityEventFeedAsync</a>(GetSafetyActivityEventFeedRequest { ... }) -> WithRawResponseTask&lt;SafetyEventsGetSafetyActivityEventFeedResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.**
+
+Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
+
+| ActivityType      | Description |
+| ----------- | ----------- |
+| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
+| BehaviorLabelActivityType     | a label is added or removed from a safety event |
+| CoachingStateActivityType     | a safety event coaching state is updated        |
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
  
 
  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
@@ -12201,19 +12202,69 @@ To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy cat
 <dd>
 
 ```csharp
-await client.FuelAndEnergy.PostFuelPurchaseAsync(
-    new FuelPurchasePostFuelPurchaseRequestBody
-    {
-        FuelQuantityLiters = "676.8",
-        TransactionLocation = "350 Rhode Island St, San Francisco, CA 94103",
-        TransactionPrice = new PostFuelPurchaseRequestBodyPriceRequestBody
-        {
-            Amount = "640.2",
-            Currency = PostFuelPurchaseRequestBodyPriceRequestBodyCurrency.Usd,
-        },
-        TransactionReference = "5454534",
-        TransactionTime = "2022-07-13T14:20:50.52-07:00",
-    }
+await client.LegacyApIs.GetSafetyActivityEventFeedAsync(new GetSafetyActivityEventFeedRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetSafetyActivityEventFeedRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetVehiclesDriverAssignmentsAsync</a>(GetVehiclesDriverAssignmentsRequest { ... }) -> WithRawResponseTask&lt;VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.LegacyApIs.GetVehiclesDriverAssignmentsAsync(
+    new GetVehiclesDriverAssignmentsRequest()
 );
 ```
 </dd>
@@ -12229,7 +12280,69 @@ await client.FuelAndEnergy.PostFuelPurchaseAsync(
 <dl>
 <dd>
 
-**request:** `FuelPurchasePostFuelPurchaseRequestBody` 
+**request:** `GetVehiclesDriverAssignmentsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">V1GetVehicleHarshEventAsync</a>(V1GetVehicleHarshEventRequest { ... }) -> WithRawResponseTask&lt;V1VehicleHarshEventResponse&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** > 🚧 This endpoint is still on our legacy API.
+
+Fetch harsh event details for a vehicle. 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+
+To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.LegacyApIs.V1GetVehicleHarshEventAsync(
+    new V1GetVehicleHarshEventRequest { VehicleId = 1000000, Timestamp = 1000000 }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `V1GetVehicleHarshEventRequest` 
     
 </dd>
 </dl>
@@ -12862,513 +12975,6 @@ await client.CarrierProposedAssignments.CreateCarrierProposedAssignmentAsync(
 <dd>
 
 **request:** `CreateCarrierProposedAssignmentRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-## Legacy APIs
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDvirDefectsAsync</a>(GetDvirDefectsRequest { ... }) -> WithRawResponseTask&lt;DefectsResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/streamdefects) instead. The endpoint will continue to function as documented.** 
-
-Returns a list of DVIR defects in an organization, filtered by creation time. The maximum time period you can query for is 30 days. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Defects** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetDvirDefectsAsync(
-    new GetDvirDefectsRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetDvirDefectsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDriversVehicleAssignmentsAsync</a>(GetDriversVehicleAssignmentsRequest { ... }) -> WithRawResponseTask&lt;DriversVehicleAssignmentsGetDriversVehicleAssignmentsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all vehicle assignments for the requested drivers in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-
- <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetDriversVehicleAssignmentsAsync(
-    new GetDriversVehicleAssignmentsRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetDriversVehicleAssignmentsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetDvirHistoryAsync</a>(GetDvirHistoryRequest { ... }) -> WithRawResponseTask&lt;DvirsListResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdvirs) instead. The endpoint will continue to function as documented.** 
-
- Returns a list of all DVIRs in an organization. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read DVIRs** under the Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetDvirHistoryAsync(
-    new GetDvirHistoryRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetDvirHistoryRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetVehicleIdlingReportsAsync</a>(GetVehicleIdlingReportsRequest { ... }) -> WithRawResponseTask&lt;IdlingReportsGetVehicleIdlingReportsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getidlingevents) instead. The endpoint will continue to function as documented.** Get all vehicle idling reports for the requested time duration.
-
- <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetVehicleIdlingReportsAsync(
-    new GetVehicleIdlingReportsRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetVehicleIdlingReportsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetSafetyEventsAsync</a>(GetSafetyEventsRequest { ... }) -> WithRawResponseTask&lt;SafetyEventsListResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** 
-
- Fetch safety events for the organization in a given time period. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetSafetyEventsAsync(
-    new GetSafetyEventsRequest { StartTime = "startTime", EndTime = "endTime" }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetSafetyEventsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetSafetyActivityEventFeedAsync</a>(GetSafetyActivityEventFeedRequest { ... }) -> WithRawResponseTask&lt;SafetyEventsGetSafetyActivityEventFeedResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.**
-
-Get continuous safety events. The safety activity event feed offers a change-log for safety events. Use this endpoint to subscribe to safety event changes. See documentation below for all supported change-log types.
-
-| ActivityType      | Description |
-| ----------- | ----------- |
-| CreateSafetyEventActivityType | a new safety event is processed by Samsara      |
-| BehaviorLabelActivityType     | a label is added or removed from a safety event |
-| CoachingStateActivityType     | a safety event coaching state is updated        |
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetSafetyActivityEventFeedAsync(new GetSafetyActivityEventFeedRequest());
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetSafetyActivityEventFeedRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">GetVehiclesDriverAssignmentsAsync</a>(GetVehiclesDriverAssignmentsRequest { ... }) -> WithRawResponseTask&lt;VehiclesDriverAssignmentsGetVehiclesDriverAssignmentsResponseBody&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getdrivervehicleassignments) instead. The endpoint will continue to function as documented.** Get all driver assignments for the requested vehicles in the requested time range. The only type of assignment supported right now are assignments created through the driver app.
-
- <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
-
-To use this endpoint, select **Read Assignments** under the Assignments category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
- 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.GetVehiclesDriverAssignmentsAsync(
-    new GetVehiclesDriverAssignmentsRequest()
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `GetVehiclesDriverAssignmentsRequest` 
-    
-</dd>
-</dl>
-</dd>
-</dl>
-
-
-</dd>
-</dl>
-</details>
-
-<details><summary><code>client.LegacyApIs.<a href="/src/Samsara.Net/LegacyApIs/LegacyApIsClient.cs">V1GetVehicleHarshEventAsync</a>(V1GetVehicleHarshEventRequest { ... }) -> WithRawResponseTask&lt;V1VehicleHarshEventResponse&gt;</code></summary>
-<dl>
-<dd>
-
-#### 📝 Description
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**Note: This is a legacy endpoint, consider using [this endpoint](https://developers.samsara.com/reference/getsafetyeventsv2stream) instead. The endpoint will continue to function as documented.** > 🚧 This endpoint is still on our legacy API.
-
-Fetch harsh event details for a vehicle. 
-
- **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
-
-To use this endpoint, select **Read Safety Events & Scores** under the Safety & Cameras category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### 🔌 Usage
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-```csharp
-await client.LegacyApIs.V1GetVehicleHarshEventAsync(
-    new V1GetVehicleHarshEventRequest { VehicleId = 1000000, Timestamp = 1000000 }
-);
-```
-</dd>
-</dl>
-</dd>
-</dl>
-
-#### ⚙️ Parameters
-
-<dl>
-<dd>
-
-<dl>
-<dd>
-
-**request:** `V1GetVehicleHarshEventRequest` 
     
 </dd>
 </dl>
@@ -14024,7 +13630,7 @@ await client.DriverVehicleAssignments.DeleteDriverVehicleAssignmentsAsync(
 <dl>
 <dd>
 
-Update driver assignments that were created using the `POST fleet/driver-vehicle-assignments`. Vehicle Id, Driver Id, and Start Time must match an existing assignment.
+Update driver assignments that were created using the `POST fleet/driver-vehicle-assignments`. Identify the assignment either with vehicleId, driverId, and startTime, or with metadata.sourceName alone.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -14047,12 +13653,7 @@ To use this endpoint, select **Write Assignments** under the Assignments categor
 
 ```csharp
 await client.DriverVehicleAssignments.UpdateDriverVehicleAssignmentAsync(
-    new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody
-    {
-        DriverId = "494123",
-        StartTime = "2019-06-13T19:08:25Z",
-        VehicleId = "281474978683353",
-    }
+    new DriverVehicleAssignmentsV2UpdateDriverVehicleAssignmentRequestBody()
 );
 ```
 </dd>
@@ -15416,6 +15017,74 @@ await client.HoursOfService.GetHosViolationsAsync(new GetHosViolationsRequest())
 </dl>
 </details>
 
+<details><summary><code>client.HoursOfService.<a href="/src/Samsara.Net/HoursOfService/HoursOfServiceClient.cs">UpdateShippingDocsAsync</a>(HosDailyLogsUpdateShippingDocsRequestBody { ... }) -> WithRawResponseTask&lt;HosDailyLogsUpdateShippingDocsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update the shippingDocs field of an existing assignment.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write ELD Hours of Service (US)** under the Compliance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.HoursOfService.UpdateShippingDocsAsync(
+    new HosDailyLogsUpdateShippingDocsRequestBody
+    {
+        HosDate = "hosDate",
+        DriverId = "driverID",
+        ShippingDocs = "ShippingID1, ShippingID2",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `HosDailyLogsUpdateShippingDocsRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 <details><summary><code>client.HoursOfService.<a href="/src/Samsara.Net/HoursOfService/HoursOfServiceClient.cs">SetCurrentDutyStatusAsync</a>(InlineObject1 { ... })</code></summary>
 <dl>
 <dd>
@@ -15538,6 +15207,529 @@ await client.HoursOfService.V1GetFleetHosAuthenticationLogsAsync(
 <dd>
 
 **request:** `V1GetFleetHosAuthenticationLogsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## FuelAndEnergy
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetFuelEnergyDriverReportsAsync</a>(GetFuelEnergyDriverReportsRequest { ... }) -> WithRawResponseTask&lt;FuelEnergyGetFuelEnergyDriverReportsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get fuel and energy efficiency driver reports for the requested time range.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.GetFuelEnergyDriverReportsAsync(
+    new GetFuelEnergyDriverReportsRequest { StartDate = "startDate", EndDate = "endDate" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetFuelEnergyDriverReportsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetFuelEnergyVehicleReportsAsync</a>(GetFuelEnergyVehicleReportsRequest { ... }) -> WithRawResponseTask&lt;FuelEnergyGetFuelEnergyVehicleReportsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get fuel and energy efficiency vehicle reports for the requested time range.
+
+ <b>Rate limit:</b> 25 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel & Energy** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.GetFuelEnergyVehicleReportsAsync(
+    new GetFuelEnergyVehicleReportsRequest { StartDate = "startDate", EndDate = "endDate" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetFuelEnergyVehicleReportsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">PostFuelPurchaseAsync</a>(FuelPurchasePostFuelPurchaseRequestBody { ... }) -> WithRawResponseTask&lt;FuelPurchasePostFuelPurchaseResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a fuel purchase transaction.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.PostFuelPurchaseAsync(
+    new FuelPurchasePostFuelPurchaseRequestBody
+    {
+        FuelQuantityLiters = "676.8",
+        TransactionLocation = "350 Rhode Island St, San Francisco, CA 94103",
+        TransactionPrice = new PostFuelPurchaseRequestBodyPriceRequestBody
+        {
+            Amount = "640.2",
+            Currency = PostFuelPurchaseRequestBodyPriceRequestBodyCurrency.Usd,
+        },
+        TransactionReference = "5454534",
+        TransactionTime = "2022-07-13T14:20:50.52-07:00",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `FuelPurchasePostFuelPurchaseRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">ListPreferredStationsAsync</a>(ListPreferredStationsRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsListPreferredStationsResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+List all preferred fuel stations for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.ListPreferredStationsAsync(new ListPreferredStationsRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPreferredStationsRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">PostPreferredStationAsync</a>(PreferredStationsPostPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPostPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Create a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.PostPreferredStationAsync(
+    new PreferredStationsPostPreferredStationRequestBody
+    {
+        Address = new PreferredStationAddressRequestBody
+        {
+            City = "Green River",
+            Country = "US",
+            Line1 = "8901 US Hwy 374",
+            PostalCode = "82935",
+        },
+        ExternalIds = new Dictionary<string, string>() { { "key", "value" } },
+        Name = "Station #432",
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PreferredStationsPostPreferredStationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">DeletePreferredStationAsync</a>(DeletePreferredStationRequest { ... })</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Delete a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.DeletePreferredStationAsync(
+    new DeletePreferredStationRequest { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `DeletePreferredStationRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">PatchPreferredStationAsync</a>(PreferredStationsPatchPreferredStationRequestBody { ... }) -> WithRawResponseTask&lt;PreferredStationsPatchPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Update a preferred fuel station for your organization.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.PatchPreferredStationAsync(
+    new PreferredStationsPatchPreferredStationRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `PreferredStationsPatchPreferredStationRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.FuelAndEnergy.<a href="/src/Samsara.Net/FuelAndEnergy/FuelAndEnergyClient.cs">GetPreferredStationAsync</a>(GetPreferredStationRequest { ... }) -> WithRawResponseTask&lt;PreferredStationsGetPreferredStationResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Get a single preferred fuel station by ID.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Fuel Purchase** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.FuelAndEnergy.GetPreferredStationAsync(new GetPreferredStationRequest { Id = "id" });
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `GetPreferredStationRequest` 
     
 </dd>
 </dl>
@@ -18427,6 +18619,8 @@ await client.Hubs.ListHubCustomPropertiesAsync(
 <dl>
 <dd>
 
+**Note: This endpoint is deprecated. Use [PATCH /places](https://developers.samsara.com/reference/patchplace) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
+
 Update existing location by ID.
 
  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -18522,6 +18716,8 @@ await client.Hubs.UpdateHubLocationAsync(
 <dl>
 <dd>
 
+**Note: This endpoint is deprecated. Use [GET /places](https://developers.samsara.com/reference/getplaces) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
+
 Retrieve locations for a specific hub.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
@@ -18582,6 +18778,8 @@ await client.Hubs.ListHubLocationsAsync(new ListHubLocationsRequest { HubId = "h
 
 <dl>
 <dd>
+
+**Note: This endpoint is deprecated. Use [POST /places](https://developers.samsara.com/reference/postplace) instead. Access closes for new customers on November 1, 2026, and the endpoint will be removed on November 1, 2027. It will continue to function as documented until then. See the [migration guide](https://developers.samsara.com/docs/migrating-from-the-hub-locations-api-to-the-places-api).**
 
 Create new locations.
 
@@ -20958,6 +21156,452 @@ await client.WorkOrders.StreamWorkOrdersAsync(
 </dl>
 </details>
 
+## PreventiveMaintenance
+<details><summary><code>client.PreventiveMaintenance.<a href="/src/Samsara.Net/PreventiveMaintenance/PreventiveMaintenanceClient.cs">ResolvePreventiveMaintenanceAsync</a>(ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Resolves the current open preventive maintenance instance for a schedule and asset, and automatically creates the next due record based on the schedule's intervals.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Preventive Maintenance Resolve** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreventiveMaintenance.ResolvePreventiveMaintenanceAsync(
+    new ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ResolvePreventiveMaintenanceActionServiceResolvePreventiveMaintenanceRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreventiveMaintenance.<a href="/src/Samsara.Net/PreventiveMaintenance/PreventiveMaintenanceClient.cs">ListPreventiveMaintenanceSchedulesAsync</a>(ListPreventiveMaintenanceSchedulesRequest { ... }) -> WithRawResponseTask&lt;EntityPreventativeMaintenanceSchedulesServiceListPreventiveMaintenanceSchedulesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of preventive maintenance schedules for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Preventive Maintenance Schedules** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreventiveMaintenance.ListPreventiveMaintenanceSchedulesAsync(
+    new ListPreventiveMaintenanceSchedulesRequest { Ids = "281474976710656" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListPreventiveMaintenanceSchedulesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreventiveMaintenance.<a href="/src/Samsara.Net/PreventiveMaintenance/PreventiveMaintenanceClient.cs">ListUpcomingPreventiveMaintenanceAsync</a>(ListUpcomingPreventiveMaintenanceRequest { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceListUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of upcoming preventive maintenance schedules for the organization's assets, enriched with live telemetry (current odometer, engine hours) and due-date projections.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreventiveMaintenance.ListUpcomingPreventiveMaintenanceAsync(
+    new ListUpcomingPreventiveMaintenanceRequest()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListUpcomingPreventiveMaintenanceRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.PreventiveMaintenance.<a href="/src/Samsara.Net/PreventiveMaintenance/PreventiveMaintenanceClient.cs">UpdateUpcomingPreventiveMaintenanceAsync</a>(EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody { ... }) -> WithRawResponseTask&lt;EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Patches the due-target and last-resolved values on the open preventive maintenance instance for a schedule and asset. Only fields provided in the request are updated.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Upcoming Preventive Maintenance** under the Preventive Maintenance category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.PreventiveMaintenance.UpdateUpcomingPreventiveMaintenanceAsync(
+    new EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody()
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityUpcomingPreventativeMaintenancesServiceUpdateUpcomingPreventiveMaintenanceRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+## MaintenanceSites
+<details><summary><code>client.MaintenanceSites.<a href="/src/Samsara.Net/MaintenanceSites/MaintenanceSitesClient.cs">ListMaintenanceSitesAsync</a>(ListMaintenanceSitesRequest { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceListMaintenanceSitesResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Returns a paginated list of maintenance sites for the organization.
+
+ <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Read Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MaintenanceSites.ListMaintenanceSitesAsync(new ListMaintenanceSitesRequest());
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `ListMaintenanceSitesRequest` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MaintenanceSites.<a href="/src/Samsara.Net/MaintenanceSites/MaintenanceSitesClient.cs">CreateMaintenanceSiteAsync</a>(EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceCreateMaintenanceSiteResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Creates a maintenance site for the organization. Exactly one of placeIds or customAddress must be set.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MaintenanceSites.CreateMaintenanceSiteAsync(
+    new EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody
+    {
+        Name = "12345",
+        SiteCode = "12345",
+        SiteType = EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBodySiteType.Unknown,
+    }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityMaintenanceSitesServiceCreateMaintenanceSiteRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
+<details><summary><code>client.MaintenanceSites.<a href="/src/Samsara.Net/MaintenanceSites/MaintenanceSitesClient.cs">UpdateMaintenanceSiteAsync</a>(EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody { ... }) -> WithRawResponseTask&lt;EntityMaintenanceSitesServiceUpdateMaintenanceSiteResponseBody&gt;</code></summary>
+<dl>
+<dd>
+
+#### 📝 Description
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+Updates an existing maintenance site for the organization. Moving a site between placeIds and customAddress is not supported.
+
+ <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+
+To use this endpoint, select **Write Maintenance Sites** under the Work Orders category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+ 
+
+ **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### 🔌 Usage
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+```csharp
+await client.MaintenanceSites.UpdateMaintenanceSiteAsync(
+    new EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody { Id = "id" }
+);
+```
+</dd>
+</dl>
+</dd>
+</dl>
+
+#### ⚙️ Parameters
+
+<dl>
+<dd>
+
+<dl>
+<dd>
+
+**request:** `EntityMaintenanceSitesServiceUpdateMaintenanceSiteRequestBody` 
+    
+</dd>
+</dl>
+</dd>
+</dl>
+
+
+</dd>
+</dl>
+</details>
+
 ## Organization Info
 <details><summary><code>client.OrganizationInfo.<a href="/src/Samsara.Net/OrganizationInfo/OrganizationInfoClient.cs">GetOrganizationInfoAsync</a>() -> WithRawResponseTask&lt;OrganizationInfoResponse&gt;</code></summary>
 <dl>
@@ -22763,7 +23407,7 @@ await client.Tags.PatchTagAsync(new PatchTagRequest { Id = "id" });
 <dl>
 <dd>
 
-Create training assignments. Existing assignments will remain unchanged.
+Create training assignments. Existing assignments will remain unchanged. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -22826,7 +23470,7 @@ await client.TrainingAssignments.PostTrainingAssignmentsAsync(
 <dl>
 <dd>
 
-This endpoint supports batch deletion operations. The response does not indicate which specific deletions, if any, have failed. On a successful deletion or partial failure, a ‘204 No Content’ status is returned.
+This endpoint supports batch deletion operations. The response does not indicate which specific deletions, if any, have failed. On a successful deletion or partial failure, a ‘204 No Content’ status is returned. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -22889,7 +23533,7 @@ await client.TrainingAssignments.DeleteTrainingAssignmentsAsync(
 <dl>
 <dd>
 
-Update training assignments.
+Update training assignments. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 
@@ -22952,7 +23596,7 @@ await client.TrainingAssignments.PatchTrainingAssignmentsAsync(
 <dl>
 <dd>
 
-Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty.
+Returns all training assignments data that has been created or modified for your organization based on the time parameters passed in. Results are paginated and are sorted by last modified date. If you include an endTime, the endpoint will return data up until that point (exclusive). If you don't include an endTime, the API will continue to poll with the pagination cursor that gets returned on every call. The hasNextPage response value will be true if there is no endTime specified and endCursor is nonempty. Non-driver user learners are available only for organizations with non-driver training enabled. Contact your Samsara representative to request access.
 
  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
 

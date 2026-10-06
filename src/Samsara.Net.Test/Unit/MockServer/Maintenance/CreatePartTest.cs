@@ -1,0 +1,75 @@
+using NUnit.Framework;
+using Samsara.Net.Maintenance;
+using Samsara.Net.Test.Unit.MockServer;
+using Samsara.Net.Test.Utils;
+
+namespace Samsara.Net.Test.Unit.MockServer.Maintenance;
+
+[TestFixture]
+public class CreatePartTest : BaseMockServerTest
+{
+    [NUnit.Framework.Test]
+    public async Task MockServerTest()
+    {
+        const string requestJson = """
+            {
+              "partNumber": "12345"
+            }
+            """;
+
+        const string mockResponse = """
+            {
+              "data": {
+                "archivedAtTime": "2019-06-13T19:08:25Z",
+                "barcodeString": "12345",
+                "barcodeType": "12345",
+                "category": "12345",
+                "createdAtTime": "2019-06-13T19:08:25Z",
+                "deletedAtTime": "2019-06-13T19:08:25Z",
+                "description": "12345",
+                "externalId": "12345",
+                "id": "12345",
+                "isInventoryTracked": true,
+                "manufacturerName": "12345",
+                "manufacturerPartNumber": "12345",
+                "name": "12345",
+                "partNumber": "12345",
+                "partStatus": "Unknown",
+                "preferredVendor": {
+                  "id": "281474976710656"
+                },
+                "preferredVendorPartNumber": "12345",
+                "subcategory": "12345",
+                "unitCost": {
+                  "amount": "12345",
+                  "currency": "12345"
+                },
+                "unitOfMeasureType": "Unknown",
+                "updatedAtTime": "2019-06-13T19:08:25Z",
+                "vmrsCode": "12345"
+              }
+            }
+            """;
+
+        Server
+            .Given(
+                WireMock
+                    .RequestBuilders.Request.Create()
+                    .WithPath("/maintenance/parts")
+                    .WithHeader("Content-Type", "application/json")
+                    .UsingPost()
+                    .WithBodyAsJson(requestJson)
+            )
+            .RespondWith(
+                WireMock
+                    .ResponseBuilders.Response.Create()
+                    .WithStatusCode(200)
+                    .WithBody(mockResponse)
+            );
+
+        var response = await Client.Maintenance.CreatePartAsync(
+            new EntityPartDefinitionsServiceCreatePartRequestBody { PartNumber = "12345" }
+        );
+        JsonAssert.AreEqual(response, mockResponse);
+    }
+}

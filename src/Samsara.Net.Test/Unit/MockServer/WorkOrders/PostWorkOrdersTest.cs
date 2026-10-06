@@ -23,6 +23,11 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "archivedAtTime": "2019-06-13T19:08:25.000Z",
                 "assetId": "12443",
                 "assignedUserId": "1234",
+                "assignees": [
+                  {
+                    "userId": "67890"
+                  }
+                ],
                 "attachments": [
                   {
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
@@ -57,9 +62,9 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "maintenanceSite": {
                   "name": "LAX Service Bay 3",
                   "placeExternalIds": {
-                    "Totam ipsum quaerat.": "Blanditiis laborum.",
-                    "Velit nihil.": "Placeat id.",
-                    "Velit quia consequatur saepe.": "Repellendus temporibus."
+                    "Blanditiis laborum.": "Quis nesciunt excepturi voluptatem.",
+                    "Occaecati repellendus.": "Adipisci velit nihil.",
+                    "Placeat id.": "Totam ipsum quaerat."
                   },
                   "placeId": "123456"
                 },
@@ -68,6 +73,11 @@ public class PostWorkOrdersTest : BaseMockServerTest
                 "priority": "High",
                 "serviceTaskInstances": [
                   {
+                    "assignees": [
+                      {
+                        "userId": "67890"
+                      }
+                    ],
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                     "laborHourlyCost": {
                       "amount": "94.01",

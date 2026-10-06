@@ -15,7 +15,7 @@ public record RidershipRouteSetupPassengerObjectResponseBody : IJsonOnDeserializ
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// The stop ID for the passenger's drop-off.
+    /// Routing API stop task ID for the passenger's drop-off. Omitted when no drop-off stop is assigned.
     /// </summary>
     [JsonPropertyName("dropOffStopId")]
     public string? DropOffStopId { get; set; }
@@ -27,7 +27,7 @@ public record RidershipRouteSetupPassengerObjectResponseBody : IJsonOnDeserializ
     public required string PassengerId { get; set; }
 
     /// <summary>
-    /// The stop ID for the passenger's pick-up.
+    /// Routing API stop task ID for the passenger's pickup. Omitted when no pickup stop is assigned.
     /// </summary>
     [JsonPropertyName("pickUpStopId")]
     public string? PickUpStopId { get; set; }

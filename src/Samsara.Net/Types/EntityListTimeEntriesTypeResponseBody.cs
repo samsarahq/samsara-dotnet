@@ -15,10 +15,10 @@ public record EntityListTimeEntriesTypeResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Non-repair activity associated with the time entry. Omitted for work-order time.
+    /// Non-repair activity associated with the time entry. Omitted for work-order time.  Valid values: `unknown`, `break`, `shopCleaning`, `partsHandling`, `operationalTest`, `equipmentSetup`, `inspection`, `roadCall`, `training`, `administrative`, `shopMiscellaneous`
     /// </summary>
     [JsonPropertyName("activityType")]
-    public string? ActivityType { get; set; }
+    public EntityListTimeEntriesTypeResponseBodyActivityType? ActivityType { get; set; }
 
     /// <summary>
     /// Time when the technician clocked in.
@@ -30,10 +30,10 @@ public record EntityListTimeEntriesTypeResponseBody : IJsonOnDeserialized
     public ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody? ClockInLocation { get; set; }
 
     /// <summary>
-    /// Surface that recorded the clock-in.
+    /// Surface that recorded the clock-in.  Valid values: `unknown`, `cloud`, `mobile`
     /// </summary>
     [JsonPropertyName("clockInSource")]
-    public string? ClockInSource { get; set; }
+    public EntityListTimeEntriesTypeResponseBodyClockInSource? ClockInSource { get; set; }
 
     /// <summary>
     /// Time when the technician clocked out. Omitted while the entry is in progress.
@@ -45,16 +45,16 @@ public record EntityListTimeEntriesTypeResponseBody : IJsonOnDeserialized
     public ListTimeEntriesEntityTimeEntryTimeEntryLocationTypeResponseBody? ClockOutLocation { get; set; }
 
     /// <summary>
-    /// Method that ended the time entry.
+    /// Method that ended the time entry.  Valid values: `unknown`, `manual`, `overwrite`, `clockIn`, `autoClockOut`
     /// </summary>
     [JsonPropertyName("clockOutMethodType")]
-    public string? ClockOutMethodType { get; set; }
+    public EntityListTimeEntriesTypeResponseBodyClockOutMethodType? ClockOutMethodType { get; set; }
 
     /// <summary>
-    /// Surface that recorded the clock-out.
+    /// Surface that recorded the clock-out.  Valid values: `unknown`, `cloud`, `mobile`
     /// </summary>
     [JsonPropertyName("clockOutSource")]
-    public string? ClockOutSource { get; set; }
+    public EntityListTimeEntriesTypeResponseBodyClockOutSource? ClockOutSource { get; set; }
 
     /// <summary>
     /// Time when the time entry was created.
@@ -96,10 +96,10 @@ public record EntityListTimeEntriesTypeResponseBody : IJsonOnDeserialized
     public string? ServiceTaskId { get; set; }
 
     /// <summary>
-    /// Whether the time entry is in progress or completed.
+    /// Whether the time entry is in progress or completed.  Valid values: `unknown`, `inProgress`, `completed`
     /// </summary>
     [JsonPropertyName("timeEntryStatus")]
-    public string? TimeEntryStatus { get; set; }
+    public EntityListTimeEntriesTypeResponseBodyTimeEntryStatus? TimeEntryStatus { get; set; }
 
     /// <summary>
     /// Time when the time entry was last updated. The feed window and ordering operate on this field.

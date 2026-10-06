@@ -13,6 +13,230 @@ public partial class LegacyApIsClient : ILegacyApIsClient
         _client = client;
     }
 
+    private async Task<
+        WithRawResponse<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody>
+    > GetDriverEfficiencyByDriversAsyncCore(
+        GetDriverEfficiencyByDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("driverIds", request.DriverIds)
+            .Add("dataFormats", request.DataFormats)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "driver-efficiency/drivers",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
+    private async Task<
+        WithRawResponse<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody>
+    > GetDriverEfficiencyByVehiclesAsyncCore(
+        GetDriverEfficiencyByVehiclesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+            .Add("startTime", request.StartTime)
+            .Add("endTime", request.EndTime)
+            .Add("vehicleIds", request.VehicleIds)
+            .Add("dataFormats", request.DataFormats)
+            .Add("tagIds", request.TagIds)
+            .Add("parentTagIds", request.ParentTagIds)
+            .Add("after", request.After)
+            .MergeAdditional(options?.AdditionalQueryParameters)
+            .Build();
+        var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
+            .Add(_client.Options.Headers)
+            .Add(_client.Options.AdditionalHeaders)
+            .Add(options?.AdditionalHeaders)
+            .BuildAsync()
+            .ConfigureAwait(false);
+        var response = await _client
+            .SendRequestAsync(
+                new JsonRequest
+                {
+                    BaseUrl = _client.Options.BaseUrl,
+                    Method = HttpMethod.Get,
+                    Path = "driver-efficiency/vehicles",
+                    QueryString = _queryString,
+                    Headers = _headers,
+                    Options = options,
+                },
+                cancellationToken
+            )
+            .ConfigureAwait(false);
+        if (response.StatusCode is >= 200 and < 400)
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                var responseData =
+                    JsonUtils.Deserialize<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody>(
+                        responseBody
+                    )!;
+                return new WithRawResponse<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody>()
+                {
+                    Data = responseData,
+                    RawResponse = new RawResponse()
+                    {
+                        StatusCode = response.Raw.StatusCode,
+                        Url = response.Raw.RequestMessage?.RequestUri ?? new Uri("about:blank"),
+                        Headers = ResponseHeaders.FromHttpResponseMessage(response.Raw),
+                    },
+                };
+            }
+            catch (JsonException e)
+            {
+                throw new SamsaraClientApiException(
+                    "Failed to deserialize response",
+                    response.StatusCode,
+                    responseBody,
+                    e
+                );
+            }
+        }
+        {
+            var responseBody = await response.Raw.Content.ReadAsStringAsync();
+            try
+            {
+                switch (response.StatusCode)
+                {
+                    case 401:
+                        throw new UnauthorizedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 404:
+                        throw new NotFoundError(JsonUtils.Deserialize<object>(responseBody));
+                    case 405:
+                        throw new MethodNotAllowedError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 413:
+                        throw new ContentTooLargeError(JsonUtils.Deserialize<object>(responseBody));
+                    case 429:
+                        throw new TooManyRequestsError(JsonUtils.Deserialize<object>(responseBody));
+                    case 500:
+                        throw new InternalServerError(JsonUtils.Deserialize<object>(responseBody));
+                    case 501:
+                        throw new NotImplementedError(JsonUtils.Deserialize<object>(responseBody));
+                    case 502:
+                        throw new BadGatewayError(JsonUtils.Deserialize<object>(responseBody));
+                    case 503:
+                        throw new ServiceUnavailableError(
+                            JsonUtils.Deserialize<object>(responseBody)
+                        );
+                    case 504:
+                        throw new GatewayTimeoutError(JsonUtils.Deserialize<object>(responseBody));
+                }
+            }
+            catch (JsonException)
+            {
+                // unable to map error response, throwing generic error
+            }
+            throw new SamsaraClientApiException(
+                $"Error with status code {response.StatusCode}",
+                response.StatusCode,
+                responseBody
+            );
+        }
+    }
+
     private async Task<WithRawResponse<DefectsResponse>> GetDvirDefectsAsyncCore(
         GetDvirDefectsRequest request,
         RequestOptions? options = null,
@@ -744,6 +968,66 @@ public partial class LegacyApIsClient : ILegacyApIsClient
                 responseBody
             );
         }
+    }
+
+    /// <summary>
+    /// **⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
+    ///
+    /// This endpoint will return driver efficiency data that has been collected for your organization and grouped by drivers based on the time parameters passed in. Results are paginated.
+    ///
+    /// **Note:** The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing [/fleet/drivers/efficiency](https://developers.samsara.com/reference/getdriverefficiency) endpoint has now been moved to Legacy.
+    ///
+    ///  <b>Rate limit:</b> 10 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.LegacyApIs.GetDriverEfficiencyByDriversAsync(
+    ///     new GetDriverEfficiencyByDriversRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody> GetDriverEfficiencyByDriversAsync(
+        GetDriverEfficiencyByDriversRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<DriverEfficiencyGetDriverEfficiencyByDriversResponseBody>(
+            GetDriverEfficiencyByDriversAsyncCore(request, options, cancellationToken)
+        );
+    }
+
+    /// <summary>
+    /// **⚠️ LEGACY/DEPRECATED API: This API returns data from the legacy Driver Efficiency (Eco-Driving) product and is unavailable to new customers. Use the Driver Efficiency (Eco-Driving) dataset in the beta [Custom Reports API](https://developers.samsara.com/reference/createreportrun) for equivalent data.**
+    ///
+    /// This endpoint will return driver efficiency data that has been collected for your organization and grouped by vehicle drivers used based on the time parameters passed in. Results are paginated.
+    ///
+    /// **Note:** The data from this endpoint comes from the Driver Efficiency (Eco-Driving) Report. The existing [/fleet/drivers/efficiency](https://developers.samsara.com/reference/getdriverefficiency) endpoint has now been moved to Legacy.
+    ///
+    ///  <b>Rate limit:</b> 5 requests/sec (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
+    ///
+    /// To use this endpoint, select **Read Driver Efficiency** under the Fuel & Energy category when creating or editing an API token. <a href="https://developers.samsara.com/docs/authentication#scopes-for-api-tokens" target="_blank">Learn More.</a>
+    ///
+    ///
+    ///  **Submit Feedback**: Likes, dislikes, and API feature requests should be filed as feedback in our <a href="https://forms.gle/zkD4NCH7HjKb7mm69" target="_blank">API feedback form</a>. If you encountered an issue or noticed inaccuracies in the API documentation, please <a href="https://www.samsara.com/help" target="_blank">submit a case</a> to our support team.
+    /// </summary>
+    /// <example><code>
+    /// await client.LegacyApIs.GetDriverEfficiencyByVehiclesAsync(
+    ///     new GetDriverEfficiencyByVehiclesRequest { StartTime = "startTime", EndTime = "endTime" }
+    /// );
+    /// </code></example>
+    public WithRawResponseTask<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody> GetDriverEfficiencyByVehiclesAsync(
+        GetDriverEfficiencyByVehiclesRequest request,
+        RequestOptions? options = null,
+        CancellationToken cancellationToken = default
+    )
+    {
+        return new WithRawResponseTask<DriverEfficiencyGetDriverEfficiencyByVehiclesResponseBody>(
+            GetDriverEfficiencyByVehiclesAsyncCore(request, options, cancellationToken)
+        );
     }
 
     /// <summary>

@@ -24,15 +24,15 @@ public class GetTrainingAssignmentsStreamTest : BaseMockServerTest
                   "createdById": "user-4392",
                   "deletedAtTime": "2019-06-13T19:08:25.000Z",
                   "dueAtTime": "2019-06-13T19:08:25.000Z",
-                  "durationMinutes": 1327574439901911300,
+                  "durationMinutes": 1818396104473096400,
                   "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                   "isCompletedLate": true,
                   "isOverdue": true,
                   "learner": {
                     "id": "938172",
-                    "type": "driver"
+                    "type": "unknown"
                   },
-                  "scorePercent": 0.6495482707936548,
+                  "scorePercent": 0.18110245902546887,
                   "startedAtTime": "2019-06-13T19:08:25.000Z",
                   "status": "notStarted",
                   "updatedAtTime": "2019-06-13T19:08:25.000Z",

@@ -8,7 +8,7 @@ namespace Samsara.Net.BetaApIs;
 public record RidershipRouteSetupsCreateRidershipRouteSetupRequestBody
 {
     /// <summary>
-    /// List of passenger assignments for the route.
+    /// Passenger assignments for the route, with each passenger listed once.
     /// </summary>
     [JsonPropertyName("passengers")]
     public IEnumerable<RidershipRouteSetupPassengerInputRequestBody> Passengers { get; set; } =

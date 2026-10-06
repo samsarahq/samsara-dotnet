@@ -44,7 +44,7 @@ public record FormSubmissionsPatchFormSubmissionRequestBody
     public string? RouteStopId { get; set; }
 
     /// <summary>
-    /// Status of the form submission.  Valid values: `notStarted`, `archived`, `inProgress`, `changesRequested`, `approved`
+    /// Status of the form submission.  Valid values: `notStarted`, `archived`, `inProgress`, `changesRequested`, `approved`, `denied`
     /// </summary>
     [JsonPropertyName("status")]
     public FormSubmissionsPatchFormSubmissionRequestBodyStatus? Status { get; set; }

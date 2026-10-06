@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// ListMaintenanceSitesEntityMaintenanceSiteMaintenanceSiteCustomAddress object
+/// MaintenanceSiteCustomAddress object
 /// </summary>
 [Serializable]
 public record ListMaintenanceSitesEntityMaintenanceSiteMaintenanceSiteCustomAddressTypeResponseBody

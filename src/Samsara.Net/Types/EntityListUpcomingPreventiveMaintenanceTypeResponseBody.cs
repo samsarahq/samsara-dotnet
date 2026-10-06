@@ -87,10 +87,10 @@ public record EntityListUpcomingPreventiveMaintenanceTypeResponseBody : IJsonOnD
     public EntityListUpcomingPreventiveMaintenancePreventativeMaintenanceScheduleRefTypeResponseBody? Schedule { get; set; }
 
     /// <summary>
-    /// Status of the preventive maintenance schedule.
+    /// Status of the preventive maintenance schedule.  Valid values: `unknown`, `overdue`, `upcoming`
     /// </summary>
     [JsonPropertyName("status")]
-    public string? Status { get; set; }
+    public EntityListUpcomingPreventiveMaintenanceTypeResponseBodyStatus? Status { get; set; }
 
     [JsonPropertyName("workOrder")]
     public EntityListUpcomingPreventiveMaintenanceWorkOrderRefTypeResponseBody? WorkOrder { get; set; }

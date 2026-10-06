@@ -69,10 +69,10 @@ public record EntityListIssuesTypeResponseBody : IJsonOnDeserialized
     public string? Status { get; set; }
 
     /// <summary>
-    /// Customer-facing type for this issue.
+    /// Customer-facing type for this issue.  Valid values: `unknown`, `pothole`, `roadCracking`, `patchedPothole`, `transverseCrack`, `longitudinalCrack`, `alligatorCrack`, `utilityCut`, `steelPlate`, `repavingNeeded`
     /// </summary>
     [JsonPropertyName("type")]
-    public string? Type { get; set; }
+    public EntityListIssuesTypeResponseBodyType? Type { get; set; }
 
     /// <summary>
     /// Time when this issue record was most recently updated.

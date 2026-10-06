@@ -13,6 +13,18 @@ public record ListMaintenanceVendorsRequest
     public IEnumerable<string> Ids { get; set; } = new List<string>();
 
     /// <summary>
+    /// A comma-separated list of up to 100 external IDs in key:value format to filter vendors on. See [external IDs](https://developers.samsara.com/docs/external-ids).
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> ExternalIds { get; set; } = new List<string>();
+
+    /// <summary>
+    /// Include resolved vendor settings and their sources. Defaults to false.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeResolvedSettings { get; set; }
+
+    /// <summary>
     /// When true, include externalIds on each vendor in the response. Default false.
     /// </summary>
     [JsonIgnore]

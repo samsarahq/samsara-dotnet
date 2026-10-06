@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Special instructions for the passenger.
+/// Special handling flags for the passenger. Omitted flags default to false.
 /// </summary>
 [Serializable]
 public record RidershipPassengerSpecialInstructionsInputRequestBody : IJsonOnDeserialized

@@ -33,6 +33,12 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public string? AssignedUserId { get; set; }
 
     /// <summary>
+    /// Dashboard users assigned to the work order. Only returned for organizations with multiple work order assignees enabled. Technicians backed only by a driver are not represented.
+    /// </summary>
+    [JsonPropertyName("assignees")]
+    public IEnumerable<WorkOrderAssigneeObjectResponseBody>? Assignees { get; set; }
+
+    /// <summary>
     /// Files attached to the work order.
     /// </summary>
     [JsonPropertyName("attachments")]

@@ -90,10 +90,10 @@ public record EntityListPartTransactionsTypeResponseBody : IJsonOnDeserialized
     public string? ToPlaceId { get; set; }
 
     /// <summary>
-    /// The kind of inventory movement this record represents.
+    /// The kind of inventory movement this record represents.  Valid values: `Unknown`, `Receive`, `Transfer`, `Scrap`, `Adjust`, `Reserve`, `Issue`, `Release`, `Return`
     /// </summary>
     [JsonPropertyName("transactionType")]
-    public string? TransactionType { get; set; }
+    public EntityListPartTransactionsTypeResponseBodyTransactionType? TransactionType { get; set; }
 
     /// <summary>
     /// Per-unit cost recorded with the transaction. Present on receive transactions.

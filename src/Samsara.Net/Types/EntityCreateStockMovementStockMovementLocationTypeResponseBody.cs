@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// EntityCreateStockMovementStockMovementLocation object
+/// StockMovementLocation object
 /// </summary>
 [Serializable]
 public record EntityCreateStockMovementStockMovementLocationTypeResponseBody : IJsonOnDeserialized
