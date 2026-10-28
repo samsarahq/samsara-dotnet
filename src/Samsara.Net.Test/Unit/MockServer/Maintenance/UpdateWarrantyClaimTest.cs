@@ -27,8 +27,6 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 "claimStatus": "unknown",
                 "componentInstanceIds": [
                   "12345",
-                  "12345",
-                  "12345",
                   "12345"
                 ],
                 "concern": "12345",

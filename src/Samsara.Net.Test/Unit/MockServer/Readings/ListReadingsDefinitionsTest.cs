@@ -31,9 +31,7 @@ public class ListReadingsDefinitionsTest : BaseMockServerTest
                   "ingestionEnabled": true,
                   "label": "engineRpm",
                   "readingId": "12345",
-                  "type": {
-                    "key": "value"
-                  }
+                  "type": "Ipsa id recusandae libero sit qui officiis."
                 }
               ],
               "pagination": {

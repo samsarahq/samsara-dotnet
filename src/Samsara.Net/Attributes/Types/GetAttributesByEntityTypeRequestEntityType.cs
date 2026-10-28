@@ -11,6 +11,10 @@ public readonly record struct GetAttributesByEntityTypeRequestEntityType : IStri
 
     public static readonly GetAttributesByEntityTypeRequestEntityType Asset = new(Values.Asset);
 
+    public static readonly GetAttributesByEntityTypeRequestEntityType WorkOrder = new(
+        Values.WorkOrder
+    );
+
     public GetAttributesByEntityTypeRequestEntityType(string value)
     {
         Value = value;
@@ -67,5 +71,7 @@ public readonly record struct GetAttributesByEntityTypeRequestEntityType : IStri
         public const string Driver = "driver";
 
         public const string Asset = "asset";
+
+        public const string WorkOrder = "workOrder";
     }
 }

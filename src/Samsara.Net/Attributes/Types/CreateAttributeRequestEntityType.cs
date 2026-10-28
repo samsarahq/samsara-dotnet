@@ -11,6 +11,8 @@ public readonly record struct CreateAttributeRequestEntityType : IStringEnum
 
     public static readonly CreateAttributeRequestEntityType Asset = new(Values.Asset);
 
+    public static readonly CreateAttributeRequestEntityType WorkOrder = new(Values.WorkOrder);
+
     public CreateAttributeRequestEntityType(string value)
     {
         Value = value;
@@ -61,5 +63,7 @@ public readonly record struct CreateAttributeRequestEntityType : IStringEnum
         public const string Driver = "driver";
 
         public const string Asset = "asset";
+
+        public const string WorkOrder = "workOrder";
     }
 }

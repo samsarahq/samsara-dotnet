@@ -59,11 +59,8 @@ public record ReadingDefinitionResponseBody : IJsonOnDeserialized
     [JsonPropertyName("readingId")]
     public required string ReadingId { get; set; }
 
-    /// <summary>
-    /// The type information for the reading. Contains the complete type structure including dataType, unit, enumValues, fields, etc.
-    /// </summary>
     [JsonPropertyName("type")]
-    public Dictionary<string, object?> Type { get; set; } = new Dictionary<string, object?>();
+    public required object Type { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

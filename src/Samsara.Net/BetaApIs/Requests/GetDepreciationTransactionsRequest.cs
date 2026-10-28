@@ -7,16 +7,22 @@ namespace Samsara.Net.BetaApIs;
 public record GetDepreciationTransactionsRequest
 {
     /// <summary>
-    /// RFC 3339 timestamp. Returns transactions updated after this time. Compared against updatedAt. If not provided, returns all transactions. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    /// RFC 3339 timestamp. Inclusive start of the range, compared against queryByTimeField. Required when querying by eventTime; optional when querying by updatedAtTime. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
     [JsonIgnore]
     public DateTime? StartTime { get; set; }
 
     /// <summary>
-    /// RFC 3339 timestamp. Returns transactions updated before this time. Compared against updatedAt. If not provided, behaves as an unending feed of changes. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
+    /// RFC 3339 timestamp. Exclusive end of the range, compared against queryByTimeField. If omitted, the range is open-ended. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
     [JsonIgnore]
     public DateTime? EndTime { get; set; }
+
+    /// <summary>
+    /// Time field compared with startTime and endTime. Defaults to eventTime for organizations enabled for event-time queries; otherwise updatedAtTime.  Valid values: `eventTime`, `updatedAtTime`
+    /// </summary>
+    [JsonIgnore]
+    public GetDepreciationTransactionsRequestQueryByTimeField? QueryByTimeField { get; set; }
 
     /// <summary>
     /// Filter by asset IDs. Up to 50 ids.

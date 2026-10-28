@@ -33,7 +33,7 @@ public class GetRidershipPassengerTest : BaseMockServerTest
                 "lastName": "Doe",
                 "specialInstructions": {
                   "isGuardianRequired": false,
-                  "isSpecialEducation": true
+                  "isSpecialEducation": false
                 },
                 "tagIds": [
                   "5678",

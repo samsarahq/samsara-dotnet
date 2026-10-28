@@ -56,8 +56,10 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "id": "12345",
                 "iftaExemptionTypes": [
-                  "Et hic tempore.",
-                  "Nostrum alias repellat."
+                  "Eum sapiente cum.",
+                  "Aut asperiores blanditiis quas nihil dolor.",
+                  "Eum maiores eos maiores.",
+                  "Provident ut."
                 ],
                 "isAutoDismissRolledStopsEnabled": false,
                 "isShowAddressesEnabled": true,
@@ -75,10 +77,10 @@ public class PatchPlaceTest : BaseMockServerTest
                 },
                 "notes": "Receiving 6-2",
                 "placeTypes": [
-                  "Exercitationem quos.",
-                  "Earum repudiandae et laborum commodi possimus.",
-                  "Consequatur eos voluptatibus.",
-                  "Harum rerum ut doloribus voluptatum quaerat."
+                  "Alias repellat ut commodi velit.",
+                  "Animi qui.",
+                  "Ea voluptatem voluptas et architecto sapiente suscipit.",
+                  "Porro ipsum quo enim alias error."
                 ],
                 "routing": [
                   {
@@ -112,8 +114,8 @@ public class PatchPlaceTest : BaseMockServerTest
                     "serviceWindows": [
                       {
                         "days": [
-                          "Et architecto sapiente suscipit qui porro.",
-                          "Quo enim alias error eaque."
+                          "Illum alias perspiciatis.",
+                          "Iste dolores cupiditate delectus corrupti."
                         ],
                         "endTime": "17:00:01",
                         "startTime": "09:00:00"
@@ -122,9 +124,8 @@ public class PatchPlaceTest : BaseMockServerTest
                   }
                 ],
                 "safetyEventExclusions": [
-                  "Quidem aspernatur saepe aut.",
-                  "Dolor odio quo.",
-                  "Dolor eum."
+                  "Quas nemo.",
+                  "Error tenetur sunt."
                 ],
                 "streetView": {
                   "headingDegrees": 90,

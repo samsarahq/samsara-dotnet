@@ -11,6 +11,13 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         Values.Assigned
     );
 
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem AwaitingEstimateApproval =
+        new(Values.AwaitingEstimateApproval);
+
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem AwaitingEstimates = new(
+        Values.AwaitingEstimates
+    );
+
     public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem Cancelled = new(
         Values.Cancelled
     );
@@ -25,8 +32,23 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
         Values.Estimate
     );
 
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem EstimateApprovalDenied =
+        new(Values.EstimateApprovalDenied);
+
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem EstimateApproved = new(
+        Values.EstimateApproved
+    );
+
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem EstimatesReady = new(
+        Values.EstimatesReady
+    );
+
     public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem InProgress = new(
         Values.InProgress
+    );
+
+    public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem NeedsVendorSelection = new(
+        Values.NeedsVendorSelection
     );
 
     public static readonly StreamWorkOrdersRequestWorkOrderStatusesItem OnHold = new(Values.OnHold);
@@ -100,6 +122,10 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
     {
         public const string Assigned = "Assigned";
 
+        public const string AwaitingEstimateApproval = "Awaiting estimate approval";
+
+        public const string AwaitingEstimates = "Awaiting estimates";
+
         public const string Cancelled = "Cancelled";
 
         public const string Closed = "Closed";
@@ -108,7 +134,15 @@ public readonly record struct StreamWorkOrdersRequestWorkOrderStatusesItem : ISt
 
         public const string Estimate = "Estimate";
 
+        public const string EstimateApprovalDenied = "Estimate approval denied";
+
+        public const string EstimateApproved = "Estimate approved";
+
+        public const string EstimatesReady = "Estimates ready";
+
         public const string InProgress = "In Progress";
+
+        public const string NeedsVendorSelection = "Needs Vendor Selection";
 
         public const string OnHold = "On Hold";
 

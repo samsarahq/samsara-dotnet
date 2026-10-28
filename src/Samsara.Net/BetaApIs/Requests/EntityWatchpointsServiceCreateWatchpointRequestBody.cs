@@ -7,11 +7,20 @@ namespace Samsara.Net.BetaApIs;
 [Serializable]
 public record EntityWatchpointsServiceCreateWatchpointRequestBody
 {
+    [JsonPropertyName("bearingRange")]
+    public WatchpointBearingRangeTypeRequestBody? BearingRange { get; set; }
+
+    /// <summary>
+    /// Conditions to detect in new observations. Defaults to none. Requires custom detections to be enabled for your organization. Types must be distinct.
+    /// </summary>
+    [JsonPropertyName("customDetections")]
+    public IEnumerable<WatchpointCustomDetectionRequestTypeRequestBody>? CustomDetections { get; set; }
+
     [JsonPropertyName("location")]
     public required WatchpointLatLngTypeRequestBody Location { get; set; }
 
     /// <summary>
-    /// Recurrence frequency for observations.  Valid values: `justOnce`, `daily`, `weekly`, `monthly`
+    /// Recurrence frequency for observations.  Valid values: `justOnce`, `daily`, `weekly`, `monthly`, `every15Minutes`, `hourly`
     /// </summary>
     [JsonPropertyName("mode")]
     public required EntityWatchpointsServiceCreateWatchpointRequestBodyMode Mode { get; set; }
@@ -33,6 +42,12 @@ public record EntityWatchpointsServiceCreateWatchpointRequestBody
     /// </summary>
     [JsonPropertyName("observationType")]
     public required EntityWatchpointsServiceCreateWatchpointRequestBodyObservationType ObservationType { get; set; }
+
+    /// <summary>
+    /// Sends the authenticated user a dashboard notification for each new observation. Defaults to false. Ignored when the API token is not associated with a user.
+    /// </summary>
+    [JsonPropertyName("sendDashboardNotification")]
+    public bool? SendDashboardNotification { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

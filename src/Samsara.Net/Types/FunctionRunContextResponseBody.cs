@@ -24,13 +24,13 @@ public record FunctionRunContextResponseBody : IJsonOnDeserialized
     /// The request payload sent to the Function.
     /// </summary>
     [JsonPropertyName("requestPayload")]
-    public Dictionary<string, object?>? RequestPayload { get; set; }
+    public object? RequestPayload { get; set; }
 
     /// <summary>
     /// The response payload returned by the Function.
     /// </summary>
     [JsonPropertyName("responsePayload")]
-    public Dictionary<string, object?>? ResponsePayload { get; set; }
+    public object? ResponsePayload { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

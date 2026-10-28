@@ -57,7 +57,6 @@ public class CreateVendorTest : BaseMockServerTest
                 "phoneNumbers": [
                   "12345",
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "placeId": {

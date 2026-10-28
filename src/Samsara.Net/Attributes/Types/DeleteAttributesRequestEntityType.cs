@@ -11,6 +11,8 @@ public readonly record struct DeleteAttributesRequestEntityType : IStringEnum
 
     public static readonly DeleteAttributesRequestEntityType Asset = new(Values.Asset);
 
+    public static readonly DeleteAttributesRequestEntityType WorkOrder = new(Values.WorkOrder);
+
     public DeleteAttributesRequestEntityType(string value)
     {
         Value = value;
@@ -61,5 +63,7 @@ public readonly record struct DeleteAttributesRequestEntityType : IStringEnum
         public const string Driver = "driver";
 
         public const string Asset = "asset";
+
+        public const string WorkOrder = "workOrder";
     }
 }

@@ -243,7 +243,7 @@ public partial class ReadingsClient : IReadingsClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 9)
             .Add("after", request.After)
             .Add("readingIds", request.ReadingIds)
             .Add("entityIds", request.EntityIds)
@@ -252,6 +252,7 @@ public partial class ReadingsClient : IReadingsClient
             .Add("entityType", request.EntityType)
             .Add("assetTypes", request.AssetTypes)
             .Add("includeExternalIds", request.IncludeExternalIds)
+            .Add("hasGateway", request.HasGateway)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()

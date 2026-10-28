@@ -228,10 +228,11 @@ public partial class WorkOrdersClient : IWorkOrdersClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 3)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 4)
             .Add("ids", request.Ids)
             .Add("after", request.After)
             .Add("includeExternalIds", request.IncludeExternalIds)
+            .Add("includeAttributes", request.IncludeAttributes)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()
@@ -539,7 +540,7 @@ public partial class WorkOrdersClient : IWorkOrdersClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 7)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
             .Add("after", request.After)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
@@ -547,6 +548,7 @@ public partial class WorkOrdersClient : IWorkOrdersClient
             .Add("assetIds", request.AssetIds)
             .Add("assignedUserIds", request.AssignedUserIds)
             .Add("includeExternalIds", request.IncludeExternalIds)
+            .Add("includeAttributes", request.IncludeAttributes)
             .MergeAdditional(options?.AdditionalQueryParameters)
             .Build();
         var _headers = await new Samsara.Net.Core.HeadersBuilder.Builder()

@@ -45,6 +45,12 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<WorkOrderAttachmentObjectResponseBody>? Attachments { get; set; }
 
     /// <summary>
+    /// Custom fields (attributes) set on the work order. Only returned when the request includes attributes.
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyResponseBody>? Attributes { get; set; }
+
+    /// <summary>
     /// The category of the work order
     /// </summary>
     [JsonPropertyName("category")]
@@ -69,7 +75,7 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     public required DateTime CreatedAtTime { get; set; }
 
     /// <summary>
-    /// The ID of the creator of the work order.
+    /// The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.
     /// </summary>
     [JsonPropertyName("createdByUserId")]
     public string? CreatedByUserId { get; set; }
@@ -147,7 +153,7 @@ public record WorkOrderObjectResponseBody : IJsonOnDeserialized
     public DateTime? StartedAtTime { get; set; }
 
     /// <summary>
-    /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
+    /// The status of the work order, including system-managed estimate workflow statuses.  Valid values: `Assigned`, `Awaiting estimate approval`, `Awaiting estimates`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `Estimate approval denied`, `Estimate approved`, `Estimates ready`, `In Progress`, `Needs Vendor Selection`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]
     public required WorkOrderObjectResponseBodyStatus Status { get; set; }

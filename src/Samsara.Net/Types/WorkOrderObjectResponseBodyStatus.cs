@@ -9,6 +9,14 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
 {
     public static readonly WorkOrderObjectResponseBodyStatus Assigned = new(Values.Assigned);
 
+    public static readonly WorkOrderObjectResponseBodyStatus AwaitingEstimateApproval = new(
+        Values.AwaitingEstimateApproval
+    );
+
+    public static readonly WorkOrderObjectResponseBodyStatus AwaitingEstimates = new(
+        Values.AwaitingEstimates
+    );
+
     public static readonly WorkOrderObjectResponseBodyStatus Cancelled = new(Values.Cancelled);
 
     public static readonly WorkOrderObjectResponseBodyStatus Closed = new(Values.Closed);
@@ -17,7 +25,23 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
 
     public static readonly WorkOrderObjectResponseBodyStatus Estimate = new(Values.Estimate);
 
+    public static readonly WorkOrderObjectResponseBodyStatus EstimateApprovalDenied = new(
+        Values.EstimateApprovalDenied
+    );
+
+    public static readonly WorkOrderObjectResponseBodyStatus EstimateApproved = new(
+        Values.EstimateApproved
+    );
+
+    public static readonly WorkOrderObjectResponseBodyStatus EstimatesReady = new(
+        Values.EstimatesReady
+    );
+
     public static readonly WorkOrderObjectResponseBodyStatus InProgress = new(Values.InProgress);
+
+    public static readonly WorkOrderObjectResponseBodyStatus NeedsVendorSelection = new(
+        Values.NeedsVendorSelection
+    );
 
     public static readonly WorkOrderObjectResponseBodyStatus OnHold = new(Values.OnHold);
 
@@ -82,6 +106,10 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
     {
         public const string Assigned = "Assigned";
 
+        public const string AwaitingEstimateApproval = "Awaiting estimate approval";
+
+        public const string AwaitingEstimates = "Awaiting estimates";
+
         public const string Cancelled = "Cancelled";
 
         public const string Closed = "Closed";
@@ -90,7 +118,15 @@ public readonly record struct WorkOrderObjectResponseBodyStatus : IStringEnum
 
         public const string Estimate = "Estimate";
 
+        public const string EstimateApprovalDenied = "Estimate approval denied";
+
+        public const string EstimateApproved = "Estimate approved";
+
+        public const string EstimatesReady = "Estimates ready";
+
         public const string InProgress = "In Progress";
+
+        public const string NeedsVendorSelection = "Needs Vendor Selection";
 
         public const string OnHold = "On Hold";
 

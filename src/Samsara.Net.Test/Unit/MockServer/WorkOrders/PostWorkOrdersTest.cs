@@ -36,6 +36,24 @@ public class PostWorkOrdersTest : BaseMockServerTest
                     "urlExpiresAt": "2019-06-13T19:08:25.000Z"
                   }
                 ],
+                "attributes": [
+                  {
+                    "dateValues": [
+                      "2024-01-15",
+                      "2024-12-31"
+                    ],
+                    "id": "494123",
+                    "name": "Compliance/ELD",
+                    "numberValues": [
+                      867,
+                      5309
+                    ],
+                    "stringValues": [
+                      "HQ",
+                      "Leased"
+                    ]
+                  }
+                ],
                 "category": "PREVENTIVE",
                 "closingNotes": "Everything was fixed without issues.",
                 "completedAtTime": "2019-06-13T19:08:25.000Z",

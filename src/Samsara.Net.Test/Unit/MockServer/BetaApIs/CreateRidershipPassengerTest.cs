@@ -40,7 +40,7 @@ public class CreateRidershipPassengerTest : BaseMockServerTest
                 "lastName": "Doe",
                 "specialInstructions": {
                   "isGuardianRequired": false,
-                  "isSpecialEducation": true
+                  "isSpecialEducation": false
                 },
                 "tagIds": [
                   "5678",

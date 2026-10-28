@@ -21,7 +21,7 @@ public record AssetSharingAgreementResponseObjectResponseBody : IJsonOnDeseriali
     public string? AcceptedAtTime { get; set; }
 
     /// <summary>
-    /// User ID who accepted the agreement (visible only to recipient).
+    /// User ID who accepted the agreement (visible only to the accepting organization).
     /// </summary>
     [JsonPropertyName("acceptedByUserId")]
     public string? AcceptedByUserId { get; set; }
@@ -51,13 +51,19 @@ public record AssetSharingAgreementResponseObjectResponseBody : IJsonOnDeseriali
     public required string CreatedAtTime { get; set; }
 
     /// <summary>
-    /// User ID in provider org who created the agreement.
+    /// Party that created the agreement, determined from the authenticated caller. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: `provider`, `recipient`, `unknown`
+    /// </summary>
+    [JsonPropertyName("createdByParty")]
+    public required AssetSharingAgreementResponseObjectResponseBodyCreatedByParty CreatedByParty { get; set; }
+
+    /// <summary>
+    /// User ID who created the agreement (visible only to the creating organization).
     /// </summary>
     [JsonPropertyName("createdByUserId")]
     public string? CreatedByUserId { get; set; }
 
     /// <summary>
-    /// User ID in provider org who soft-deleted the agreement.
+    /// User ID who soft-deleted the agreement (visible only to the deleting organization).
     /// </summary>
     [JsonPropertyName("deletedByUserId")]
     public string? DeletedByUserId { get; set; }
@@ -73,6 +79,12 @@ public record AssetSharingAgreementResponseObjectResponseBody : IJsonOnDeseriali
     /// </summary>
     [JsonPropertyName("operator")]
     public required AssetSharingAgreementResponseObjectResponseBodyOperator Operator { get; set; }
+
+    /// <summary>
+    /// Party whose Asset Sharing license supports the agreement. Older agreements default to provider. Returns unknown if the party cannot be determined.  Valid values: `provider`, `recipient`, `unknown`
+    /// </summary>
+    [JsonPropertyName("payer")]
+    public required AssetSharingAgreementResponseObjectResponseBodyPayer Payer { get; set; }
 
     /// <summary>
     /// List of data packages the provider will see.
@@ -107,7 +119,7 @@ public record AssetSharingAgreementResponseObjectResponseBody : IJsonOnDeseriali
     public string? RejectedAtTime { get; set; }
 
     /// <summary>
-    /// User ID who rejected the agreement (visible only to recipient).
+    /// User ID who rejected the agreement (visible only to the rejecting organization).
     /// </summary>
     [JsonPropertyName("rejectedByUserId")]
     public string? RejectedByUserId { get; set; }

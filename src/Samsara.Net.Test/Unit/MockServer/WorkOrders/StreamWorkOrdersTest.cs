@@ -31,6 +31,24 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                       "urlExpiresAt": "2019-06-13T19:08:25.000Z"
                     }
                   ],
+                  "attributes": [
+                    {
+                      "dateValues": [
+                        "2024-01-15",
+                        "2024-12-31"
+                      ],
+                      "id": "494123",
+                      "name": "Compliance/ELD",
+                      "numberValues": [
+                        867,
+                        5309
+                      ],
+                      "stringValues": [
+                        "HQ",
+                        "Leased"
+                      ]
+                    }
+                  ],
                   "category": "PREVENTIVE",
                   "closingNotes": "Everything was fixed without issues.",
                   "completedAtTime": "2019-06-13T19:08:25.000Z",
@@ -46,6 +64,7 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                   },
                   "dueAtTime": "2019-06-13T19:08:25.000Z",
                   "engineHours": 91823,
+                  "externalId": "WO-10482",
                   "id": "5",
                   "invoiceNumber": "123456",
                   "items": [
@@ -123,8 +142,6 @@ public class StreamWorkOrdersTest : BaseMockServerTest
                   "updatedAtTime": "2019-06-13T19:08:25.000Z",
                   "vendorUuid": "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                   "workOrderTemplateIds": [
-                    "5523a39f-42ef-4820-83d0-dfe73dbe7853",
-                    "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                     "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                     "5523a39f-42ef-4820-83d0-dfe73dbe7853"
                   ]

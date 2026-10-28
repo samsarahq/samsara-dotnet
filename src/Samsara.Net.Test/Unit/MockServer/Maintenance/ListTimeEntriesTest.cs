@@ -16,6 +16,8 @@ public class ListTimeEntriesTest : BaseMockServerTest
               "data": [
                 {
                   "activityType": "unknown",
+                  "activityTypeId": "12345",
+                  "activityTypeName": "12345",
                   "clockInAtTime": "2026-07-09T14:10:47.648Z",
                   "clockInLocation": {
                     "latitude": 42.2364884,

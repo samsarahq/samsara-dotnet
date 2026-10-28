@@ -26,8 +26,7 @@ public class CreateAssetSharingAgreementTest : BaseMockServerTest
                 "all",
                 "maintenance"
               ],
-              "recipientOrganizationId": "456",
-              "recipientOrganizationName": "Acme Logistics"
+              "recipientOrganizationId": "456"
             }
             """;
 
@@ -40,10 +39,12 @@ public class CreateAssetSharingAgreementTest : BaseMockServerTest
                 "canceledByParty": "provider",
                 "canceledByUserId": "678",
                 "createdAtTime": "2024-01-13T10:00:00Z",
+                "createdByParty": "provider",
                 "createdByUserId": "111",
                 "deletedByUserId": "111",
                 "id": "33333333-3333-3333-3333-333333333333",
                 "operator": "provider",
+                "payer": "provider",
                 "providerDataPackages": [
                   "safety",
                   "maintenance"
@@ -102,7 +103,6 @@ public class CreateAssetSharingAgreementTest : BaseMockServerTest
                         AssetSharingAgreementsCreateAssetSharingAgreementRequestBodyRecipientDataPackagesItem.Maintenance,
                     },
                 RecipientOrganizationId = "456",
-                RecipientOrganizationName = "Acme Logistics",
             }
         );
         JsonAssert.AreEqual(response, mockResponse);

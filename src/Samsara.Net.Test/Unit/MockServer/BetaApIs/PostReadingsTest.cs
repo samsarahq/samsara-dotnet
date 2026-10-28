@@ -18,9 +18,7 @@ public class PostReadingsTest : BaseMockServerTest
                   "entityType": "asset",
                   "happenedAtTime": "2023-10-27T10:00:00Z",
                   "readingId": "airInletPressure",
-                  "value": {
-                    "key": "value"
-                  }
+                  "value": "off"
                 }
               ]
             }
@@ -48,7 +46,7 @@ public class PostReadingsTest : BaseMockServerTest
                             EntityType = ReadingDatapointRequestBodyEntityType.Asset,
                             HappenedAtTime = "2023-10-27T10:00:00Z",
                             ReadingId = "airInletPressure",
-                            Value = new Dictionary<string, object?>() { { "key", "value" } },
+                            Value = "off",
                         },
                     },
                 }
