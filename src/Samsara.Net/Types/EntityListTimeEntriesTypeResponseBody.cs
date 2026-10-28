@@ -21,6 +21,18 @@ public record EntityListTimeEntriesTypeResponseBody : IJsonOnDeserialized
     public EntityListTimeEntriesTypeResponseBodyActivityType? ActivityType { get; set; }
 
     /// <summary>
+    /// ID of the non-repair activity, including activity types defined by the organization, which activityType reports as unknown. Omitted for work-order time.
+    /// </summary>
+    [JsonPropertyName("activityTypeId")]
+    public string? ActivityTypeId { get; set; }
+
+    /// <summary>
+    /// The organization's display name for the non-repair activity. Omitted for work-order time.
+    /// </summary>
+    [JsonPropertyName("activityTypeName")]
+    public string? ActivityTypeName { get; set; }
+
+    /// <summary>
     /// Time when the technician clocked in.
     /// </summary>
     [JsonPropertyName("clockInAtTime")]

@@ -44,11 +44,8 @@ public record ReadingDatapointRequestBody : IJsonOnDeserialized
     [JsonPropertyName("readingId")]
     public required string ReadingId { get; set; }
 
-    /// <summary>
-    /// The value of the reading. Can be any object. See the /readings/definitions endpoint for the value type for each reading.
-    /// </summary>
     [JsonPropertyName("value")]
-    public Dictionary<string, object?> Value { get; set; } = new Dictionary<string, object?>();
+    public required object Value { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

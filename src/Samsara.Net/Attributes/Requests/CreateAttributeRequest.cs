@@ -20,7 +20,7 @@ public record CreateAttributeRequest
     public IEnumerable<CreateAttributeRequestEntities>? Entities { get; set; }
 
     /// <summary>
-    /// Denotes the type of entity, driver or asset.
+    /// Denotes the type of entity, driver, asset, or workOrder. `workOrder` requires work order attributes to be enabled for the organization. Work order attributes are created without `entities`; set attribute values on work orders through the work orders API.
     /// </summary>
     [JsonPropertyName("entityType")]
     public required CreateAttributeRequestEntityType EntityType { get; set; }

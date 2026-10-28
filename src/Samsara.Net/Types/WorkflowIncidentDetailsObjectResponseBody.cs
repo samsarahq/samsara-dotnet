@@ -191,6 +191,9 @@ public record WorkflowIncidentDetailsObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("tamperingDetected")]
     public TamperingDetectedResponseBody? TamperingDetected { get; set; }
 
+    [JsonPropertyName("thermographTemperature")]
+    public ThermographTemperatureResponseBody? ThermographTemperature { get; set; }
+
     [JsonPropertyName("tireFaults")]
     public TireFaultsResponseBody? TireFaults { get; set; }
 

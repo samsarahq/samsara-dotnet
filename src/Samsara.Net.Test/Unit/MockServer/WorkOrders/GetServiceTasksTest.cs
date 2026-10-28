@@ -24,7 +24,8 @@ public class GetServiceTasksTest : BaseMockServerTest
                   },
                   "id": "abf63a9a-4d75-423d-b49f-38a071e6ce36",
                   "name": "Oil Change",
-                  "subcategory": "Oil and Lubrication"
+                  "subcategory": "Oil and Lubrication",
+                  "vmrsCode": "034-005-001"
                 }
               ],
               "pagination": {

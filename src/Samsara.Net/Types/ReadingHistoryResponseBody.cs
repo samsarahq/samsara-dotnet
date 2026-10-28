@@ -36,7 +36,7 @@ public record ReadingHistoryResponseBody : IJsonOnDeserialized
     /// The value of the reading.
     /// </summary>
     [JsonPropertyName("value")]
-    public Dictionary<string, object?>? Value { get; set; }
+    public object? Value { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

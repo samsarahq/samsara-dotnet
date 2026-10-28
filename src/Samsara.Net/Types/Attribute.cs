@@ -18,7 +18,7 @@ public record Attribute : IJsonOnDeserialized
     public AttributeAttributeType? AttributeType { get; set; }
 
     /// <summary>
-    /// Denotes the type of entity, driver or asset. Valid values: `driver`, `asset`.
+    /// Denotes the type of entity, driver, asset, or workOrder. Valid values: `driver`, `asset`, `workOrder`.
     /// </summary>
     [JsonPropertyName("entityType")]
     public AttributeEntityType? EntityType { get; set; }

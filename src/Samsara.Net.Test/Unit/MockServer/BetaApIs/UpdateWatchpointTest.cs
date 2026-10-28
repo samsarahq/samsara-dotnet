@@ -18,7 +18,17 @@ public class UpdateWatchpointTest : BaseMockServerTest
         const string mockResponse = """
             {
               "data": {
+                "bearingRange": {
+                  "endDegrees": 270,
+                  "startDegrees": 90
+                },
                 "createdAtTime": "2026-07-15T10:00:00Z",
+                "customDetections": [
+                  {
+                    "query": "Only flag work zones with visible workers wearing high-visibility clothing.",
+                    "type": "unknown"
+                  }
+                ],
                 "id": "2eb0e68c-d728-4d2f-b9a0-8bc6ded86422",
                 "lastObservationTime": "2019-06-13T19:08:25Z",
                 "location": {

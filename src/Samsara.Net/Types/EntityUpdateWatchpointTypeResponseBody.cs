@@ -14,11 +14,20 @@ public record EntityUpdateWatchpointTypeResponseBody : IJsonOnDeserialized
     private readonly IDictionary<string, JsonElement> _extensionData =
         new Dictionary<string, JsonElement>();
 
+    [JsonPropertyName("bearingRange")]
+    public WatchpointBearingRangeTypeResponseBody? BearingRange { get; set; }
+
     /// <summary>
     /// Time when the watchpoint resource was created.
     /// </summary>
     [JsonPropertyName("createdAtTime")]
     public required string CreatedAtTime { get; set; }
+
+    /// <summary>
+    /// Configured detections. Omitted when none are configured.
+    /// </summary>
+    [JsonPropertyName("customDetections")]
+    public IEnumerable<WatchpointCustomDetectionResponseTypeResponseBody>? CustomDetections { get; set; }
 
     /// <summary>
     /// Unique identifier for the watchpoint.
@@ -36,7 +45,7 @@ public record EntityUpdateWatchpointTypeResponseBody : IJsonOnDeserialized
     public required WatchpointLatLngTypeResponseBody Location { get; set; }
 
     /// <summary>
-    /// Recurrence frequency for observations.  Valid values: `unknown`, `justOnce`, `daily`, `weekly`, `monthly`
+    /// Recurrence frequency for observations.  Valid values: `unknown`, `justOnce`, `daily`, `weekly`, `monthly`, `every15Minutes`, `hourly`
     /// </summary>
     [JsonPropertyName("mode")]
     public required EntityUpdateWatchpointTypeResponseBodyMode Mode { get; set; }

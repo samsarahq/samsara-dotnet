@@ -19,6 +19,12 @@ public readonly record struct EntityUpdateWatchpointTypeResponseBodyMode : IStri
 
     public static readonly EntityUpdateWatchpointTypeResponseBodyMode Monthly = new(Values.Monthly);
 
+    public static readonly EntityUpdateWatchpointTypeResponseBodyMode Every15Minutes = new(
+        Values.Every15Minutes
+    );
+
+    public static readonly EntityUpdateWatchpointTypeResponseBodyMode Hourly = new(Values.Hourly);
+
     public EntityUpdateWatchpointTypeResponseBodyMode(string value)
     {
         Value = value;
@@ -81,5 +87,9 @@ public readonly record struct EntityUpdateWatchpointTypeResponseBodyMode : IStri
         public const string Weekly = "weekly";
 
         public const string Monthly = "monthly";
+
+        public const string Every15Minutes = "every15Minutes";
+
+        public const string Hourly = "hourly";
     }
 }

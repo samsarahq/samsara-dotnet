@@ -37,6 +37,8 @@ public class UpdateVendorTest : BaseMockServerTest
                 },
                 "emailAddresses": [
                   "12345",
+                  "12345",
+                  "12345",
                   "12345"
                 ],
                 "externalId": "12345",
@@ -53,7 +55,6 @@ public class UpdateVendorTest : BaseMockServerTest
                 "notes": "12345",
                 "payeeId": "12345",
                 "phoneNumbers": [
-                  "12345",
                   "12345",
                   "12345",
                   "12345"

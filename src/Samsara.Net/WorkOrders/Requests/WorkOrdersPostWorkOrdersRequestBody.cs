@@ -26,6 +26,12 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public string? AssignedUserId { get; set; }
 
     /// <summary>
+    /// A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute `id`. Use `stringValues` for text, single-select, and multi-select attributes, `numberValues` for number attributes, and `dateValues` (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyRequestBody>? Attributes { get; set; }
+
+    /// <summary>
     /// The category of the work order
     /// </summary>
     [JsonPropertyName("category")]
@@ -36,6 +42,12 @@ public record WorkOrdersPostWorkOrdersRequestBody
     /// </summary>
     [JsonPropertyName("completedAtTime")]
     public DateTime? CompletedAtTime { get; set; }
+
+    /// <summary>
+    /// ID of the dashboard user to attribute as the work order creator for display and creator notifications. Does not change who is recorded as the API actor in the activity log. Must be a user in the organization. When omitted, defaults to the API token owner. Accepted only when the organization has the create-created-by feature enabled.
+    /// </summary>
+    [JsonPropertyName("createdByUserId")]
+    public string? CreatedByUserId { get; set; }
 
     /// <summary>
     /// A description of what needs to be fixed.
@@ -113,7 +125,7 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public DateTime? StartedAtTime { get; set; }
 
     /// <summary>
-    /// The initial status of the work order. Defaults to Open when not provided.  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
+    /// The initial user-selectable status of the work order. Defaults to Open when not provided. Estimate workflow statuses are system-managed and cannot be set directly.  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]
     public WorkOrdersPostWorkOrdersRequestBodyStatus? Status { get; set; }

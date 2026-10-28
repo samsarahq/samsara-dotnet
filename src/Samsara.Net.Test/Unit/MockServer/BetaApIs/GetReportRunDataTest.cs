@@ -22,34 +22,21 @@ public class GetReportRunDataTest : BaseMockServerTest
                 ],
                 "rows": [
                   [
-                    {
-                      "key": "value"
-                    },
-                    {
-                      "key": "value"
-                    },
-                    {
-                      "key": "value"
-                    },
-                    {
-                      "key": "value"
-                    }
+                    "Dignissimos iusto quae pariatur vel non.",
+                    "Porro corporis ipsum.",
+                    "Eos doloribus omnis dolor."
                   ],
                   [
-                    {
-                      "key": "value"
-                    },
-                    {
-                      "key": "value"
-                    }
+                    "Natus consequatur ad a.",
+                    "Sit tempora.",
+                    "Reiciendis quo assumenda.",
+                    "Fugit ab ut nobis dolorem cupiditate eos."
                   ],
                   [
-                    {
-                      "key": "value"
-                    },
-                    {
-                      "key": "value"
-                    }
+                    "Voluptatibus placeat qui impedit et et ut.",
+                    "Necessitatibus vel voluptas nobis at dignissimos.",
+                    "Officia aut qui et.",
+                    "Dolores nobis quia voluptas mollitia officiis."
                   ]
                 ],
                 "status": "complete"

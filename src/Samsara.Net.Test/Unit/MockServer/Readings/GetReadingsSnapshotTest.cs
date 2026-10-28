@@ -21,9 +21,7 @@ public class GetReadingsSnapshotTest : BaseMockServerTest
                   },
                   "happenedAtTime": "2020-01-27T07:06:25Z",
                   "readingId": "engineSpeed",
-                  "value": {
-                    "key": "value"
-                  }
+                  "value": "off"
                 }
               ],
               "pagination": {

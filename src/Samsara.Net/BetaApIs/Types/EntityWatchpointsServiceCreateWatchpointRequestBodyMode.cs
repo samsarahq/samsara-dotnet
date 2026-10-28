@@ -25,6 +25,13 @@ public readonly record struct EntityWatchpointsServiceCreateWatchpointRequestBod
         Values.Monthly
     );
 
+    public static readonly EntityWatchpointsServiceCreateWatchpointRequestBodyMode Every15Minutes =
+        new(Values.Every15Minutes);
+
+    public static readonly EntityWatchpointsServiceCreateWatchpointRequestBodyMode Hourly = new(
+        Values.Hourly
+    );
+
     public EntityWatchpointsServiceCreateWatchpointRequestBodyMode(string value)
     {
         Value = value;
@@ -87,5 +94,9 @@ public readonly record struct EntityWatchpointsServiceCreateWatchpointRequestBod
         public const string Weekly = "weekly";
 
         public const string Monthly = "monthly";
+
+        public const string Every15Minutes = "every15Minutes";
+
+        public const string Hourly = "hourly";
     }
 }

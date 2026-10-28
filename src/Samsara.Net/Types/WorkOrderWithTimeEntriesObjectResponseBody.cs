@@ -45,6 +45,12 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public IEnumerable<WorkOrderAttachmentObjectResponseBody>? Attachments { get; set; }
 
     /// <summary>
+    /// Custom fields (attributes) set on the work order. Returned by the work order endpoints when includeAttributes is true, and in work order webhook and stream payloads when work order attributes are enabled for the organization.
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyResponseBody>? Attributes { get; set; }
+
+    /// <summary>
     /// The category of the work order
     /// </summary>
     [JsonPropertyName("category")]
@@ -69,7 +75,7 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public required DateTime CreatedAtTime { get; set; }
 
     /// <summary>
-    /// The ID of the creator of the work order.
+    /// The ID of the creator of the work order. On create, integrations may optionally set this to attribute Created-by UI and creator notifications to a dashboard user; the activity log still records the API token owner as the create actor when that override is used.
     /// </summary>
     [JsonPropertyName("createdByUserId")]
     public string? CreatedByUserId { get; set; }
@@ -94,6 +100,12 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     /// </summary>
     [JsonPropertyName("engineHours")]
     public long? EngineHours { get; set; }
+
+    /// <summary>
+    /// Identifier for this work order in a third-party system, as set when the work order was imported (for example a Fleetio or Eptura work order ID). Returned by the work order endpoints when the request sets `includeExternalIds=true`, and in work order webhook payloads, when the work order has an external ID. Use it to match imported work orders to their source records, for example before attaching files with POST /maintenance/work-orders/attachments. Only returned for organizations with this field enabled.
+    /// </summary>
+    [JsonPropertyName("externalId")]
+    public string? ExternalId { get; set; }
 
     /// <summary>
     /// The unique id of the work order.
@@ -147,7 +159,7 @@ public record WorkOrderWithTimeEntriesObjectResponseBody : IJsonOnDeserialized
     public DateTime? StartedAtTime { get; set; }
 
     /// <summary>
-    /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
+    /// The status of the work order, including system-managed estimate workflow statuses.  Valid values: `Assigned`, `Awaiting estimate approval`, `Awaiting estimates`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `Estimate approval denied`, `Estimate approved`, `Estimates ready`, `In Progress`, `Needs Vendor Selection`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]
     public required WorkOrderWithTimeEntriesObjectResponseBodyStatus Status { get; set; }

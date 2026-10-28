@@ -20,9 +20,7 @@ public class GetReadingsHistoryTest : BaseMockServerTest
                     "key": "value"
                   },
                   "happenedAtTime": "2020-01-27T07:06:25Z",
-                  "value": {
-                    "key": "value"
-                  }
+                  "value": "off"
                 }
               ],
               "pagination": {

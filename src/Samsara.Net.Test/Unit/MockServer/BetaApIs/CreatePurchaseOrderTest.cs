@@ -31,7 +31,6 @@ public class CreatePurchaseOrderTest : BaseMockServerTest
                 "invoiceNumber": "INV-12345",
                 "mediaItemIds": [
                   "12345",
-                  "12345",
                   "12345"
                 ],
                 "notes": "Deliver to maintenance shop.",

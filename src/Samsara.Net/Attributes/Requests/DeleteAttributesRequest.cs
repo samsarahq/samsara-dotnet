@@ -13,7 +13,7 @@ public record DeleteAttributesRequest
     public required string Id { get; set; }
 
     /// <summary>
-    /// Denotes the type of entity, driver or asset.
+    /// Denotes the type of entity, driver, asset, or workOrder. `workOrder` requires work order attributes to be enabled for the organization.
     /// </summary>
     [JsonIgnore]
     public required DeleteAttributesRequestEntityType EntityType { get; set; }

@@ -7,7 +7,7 @@ namespace Samsara.Net.Attributes;
 public record GetAttributesByEntityTypeRequest
 {
     /// <summary>
-    /// Denotes the type of entity, driver or asset.
+    /// Denotes the type of entity, driver, asset, or workOrder. `workOrder` requires work order attributes to be enabled for the organization.
     /// </summary>
     [JsonIgnore]
     public required GetAttributesByEntityTypeRequestEntityType EntityType { get; set; }

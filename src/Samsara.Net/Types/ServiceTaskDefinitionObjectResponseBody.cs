@@ -53,6 +53,12 @@ public record ServiceTaskDefinitionObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("subcategory")]
     public string? Subcategory { get; set; }
 
+    /// <summary>
+    /// Full VMRS code path (e.g. 034-005-001) assigned to the service task. Omitted when the task has no VMRS code or the organization has VMRS codes turned off.
+    /// </summary>
+    [JsonPropertyName("vmrsCode")]
+    public string? VmrsCode { get; set; }
+
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();
 

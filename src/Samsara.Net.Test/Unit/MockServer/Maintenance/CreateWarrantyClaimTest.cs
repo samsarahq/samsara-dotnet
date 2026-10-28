@@ -56,8 +56,6 @@ public class CreateWarrantyClaimTest : BaseMockServerTest
                 },
                 "linkedWorkOrderIds": [
                   "12345",
-                  "12345",
-                  "12345",
                   "12345"
                 ],
                 "mediaItemIds": [

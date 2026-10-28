@@ -696,6 +696,18 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "thermographTemperature": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "tireFaults": {
                           "driver": {
                             "id": "id"
@@ -1462,6 +1474,18 @@ public class GetIncidentsTest : BaseMockServerTest
                           }
                         },
                         "tamperingDetected": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "thermographTemperature": {
                           "driver": {
                             "id": "id"
                           },
@@ -2260,6 +2284,18 @@ public class GetIncidentsTest : BaseMockServerTest
                             "serial": "serial"
                           }
                         },
+                        "thermographTemperature": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
                         "tireFaults": {
                           "driver": {
                             "id": "id"
@@ -3026,6 +3062,18 @@ public class GetIncidentsTest : BaseMockServerTest
                           }
                         },
                         "tamperingDetected": {
+                          "driver": {
+                            "id": "id"
+                          },
+                          "trailer": {
+                            "id": "id"
+                          },
+                          "vehicle": {
+                            "id": "id",
+                            "serial": "serial"
+                          }
+                        },
+                        "thermographTemperature": {
                           "driver": {
                             "id": "id"
                           },

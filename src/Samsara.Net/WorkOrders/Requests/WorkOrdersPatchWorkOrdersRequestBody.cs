@@ -20,6 +20,12 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     public string? AssignedUserId { get; set; }
 
     /// <summary>
+    /// A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute `id`. Use `stringValues` for text, single-select, and multi-select attributes, `numberValues` for number attributes, and `dateValues` (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
+    /// </summary>
+    [JsonPropertyName("attributes")]
+    public IEnumerable<GoaAttributeTinyRequestBody>? Attributes { get; set; }
+
+    /// <summary>
     /// The category of the work order
     /// </summary>
     [JsonPropertyName("category")]
@@ -119,7 +125,7 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     public DateTime? StartedAtTime { get; set; }
 
     /// <summary>
-    /// The status of the work order  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
+    /// The user-selectable status of the work order. Estimate workflow statuses are system-managed; use the estimate API for approval and award actions.  Valid values: `Assigned`, `Cancelled`, `Closed`, `Completed`, `Estimate`, `In Progress`, `On Hold`, `Open`, `Pending Approval`, `Pending Parts`, `Planning`
     /// </summary>
     [JsonPropertyName("status")]
     public WorkOrdersPatchWorkOrdersRequestBodyStatus? Status { get; set; }

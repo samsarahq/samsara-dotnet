@@ -17,12 +17,8 @@ public class GetFunctionRunTest : BaseMockServerTest
                 "completedAtTime": "2021-01-01T00:00:30.000Z",
                 "context": {
                   "requestId": "req-550e8400-e29b-41d4-a716-446655440000",
-                  "requestPayload": {
-                    "key": "value"
-                  },
-                  "responsePayload": {
-                    "key": "value"
-                  }
+                  "requestPayload": "Optio magnam earum sunt exercitationem.",
+                  "responsePayload": "Aspernatur eos exercitationem."
                 },
                 "correlationId": "550e8400-e29b-41d4-a716-446655440000",
                 "name": "my-function",

@@ -44,10 +44,16 @@ public record StreamWorkOrdersRequest
     public IEnumerable<string> AssignedUserIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// When true, populates `maintenanceSite.placeExternalIds` on each work order by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
+    /// When true, populates `externalId` on each work order and `maintenanceSite.placeExternalIds` by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
     /// </summary>
     [JsonIgnore]
     public bool? IncludeExternalIds { get; set; }
+
+    /// <summary>
+    /// Whether to include the work order's custom fields (attributes) in the response. Defaults to false.
+    /// </summary>
+    [JsonIgnore]
+    public bool? IncludeAttributes { get; set; }
 
     /// <inheritdoc />
     public override string ToString()
