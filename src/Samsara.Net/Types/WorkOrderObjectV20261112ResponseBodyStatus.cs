@@ -1,0 +1,158 @@
+using System.Text.Json.Serialization;
+using Samsara.Net.Core;
+
+namespace Samsara.Net;
+
+[JsonConverter(typeof(StringEnumSerializer<WorkOrderObjectV20261112ResponseBodyStatus>))]
+[Serializable]
+public readonly record struct WorkOrderObjectV20261112ResponseBodyStatus : IStringEnum
+{
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Assigned = new(
+        Values.Assigned
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus AwaitingEstimateApproval =
+        new(Values.AwaitingEstimateApproval);
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus AwaitingEstimates = new(
+        Values.AwaitingEstimates
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Cancelled = new(
+        Values.Cancelled
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Closed = new(Values.Closed);
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Completed = new(
+        Values.Completed
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Estimate = new(
+        Values.Estimate
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus EstimateApprovalDenied = new(
+        Values.EstimateApprovalDenied
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus EstimateApproved = new(
+        Values.EstimateApproved
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus EstimatesReady = new(
+        Values.EstimatesReady
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus InProgress = new(
+        Values.InProgress
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus NeedsVendorSelection = new(
+        Values.NeedsVendorSelection
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus OnHold = new(Values.OnHold);
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Open = new(Values.Open);
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus PendingApproval = new(
+        Values.PendingApproval
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus PendingParts = new(
+        Values.PendingParts
+    );
+
+    public static readonly WorkOrderObjectV20261112ResponseBodyStatus Planning = new(
+        Values.Planning
+    );
+
+    public WorkOrderObjectV20261112ResponseBodyStatus(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static WorkOrderObjectV20261112ResponseBodyStatus FromCustom(string value)
+    {
+        return new WorkOrderObjectV20261112ResponseBodyStatus(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(
+        WorkOrderObjectV20261112ResponseBodyStatus value1,
+        string value2
+    ) => value1.Value.Equals(value2);
+
+    public static bool operator !=(
+        WorkOrderObjectV20261112ResponseBodyStatus value1,
+        string value2
+    ) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(WorkOrderObjectV20261112ResponseBodyStatus value) =>
+        value.Value;
+
+    public static explicit operator WorkOrderObjectV20261112ResponseBodyStatus(string value) =>
+        new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Assigned = "Assigned";
+
+        public const string AwaitingEstimateApproval = "Awaiting estimate approval";
+
+        public const string AwaitingEstimates = "Awaiting estimates";
+
+        public const string Cancelled = "Cancelled";
+
+        public const string Closed = "Closed";
+
+        public const string Completed = "Completed";
+
+        public const string Estimate = "Estimate";
+
+        public const string EstimateApprovalDenied = "Estimate approval denied";
+
+        public const string EstimateApproved = "Estimate approved";
+
+        public const string EstimatesReady = "Estimates ready";
+
+        public const string InProgress = "In Progress";
+
+        public const string NeedsVendorSelection = "Needs Vendor Selection";
+
+        public const string OnHold = "On Hold";
+
+        public const string Open = "Open";
+
+        public const string PendingApproval = "Pending Approval";
+
+        public const string PendingParts = "Pending Parts";
+
+        public const string Planning = "Planning";
+    }
+}

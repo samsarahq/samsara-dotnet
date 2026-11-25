@@ -11,9 +11,7 @@ public class DeleteDriverVehicleAssignmentsTest : BaseMockServerTest
     public void MockServerTest()
     {
         const string requestJson = """
-            {
-              "vehicleId": "281474978683353"
-            }
+            {}
             """;
 
         Server
@@ -29,10 +27,7 @@ public class DeleteDriverVehicleAssignmentsTest : BaseMockServerTest
 
         Assert.DoesNotThrowAsync(async () =>
             await Client.DriverVehicleAssignments.DeleteDriverVehicleAssignmentsAsync(
-                new DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody
-                {
-                    VehicleId = "281474978683353",
-                }
+                new DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBody()
             )
         );
     }

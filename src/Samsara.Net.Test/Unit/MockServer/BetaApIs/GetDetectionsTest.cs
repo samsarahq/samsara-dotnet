@@ -16,6 +16,24 @@ public class GetDetectionsTest : BaseMockServerTest
               "data": [
                 {
                   "asset": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "2024-01-15",
+                          "2024-12-31"
+                        ],
+                        "id": "494123",
+                        "name": "Compliance/ELD",
+                        "numberValues": [
+                          867,
+                          5309
+                        ],
+                        "stringValues": [
+                          "HQ",
+                          "Leased"
+                        ]
+                      }
+                    ],
                     "id": "asset-23ab7cd1-5f6e-4c9b-8f21-1e3b7a9c4d8f",
                     "name": "Truck 102 - Volvo VNL",
                     "tags": [
@@ -28,6 +46,24 @@ public class GetDetectionsTest : BaseMockServerTest
                   },
                   "createdAtTime": "2025-09-20T11:15:30Z",
                   "driver": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "2024-01-15",
+                          "2024-12-31"
+                        ],
+                        "id": "494123",
+                        "name": "Compliance/ELD",
+                        "numberValues": [
+                          867,
+                          5309
+                        ],
+                        "stringValues": [
+                          "HQ",
+                          "Leased"
+                        ]
+                      }
+                    ],
                     "id": "driver-8b12fa3d-3c6e-4e2a-9a76-24c1f7b23d9a",
                     "name": "Alex Johnson",
                     "tags": [

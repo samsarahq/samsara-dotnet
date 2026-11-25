@@ -25,6 +25,7 @@ public class ListPreventiveMaintenanceSchedulesTest : BaseMockServerTest
                       "id": "281474976710656"
                     }
                   ],
+                  "scheduleType": "B",
                   "title": "Engine oil and filter change",
                   "workOrderTemplateId": "281474976710656"
                 }

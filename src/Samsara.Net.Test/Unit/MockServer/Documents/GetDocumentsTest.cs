@@ -37,7 +37,40 @@ public class GetDocumentsTest : BaseMockServerTest
                       "label": "Load weight",
                       "type": "photo",
                       "value": {
+                        "barcodeValue": [
+                          {
+                            "barcodeType": "org.gs1.EAN-13",
+                            "barcodeValue": "0853883003114"
+                          }
+                        ],
+                        "dateTimeValue": {
+                          "dateTime": "1973-12-20T17:06:49.000Z"
+                        },
+                        "multipleChoiceValue": [
+                          {
+                            "selected": false,
+                            "value": "Yes"
+                          }
+                        ],
                         "numberValue": 123.456,
+                        "photoValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "scannedDocumentValue": [
+                          {
+                            "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
+                            "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                          }
+                        ],
+                        "signatureValue": {
+                          "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                          "name": "John Smith",
+                          "signedAtTime": "1989-09-25T02:38:09.000Z",
+                          "url": "https://samsara-driver-media-upload.s3.us-west-2.amazonaws.com/123456"
+                        },
                         "stringValue": "Red Truck"
                       }
                     }

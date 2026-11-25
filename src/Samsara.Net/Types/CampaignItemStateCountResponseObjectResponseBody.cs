@@ -21,7 +21,7 @@ public record CampaignItemStateCountResponseObjectResponseBody : IJsonOnDeserial
     public required long Count { get; set; }
 
     /// <summary>
-    /// State of the counted items.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `complete`, `dismissed`, `cancelled`, `unknown`
+    /// State of the counted items.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `workOrderCanceled`, `complete`, `dismissed`, `cancelled`, `unknown`
     /// </summary>
     [JsonPropertyName("state")]
     public required CampaignItemStateCountResponseObjectResponseBodyState State { get; set; }

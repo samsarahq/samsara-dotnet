@@ -27,6 +27,22 @@ public class GetDataInputDataHistoryTest : BaseMockServerTest
                   ],
                   "locationPoints": [
                     {
+                      "gpsLocation": {
+                        "formattedAddress": "350 Rhode Island St, San Francisco CA, 94103",
+                        "gpsMetersPerSecond": 35.5,
+                        "headingDegrees": 91.2,
+                        "latitude": 42.44817,
+                        "longitude": -71.224716,
+                        "place": {
+                          "city": "San Francisco",
+                          "houseNumber": "350",
+                          "neighborhood": "Castro",
+                          "poi": "400",
+                          "postcode": "94103",
+                          "state": "CA",
+                          "street": "Rhode Island"
+                        }
+                      },
                       "time": "2020-01-27T07:06:25Z"
                     }
                   ],

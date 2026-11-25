@@ -73,6 +73,12 @@ public record CoachingSessionsResponseResponseBody : IJsonOnDeserialized
     public required CoachingSessionsResponseResponseBodySessionStatus SessionStatus { get; set; }
 
     /// <summary>
+    /// Type of the coaching session. This is distinct from coachingType, which is the share type. Returned as unknown when the session has no valid type.  Valid values: `driverSelfOneOff`, `driverSelfSession`, `oneOff`, `session`, `unknown`
+    /// </summary>
+    [JsonPropertyName("sessionType")]
+    public CoachingSessionsResponseResponseBodySessionType? SessionType { get; set; }
+
+    /// <summary>
     /// Time coaching session was updated in UTC.
     /// </summary>
     [JsonPropertyName("updatedAtTime")]

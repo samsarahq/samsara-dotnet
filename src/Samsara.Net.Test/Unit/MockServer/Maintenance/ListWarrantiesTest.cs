@@ -20,6 +20,18 @@ public class ListWarrantiesTest : BaseMockServerTest
                     "durationDays": 12345,
                     "durationMonths": 12345,
                     "engineDurationHours": 12345,
+                    "exclusions": [
+                      {
+                        "id": "12345",
+                        "vmrsCode": "12345"
+                      }
+                    ],
+                    "inclusions": [
+                      {
+                        "id": "12345",
+                        "vmrsCode": "12345"
+                      }
+                    ],
                     "isOdometerDistanceUnlimited": true,
                     "name": "12345",
                     "notes": "12345",
@@ -34,6 +46,18 @@ public class ListWarrantiesTest : BaseMockServerTest
                       "durationDays": 12345,
                       "durationMonths": 12345,
                       "engineDurationHours": 12345,
+                      "exclusions": [
+                        {
+                          "id": "12345",
+                          "vmrsCode": "12345"
+                        }
+                      ],
+                      "inclusions": [
+                        {
+                          "id": "12345",
+                          "vmrsCode": "12345"
+                        }
+                      ],
                       "isOdometerDistanceUnlimited": true,
                       "name": "12345",
                       "notes": "12345",

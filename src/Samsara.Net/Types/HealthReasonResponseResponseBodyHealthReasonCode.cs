@@ -15,6 +15,9 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
         Values.CameraMisaligned
     );
 
+    public static readonly HealthReasonResponseResponseBodyHealthReasonCode CriticalHardwareIssue =
+        new(Values.CriticalHardwareIssue);
+
     public static readonly HealthReasonResponseResponseBodyHealthReasonCode DataPending = new(
         Values.DataPending
     );
@@ -146,6 +149,8 @@ public readonly record struct HealthReasonResponseResponseBodyHealthReasonCode :
         public const string AssetUnplugged = "assetUnplugged";
 
         public const string CameraMisaligned = "cameraMisaligned";
+
+        public const string CriticalHardwareIssue = "criticalHardwareIssue";
 
         public const string DataPending = "dataPending";
 

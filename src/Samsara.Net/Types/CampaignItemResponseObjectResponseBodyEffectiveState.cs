@@ -22,6 +22,9 @@ public readonly record struct CampaignItemResponseObjectResponseBodyEffectiveSta
     public static readonly CampaignItemResponseObjectResponseBodyEffectiveState WorkOrderCreated =
         new(Values.WorkOrderCreated);
 
+    public static readonly CampaignItemResponseObjectResponseBodyEffectiveState WorkOrderCanceled =
+        new(Values.WorkOrderCanceled);
+
     public static readonly CampaignItemResponseObjectResponseBodyEffectiveState Complete = new(
         Values.Complete
     );
@@ -104,6 +107,8 @@ public readonly record struct CampaignItemResponseObjectResponseBodyEffectiveSta
         public const string Ready = "ready";
 
         public const string WorkOrderCreated = "workOrderCreated";
+
+        public const string WorkOrderCanceled = "workOrderCanceled";
 
         public const string Complete = "complete";
 

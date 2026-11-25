@@ -27,6 +27,7 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 "claimStatus": "unknown",
                 "componentInstanceIds": [
                   "12345",
+                  "12345",
                   "12345"
                 ],
                 "concern": "12345",
@@ -41,6 +42,10 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 "id": "12345",
                 "labor": [
                   {
+                    "cost": {
+                      "amount": "12345",
+                      "currency": "12345"
+                    },
                     "description": "12345",
                     "serviceTaskId": "12345",
                     "sourceWorkOrderId": "12345",
@@ -52,9 +57,12 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 },
                 "linkedWorkOrderIds": [
                   "12345",
+                  "12345",
                   "12345"
                 ],
                 "mediaItemIds": [
+                  "12345",
+                  "12345",
                   "12345",
                   "12345"
                 ],
@@ -64,6 +72,10 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 },
                 "parts": [
                   {
+                    "cost": {
+                      "amount": "12345",
+                      "currency": "12345"
+                    },
                     "description": "12345",
                     "partDefinitionId": "12345",
                     "partId": "12345",
@@ -76,6 +88,10 @@ public class UpdateWarrantyClaimTest : BaseMockServerTest
                 "reimbursedAtTime": "2019-06-13T19:08:25Z",
                 "reimbursements": [
                   {
+                    "reimbursement": {
+                      "amount": "12345",
+                      "currency": "12345"
+                    },
                     "workOrderId": "12345"
                   }
                 ],

@@ -45,6 +45,12 @@ public record ServiceTaskInstanceInputObjectRequestBody : IJsonOnDeserialized
     public WorkOrderMoneyObjectRequestBody? PartsCost { get; set; }
 
     /// <summary>
+    /// Complete stored procedure list for an existing service task, in the order GET returns procedures inside subtasks. That order sorts by rank. Omit to leave procedures unchanged. Each name must match the stored procedure at the same rank position. Names may repeat, so the match is positional. Only isCompleted is applied. Forms and procedure metadata are preserved, including the stored procedure order. Rejected when the service task has no stored procedures, including on create.
+    /// </summary>
+    [JsonPropertyName("procedures")]
+    public IEnumerable<ServiceTaskProcedureInputObjectRequestBody>? Procedures { get; set; }
+
+    /// <summary>
     /// ID of the service task.
     /// </summary>
     [JsonPropertyName("serviceTaskId")]

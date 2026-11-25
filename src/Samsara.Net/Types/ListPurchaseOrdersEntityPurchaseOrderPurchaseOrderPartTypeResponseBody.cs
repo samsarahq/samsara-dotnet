@@ -39,6 +39,12 @@ public record ListPurchaseOrdersEntityPurchaseOrderPurchaseOrderPartTypeResponse
     [JsonPropertyName("partSamsara")]
     public EntityListPurchaseOrdersPartDefinitionRefTypeResponseBody? PartSamsara { get; set; }
 
+    [JsonPropertyName("partsRequest")]
+    public EntityListPurchaseOrdersRequisitionRefTypeResponseBody? PartsRequest { get; set; }
+
+    [JsonPropertyName("partsRequestLine")]
+    public EntityListPurchaseOrdersRequisitionLineRefTypeResponseBody? PartsRequestLine { get; set; }
+
     [JsonPropertyName("place")]
     public EntityListPurchaseOrdersPlaceRefTypeResponseBody? Place { get; set; }
 

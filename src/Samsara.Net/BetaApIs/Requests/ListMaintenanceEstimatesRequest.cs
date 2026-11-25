@@ -19,7 +19,7 @@ public record ListMaintenanceEstimatesRequest
     public IEnumerable<string> WorkOrderIds { get; set; } = new List<string>();
 
     /// <summary>
-    /// Up to 10 comma-separated vendor-location identifiers; narrows the primary selection.
+    /// Up to 10 comma-separated vendor-location identifiers; narrows the primary selection. Resolve locations via GET /fleet/maintenance/vendor-locations.
     /// </summary>
     [JsonIgnore]
     public IEnumerable<string> VendorIds { get; set; } = new List<string>();

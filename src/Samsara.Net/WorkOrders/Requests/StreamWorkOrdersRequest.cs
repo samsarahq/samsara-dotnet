@@ -44,6 +44,12 @@ public record StreamWorkOrdersRequest
     public IEnumerable<string> AssignedUserIds { get; set; } = new List<string>();
 
     /// <summary>
+    /// Work Order shop id filter. Up to 50 ids.
+    /// </summary>
+    [JsonIgnore]
+    public IEnumerable<string> ShopIds { get; set; } = new List<string>();
+
+    /// <summary>
     /// When true, populates `externalId` on each work order and `maintenanceSite.placeExternalIds` by resolving the linked Place's external ids. Defaults to false. Adds one batch lookup per response page.
     /// </summary>
     [JsonIgnore]

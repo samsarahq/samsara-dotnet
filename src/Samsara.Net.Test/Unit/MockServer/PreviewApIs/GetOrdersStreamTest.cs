@@ -16,7 +16,7 @@ public class GetOrdersStreamTest : BaseMockServerTest
             {
               "data": [
                 {
-                  "createdAtTime": "1990-08-31T23:49:19.000Z",
+                  "createdAtTime": "1991-03-10T05:05:44.000Z",
                   "customerProperties": [
                     {
                       "key": "purchaseOrderNumber",
@@ -27,7 +27,7 @@ public class GetOrdersStreamTest : BaseMockServerTest
                   "samsaraCustomerOrderName": "Order 12345",
                   "tasks": [
                     {
-                      "createdAtTime": "1977-01-10T23:36:08.000Z",
+                      "createdAtTime": "1978-04-10T10:12:48.000Z",
                       "customerProperties": [
                         {
                           "key": "purchaseOrderNumber",
@@ -44,23 +44,38 @@ public class GetOrdersStreamTest : BaseMockServerTest
                           "capacityId": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
                           "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
                           "label": "pallets",
-                          "value": 0.23962707185822993
+                          "value": 0.9093771758102452
                         }
                       ],
                       "routeId": "12345678",
-                      "serviceDurationSeconds": 1920015009061035500,
+                      "serviceDurationSeconds": 5383547431771835000,
+                      "serviceLocation": {
+                        "addressId": "12345678",
+                        "customAddress": {
+                          "addressLine1": "123 Main St",
+                          "addressLine2": "Dock 4",
+                          "city": "Oakland",
+                          "country": "US",
+                          "formattedAddress": "123 Main St, Oakland, CA 94607",
+                          "latitude": 0.17951671081016027,
+                          "longitude": 0.7662845147315845,
+                          "postalCode": "94607",
+                          "state": "CA"
+                        },
+                        "serviceLocationType": "unknown"
+                      },
                       "serviceWindows": [
                         {
-                          "endTime": "1975-07-07T21:36:20.000Z",
+                          "endTime": "1985-04-25T22:02:51.000Z",
                           "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392",
-                          "startTime": "1975-02-20T04:43:33.000Z"
+                          "startTime": "1977-05-21T10:40:21.000Z"
                         }
                       ],
                       "taskType": "unknown",
-                      "updatedAtTime": "2014-02-20T05:13:14.000Z"
+                      "updatedAtTime": "1989-01-02T14:22:45.000Z"
                     }
                   ],
-                  "updatedAtTime": "2003-10-18T15:58:15.000Z"
+                  "updatedAtTime": "1994-05-17T11:50:16.000Z"
                 }
               ],
               "pagination": {

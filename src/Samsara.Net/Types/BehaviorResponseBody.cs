@@ -27,6 +27,24 @@ public record BehaviorResponseBody : IJsonOnDeserialized
     public IEnumerable<CoachableEventResponseBody>? CoachableEvents { get; set; }
 
     /// <summary>
+    /// Coaching status for the behavior. Returned as unknown when the behavior has no valid status.  Valid values: `completed`, `dismissed`, `disputed`, `incomplete`, `opened`, `unknown`
+    /// </summary>
+    [JsonPropertyName("coachingStatus")]
+    public BehaviorResponseBodyCoachingStatus? CoachingStatus { get; set; }
+
+    /// <summary>
+    /// Time the coaching behavior was created in UTC. Omitted when the behavior has no created time.
+    /// </summary>
+    [JsonPropertyName("createdAtTime")]
+    public DateTime? CreatedAtTime { get; set; }
+
+    /// <summary>
+    /// Time the coaching behavior is due in UTC. This is the behavior due date. It is distinct from the coaching session dueAtTime. Omitted when the behavior has no due date.
+    /// </summary>
+    [JsonPropertyName("dueAtTime")]
+    public DateTime? DueAtTime { get; set; }
+
+    /// <summary>
     /// Unique ID for the coaching behavior.
     /// </summary>
     [JsonPropertyName("id")]

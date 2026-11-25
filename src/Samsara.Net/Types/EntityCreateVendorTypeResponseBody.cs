@@ -5,7 +5,7 @@ using Samsara.Net.Core;
 namespace Samsara.Net;
 
 /// <summary>
-/// Vendor object
+/// vendor object
 /// </summary>
 [Serializable]
 public record EntityCreateVendorTypeResponseBody : IJsonOnDeserialized
@@ -15,94 +15,52 @@ public record EntityCreateVendorTypeResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Address of the vendor.
-    /// </summary>
-    [JsonPropertyName("address")]
-    public string? Address { get; set; }
-
-    /// <summary>
     /// Assets this vendor can service. Empty replaces inherited selections; null clears the setting.
     /// </summary>
     [JsonPropertyName("assetAttributeSelections")]
-    public IEnumerable<CreateVendorEntityVendorVendorAssetAttributeSelectionTypeResponseBody>? AssetAttributeSelections { get; set; }
+    public IEnumerable<CreateVendorGroupEntityVendorProfileVendorAssetAttributeSelectionTypeResponseBody>? AssetAttributeSelections { get; set; }
 
     /// <summary>
-    /// People to contact at the vendor.
+    /// Time when the vendor profile was created.
     /// </summary>
-    [JsonPropertyName("contacts")]
-    public IEnumerable<CreateVendorEntityVendorVendorContactTypeResponseBody>? Contacts { get; set; }
+    [JsonPropertyName("createdAtTime")]
+    public string? CreatedAtTime { get; set; }
 
     [JsonPropertyName("defaultLaborRatePerHour")]
-    public CreateVendorEntityVendorVendorHourlyMoneyTypeResponseBody? DefaultLaborRatePerHour { get; set; }
+    public CreateVendorGroupEntityVendorProfileVendorHourlyMoneyTypeResponseBody? DefaultLaborRatePerHour { get; set; }
 
     /// <summary>
-    /// Email addresses for the vendor.
-    /// </summary>
-    [JsonPropertyName("emailAddresses")]
-    public IEnumerable<string>? EmailAddresses { get; set; }
-
-    /// <summary>
-    /// External identifier for the vendor from an external system.
-    /// </summary>
-    [JsonPropertyName("externalId")]
-    public string? ExternalId { get; set; }
-
-    /// <summary>
-    /// Customer-supplied external identifiers for the vendor, interchangeable with id in filters. Only included in the response when includeExternalIds is set.
+    /// External identifiers belonging to this parent vendor.
     /// </summary>
     [JsonPropertyName("externalIds")]
-    public IEnumerable<CreateVendorEntityVendorVendorExternalIdTypeResponseBody>? ExternalIds { get; set; }
+    public IEnumerable<CreateVendorGroupEntityVendorProfileVendorGroupExternalIdTypeResponseBody>? ExternalIds { get; set; }
 
     /// <summary>
-    /// Internal unique identifier for the vendor.
+    /// Unique identifier for the vendor profile. Leave blank to create a profile.
     /// </summary>
     [JsonPropertyName("id")]
     public string? Id { get; set; }
 
     /// <summary>
-    /// Whether this vendor provides mobile service. When unset, the profile or system default applies.
+    /// Whether vendor locations inherit mobile service as their default.
     /// </summary>
     [JsonPropertyName("isMobile")]
     public bool? IsMobile { get; set; }
 
     /// <summary>
-    /// Whether this vendor location is preferred. When unset, the profile or system default applies.
+    /// Default preferred status inherited by vendor locations.
     /// </summary>
     [JsonPropertyName("isPreferred")]
     public bool? IsPreferred { get; set; }
 
     /// <summary>
-    /// Name of the vendor.
+    /// Name of the vendor profile.
     /// </summary>
     [JsonPropertyName("name")]
     public string? Name { get; set; }
 
-    /// <summary>
-    /// Additional notes about the vendor.
-    /// </summary>
-    [JsonPropertyName("notes")]
-    public string? Notes { get; set; }
-
-    /// <summary>
-    /// Free-text AP/ERP payee identifier for the vendor. Not a reference to a Samsara entity.
-    /// </summary>
-    [JsonPropertyName("payeeId")]
-    public string? PayeeId { get; set; }
-
-    /// <summary>
-    /// Phone numbers for the vendor.
-    /// </summary>
-    [JsonPropertyName("phoneNumbers")]
-    public IEnumerable<string>? PhoneNumbers { get; set; }
-
-    [JsonPropertyName("placeId")]
-    public EntityCreateVendorPlaceRefTypeResponseBody? PlaceId { get; set; }
-
-    /// <summary>
-    /// Description of services provided by the vendor.
-    /// </summary>
-    [JsonPropertyName("servicesProvided")]
-    public string? ServicesProvided { get; set; }
+    [JsonPropertyName("primaryCorporateContact")]
+    public CreateVendorGroupEntityVendorProfileVendorGroupPrimaryCorporateContactTypeResponseBody? PrimaryCorporateContact { get; set; }
 
     /// <summary>
     /// Own lifecycle status. Defaults to active. Unknown is read-only.  Valid values: `active`, `inactive`, `unknown`
@@ -111,16 +69,10 @@ public record EntityCreateVendorTypeResponseBody : IJsonOnDeserialized
     public EntityCreateVendorTypeResponseBodyStatus? Status { get; set; }
 
     /// <summary>
-    /// Vendor group ID. Null removes membership while preserving explicit overrides.
+    /// Time when the vendor profile was last updated.
     /// </summary>
-    [JsonPropertyName("vendorGroupId")]
-    public string? VendorGroupId { get; set; }
-
-    /// <summary>
-    /// User-defined identifier for the vendor.
-    /// </summary>
-    [JsonPropertyName("vendorId")]
-    public string? VendorId { get; set; }
+    [JsonPropertyName("updatedAtTime")]
+    public string? UpdatedAtTime { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

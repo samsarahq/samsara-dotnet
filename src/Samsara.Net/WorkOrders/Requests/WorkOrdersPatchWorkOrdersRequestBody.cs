@@ -14,10 +14,16 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     public DateTime? ArchivedAtTime { get; set; }
 
     /// <summary>
-    /// The ID of the assigned mechanic.
+    /// The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.
     /// </summary>
     [JsonPropertyName("assignedUserId")]
     public string? AssignedUserId { get; set; }
+
+    /// <summary>
+    /// Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. Omit this field to keep the current assignments. Send an empty array to clear them. The first ID is the primary assignee returned in assignedUserId. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.
+    /// </summary>
+    [JsonPropertyName("assignedUserIds")]
+    public IEnumerable<string>? AssignedUserIds { get; set; }
 
     /// <summary>
     /// A list of custom fields (attributes) to assign to the work order. If provided, this replaces the work order's entire set of attribute associations with exactly this list; omit this field to leave existing attribute associations unchanged, or pass an empty array to clear them. Each entry requires the attribute `id`. Use `stringValues` for text, single-select, and multi-select attributes, `numberValues` for number attributes, and `dateValues` (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
@@ -119,6 +125,12 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     public IEnumerable<ServiceTaskInstanceInputObjectRequestBody>? ServiceTaskInstances { get; set; }
 
     /// <summary>
+    /// ID of the shop associated with the work order. Omit this field to keep the shop already stored on the work order. Send an empty string to clear it. This is independent of the maintenance site (`placeId`).
+    /// </summary>
+    [JsonPropertyName("shopId")]
+    public string? ShopId { get; set; }
+
+    /// <summary>
     /// The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status changes to an in-progress status and this field is not provided.
     /// </summary>
     [JsonPropertyName("startedAtTime")]
@@ -134,7 +146,7 @@ public record WorkOrdersPatchWorkOrdersRequestBody
     public WorkOrderTaxObjectRequestBody? Tax { get; set; }
 
     /// <summary>
-    /// The vendor UUID for the work order.
+    /// The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.
     /// </summary>
     [JsonPropertyName("vendorUuid")]
     public string? VendorUuid { get; set; }

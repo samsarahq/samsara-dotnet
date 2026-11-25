@@ -27,6 +27,9 @@ public class GetTrailerStatsSnapshotTest : BaseMockServerTest
                     "headingDegrees": 7982033236946874000,
                     "latitude": 0.02659130816226228,
                     "longitude": 0.468774774626828,
+                    "reverseGeo": {
+                      "formattedLocation": "850 Made Up Lane, Orange, CA"
+                    },
                     "speedMilesPerHour": 842599652113183900,
                     "time": "2020-01-27T07:06:25Z"
                   },

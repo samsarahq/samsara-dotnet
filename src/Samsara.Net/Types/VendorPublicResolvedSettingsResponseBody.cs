@@ -22,7 +22,7 @@ public record VendorPublicResolvedSettingsResponseBody : IJsonOnDeserialized
         new List<VendorPublicAttributeSelectionResponseBody>();
 
     /// <summary>
-    /// system, vendorGroup, vendorLocation, or unknown.
+    /// system, vendor, vendorLocation, or unknown.
     /// </summary>
     [JsonPropertyName("assetAttributeSelectionsSource")]
     public required string AssetAttributeSelectionsSource { get; set; }
@@ -31,7 +31,7 @@ public record VendorPublicResolvedSettingsResponseBody : IJsonOnDeserialized
     public VendorPublicMoneyResponseBody? DefaultLaborRatePerHour { get; set; }
 
     /// <summary>
-    /// system, vendorGroup, vendorLocation, or unknown.
+    /// system, vendor, vendorLocation, or unknown.
     /// </summary>
     [JsonPropertyName("defaultLaborRatePerHourSource")]
     public required string DefaultLaborRatePerHourSource { get; set; }
@@ -49,7 +49,7 @@ public record VendorPublicResolvedSettingsResponseBody : IJsonOnDeserialized
     public required bool IsMobile { get; set; }
 
     /// <summary>
-    /// system, vendorGroup, vendorLocation, or unknown.
+    /// system, vendor, vendorLocation, or unknown.
     /// </summary>
     [JsonPropertyName("isMobileSource")]
     public required string IsMobileSource { get; set; }
@@ -61,7 +61,7 @@ public record VendorPublicResolvedSettingsResponseBody : IJsonOnDeserialized
     public required bool IsPreferred { get; set; }
 
     /// <summary>
-    /// system, vendorGroup, vendorLocation, or unknown.
+    /// system, vendor, vendorLocation, or unknown.
     /// </summary>
     [JsonPropertyName("isPreferredSource")]
     public required string IsPreferredSource { get; set; }

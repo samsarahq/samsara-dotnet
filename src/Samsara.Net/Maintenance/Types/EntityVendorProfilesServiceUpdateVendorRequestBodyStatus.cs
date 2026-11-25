@@ -1,0 +1,85 @@
+using System.Text.Json.Serialization;
+using Samsara.Net.Core;
+
+namespace Samsara.Net.Maintenance;
+
+[JsonConverter(
+    typeof(StringEnumSerializer<EntityVendorProfilesServiceUpdateVendorRequestBodyStatus>)
+)]
+[Serializable]
+public readonly record struct EntityVendorProfilesServiceUpdateVendorRequestBodyStatus : IStringEnum
+{
+    public static readonly EntityVendorProfilesServiceUpdateVendorRequestBodyStatus Active = new(
+        Values.Active
+    );
+
+    public static readonly EntityVendorProfilesServiceUpdateVendorRequestBodyStatus Inactive = new(
+        Values.Inactive
+    );
+
+    public static readonly EntityVendorProfilesServiceUpdateVendorRequestBodyStatus Unknown = new(
+        Values.Unknown
+    );
+
+    public EntityVendorProfilesServiceUpdateVendorRequestBodyStatus(string value)
+    {
+        Value = value;
+    }
+
+    /// <summary>
+    /// The string value of the enum.
+    /// </summary>
+    public string Value { get; }
+
+    /// <summary>
+    /// Create a string enum with the given value.
+    /// </summary>
+    public static EntityVendorProfilesServiceUpdateVendorRequestBodyStatus FromCustom(string value)
+    {
+        return new EntityVendorProfilesServiceUpdateVendorRequestBodyStatus(value);
+    }
+
+    public bool Equals(string? other)
+    {
+        return Value.Equals(other);
+    }
+
+    /// <summary>
+    /// Returns the string value of the enum.
+    /// </summary>
+    public override string ToString()
+    {
+        return Value;
+    }
+
+    public static bool operator ==(
+        EntityVendorProfilesServiceUpdateVendorRequestBodyStatus value1,
+        string value2
+    ) => value1.Value.Equals(value2);
+
+    public static bool operator !=(
+        EntityVendorProfilesServiceUpdateVendorRequestBodyStatus value1,
+        string value2
+    ) => !value1.Value.Equals(value2);
+
+    public static explicit operator string(
+        EntityVendorProfilesServiceUpdateVendorRequestBodyStatus value
+    ) => value.Value;
+
+    public static explicit operator EntityVendorProfilesServiceUpdateVendorRequestBodyStatus(
+        string value
+    ) => new(value);
+
+    /// <summary>
+    /// Constant strings for enum values
+    /// </summary>
+    [Serializable]
+    public static class Values
+    {
+        public const string Active = "active";
+
+        public const string Inactive = "inactive";
+
+        public const string Unknown = "unknown";
+    }
+}

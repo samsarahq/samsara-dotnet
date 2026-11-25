@@ -21,6 +21,9 @@ public class GetVehicleLocationsHistoryTest : BaseMockServerTest
                       "heading": 120,
                       "latitude": 122.142,
                       "longitude": -93.343,
+                      "reverseGeo": {
+                        "formattedLocation": "16 N Fair Oaks Ave, Pasadena, CA 91103"
+                      },
                       "speed": 48.3,
                       "time": "2020-01-27T07:06:25Z"
                     }

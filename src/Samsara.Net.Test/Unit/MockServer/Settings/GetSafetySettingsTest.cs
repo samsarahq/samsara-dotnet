@@ -16,7 +16,17 @@ public class GetSafetySettingsTest : BaseMockServerTest
                 {
                   "defaultVehicleType": "off",
                   "distractedDrivingDetectionAlerts": {
-                    "isEnabled": true
+                    "inattentiveDrivingDetectionAlerts": {
+                      "hasInCabAudioAlertsEnabled": true,
+                      "isEnabled": true,
+                      "speedingThresholdMph": 10
+                    },
+                    "isEnabled": true,
+                    "mobileUsageDetectionAlerts": {
+                      "hasInCabAudioAlertsEnabled": true,
+                      "isEnabled": true,
+                      "speedingThresholdMph": 5
+                    }
                   },
                   "followingDistanceDetectionAlerts": {
                     "durationMs": 15000,
@@ -28,7 +38,23 @@ public class GetSafetySettingsTest : BaseMockServerTest
                     "hasInCabAudioAlertsEnabled": true,
                     "isEnabled": true
                   },
-                  "harshEventSensitivity": {},
+                  "harshEventSensitivity": {
+                    "harshAccelSensitivityGForce": {
+                      "heavyDuty": "0.29",
+                      "lightDuty": "0.33",
+                      "passenger": "0.43"
+                    },
+                    "harshBrakeSensitivityGForce": {
+                      "heavyDuty": "0.29",
+                      "lightDuty": "0.33",
+                      "passenger": "0.43"
+                    },
+                    "harshTurnSensitivityGForce": {
+                      "heavyDuty": "0.29",
+                      "lightDuty": "0.33",
+                      "passenger": "0.43"
+                    }
+                  },
                   "harshEventSensitivityV2": {},
                   "policyViolationsDetectionAlerts": {
                     "eventsAvailableForTesting": [

@@ -32,8 +32,8 @@ public class GetRidershipPassengerTest : BaseMockServerTest
                 "isActive": true,
                 "lastName": "Doe",
                 "specialInstructions": {
-                  "isGuardianRequired": false,
-                  "isSpecialEducation": false
+                  "isGuardianRequired": true,
+                  "isSpecialEducation": true
                 },
                 "tagIds": [
                   "5678",

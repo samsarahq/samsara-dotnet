@@ -19,6 +19,10 @@ public readonly record struct CampaignItemResponseObjectResponseBodyState : IStr
         Values.WorkOrderCreated
     );
 
+    public static readonly CampaignItemResponseObjectResponseBodyState WorkOrderCanceled = new(
+        Values.WorkOrderCanceled
+    );
+
     public static readonly CampaignItemResponseObjectResponseBodyState Complete = new(
         Values.Complete
     );
@@ -95,6 +99,8 @@ public readonly record struct CampaignItemResponseObjectResponseBodyState : IStr
         public const string Ready = "ready";
 
         public const string WorkOrderCreated = "workOrderCreated";
+
+        public const string WorkOrderCanceled = "workOrderCanceled";
 
         public const string Complete = "complete";
 

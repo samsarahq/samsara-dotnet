@@ -106,6 +106,9 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionLowBatteryVoltage =
         new(Values.RecommendedActionLowBatteryVoltage);
 
+    public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionNeedsReplacement =
+        new(Values.RecommendedActionNeedsReplacement);
+
     public static readonly HealthResponseResponseBodyRecommendedAction RecommendedActionOemNotReporting =
         new(Values.RecommendedActionOemNotReporting);
 
@@ -278,6 +281,8 @@ public readonly record struct HealthResponseResponseBodyRecommendedAction : IStr
 
         public const string RecommendedActionLowBatteryVoltage =
             "recommendedActionLowBatteryVoltage";
+
+        public const string RecommendedActionNeedsReplacement = "recommendedActionNeedsReplacement";
 
         public const string RecommendedActionOemNotReporting = "recommendedActionOemNotReporting";
 

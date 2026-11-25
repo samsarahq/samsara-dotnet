@@ -19,6 +19,13 @@ public class GetPlacesTest : BaseMockServerTest
                   "addressLatitude": 37.7749,
                   "addressLongitude": -122.4194,
                   "businessContacts": {
+                    "contacts": [
+                      {
+                        "email": "bob@example.com",
+                        "name": "Bob Smith",
+                        "phoneNumber": "+14155555678"
+                      }
+                    ],
                     "email": [
                       "warehouse@example.com"
                     ],
@@ -46,10 +53,9 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "id": "12345",
                   "iftaExemptionTypes": [
-                    "Eum sapiente cum.",
-                    "Aut asperiores blanditiis quas nihil dolor.",
-                    "Eum maiores eos maiores.",
-                    "Provident ut."
+                    "Delectus accusamus quia adipisci vel ipsum quia.",
+                    "Et eos inventore rem blanditiis inventore et.",
+                    "In autem."
                   ],
                   "isAutoDismissRolledStopsEnabled": false,
                   "isShowAddressesEnabled": true,
@@ -67,10 +73,8 @@ public class GetPlacesTest : BaseMockServerTest
                   },
                   "notes": "Receiving 6-2",
                   "placeTypes": [
-                    "Alias repellat ut commodi velit.",
-                    "Animi qui.",
-                    "Ea voluptatem voluptas et architecto sapiente suscipit.",
-                    "Porro ipsum quo enim alias error."
+                    "Nemo dicta et est temporibus officiis.",
+                    "Est nemo molestias aut aut beatae libero."
                   ],
                   "routing": [
                     {
@@ -104,8 +108,8 @@ public class GetPlacesTest : BaseMockServerTest
                       "serviceWindows": [
                         {
                           "days": [
-                            "Illum alias perspiciatis.",
-                            "Iste dolores cupiditate delectus corrupti."
+                            "Voluptatem culpa in.",
+                            "Minus aut illo et doloribus."
                           ],
                           "endTime": "17:00:01",
                           "startTime": "09:00:00"
@@ -114,8 +118,8 @@ public class GetPlacesTest : BaseMockServerTest
                     }
                   ],
                   "safetyEventExclusions": [
-                    "Quas nemo.",
-                    "Error tenetur sunt."
+                    "Possimus blanditiis.",
+                    "Magnam saepe tenetur omnis."
                   ],
                   "streetView": {
                     "headingDegrees": 90,

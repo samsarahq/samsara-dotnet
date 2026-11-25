@@ -33,6 +33,10 @@ public class CreateRouteTest : BaseMockServerTest
                   "id": "45646",
                   "name": "Driver Bob"
                 },
+                "equipmentProfile": {
+                  "hubId": "018f7b62-7d55-7b9e-a92f-2a6b7ff10393",
+                  "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392"
+                },
                 "externalIds": {
                   "key": "value"
                 },

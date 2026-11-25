@@ -23,7 +23,14 @@ public class CreateAttributeTest : BaseMockServerTest
             {
               "data": {
                 "entities": [
-                  {}
+                  {
+                    "values": [
+                      {
+                        "id": "123e4567-e89b-12d3-a456-426614174000",
+                        "stringValue": "CDL"
+                      }
+                    ]
+                  }
                 ],
                 "attributeType": "single-select",
                 "entityType": "driver",

@@ -60,6 +60,12 @@ public class CreateMaintenanceEstimatesBatchTest : BaseMockServerTest
                     "externalIds": {
                       "repairSystem": "quote-123"
                     },
+                    "externalRequest": {
+                      "actionUrl": "https://example.com/requests/AI-563-1",
+                      "externalRequestId": "AI-563-1",
+                      "externalSystem": "Auto Integrate",
+                      "message": "Review quote in Auto Integrate"
+                    },
                     "id": "a81e26e6-50cd-4ae2-85b9-132c493c0871",
                     "isAwarded": false,
                     "lineItems": [

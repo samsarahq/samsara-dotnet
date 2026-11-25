@@ -27,16 +27,28 @@ public record PartInstanceInputObjectRequestBody : IJsonOnDeserialized
     public string? Id { get; set; }
 
     /// <summary>
+    /// ID of the maintenance site that stocks this part. Uses the same ID as GET /maintenance/sites. This is not the Places API placeId. Accepted only when total part quantity is enabled for the organization.
+    /// </summary>
+    [JsonPropertyName("maintenanceSiteId")]
+    public string? MaintenanceSiteId { get; set; }
+
+    /// <summary>
     /// ID of the part definition.
     /// </summary>
     [JsonPropertyName("partId")]
     public required string PartId { get; set; }
 
     /// <summary>
-    /// The quantity of the part in the parts pre defined unit of measure.
+    /// The stock quantity of the part in the part's predefined unit of measure. When requestedQuantity is also sent, quantity is the stock amount and requestedQuantity is the total demand. Required when requestedQuantity is omitted.
     /// </summary>
     [JsonPropertyName("quantity")]
-    public required double Quantity { get; set; }
+    public double? Quantity { get; set; }
+
+    /// <summary>
+    /// Total quantity needed for the part, in the part's predefined unit of measure, including any shortage. When both fields are sent, this field is the total demand and quantity is the stock amount. Send 0 for zero demand. A shortage request is reconciled asynchronously after the work order is saved. Accepted only when total part quantity is enabled for the organization.
+    /// </summary>
+    [JsonPropertyName("requestedQuantity")]
+    public double? RequestedQuantity { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

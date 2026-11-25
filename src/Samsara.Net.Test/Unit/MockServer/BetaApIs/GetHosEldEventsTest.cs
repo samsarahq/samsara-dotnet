@@ -24,6 +24,13 @@ public class GetHosEldEventsTest : BaseMockServerTest
                       "eldEventRecordOrigin": 2,
                       "eldEventRecordStatus": 2,
                       "eldEventType": 6,
+                      "location": {
+                        "city": "San Francisco",
+                        "eldLocation": "3.1 mi WSW San Francisco, CA",
+                        "latitude": 123.456,
+                        "longitude": 37.459,
+                        "state": "CA"
+                      },
                       "remark": {
                         "comment": "Pre-Trip Inspection",
                         "locationDescription": "Near San Francisco",
@@ -31,7 +38,11 @@ public class GetHosEldEventsTest : BaseMockServerTest
                       },
                       "time": "2019-06-13T19:08:25Z",
                       "totalEngineHours": 2894.1,
-                      "totalVehicleMeters": 1004566
+                      "totalVehicleMeters": 1004566,
+                      "vehicle": {
+                        "id": "494123",
+                        "name": "Fleet Truck #1"
+                      }
                     }
                   ],
                   "externalIds": {

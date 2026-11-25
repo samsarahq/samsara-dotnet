@@ -15,7 +15,25 @@ public class GetDriverEfficiencyTest : BaseMockServerTest
             {
               "data": {
                 "driverSummaries": [
-                  {}
+                  {
+                    "driver": {
+                      "id": "88668",
+                      "name": "Susan Bob",
+                      "username": "susanbob"
+                    },
+                    "vehicleSummaries": [
+                      {
+                        "vehicle": {
+                          "ExternalIds": {
+                            "maintenanceId": "250020",
+                            "payrollId": "ABFS18600"
+                          },
+                          "id": "123456789",
+                          "name": "Midwest Truck #4"
+                        }
+                      }
+                    ]
+                  }
                 ],
                 "summaryEndTime": "2020-03-16T16:00:00.000Z",
                 "summaryStartTime": "2020-03-15T16:00:00.000Z"

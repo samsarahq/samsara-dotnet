@@ -41,7 +41,7 @@ public record RidershipPassengersCreateRidershipPassengerRequestBody
     public RidershipPassengerSpecialInstructionsInputRequestBody? SpecialInstructions { get; set; }
 
     /// <summary>
-    /// Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send `[]` to create a passenger without tags.
+    /// Up to 10 Samsara tag IDs to assign to the passenger; external IDs are not supported here. Omit or send `[]` to create a passenger without tags. If your API token is restricted to certain tags, every tag must be within its scope.
     /// </summary>
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }

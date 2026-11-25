@@ -26,6 +26,9 @@ public record BaseRouteResponseObjectResponseBody : IJsonOnDeserialized
     [JsonPropertyName("driver")]
     public GoaDriverTinyResponseResponseBody? Driver { get; set; }
 
+    [JsonPropertyName("equipmentProfile")]
+    public RouteEquipmentProfileObjectResponseBody? EquipmentProfile { get; set; }
+
     /// <summary>
     /// A map of external ids
     /// </summary>

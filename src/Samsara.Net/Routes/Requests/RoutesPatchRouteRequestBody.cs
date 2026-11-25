@@ -19,6 +19,9 @@ public record RoutesPatchRouteRequestBody
     [JsonPropertyName("driverId")]
     public string? DriverId { get; set; }
 
+    [JsonPropertyName("equipmentProfile")]
+    public RouteEquipmentProfileObjectRequestBody? EquipmentProfile { get; set; }
+
     /// <summary>
     /// A map of external ids
     /// </summary>

@@ -16,6 +16,23 @@ public class GetAempEquipmentListTest : BaseMockServerTest
               "Fleet": {
                 "Equipment": [
                   {
+                    "CumulativeOperatingHours": {
+                      "Hour": 12.34,
+                      "datetime": "2019-06-13T19:08:25Z"
+                    },
+                    "DEFRemaining": {
+                      "Percent": 12,
+                      "datetime": "2019-06-13T19:08:25Z"
+                    },
+                    "Distance": {
+                      "Odometer": 12,
+                      "OdometerUnits": "kilometre",
+                      "datetime": "2019-06-13T19:08:25Z"
+                    },
+                    "EngineStatus": {
+                      "Running": true,
+                      "datetime": "2019-06-13T19:08:25Z"
+                    },
                     "EquipmentHeader": {
                       "EquipmentID": "494123",
                       "Model": "S630 T4",
@@ -23,6 +40,10 @@ public class GetAempEquipmentListTest : BaseMockServerTest
                       "PIN": "8V8WD530FLN016251",
                       "SerialNumber": "8V8WD530FLN016251",
                       "UnitInstallDateTime": "2019-06-13T19:08:25Z"
+                    },
+                    "FuelRemaining": {
+                      "Percent": 12,
+                      "datetime": "2019-06-13T19:08:25Z"
                     },
                     "Location": {
                       "Latitude": 12.34,

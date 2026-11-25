@@ -21,6 +21,13 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "yardMoveDistanceMeters": 1287
                   },
                   "driver": {
+                    "eldSettings": {
+                      "rulesets": [
+                        {
+                          "jurisdiction": "AR"
+                        }
+                      ]
+                    },
                     "id": "45646",
                     "name": "Driver Bob",
                     "timezone": "America/Los_Angeles"
@@ -51,6 +58,14 @@ public class GetHosDailyLogsTest : BaseMockServerTest
                     "trailerNames": [
                       "10293",
                       "Trailer ID 1"
+                    ],
+                    "vehicles": [
+                      {
+                        "id": "494123",
+                        "licensePlate": "6SAM123",
+                        "name": "Fleet Truck #1",
+                        "vehicleVin": "1GBJ6P1B2HV112765"
+                      }
                     ]
                   },
                   "pendingDutyStatusDurations": {
