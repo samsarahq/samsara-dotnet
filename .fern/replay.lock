@@ -240,14 +240,20 @@ generations:
     cli_version: unknown
     generator_versions:
       fernapi/fern-csharp-sdk: 2.20.5
-current_generation: 84fc882636e794a89dc1ee914579e5c3d0fb1380
+  - commit_sha: 74836804ba578a7f37096242b6f9b626aa365976
+    tree_hash: 1b28146fdacd751f67772e5b059194433b027b48
+    timestamp: 2026-11-25T11:45:38.660Z
+    cli_version: unknown
+    generator_versions:
+      fernapi/fern-csharp-sdk: 2.20.5
+current_generation: 74836804ba578a7f37096242b6f9b626aa365976
 patches:
   - id: patch-7dc50af1
     content_hash: sha256:095cc58c49c5a9cba9469bccbda8a13d05c4f3a7a45b916ce6380c1e8618c3ce
     original_commit: 7dc50af194e01215d26e28fdbd4317a17cca1832
     original_message: Use OIDC trusted publishing for NuGet instead of API key
     original_author: Dariusz Wojciechowski <dariusz.wojciechowski@samsara.com>
-    base_generation: 84fc882636e794a89dc1ee914579e5c3d0fb1380
+    base_generation: 74836804ba578a7f37096242b6f9b626aa365976
     files:
       - .github/workflows/ci.yml
     patch_content: |
