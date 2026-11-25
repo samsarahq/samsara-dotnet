@@ -51,6 +51,23 @@ public class GetQualificationTypesTest : BaseMockServerTest
                           "type": "number"
                         }
                       ],
+                      "conditionalActions": [
+                        {
+                          "actions": [
+                            {
+                              "fieldId": "bd673690-f09b-4f3d-93bd-99c4b2971554",
+                              "sectionId": "bd673690-f09b-4f3d-93bd-99c4b2971554",
+                              "type": "askFollowupQuestion"
+                            }
+                          ],
+                          "condition": {
+                            "selectedOptionIds": [
+                              "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7"
+                            ],
+                            "type": "multipleChoiceValueCondition"
+                          }
+                        }
+                      ],
                       "filterByRoleIds": [
                         "23d4d8d3-dc10-4e7a-a183-69968751f23e"
                       ],

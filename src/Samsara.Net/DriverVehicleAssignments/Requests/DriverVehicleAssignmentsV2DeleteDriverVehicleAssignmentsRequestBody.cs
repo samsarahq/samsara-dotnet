@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Samsara.Net;
 using Samsara.Net.Core;
 
 namespace Samsara.Net.DriverVehicleAssignments;
@@ -24,6 +25,9 @@ public record DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBod
     [JsonPropertyName("isPassenger")]
     public bool? IsPassenger { get; set; }
 
+    [JsonPropertyName("metadata")]
+    public DeleteDriverVehicleAssignmentsV2RequestBodyMetadataRequestBody? Metadata { get; set; }
+
     /// <summary>
     /// A start time in RFC 3339 format. Millisecond precision and timezones are supported. (Examples: 2019-06-13T19:08:25Z, 2019-06-13T19:08:25.455Z, OR 2015-09-15T14:00:12-04:00).
     /// </summary>
@@ -34,7 +38,7 @@ public record DriverVehicleAssignmentsV2DeleteDriverVehicleAssignmentsRequestBod
     /// ID of the vehicle. This can be either a unique Samsara ID or an [external ID](https://developers.samsara.com/docs/external-ids) for the vehicle.
     /// </summary>
     [JsonPropertyName("vehicleId")]
-    public required string VehicleId { get; set; }
+    public string? VehicleId { get; set; }
 
     /// <inheritdoc />
     public override string ToString()

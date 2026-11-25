@@ -540,13 +540,14 @@ public partial class WorkOrdersClient : IWorkOrdersClient
         CancellationToken cancellationToken = default
     )
     {
-        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 8)
+        var _queryString = new Samsara.Net.Core.QueryStringBuilder.Builder(capacity: 9)
             .Add("after", request.After)
             .Add("startTime", request.StartTime)
             .Add("endTime", request.EndTime)
             .Add("workOrderStatuses", request.WorkOrderStatuses)
             .Add("assetIds", request.AssetIds)
             .Add("assignedUserIds", request.AssignedUserIds)
+            .Add("shopIds", request.ShopIds)
             .Add("includeExternalIds", request.IncludeExternalIds)
             .Add("includeAttributes", request.IncludeAttributes)
             .MergeAdditional(options?.AdditionalQueryParameters)

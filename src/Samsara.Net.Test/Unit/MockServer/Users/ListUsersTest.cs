@@ -21,7 +21,16 @@ public class ListUsersTest : BaseMockServerTest
                   "name": "Bob Smith",
                   "roles": [
                     {
-                      "expireAt": "2025-08-13T19:08:25Z"
+                      "expireAt": "2025-08-13T19:08:25Z",
+                      "role": {
+                        "id": "8a9371af-82d1-4158-bf91-4ecc8d3a114c",
+                        "name": "Full Admin"
+                      },
+                      "tag": {
+                        "id": "3914",
+                        "name": "East Coast",
+                        "parentTagId": "4815"
+                      }
                     }
                   ]
                 }

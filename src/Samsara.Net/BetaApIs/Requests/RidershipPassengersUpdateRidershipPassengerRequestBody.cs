@@ -47,7 +47,7 @@ public record RidershipPassengersUpdateRidershipPassengerRequestBody
     public RidershipPassengerSpecialInstructionsInputRequestBody? SpecialInstructions { get; set; }
 
     /// <summary>
-    /// Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send `[]` to remove all tags.
+    /// Replaces the passenger's tags with up to 10 Samsara tag IDs; external IDs are not supported here. Omit to keep existing tags, or send `[]` to remove all tags. If your API token is restricted to certain tags, tags outside its scope are kept and can't be added.
     /// </summary>
     [JsonPropertyName("tagIds")]
     public IEnumerable<string>? TagIds { get; set; }

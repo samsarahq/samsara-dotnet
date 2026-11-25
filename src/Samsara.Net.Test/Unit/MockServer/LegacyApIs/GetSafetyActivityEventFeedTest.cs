@@ -17,9 +17,20 @@ public class GetSafetyActivityEventFeedTest : BaseMockServerTest
                 {
                   "id": "1622151765-212014918174029-1550954461759",
                   "safetyEvent": {
+                    "behaviorLabels": [
+                      {
+                        "name": "Acceleration"
+                      }
+                    ],
+                    "driver": {
+                      "id": "0987"
+                    },
                     "id": "212014918174029-1550954461759",
                     "time": "2019-06-13T19:08:25.455Z",
-                    "uuid": "abc123de-4567-89fg-hijk-lmnop1234567"
+                    "uuid": "abc123de-4567-89fg-hijk-lmnop1234567",
+                    "vehicle": {
+                      "id": "1234"
+                    }
                   },
                   "time": "2019-10-12T07:20:50.52Z",
                   "type": "BehaviorLabelActivityType"

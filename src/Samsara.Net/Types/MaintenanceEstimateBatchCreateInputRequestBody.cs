@@ -64,7 +64,7 @@ public record MaintenanceEstimateBatchCreateInputRequestBody : IJsonOnDeserializ
     public required MaintenanceEstimateMoneyRequestBody Tax { get; set; }
 
     /// <summary>
-    /// Same-org vendor location UUID or external ID.
+    /// Same-org vendor location UUID or external ID. Resolve the location via GET /fleet/maintenance/vendor-locations.
     /// </summary>
     [JsonPropertyName("vendorId")]
     public required string VendorId { get; set; }

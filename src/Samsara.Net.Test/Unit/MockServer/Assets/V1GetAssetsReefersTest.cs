@@ -17,7 +17,63 @@ public class V1GetAssetsReefersTest : BaseMockServerTest
                 {
                   "assetType": "Thermo King",
                   "id": 1,
-                  "name": "Reefer 123"
+                  "name": "Reefer 123",
+                  "reeferStats": {
+                    "ambientAirTemperature": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "tempInMilliC": 31110
+                      }
+                    ],
+                    "dischargeAirTemperature": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "tempInMilliC": 31110
+                      }
+                    ],
+                    "engineHours": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "engineHours": 1200
+                      }
+                    ],
+                    "fuelPercentage": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "fuelPercentage": 99
+                      }
+                    ],
+                    "powerStatus": [
+                      {
+                        "changedAtMs": 1453449599999
+                      }
+                    ],
+                    "reeferAlarms": [
+                      {
+                        "alarms": [
+                          {
+                            "alarmCode": 102,
+                            "description": "Check Return Air Sensor",
+                            "operatorAction": "Check and repair at end of trip",
+                            "severity": 1
+                          }
+                        ],
+                        "changedAtMs": 1453449599999
+                      }
+                    ],
+                    "returnAirTemperature": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "tempInMilliC": 31110
+                      }
+                    ],
+                    "setPoint": [
+                      {
+                        "changedAtMs": 1453449599999,
+                        "tempInMilliC": 31110
+                      }
+                    ]
+                  }
                 }
               ],
               "pagination": {

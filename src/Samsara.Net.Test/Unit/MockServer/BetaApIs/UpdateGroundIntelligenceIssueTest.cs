@@ -32,7 +32,9 @@ public class UpdateGroundIntelligenceIssueTest : BaseMockServerTest
                 },
                 "observationCount": 3,
                 "roadSegment": {
-                  "roadName": "Market Street"
+                  "roadClass": "residential",
+                  "roadName": "Market Street",
+                  "roadSurface": "paved"
                 },
                 "severity": "high",
                 "status": "dismissed",

@@ -45,7 +45,7 @@ public record CampaignItemResponseObjectResponseBody : IJsonOnDeserialized
     public string? DismissedReason { get; set; }
 
     /// <summary>
-    /// The state the item behaves as. Equal to `state`, except `suspended` for an open item (`pending`, `hold`, `ready`) on a campaign that is in `draft` or `onHold`, where the item is kept off work orders until the campaign is active.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `complete`, `dismissed`, `cancelled`, `suspended`, `unknown`
+    /// The state the item behaves as. Equal to `state`, except `suspended` for an open item (`pending`, `hold`, `ready`) on a campaign that is in `draft` or `onHold`, where the item is kept off work orders until the campaign is active.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `workOrderCanceled`, `complete`, `dismissed`, `cancelled`, `suspended`, `unknown`
     /// </summary>
     [JsonPropertyName("effectiveState")]
     public required CampaignItemResponseObjectResponseBodyEffectiveState EffectiveState { get; set; }
@@ -63,7 +63,7 @@ public record CampaignItemResponseObjectResponseBody : IJsonOnDeserialized
     public string? LinkedWorkOrderId { get; set; }
 
     /// <summary>
-    /// How the asset joined the campaign. Items added through this API are `api`.  Valid values: `api`, `targeting`, `manual`, `csv`, `assistant`, `unknown`
+    /// How the asset joined the campaign. Items added through this API are `api`.  Valid values: `api`, `targeting`, `manual`, `csv`, `assistant`, `nhtsa`, `unknown`
     /// </summary>
     [JsonPropertyName("sourceBasis")]
     public required CampaignItemResponseObjectResponseBodySourceBasis SourceBasis { get; set; }
@@ -75,7 +75,7 @@ public record CampaignItemResponseObjectResponseBody : IJsonOnDeserialized
     public string? SourceRef { get; set; }
 
     /// <summary>
-    /// Stored lifecycle state of the item. Defaults to `unknown` when the state is not recognized.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `complete`, `dismissed`, `cancelled`, `unknown`
+    /// Stored lifecycle state of the item. Defaults to `unknown` when the state is not recognized.  Valid values: `pending`, `hold`, `ready`, `workOrderCreated`, `workOrderCanceled`, `complete`, `dismissed`, `cancelled`, `unknown`
     /// </summary>
     [JsonPropertyName("state")]
     public required CampaignItemResponseObjectResponseBodyState State { get; set; }

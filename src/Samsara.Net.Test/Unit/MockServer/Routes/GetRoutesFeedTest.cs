@@ -55,6 +55,10 @@ public class GetRoutesFeedTest : BaseMockServerTest
                       "id": "45646",
                       "name": "Driver Bob"
                     },
+                    "equipmentProfile": {
+                      "hubId": "018f7b62-7d55-7b9e-a92f-2a6b7ff10393",
+                      "id": "018f7b62-7d55-7b9e-a92f-2a6b7ff10392"
+                    },
                     "id": "342341",
                     "name": "Bid 123",
                     "notes": "These are my notes",
@@ -131,7 +135,11 @@ public class GetRoutesFeedTest : BaseMockServerTest
                     "tagIds": [
                       "123",
                       "321"
-                    ]
+                    ],
+                    "vehicle": {
+                      "id": "494123",
+                      "name": "Fleet Truck #1"
+                    }
                   },
                   "source": "automatic",
                   "time": "2020-01-27T07:06:25.000Z",

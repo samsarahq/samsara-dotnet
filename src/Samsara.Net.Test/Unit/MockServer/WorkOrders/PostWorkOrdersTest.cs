@@ -97,6 +97,10 @@ public class PostWorkOrdersTest : BaseMockServerTest
                       }
                     ],
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                    "laborCost": {
+                      "amount": "94.01",
+                      "currency": "usd"
+                    },
                     "laborHourlyCost": {
                       "amount": "94.01",
                       "currency": "usd"
@@ -107,8 +111,10 @@ public class PostWorkOrdersTest : BaseMockServerTest
                       {
                         "costCentsOverride": 1000,
                         "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
+                        "maintenanceSiteId": "5523a39f-42ef-4820-83d0-dfe73dbe7853",
                         "partId": "P0077",
-                        "quantity": 2.5
+                        "quantity": 2.5,
+                        "requestedQuantity": 5
                       }
                     ],
                     "partsCost": {
@@ -116,9 +122,21 @@ public class PostWorkOrdersTest : BaseMockServerTest
                       "currency": "usd"
                     },
                     "serviceTaskId": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
-                    "status": "Unknown"
+                    "status": "Unknown",
+                    "subtasks": [
+                      {
+                        "form": {
+                          "formSubmissionUuid": "5523a39f-42ef-4820-83d0-dfe73dbe7853"
+                        },
+                        "procedure": {
+                          "isCompleted": false,
+                          "name": "Inspect brakes"
+                        }
+                      }
+                    ]
                   }
                 ],
+                "shopId": "shop-10482",
                 "startedAtTime": "2019-06-13T19:08:25.000Z",
                 "status": "Assigned",
                 "tax": {

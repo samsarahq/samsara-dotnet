@@ -19,6 +19,14 @@ public class V1GetAssetReeferTest : BaseMockServerTest
               "reeferStats": {
                 "alarms": [
                   {
+                    "alarms": [
+                      {
+                        "alarmCode": 102,
+                        "description": "Check Return Air Sensor",
+                        "operatorAction": "Check and repair at end of trip",
+                        "severity": 1
+                      }
+                    ],
                     "changedAtMs": 1453449599999
                   }
                 ],

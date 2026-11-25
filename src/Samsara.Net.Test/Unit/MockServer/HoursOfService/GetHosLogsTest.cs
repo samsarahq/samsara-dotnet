@@ -21,13 +21,27 @@ public class GetHosLogsTest : BaseMockServerTest
                   },
                   "hosLogs": [
                     {
+                      "codrivers": [
+                        {
+                          "id": "88668",
+                          "name": "Susan Bob"
+                        }
+                      ],
                       "logEndTime": "2020-01-27T07:06:25Z",
                       "logRecordedLocation": {
                         "latitude": 122.142,
                         "longitude": -93.343
                       },
                       "logStartTime": "2020-01-27T07:06:25Z",
-                      "remark": "Lunch Break"
+                      "remark": "Lunch Break",
+                      "vehicle": {
+                        "ExternalIds": {
+                          "maintenanceId": "250020",
+                          "payrollId": "ABFS18600"
+                        },
+                        "id": "123456789",
+                        "name": "Midwest Truck #4"
+                      }
                     }
                   ]
                 }

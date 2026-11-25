@@ -20,6 +20,35 @@ public class GetDevicesTest : BaseMockServerTest
                     "name": "MyAsset-1234"
                   },
                   "health": {
+                    "healthDetails": {
+                      "bleAssetTagDetails": {
+                        "lastCheckInTime": "2019-06-13T19:08:25.000Z"
+                      },
+                      "cameraConnectorDetails": {
+                        "gatewayLastConnectedTime": "2019-06-13T19:08:25.000Z",
+                        "lastFiftyHoursUptimePercentage": 95.5,
+                        "vehicleGatewaySerial": "VG-1234-5678"
+                      },
+                      "cameraDetails": {
+                        "gatewayLastConnectedTime": "2019-06-13T19:08:25.000Z",
+                        "lastFiftyHoursUptimePercentage": 95.5,
+                        "vehicleGatewaySerial": "VG-1234-5678"
+                      },
+                      "gatewayDetails": {
+                        "cellConnectivity": {
+                          "operator": "AT&T"
+                        },
+                        "gatewayBatteryTemp": 25.5,
+                        "gatewayBatteryVolts": 12.5,
+                        "lastCheckInTime": "2019-06-13T19:08:25.000Z",
+                        "vehicleBatteryVolts": 12.5
+                      }
+                    },
+                    "healthReasons": [
+                      {
+                        "startTime": "2019-06-13T19:08:25.000Z"
+                      }
+                    ],
                     "primaryHealthReasonStartTime": "2019-06-13T19:08:25.000Z"
                   },
                   "lastConnectedTime": "2019-06-13T19:08:25.000Z",

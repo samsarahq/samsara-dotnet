@@ -21,11 +21,17 @@ public class ListIssuesTest : BaseMockServerTest
                   "id": "5267696d-a9f9-4031-bdf4-6fbc9ec64e57",
                   "lastSeenTime": "2026-08-06T09:00:00Z",
                   "location": {
+                    "point": {
+                      "latitude": 37.7749,
+                      "longitude": -122.4194
+                    },
                     "type": "point"
                   },
                   "observationCount": 3,
                   "roadSegment": {
-                    "roadName": "Market Street"
+                    "roadClass": "residential",
+                    "roadName": "Market Street",
+                    "roadSurface": "paved"
                   },
                   "severity": "high",
                   "status": "dismissed",

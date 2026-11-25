@@ -37,7 +37,7 @@ public partial interface IDriverVehicleAssignmentsClient
     );
 
     /// <summary>
-    /// Delete driver assignments that were created using the `POST fleet/driver-vehicle-assignments` endpoint for the requested vehicle in the requested time range.
+    /// Delete driver assignments that were created using the `POST fleet/driver-vehicle-assignments` endpoint. Identify the assignments either with vehicleId and an optional time range, or with metadata.sourceName alone.
     ///
     ///  <b>Rate limit:</b> 100 requests/min (learn more about rate limits <a href="https://developers.samsara.com/docs/rate-limits" target="_blank">here</a>).
     ///

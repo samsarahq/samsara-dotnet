@@ -15,7 +15,7 @@ public record VehicleTrailerMismatchDataResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Trailers the vehicle is currently associated with pulling.
+    /// Trailers the vehicle was associated with pulling in the incident metadata. An empty array means no trailer associations were recorded. Omitted when metadata or all referenced trailer details are unavailable.
     /// </summary>
     [JsonPropertyName("currentlyPullingTrailers")]
     public IEnumerable<AlertObjectTrailerResponseBody>? CurrentlyPullingTrailers { get; set; }
@@ -24,7 +24,7 @@ public record VehicleTrailerMismatchDataResponseBody : IJsonOnDeserialized
     public AlertObjectDriverResponseBody? Driver { get; set; }
 
     /// <summary>
-    /// Trailers the driver selected in the dispatch workflow.
+    /// Trailers the driver selected in the incident metadata. An empty array means no trailers were selected. Omitted when metadata or all referenced trailer details are unavailable.
     /// </summary>
     [JsonPropertyName("driverSelectedTrailers")]
     public IEnumerable<AlertObjectTrailerResponseBody>? DriverSelectedTrailers { get; set; }

@@ -35,29 +35,73 @@ public class GetDocumentTypesTest : BaseMockServerTest
                           "label": "No"
                         }
                       ],
-                      "requiredField": true
+                      "numberFieldTypeMetaData": {
+                        "numberOfDecimalPlaces": 4983279330600016000
+                      },
+                      "requiredField": true,
+                      "signatureFieldTypeMetaData": {
+                        "legalText": "Verified by signee."
+                      }
                     },
                     {
                       "fieldType": "photo",
                       "label": "Damage Photos",
-                      "requiredField": false
+                      "multipleChoiceFieldTypeMetaData": [
+                        {
+                          "label": "Fuel Receipt"
+                        }
+                      ],
+                      "numberFieldTypeMetaData": {
+                        "numberOfDecimalPlaces": 4983279330600016000
+                      },
+                      "requiredField": false,
+                      "signatureFieldTypeMetaData": {
+                        "legalText": "Verified by signee."
+                      }
                     },
                     {
                       "fieldType": "number",
                       "label": "Number of vehicles impacted",
+                      "multipleChoiceFieldTypeMetaData": [
+                        {
+                          "label": "Fuel Receipt"
+                        }
+                      ],
                       "numberFieldTypeMetaData": {
                         "numberOfDecimalPlaces": 2
                       },
-                      "requiredField": false
+                      "requiredField": false,
+                      "signatureFieldTypeMetaData": {
+                        "legalText": "Verified by signee."
+                      }
                     },
                     {
                       "fieldType": "dateTime",
                       "label": "Date and time",
-                      "requiredField": true
+                      "multipleChoiceFieldTypeMetaData": [
+                        {
+                          "label": "Fuel Receipt"
+                        }
+                      ],
+                      "numberFieldTypeMetaData": {
+                        "numberOfDecimalPlaces": 4983279330600016000
+                      },
+                      "requiredField": true,
+                      "signatureFieldTypeMetaData": {
+                        "legalText": "Verified by signee."
+                      }
                     },
                     {
                       "fieldType": "signature",
                       "label": "Sign",
+                      "multipleChoiceFieldTypeMetaData": [
+                        {
+                          "label": "Fuel Receipt"
+                        }
+                      ],
+                      "numberFieldTypeMetaData": {
+                        "numberOfDecimalPlaces": 4983279330600016000
+                      },
                       "requiredField": true,
                       "signatureFieldTypeMetaData": {
                         "legalText": "Legal Text"

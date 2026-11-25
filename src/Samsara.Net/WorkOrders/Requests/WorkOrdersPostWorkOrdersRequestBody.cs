@@ -20,10 +20,16 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public required string AssetId { get; set; }
 
     /// <summary>
-    /// The ID of the assigned mechanic.
+    /// The ID of the assigned mechanic. Mutually exclusive with assignedUserIds.
     /// </summary>
     [JsonPropertyName("assignedUserId")]
     public string? AssignedUserId { get; set; }
+
+    /// <summary>
+    /// Dashboard users assigned to the work order. Mutually exclusive with assignedUserId. The first ID is the primary assignee returned in assignedUserId. Send an empty array to create the work order with no assignee. A list with more than one ID is accepted only when multi-assignee is enabled for the organization.
+    /// </summary>
+    [JsonPropertyName("assignedUserIds")]
+    public IEnumerable<string>? AssignedUserIds { get; set; }
 
     /// <summary>
     /// A list of custom fields (attributes) to assign to the work order. Each entry requires the attribute `id`. Use `stringValues` for text, single-select, and multi-select attributes, `numberValues` for number attributes, and `dateValues` (YYYY-MM-DD) for date attributes. For single-select and multi-select attributes, send the text of a defined option. The request is rejected if any attribute or value is invalid. Only available for organizations with work order custom fields enabled.
@@ -119,6 +125,12 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public IEnumerable<ServiceTaskInstanceInputObjectRequestBody>? ServiceTaskInstances { get; set; }
 
     /// <summary>
+    /// ID of the shop associated with the work order. Omit to create the work order without a shop. This is independent of the maintenance site (`placeId`).
+    /// </summary>
+    [JsonPropertyName("shopId")]
+    public string? ShopId { get; set; }
+
+    /// <summary>
     /// The historical time work started on the work order, in RFC 3339 format. Is automatically set when the status is an in-progress status and this field is not provided.
     /// </summary>
     [JsonPropertyName("startedAtTime")]
@@ -134,7 +146,7 @@ public record WorkOrdersPostWorkOrdersRequestBody
     public WorkOrderTaxCreateObjectRequestBody? Tax { get; set; }
 
     /// <summary>
-    /// The vendor UUID for the work order.
+    /// The vendor location UUID for the work order. Resolve the location via GET /fleet/maintenance/vendor-locations.
     /// </summary>
     [JsonPropertyName("vendorUuid")]
     public string? VendorUuid { get; set; }

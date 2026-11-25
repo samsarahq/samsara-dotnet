@@ -51,6 +51,12 @@ public record EntityListPreventiveMaintenanceSchedulesTypeResponseBody : IJsonOn
     public IEnumerable<EntityListPreventiveMaintenanceSchedulesPreventativeMaintenanceScheduleRefTypeResponseBody>? LinkedSchedules { get; set; }
 
     /// <summary>
+    /// Optional PM schedule type. Wire values are A, B, C, or D. Omitted when the schedule is untyped.
+    /// </summary>
+    [JsonPropertyName("scheduleType")]
+    public string? ScheduleType { get; set; }
+
+    /// <summary>
     /// Title of the preventive maintenance schedule.
     /// </summary>
     [JsonPropertyName("title")]

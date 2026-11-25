@@ -12,7 +12,7 @@ public record WorkOrdersPatchWorkOrdersResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     [JsonPropertyName("data")]
-    public required WorkOrderObjectResponseBody Data { get; set; }
+    public required WorkOrderObjectV20261112ResponseBody Data { get; set; }
 
     [JsonIgnore]
     public ReadOnlyAdditionalProperties AdditionalProperties { get; private set; } = new();

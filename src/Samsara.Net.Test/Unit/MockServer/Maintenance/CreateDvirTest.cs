@@ -67,7 +67,23 @@ public class CreateDvirTest : BaseMockServerTest
                     "isResolved": true,
                     "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
                     "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
-                    "resolvedAtTime": "2020-01-27T07:06:25Z"
+                    "resolvedAtTime": "2020-01-27T07:06:25Z",
+                    "resolvedBy": {
+                      "id": "11",
+                      "name": "Christopher 'The Handyman' Zhen"
+                    },
+                    "trailer": {
+                      "id": "123456789",
+                      "name": "Midwest Trailer #5"
+                    },
+                    "vehicle": {
+                      "ExternalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "123456789",
+                      "name": "Midwest Truck #4"
+                    }
                   }
                 ],
                 "trailerName": "Midwest Trailer #5",
@@ -89,7 +105,23 @@ public class CreateDvirTest : BaseMockServerTest
                     "isResolved": true,
                     "mechanicNotes": "Extremely large oddly shaped hole in passenger side window.",
                     "mechanicNotesUpdatedAtTime": "2020-01-27T07:06:25Z",
-                    "resolvedAtTime": "2020-01-27T07:06:25Z"
+                    "resolvedAtTime": "2020-01-27T07:06:25Z",
+                    "resolvedBy": {
+                      "id": "11",
+                      "name": "Christopher 'The Handyman' Zhen"
+                    },
+                    "trailer": {
+                      "id": "123456789",
+                      "name": "Midwest Trailer #5"
+                    },
+                    "vehicle": {
+                      "ExternalIds": {
+                        "maintenanceId": "250020",
+                        "payrollId": "ABFS18600"
+                      },
+                      "id": "123456789",
+                      "name": "Midwest Truck #4"
+                    }
                   }
                 ]
               }

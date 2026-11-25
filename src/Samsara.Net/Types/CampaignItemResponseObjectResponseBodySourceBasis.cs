@@ -23,6 +23,10 @@ public readonly record struct CampaignItemResponseObjectResponseBodySourceBasis 
         Values.Assistant
     );
 
+    public static readonly CampaignItemResponseObjectResponseBodySourceBasis Nhtsa = new(
+        Values.Nhtsa
+    );
+
     public static readonly CampaignItemResponseObjectResponseBodySourceBasis Unknown = new(
         Values.Unknown
     );
@@ -91,6 +95,8 @@ public readonly record struct CampaignItemResponseObjectResponseBodySourceBasis 
         public const string Csv = "csv";
 
         public const string Assistant = "assistant";
+
+        public const string Nhtsa = "nhtsa";
 
         public const string Unknown = "unknown";
     }

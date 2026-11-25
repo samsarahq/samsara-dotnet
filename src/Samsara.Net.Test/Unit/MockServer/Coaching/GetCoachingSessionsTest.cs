@@ -29,6 +29,8 @@ public class GetCoachingSessionsTest : BaseMockServerTest
                           }
                         }
                       ],
+                      "createdAtTime": "2019-06-13T19:08:25.000Z",
+                      "dueAtTime": "2019-06-13T19:08:25.000Z",
                       "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
                       "lastCoachedTime": "2019-06-13T19:08:25.000Z",
                       "note": "Need to wear seatbelt even for short trips.",
@@ -45,6 +47,7 @@ public class GetCoachingSessionsTest : BaseMockServerTest
                   "id": "f5271458-21f9-4a9f-a290-780c6d8840ff",
                   "sessionNote": "Need to wear seatbelt even for short trips.",
                   "sessionStatus": "unknown",
+                  "sessionType": "driverSelfOneOff",
                   "updatedAtTime": "2019-06-13T19:08:25.000Z"
                 }
               ],

@@ -15,7 +15,7 @@ public record CampaignRollupsResponseObjectResponseBody : IJsonOnDeserialized
         new Dictionary<string, JsonElement>();
 
     /// <summary>
-    /// Number of items that have been in a non-terminal state (`pending`, `hold`, `ready`, `workOrderCreated`) for more than 30 days.
+    /// Number of items that have been in a non-terminal state (`pending`, `hold`, `ready`, `workOrderCreated`, `workOrderCanceled`) for more than 30 days.
     /// </summary>
     [JsonPropertyName("agingItemCount")]
     public required long AgingItemCount { get; set; }

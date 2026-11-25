@@ -37,6 +37,13 @@ public class ListTest : BaseMockServerTest
                   "eldExempt": true,
                   "eldExemptReason": "Bad driver",
                   "eldPcEnabled": true,
+                  "eldSettings": {
+                    "rulesets": [
+                      {
+                        "jurisdiction": "AR"
+                      }
+                    ]
+                  },
                   "eldYmEnabled": true,
                   "email": "susan.jones@example.com",
                   "externalIds": {

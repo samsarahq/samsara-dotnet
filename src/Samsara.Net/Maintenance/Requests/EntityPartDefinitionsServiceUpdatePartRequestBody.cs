@@ -83,6 +83,12 @@ public record EntityPartDefinitionsServiceUpdatePartRequestBody
     public UpdatePartEntityPartDefinitionMoneyInputTypeRequestBody? UnitCost { get; set; }
 
     /// <summary>
+    /// Unit of measure for the part.  Valid values: `Unknown`, `Each`, `Set`, `Pack`, `Box`, `Pound`, `Kilogram`, `Ounce`, `Liter`, `Milliliter`, `Gallon`, `Quart`, `FluidOunce`, `Inch`, `Foot`, `Meter`, `Yard`, `SquareFoot`, `SquareMeter`, `Pint`, `Hundred`, `Roll`
+    /// </summary>
+    [JsonPropertyName("unitOfMeasureType")]
+    public EntityPartDefinitionsServiceUpdatePartRequestBodyUnitOfMeasureType? UnitOfMeasureType { get; set; }
+
+    /// <summary>
     /// VMRS code associated with the part definition.
     /// </summary>
     [JsonPropertyName("vmrsCode")]

@@ -21,6 +21,19 @@ public class GetLocationAndSpeedTest : BaseMockServerTest
                   "happenedAtTime": "2020-01-27T07:06:25Z",
                   "location": {
                     "accuracyMeters": 5.801,
+                    "address": {
+                      "city": "New York",
+                      "country": "USA",
+                      "neighborhood": "Mission District",
+                      "pointOfInterest": "The Eiffel Tower",
+                      "postalCode": "10010",
+                      "state": "New York",
+                      "street": "Main Street",
+                      "streetNumber": "16"
+                    },
+                    "geofence": {
+                      "id": "12345"
+                    },
                     "headingDegrees": 120,
                     "latitude": 37.7749,
                     "longitude": 137.2719

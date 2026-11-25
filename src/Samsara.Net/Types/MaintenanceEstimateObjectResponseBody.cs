@@ -113,7 +113,7 @@ public record MaintenanceEstimateObjectResponseBody : IJsonOnDeserialized
     public required DateTime UpdatedAtTime { get; set; }
 
     /// <summary>
-    /// Vendor location ID.
+    /// Vendor location ID. Resolve the location via GET /fleet/maintenance/vendor-locations.
     /// </summary>
     [JsonPropertyName("vendorId")]
     public string? VendorId { get; set; }

@@ -49,6 +49,13 @@ public class PostFormSubmissionTest : BaseMockServerTest
                 },
                 "fields": [
                   {
+                    "assetValue": {
+                      "asset": {
+                        "entryType": "tracked",
+                        "id": "281474982859091",
+                        "name": "trailer 123"
+                      }
+                    },
                     "barcodeValue": {
                       "barcodes": [
                         {
@@ -70,6 +77,14 @@ public class PostFormSubmissionTest : BaseMockServerTest
                       "dateValue": "2024-08-08",
                       "type": "datetime",
                       "value": "2024-08-08T18:53:23.000Z"
+                    },
+                    "geofenceValue": {
+                      "geofence": {
+                        "address": "123 Main St, Anytown, USA 12345",
+                        "entryType": "tracked",
+                        "id": "1234567890",
+                        "name": "Geofence Name"
+                      }
                     },
                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",
                     "issue": {
@@ -101,6 +116,16 @@ public class PostFormSubmissionTest : BaseMockServerTest
                     "note": "Fire and oil can lead to an accident.",
                     "numberValue": {
                       "value": 123.456
+                    },
+                    "personValue": {
+                      "person": {
+                        "entryType": "tracked",
+                        "name": "Jake",
+                        "polymorphicUserId": {
+                          "id": "938172",
+                          "type": "driver"
+                        }
+                      }
                     },
                     "signatureValue": {
                       "media": {
@@ -161,6 +186,16 @@ public class PostFormSubmissionTest : BaseMockServerTest
                               },
                               "numberValue": {
                                 "value": 123.456
+                              },
+                              "personValue": {
+                                "person": {
+                                  "entryType": "tracked",
+                                  "name": "Jake",
+                                  "polymorphicUserId": {
+                                    "id": "938172",
+                                    "type": "driver"
+                                  }
+                                }
                               },
                               "signatureValue": {
                                 "media": {

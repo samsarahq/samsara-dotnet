@@ -15,6 +15,22 @@ public class GetHosClocksTest : BaseMockServerTest
             {
               "data": [
                 {
+                  "clocks": {
+                    "break": {
+                      "timeUntilBreakDurationMs": 28800000
+                    },
+                    "cycle": {
+                      "cycleRemainingDurationMs": 252000000,
+                      "cycleStartedAtTime": "2020-01-27T07:06:25Z",
+                      "cycleTomorrowDurationMs": 252000000
+                    },
+                    "drive": {
+                      "driveRemainingDurationMs": 39600000
+                    },
+                    "shift": {
+                      "shiftRemainingDurationMs": 50400000
+                    }
+                  },
                   "currentVehicle": {
                     "ExternalIds": {
                       "maintenanceId": "250020",

@@ -64,6 +64,32 @@ public class ListTest : BaseMockServerTest
                   "name": "Fleet Truck #1",
                   "notes": "These are notes about this given vehicle.",
                   "sensorConfiguration": {
+                    "areas": [
+                      {
+                        "cargoSensors": [
+                          {
+                            "id": "12345",
+                            "mac": "00:00:5e:00:53:af",
+                            "name": "Rear temperature sensor"
+                          }
+                        ],
+                        "humiditySensors": [
+                          {
+                            "id": "12345",
+                            "mac": "00:00:5e:00:53:af",
+                            "name": "Rear temperature sensor"
+                          }
+                        ],
+                        "position": "back",
+                        "temperatureSensors": [
+                          {
+                            "id": "12345",
+                            "mac": "00:00:5e:00:53:af",
+                            "name": "Rear temperature sensor"
+                          }
+                        ]
+                      }
+                    ],
                     "doors": [
                       {
                         "position": "back",

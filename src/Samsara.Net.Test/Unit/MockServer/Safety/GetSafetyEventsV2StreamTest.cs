@@ -16,6 +16,24 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
               "data": [
                 {
                   "asset": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "2024-01-15",
+                          "2024-12-31"
+                        ],
+                        "id": "494123",
+                        "name": "Compliance/ELD",
+                        "numberValues": [
+                          867,
+                          5309
+                        ],
+                        "stringValues": [
+                          "HQ",
+                          "Leased"
+                        ]
+                      }
+                    ],
                     "id": "bb2ff5ab-30ad-49ec-9d2d-55ec30bbf590,6caeb9c0-7e3d-49ae-a015-45c2f68fed4c",
                     "name": "MyAsset-1234",
                     "tags": [
@@ -50,6 +68,24 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                     "comment": "minorEvent"
                   },
                   "driver": {
+                    "attributes": [
+                      {
+                        "dateValues": [
+                          "2024-01-15",
+                          "2024-12-31"
+                        ],
+                        "id": "494123",
+                        "name": "Compliance/ELD",
+                        "numberValues": [
+                          867,
+                          5309
+                        ],
+                        "stringValues": [
+                          "HQ",
+                          "Leased"
+                        ]
+                      }
+                    ],
                     "id": "0987",
                     "name": "Driver Name",
                     "tags": [
@@ -67,6 +103,19 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                   "incidentReportUrl": "https://cloud.samsara.com/",
                   "location": {
                     "accuracyMeters": 5.801,
+                    "address": {
+                      "city": "New York",
+                      "country": "USA",
+                      "neighborhood": "Mission District",
+                      "pointOfInterest": "The Eiffel Tower",
+                      "postalCode": "10010",
+                      "state": "New York",
+                      "street": "Main Street",
+                      "streetNumber": "16"
+                    },
+                    "geofence": {
+                      "id": "12345"
+                    },
                     "headingDegrees": 120,
                     "latitude": 37.7749,
                     "longitude": 137.2719
@@ -80,8 +129,8 @@ public class GetSafetyEventsV2StreamTest : BaseMockServerTest
                     }
                   ],
                   "speedingMetadata": {
-                    "maxSpeedKilometersPerHour": 4263146179671302700,
-                    "postedSpeedLimitKilometersPerHour": 3315899840082544600
+                    "maxSpeedKilometersPerHour": 5007476316850668000,
+                    "postedSpeedLimitKilometersPerHour": 3317241163671180300
                   },
                   "startMs": "2023-01-27T07:01:25Z",
                   "tripEndTime": "2023-01-27T07:06:25Z",

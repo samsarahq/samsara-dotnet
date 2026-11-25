@@ -47,6 +47,9 @@ public class ListTest : BaseMockServerTest
                           "longitude": -123.403098
                         }
                       ]
+                    },
+                    "settings": {
+                      "showAddresses": false
                     }
                   },
                   "id": "22408",

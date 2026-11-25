@@ -119,6 +119,16 @@ public class GetQualificationRecordsStreamTest : BaseMockServerTest
                                 "numberValue": {
                                   "value": 123.456
                                 },
+                                "personValue": {
+                                  "person": {
+                                    "entryType": "tracked",
+                                    "name": "Jake",
+                                    "polymorphicUserId": {
+                                      "id": "938172",
+                                      "type": "driver"
+                                    }
+                                  }
+                                },
                                 "signatureValue": {
                                   "media": {
                                     "id": "9814a1fa-f0c6-408b-bf85-51dc3bc71ac7",

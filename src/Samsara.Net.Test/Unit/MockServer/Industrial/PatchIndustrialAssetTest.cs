@@ -25,6 +25,16 @@ public class PatchIndustrialAssetTest : BaseMockServerTest
                 "dataOutputs": [
                   {
                     "dataGroup": "Control Pressure",
+                    "dataInput": {
+                      "dataGroup": "Pressure",
+                      "id": "123456",
+                      "lastPoint": {
+                        "time": "2020-01-27T07:06:25Z",
+                        "value": 1992.0506
+                      },
+                      "name": "Digital Input 1",
+                      "units": "PSI"
+                    },
                     "deviceId": "123",
                     "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
                     "name": "Digital Output 1"
